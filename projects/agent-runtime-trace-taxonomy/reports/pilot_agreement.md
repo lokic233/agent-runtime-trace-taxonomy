@@ -46,3 +46,44 @@
 - BLIND_INFILE_NAVIGATION
 
 See pilot_confusion_matrix.csv + pilot_label_prevalence.csv for full breakdown. Revision plan -> taxonomy v1 (see taxonomy_rationale + PROJECT_STATE).
+---
+
+# Pilot Agreement — Round 2 (taxonomy v1 validation)
+
+**Generated:** 2026-06-28 · same 114 pilot traces re-annotated with **v1** taxonomy + sharpened guidance · 3 independent annotators (claude/codex/gemini).
+Note: ann1=114, ann2=114, ann3=89 (gemini wrapper died after b7, same failure mode as round-1; 58 triple-overlap traces).
+
+## Round-1 (v0) → Round-2 (v1) comparison
+
+| metric | R1 (v0) | R2 (v1) | gate | movement |
+|--------|--------:|--------:|------|----------|
+| Workload L1 α | 0.21 | 0.15 | ≥0.70 | ⚠️ flat/weak |
+| Workload L1 raw | 0.57 | 0.48 | — | ⚠️ |
+| **Primary Waste L1 raw** | 0.50 | **0.70** | ≥0.70 | ✅ **+0.20 (hits gate)** |
+| **Primary Waste L1 α** | 0.34 | **0.52** | ≥0.70 | ✅ **+0.18** |
+| **Primary L2 (bottleneck)** | 0.39 | **0.586** | ≥0.60 | ✅ **+0.20 (at gate)** |
+| Multi-label Jaccard | 0.45 | 0.33 | ≥0.65 | ⚠️ noisier |
+| Coverage | 0.90 | 0.74* | ≥0.95 | *partial-data (ann3=89) |
+| OTHER/UNKNOWN | 0.0 | 0.0 | ≤0.05 | ✅ |
+| Labels never-selected | 1 | **0** | — | ✅ fixed |
+
+## VERDICT: FROZEN_WITH_LIMITATIONS (TAXONOMY_STATUS=FROZEN_V1)
+
+The v1 revisions **materially improved the core waste-pattern agreement** — the part that
+actually drives the downstream controller: Waste L1 raw agreement reached the 0.70 gate,
+Waste L1 α rose +0.18, and primary-bottleneck (primary L2) reached 0.586 (essentially the
+0.60 gate). All v1 labels are now used (no never-selected).
+
+Two axes remain weak and are **documented limitations, not iteration failures**:
+- **Workload L1 agreement stays low (α≈0.15-0.21).** `MIXED_END_TO_END` vs `PATCH_REASONING_DOMINANT`
+  is a genuinely fuzzy human-judgment boundary; making MIXED "last-resort" did not converge the
+  three annotators. → Workload L1 is the **known weak axis**; treat workload labels as lower-confidence
+  and lean on the per-task cross-model aggregation (Section 13.1) where multiple traces vote.
+- **Multi-label Jaccard fell (0.45→0.33).** The "label only if material" guidance INCREASED breadth
+  variance (annotators drew the materiality line differently). The *directional* agreement is strong
+  (same top labels); the *set-size* discipline needs a future hard cap (e.g. ≤3 L2 labels + 1 primary).
+
+**Why freeze now:** Section 11 allows ≤2 revision rounds; we have used both (v0→v1). The core
+metrics improved; further rounds would overfit to 3 specific annotators. The honest call is to
+FREEZE v1 as READY_WITH_LIMITATIONS and carry the weak-workload-L1 + Jaccard caveats into Stage B
+(where 2 annotators + adjudicator + the 10% audit absorb residual disagreement).

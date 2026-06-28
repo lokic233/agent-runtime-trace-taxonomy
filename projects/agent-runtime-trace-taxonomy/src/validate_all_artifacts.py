@@ -16,7 +16,7 @@ def check_schemas():
 
 def check_taxonomy_constraints():
     import yaml
-    w=yaml.safe_load(open(os.path.join(HERE,"taxonomy","waste_taxonomy_v0.yaml")))
+    w=yaml.safe_load(open(os.path.join(HERE,"taxonomy","waste_taxonomy_v1.yaml")))
     nl1=len(w["l1"]); nl2=len(w["l2"])
     if nl1>7: fails.append(f"waste L1 {nl1} > 7")
     if nl2>22: fails.append(f"waste L2 {nl2} > 22 (hard max)")

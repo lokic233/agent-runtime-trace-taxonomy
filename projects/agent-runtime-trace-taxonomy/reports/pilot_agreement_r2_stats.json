@@ -1,0 +1,128 @@
+{
+  "n_traces_with_>=2_annotators": 58,
+  "annotators": [
+    "ann1",
+    "ann2",
+    "ann3"
+  ],
+  "workload_l1_raw_agreement": 0.4827586206896552,
+  "workload_l1_alpha": 0.15367546654528907,
+  "primary_waste_l1_raw_agreement": 0.7,
+  "primary_waste_l1_alpha": 0.5188612099644128,
+  "primary_bottleneck_raw_agreement": 0.5862068965517241,
+  "primary_l2_agreement": 0.5862068965517241,
+  "multilabel_median_jaccard": 0.3333333333333333,
+  "evidence_overlap_median": 0.4,
+  "abstention_rate": 0.03968253968253968,
+  "other_unknown_rate": 0.0,
+  "taxonomy_coverage": 0.7413793103448276,
+  "labels_never_selected": [],
+  "label_prevalence": {
+    "PATCH_CHURN": 20,
+    "REDUNDANT_FILE_REREAD": 19,
+    "VERIFICATION_GAP": 18,
+    "EDIT_TOOL_MECHANICAL_FAILURE": 16,
+    "CONTEXT_BLOAT": 11,
+    "FAILED_RECOVERY": 11,
+    "BUDGET_EXHAUSTION_NONCONVERGENCE": 9,
+    "PREMATURE_SCRATCH_REPRO": 7,
+    "ENVIRONMENT_BLOCKED": 6,
+    "STAGNATION": 6,
+    "HELPER_TOOL_FAILURE_LOOP": 5,
+    "SEARCH_WITHOUT_NEW_EVIDENCE": 4,
+    "DEPENDENCY_SETUP_DRIFT": 4,
+    "FILENAME_SEARCH_THRASH": 3,
+    "REDUNDANT_TEST": 2,
+    "PREEMPTIVE_HELPER_TOOL_BUILD": 1
+  },
+  "most_confused_pairs": [
+    [
+      [
+        "EDIT_TOOL_MECHANICAL_FAILURE",
+        "PATCH_CHURN"
+      ],
+      3
+    ],
+    [
+      [
+        "ENVIRONMENT_BLOCKED",
+        "PATCH_CHURN"
+      ],
+      2
+    ],
+    [
+      [
+        "PREMATURE_SCRATCH_REPRO",
+        "VERIFICATION_GAP"
+      ],
+      1
+    ],
+    [
+      [
+        "CONTEXT_BLOAT",
+        "EDIT_TOOL_MECHANICAL_FAILURE"
+      ],
+      1
+    ],
+    [
+      [
+        "CONTEXT_BLOAT",
+        "HELPER_TOOL_FAILURE_LOOP"
+      ],
+      1
+    ],
+    [
+      [
+        "EDIT_TOOL_MECHANICAL_FAILURE",
+        "HELPER_TOOL_FAILURE_LOOP"
+      ],
+      1
+    ],
+    [
+      [
+        "HELPER_TOOL_FAILURE_LOOP",
+        "PREEMPTIVE_HELPER_TOOL_BUILD"
+      ],
+      1
+    ],
+    [
+      [
+        "EDIT_TOOL_MECHANICAL_FAILURE",
+        "VERIFICATION_GAP"
+      ],
+      1
+    ],
+    [
+      [
+        "EDIT_TOOL_MECHANICAL_FAILURE",
+        "STAGNATION"
+      ],
+      1
+    ],
+    [
+      [
+        "BUDGET_EXHAUSTION_NONCONVERGENCE",
+        "STAGNATION"
+      ],
+      1
+    ]
+  ],
+  "per_label_binary_agreement": {
+    "REDUNDANT_FILE_REREAD": 0.896551724137931,
+    "CONTEXT_BLOAT": 0.896551724137931,
+    "FILENAME_SEARCH_THRASH": 0.9827586206896551,
+    "SEARCH_WITHOUT_NEW_EVIDENCE": 0.9310344827586207,
+    "PATCH_CHURN": 0.7586206896551724,
+    "PREMATURE_SCRATCH_REPRO": 0.9310344827586207,
+    "EDIT_TOOL_MECHANICAL_FAILURE": 0.8448275862068966,
+    "VERIFICATION_GAP": 0.896551724137931,
+    "REDUNDANT_TEST": 0.9655172413793104,
+    "STAGNATION": 0.9310344827586207,
+    "FAILED_RECOVERY": 0.9655172413793104,
+    "BUDGET_EXHAUSTION_NONCONVERGENCE": 1.0,
+    "PREEMPTIVE_HELPER_TOOL_BUILD": 0.9827586206896551,
+    "HELPER_TOOL_FAILURE_LOOP": 0.9655172413793104,
+    "DEPENDENCY_SETUP_DRIFT": 0.9310344827586207,
+    "ENVIRONMENT_BLOCKED": 0.9137931034482759
+  }
+}

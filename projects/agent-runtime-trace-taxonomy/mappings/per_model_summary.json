@@ -1,0 +1,113 @@
+{
+  "per_model": {
+    "solver_B": {
+      "trace_count": 42,
+      "repos": {
+        "django": 21,
+        "sphinx-doc": 4,
+        "astropy": 3,
+        "matplotlib": 4,
+        "sympy": 5,
+        "scikit-learn": 2,
+        "mwaskom": 1,
+        "pylint-dev": 1,
+        "psf": 1
+      },
+      "outcomes": {
+        "SOLVED": 24,
+        "UNSOLVED": 17,
+        "UNKNOWN": 1
+      },
+      "token_median": null,
+      "length_median": 33.5,
+      "waste_l2_prevalence": {
+        "CONTEXT_BLOAT": 5,
+        "PREMATURE_SCRATCH_REPRO": 2,
+        "SEARCH_WITHOUT_NEW_EVIDENCE": 1,
+        "ENVIRONMENT_BLOCKED": 1,
+        "REDUNDANT_FILE_REREAD": 3,
+        "EDIT_TOOL_MECHANICAL_FAILURE": 2,
+        "HELPER_TOOL_FAILURE_LOOP": 2,
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": 1,
+        "FAILED_RECOVERY": 1,
+        "PREEMPTIVE_HELPER_TOOL_BUILD": 1,
+        "DEPENDENCY_SETUP_DRIFT": 2,
+        "REDUNDANT_TEST": 1,
+        "PATCH_CHURN": 1
+      },
+      "primary_bottleneck_dist": {
+        "CONTEXT_BLOAT": 4,
+        "PREMATURE_SCRATCH_REPRO": 1,
+        "SEARCH_WITHOUT_NEW_EVIDENCE": 1,
+        "ENVIRONMENT_BLOCKED": 1,
+        "HELPER_TOOL_FAILURE_LOOP": 2,
+        "FAILED_RECOVERY": 1,
+        "REDUNDANT_FILE_REREAD": 2,
+        "PATCH_CHURN": 1
+      }
+    },
+    "solver_C": {
+      "trace_count": 43,
+      "repos": {
+        "django": 17,
+        "psf": 4,
+        "pydata": 3,
+        "sphinx-doc": 4,
+        "sympy": 7,
+        "scikit-learn": 3,
+        "pytest-dev": 1,
+        "astropy": 2,
+        "matplotlib": 2
+      },
+      "outcomes": {
+        "UNKNOWN": 3,
+        "UNSOLVED": 19,
+        "SOLVED": 21
+      },
+      "token_median": 248393,
+      "length_median": 20,
+      "waste_l2_prevalence": {
+        "PATCH_CHURN": 10,
+        "REDUNDANT_FILE_REREAD": 5,
+        "VERIFICATION_GAP": 9,
+        "ENVIRONMENT_BLOCKED": 4,
+        "PREMATURE_SCRATCH_REPRO": 2,
+        "EDIT_TOOL_MECHANICAL_FAILURE": 6,
+        "DEPENDENCY_SETUP_DRIFT": 2,
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": 2,
+        "STAGNATION": 1,
+        "FILENAME_SEARCH_THRASH": 2,
+        "FAILED_RECOVERY": 2,
+        "SEARCH_WITHOUT_NEW_EVIDENCE": 1
+      },
+      "primary_bottleneck_dist": {
+        "VERIFICATION_GAP": 4,
+        "PREMATURE_SCRATCH_REPRO": 1,
+        "PATCH_CHURN": 4,
+        "STAGNATION": 1,
+        "ENVIRONMENT_BLOCKED": 2,
+        "FAILED_RECOVERY": 2,
+        "DEPENDENCY_SETUP_DRIFT": 1
+      }
+    },
+    "solver_A": {
+      "trace_count": 30,
+      "repos": {
+        "sphinx-doc": 5,
+        "sympy": 5,
+        "django": 16,
+        "pylint-dev": 1,
+        "scikit-learn": 2,
+        "astropy": 1
+      },
+      "outcomes": {
+        "UNKNOWN": 30
+      },
+      "token_median": 196239.5,
+      "length_median": 28.5,
+      "waste_l2_prevalence": {},
+      "primary_bottleneck_dist": {}
+    }
+  },
+  "matched_task_set_size": 1
+}
