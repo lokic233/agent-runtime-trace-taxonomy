@@ -1,0 +1,58 @@
+# qwen32b_validation_solver.yaml — the COMPLETE held-out validation solver config.
+# Values resolved from the live vLLM host (devgpu014, ~/vllm_qwen_coder.sh + serving log,
+# vLLM v0.22.0, captured 2026-06-28). null = genuinely unavailable; reason documented.
+# This config MUST be frozen (Phase-2) before any held-out Qwen trace is generated/inspected.
+
+solver_id: qwen2_5_coder_32b_instruct_4bit
+alias: solver_QWEN
+
+# --- checkpoint / quantization ---
+base_checkpoint: Qwen2.5-Coder-32B-Instruct
+hf_repo: Qwen/Qwen2.5-Coder-32B-Instruct-AWQ   # official AWQ 4-bit build
+checkpoint_revision: null            # not pinned in launch script (load_format=auto, revision=None); RESOLVE before freeze
+quantization_bits: 4
+quantization_method: AWQ
+quantization_format: awq_marlin       # vLLM Marlin kernels for AWQ
+group_size: 128                       # AWQ default for this official build (VERIFY from config.json before freeze)
+compute_dtype: torch.float16          # vLLM log: dtype=torch.float16
+
+# --- serving runtime ---
+serving_runtime: vLLM (OpenAI-compatible api_server)
+serving_runtime_version: 0.22.0       # EngineCore log: "V1 LLM engine (v0.22.0)"
+gpu_type: NVIDIA H100 (devgpu014, CUDA_VISIBLE_DEVICES=0, single GPU)
+tensor_parallelism: 1                 # tensor_parallel_size=1
+pipeline_parallelism: 1
+context_length: 32768                 # --max-model-len 32768
+gpu_memory_utilization: 0.90
+enable_prefix_caching: true           # vLLM default ON in this build (note: prior ARO finding flags this as a
+                                      #   ~2x rollout regression on UNIQUE-prompt RL; for SWE-agent it MAY differ —
+                                      #   record as a config fact, decide at Phase-2 freeze whether to disable)
+served_model_name: Qwen2.5-Coder-32B-Instruct-4bit
+endpoint: http://127.0.0.1:8001/v1
+
+# --- prompt / template hashes (RESOLVE at freeze; depend on agent harness wiring) ---
+chat_template: null                   # vLLM uses the model's tokenizer_config chat_template; hash at freeze
+chat_template_hash: null
+system_prompt_hash: null              # SWE-agent config system prompt — hash the exact config YAML at freeze
+tool_schema_hash: null                # SWE-agent function_calling tool schema — hash at freeze
+
+# --- sampling / budget ---
+temperature: 0.0                      # PLANNED to mirror the dev runs (SWE-agent agent.model.temperature=0.0)
+top_p: null                           # MUST drop top_p when temperature set (PlugBoard/4.6 lesson; for vLLM both can
+                                      #   coexist, but to MATCH dev-run solver behavior keep greedy: temp=0, top_p unset)
+top_k: null
+max_new_tokens: null                  # RESOLVE: SWE-agent per-call cap (config default) at freeze
+max_steps: null                       # RESOLVE: SWE-agent step limit (dev runs used the HAL default) at freeze
+token_budget: null                    # RESOLVE: per-task token/cost budget at freeze
+seed_policy: vLLM seed=0 (deterministic engine seed); agent-level seed null (greedy decode -> seed not material)
+
+# --- agent harness ---
+agent_harness: SWE-agent-1.0 (HAL harness path), litellm -> openai api_base=vLLM:8001
+agent_harness_commit: null            # RESOLVE: pin hal-harness + SWE-agent submodule SHAs at freeze
+parse_function: function_calling      # structured tool-use (matches dev opus runs)
+
+provenance: >
+  Solver is HOSTED and reachable but UNVALIDATED as an agent: no SWE-bench traces
+  have been generated against it. The nulls above are fields that only become
+  concrete once the agent harness is wired to this endpoint (a Phase-H step gated
+  on Phase-2 freeze). No value is fabricated.

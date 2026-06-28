@@ -1,0 +1,94 @@
+# trace_sources.yaml — clean-trace-optimizer-study
+# Paths RESOLVED from operator-supplied sessions (2026-06-28).
+# Roles per the study spec. Qwen held-out path is SEALED for development.
+
+development_sources:
+  opus_4_5:
+    alias: solver_B
+    path: "cli:devvm14382:/data/users/dengcchi/swebench_traces/verified/20251215_livesweagent_claude-opus-4-5/trajs"
+    layout: mini_swe_agent           # nested trajs/<inst>/<inst>.traj.json
+    role: development
+    graded: true
+    resolved_known: true             # 396/500 (79.2%) from results.json
+    source_harness: live-SWE-agent
+    n_traces: 500
+
+  sonnet_3_5:
+    alias: solver_C
+    path: "cli:devvm14382:/data/users/dengcchi/swebench_traces/verified/20240620_sweagent_claude3.5sonnet/trajs"
+    layout: classic_traj             # flat trajs/<inst>.traj
+    role: development
+    graded: true
+    resolved_known: true             # 168/500 (33.6%)
+    source_harness: SWE-agent-1.0
+    n_traces: 500
+
+  opus_4_7:
+    alias: solver_A
+    path: "cli:devgpu014:/data/users/dengcchi/hal_work/runs/full_opus47"
+    layout: classic_traj             # nested <inst>/<inst>.traj
+    role: development
+    graded: true                     # GRADED in HAL run (full_opus47_grade.json) — 74.2%
+    resolved_known: true
+    source_harness: SWE-agent-1.0 (HAL)
+    n_traces: 466                     # 466/500 produced trajs; 34 exit_cost/timeout
+
+  opus_4_6:
+    alias: solver_F
+    path: "cli:devgpu014:/data/users/dengcchi/hal_work/runs/full_opus46"
+    layout: classic_traj
+    role: capability_audit            # spec: capability_audit; ALSO operator reserved as model-transfer holdout
+    graded: true                      # full_opus46_grade.json present
+    resolved_known: true
+    source_harness: SWE-agent-1.0 (HAL)
+    n_traces: 466
+    note: >
+      Spec lists opus_4_6 as role=capability_audit and graded=false_or_pending.
+      In this dataset 4.6 IS graded. The operator also designated 4.6 as a
+      future model-transfer holdout in the parallel project. To stay clean we
+      EXCLUDE solver_F from the resolution model (RQ2) per the spec's "do not
+      include ungraded 4.7/4.6 in resolution" intent and treat it as an
+      auxiliary capability-audit/secondary-transfer set only.
+
+# Auxiliary open-weight 32B-class sets (downloaded references). NOT in the spec's
+# core development list; used as out-of-distribution robustness checks only,
+# and to widen the harness-variation axis. Open-weight, downloaded from
+# SWE-bench experiments S3.
+auxiliary_sources:
+  swe_agent_lm_32b:
+    alias: solver_E
+    path: "cli:devvm14382:/data/users/dengcchi/swebench_traces/verified/20250511_sweagent_lm_32b/trajs"
+    layout: classic_traj
+    role: ood_robustness_finetuned    # SWE-fine-tuned (custom ACI) — behavioral outlier; report separately
+    graded: true                      # 201/500 (40.2%)
+    source_harness: SWE-agent-LM
+    n_traces: 500
+  skywork_swe_32b:
+    alias: solver_G
+    path: "cli:devvm14382:/data/users/dengcchi/swebench_traces/verified/20250616_Skywork-SWE-32B/trajs"
+    layout: openhands                 # <function=...> blocks
+    role: ood_robustness_openhands
+    graded: true                      # 190/489 (38.9%)
+    source_harness: OpenHands
+    n_traces: 489
+  entropo_qwen3_30b:
+    alias: solver_H
+    path: "cli:devvm14382:/data/users/dengcchi/swebench_traces/verified/20250901_entroPO_R2E_QwenCoder30BA3B/trajs"
+    layout: openhands
+    role: ood_robustness_openhands
+    graded: true                      # ~53.5%
+    source_harness: OpenHands/R2E
+    n_traces: 500
+
+heldout_validation_source:
+  qwen2_5_coder_32b_instruct_4bit:
+    alias: solver_QWEN
+    path: "__QWEN32B_4BIT_TRACE_ROOT__"   # SEALED — no traces generated yet (solver is hosted, see qwen32b_validation_solver.yaml)
+    role: heldout_outcome_validation
+    sealed: true
+    note: >
+      Qwen2.5-Coder-32B-Instruct-AWQ is HOSTED on devgpu014 (vLLM, port 8001) but
+      NO agent traces have been generated against it yet. The held-out validation
+      requires running SWE-agent against this solver under the FROZEN configs —
+      a Phase-H activity gated on Phase-2 freeze. Until then this path is a
+      placeholder and MUST NOT be inspected by feature-discovery.
