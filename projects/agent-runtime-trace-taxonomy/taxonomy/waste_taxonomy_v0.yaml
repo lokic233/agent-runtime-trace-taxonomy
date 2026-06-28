@@ -1,0 +1,337 @@
+# EXECUTION-WASTE TAXONOMY v0 (candidate — pre-pilot, pre-freeze)
+# Derived from 3 independent blind open-coders (claude/codex/gemini) over 60 dev traces.
+# Provenance per label: support = # of independent coders that proposed it.
+# Constraints honored: 6 L1 (<=7); 16 L2 (target 12-18, hard max 22).
+# Every label is OBSERVABLE from action/observation stream + cites deterministic signals.
+# Outcome-in-disguise labels (FAILED_TO_SOLVE/BAD_REASONING/LOW_QUALITY_PATCH) were REJECTED.
+taxonomy_version: v0
+generated: 2026-06-28
+observable_unit_legend: "event | event_sequence | phase | full_trace"
+
+l1:
+  CONTEXT_MEMORY:
+    definition: "Waste in what the agent reads/holds as working context. SWE-agent has no explicit memory layer, so classic memory-retrieval L2 (over-retrieval/recall-miss) are NOT instantiated; context waste manifests as re-reads and oversized reads."
+    note: "MEMORY_OVER_RETRIEVAL / MEMORY_RECALL_MISS from the seed list are DROPPED for SWE-agent (no memory subsystem) — see rejected_and_merged_labels.md."
+  SEARCH_LOCALIZATION:
+    definition: "Waste in locating the code region to change."
+  EDIT_PATCH:
+    definition: "Waste in producing the code change."
+  VERIFICATION:
+    definition: "Waste or gaps in checking the change against an oracle."
+  CONTROL_RECOVERY:
+    definition: "Waste in the agent's high-level control loop (looping, stalling, exhausting budget, failing to recover)."
+  ENVIRONMENT_TOOLING:
+    definition: "Setup/tooling overhead that is SEPARATE from reasoning/runtime waste. Must never be read as a solver reasoning failure."
+
+l2:
+  # ---------------- CONTEXT_MEMORY ----------------
+  - id: REDUNDANT_FILE_REREAD
+    parent: CONTEXT_MEMORY
+    support: 2            # coder_A, coder_B
+    observable_unit: event_sequence
+    definition: "Re-reading the same file or region already viewed, with no intervening EDIT/TEST that would have changed its content."
+    positive_indicators: ["same file_path opened/cat/viewed >=2x", "no EDIT or TEST event on that path between the reads"]
+    required_evidence: [">=2 READ events with identical/overlapping file_path", "no state-changing event between"]
+    exclusions: ["re-read AFTER an edit/test (content changed -> justified)", "reading a DIFFERENT region of the same file"]
+    counterexamples: ["read foo.py -> edit foo.py -> read foo.py (verifying the edit) = NOT redundant"]
+    near_neighbors: [BLIND_INFILE_NAVIGATION, CONTEXT_BLOAT]
+    distinguishing_rule: "REREAD = identical content re-fetched unchanged. NAVIGATION = guessing a new (wrong) location. BLOAT = one oversized read, not repetition."
+    severity_rubric: {MILD: "1 redundant re-read", MODERATE: "2-3", SEVERE: ">=4 or dominates the read budget"}
+    candidate_interventions: [SUMMARIZE_CONTEXT, REDUCE_CONTEXT]
+    metric_signals: [duplicate_file_reads, unique_files_read]
+    observability: HIGH
+  - id: CONTEXT_BLOAT
+    parent: CONTEXT_MEMORY
+    support: 2            # coder_B (BROAD_FILE_DUMP_THEN_NARROW_READ) + coder_C (OUTPUT_TRUNCATION_RECOVERY)
+    observable_unit: event_sequence
+    definition: "The agent reads an oversized artifact (whole large file / unbounded output) that is truncated or far larger than needed, then must do targeted reads that could have been issued first."
+    positive_indicators: ["cat/print of a whole large file", "observation truncated marker", "followed by narrow re-reads of the same file"]
+    required_evidence: ["a READ whose observation is truncated/oversized", ">=1 subsequent narrow READ of the same file"]
+    exclusions: ["a single targeted read", "large read that was actually fully used"]
+    counterexamples: ["sed -n '100,140p' file.py (already targeted) = NOT bloat"]
+    near_neighbors: [REDUNDANT_FILE_REREAD]
+    distinguishing_rule: "BLOAT = one oversized/truncated read forcing re-reads. REREAD = repeating an identical read."
+    severity_rubric: {MILD: "one oversized read", MODERATE: "oversized + 1-2 re-reads", SEVERE: "repeated oversized dumps"}
+    candidate_interventions: [REDUCE_CONTEXT, NARROW_RETRIEVAL, SUMMARIZE_CONTEXT]
+    metric_signals: [duplicate_file_reads]
+    observability: MEDIUM
+
+  # ---------------- SEARCH_LOCALIZATION ----------------
+  - id: BLIND_INFILE_NAVIGATION
+    parent: SEARCH_LOCALIZATION
+    support: 3            # ALL THREE coders (unanimous)
+    observable_unit: event_sequence
+    definition: "After the correct file is open, the agent jumps to a guessed line/region that does not contain the target, then must in-file search and re-navigate — burning steps on within-file localization."
+    positive_indicators: ["goto/scroll to a line number not containing the target", "followed by in-file search then re-navigation"]
+    required_evidence: ["READ/navigation event to a region", "a corrective search/navigation immediately after on the SAME file"]
+    exclusions: ["choosing the WRONG FILE (that's FILENAME_SEARCH_THRASH)", "first navigation that lands correctly"]
+    counterexamples: ["open file -> grep within -> goto exact hit = efficient, NOT blind"]
+    near_neighbors: [FILENAME_SEARCH_THRASH, REDUNDANT_FILE_REREAD]
+    distinguishing_rule: "BLIND_INFILE = wrong line WITHIN the right file. THRASH = wrong/uncertain FILE. REREAD = same content re-fetched."
+    severity_rubric: {MILD: "1 re-navigation", MODERATE: "2-3", SEVERE: "dominates localization phase"}
+    candidate_interventions: [CONSTRAIN_SEARCH, NARROW_RETRIEVAL]
+    metric_signals: [unique_files_read, search_call_count]
+    observability: HIGH
+  - id: FILENAME_SEARCH_THRASH
+    parent: SEARCH_LOCALIZATION
+    support: 1            # coder_A (+ coder_C BLIND_DIRECTORY_WALK is a sibling form)
+    observable_unit: event_sequence
+    definition: "Repeated broad searches / directory walks across MANY files to find the target location, without a search returning decisive new evidence that narrows the candidate set."
+    positive_indicators: ["many SEARCH events over distinct files/dirs", "sequential cd/ls level-by-level instead of one recursive search", "candidate-file set not shrinking"]
+    required_evidence: [">=3 SEARCH events", "unique_files_searched high relative to files eventually edited"]
+    exclusions: ["a genuinely cross-file task (legitimately needs many files)", "search that falsified a hypothesis and redirected (justified)"]
+    counterexamples: ["a cross-module refactor that must touch 6 files searched once each = NOT thrash"]
+    near_neighbors: [BLIND_INFILE_NAVIGATION, SEARCH_WITHOUT_NEW_EVIDENCE]
+    distinguishing_rule: "THRASH = which FILE, broad. BLIND_INFILE = which LINE, in a known file. SEARCH_WITHOUT_NEW_EVIDENCE = repeated near-identical query."
+    severity_rubric: {MILD: "mild over-search", MODERATE: "clear non-narrowing search burst", SEVERE: "majority of trace is non-narrowing search"}
+    candidate_interventions: [CONSTRAIN_SEARCH, NARROW_RETRIEVAL]
+    metric_signals: [search_call_count, unique_files_searched]
+    observability: MEDIUM
+  - id: SEARCH_WITHOUT_NEW_EVIDENCE
+    parent: SEARCH_LOCALIZATION
+    support: 1            # seed-confirmed; coder_B SEARCH_API_MISUSE_CASCADE is a related tooling form
+    observable_unit: event_sequence
+    definition: "Issuing near-identical or trivially-varied searches that return the same/empty results, yielding no new evidence to act on."
+    positive_indicators: ["repeated SEARCH with near-identical args", "empty or identical results", "no behavior change after"]
+    required_evidence: [">=2 SEARCH events with near-identical args (or exact_duplicate signal on search)", "no new file_path enters the candidate set"]
+    exclusions: ["a reformulated search after a failed hypothesis that DOES return new hits"]
+    counterexamples: ["grep X (0 hits) -> grep Y (new hits) = justified reformulation"]
+    near_neighbors: [FILENAME_SEARCH_THRASH, SEARCH_API_MISUSE]
+    distinguishing_rule: "NO_NEW_EVIDENCE = repetition with no information gain. THRASH = breadth across files. API_MISUSE = the search command itself errors/malformed."
+    severity_rubric: {MILD: "1 repeat", MODERATE: "2-3", SEVERE: ">=4 zero-yield searches"}
+    candidate_interventions: [CONSTRAIN_SEARCH, EXPAND_SEARCH]
+    metric_signals: [exact_duplicate_call_rate, search_call_count]
+    observability: MEDIUM
+
+  # ---------------- EDIT_PATCH ----------------
+  - id: PATCH_CHURN
+    parent: EDIT_PATCH
+    support: 2            # coder_A + coder_B
+    observable_unit: event_sequence
+    definition: "Repeated edits concentrated on the same file/region with NO intervening test/verification that would justify the change (high patch_attempts, low files_modified, no TEST between)."
+    positive_indicators: ["high patch_attempts vs low files_modified", "consecutive EDITs to same path", "no TEST event between edits"]
+    required_evidence: [">=2 EDIT events on the same file_path", "no TEST/SEARCH yielding new evidence between them"]
+    exclusions: ["edit -> failing test -> fix (normal iteration, that's FAILED_RECOVERY or healthy)", "edits to DIFFERENT files"]
+    counterexamples: ["edit -> run test (fail) -> edit again = evidence-driven, NOT churn"]
+    near_neighbors: [FAILED_RECOVERY, OVER_BROAD_EDIT, PREMATURE_SCRATCH_REPRO]
+    distinguishing_rule: "CHURN = same region, NO new evidence between. FAILED_RECOVERY = edits ARE driven by new failing evidence but never converge."
+    severity_rubric: {MILD: "2 edits no-verify", MODERATE: "3-4", SEVERE: ">=5 or never verified"}
+    candidate_interventions: [DELAY_EDIT, LIMIT_PATCH_SCOPE, INCREASE_TARGETED_VERIFICATION]
+    metric_signals: [patch_attempts, files_modified, patch_churn]
+    observability: MEDIUM
+  - id: PREMATURE_SCRATCH_REPRO
+    parent: EDIT_PATCH
+    support: 2            # coder_B + coder_C(adjacent)
+    observable_unit: event_sequence
+    definition: "The agent creates and repeatedly edits an ad-hoc reproduction/scratch script BEFORE locating or understanding the production code path, spending actions on temporary artifacts."
+    positive_indicators: ["early EDIT creates reproduce_*.py / test_*.py scratch file", "before any READ/SEARCH of production source", "repeated edits to that scratch file"]
+    required_evidence: ["EDIT to a non-repo/scratch artifact", "occurs before first production-source localization"]
+    exclusions: ["writing a reproduction AFTER localizing (standard practice)", "the repo's own test files"]
+    counterexamples: ["localize bug -> write minimal repro -> fix = healthy"]
+    near_neighbors: [PATCH_CHURN, PREEMPTIVE_HELPER_TOOL_BUILD]
+    distinguishing_rule: "SCRATCH_REPRO = temp repro artifact before localization. HELPER_TOOL_BUILD = building an editing/viewing UTILITY. CHURN = editing production code repeatedly."
+    severity_rubric: {MILD: "one early scratch file", MODERATE: "scratch + several edits", SEVERE: "scratch churn dominates pre-localization"}
+    candidate_interventions: [DELAY_EDIT, CONSTRAIN_SEARCH]
+    metric_signals: [first_edit_step, patch_attempts]
+    observability: MEDIUM
+  - id: EDIT_TOOL_MECHANICAL_FAILURE
+    parent: EDIT_PATCH
+    support: 1            # coder_C EXACT_MATCH_REPLACE_FAILURE
+    observable_unit: event_sequence
+    definition: "Edits fail for MECHANICAL tool reasons (str_replace old_string mismatch on whitespace/indentation, line-range drift) — not a reasoning error — forcing retries."
+    positive_indicators: ["str_replace / edit error: 'no match' / 'multiple matches'", "retry of the same edit with adjusted whitespace"]
+    required_evidence: ["TOOL_ERROR on an EDIT", "subsequent retry of the same logical edit"]
+    exclusions: ["a semantically wrong edit (that's reasoning, not mechanical)"]
+    counterexamples: ["edit applies cleanly first try = none"]
+    near_neighbors: [PATCH_CHURN, HELPER_TOOL_FAILURE_LOOP]
+    distinguishing_rule: "MECHANICAL_FAILURE = the edit TOOL rejects a syntactically-mismatched patch. CHURN = edits APPLY but keep changing. HELPER_FAILURE = a self-built tool crashes."
+    severity_rubric: {MILD: "1 mismatch retry", MODERATE: "2-3", SEVERE: ">=4 or switches to sed as workaround"}
+    candidate_interventions: [LIMIT_PATCH_SCOPE, NO_CHANGE]
+    metric_signals: [tool_error_count, longest_tool_error_run]
+    observability: HIGH
+  - id: OVER_BROAD_EDIT
+    parent: EDIT_PATCH
+    support: 0            # seed retained as hypothesis (not observed clearly; flagged for pilot)
+    observable_unit: event_sequence
+    definition: "A single edit touches far more code than the localized fix requires (broad rewrite vs targeted change)."
+    positive_indicators: ["large edit span", "many files modified for a localized issue"]
+    required_evidence: ["edit touches many lines/files disproportionate to issue scope"]
+    exclusions: ["a genuinely cross-cutting change required by the task"]
+    counterexamples: ["one-line fix done in one line"]
+    near_neighbors: [PATCH_CHURN]
+    distinguishing_rule: "OVER_BROAD = one big edit. CHURN = many small edits."
+    severity_rubric: {MILD: "slightly broad", MODERATE: "clearly broad", SEVERE: "rewrites unrelated code"}
+    candidate_interventions: [LIMIT_PATCH_SCOPE]
+    metric_signals: [files_modified]
+    observability: LOW
+    status: PROVISIONAL_PILOT_ONLY   # weak observability w/o diff sizes; test in pilot, may drop
+
+  # ---------------- VERIFICATION ----------------
+  - id: VERIFICATION_GAP
+    parent: VERIFICATION
+    support: 2            # coder_A VERIFICATION_GAP_BEFORE_SUBMIT + coder_B NO_VERIFICATION_AFTER_PATCH
+    observable_unit: full_trace
+    definition: "The agent edits production code and terminates/submits WITHOUT running any relevant test or reproduction, on a task that was plausibly locally verifiable."
+    positive_indicators: ["EDIT present", "zero TEST events after the last edit", "termination/submit follows"]
+    required_evidence: [">=1 EDIT", "no TEST event between last edit and termination"]
+    exclusions: ["tasks with no available oracle (UNCLEAR_ORACLE workload)", "env blocked from running tests (-> ENVIRONMENT_TOOLING)"]
+    counterexamples: ["edit -> pytest passes -> submit = verified"]
+    near_neighbors: [ENVIRONMENT_BLOCKED, INSUFFICIENT_VERIFICATION]
+    distinguishing_rule: "GAP = NO post-edit check at all despite a plausible oracle. ENVIRONMENT_BLOCKED = tried to test but the env prevented it."
+    severity_rubric: {MILD: "minor untested edit", MODERATE: "core change unverified", SEVERE: "multi-file change submitted with zero verification"}
+    candidate_interventions: [INCREASE_TARGETED_VERIFICATION]
+    metric_signals: [targeted_test_count, first_test_step, files_modified]
+    observability: HIGH
+    outcome_collapse_mitigation: "Defined purely as 'edited code never executed before submit' — observable WITHOUT knowing the outcome."
+  - id: REDUNDANT_TEST
+    parent: VERIFICATION
+    support: 1            # seed-confirmed; metric-backed
+    observable_unit: event_sequence
+    definition: "Re-running the identical test command with NO code/env change in between (no information gain)."
+    positive_indicators: ["identical test command repeated", "no EDIT/ENVIRONMENT event between runs"]
+    required_evidence: [">=2 identical TEST commands", "no state-changing event between"]
+    exclusions: ["re-running a test AFTER an edit (expected)", "running a DIFFERENT test"]
+    counterexamples: ["test fail -> edit -> same test (now checking the fix) = justified"]
+    near_neighbors: [VERIFICATION_GAP]
+    distinguishing_rule: "REDUNDANT_TEST = same test, no change between. (Opposite failure mode from VERIFICATION_GAP.)"
+    severity_rubric: {MILD: "1 redundant rerun", MODERATE: "2-3", SEVERE: ">=4"}
+    candidate_interventions: [STOP_REDUNDANT_TESTING]
+    metric_signals: [unchanged_repeated_tests, targeted_test_count]
+    observability: HIGH
+  - id: TEST_AS_EXPLORATION_MISROUTING
+    parent: VERIFICATION
+    support: 1            # coder_B
+    observable_unit: event_sequence
+    definition: "The agent runs the test/verification machinery as a way to EXPLORE the codebase (e.g., running full suites to discover structure) rather than to verify a specific change."
+    positive_indicators: ["TEST events before any EDIT", "running broad suites to read errors as a discovery tool"]
+    required_evidence: ["TEST event(s) before first_edit_step", "used to surface code paths, not check a change"]
+    exclusions: ["running the failing target test FIRST to understand the bug (legitimate, common SWE-agent practice)"]
+    counterexamples: ["run the one failing test to see the traceback before fixing = healthy, NOT misrouting"]
+    near_neighbors: [REDUNDANT_TEST]
+    distinguishing_rule: "MISROUTING = tests used for navigation/structure-discovery. REDUNDANT_TEST = same test repeated with no change."
+    severity_rubric: {MILD: "occasional", MODERATE: "several", SEVERE: "test machinery is the primary nav tool"}
+    candidate_interventions: [CONSTRAIN_SEARCH, STOP_REDUNDANT_TESTING]
+    metric_signals: [first_test_step, first_edit_step, targeted_test_count]
+    observability: MEDIUM
+    status: PROVISIONAL_PILOT_ONLY   # risk: overlaps healthy 'run failing test first'; test boundary in pilot
+
+  # ---------------- CONTROL_RECOVERY ----------------
+  - id: STAGNATION
+    parent: CONTROL_RECOVERY
+    support: 1            # coder_A STAGNATION_DUPLICATE_LOOP (metric-backed, all coders touch it)
+    observable_unit: phase
+    definition: "A run of consecutive actions producing no new evidence (no new file touched, no new arg, no new result) — the agent loops or stalls."
+    positive_indicators: ["high exact_duplicate_call_rate", "long longest_no_new_evidence_streak", "repeated identical action signatures"]
+    required_evidence: ["a contiguous streak (>= threshold) of events with no new file_path and no new tool_args_hash"]
+    exclusions: ["a long but PROGRESSING sequence (each step touches new evidence)"]
+    counterexamples: ["steady search->read->edit->test progression = NOT stagnation even if long"]
+    near_neighbors: [FAILED_RECOVERY, BUDGET_EXHAUSTION]
+    distinguishing_rule: "STAGNATION = no new evidence (loop). FAILED_RECOVERY = new evidence each step but never converges. BUDGET_EXHAUSTION = terminated by limit specifically."
+    severity_rubric: {MILD: "short stall", MODERATE: "clear loop", SEVERE: "majority of trace is no-new-evidence"}
+    candidate_interventions: [CONSTRAIN_SEARCH, ESCALATE_SOLVER]
+    metric_signals: [longest_no_new_evidence_streak, exact_duplicate_call_rate]
+    observability: HIGH
+  - id: FAILED_RECOVERY
+    parent: CONTROL_RECOVERY
+    support: 1            # seed-confirmed; near-neighbor of churn/stagnation
+    observable_unit: event_sequence
+    definition: "The agent receives new failing evidence (failing test, error) and keeps editing in response, but the edits never converge to a passing state."
+    positive_indicators: ["edit -> failing test -> edit -> failing test cycle that doesn't resolve"]
+    required_evidence: ["alternating EDIT and failing TEST with new failures each round"]
+    exclusions: ["churn with NO tests between (that's PATCH_CHURN)", "stalling with no new evidence (STAGNATION)"]
+    counterexamples: ["edit -> fail -> edit -> pass = successful recovery, NOT failed"]
+    near_neighbors: [PATCH_CHURN, STAGNATION]
+    distinguishing_rule: "FAILED_RECOVERY = evidence-driven edits that don't converge. CHURN = edits with no evidence between. STAGNATION = no new evidence at all."
+    severity_rubric: {MILD: "2 failed cycles", MODERATE: "3-4", SEVERE: ">=5 non-converging cycles"}
+    candidate_interventions: [ESCALATE_SOLVER, INCREASE_TARGETED_VERIFICATION]
+    metric_signals: [patch_attempts, targeted_test_count, longest_tool_error_run]
+    observability: MEDIUM
+  - id: BUDGET_EXHAUSTION_NONCONVERGENCE
+    parent: CONTROL_RECOVERY
+    support: 1            # coder_A NON_CONVERGENT_LOCALIZATION / coder_B LIMIT_EXIT_STAGNATION
+    observable_unit: full_trace
+    definition: "The run terminates by hitting a cost/step/time LIMIT (not a normal submit) after a long sequence, preventing a normal verify-and-submit cycle."
+    positive_indicators: ["termination_reason indicates limit/cost exit", "no clean submission", "long trajectory"]
+    required_evidence: ["termination_reason in {exit_cost, LimitsExceeded, max_steps, timeout}"]
+    exclusions: ["a clean 'submitted' termination", "short runs that simply finished"]
+    counterexamples: ["submitted after verification = NOT exhaustion"]
+    near_neighbors: [STAGNATION]
+    distinguishing_rule: "EXHAUSTION = abnormal LIMIT termination (full-trace signal). STAGNATION = the looping behavior that may CAUSE it (phase signal). They co-occur but are distinct evidence."
+    severity_rubric: {MILD: "limit hit near a plausible solution", MODERATE: "limit hit mid-progress", SEVERE: "limit hit with no convergence signal"}
+    candidate_interventions: [ESCALATE_SOLVER, CONSTRAIN_SEARCH]
+    metric_signals: [termination_reason, n_events, longest_no_new_evidence_streak]
+    observability: HIGH
+    outcome_collapse_mitigation: "Primary evidence is the LIMIT termination_reason + duplicate/no-new-evidence signal, NOT the resolve outcome (which is hidden)."
+
+  # ---------------- ENVIRONMENT_TOOLING ----------------
+  - id: PREEMPTIVE_HELPER_TOOL_BUILD
+    parent: ENVIRONMENT_TOOLING
+    support: 2            # coder_A + coder_B
+    observable_unit: event_sequence
+    definition: "The agent authors a generic custom helper script (e.g. edit_file.py / view_file.py) before reading or editing the actual task file, where existing shell/editor commands would suffice."
+    positive_indicators: ["early EDIT creates a generic edit/view helper", "before substantive localization or patching"]
+    required_evidence: ["EDIT creating a helper utility", "occurs before first production READ/EDIT"]
+    exclusions: ["building a task-specific reproduction (that's PREMATURE_SCRATCH_REPRO)", "harness-provided tools"]
+    counterexamples: ["using the harness's built-in str_replace = none"]
+    near_neighbors: [PREMATURE_SCRATCH_REPRO, HELPER_TOOL_FAILURE_LOOP]
+    distinguishing_rule: "HELPER_BUILD = creating a generic editing/viewing TOOL. SCRATCH_REPRO = creating a reproduction of the BUG. FAILURE_LOOP = that tool later breaking."
+    severity_rubric: {MILD: "small helper", MODERATE: "helper + setup overhead", SEVERE: "helper-building dominates early trace"}
+    candidate_interventions: [NO_CHANGE, FIX_ENVIRONMENT]
+    metric_signals: [first_edit_step, environment_setup_events]
+    observability: HIGH
+  - id: HELPER_TOOL_FAILURE_LOOP
+    parent: ENVIRONMENT_TOOLING
+    support: 2            # coder_A SELF_BUILT_TOOL_BREAKAGE + coder_B HELPER_TOOL_FAILURE_LOOP
+    observable_unit: event_sequence
+    definition: "A self-created or harness editor/view helper FAILS, and the agent spends additional actions fixing/retrying the helper instead of switching to a simpler available command."
+    positive_indicators: ["TOOL_ERROR on a self-built/harness helper", ">=1 repair/retry of the helper"]
+    required_evidence: ["TOOL_ERROR involving a helper script", "subsequent fix/retry events on it"]
+    exclusions: ["a single helper error then immediate switch to a shell builtin (good recovery)"]
+    counterexamples: ["helper errors -> agent uses cat/sed instead = healthy recovery, NOT a loop"]
+    near_neighbors: [PREEMPTIVE_HELPER_TOOL_BUILD, EDIT_TOOL_MECHANICAL_FAILURE]
+    distinguishing_rule: "FAILURE_LOOP = a HELPER tool breaks and is repeatedly repaired. MECHANICAL_FAILURE = the edit tool rejects a mismatched patch (no repair-the-tool actions)."
+    severity_rubric: {MILD: "1 repair", MODERATE: "2-3", SEVERE: ">=4 or never abandons the broken helper"}
+    candidate_interventions: [FIX_ENVIRONMENT, NO_CHANGE]
+    metric_signals: [longest_tool_error_run, tool_error_count]
+    observability: HIGH
+  - id: DEPENDENCY_SETUP_DRIFT
+    parent: ENVIRONMENT_TOOLING
+    support: 2            # coder_B ENVIRONMENT_DEPENDENCY_DRIFT + coder_C ENVIRONMENT_TOOL_NOT_FOUND
+    observable_unit: event_sequence
+    definition: "The agent installs/changes runtime dependencies (or repeatedly hits tool-not-found) to make a verification command available — introducing setup overhead/incompatibilities distinct from the bug itself."
+    positive_indicators: ["pip install / setup.py build_ext / apt", "'command not found' for a test tool", "repeated build/install attempts"]
+    required_evidence: ["ENVIRONMENT events modifying deps OR repeated tool-not-found errors"]
+    exclusions: ["a single necessary build that succeeds and proceeds"]
+    counterexamples: ["one pip install of a genuinely missing dep -> tests run = necessary setup"]
+    near_neighbors: [HELPER_TOOL_FAILURE_LOOP, ENVIRONMENT_BLOCKED]
+    distinguishing_rule: "DRIFT = the agent CHANGES the dependency set / chases missing tools. BLOCKED = the env is broken from the start and prevents progress regardless."
+    severity_rubric: {MILD: "one extra install", MODERATE: "several build/install cycles", SEVERE: "dependency wrangling dominates the trace"}
+    candidate_interventions: [FIX_ENVIRONMENT]
+    metric_signals: [environment_setup_events, longest_tool_error_run]
+    observability: HIGH
+    note: "ENVIRONMENT failures MUST be separated from reasoning waste and MUST NOT be read as a solver reasoning failure (Section 1)."
+  - id: ENVIRONMENT_BLOCKED
+    parent: ENVIRONMENT_TOOLING
+    support: 1            # seed-confirmed; coders flagged env-vs-reasoning separation strongly
+    observable_unit: full_trace
+    definition: "The execution environment is broken/unavailable from early on (import errors, missing build, broken test harness) such that the agent cannot make progress for reasons OUTSIDE its reasoning."
+    positive_indicators: ["early persistent ENVIRONMENT/TOOL_ERROR unrelated to the agent's edits", "tests never runnable"]
+    required_evidence: ["env/setup errors not caused by the agent's own edits", "blocks the verify loop"]
+    exclusions: ["errors the agent introduced via its own dependency changes (that's DRIFT)"]
+    counterexamples: ["clean env where tests run = none"]
+    near_neighbors: [DEPENDENCY_SETUP_DRIFT, VERIFICATION_GAP]
+    distinguishing_rule: "BLOCKED = pre-existing/external env breakage. DRIFT = agent-induced dependency churn. (BLOCKED excuses a VERIFICATION_GAP.)"
+    severity_rubric: {MILD: "transient env hiccup", MODERATE: "partial block", SEVERE: "fully blocked, no verification possible"}
+    candidate_interventions: [FIX_ENVIRONMENT]
+    metric_signals: [environment_setup_events, longest_tool_error_run, termination_reason]
+    observability: MEDIUM
+    note: "NEVER interpret ENVIRONMENT_BLOCKED as a solver reasoning failure."
+
+counts:
+  l1: 6
+  l2: 19            # within hard max 22; above preferred 12-18 — pilot is expected to MERGE/DROP
+                    # candidates (esp. the 2 PROVISIONAL + low-support seeds) toward the 12-18 band.
+  provisional_pilot_only: [OVER_BROAD_EDIT, TEST_AS_EXPLORATION_MISROUTING]
+  merge_candidates_for_v1: ["FILENAME_SEARCH_THRASH + SEARCH_WITHOUT_NEW_EVIDENCE if pilot can't distinguish",
+                            "FAILED_RECOVERY + PATCH_CHURN boundary to be sharpened or merged",
+                            "CONTEXT_BLOAT + REDUNDANT_FILE_REREAD if annotators conflate"]
