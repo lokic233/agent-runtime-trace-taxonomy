@@ -1,0 +1,262 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "trace_annotation.schema.json",
+  "title": "Trace Annotation Record (closed-label)",
+  "description": "One annotator's labeling of one (trace,cutoff) under the FROZEN taxonomy. No arbitrary numeric confidence \u2014 confidence is computed later from agreement/evidence/completeness.",
+  "type": "object",
+  "required": [
+    "sample_id",
+    "trace_id",
+    "task_id",
+    "solver_alias",
+    "cutoff",
+    "taxonomy_version",
+    "workload_annotation",
+    "execution_state",
+    "waste_annotation",
+    "annotation_metadata"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "sample_id": {
+      "type": "string"
+    },
+    "trace_id": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "repo": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "solver_alias": {
+      "type": "string",
+      "pattern": "^solver_[A-F]$"
+    },
+    "source_harness": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cutoff": {
+      "type": "string",
+      "enum": [
+        "FULL",
+        "T0",
+        "T5",
+        "T10",
+        "T20"
+      ]
+    },
+    "taxonomy_version": {
+      "type": "string"
+    },
+    "deterministic_features": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "workload_annotation": {
+      "type": "object",
+      "required": [
+        "primary_l1",
+        "l2_attributes",
+        "evidence"
+      ],
+      "properties": {
+        "primary_l1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "l2_attributes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": [
+              "integer",
+              "string"
+            ]
+          }
+        },
+        "unknown_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "execution_state": {
+      "type": "object",
+      "properties": {
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "LOCALIZE",
+            "HYPOTHESIZE",
+            "EDIT",
+            "VERIFY",
+            "RECOVER",
+            "STAGNATE",
+            "ENV_BLOCKED",
+            "COMPLETE",
+            null
+          ]
+        },
+        "progress": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "IMPROVING",
+            "FLAT",
+            "REGRESSING",
+            "UNKNOWN",
+            null
+          ]
+        },
+        "candidate_location_found": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "plausible_patch_found": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "verification_sufficient": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    },
+    "waste_annotation": {
+      "type": "object",
+      "required": [
+        "l1_labels",
+        "l2_labels",
+        "primary_bottleneck"
+      ],
+      "properties": {
+        "l1_labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "l2_labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "primary_bottleneck": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "severity": {
+          "type": "object",
+          "description": "label_id -> MILD|MODERATE|SEVERE",
+          "additionalProperties": {
+            "type": "string",
+            "enum": [
+              "MILD",
+              "MODERATE",
+              "SEVERE"
+            ]
+          }
+        },
+        "evidence_action_ids": {
+          "type": "object",
+          "description": "label_id -> [event indices]",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "candidate_interventions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "REDUCE_CONTEXT",
+          "NARROW_RETRIEVAL",
+          "CONSTRAIN_SEARCH",
+          "EXPAND_SEARCH",
+          "DELAY_EDIT",
+          "LIMIT_PATCH_SCOPE",
+          "INCREASE_TARGETED_VERIFICATION",
+          "STOP_REDUNDANT_TESTING",
+          "SUMMARIZE_CONTEXT",
+          "ESCALATE_SOLVER",
+          "FIX_ENVIRONMENT",
+          "NO_CHANGE"
+        ]
+      }
+    },
+    "annotation_metadata": {
+      "type": "object",
+      "required": [
+        "annotator_id",
+        "prompt_version",
+        "annotation_timestamp",
+        "abstain"
+      ],
+      "properties": {
+        "annotator_id": {
+          "type": "string"
+        },
+        "annotator_model": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "backend used; recorded for provenance, not shown to other annotators"
+        },
+        "prompt_version": {
+          "type": "string"
+        },
+        "annotation_timestamp": {
+          "type": "string"
+        },
+        "abstain": {
+          "type": "boolean"
+        },
+        "abstain_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

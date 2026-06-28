@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "config_outcome.schema.json",
+  "title": "Config Outcome (empirical, paired)",
+  "description": "A paired baseline-vs-candidate outcome for one task/solver/config. The ONLY valid source of Pareto/regression gold. NOT produced by annotation. regression = baseline succeeds AND candidate fails.",
+  "type": "object",
+  "required": [
+    "task_id",
+    "solver_id",
+    "config_id",
+    "baseline_resolved",
+    "candidate_resolved",
+    "regression_event"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "solver_id": {
+      "type": "string"
+    },
+    "config_id": {
+      "type": "string"
+    },
+    "baseline_resolved": {
+      "type": "boolean"
+    },
+    "candidate_resolved": {
+      "type": "boolean"
+    },
+    "regression_event": {
+      "type": "boolean",
+      "description": "MUST equal (baseline_resolved AND NOT candidate_resolved). Not an aggregate solve-rate delta."
+    },
+    "total_tokens": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "token_saving_fraction": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "wall_time": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "cost": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "provenance": {
+      "type": "string",
+      "enum": [
+        "EMPIRICAL",
+        "REPLAY_DERIVED"
+      ],
+      "description": "how the paired outcome was obtained"
+    }
+  }
+}
