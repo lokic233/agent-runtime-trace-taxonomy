@@ -1,0 +1,111 @@
+taxonomy_version: v1
+generated: 2026-06-28
+l1_primary:
+- id: LOCALIZATION_DOMINANT
+  definition: Success is gated mainly by FINDING the right place to change; the fix itself is small once located.
+  indicators:
+  - issue describes a symptom but not the location
+  - fix is small/one-file once found
+  - across solvers, most effort is search/read before a small edit
+  distinguishing_rule: If the hard part is WHERE (not HOW/whether-it-works) -> LOCALIZATION_DOMINANT.
+- id: PATCH_REASONING_DOMINANT
+  definition: Location is clear or easily found; the hard part is REASONING the correct change (logic, edge cases, API semantics).
+  indicators:
+  - explicit location in issue
+  - fix requires non-trivial logic
+  - multiple plausible-but-wrong fixes
+  distinguishing_rule: If WHERE is easy but HOW is hard -> PATCH_REASONING_DOMINANT.
+- id: VERIFICATION_DOMINANT
+  definition: The hard part is establishing the change is correct against a tricky/expensive/unclear oracle.
+  indicators:
+  - expensive or flaky test suite
+  - hidden tests
+  - unclear what 'correct' means
+  distinguishing_rule: If checking correctness dominates effort/risk -> VERIFICATION_DOMINANT.
+- id: CONTEXT_DOMINANT
+  definition: Success requires assembling understanding across a lot of code/history (many modules, long dependencies) before
+    any change.
+  indicators:
+  - cross-module reasoning
+  - long dependency chains
+  - must understand much to change a little
+  distinguishing_rule: If the bottleneck is breadth-of-understanding (not a single location) -> CONTEXT_DOMINANT.
+- id: ENVIRONMENT_DOMINANT
+  definition: The dominant difficulty is build/setup/dependency/tooling, not the code change.
+  indicators:
+  - non-trivial build
+  - dependency pinning
+  - test harness setup is the main obstacle for ALL solvers
+  distinguishing_rule: If even strong solvers spend most effort on setup -> ENVIRONMENT_DOMINANT. (Task-level; distinct from
+    a single trace's env waste.)
+- id: MIXED_END_TO_END
+  definition: LAST RESORT ONLY. Use when NO single phase dominates AND no other L1 is justifiable by evidence. Default to
+    the most-evidenced specific L1 before falling back here.
+  indicators:
+  - effort spread across phases
+  - no single dominant difficulty
+  distinguishing_rule: Use ONLY when no other L1 clearly dominates; not a default dumping ground.
+  v1_note: Pilot over-applied (ann2=33 vs ann1=6) -> explicit last-resort.
+l2_attributes:
+  localization:
+  - id: EXPLICIT_LOCATION
+    def: Issue names the file/function/line.
+  - id: SEARCH_REQUIRED
+    def: Location must be searched for.
+  - id: CROSS_FILE
+    def: Fix spans >1 file.
+  - id: CROSS_MODULE
+    def: Fix spans >1 module/package.
+  patch_scope:
+  - id: SINGLE_FILE
+    def: Change confined to one file.
+  - id: MULTI_FILE
+    def: Change touches several files.
+  - id: CROSS_CUTTING
+    def: Change affects a cross-cutting concern (API, interface, shared util).
+  verification:
+  - id: TARGETED_UNIT
+    def: A small targeted unit test verifies it.
+  - id: INTEGRATION
+    def: Needs integration-level verification.
+  - id: EXPENSIVE_SUITE
+    def: Verification suite is slow/expensive.
+  - id: HIDDEN_TEST_DOMINANT
+    def: Correctness gated by tests not visible in the trace.
+  - id: UNCLEAR_ORACLE
+    def: No clear way to verify correctness from the trace.
+  context:
+  - id: LOCAL_CONTEXT
+    def: Only local code needed.
+  - id: REPOSITORY_CONTEXT
+    def: Repo-wide understanding needed.
+  - id: MULTI_MODULE_CONTEXT
+    def: Multiple modules must be understood.
+  - id: LONG_HISTORY_DEPENDENT
+    def: Depends on long prior history/state.
+  failure_observability:
+  - id: CLEAR
+    def: Failures are clearly observable (explicit errors).
+  - id: PARTIAL
+    def: Failures partially observable.
+  - id: SILENT_SEMANTIC
+    def: Failures are silent/semantic (no error, wrong result).
+  state:
+  - id: STATELESS
+    def: No carried state needed.
+  - id: SHORT_STATE
+    def: Short-lived state.
+  - id: LONG_STATE
+    def: Long-lived state across many steps.
+rules:
+- Workload is inferred from issue/task metadata + task structure + evidence SHARED across model traces.
+- Do NOT define workload from the weakest model's failure.
+- cross_model_stability (STABLE|MIXED|INSUFFICIENT) is recorded at the per-task aggregation layer.
+counts:
+  l1: 6
+  l2_axes: 6
+  l2_total: 21
+revision_history:
+- from: v0
+  round: 1
+  change: MIXED_END_TO_END -> explicit last-resort (over-applied; workload alpha 0.21)
