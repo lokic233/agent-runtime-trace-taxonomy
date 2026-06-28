@@ -1,0 +1,465 @@
+{
+  "_method": "HEURISTIC deterministic-proxy; tier=worth-trying NOT proven efficacy; full annotation sharpens; config efficacy NOT_EMPIRICALLY_GROUNDED",
+  "overall": {
+    "REDUNDANT_FILE_REREAD": {
+      "all": 32.3,
+      "strong": 57.4,
+      "weak": 67.4,
+      "gap": 10.0,
+      "score": 2,
+      "tier": "MEDIUM"
+    },
+    "CONTEXT_BLOAT": {
+      "all": 32.3,
+      "strong": 57.4,
+      "weak": 67.4,
+      "gap": 10.0,
+      "score": 2,
+      "tier": "MEDIUM"
+    },
+    "FILENAME_SEARCH_THRASH": {
+      "all": 41.9,
+      "strong": 49.2,
+      "weak": 23.6,
+      "gap": -25.6,
+      "score": -1,
+      "tier": "LOW"
+    },
+    "SEARCH_WITHOUT_NEW_EVIDENCE": {
+      "all": 47.7,
+      "strong": 6.2,
+      "weak": 72.2,
+      "gap": 66.0,
+      "score": 4,
+      "tier": "HIGH"
+    },
+    "PATCH_CHURN": {
+      "all": 54.4,
+      "strong": 69.2,
+      "weak": 74.2,
+      "gap": 5.0,
+      "score": 3,
+      "tier": "MEDIUM"
+    },
+    "PREMATURE_SCRATCH_REPRO": {
+      "all": 2.1,
+      "strong": 1.2,
+      "weak": 0.4,
+      "gap": -0.8,
+      "score": 0,
+      "tier": "LOW"
+    },
+    "EDIT_TOOL_MECHANICAL_FAILURE": {
+      "all": 9.9,
+      "strong": 6.8,
+      "weak": 8.4,
+      "gap": 1.6,
+      "score": 0,
+      "tier": "LOW"
+    },
+    "VERIFICATION_GAP": {
+      "all": 72.2,
+      "strong": 56.8,
+      "weak": 82.4,
+      "gap": 25.6,
+      "score": 4,
+      "tier": "HIGH"
+    },
+    "REDUNDANT_TEST": {
+      "all": 3.9,
+      "strong": 0.8,
+      "weak": 11.2,
+      "gap": 10.4,
+      "score": 1,
+      "tier": "LOW"
+    },
+    "STAGNATION": {
+      "all": 17.1,
+      "strong": 2.2,
+      "weak": 26.4,
+      "gap": 24.2,
+      "score": 3,
+      "tier": "MEDIUM"
+    },
+    "FAILED_RECOVERY": {
+      "all": 12.7,
+      "strong": 20.0,
+      "weak": 11.8,
+      "gap": -8.2,
+      "score": 0,
+      "tier": "LOW"
+    },
+    "BUDGET_EXHAUSTION_NONCONVERGENCE": {
+      "all": 2.5,
+      "strong": 0.6,
+      "weak": 1.2,
+      "gap": 0.6,
+      "score": 0,
+      "tier": "LOW"
+    },
+    "PREEMPTIVE_HELPER_TOOL_BUILD": {
+      "all": 55.8,
+      "strong": 91.4,
+      "weak": 4.0,
+      "gap": -87.4,
+      "score": -1,
+      "tier": "LOW"
+    },
+    "HELPER_TOOL_FAILURE_LOOP": {
+      "all": 2.8,
+      "strong": 2.2,
+      "weak": 1.6,
+      "gap": -0.6,
+      "score": 0,
+      "tier": "LOW"
+    },
+    "DEPENDENCY_SETUP_DRIFT": {
+      "all": 60.6,
+      "strong": 97.2,
+      "weak": 5.4,
+      "gap": -91.8,
+      "score": -1,
+      "tier": "LOW"
+    },
+    "ENVIRONMENT_BLOCKED": {
+      "all": 2.8,
+      "strong": 2.2,
+      "weak": 1.6,
+      "gap": -0.6,
+      "score": 0,
+      "tier": "LOW"
+    }
+  },
+  "per_model": {
+    "solver_B": {
+      "REDUNDANT_FILE_REREAD": {
+        "prevalence": 57.4,
+        "tier": "HIGH"
+      },
+      "CONTEXT_BLOAT": {
+        "prevalence": 57.4,
+        "tier": "HIGH"
+      },
+      "FILENAME_SEARCH_THRASH": {
+        "prevalence": 49.2,
+        "tier": "SKIP_HARNESS"
+      },
+      "SEARCH_WITHOUT_NEW_EVIDENCE": {
+        "prevalence": 6.2,
+        "tier": "LOW"
+      },
+      "PATCH_CHURN": {
+        "prevalence": 69.2,
+        "tier": "HIGH"
+      },
+      "PREMATURE_SCRATCH_REPRO": {
+        "prevalence": 1.2,
+        "tier": "NONE"
+      },
+      "EDIT_TOOL_MECHANICAL_FAILURE": {
+        "prevalence": 6.8,
+        "tier": "LOW"
+      },
+      "VERIFICATION_GAP": {
+        "prevalence": 56.8,
+        "tier": "HIGH"
+      },
+      "REDUNDANT_TEST": {
+        "prevalence": 0.8,
+        "tier": "NONE"
+      },
+      "STAGNATION": {
+        "prevalence": 2.2,
+        "tier": "NONE"
+      },
+      "FAILED_RECOVERY": {
+        "prevalence": 20.0,
+        "tier": "MED"
+      },
+      "BUDGET_EXHAUSTION_NONCONVERGENCE": {
+        "prevalence": 0.6,
+        "tier": "NONE"
+      },
+      "PREEMPTIVE_HELPER_TOOL_BUILD": {
+        "prevalence": 91.4,
+        "tier": "SKIP_HARNESS"
+      },
+      "HELPER_TOOL_FAILURE_LOOP": {
+        "prevalence": 2.2,
+        "tier": "NONE"
+      },
+      "DEPENDENCY_SETUP_DRIFT": {
+        "prevalence": 97.2,
+        "tier": "SKIP_HARNESS"
+      },
+      "ENVIRONMENT_BLOCKED": {
+        "prevalence": 2.2,
+        "tier": "NONE"
+      }
+    },
+    "solver_C": {
+      "REDUNDANT_FILE_REREAD": {
+        "prevalence": 67.4,
+        "tier": "HIGH"
+      },
+      "CONTEXT_BLOAT": {
+        "prevalence": 67.4,
+        "tier": "HIGH"
+      },
+      "FILENAME_SEARCH_THRASH": {
+        "prevalence": 23.6,
+        "tier": "SKIP_HARNESS"
+      },
+      "SEARCH_WITHOUT_NEW_EVIDENCE": {
+        "prevalence": 72.2,
+        "tier": "HIGH"
+      },
+      "PATCH_CHURN": {
+        "prevalence": 74.2,
+        "tier": "HIGH"
+      },
+      "PREMATURE_SCRATCH_REPRO": {
+        "prevalence": 0.4,
+        "tier": "NONE"
+      },
+      "EDIT_TOOL_MECHANICAL_FAILURE": {
+        "prevalence": 8.4,
+        "tier": "LOW"
+      },
+      "VERIFICATION_GAP": {
+        "prevalence": 82.4,
+        "tier": "HIGH"
+      },
+      "REDUNDANT_TEST": {
+        "prevalence": 11.2,
+        "tier": "LOW"
+      },
+      "STAGNATION": {
+        "prevalence": 26.4,
+        "tier": "MED"
+      },
+      "FAILED_RECOVERY": {
+        "prevalence": 11.8,
+        "tier": "LOW"
+      },
+      "BUDGET_EXHAUSTION_NONCONVERGENCE": {
+        "prevalence": 1.2,
+        "tier": "NONE"
+      },
+      "PREEMPTIVE_HELPER_TOOL_BUILD": {
+        "prevalence": 4.0,
+        "tier": "SKIP_HARNESS"
+      },
+      "HELPER_TOOL_FAILURE_LOOP": {
+        "prevalence": 1.6,
+        "tier": "NONE"
+      },
+      "DEPENDENCY_SETUP_DRIFT": {
+        "prevalence": 5.4,
+        "tier": "SKIP_HARNESS"
+      },
+      "ENVIRONMENT_BLOCKED": {
+        "prevalence": 1.6,
+        "tier": "NONE"
+      }
+    },
+    "solver_E": {
+      "REDUNDANT_FILE_REREAD": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "CONTEXT_BLOAT": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "FILENAME_SEARCH_THRASH": {
+        "prevalence": 57.6,
+        "tier": "SKIP_HARNESS"
+      },
+      "SEARCH_WITHOUT_NEW_EVIDENCE": {
+        "prevalence": 82.0,
+        "tier": "HIGH"
+      },
+      "PATCH_CHURN": {
+        "prevalence": 44.6,
+        "tier": "HIGH"
+      },
+      "PREMATURE_SCRATCH_REPRO": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "EDIT_TOOL_MECHANICAL_FAILURE": {
+        "prevalence": 22.8,
+        "tier": "MED"
+      },
+      "VERIFICATION_GAP": {
+        "prevalence": 82.0,
+        "tier": "HIGH"
+      },
+      "REDUNDANT_TEST": {
+        "prevalence": 3.8,
+        "tier": "NONE"
+      },
+      "STAGNATION": {
+        "prevalence": 38.2,
+        "tier": "MED"
+      },
+      "FAILED_RECOVERY": {
+        "prevalence": 5.8,
+        "tier": "LOW"
+      },
+      "BUDGET_EXHAUSTION_NONCONVERGENCE": {
+        "prevalence": 7.6,
+        "tier": "LOW"
+      },
+      "PREEMPTIVE_HELPER_TOOL_BUILD": {
+        "prevalence": 48.6,
+        "tier": "SKIP_HARNESS"
+      },
+      "HELPER_TOOL_FAILURE_LOOP": {
+        "prevalence": 7.6,
+        "tier": "LOW"
+      },
+      "DEPENDENCY_SETUP_DRIFT": {
+        "prevalence": 53.6,
+        "tier": "SKIP_HARNESS"
+      },
+      "ENVIRONMENT_BLOCKED": {
+        "prevalence": 7.6,
+        "tier": "LOW"
+      }
+    },
+    "solver_A": {
+      "REDUNDANT_FILE_REREAD": {
+        "prevalence": 4.9,
+        "tier": "NONE"
+      },
+      "CONTEXT_BLOAT": {
+        "prevalence": 4.9,
+        "tier": "NONE"
+      },
+      "FILENAME_SEARCH_THRASH": {
+        "prevalence": 40.3,
+        "tier": "SKIP_HARNESS"
+      },
+      "SEARCH_WITHOUT_NEW_EVIDENCE": {
+        "prevalence": 33.3,
+        "tier": "MED"
+      },
+      "PATCH_CHURN": {
+        "prevalence": 32.6,
+        "tier": "MED"
+      },
+      "PREMATURE_SCRATCH_REPRO": {
+        "prevalence": 7.3,
+        "tier": "LOW"
+      },
+      "EDIT_TOOL_MECHANICAL_FAILURE": {
+        "prevalence": 1.7,
+        "tier": "NONE"
+      },
+      "VERIFICATION_GAP": {
+        "prevalence": 65.0,
+        "tier": "HIGH"
+      },
+      "REDUNDANT_TEST": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "STAGNATION": {
+        "prevalence": 1.9,
+        "tier": "NONE"
+      },
+      "FAILED_RECOVERY": {
+        "prevalence": 14.2,
+        "tier": "LOW"
+      },
+      "BUDGET_EXHAUSTION_NONCONVERGENCE": {
+        "prevalence": 0.6,
+        "tier": "NONE"
+      },
+      "PREEMPTIVE_HELPER_TOOL_BUILD": {
+        "prevalence": 85.8,
+        "tier": "SKIP_HARNESS"
+      },
+      "HELPER_TOOL_FAILURE_LOOP": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "DEPENDENCY_SETUP_DRIFT": {
+        "prevalence": 93.1,
+        "tier": "SKIP_HARNESS"
+      },
+      "ENVIRONMENT_BLOCKED": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      }
+    },
+    "solver_F": {
+      "REDUNDANT_FILE_REREAD": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "CONTEXT_BLOAT": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "FILENAME_SEARCH_THRASH": {
+        "prevalence": 0.0,
+        "tier": "SKIP_HARNESS"
+      },
+      "SEARCH_WITHOUT_NEW_EVIDENCE": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "PATCH_CHURN": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "PREMATURE_SCRATCH_REPRO": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "EDIT_TOOL_MECHANICAL_FAILURE": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "VERIFICATION_GAP": {
+        "prevalence": 100.0,
+        "tier": "HIGH"
+      },
+      "REDUNDANT_TEST": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "STAGNATION": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "FAILED_RECOVERY": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "BUDGET_EXHAUSTION_NONCONVERGENCE": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "PREEMPTIVE_HELPER_TOOL_BUILD": {
+        "prevalence": 0.0,
+        "tier": "SKIP_HARNESS"
+      },
+      "HELPER_TOOL_FAILURE_LOOP": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      },
+      "DEPENDENCY_SETUP_DRIFT": {
+        "prevalence": 0.0,
+        "tier": "SKIP_HARNESS"
+      },
+      "ENVIRONMENT_BLOCKED": {
+        "prevalence": 0.0,
+        "tier": "NONE"
+      }
+    }
+  }
+}
