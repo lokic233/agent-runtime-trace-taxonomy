@@ -3,11 +3,17 @@
 **Engine:** research-os (lokic233/research-os) · **Claim:** CLAIM-0001 · **Experiment:** EXP-0001 (CPU L1)
 **Owner:** dengcchi · **Stage gate:** Stage A (taxonomy) MUST precede Stage B (full annotation).
 
-## CURRENT STATUS (2026-06-28)
-- `STAGE = A` · `TAXONOMY_STATUS = DRAFTING` · `ANNOTATION_ALLOWED = false`
-- `TRACE_PATHS_PENDING = NO` — we already have real validated trace roots (see config/trace_sources.yaml).
-- Recovering from a provider failure (110 dropped tool calls) that committed NOTHING durable.
-  Trace downloads survived; project skeleton rebuilt from scratch and committed.
+## CURRENT STATUS (2026-06-28, updated mid-pilot)
+- `STAGE = A4 (pilot)` · `TAXONOMY_STATUS = V0_CANDIDATE` · `ANNOTATION_ALLOWED = false (until FROZEN_V1)`
+- `TRACE_PATHS_PENDING = NO` — real validated trace roots (config/trace_sources.yaml).
+- DONE: Lane1 (TokenSaver contract), Lane2 (normalize+features, 1500/1500 parse 0-err),
+  A1 (bootstrap 60), A2 (3 blind open-coders), A3 (taxonomy v0: 6 L1/19 L2 waste + 6 L1/21 workload),
+  schemas (annotation+config_outcome), prefix firewall (7/7 leakage tests), full Stage-B pipeline
+  (adjudicate/aggregate/export/validate), waste->intervention map. validate_all_artifacts PASSES.
+- IN PROGRESS: A4 pilot — 114 fresh traces (disjoint from bootstrap) x 3 independent annotators
+  (claude/codex/gemini). Scheduled finalize check-in 14:05Z (job 2edd5ba9).
+- Recovered from a provider failure (110 dropped calls, committed NOTHING). All work now pushed
+  to lokic233/agent-runtime-trace-taxonomy after every step.
 
 ## TRACE INVENTORY (validated on disk)
 | alias    | model                         | resolve | trajs   | node        | status    | role in study      |
