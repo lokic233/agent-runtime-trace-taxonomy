@@ -11,12 +11,43 @@ outcome/late signal is withheld (enforced by generate_trace_prefixes.py; this re
 also refuses to print outcome for any cutoff).
 """
 from __future__ import annotations
-import json, os, sys
+import json, os, sys, re
 sys.path.insert(0, os.path.dirname(__file__))
 from normalize_traces import normalize_trace, load_raw
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOCATOR = os.path.join(HERE, "private", "trace_locator.jsonl")
+
+# --- BLINDING SCRUBBER -------------------------------------------------------
+# Harness/vendor fingerprints leak the real model via tool names, paths, and
+# error strings (red-team check #1: "infer the model from tool format"). We
+# neutralize them to generic equivalents BEFORE any coder sees the text.
+_SCRUB = [
+    (re.compile(r"/root/tools/edit_anthropic\b", re.I), "/root/tools/edit_tool"),
+    (re.compile(r"\bedit_anthropic\b", re.I), "edit_tool"),
+    (re.compile(r"\banthropic\b", re.I), "vendor"),
+    (re.compile(r"\bclaude[-_ ]?[\w.]*\b", re.I), "the_model"),
+    (re.compile(r"\bopus[-_ ]?[\w.]*\b", re.I), "the_model"),
+    (re.compile(r"\bsonnet[-_ ]?[\w.]*\b", re.I), "the_model"),
+    (re.compile(r"\bqwen[-_ ]?[\w.]*\b", re.I), "the_model"),
+    (re.compile(r"\bgemini[-_ ]?[\w.]*\b", re.I), "the_model"),
+    # gpt model ids: gpt-4, gpt-4o, gpt-3.5-turbo, gpt2 — match the whole token run
+    # but NOT innocent words like "gptools" (gpt followed by a letter that isn't a known id form).
+    (re.compile(r"\bgpt(?:[-_][\w.]+|\d[\w.]*|)\b(?:[-_]\w+)*", re.I), "the_model"),
+    (re.compile(r"\bdeepseek[-_ ]?[\w.]*\b", re.I), "the_model"),
+    (re.compile(r"\bmini-swe-agent[-_ ]?[\w.]*\b", re.I), "agent_harness"),
+    (re.compile(r"\blive-swe-agent\b", re.I), "agent_harness"),
+    # absolute user paths that include the unixname / data root
+    (re.compile(r"/data/users/\w+", ), "/data/USER"),
+    (re.compile(r"/home/\w+", ), "/home/USER"),
+]
+
+def scrub(text):
+    if not isinstance(text, str):
+        return text
+    for pat, repl in _SCRUB:
+        text = pat.sub(repl, text)
+    return text
 
 def _locator_map(path=LOCATOR):
     m={}
@@ -53,12 +84,18 @@ def render(trace_id: str, alias: str, cutoff: str="FULL", max_obs_chars=600, max
         "trace_id": trace_id, "task_id": task_id, "repo": (task_id.split("__")[0] if "__" in task_id else None),
         "solver_alias": alias, "cutoff": cutoff,
         "n_events_shown": len(shown), "n_events_total_hidden": (None if k is None else "HIDDEN"),
-        "issue_text": issue[:2000] if issue else None,
+        "issue_text": scrub(issue[:2000]) if issue else None,
         "events": shown,
-        "transcript": _transcript(raw, nt, k, max_act_chars, max_obs_chars),
+        "transcript": scrub(_transcript(raw, nt, k, max_act_chars, max_obs_chars)),
     }
     # FIREWALL: never include outcome/resolved/final patch for ANY cutoff in the render.
     # (FULL annotation reads outcome from a separate controlled channel, not here.)
+    # Hard blinding guarantee: assert no vendor/model fingerprint survived the scrub.
+    _blob = json.dumps(out).lower()
+    for _banned in ("anthropic","claude","opus","sonnet","qwen","gemini","deepseek",
+                    "/data/users/","/home/dengcchi"):
+        if _banned in _blob:
+            raise AssertionError(f"BLINDING LEAK survived scrub in {trace_id}: {_banned!r}")
     return out
 
 def _issue_text(raw):
