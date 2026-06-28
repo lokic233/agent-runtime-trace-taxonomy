@@ -21,6 +21,8 @@ from __future__ import annotations
 import json, sys, os, collections, random, statistics as st
 sys.path.insert(0, os.path.dirname(__file__))
 
+import os
+HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SEED = 20260628
 TARGET_MIN, TARGET_MAX = 60, 80
 PER_SOLVER_TARGET = 18  # ~15-20 per included dev solver
@@ -99,12 +101,15 @@ def build(index_rows, dev_aliases):
     }
 
 def to_manifest_record(r):
+    """PUBLIC manifest record — SAFE to commit + (after stripping _sampling_only) to
+    show an open coder. Contains NO real model name and NO filesystem path (paths
+    embed model names like '...claude-opus-4-5...' -> red-team leak #1). The path
+    lives only in the gitignored private locator, keyed by blinded trace_id."""
     f=r["features"]
     return {
         "sample_id": "BOOT-"+r["trace_id"],
         "trace_id": r["trace_id"], "task_id": r["task_id"], "repo": r["repo"],
         "solver_alias": r["solver_alias"], "capability_tier": r["capability_tier"],
-        "source_path": r["source_path"], "source_node": "devvm14382",
         "n_events": r["n_events"],
         # deterministic features are SHOWN to open coders (evidence) — outcome is NOT
         "deterministic_features": {k:v for k,v in f.items() if k!="_null_reason"},
@@ -113,6 +118,11 @@ def to_manifest_record(r):
             "stratum": list(stratum_key(r)),
         },
     }
+
+def to_locator_record(r):
+    """PRIVATE locator — gitignored. Maps blinded trace_id -> where to load it."""
+    return {"trace_id": r["trace_id"], "source_path": r["source_path"],
+            "source_node": r.get("source_node","devvm14382")}
 
 if __name__=="__main__":
     import argparse
@@ -127,7 +137,13 @@ if __name__=="__main__":
     picked,meta=build(rows, dev)
     with open(a.out,"w") as fo:
         for r in picked: fo.write(json.dumps(to_manifest_record(r))+"\n")
+    # private locator (gitignored) alongside the project private/ dir
+    loc_path=os.path.join(HERE,"private","trace_locator.jsonl")
+    os.makedirs(os.path.dirname(loc_path),exist_ok=True)
+    with open(loc_path,"a") as fl:   # append (multi-box merge)
+        for r in picked: fl.write(json.dumps(to_locator_record(r))+"\n")
     print(f"selected {len(picked)} bootstrap traces -> {a.out}")
+    print(f"private locator appended -> {loc_path}")
     print("meta:", json.dumps(meta, default=str)[:400])
     if a.balance_out:
         json.dump({"picked":len(picked),"meta":meta,

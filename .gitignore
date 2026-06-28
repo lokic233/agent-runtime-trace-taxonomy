@@ -7,3 +7,6 @@ runtime/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+# Trace locators embed real-model filesystem paths -> blinding firewall
+**/private/trace_locator.jsonl
+projects/*/private/trace_locator.jsonl
