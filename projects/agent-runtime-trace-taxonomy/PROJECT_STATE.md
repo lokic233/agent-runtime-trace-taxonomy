@@ -4,7 +4,7 @@
 **Owner:** dengcchi · **Stage gate:** Stage A (taxonomy) MUST precede Stage B (full annotation).
 
 ## CURRENT STATUS (2026-06-28, updated mid-pilot)
-- `STAGE = A4 (pilot)` · `TAXONOMY_STATUS = V0_CANDIDATE` · `ANNOTATION_ALLOWED = false (until FROZEN_V1)`
+- `STAGE = A COMPLETE -> B-ready` · `TAXONOMY_STATUS = FROZEN_V1` · `ANNOTATION_ALLOWED = true (taxonomy frozen; full Stage-B over all roots is the next action)`
 - `TRACE_PATHS_PENDING = NO` — real validated trace roots (config/trace_sources.yaml).
 - DONE: Lane1 (TokenSaver contract), Lane2 (normalize+features, 1500/1500 parse 0-err),
   A1 (bootstrap 60), A2 (3 blind open-coders), A3 (taxonomy v0: 6 L1/19 L2 waste + 6 L1/21 workload),
