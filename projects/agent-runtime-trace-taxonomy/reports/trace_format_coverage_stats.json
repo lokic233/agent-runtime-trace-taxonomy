@@ -1,0 +1,71 @@
+{
+  "solver_B": {
+    "desc": "opus-4.5 live-SWE-agent",
+    "files": 500,
+    "ok": 500,
+    "err": 0,
+    "warn": 0,
+    "avg_events": 36.8,
+    "layouts": {
+      "mini_swe_agent": 500
+    },
+    "type_counts": {
+      "SEARCH": 2603,
+      "READ": 2561,
+      "EDIT": 3516,
+      "EXECUTE": 3399,
+      "ENVIRONMENT": 4910,
+      "TOOL_ERROR": 455,
+      "PATCH_APPLY": 517,
+      "TEST": 457,
+      "PLAN": 1
+    },
+    "errors": []
+  },
+  "solver_C": {
+    "desc": "claude-3.5-sonnet",
+    "files": 500,
+    "ok": 500,
+    "err": 0,
+    "warn": 0,
+    "avg_events": 33.6,
+    "layouts": {
+      "classic_traj": 500
+    },
+    "type_counts": {
+      "EDIT": 5794,
+      "TOOL_ERROR": 1639,
+      "ENVIRONMENT": 240,
+      "EXECUTE": 1720,
+      "FINISH": 498,
+      "SEARCH": 2795,
+      "READ": 3707,
+      "TEST": 422
+    },
+    "errors": []
+  },
+  "solver_E": {
+    "desc": "qwen2.5-32B HELDOUT",
+    "files": 500,
+    "ok": 500,
+    "err": 0,
+    "warn": 0,
+    "avg_events": 41.9,
+    "layouts": {
+      "classic_traj": 500
+    },
+    "type_counts": {
+      "SEARCH": 2755,
+      "TOOL_ERROR": 2410,
+      "EXECUTE": 8922,
+      "ENVIRONMENT": 2344,
+      "EDIT": 3562,
+      "FINISH": 309,
+      "PLAN": 200,
+      "TEST": 433,
+      "READ": 4,
+      "RETRIEVE": 4
+    },
+    "errors": []
+  }
+}
