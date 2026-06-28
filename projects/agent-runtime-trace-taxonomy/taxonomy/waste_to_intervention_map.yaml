@@ -1,0 +1,43 @@
+# WASTE -> INTERVENTION MAP (Section 14) — WEAK SUPERVISION / HYPOTHESIS LAYER ONLY.
+# This is NOT a gold config mapping. policy_label_source marks the provenance of each mapping.
+# Until paired config_outcome records exist, every intervention here is a HINT, not a verified fix.
+policy_label_source_legend:
+  EMPIRICAL: "from real paired baseline-vs-candidate config outcomes"
+  REPLAY_DERIVED: "from reliable counterfactual replay"
+  MULTI_MODEL_CONSENSUS: "multiple independent annotators agreed on the hint"
+  SINGLE_ANNOTATOR: "one annotator suggested it"
+  HEURISTIC: "obvious heuristic from the label definition"
+default_provenance: HEURISTIC   # current project: most mappings are HEURISTIC / MULTI_MODEL_CONSENSUS
+
+map:
+  # CONTEXT_MEMORY
+  REDUNDANT_FILE_REREAD:   {interventions: [SUMMARIZE_CONTEXT, REDUCE_CONTEXT], provenance: HEURISTIC}
+  CONTEXT_BLOAT:           {interventions: [REDUCE_CONTEXT, NARROW_RETRIEVAL, SUMMARIZE_CONTEXT], provenance: MULTI_MODEL_CONSENSUS}
+  # SEARCH_LOCALIZATION
+  BLIND_INFILE_NAVIGATION: {interventions: [CONSTRAIN_SEARCH, NARROW_RETRIEVAL], provenance: MULTI_MODEL_CONSENSUS}
+  FILENAME_SEARCH_THRASH:  {interventions: [CONSTRAIN_SEARCH, NARROW_RETRIEVAL], provenance: HEURISTIC}
+  SEARCH_WITHOUT_NEW_EVIDENCE: {interventions: [CONSTRAIN_SEARCH, EXPAND_SEARCH], provenance: HEURISTIC}
+  # EDIT_PATCH
+  PATCH_CHURN:             {interventions: [DELAY_EDIT, LIMIT_PATCH_SCOPE, INCREASE_TARGETED_VERIFICATION], provenance: MULTI_MODEL_CONSENSUS}
+  PREMATURE_SCRATCH_REPRO: {interventions: [DELAY_EDIT, CONSTRAIN_SEARCH], provenance: HEURISTIC}
+  EDIT_TOOL_MECHANICAL_FAILURE: {interventions: [NO_CHANGE, FIX_ENVIRONMENT], provenance: HEURISTIC}
+  OVER_BROAD_EDIT:         {interventions: [LIMIT_PATCH_SCOPE], provenance: HEURISTIC}
+  # VERIFICATION
+  VERIFICATION_GAP:        {interventions: [INCREASE_TARGETED_VERIFICATION], provenance: MULTI_MODEL_CONSENSUS}
+  REDUNDANT_TEST:          {interventions: [STOP_REDUNDANT_TESTING], provenance: HEURISTIC}
+  TEST_AS_EXPLORATION_MISROUTING: {interventions: [CONSTRAIN_SEARCH, STOP_REDUNDANT_TESTING], provenance: SINGLE_ANNOTATOR}
+  # CONTROL_RECOVERY
+  STAGNATION:              {interventions: [CONSTRAIN_SEARCH, ESCALATE_SOLVER], provenance: HEURISTIC}
+  FAILED_RECOVERY:         {interventions: [ESCALATE_SOLVER, INCREASE_TARGETED_VERIFICATION], provenance: HEURISTIC}
+  BUDGET_EXHAUSTION_NONCONVERGENCE: {interventions: [ESCALATE_SOLVER, CONSTRAIN_SEARCH], provenance: HEURISTIC}
+  # ENVIRONMENT_TOOLING  (NEVER interpret as a solver reasoning failure)
+  PREEMPTIVE_HELPER_TOOL_BUILD: {interventions: [NO_CHANGE, FIX_ENVIRONMENT], provenance: HEURISTIC}
+  HELPER_TOOL_FAILURE_LOOP: {interventions: [FIX_ENVIRONMENT, NO_CHANGE], provenance: HEURISTIC}
+  DEPENDENCY_SETUP_DRIFT:  {interventions: [FIX_ENVIRONMENT], provenance: HEURISTIC, note: "environment, not reasoning"}
+  ENVIRONMENT_BLOCKED:     {interventions: [FIX_ENVIRONMENT], provenance: HEURISTIC, note: "NEVER a solver reasoning failure"}
+
+caveat: >
+  This layer maps an observed waste pattern to a PLAUSIBLE runtime intervention. It does NOT
+  claim the intervention improves the outcome. Such claims require empirical paired outcomes
+  (config_outcome.schema.json) or reliable replay. Until then: recommended_config = null /
+  WEAK_ONLY, pareto_label_status = NOT_EMPIRICALLY_GROUNDED.
