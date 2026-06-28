@@ -2,7 +2,7 @@
 
 ## Method
 Grounded-theory open coding by **3 independent frontier models** (claude / codex / gemini)
-over the same 60-trace blinded bootstrap sample (dev solvers A/B/C only; held-out 32B
+over the same 60-trace blinded bootstrap sample (dev solvers A/B/C only; held-out solver_E
 excluded). Coders never saw each other's output, never saw real model names, never saw
 outcomes. 25 raw pattern proposals → clustered by cross-coder support → curated into
 6 Waste L1 / 19 Waste L2 and 6 Workload L1 / 21 Workload L2 attributes.
@@ -49,7 +49,15 @@ aggregation layer via cross_model_stability.)
 1. **Transcript text truncation:** open coders saw all events but abbreviated observation text
    (~140 chars/event). Event-level coverage was 100%, but fine-grained churn/recovery detail in
    long observations was compressed. Pilot packets will use larger per-event text budgets.
-2. **No qwen-8B dev perspective** (not on disk) — weak open-weight behavior under-sampled.
-3. **solver_A ungraded** (live opus-4.7) — 16/60 bootstrap traces had unknown outcome (no effect
+2. **No solver_D(8B) dev perspective** (not on disk) — weak open-weight behavior under-sampled.
+3. **solver_A ungraded** (live solver_A) — 16/60 bootstrap traces had unknown outcome (no effect
    on blind coding; matters only for outcome-stratified balance).
 4. **19 L2 > preferred 18:** pilot is expected to merge near-neighbors toward 12-18.
+
+## Note on "model names" in this document (blinding clarification)
+The blinding firewall covers **SOLVER** identities (the models that PRODUCED the traces) —
+annotators must never see those, and we refer to them only as solver_A..F. It does NOT cover
+**ANNOTATOR/CODER** identities (the models doing the labeling) — those are legitimate provenance
+(cf. the schema's `annotator_model` field) and are disclosed openly: open coding used
+claude / codex / gemini as the three independent coders. Referring to the coder backends here
+is process documentation, not a solver-identity leak.
