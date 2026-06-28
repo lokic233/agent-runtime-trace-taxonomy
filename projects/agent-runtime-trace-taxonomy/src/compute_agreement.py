@@ -14,6 +14,25 @@ Then checks the suggested acceptance gates and prints PASS/FAIL per gate.
 from __future__ import annotations
 import json, sys, os, collections, itertools, statistics as st
 
+def _label_id(x):
+    """Normalize a label entry to its string id (annotators sometimes emit dicts/objects)."""
+    if isinstance(x, str): return x
+    if isinstance(x, dict):
+        for k in ("id","label","label_id","name","l2","value"):
+            if k in x and isinstance(x[k], str): return x[k]
+        # single-key dict {LABEL: severity}
+        if len(x)==1:
+            k=next(iter(x))
+            if isinstance(k,str): return k
+        return json.dumps(x, sort_keys=True)[:40]
+    return str(x)
+
+def _label_set(lst):
+    if not lst: return set()
+    if isinstance(lst, dict):  # {LABEL: severity, ...}
+        return {_label_id(k) for k in lst}
+    return {_label_id(x) for x in lst}
+
 GATES = {
     "workload_l1_agreement": 0.70,
     "primary_waste_l1_agreement": 0.70,
@@ -83,13 +102,13 @@ def compute(by_trace, all_l2_labels):
         wl=[r.get("workload_annotation",{}).get("primary_l1") for r in recs]
         workload_units.append(wl)
         # waste L1 (primary = parent of primary_bottleneck, or first l1)
-        wl1=[ (r.get("waste_annotation",{}).get("l1_labels") or [None])[0] for r in recs]
+        wl1=[ (sorted(_label_set(r.get("waste_annotation",{}).get("l1_labels"))) or [None])[0] for r in recs]
         waste_l1_units.append(wl1)
         # primary bottleneck
-        bn=[r.get("waste_annotation",{}).get("primary_bottleneck") for r in recs]
+        bn=[_label_id(r.get("waste_annotation",{}).get("primary_bottleneck")) if r.get("waste_annotation",{}).get("primary_bottleneck") else None for r in recs]
         bottleneck_units.append(bn)
         # multi-label jaccard on L2 sets
-        l2sets=[set(r.get("waste_annotation",{}).get("l2_labels") or []) for r in recs]
+        l2sets=[_label_set(r.get("waste_annotation",{}).get("l2_labels")) for r in recs]
         ml_jaccards += pairwise_jaccard(l2sets)
         # per-label binary agreement
         for lab in all_l2_labels:
@@ -111,7 +130,7 @@ def compute(by_trace, all_l2_labels):
         for r in recs:
             total_annotations+=1
             if r.get("annotation_metadata",{}).get("abstain"): abstains+=1
-            for lab in (r.get("waste_annotation",{}).get("l2_labels") or []):
+            for lab in _label_set(r.get("waste_annotation",{}).get("l2_labels")):
                 label_used[lab]+=1
                 if lab in ("OTHER","UNKNOWN"): other_unknown+=1
         # confusion: disagreeing primary bottleneck pairs
