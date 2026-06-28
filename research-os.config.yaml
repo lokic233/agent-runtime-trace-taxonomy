@@ -1,0 +1,44 @@
+engine:
+  repo: lokic233/research-os
+  version: v0
+instance:
+  name: agent_runtime_trace_taxonomy
+  repo: ""
+runtime:
+  control_node: devgpu014
+  runtime_dir: /home/dengcchi/agent_runtime_trace_taxonomy/runtime
+compute_nodes:
+  - {name: devvm14382, kind: cpu, gpu_type: none, gpu_count: 0, host_mem_gb: 0, fragile: false, probe_cmd: "echo alive"}
+  - {name: devgpu014,  kind: cpu, gpu_type: none, gpu_count: 0, host_mem_gb: 0, fragile: false, probe_cmd: "echo alive"}
+session_agent_backends:
+  - claude-opus-4-8
+  - codex
+  - gemini
+  - metacode
+agent_embodiment:
+  orchestrator: interactive
+  researchers:  interactive
+  committee:    autonomous
+resource_pools:
+  cpu_agent_pool:
+    budget: {max_concurrent_sessions: 6, max_parallel_researchers: 5, token_aware: true}
+  gpu_pool:
+    dispatch: orchestrator_only
+committee:
+  rubric_version: v001
+  members:
+    - {role: novelty_killer,        backend: claude-opus-4-8}
+    - {role: systems_reviewer,      backend: codex}
+    - {role: evaluation_prosecutor, backend: gemini}
+    - {role: theory_skeptic,        backend: metacode}
+    - {role: product_realist,       backend: claude-opus-4-8}
+    - {role: area_chair,            backend: claude-opus-4-8}
+  green_rule: unanimous
+research:
+  researchers_per_project: 2
+  self_check_interval_minutes: 10
+  sub_monitor:
+    enabled: true
+    one_per_project: true
+    monitor_interval_minutes: 5
+    discovery_interval_minutes: 10

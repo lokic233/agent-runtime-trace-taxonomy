@@ -1,0 +1,28 @@
+claim_id: CLAIM-0001
+project_id: agent-runtime-trace-taxonomy
+stage: seed
+status: seed
+claim: AGENT_TRACE_WASTE_TAXONOMY
+why_it_matters: Build a versioned, scientifically-defensible WORKLOAD + EXECUTION-WASTE
+  taxonomy and a blinded multi-model annotation dataset over SWE-agent traces, to
+  train a 7-8B local controller that maps trace+workload+solver+regression-tolerance
+  -> ranked runtime-optimization config. Stage A (taxonomy discovery/pilot/freeze)
+  strictly precedes Stage B (closed-label full annotation). CPU-only. No fabricated
+  Pareto/config-gold labels.
+novelty_hypothesis: ''
+mandatory_baselines: []
+academic_map_nodes: []
+supporting_evidence: []
+negative_evidence: []
+verdict_history: []
+revival_conditions: ''
+owner: dengcchi
+prompt_version: v1
+lifecycle_state: experiment_running
+next_action: await EXP-0001 result, then ros exp complete --exp EXP-0001 --effect
+  ...
+blocking_on: ''
+active_experiments:
+- EXP-0001
+created_at: '2026-06-28T12:11:40Z'
+last_updated: '2026-06-28T12:11:52Z'

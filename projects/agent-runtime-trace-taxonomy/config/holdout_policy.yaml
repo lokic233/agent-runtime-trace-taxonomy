@@ -1,0 +1,33 @@
+# HOLDOUT FIREWALL — versioned. Changing this requires an explicit owner decision + version bump.
+policy_version: v1
+decided_by: orchestrator_autonomous
+decided_at: "2026-06-28"
+
+taxonomy_development_models:   # may shape taxonomy + enter LoRA training
+  - claude_4_7        # solver_A (when graded)
+  - claude_opus_4_5   # solver_B
+  - claude_sonnet_3_5 # solver_C
+  - qwen2_5_code_agent_8b   # solver_D — SLOT EMPTY (not on disk); see coverage_gap
+
+heldout_solver_models:         # NEVER shapes taxonomy; EXCLUDED from LoRA training; transfer-eval only
+  - qwen2_5_code_agent_32b  # solver_E — available on disk but firewalled
+
+capability_audit_models:       # post-freeze coverage audit only
+  - claude_4_6        # solver_F
+
+coverage_gap:
+  missing_dev_model: qwen2_5_code_agent_8b
+  impact: >
+    The prompt's default split names Qwen2.5-8B as a taxonomy-DEV model and Qwen2.5-32B as held out.
+    On disk we have 32B (held out) but NOT 8B. We keep the policy AS WRITTEN: 32B stays held out and
+    excluded from training; the 8B dev slot is simply empty. This means the "open-weight, weak/medium
+    local solver" perspective is under-represented during taxonomy discovery. Mitigation: solver_C
+    (3.5-sonnet, 33.6%) provides a low-capability closed perspective; 32B annotations (post-freeze)
+    will audit whether the taxonomy transfers to the open-weight local solver it was meant to serve.
+  do_not: "Do NOT silently swap 32B into the dev set to fill the 8B gap."
+  reversible_if: "Owner explicitly promotes 32B to dev OR an 8B trace set is downloaded -> bump policy_version."
+
+rules:
+  - Held-out traces MUST NOT influence taxonomy category creation or revision.
+  - Held-out annotations MUST NOT appear in exports/lora_semantic_train.jsonl.
+  - Preserve a model-transfer test split (32B) and a repository-transfer test split.
