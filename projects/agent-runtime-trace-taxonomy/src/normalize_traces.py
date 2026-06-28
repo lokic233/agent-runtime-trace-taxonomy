@@ -33,31 +33,49 @@ def _sha(s: Optional[str]) -> Optional[str]:
 def _norm_ws(s: str) -> str:
     return re.sub(r"\s+", " ", s or "").strip()
 
-# Command -> canonical event type. Order matters (first match wins).
-_PATTERNS = [
-    ("TEST",        re.compile(r"\b(pytest|tox|unittest|py\.test|nosetests|python -m pytest|python -m unittest|\./tests?/|run_tests)\b", re.I)),
-    ("PATCH_APPLY", re.compile(r"\b(git apply|patch -p|git commit|git checkout -- |apply_patch)\b", re.I)),
-    ("EDIT",        re.compile(r"\b(edit|str_replace|insert|create|sed -i|tee |>>|cat\s*>\s*|apply_edit)\b", re.I)),
-    ("SEARCH",      re.compile(r"\b(grep|rg|ag|find\b|search|git grep|ack|locate|fgrep|egrep)\b", re.I)),
-    ("READ",        re.compile(r"\b(cat |head |tail |less |open |view |sed -n|nl |wc -l|scroll|goto|less\b|more\b)\b", re.I)),
-    ("RETRIEVE",    re.compile(r"\b(retrieve|recall|memory_search|vector|embed)\b", re.I)),
-    ("ENVIRONMENT", re.compile(r"\b(pip install|conda |apt-get|setup\.py|pip3|python setup|make install|export |source |cd /|docker|podman|requirements\.txt)\b", re.I)),
-]
+# SWE-agent NATIVE command verbs (the agent's ACI tools) — checked on the leading
+# token first, because they are unambiguous (e.g. `edit 1:5`, `create foo.py`).
+_SWE_NATIVE = {
+    "create":"EDIT", "edit":"EDIT", "insert":"EDIT", "append":"EDIT", "str_replace":"EDIT",
+    "open":"READ", "goto":"READ", "scroll_up":"READ", "scroll_down":"READ", "scroll":"READ",
+    "search_file":"SEARCH", "search_dir":"SEARCH", "find_file":"SEARCH", "grep":"SEARCH",
+    "submit":"FINISH", "exit":"FINISH", "exit_forfeit":"FINISH", "exit_cost":"FINISH",
+}
+
+# Command -> canonical event type. Explicit precedence (see classify_command).
+_RE_WRITE   = re.compile(r"(<<\s*['\"]?[A-Za-z_]+['\"]?|cat\s*>|\btee\b|\bstr_replace\b|\bsed -i\b|\becho\b[^|]*>\s*[\w./]+\.\w+|>\s*[\w./]+\.\w{1,6}\b)", re.I)
+_RE_ENV     = re.compile(r"(pip install|pip3 install|conda |apt-get|python setup\.py|setup\.py|make install|\bmake\b|cmake|\bexport \w+=|^\s*source |^\s*cd /|docker|podman|requirements\.txt|build_ext|\.\/configure)", re.I)
+_RE_TEST    = re.compile(r"(\bpytest\b|\btox\b|\bunittest\b|py\.test|nosetests|python -m pytest|python -m unittest|/tests?/|run_tests)", re.I)
+_RE_PATCH   = re.compile(r"\b(git apply|patch -p|git commit|git checkout -- |apply_patch|git diff)\b", re.I)
+_RE_SEARCH  = re.compile(r"\b(grep|rg|ag|git grep|ack|locate|fgrep|egrep)\b|(?<!\w)find\b", re.I)
+_RE_READ    = re.compile(r"^(cat|head|tail|less|view|nl|more)\b|\bsed -n|\bwc -l", re.I)
+_RE_RETR    = re.compile(r"\b(retrieve|recall|memory_search|vector|embed)\b", re.I)
 
 def classify_command(cmd: Optional[str], thought: Optional[str]=None) -> str:
-    """Map a shell action (and/or tool name) to a canonical type. Evidence only."""
+    """Map a shell action (and/or tool name) to a canonical type. EVIDENCE ONLY.
+
+    Explicit precedence (first match wins):
+      0 no cmd            -> PLAN (if thought) else OTHER
+      1 SWE-agent native  -> leading verb (edit/create/open/search_file/submit/...)
+      2 write-to-file     -> EDIT  (heredoc/redirect/sed -i/tee) — BEFORE test, so
+                             `cat <<EOF > test_x.py` is an EDIT (writing), not a TEST run
+      3 build/install     -> ENVIRONMENT (before test, so `setup.py build_ext` is env)
+      4 TEST (running)     5 PATCH_APPLY   6 SEARCH   7 READ   8 RETRIEVE
+      9 fallback          -> EXECUTE
+    """
     if not cmd:
-        # No command but a thought present -> planning/reasoning step
         return "PLAN" if thought else "OTHER"
     c = cmd.strip()
-    # submission / finish signals
-    if re.search(r"\b(submit|DISCUSSION|<<EOF.*git diff|echo.*COMPLETE)\b", c) and "diff" in c.lower():
-        return "PATCH_APPLY"
-    if c.lower() in ("submit","exit","finish") or c.startswith("submit"):
-        return "FINISH"
-    for typ, pat in _PATTERNS:
-        if pat.search(c):
-            return typ
+    lead = re.split(r"[\s:]", c, 1)[0].lower()
+    if lead in _SWE_NATIVE:
+        return _SWE_NATIVE[lead]
+    if _RE_WRITE.search(c):   return "EDIT"
+    if _RE_ENV.search(c):     return "ENVIRONMENT"
+    if _RE_TEST.search(c):    return "TEST"
+    if _RE_PATCH.search(c):   return "PATCH_APPLY"
+    if _RE_SEARCH.search(c):  return "SEARCH"
+    if _RE_READ.search(c):    return "READ"
+    if _RE_RETR.search(c):    return "RETRIEVE"
     return "EXECUTE"
 
 def _extract_paths(text: str) -> list[str]:
