@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "normalized_event.schema.json",
+  "title": "Normalized Trace Event (L0 fact layer)",
+  "description": "One canonical event in a SWE-agent trajectory. Source event preserved; absent fields are null + availability flag, never zero.",
+  "type": "object",
+  "required": [
+    "trace_id",
+    "task_id",
+    "solver_alias",
+    "event_index",
+    "normalized_action_type",
+    "content_available"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "trace_id": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "repo": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "solver_alias": {
+      "type": "string",
+      "pattern": "^solver_[A-F]$",
+      "description": "BLINDED alias only \u2014 never the real model name"
+    },
+    "source_harness": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "event_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "timestamp_start": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timestamp_end": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "raw_action_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "normalized_action_type": {
+      "type": "string",
+      "enum": [
+        "PLAN",
+        "SEARCH",
+        "READ",
+        "RETRIEVE",
+        "EDIT",
+        "PATCH_APPLY",
+        "TEST",
+        "EXECUTE",
+        "TOOL_ERROR",
+        "ENVIRONMENT",
+        "FINISH",
+        "OTHER"
+      ]
+    },
+    "tool_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tool_args_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tool_output_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "file_paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "symbol_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "test_command": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "test_result": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "input_tokens": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "output_tokens": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "context_tokens": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "error_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patch_delta_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "content_available": {
+      "type": "boolean"
+    },
+    "_evidence": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  }
+}

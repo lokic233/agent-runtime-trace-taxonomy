@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "normalized_trace.schema.json",
+  "title": "Normalized Trace (L0 fact layer)",
+  "description": "Full normalized SWE-agent trajectory: header + canonical event stream + deterministic features. Semantic labels live in trace_annotation.schema.json, NOT here.",
+  "type": "object",
+  "required": [
+    "trace_id",
+    "task_id",
+    "solver_alias",
+    "source_harness",
+    "n_events",
+    "events",
+    "outcome",
+    "content_available"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "trace_id": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "repo": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "solver_alias": {
+      "type": "string",
+      "pattern": "^solver_[A-F]$"
+    },
+    "capability_tier": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "STRONG",
+        "MEDIUM",
+        "WEAK",
+        null
+      ]
+    },
+    "locality": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "local",
+        "remote",
+        null
+      ]
+    },
+    "source_harness": {
+      "type": "string"
+    },
+    "source_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "type": "string",
+      "default": "L0_v1"
+    },
+    "n_events": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "normalized_event.schema.json"
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "description": "Used for SAMPLING BALANCE only; firewalled from open coders & prefix views.",
+      "required": [
+        "resolved",
+        "exit_status"
+      ],
+      "properties": {
+        "resolved": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "exit_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "submission_present": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    },
+    "deterministic_features": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "content_available": {
+      "type": "boolean"
+    },
+    "parse_warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
