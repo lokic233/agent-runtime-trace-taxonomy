@@ -48,6 +48,9 @@ def discover_traces(source: dict) -> list[dict]:
     elif layout == "flat_traj":           # trajs/<inst>.traj
         for fp in sorted(glob.glob(f"{root}/trajs/*.traj")):
             out.append({"path": fp, "task_id": os.path.basename(fp).replace(".traj","")})
+    elif layout == "openhands_flat":      # trajs/<inst>.json  (OpenHands messages format)
+        for fp in sorted(glob.glob(f"{root}/trajs/*.json")):
+            out.append({"path": fp, "task_id": os.path.basename(fp).replace(".json","")})
     elif layout == "nested_traj":         # <inst>/<inst>.traj  (live runs, no trajs/ wrapper)
         for fp in sorted(glob.glob(f"{root}/*/*.traj")):
             out.append({"path": fp, "task_id": os.path.basename(fp).replace(".traj","")})

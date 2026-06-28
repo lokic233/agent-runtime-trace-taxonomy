@@ -1,64 +1,66 @@
-# Trace source registry. STATUS: paths are REAL + validated on disk (NOT TRACE_PATHS_PENDING).
-# Layouts differ per harness — the normalizer must handle all four. See context/trace_source_inventory.md.
-#
-# Counts validated 2026-06-28. Resolve rates from swebench.com leaderboard / our grading.
 trace_sources:
   claude_4_7:
     alias: solver_A
-    path: "/data/users/dengcchi/hal_work/runs/full_opus47"
+    path: /data/users/dengcchi/hal_work/runs/full_opus47
     node: devgpu014
-    layout: "nested_traj"          # <inst>/<inst>.traj  (SWE-agent 1.0 classic, JSON-in-.traj)
-    harness: "swe-agent-1.0"
-    resolve_rate: null             # not graded yet
-    n_trajectories: 449            # GENERATING -> 500
-    status: "generating"
-
+    layout: nested_traj
+    harness: swe-agent-1.0
+    resolve_rate: null
+    n_trajectories: 449
+    status: generating
   claude_opus_4_5:
     alias: solver_B
-    path: "/data/users/dengcchi/swebench_traces/verified/20251215_livesweagent_claude-opus-4-5"
+    path: /data/users/dengcchi/swebench_traces/verified/20251215_livesweagent_claude-opus-4-5
     node: devvm14382
-    layout: "nested_traj_json"     # trajs/<inst>/<inst>.traj.json  (live-SWE-agent; messages/trajectory_format)
-    harness: "live-swe-agent"
-    resolve_rate: 0.792            # 396/500 — SOTA ceiling, #1 downloadable on Verified
+    layout: nested_traj_json
+    harness: live-swe-agent
+    resolve_rate: 0.792
     n_trajectories: 500
-    status: "available"
-
+    status: available
   claude_sonnet_3_5:
     alias: solver_C
-    path: "/data/users/dengcchi/swebench_traces/verified/20240620_sweagent_claude3.5sonnet"
+    path: /data/users/dengcchi/swebench_traces/verified/20240620_sweagent_claude3.5sonnet
     node: devvm14382
-    layout: "flat_traj"            # trajs/<inst>.traj  (classic flat)
-    harness: "swe-agent-1.0"
-    resolve_rate: 0.336            # 168/500 — older mid tier
+    layout: flat_traj
+    harness: swe-agent-1.0
+    resolve_rate: 0.336
     n_trajectories: 500
-    status: "available"
-
+    status: available
   qwen2_5_code_agent_8b:
     alias: solver_D
-    path: "__TRACE_QWEN8B_ROOT__"  # NOT ON DISK — see holdout_policy.yaml coverage gap
+    path: __TRACE_QWEN8B_ROOT__
     node: null
     layout: null
     harness: null
     resolve_rate: null
     n_trajectories: 0
-    status: "pending"              # never downloaded; dev-model slot is empty
-
+    status: pending
   qwen2_5_code_agent_32b:
     alias: solver_E
-    path: "/data/users/dengcchi/swebench_traces/verified/20250511_sweagent_lm_32b"
+    path: /data/users/dengcchi/swebench_traces/verified/20250511_sweagent_lm_32b
     node: devvm14382
-    layout: "flat_traj"            # trajs/<inst>.traj
-    harness: "swe-agent-1.0"
-    resolve_rate: 0.402            # 201/500 — best open-weight
+    layout: flat_traj
+    harness: swe-agent-1.0
+    resolve_rate: 0.402
     n_trajectories: 500
-    status: "available_HELDOUT"    # AVAILABLE but firewalled — see holdout_policy.yaml
-
+    status: available_HELDOUT
   claude_4_6:
     alias: solver_F
-    path: "/data/users/dengcchi/hal_work/runs/full_opus46"
+    path: /data/users/dengcchi/hal_work/runs/full_opus46
     node: devgpu014
-    layout: "nested_traj"
-    harness: "swe-agent-1.0"
+    layout: nested_traj
+    harness: swe-agent-1.0
     resolve_rate: null
-    n_trajectories: 40             # QUEUED behind 4.7 -> 500
-    status: "optional_generating"
+    n_trajectories: 40
+    status: optional_generating
+  skywork_swe_32b:
+    alias: solver_G
+    path: /data/users/dengcchi/swebench_traces/verified/20250616_Skywork-SWE-32B
+    node: devvm14382
+    layout: openhands_flat
+    harness: openhands
+    resolve_rate: 0.389
+    n_trajectories: 489
+    status: available
+    note: Qwen2.5-Coder-32B-Instruct base (SWE-RL tuned, general OpenHands scaffold). REPLACES solver_E
+      (SWE-agent-LM-32B outlier) in training per owner decision.

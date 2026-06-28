@@ -189,6 +189,77 @@ def _events_from_mini(messages: list[dict]) -> list[dict]:
             i += 1
     return events
 
+def _events_from_openhands(messages: list[dict]) -> list[dict]:
+    """openhands: messages[] system/user/assistant. assistant embeds
+    <function=NAME><parameter=command>...</parameter></function>; the following
+    user msg is 'EXECUTION RESULT of [NAME]: <output>'. Maps execute_bash->classify,
+    str_replace_editor/edit_file->EDIT, finish->FINISH."""
+    events = []
+    idx = 0; i = 0; n = len(messages)
+    while i < n:
+        m = messages[i]
+        role = m.get("role"); content = m.get("content")
+        if isinstance(content, list):
+            content = " ".join(str(c.get("text", c)) if isinstance(c, dict) else str(c) for c in content)
+        if role == "assistant":
+            fn, cmd, thought = _split_openhands_action(content or "")
+            obs = None
+            if i + 1 < n and messages[i+1].get("role") == "user":
+                oc = messages[i+1].get("content")
+                obs = oc if isinstance(oc, str) else json.dumps(oc)
+            # map function -> type
+            if fn in ("str_replace_editor","str_replace_based_edit_tool","edit_file","edit"):
+                ntype = "EDIT"
+            elif fn == "finish":
+                ntype = "FINISH"
+            elif fn in ("execute_bash","run_bash","bash","execute_ipython_cell"):
+                ntype = classify_command(cmd, thought)
+            else:
+                ntype = classify_command(cmd, thought)
+            err = _obs_is_error(obs)
+            is_test = ntype == "TEST"
+            events.append({
+                "event_index": idx,
+                "raw_action_type": (fn or "thought")[:60],
+                "normalized_action_type": "TOOL_ERROR" if (err and ntype=="EXECUTE") else ntype,
+                "tool_name": fn,
+                "tool_args_hash": _sha(_norm_ws(cmd)) if cmd else _sha(_norm_ws(content)[:200]),
+                "tool_output_hash": _sha(obs) if obs else None,
+                "file_paths": _extract_paths((cmd or "") + " " + (obs or ""))[:25],
+                "symbol_names": [],
+                "test_command": cmd if is_test else None,
+                "test_result": _test_result(obs) if is_test else None,
+                "input_tokens": None, "output_tokens": None, "context_tokens": None,
+                "error_type": err, "patch_delta_hash": None,
+                "content_available": bool(content or obs),
+            })
+            idx += 1
+            i += 2 if obs is not None else 1
+        else:
+            i += 1
+    return events
+
+def _split_openhands_action(content: str) -> tuple[Optional[str], Optional[str], Optional[str]]:
+    """openhands: returns (function_name, command/param, thought).
+    Format: '<thought text>\\n<function=NAME>\\n<parameter=command>CMD</parameter>\\n</function>'."""
+    fn = None; cmd = None
+    mfn = re.search(r"<function=(\w+)>", content)
+    if mfn: fn = mfn.group(1)
+    # command parameter (execute_bash) or path/new_str (editor)
+    mc = re.search(r"<parameter=command>(.*?)</parameter>", content, re.S)
+    if mc: cmd = mc.group(1).strip()
+    else:
+        mp = re.search(r"<parameter=(?:path|file_text|new_str|old_str)>(.*?)</parameter>", content, re.S)
+        if mp: cmd = mp.group(1).strip()[:200]
+    # thought = text before the first <function=
+    thought = None
+    if mfn:
+        pre = content[:mfn.start()].strip()
+        if pre: thought = pre[:500]
+    elif content:
+        thought = content.strip()[:500]
+    return fn, cmd, thought
+
 def _split_mini_action(content: str) -> tuple[Optional[str], Optional[str]]:
     """mini format: 'THOUGHT: ...\\n```bash\\n<cmd>\\n```' (or THOUGHT/ACTION markers)."""
     thought, action = None, None
@@ -206,7 +277,15 @@ def _split_mini_action(content: str) -> tuple[Optional[str], Optional[str]]:
 
 # ---- top-level -------------------------------------------------------------
 def detect_layout(raw: dict) -> str:
-    if raw.get("trajectory_format","").startswith("mini") or ("messages" in raw and "trajectory" not in raw):
+    if raw.get("trajectory_format","").startswith("mini"):
+        return "mini_swe_agent"
+    if "messages" in raw and "trajectory" not in raw:
+        # disambiguate openhands (function-call markers / OpenHands system prompt) vs mini
+        msgs = raw.get("messages", [])
+        blob = " ".join(str(m.get("content",""))[:300] for m in msgs[:4])
+        if "<function=" in " ".join(str(m.get("content","")) for m in msgs if m.get("role")=="assistant")[:5000] \
+           or "OpenHands" in blob or "EXECUTION RESULT" in blob:
+            return "openhands"
         return "mini_swe_agent"
     if "trajectory" in raw and isinstance(raw["trajectory"], list):
         return "classic_traj"
@@ -236,6 +315,9 @@ def normalize_trace(raw: dict, *, trace_id: str, task_id: str, solver_alias: str
     elif layout == "mini_swe_agent":
         events = _events_from_mini(raw.get("messages", []))
         harness = "live-swe-agent(mini-swe-agent-1)"
+    elif layout == "openhands":
+        events = _events_from_openhands(raw.get("messages", []))
+        harness = "openhands"
     else:
         events = []
         harness = "unknown"
