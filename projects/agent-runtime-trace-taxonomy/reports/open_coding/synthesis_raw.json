@@ -1,0 +1,1484 @@
+{
+  "n_coders": 3,
+  "coders": [
+    "coder_A",
+    "coder_B",
+    "coder_C"
+  ],
+  "total_patterns": 25,
+  "n_clusters": 16,
+  "multi_coder_clusters": 6,
+  "single_coder_clusters": 10,
+  "clusters": [
+    {
+      "canonical": "BLIND_INFILE_NAVIGATION",
+      "support": 3,
+      "coders": [
+        "coder_A",
+        "coder_B",
+        "coder_C"
+      ],
+      "member_names": [
+        "BLIND_INFILE_NAVIGATION",
+        "NON_CONVERGENT_LOCALIZATION",
+        "LIMIT_EXIT_STAGNATION",
+        "BLIND_DIRECTORY_WALK"
+      ],
+      "parents": {
+        "LOCALIZATION_WASTE": 2,
+        "FULL_TRACE": 1,
+        "SEARCH": 1
+      },
+      "observability": {
+        "MEDIUM": 3,
+        "HIGH": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_A",
+          "name": "BLIND_INFILE_NAVIGATION",
+          "def": "After opening a file, the agent jumps to a guessed line number (goto N) that does not contain the target, then must run an in-file search and re-navigate, wasting the first jump.",
+          "parent": "LOCALIZATION_WASTE",
+          "distinguishing_rule": "Occurs AFTER the correct file is open and is about line-within-file; THRASH is about which file; REDUNDANT_FILE_REREAD re-shows identical content rather than guessing a new wrong line.",
+          "interventions": [
+            "SEARCH_BEFORE_GOTO"
+          ],
+          "evidence": {
+            "django__django-16100@solver_C": [
+              2,
+              3,
+              4,
+              5
+            ]
+          }
+        },
+        {
+          "coder": "coder_A",
+          "name": "NON_CONVERGENT_LOCALIZATION",
+          "def": "A large fraction of the run is consumed by exploration/reading/environment activity before the first edit, AND the run fails to converge (terminates on cost/limit or a long no-progress streak) rather than landing a focused fix.",
+          "parent": "LOCALIZATION_WASTE",
+          "distinguishing_rule": "Requires BOTH late-first-edit AND a non-convergence signal; pure late-first-edit on a hard-to-localize task that still lands a clean patch is the LOCALIZATION_GATED workload, not waste.",
+          "interventions": [
+            "LOCALIZATION_BUDGET_CAP",
+            "EARLY_HYPOTHESIS_COMMIT"
+          ],
+          "evidence": {
+            "psf__requests-6028@solver_A": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "django__django-7530@solver_A": [
+              0,
+              1,
+              4
+            ]
+          }
+        },
+        {
+          "coder": "coder_B",
+          "name": "LIMIT_EXIT_STAGNATION",
+          "def": "The run consumes its budget or times out after a long sequence with little new evidence, preventing a normal verify-and-submit cycle.",
+          "parent": "FULL_TRACE",
+          "distinguishing_rule": "Limit-exit stagnation is defined by abnormal resource exhaustion in the full trace; patch churn may submit normally after many edits.",
+          "interventions": [
+            "EARLY_STOP_ON_STAGNATION",
+            "FORCE_PLAN_RESET",
+            "ESCALATE_AFTER_TIMEOUT"
+          ],
+          "evidence": {
+            "sympy__sympy-15599@solver_B": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "django__django-7530@solver_A": [
+              1,
+              4,
+              5
+            ],
+            "psf__requests-6028@solver_A": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "pytest-dev__pytest-7236@solver_A": [
+              0,
+              1,
+              2
+            ]
+          }
+        },
+        {
+          "coder": "coder_C",
+          "name": "BLIND_DIRECTORY_WALK",
+          "def": "The agent navigates the repository by issuing sequential `cd` and `ls -la` commands down multiple directory levels instead of using a single recursive search tool like `find` or `grep` to locate the target file.",
+          "parent": "SEARCH",
+          "distinguishing_rule": "BLIND_DIRECTORY_WALK specifically targets the anti-pattern of manual level-by-level `cd/ls` traversal, while INEFFICIENT_SEARCH might refer to using bad `grep` regexes.",
+          "interventions": [
+            "SUGGEST_FIND_COMMAND",
+            "TOOL_USE_PROMPT_REMINDER"
+          ],
+          "evidence": {
+            "django__django-15732@solver_C": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "django__django-16595@solver_C": [
+              3,
+              4
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "PATCH_CHURN_WITHOUT_VERIFICATION",
+      "support": 2,
+      "coders": [
+        "coder_A",
+        "coder_B"
+      ],
+      "member_names": [
+        "PATCH_CHURN_WITHOUT_VERIFICATION",
+        "PATCH_CHURN_WITHOUT_VALIDATION",
+        "NO_VERIFICATION_AFTER_PATCH"
+      ],
+      "parents": {
+        "EDIT_WASTE": 1,
+        "EDIT_PATCH": 1,
+        "VERIFY": 1
+      },
+      "observability": {
+        "MEDIUM": 3
+      },
+      "definitions": [
+        {
+          "coder": "coder_A",
+          "name": "PATCH_CHURN_WITHOUT_VERIFICATION",
+          "def": "A large number of edit attempts concentrated on a small set of files (high patch_attempts, low files_modified) with no intervening test execution that would supply new evidence to justify each successive edit.",
+          "parent": "EDIT_WASTE",
+          "distinguishing_rule": "CHURN = repeated edits to the SAME region with no new evidence between. VERIFICATION_GAP = absence of ANY test across the whole run (may have few edits). STAGNATION = exact-duplicate calls / no-new-evidence streak not necessarily edits.",
+          "interventions": [
+            "FORCE_TEST_AFTER_N_EDITS",
+            "LIMIT_PATCH_SCOPE"
+          ],
+          "evidence": {
+            "django__django-16560@solver_C": [
+              3,
+              5
+            ],
+            "matplotlib__matplotlib-26113@solver_C": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "sympy__sympy-15599@solver_B": [
+              2,
+              3,
+              4
+            ]
+          }
+        },
+        {
+          "coder": "coder_B",
+          "name": "PATCH_CHURN_WITHOUT_VALIDATION",
+          "def": "The agent performs many edits or patch attempts to production files with little or no intervening verification, often within the same file or feature area.",
+          "parent": "EDIT_PATCH",
+          "distinguishing_rule": "Patch churn requires repeated production-code patching without validation; failed recovery is driven by new failing test/error evidence.",
+          "interventions": [
+            "REQUIRE_TEST_AFTER_N_PATCHES",
+            "DIFF_REVIEW_BEFORE_NEXT_EDIT",
+            "LIMIT_SAME_FILE_PATCH_ATTEMPTS"
+          ],
+          "evidence": {
+            "sympy__sympy-15599@solver_B": [
+              2,
+              3,
+              4
+            ],
+            "django__django-16560@solver_C": [
+              3,
+              5
+            ],
+            "matplotlib__matplotlib-26113@solver_C": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "pydata__xarray-6461@solver_C": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "coder": "coder_B",
+          "name": "NO_VERIFICATION_AFTER_PATCH",
+          "def": "The agent applies a production code change and submits without running a relevant test or reproduction, despite the task being locally verifiable.",
+          "parent": "VERIFY",
+          "distinguishing_rule": "No-verification requires absence of a post-patch local check; oracle unavailable requires an attempted check that cannot run due to environment/tool limits.",
+          "interventions": [
+            "MANDATE_POST_PATCH_SMOKE_TEST",
+            "NEAREST_TEST_DISCOVERY",
+            "SUBMIT_BLOCK_IF_NO_VERIFICATION"
+          ],
+          "evidence": {
+            "django__django-16667@solver_B": [
+              2,
+              3,
+              4
+            ],
+            "psf__requests-1142@solver_B": [
+              4
+            ],
+            "django__django-13513@solver_B": [
+              1,
+              3,
+              4
+            ],
+            "django__django-16560@solver_C": [
+              3,
+              5
+            ],
+            "sphinx-doc__sphinx-7985@solver_C": [
+              2,
+              4
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "PREEMPTIVE_HELPER_TOOL_BUILD",
+      "support": 2,
+      "coders": [
+        "coder_A",
+        "coder_B"
+      ],
+      "member_names": [
+        "PREEMPTIVE_HELPER_TOOL_BUILD",
+        "HELPER_TOOL_FAILURE_LOOP"
+      ],
+      "parents": {
+        "SETUP_OVERHEAD": 1,
+        "ENVIRONMENT_SETUP": 1
+      },
+      "observability": {
+        "HIGH": 2
+      },
+      "definitions": [
+        {
+          "coder": "coder_A",
+          "name": "PREEMPTIVE_HELPER_TOOL_BUILD",
+          "def": "Agent spends an edit/tool-call authoring a generic custom helper script (e.g. edit_file.py / view_file.py) before reading or editing the actual task file, independent of any demonstrated need for it over built-in commands.",
+          "parent": "SETUP_OVERHEAD",
+          "distinguishing_rule": "PREEMPTIVE_HELPER_TOOL_BUILD = creating the helper. SELF_BUILT_TOOL_BREAKAGE = that helper later erroring and needing rework. Reproduction scripts are excluded because they exercise the bug, not just edit files.",
+          "interventions": [
+            "SUPPRESS_TOOL_BUILD_NUDGE",
+            "PREFER_BUILTIN_EDIT"
+          ],
+          "evidence": {
+            "django__django-10999@solver_B": [
+              1
+            ],
+            "django__django-13109@solver_B": [
+              1
+            ],
+            "django__django-13513@solver_B": [
+              1
+            ],
+            "matplotlib__matplotlib-25775@solver_B": [
+              3
+            ],
+            "django__django-14500@solver_B": [
+              1
+            ],
+            "astropy__astropy-7606@solver_B": [
+              2
+            ],
+            "sympy__sympy-18199@solver_B": [
+              1
+            ],
+            "django__django-13512@solver_B": [
+              2
+            ],
+            "scikit-learn__scikit-learn-14894@solver_B": [
+              1
+            ],
+            "astropy__astropy-8872@solver_B": [
+              1
+            ]
+          }
+        },
+        {
+          "coder": "coder_B",
+          "name": "HELPER_TOOL_FAILURE_LOOP",
+          "def": "A self-created or harness editor/view helper fails, and the agent spends additional actions fixing or retrying the helper instead of switching to a simpler available command.",
+          "parent": "ENVIRONMENT_SETUP",
+          "distinguishing_rule": "BOOTSTRAP is the initial creation cost; FAILURE_LOOP requires an observed tool failure and at least one repair/retry action tied to the helper.",
+          "interventions": [
+            "FALLBACK_TO_SED_OR_APPLY_PATCH",
+            "ABANDON_BROKEN_HELPER_AFTER_ONE_FAILURE"
+          ],
+          "evidence": {
+            "django__django-13513@solver_B": [
+              2,
+              3,
+              4
+            ],
+            "django__django-11239@solver_C": [
+              5
+            ],
+            "django__django-11951@solver_C": [
+              3,
+              4
+            ],
+            "django__django-7530@solver_A": [
+              1,
+              4,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "REDUNDANT_FILE_REREAD",
+      "support": 2,
+      "coders": [
+        "coder_A",
+        "coder_B"
+      ],
+      "member_names": [
+        "REDUNDANT_FILE_REREAD",
+        "BROAD_FILE_DUMP_THEN_NARROW_READ"
+      ],
+      "parents": {
+        "LOCALIZATION_WASTE": 1,
+        "SEARCH_READ": 1
+      },
+      "observability": {
+        "MEDIUM": 1,
+        "HIGH": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_A",
+          "name": "REDUNDANT_FILE_REREAD",
+          "def": "Re-reading the same file or region already viewed, with no intervening edit/test that would have changed it.",
+          "parent": "LOCALIZATION_WASTE",
+          "distinguishing_rule": "REREAD = identical content re-fetched; NAVIGATION = guessing a wrong new line; STAGNATION = duplicate calls of any tool type. Re-read strictly after an edit to the same file is excluded (verification).",
+          "interventions": [
+            "READ_CACHE_HINT",
+            "MAINTAIN_FILE_VIEW_STATE"
+          ],
+          "evidence": {
+            "scikit-learn__scikit-learn-9288@solver_C": [
+              6
+            ],
+            "pydata__xarray-6461@solver_C": [
+              6
+            ],
+            "django__django-15732@solver_C": [
+              3,
+              4
+            ],
+            "django__django-16100@solver_C": [
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "coder": "coder_B",
+          "name": "BROAD_FILE_DUMP_THEN_NARROW_READ",
+          "def": "The agent dumps a large source file, receives truncated or too-long output, then performs targeted reads that could have been used initially.",
+          "parent": "SEARCH_READ",
+          "distinguishing_rule": "This pattern is about oversized content reads of a known file; search misuse is about failed search commands or wrong path assumptions.",
+          "interventions": [
+            "PREFER_RG_FUNCTION_FIRST",
+            "AUTO_SLICE_AFTER_LARGE_FILE_WARNING",
+            "LINE_RANGE_READ_DEFAULT"
+          ],
+          "evidence": {
+            "django__django-14500@solver_B": [
+              2,
+              3,
+              4
+            ],
+            "pytest-dev__pytest-10081@solver_B": [
+              4
+            ],
+            "pytest-dev__pytest-8399@solver_B": [
+              2,
+              3
+            ],
+            "django__django-11400@solver_B": [
+              1,
+              2,
+              3
+            ],
+            "sphinx-doc__sphinx-8475@solver_B": [
+              1,
+              2
+            ],
+            "sympy__sympy-17630@solver_B": [
+              1,
+              2,
+              3
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "PREMATURE_SCRATCH_REPRO_CHURN",
+      "support": 2,
+      "coders": [
+        "coder_B",
+        "coder_C"
+      ],
+      "member_names": [
+        "PREMATURE_SCRATCH_REPRO_CHURN",
+        "EXACT_MATCH_REPLACE_FAILURE"
+      ],
+      "parents": {
+        "VERIFY_REPRODUCE": 1,
+        "EDIT_PATCH": 1
+      },
+      "observability": {
+        "HIGH": 2
+      },
+      "definitions": [
+        {
+          "coder": "coder_B",
+          "name": "PREMATURE_SCRATCH_REPRO_CHURN",
+          "def": "The agent creates and repeatedly edits an ad hoc reproduction script before locating or understanding the production code path, consuming actions on scratch artifacts rather than task code.",
+          "parent": "VERIFY_REPRODUCE",
+          "distinguishing_rule": "Scratch repro churn targets temporary/non-repo artifacts before source localization; patch churn targets repeated edits to production code regions.",
+          "interventions": [
+            "LOCALIZE_BEFORE_REPRO_SCRIPT",
+            "CAP_SCRATCH_EDIT_COUNT",
+            "REUSE_ISSUE_SNIPPET_ONCE"
+          ],
+          "evidence": {
+            "matplotlib__matplotlib-26113@solver_C": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pydata__xarray-6461@solver_C": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "scikit-learn__scikit-learn-9288@solver_C": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "pytest-dev__pytest-5787@solver_C": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "scikit-learn__scikit-learn-13439@solver_C": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        },
+        {
+          "coder": "coder_C",
+          "name": "EXACT_MATCH_REPLACE_FAILURE",
+          "def": "The agent uses a string-replacement tool but fails because the provided 'old_string' does not perfectly match the file's contents (often due to indentation, trailing whitespace, or missing context lines), resulting in a failed replacement and necessitating a retry.",
+          "parent": "EDIT_PATCH",
+          "distinguishing_rule": "EXACT_MATCH_REPLACE_FAILURE is a tool mechanical failure due to strict matching constraints, whereas PATCH_CHURN is successfully applying edits but logically changing the approach multiple times.",
+          "interventions": [
+            "FUZZY_MATCH_REPLACEMENT",
+            "GIVE_LINE_NUMBER_EDIT_ACCESS"
+          ],
+          "evidence": {
+            "django__django-15863@solver_A": [
+              3,
+              4
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "ENVIRONMENT_DEPENDENCY_DRIFT",
+      "support": 2,
+      "coders": [
+        "coder_B",
+        "coder_C"
+      ],
+      "member_names": [
+        "ENVIRONMENT_DEPENDENCY_DRIFT",
+        "ENVIRONMENT_TOOL_NOT_FOUND"
+      ],
+      "parents": {
+        "ENVIRONMENT_SETUP": 1,
+        "EXECUTE_TEST": 1
+      },
+      "observability": {
+        "HIGH": 2
+      },
+      "definitions": [
+        {
+          "coder": "coder_B",
+          "name": "ENVIRONMENT_DEPENDENCY_DRIFT",
+          "def": "The agent changes or installs runtime dependencies to make a verification command available, introducing new incompatibilities or consuming setup time instead of using repo-supported commands.",
+          "parent": "ENVIRONMENT_SETUP",
+          "distinguishing_rule": "Environment drift requires modifying the runtime dependency set; helper failure loops do not necessarily change dependencies.",
+          "interventions": [
+            "DO_NOT_PIP_INSTALL_ON_REPO_TEST_ENVS",
+            "USE_EXISTING_TEST_SUBSET",
+            "ASK_OR_SKIP_EXTERNAL_PLUGIN_TEST"
+          ],
+          "evidence": {
+            "pytest-dev__pytest-5787@solver_C": [
+              3,
+              4,
+              5
+            ]
+          }
+        },
+        {
+          "coder": "coder_C",
+          "name": "ENVIRONMENT_TOOL_NOT_FOUND",
+          "def": "The agent attempts to invoke a testing tool or dependency (e.g., `tox`, `pytest -n auto`) that is not installed or available in the path, receives a 'command not found' or 'unrecognized arguments' error, and must spend turns installing the dependency or finding an alternative test runner.",
+          "parent": "EXECUTE_TEST",
+          "distinguishing_rule": "ENVIRONMENT_TOOL_NOT_FOUND is specific to executing a secondary harness tool assumed to be present, rather than failing to set up the primary project environment.",
+          "interventions": [
+            "PREINSTALL_COMMON_TOOLS",
+            "ENVIRONMENT_HINT_PROMPT"
+          ],
+          "evidence": {
+            "pytest-dev__pytest-5787@solver_C": [
+              3,
+              4,
+              5
+            ],
+            "pytest-dev__pytest-6197@solver_C": [
+              2,
+              3
+            ],
+            "pytest-dev__pytest-6202@solver_C": [
+              5,
+              6
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "SELF_BUILT_TOOL_BREAKAGE",
+      "support": 1,
+      "coders": [
+        "coder_A"
+      ],
+      "member_names": [
+        "SELF_BUILT_TOOL_BREAKAGE"
+      ],
+      "parents": {
+        "SETUP_OVERHEAD": 1
+      },
+      "observability": {
+        "HIGH": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_A",
+          "name": "SELF_BUILT_TOOL_BREAKAGE",
+          "def": "The agent's own helper tool fails at use (encoding error, wrong usage signature) and must be re-created or worked around, consuming cycles that would not exist had a built-in been used.",
+          "parent": "SETUP_OVERHEAD",
+          "distinguishing_rule": "Breakage of the AGENT'S OWN script = this pattern; failure of harness/built-in tooling (e.g. _split_string SyntaxError, str_replace_editor crash) = ENVIRONMENT_TOOL_FAILURE (uncovered).",
+          "interventions": [
+            "PREFER_BUILTIN_EDIT",
+            "TOOL_SELFTEST_BEFORE_USE"
+          ],
+          "evidence": {
+            "django__django-13513@solver_B": [
+              2,
+              3,
+              4
+            ],
+            "django__django-16667@solver_B": [
+              3
+            ],
+            "django__django-13343@solver_B": [
+              3
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "FILENAME_SEARCH_THRASH",
+      "support": 1,
+      "coders": [
+        "coder_A"
+      ],
+      "member_names": [
+        "FILENAME_SEARCH_THRASH"
+      ],
+      "parents": {
+        "LOCALIZATION_WASTE": 1
+      },
+      "observability": {
+        "HIGH": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_A",
+          "name": "FILENAME_SEARCH_THRASH",
+          "def": "Two or more consecutive file-location searches return no matches for the same conceptual target because the search tool's semantics are misapplied (find_file matches filenames, not symbols/content), before the agent pivots to a working strategy.",
+          "parent": "LOCALIZATION_WASTE",
+          "distinguishing_rule": "THRASH = locating WHICH FILE via repeated no-match filename searches. BLIND_INFILE_NAVIGATION = file already open, wrong line jumped to. REDUNDANT_FILE_REREAD = re-viewing content already seen.",
+          "interventions": [
+            "TEACH_TOOL_SEMANTICS",
+            "DEFAULT_TO_CONTENT_GREP"
+          ],
+          "evidence": {
+            "django__django-11239@solver_C": [
+              0,
+              1
+            ],
+            "django__django-12050@solver_C": [
+              0,
+              1
+            ],
+            "django__django-15732@solver_C": [
+              0,
+              1
+            ],
+            "django__django-16595@solver_C": [
+              0,
+              1,
+              2
+            ],
+            "django__django-16899@solver_C": [
+              0,
+              1,
+              2
+            ],
+            "django__django-14765@solver_C": [
+              0,
+              1
+            ],
+            "django__django-16560@solver_C": [
+              0,
+              1
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "VERIFICATION_GAP_BEFORE_SUBMIT",
+      "support": 1,
+      "coders": [
+        "coder_A"
+      ],
+      "member_names": [
+        "VERIFICATION_GAP_BEFORE_SUBMIT"
+      ],
+      "parents": {
+        "VERIFICATION_WASTE": 1
+      },
+      "observability": {
+        "MEDIUM": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_A",
+          "name": "VERIFICATION_GAP_BEFORE_SUBMIT",
+          "def": "The run modifies source and terminates 'Submitted' without ever executing a test OR a reproduction script that exercises the changed code.",
+          "parent": "VERIFICATION_WASTE",
+          "distinguishing_rule": "GAP is defined by TOTAL absence of any execution-based check before submit; CHURN is about edit repetition regardless of submit. Excludes repro-script verification, which is execution evidence even if targeted_test_count==0.",
+          "interventions": [
+            "REQUIRE_REPRO_OR_TEST_BEFORE_SUBMIT"
+          ],
+          "evidence": {
+            "sphinx-doc__sphinx-8475@solver_B": [
+              3,
+              4
+            ],
+            "django__django-13343@solver_B": [
+              2,
+              3,
+              4
+            ],
+            "django__django-13512@solver_B": [
+              2,
+              3,
+              4
+            ],
+            "sympy__sympy-17630@solver_B": [
+              4
+            ],
+            "scikit-learn__scikit-learn-14894@solver_B": [
+              1,
+              2,
+              4
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "STAGNATION_DUPLICATE_LOOP",
+      "support": 1,
+      "coders": [
+        "coder_A"
+      ],
+      "member_names": [
+        "STAGNATION_DUPLICATE_LOOP"
+      ],
+      "parents": {
+        "CONTROL_WASTE": 1
+      },
+      "observability": {
+        "MEDIUM": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_A",
+          "name": "STAGNATION_DUPLICATE_LOOP",
+          "def": "High rate of exact-duplicate tool calls and/or long streaks of actions producing no new evidence, indicating the agent re-issuing equivalent actions without advancing state.",
+          "parent": "CONTROL_WASTE",
+          "distinguishing_rule": "STAGNATION is about exact-duplicate / no-progress calls of ANY kind; CHURN is specifically repeated edits; REDUNDANT_FILE_REREAD is specifically repeated reads of same content.",
+          "interventions": [
+            "DUPLICATE_CALL_DETECTOR",
+            "ABORT_ON_STAGNATION_STREAK"
+          ],
+          "evidence": {
+            "django__django-7530@solver_A": [
+              1,
+              4
+            ],
+            "pydata__xarray-6461@solver_C": [
+              4,
+              5
+            ],
+            "sympy__sympy-15599@solver_B": [
+              2,
+              3
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "AD_HOC_TOOL_BOOTSTRAP_FOR_SIMPLE_EDIT",
+      "support": 1,
+      "coders": [
+        "coder_B"
+      ],
+      "member_names": [
+        "AD_HOC_TOOL_BOOTSTRAP_FOR_SIMPLE_EDIT"
+      ],
+      "parents": {
+        "ENVIRONMENT_SETUP": 1
+      },
+      "observability": {
+        "HIGH": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_B",
+          "name": "AD_HOC_TOOL_BOOTSTRAP_FOR_SIMPLE_EDIT",
+          "def": "The agent spends early actions creating a custom edit/view helper for a task where existing shell/editor commands would have been sufficient, before substantive localization or patching.",
+          "parent": "ENVIRONMENT_SETUP",
+          "distinguishing_rule": "This label requires the agent to author a new generic helper script; environment drift installs/configures external tools, while broad file dump recovery only concerns inefficient reading of source files.",
+          "interventions": [
+            "USE_EXISTING_EDITOR",
+            "DEFER_HELPER_CREATION",
+            "SIMPLE_PATCH_FAST_PATH"
+          ],
+          "evidence": {
+            "django__django-10999@solver_B": [
+              1
+            ],
+            "django__django-13109@solver_B": [
+              1
+            ],
+            "django__django-13513@solver_B": [
+              1,
+              3
+            ],
+            "django__django-14500@solver_B": [
+              1
+            ],
+            "psf__requests-1142@solver_B": [
+              2
+            ],
+            "sympy__sympy-18199@solver_B": [
+              1
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "SEARCH_API_MISUSE_CASCADE",
+      "support": 1,
+      "coders": [
+        "coder_B"
+      ],
+      "member_names": [
+        "SEARCH_API_MISUSE_CASCADE"
+      ],
+      "parents": {
+        "SEARCH_LOCALIZATION": 1
+      },
+      "observability": {
+        "HIGH": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_B",
+          "name": "SEARCH_API_MISUSE_CASCADE",
+          "def": "The agent repeatedly issues searches with unsuitable search terms, wrong roots, or tool semantics, gets no matches, then falls back to broad directory listings or more general searches.",
+          "parent": "SEARCH_LOCALIZATION",
+          "distinguishing_rule": "Misuse cascade requires repeated failed localization caused by search/tool mismatch; justified refinement has each search use new information from prior results.",
+          "interventions": [
+            "DETECT_FIND_FILE_NO_MATCH_STREAK",
+            "SWITCH_TO_RG_CONTENT_SEARCH",
+            "SEARCH_ROOT_SANITY_CHECK"
+          ],
+          "evidence": {
+            "django__django-11239@solver_C": [
+              0,
+              1,
+              2
+            ],
+            "django__django-12050@solver_C": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "django__django-14765@solver_C": [
+              0,
+              1,
+              2
+            ],
+            "django__django-16595@solver_C": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "django__django-16899@solver_C": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "scikit-learn__scikit-learn-9288@solver_C": [
+              3,
+              4,
+              5,
+              6
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "TEST_AS_EXPLORATION_MISROUTING",
+      "support": 1,
+      "coders": [
+        "coder_B"
+      ],
+      "member_names": [
+        "TEST_AS_EXPLORATION_MISROUTING"
+      ],
+      "parents": {
+        "VERIFY": 1
+      },
+      "observability": {
+        "HIGH": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_B",
+          "name": "TEST_AS_EXPLORATION_MISROUTING",
+          "def": "The agent uses test-command slots for repository exploration commands such as find, ls, cat, or sed, delaying actual verification and obscuring the boundary between localization and testing.",
+          "parent": "VERIFY",
+          "distinguishing_rule": "This label is about verification-phase/tool misuse; broad file dump is about content size regardless of action label.",
+          "interventions": [
+            "SEPARATE_SEARCH_AND_TEST_BUDGETS",
+            "CLASSIFY_COMMAND_INTENT",
+            "WARN_ON_TEST_LABEL_WITH_NO_TEST_RUNNER"
+          ],
+          "evidence": {
+            "pytest-dev__pytest-10081@solver_B": [
+              0,
+              3,
+              4
+            ],
+            "pytest-dev__pytest-8399@solver_B": [
+              2
+            ],
+            "django__django-11141@solver_A": [
+              5,
+              6,
+              7
+            ],
+            "django__django-14500@solver_A": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "pytest-dev__pytest-7236@solver_A": [
+              0,
+              1
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "OUTPUT_TRUNCATION_RECOVERY",
+      "support": 1,
+      "coders": [
+        "coder_C"
+      ],
+      "member_names": [
+        "OUTPUT_TRUNCATION_RECOVERY"
+      ],
+      "parents": {
+        "READ_FILE": 1
+      },
+      "observability": {
+        "HIGH": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_C",
+          "name": "OUTPUT_TRUNCATION_RECOVERY",
+          "def": "The agent attempts to read an entire file using a basic command (e.g., `cat`), triggers an environment truncation warning ('The output of your last command was too long'), and must spend subsequent turns re-reading the file with paginated commands (e.g., `sed`, `head`, or a custom viewer tool).",
+          "parent": "READ_FILE",
+          "distinguishing_rule": "OUTPUT_TRUNCATION_RECOVERY is strictly reactive to an environment truncation limit, whereas REDUNDANT_READ is reading the same file twice without a truncation constraint forcing it.",
+          "interventions": [
+            "AUTO_PAGINATE_READS",
+            "WARN_LARGE_FILE_SIZE"
+          ],
+          "evidence": {
+            "django__django-14500@solver_B": [
+              2,
+              3
+            ],
+            "pytest-dev__pytest-10081@solver_B": [
+              4
+            ],
+            "django__django-13512@solver_B": [
+              3,
+              4
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "UNOPENED_FILE_EDIT_ATTEMPT",
+      "support": 1,
+      "coders": [
+        "coder_C"
+      ],
+      "member_names": [
+        "UNOPENED_FILE_EDIT_ATTEMPT"
+      ],
+      "parents": {
+        "EDIT_PATCH": 1
+      },
+      "observability": {
+        "HIGH": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_C",
+          "name": "UNOPENED_FILE_EDIT_ATTEMPT",
+          "def": "The agent attempts to apply an edit using an interactive editor tool without first loading or opening the target file in the tool, resulting in an interface error requiring the agent to back up and open the file.",
+          "parent": "EDIT_PATCH",
+          "distinguishing_rule": "UNOPENED_FILE_EDIT_ATTEMPT is a specific state-machine failure with the bespoke CLI environment tools, unlike general tool misuse which could be bad arguments.",
+          "interventions": [
+            "AUTO_OPEN_ON_EDIT",
+            "IMPROVE_TOOL_DOCSTRINGS"
+          ],
+          "evidence": {
+            "pylint-dev__pylint-7080@solver_C": [
+              3,
+              4,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "canonical": "HARNESS_SYNTAX_ERROR_BLOCK",
+      "support": 1,
+      "coders": [
+        "coder_C"
+      ],
+      "member_names": [
+        "HARNESS_SYNTAX_ERROR_BLOCK"
+      ],
+      "parents": {
+        "TOOL_ERROR": 1
+      },
+      "observability": {
+        "HIGH": 1
+      },
+      "definitions": [
+        {
+          "coder": "coder_C",
+          "name": "HARNESS_SYNTAX_ERROR_BLOCK",
+          "def": "The agent's attempt to use a custom environment edit tool triggers a python SyntaxError sourced from the tool wrapper itself (e.g., 'future feature annotations is not defined' or broken strings inside the environment's testbed scripts), confusing the agent about whether its own patch caused the error.",
+          "parent": "TOOL_ERROR",
+          "distinguishing_rule": "HARNESS_SYNTAX_ERROR_BLOCK represents a bug in the evaluation environment's tooling that intercepts and fails valid agent actions, whereas ENVIRONMENT_TOOL_NOT_FOUND is the absence of an expected third-party binary.",
+          "interventions": [
+            "FIX_HARNESS_ESCAPING",
+            "UPGRADE_HARNESS_PYTHON_VERSION"
+          ],
+          "evidence": {
+            "django__django-7530@solver_A": [
+              1,
+              4
+            ],
+            "django__django-11951@solver_C": [
+              3
+            ],
+            "scikit-learn__scikit-learn-13439@solver_C": [
+              1
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "outcome_collapse_risks": [
+    [
+      "coder_A",
+      {
+        "pattern": "VERIFICATION_GAP_BEFORE_SUBMIT",
+        "risk": "Easily becomes a proxy for 'the run that failed'. Mitigation: defined purely as 'edited code never executed before submit' \u2014 observable without the outcome \u2014 and excludes runs that ran a repro script."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "pattern": "PATCH_CHURN_WITHOUT_VERIFICATION",
+        "risk": "'Never converged' can collapse into 'failed'. Mitigation: require repeated edits to the SAME file with no test between, not just many edits."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "pattern": "STAGNATION_DUPLICATE_LOOP",
+        "risk": "exit_cost/LimitsExceeded co-signal (django-7530, sympy-15599) is close to an outcome. Mitigation: primary evidence is exact_duplicate_call_rate / no-new-evidence streak, which are process metrics independent of pass/fail."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "pattern": "NON_CONVERGENT_LOCALIZATION",
+        "risk": "Late first edit may just mean a hard-to-localize task. Mitigation: requires a co-occurring non-convergence signal AND is explicitly distinguished from the LOCALIZATION_GATED workload (matplotlib-25775 excluded)."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "risky_label": "FAILED_TO_SOLVE",
+        "reason": "This is merely outcome in disguise and cannot be observed because outcomes are hidden."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "risky_label": "BAD_REASONING",
+        "reason": "It relies on hidden cognition rather than command/observation evidence."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "risky_label": "LOW_QUALITY_PATCH",
+        "reason": "Patch quality requires final diff/gold comparison, not just trace behavior."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "risky_label": "NO_TESTS_MEANS_FAILURE",
+        "reason": "No tests is a verification-process pattern only when a local oracle was plausible; it is not equivalent to a failed run."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "risky_label": "MANY_SEARCHES_MEANS_WASTE",
+        "reason": "Search count alone can reflect a cross-file task; each search must be judged against new evidence."
+      }
+    ],
+    [
+      "coder_C",
+      "Calling an agent 'incapable of string replacement' when in reality the environment's `str_replace_editor` Python script crashes on multi-line strings due to harness bugs."
+    ]
+  ],
+  "uncovered_patterns": [
+    [
+      "coder_A",
+      {
+        "name": "ENVIRONMENT_TOOL_FAILURE",
+        "definition": "Harness/built-in tooling (not agent-authored) breaks: the _split_string 'future feature annotations' SyntaxError on edit, str_replace_editor crashing, command timeouts, missing deps (tox/xdist).",
+        "evidence_action_ids": {
+          "django__django-11239@solver_C": [
+            5
+          ],
+          "django__django-11951@solver_C": [
+            3
+          ],
+          "scikit-learn__scikit-learn-13439@solver_C": [
+            1
+          ],
+          "scikit-learn__scikit-learn-9288@solver_C": [
+            1
+          ],
+          "django__django-7530@solver_A": [
+            1,
+            4
+          ],
+          "pytest-dev__pytest-7236@solver_A": [
+            2
+          ],
+          "pytest-dev__pytest-6202@solver_C": [
+            5
+          ],
+          "pytest-dev__pytest-5787@solver_C": [
+            3
+          ]
+        },
+        "note": "Per rule 6 these are environment failures, NOT agent reasoning/edit waste; recovery cost is real but should not be attributed to the model's choices."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "name": "REPRO_VERSION_DRIFT_DEADEND",
+        "definition": "Agent writes a reproduction script that does not reproduce because the checked-out dev version already differs from the reported version; time spent before realizing.",
+        "evidence_action_ids": {
+          "pydata__xarray-6461@solver_C": [
+            2,
+            3
+          ],
+          "pytest-dev__pytest-6197@solver_C": [
+            4,
+            5
+          ]
+        },
+        "note": "Could be waste or necessary diligence; cannot decide without later events."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "name": "MID_RUN_DEPENDENCY_INSTALL",
+        "definition": "Agent installs a missing package to proceed (pip install).",
+        "evidence_action_ids": {
+          "pytest-dev__pytest-5787@solver_C": [
+            4
+          ]
+        },
+        "note": "Environment remediation; usually justified."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "name": "POST_EDIT_CONFIRM_READ",
+        "definition": "Agent re-reads the just-edited region to confirm the change landed.",
+        "evidence_action_ids": {
+          "django__django-10999@solver_B": [
+            4
+          ],
+          "django__django-16667@solver_B": [
+            4
+          ]
+        },
+        "note": "Likely legitimate micro-verification, not waste."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "description": "Some traces show possible over-broad production edits, but visible snippets are insufficient to distinguish broad but necessary integration from unnecessary scope expansion.",
+        "trace_ids": [
+          "matplotlib__matplotlib-25775@solver_B",
+          "astropy__astropy-13398@solver_A"
+        ],
+        "evidence_action_ids": {
+          "matplotlib__matplotlib-25775@solver_B": [
+            0,
+            1,
+            2,
+            4
+          ],
+          "astropy__astropy-13398@solver_A": [
+            2,
+            3,
+            7,
+            8
+          ]
+        }
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "description": "Several solver_C traces make confident edits immediately after reading only a small region; this may be under-localization, but without final diff or hidden later context it is not crisply separable from a targeted fix.",
+        "trace_ids": [
+          "django__django-14765@solver_C",
+          "django__django-16595@solver_C",
+          "pylint-dev__pylint-7080@solver_C"
+        ],
+        "evidence_action_ids": {
+          "django__django-14765@solver_C": [
+            2,
+            3
+          ],
+          "django__django-16595@solver_C": [
+            5,
+            6
+          ],
+          "pylint-dev__pylint-7080@solver_C": [
+            4,
+            5
+          ]
+        }
+      }
+    ],
+    [
+      "coder_C",
+      "CUSTOM_TOOL_AUTHORING_LOOP: In several solver_B traces, the agent writes its own `edit_file.py` Python script to bypass bash limitations, but then encounters `UnicodeDecodeError` or logic errors in its own tool, spending turns debugging the tool it just wrote instead of the target repository."
+    ]
+  ],
+  "needs_unavailable_info": [
+    [
+      "coder_A",
+      {
+        "category": "TRANSCRIPT_TRUNCATION",
+        "why": "Nearly every transcript is cut at ~event 4-7 while n_events is 11-108. The bulk of patch_attempts, repeated tests, churn and recovery occur AFTER the visible window. Patterns 5-9 lean on deterministic features precisely because the events are invisible."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "category": "TOKENS_PER_EVENT",
+        "why": "Cannot size the actual resource cost of waste (a cheap duplicate ls vs an expensive re-read of a 2000-line file)."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "category": "HIDDEN_REASONING",
+        "why": "Cannot confirm whether a repeated search was a justified hypothesis-falsification or aimless thrash without the agent's intent."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "category": "FINAL_OUTCOME_AND_GOLD_PATCH",
+        "why": "Cannot validate that VERIFICATION_GAP / PATCH_CHURN actually correlate with failure vs. correct one-shot fixes."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "category": "PER_CALL_WALLCLOCK",
+        "why": "No timing; cannot separate slow-but-progressing from stalled."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "candidate_category": "LOW_RESULT_UTILIZATION",
+        "why_unavailable": "The transcript is truncated and does not reliably show whether earlier search/read results were used in omitted later actions."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "candidate_category": "TOKEN_WASTE_PER_EVENT",
+        "why_unavailable": "Only action counts and snippets are provided, not tokens consumed per thought, observation, or command output."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "candidate_category": "FINAL_PATCH_CORRECTNESS",
+        "why_unavailable": "Gold patches and final success/failure outcomes are explicitly hidden."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "candidate_category": "HIDDEN_REASONING_CONFUSION",
+        "why_unavailable": "Only observable commands and observations are available; mental state labels would violate the protocol."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "candidate_category": "LATER_RECOVERY_AFTER_TRUNCATION",
+        "why_unavailable": "Some transcripts are truncated before all post-edit validation or recovery steps."
+      }
+    ],
+    [
+      "coder_C",
+      "Context on whether the agent explicitly realized `str_replace_editor` was broken in trace django__django-7530@solver_A, or if it randomly guessed to use `sed -i` as a fallback. Hidden CoT would clarify recovery reasoning."
+    ]
+  ],
+  "false_positive_examples": [
+    [
+      "coder_A",
+      {
+        "trace_id": "django__django-13512@solver_B",
+        "metric": "files_modified=13",
+        "why_not_waste": "For a one-line ensure_ascii change, 13 'modified files' almost certainly counts the created edit_file.py helper, a reproduce script, and possibly .pyc/test scaffolding \u2014 not 13 source files churned. files_modified must not be read as multi-file churn."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "trace_id": "sympy__sympy-15599@solver_B",
+        "metric": "files_modified=52",
+        "why_not_waste": "Implausible as real source edits for a single core/mod.py fix; inflated by helper/repro/test artifacts and re-writes of the same file. Needs path-level inspection before calling churn."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "trace_id": "matplotlib__matplotlib-25775@solver_B",
+        "metric": "search_call_count=28, unique_files_searched=65",
+        "why_not_waste": "The task is an enhancement spanning text.py and multiple backend modules; broad search is warranted breadth, not redundant search."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "trace_id": "pytest-dev__pytest-5787@solver_C",
+        "metric": "unchanged_repeated_tests=4",
+        "why_not_waste": "Tests were re-run after installing pytest-xdist [4] \u2014 the environment changed between runs, so repetition is justified, not redundant."
+      }
+    ],
+    [
+      "coder_A",
+      {
+        "trace_id": "django__django-13109@solver_B",
+        "metric": "search_call_count=3 with one returning empty",
+        "why_not_waste": "The empty grep at [3] FALSIFIED 'is _base_manager already used here?'; the next broader grep [4] is evidence-driven, not thrash."
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "trace_id": "matplotlib__matplotlib-25775@solver_B",
+        "metric_that_looks_like_waste": "search_call_count=28 and unique_files_searched=65",
+        "why_not_necessarily_waste": "The workload is a cross-file Text antialiasing enhancement involving Text objects and backend drawing, so broad search can be justified by task structure.",
+        "evidence_action_ids": [
+          0,
+          1,
+          2,
+          4
+        ]
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "trace_id": "astropy__astropy-13398@solver_A",
+        "metric_that_looks_like_waste": "files_modified=26",
+        "why_not_necessarily_waste": "The task introduces coordinate transforms that may require new transform module, imports, and frame integration across ITRS/AltAz/HADec.",
+        "evidence_action_ids": [
+          0,
+          1,
+          2,
+          3,
+          7
+        ]
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "trace_id": "django__django-14500@solver_A",
+        "metric_that_looks_like_waste": "targeted_test_count=5",
+        "why_not_necessarily_waste": "Migration executor behavior with squashed migrations is verification-heavy and tests are used to inspect existing squashed migration fixtures before patching.",
+        "evidence_action_ids": [
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    ],
+    [
+      "coder_B",
+      {
+        "trace_id": "sympy__sympy-18199@solver_B",
+        "metric_that_looks_like_waste": "multiple searches and environment setup",
+        "why_not_necessarily_waste": "The number-theory function has tests and implementation in different files, and reproduction of a mathematical edge case can justify focused checking.",
+        "evidence_action_ids": [
+          0,
+          3,
+          4
+        ]
+      }
+    ],
+    [
+      "coder_C",
+      {
+        "trace_id": "django__django-11400@solver_B",
+        "reason": "The agent uses `sed` and `tail` on the same file multiple times. This looks like REDUNDANT_READ, but it is actually proper pagination to explore different functions in a large file."
+      }
+    ]
+  ]
+}

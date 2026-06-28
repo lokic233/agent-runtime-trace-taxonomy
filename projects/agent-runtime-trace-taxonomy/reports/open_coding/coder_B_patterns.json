@@ -1,0 +1,1476 @@
+{
+  "coder_id": "coder_B",
+  "patterns": [
+    {
+      "proposed_name": "AD_HOC_TOOL_BOOTSTRAP_FOR_SIMPLE_EDIT",
+      "proposed_parent": "ENVIRONMENT_SETUP",
+      "definition": "The agent spends early actions creating a custom edit/view helper for a task where existing shell/editor commands would have been sufficient, before substantive localization or patching.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "early EDIT creates edit_file.py or view_file.py",
+        "task has a small, already-identified target file or one-line fix",
+        "helper creation precedes reading the relevant code or applying the patch"
+      ],
+      "required_evidence": [
+        "EDIT event creating a helper script",
+        "subsequent use or intended use for ordinary view/replace operations",
+        "no task-specific code change in that helper creation event"
+      ],
+      "exclusions": [
+        "helpers that encode domain-specific reproduction or validation logic",
+        "provided repository tooling or required harness commands"
+      ],
+      "near_neighbor_labels": [
+        "ENVIRONMENT_DEPENDENCY_DRIFT",
+        "BROAD_FILE_DUMP_RECOVERY"
+      ],
+      "distinguishing_rule": "This label requires the agent to author a new generic helper script; environment drift installs/configures external tools, while broad file dump recovery only concerns inefficient reading of source files.",
+      "evidence_trace_ids": [
+        "django__django-10999@solver_B",
+        "django__django-13109@solver_B",
+        "django__django-13513@solver_B",
+        "django__django-14500@solver_B",
+        "psf__requests-1142@solver_B",
+        "sympy__sympy-18199@solver_B"
+      ],
+      "evidence_action_ids": {
+        "django__django-10999@solver_B": [
+          1
+        ],
+        "django__django-13109@solver_B": [
+          1
+        ],
+        "django__django-13513@solver_B": [
+          1,
+          3
+        ],
+        "django__django-14500@solver_B": [
+          1
+        ],
+        "psf__requests-1142@solver_B": [
+          2
+        ],
+        "sympy__sympy-18199@solver_B": [
+          1
+        ]
+      },
+      "candidate_interventions": [
+        "USE_EXISTING_EDITOR",
+        "DEFER_HELPER_CREATION",
+        "SIMPLE_PATCH_FAST_PATH"
+      ],
+      "observability": "HIGH",
+      "notes": "Especially visible in solver_B traces where the helper is created even for direct string replacements."
+    },
+    {
+      "proposed_name": "HELPER_TOOL_FAILURE_LOOP",
+      "proposed_parent": "ENVIRONMENT_SETUP",
+      "definition": "A self-created or harness editor/view helper fails, and the agent spends additional actions fixing or retrying the helper instead of switching to a simpler available command.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "TOOL_ERROR from custom helper or editor wrapper",
+        "next action modifies or retries the same helper/tool path",
+        "the underlying operation was a simple read or replace"
+      ],
+      "required_evidence": [
+        "helper/tool error",
+        "follow-up action spent on helper repair or same failed helper invocation"
+      ],
+      "exclusions": [
+        "repository test failures",
+        "domain code failures discovered through tests",
+        "single failed tool invocation followed by a different successful strategy"
+      ],
+      "near_neighbor_labels": [
+        "AD_HOC_TOOL_BOOTSTRAP_FOR_SIMPLE_EDIT",
+        "ENVIRONMENT_DEPENDENCY_DRIFT"
+      ],
+      "distinguishing_rule": "BOOTSTRAP is the initial creation cost; FAILURE_LOOP requires an observed tool failure and at least one repair/retry action tied to the helper.",
+      "evidence_trace_ids": [
+        "django__django-13513@solver_B",
+        "django__django-11239@solver_C",
+        "django__django-11951@solver_C",
+        "django__django-7530@solver_A"
+      ],
+      "evidence_action_ids": {
+        "django__django-13513@solver_B": [
+          2,
+          3,
+          4
+        ],
+        "django__django-11239@solver_C": [
+          5
+        ],
+        "django__django-11951@solver_C": [
+          3,
+          4
+        ],
+        "django__django-7530@solver_A": [
+          1,
+          4,
+          5
+        ]
+      },
+      "candidate_interventions": [
+        "FALLBACK_TO_SED_OR_APPLY_PATCH",
+        "ABANDON_BROKEN_HELPER_AFTER_ONE_FAILURE"
+      ],
+      "observability": "HIGH",
+      "notes": "Some failures are environment/tool-runtime failures, but the waste is the agent continuing to invest in the broken helper path."
+    },
+    {
+      "proposed_name": "BROAD_FILE_DUMP_THEN_NARROW_READ",
+      "proposed_parent": "SEARCH_READ",
+      "definition": "The agent dumps a large source file, receives truncated or too-long output, then performs targeted reads that could have been used initially.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "cat/open of a long source file",
+        "observation warning or truncation",
+        "subsequent sed/goto/search for specific function or line range"
+      ],
+      "required_evidence": [
+        "broad READ/EXECUTE action on whole file",
+        "truncated/too-long observation",
+        "later narrower read/search in same file"
+      ],
+      "exclusions": [
+        "small files where full read is cheap",
+        "broad search across file names rather than full file content"
+      ],
+      "near_neighbor_labels": [
+        "SEARCH_API_MISUSE_CASCADE",
+        "LOW_RESULT_UTILIZATION"
+      ],
+      "distinguishing_rule": "This pattern is about oversized content reads of a known file; search misuse is about failed search commands or wrong path assumptions.",
+      "evidence_trace_ids": [
+        "django__django-14500@solver_B",
+        "pytest-dev__pytest-10081@solver_B",
+        "pytest-dev__pytest-8399@solver_B",
+        "django__django-11400@solver_B",
+        "sphinx-doc__sphinx-8475@solver_B",
+        "sympy__sympy-17630@solver_B"
+      ],
+      "evidence_action_ids": {
+        "django__django-14500@solver_B": [
+          2,
+          3,
+          4
+        ],
+        "pytest-dev__pytest-10081@solver_B": [
+          4
+        ],
+        "pytest-dev__pytest-8399@solver_B": [
+          2,
+          3
+        ],
+        "django__django-11400@solver_B": [
+          1,
+          2,
+          3
+        ],
+        "sphinx-doc__sphinx-8475@solver_B": [
+          1,
+          2
+        ],
+        "sympy__sympy-17630@solver_B": [
+          1,
+          2,
+          3
+        ]
+      },
+      "candidate_interventions": [
+        "PREFER_RG_FUNCTION_FIRST",
+        "AUTO_SLICE_AFTER_LARGE_FILE_WARNING",
+        "LINE_RANGE_READ_DEFAULT"
+      ],
+      "observability": "HIGH",
+      "notes": "This is only waste when the file is already known and the task points to a function/line region."
+    },
+    {
+      "proposed_name": "SEARCH_API_MISUSE_CASCADE",
+      "proposed_parent": "SEARCH_LOCALIZATION",
+      "definition": "The agent repeatedly issues searches with unsuitable search terms, wrong roots, or tool semantics, gets no matches, then falls back to broad directory listings or more general searches.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "multiple consecutive no-match searches",
+        "searched term is a class/function name using a file-name search tool",
+        "fallback to ls -R or full tree listing"
+      ],
+      "required_evidence": [
+        "at least two failed searches before useful localization",
+        "later broader search/listing or different search modality"
+      ],
+      "exclusions": [
+        "a single failed hypothesis-driven search followed by a targeted alternative",
+        "multiple successful searches refining different code concepts"
+      ],
+      "near_neighbor_labels": [
+        "BROAD_FILE_DUMP_THEN_NARROW_READ",
+        "JUSTIFIED_SEARCH_REFINEMENT"
+      ],
+      "distinguishing_rule": "Misuse cascade requires repeated failed localization caused by search/tool mismatch; justified refinement has each search use new information from prior results.",
+      "evidence_trace_ids": [
+        "django__django-11239@solver_C",
+        "django__django-12050@solver_C",
+        "django__django-14765@solver_C",
+        "django__django-16595@solver_C",
+        "django__django-16899@solver_C",
+        "scikit-learn__scikit-learn-9288@solver_C"
+      ],
+      "evidence_action_ids": {
+        "django__django-11239@solver_C": [
+          0,
+          1,
+          2
+        ],
+        "django__django-12050@solver_C": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "django__django-14765@solver_C": [
+          0,
+          1,
+          2
+        ],
+        "django__django-16595@solver_C": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "django__django-16899@solver_C": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "scikit-learn__scikit-learn-9288@solver_C": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "candidate_interventions": [
+        "DETECT_FIND_FILE_NO_MATCH_STREAK",
+        "SWITCH_TO_RG_CONTENT_SEARCH",
+        "SEARCH_ROOT_SANITY_CHECK"
+      ],
+      "observability": "HIGH",
+      "notes": "The no-match streak is interpretable because later actions reveal the target existed under a nearby path."
+    },
+    {
+      "proposed_name": "PREMATURE_SCRATCH_REPRO_CHURN",
+      "proposed_parent": "VERIFY_REPRODUCE",
+      "definition": "The agent creates and repeatedly edits an ad hoc reproduction script before locating or understanding the production code path, consuming actions on scratch artifacts rather than task code.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "first or early EDIT creates reproduce*.py or temporary test file",
+        "multiple edits to the scratch script",
+        "source localization occurs only after script work"
+      ],
+      "required_evidence": [
+        "scratch file creation",
+        "at least one subsequent scratch edit or run",
+        "no production source read before the scratch sequence completes"
+      ],
+      "exclusions": [
+        "single minimal reproduction immediately followed by successful localization",
+        "repository test added after source patch"
+      ],
+      "near_neighbor_labels": [
+        "PATCH_CHURN",
+        "JUSTIFIED_REPRODUCTION"
+      ],
+      "distinguishing_rule": "Scratch repro churn targets temporary/non-repo artifacts before source localization; patch churn targets repeated edits to production code regions.",
+      "evidence_trace_ids": [
+        "matplotlib__matplotlib-26113@solver_C",
+        "pydata__xarray-6461@solver_C",
+        "scikit-learn__scikit-learn-9288@solver_C",
+        "pytest-dev__pytest-5787@solver_C",
+        "scikit-learn__scikit-learn-13439@solver_C"
+      ],
+      "evidence_action_ids": {
+        "matplotlib__matplotlib-26113@solver_C": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "pydata__xarray-6461@solver_C": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "scikit-learn__scikit-learn-9288@solver_C": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "pytest-dev__pytest-5787@solver_C": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "scikit-learn__scikit-learn-13439@solver_C": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "candidate_interventions": [
+        "LOCALIZE_BEFORE_REPRO_SCRIPT",
+        "CAP_SCRATCH_EDIT_COUNT",
+        "REUSE_ISSUE_SNIPPET_ONCE"
+      ],
+      "observability": "HIGH",
+      "notes": "Reproduction can be valuable; this label is for repeated scratch edits before production-code investigation."
+    },
+    {
+      "proposed_name": "ENVIRONMENT_DEPENDENCY_DRIFT",
+      "proposed_parent": "ENVIRONMENT_SETUP",
+      "definition": "The agent changes or installs runtime dependencies to make a verification command available, introducing new incompatibilities or consuming setup time instead of using repo-supported commands.",
+      "observable_unit": "phase",
+      "positive_indicators": [
+        "pip install or external tool setup mid-run",
+        "setup follows missing command/plugin error",
+        "new or continued failures arise from changed environment"
+      ],
+      "required_evidence": [
+        "environment setup action",
+        "preceding missing tool/dependency observation or setup motivation",
+        "subsequent verification affected by environment"
+      ],
+      "exclusions": [
+        "installing project dependencies as documented setup before any test",
+        "pure test failures in existing environment"
+      ],
+      "near_neighbor_labels": [
+        "HELPER_TOOL_FAILURE_LOOP",
+        "TEST_ORACLE_UNAVAILABLE"
+      ],
+      "distinguishing_rule": "Environment drift requires modifying the runtime dependency set; helper failure loops do not necessarily change dependencies.",
+      "evidence_trace_ids": [
+        "pytest-dev__pytest-5787@solver_C"
+      ],
+      "evidence_action_ids": {
+        "pytest-dev__pytest-5787@solver_C": [
+          3,
+          4,
+          5
+        ]
+      },
+      "candidate_interventions": [
+        "DO_NOT_PIP_INSTALL_ON_REPO_TEST_ENVS",
+        "USE_EXISTING_TEST_SUBSET",
+        "ASK_OR_SKIP_EXTERNAL_PLUGIN_TEST"
+      ],
+      "observability": "HIGH",
+      "notes": "The xdist install pulled a pytest>=7 dependency into a pytest 5.1 development checkout, then the next xdist run hit an internal error."
+    },
+    {
+      "proposed_name": "PATCH_CHURN_WITHOUT_VALIDATION",
+      "proposed_parent": "EDIT_PATCH",
+      "definition": "The agent performs many edits or patch attempts to production files with little or no intervening verification, often within the same file or feature area.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "high patch_attempts relative to tests",
+        "repeated EDIT events on the same path or feature area",
+        "no targeted test after several edits"
+      ],
+      "required_evidence": [
+        "at least three edit/patch actions",
+        "same file or tightly-coupled code area",
+        "no test result between most edits"
+      ],
+      "exclusions": [
+        "edit followed by failing test then focused fix",
+        "multi-file feature implementation where each edit touches a distinct required integration point"
+      ],
+      "near_neighbor_labels": [
+        "FAILED_RECOVERY",
+        "PREMATURE_SCRATCH_REPRO_CHURN"
+      ],
+      "distinguishing_rule": "Patch churn requires repeated production-code patching without validation; failed recovery is driven by new failing test/error evidence.",
+      "evidence_trace_ids": [
+        "sympy__sympy-15599@solver_B",
+        "django__django-16560@solver_C",
+        "matplotlib__matplotlib-26113@solver_C",
+        "pydata__xarray-6461@solver_C"
+      ],
+      "evidence_action_ids": {
+        "sympy__sympy-15599@solver_B": [
+          2,
+          3,
+          4
+        ],
+        "django__django-16560@solver_C": [
+          3,
+          5
+        ],
+        "matplotlib__matplotlib-26113@solver_C": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "pydata__xarray-6461@solver_C": [
+          0,
+          1
+        ]
+      },
+      "candidate_interventions": [
+        "REQUIRE_TEST_AFTER_N_PATCHES",
+        "DIFF_REVIEW_BEFORE_NEXT_EDIT",
+        "LIMIT_SAME_FILE_PATCH_ATTEMPTS"
+      ],
+      "observability": "MEDIUM",
+      "notes": "Some traces are truncated, so features such as patch_attempts support interpretation in addition to visible action ids."
+    },
+    {
+      "proposed_name": "NO_VERIFICATION_AFTER_PATCH",
+      "proposed_parent": "VERIFY",
+      "definition": "The agent applies a production code change and submits without running a relevant test or reproduction, despite the task being locally verifiable.",
+      "observable_unit": "phase",
+      "positive_indicators": [
+        "production EDIT occurs",
+        "targeted_test_count is zero",
+        "termination is submitted"
+      ],
+      "required_evidence": [
+        "source code edit",
+        "no TEST event after the edit in the visible trace",
+        "task has a plausible local unit/repro test path from issue or nearby tests"
+      ],
+      "exclusions": [
+        "environment makes all tests impossible and agent records the blocker",
+        "documentation-only or config-only changes with no executable oracle"
+      ],
+      "near_neighbor_labels": [
+        "TEST_ORACLE_UNAVAILABLE",
+        "ENVIRONMENT_DEPENDENCY_DRIFT"
+      ],
+      "distinguishing_rule": "No-verification requires absence of a post-patch local check; oracle unavailable requires an attempted check that cannot run due to environment/tool limits.",
+      "evidence_trace_ids": [
+        "django__django-16667@solver_B",
+        "psf__requests-1142@solver_B",
+        "django__django-13513@solver_B",
+        "django__django-16560@solver_C",
+        "sphinx-doc__sphinx-7985@solver_C"
+      ],
+      "evidence_action_ids": {
+        "django__django-16667@solver_B": [
+          2,
+          3,
+          4
+        ],
+        "psf__requests-1142@solver_B": [
+          4
+        ],
+        "django__django-13513@solver_B": [
+          1,
+          3,
+          4
+        ],
+        "django__django-16560@solver_C": [
+          3,
+          5
+        ],
+        "sphinx-doc__sphinx-7985@solver_C": [
+          2,
+          4
+        ]
+      },
+      "candidate_interventions": [
+        "MANDATE_POST_PATCH_SMOKE_TEST",
+        "NEAREST_TEST_DISCOVERY",
+        "SUBMIT_BLOCK_IF_NO_VERIFICATION"
+      ],
+      "observability": "MEDIUM",
+      "notes": "This pattern should not be inferred solely from targeted_test_count; the issue structure must make a local check plausible."
+    },
+    {
+      "proposed_name": "TEST_AS_EXPLORATION_MISROUTING",
+      "proposed_parent": "VERIFY",
+      "definition": "The agent uses test-command slots for repository exploration commands such as find, ls, cat, or sed, delaying actual verification and obscuring the boundary between localization and testing.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "TEST action contains find/ls/cat/sed rather than a test runner or reproduction",
+        "subsequent actions continue localization",
+        "actual targeted tests happen later or not at all"
+      ],
+      "required_evidence": [
+        "TEST-labeled event with exploratory shell command",
+        "observation is file listing/source content rather than pass/fail test result"
+      ],
+      "exclusions": [
+        "TEST event running a reproduction script",
+        "TEST event inspecting generated test artifacts after a test run"
+      ],
+      "near_neighbor_labels": [
+        "BROAD_FILE_DUMP_THEN_NARROW_READ",
+        "NO_VERIFICATION_AFTER_PATCH"
+      ],
+      "distinguishing_rule": "This label is about verification-phase/tool misuse; broad file dump is about content size regardless of action label.",
+      "evidence_trace_ids": [
+        "pytest-dev__pytest-10081@solver_B",
+        "pytest-dev__pytest-8399@solver_B",
+        "django__django-11141@solver_A",
+        "django__django-14500@solver_A",
+        "pytest-dev__pytest-7236@solver_A"
+      ],
+      "evidence_action_ids": {
+        "pytest-dev__pytest-10081@solver_B": [
+          0,
+          3,
+          4
+        ],
+        "pytest-dev__pytest-8399@solver_B": [
+          2
+        ],
+        "django__django-11141@solver_A": [
+          5,
+          6,
+          7
+        ],
+        "django__django-14500@solver_A": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "pytest-dev__pytest-7236@solver_A": [
+          0,
+          1
+        ]
+      },
+      "candidate_interventions": [
+        "SEPARATE_SEARCH_AND_TEST_BUDGETS",
+        "CLASSIFY_COMMAND_INTENT",
+        "WARN_ON_TEST_LABEL_WITH_NO_TEST_RUNNER"
+      ],
+      "observability": "HIGH",
+      "notes": "This is a runtime-controller concern even when the command itself is useful."
+    },
+    {
+      "proposed_name": "LIMIT_EXIT_STAGNATION",
+      "proposed_parent": "FULL_TRACE",
+      "definition": "The run consumes its budget or times out after a long sequence with little new evidence, preventing a normal verify-and-submit cycle.",
+      "observable_unit": "full_trace",
+      "positive_indicators": [
+        "termination_reason is LimitsExceeded, exit_cost, or exit_command_timeout",
+        "longest_no_new_evidence_streak is high or final action reports timeout",
+        "trace ends before normal verification/submission"
+      ],
+      "required_evidence": [
+        "budget/timeout termination",
+        "visible late-stage stagnation or repeated low-information actions"
+      ],
+      "exclusions": [
+        "short timeout caused by a single genuinely long required test",
+        "normal submitted traces"
+      ],
+      "near_neighbor_labels": [
+        "PATCH_CHURN_WITHOUT_VALIDATION",
+        "ENVIRONMENT_DEPENDENCY_DRIFT"
+      ],
+      "distinguishing_rule": "Limit-exit stagnation is defined by abnormal resource exhaustion in the full trace; patch churn may submit normally after many edits.",
+      "evidence_trace_ids": [
+        "sympy__sympy-15599@solver_B",
+        "django__django-7530@solver_A",
+        "psf__requests-6028@solver_A",
+        "pytest-dev__pytest-7236@solver_A"
+      ],
+      "evidence_action_ids": {
+        "sympy__sympy-15599@solver_B": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "django__django-7530@solver_A": [
+          1,
+          4,
+          5
+        ],
+        "psf__requests-6028@solver_A": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "pytest-dev__pytest-7236@solver_A": [
+          0,
+          1,
+          2
+        ]
+      },
+      "candidate_interventions": [
+        "EARLY_STOP_ON_STAGNATION",
+        "FORCE_PLAN_RESET",
+        "ESCALATE_AFTER_TIMEOUT"
+      ],
+      "observability": "MEDIUM",
+      "notes": "The exact internal cause may be unavailable; the observable label is the resource-exhaustion trajectory, not outcome failure."
+    }
+  ],
+  "workload_notes": [
+    {
+      "trace_id": "django__django-10999@solver_B",
+      "primary_workload": "LOCALIZED_ONE_LINE_BUGFIX",
+      "evidence_action_ids": [
+        0,
+        2,
+        4
+      ],
+      "notes": "Issue names parse_duration regex and the trace quickly locates django/utils/dateparse.py."
+    },
+    {
+      "trace_id": "django__django-13109@solver_B",
+      "primary_workload": "LOCALIZED_MODEL_VALIDATION_MANAGER_CHANGE",
+      "evidence_action_ids": [
+        0,
+        2,
+        4
+      ],
+      "notes": "ForeignKey.validate target is found in related.py and change concerns manager selection."
+    },
+    {
+      "trace_id": "django__django-13513@solver_B",
+      "primary_workload": "LOCALIZED_EXCEPTION_CHAIN_RENDERING",
+      "evidence_action_ids": [
+        0,
+        2,
+        4
+      ],
+      "notes": "Issue points to django/views/debug.py and PEP 415 traceback handling."
+    },
+    {
+      "trace_id": "django__django-14500@solver_B",
+      "primary_workload": "MIGRATION_EXECUTOR_STATE_REASONING",
+      "evidence_action_ids": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "notes": "Squashed migration unapplied state requires understanding executor record/unapply behavior."
+    },
+    {
+      "trace_id": "django__django-16667@solver_B",
+      "primary_workload": "LOCALIZED_EXCEPTION_HANDLING_FIX",
+      "evidence_action_ids": [
+        0,
+        1,
+        2
+      ],
+      "notes": "SelectDateWidget crash maps directly to catching OverflowError around date construction."
+    },
+    {
+      "trace_id": "matplotlib__matplotlib-25775@solver_B",
+      "primary_workload": "CROSS_FILE_BACKEND_FEATURE_IMPLEMENTATION",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "notes": "Text antialiasing enhancement spans Text API and drawing/backend state."
+    },
+    {
+      "trace_id": "psf__requests-1142@solver_B",
+      "primary_workload": "HTTP_REQUEST_HEADER_SEMANTICS",
+      "evidence_action_ids": [
+        0,
+        3,
+        4
+      ],
+      "notes": "Fix concerns when Content-Length should be emitted for GET request preparation."
+    },
+    {
+      "trace_id": "pytest-dev__pytest-10081@solver_B",
+      "primary_workload": "PYTEST_UNITTEST_LIFECYCLE_DEBUGGING",
+      "evidence_action_ids": [
+        0,
+        3,
+        4
+      ],
+      "notes": "Task requires understanding unittest skip plus --pdb teardown handling."
+    },
+    {
+      "trace_id": "pytest-dev__pytest-8399@solver_B",
+      "primary_workload": "LOCALIZED_GENERATED_FIXTURE_NAMING",
+      "evidence_action_ids": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "notes": "Issue points to generated unittest setUpClass fixture visibility."
+    },
+    {
+      "trace_id": "astropy__astropy-13398@solver_C",
+      "primary_workload": "COORDINATE_TRANSFORM_CROSS_FILE_FEATURE",
+      "evidence_action_ids": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "notes": "Observed/ITRS/AltAz/HADec transforms require multiple frame modules."
+    },
+    {
+      "trace_id": "django__django-11239@solver_C",
+      "primary_workload": "LOCALIZED_DATABASE_CLIENT_ARGUMENT_MAPPING",
+      "evidence_action_ids": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "notes": "PostgreSQL dbshell behavior maps to DatabaseClient.runshell_db."
+    },
+    {
+      "trace_id": "django__django-11951@solver_C",
+      "primary_workload": "ORM_BATCH_SIZE_REASONING",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "notes": "bulk_create batch sizing requires reasoning about database ops limits."
+    },
+    {
+      "trace_id": "django__django-12050@solver_C",
+      "primary_workload": "ORM_QUERY_VALUE_RESOLUTION",
+      "evidence_action_ids": [
+        0,
+        2,
+        4,
+        5
+      ],
+      "notes": "Task centered on Query.resolve_lookup_value in SQL query construction."
+    },
+    {
+      "trace_id": "django__django-14011@solver_C",
+      "primary_workload": "TEST_SERVER_CONNECTION_LIFECYCLE",
+      "evidence_action_ids": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "notes": "LiveServerThread and database connection cleanup require lifecycle reasoning."
+    },
+    {
+      "trace_id": "django__django-14765@solver_C",
+      "primary_workload": "LOCALIZED_API_CONTRACT_ASSERTION",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "notes": "ProjectState.__init__ real_apps contract is localized."
+    },
+    {
+      "trace_id": "django__django-15268@solver_C",
+      "primary_workload": "MIGRATION_OPTIMIZER_RULE",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "notes": "AlterFooTogether optimization requires operation reduction rules."
+    },
+    {
+      "trace_id": "django__django-15732@solver_C",
+      "primary_workload": "SCHEMA_CONSTRAINT_DISAMBIGUATION",
+      "evidence_action_ids": [
+        0,
+        2,
+        4,
+        5
+      ],
+      "notes": "Unique constraint deletion requires backend schema introspection reasoning."
+    },
+    {
+      "trace_id": "django__django-16100@solver_C",
+      "primary_workload": "ADMIN_CHANGE_VIEW_CONTROL_FLOW",
+      "evidence_action_ids": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "notes": "changelist_view behavior localized to admin options.py."
+    },
+    {
+      "trace_id": "django__django-16560@solver_C",
+      "primary_workload": "MODEL_CONSTRAINT_VALIDATION_API",
+      "evidence_action_ids": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "notes": "BaseConstraint validation error customization spans constructor and validate methods."
+    },
+    {
+      "trace_id": "django__django-16595@solver_C",
+      "primary_workload": "MIGRATION_OPERATION_OPTIMIZER_RULE",
+      "evidence_action_ids": [
+        0,
+        4,
+        5,
+        6
+      ],
+      "notes": "AlterField reduction belongs to migration optimizer/operations."
+    },
+    {
+      "trace_id": "django__django-16899@solver_C",
+      "primary_workload": "ADMIN_SYSTEM_CHECK_RULE",
+      "evidence_action_ids": [
+        0,
+        4,
+        6,
+        7
+      ],
+      "notes": "ModelAdmin readonly_fields checking requires locating admin checks.py."
+    },
+    {
+      "trace_id": "django__django-17029@solver_C",
+      "primary_workload": "APP_REGISTRY_CACHE_INVALIDATION",
+      "evidence_action_ids": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "notes": "clear_cache behavior localized to django/apps/registry.py."
+    },
+    {
+      "trace_id": "matplotlib__matplotlib-26113@solver_C",
+      "primary_workload": "PLOTTING_BEHAVIOR_REPRO_AND_CORE_LOGIC",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "notes": "hexbin behavior requires reproduction and then source logic localization."
+    },
+    {
+      "trace_id": "pydata__xarray-6461@solver_C",
+      "primary_workload": "ARRAY_API_DISPATCH_BEHAVIOR",
+      "evidence_action_ids": [
+        0,
+        2,
+        6,
+        7
+      ],
+      "notes": "xr.where behavior maps to computation/duck array operations."
+    },
+    {
+      "trace_id": "pylint-dev__pylint-7080@solver_C",
+      "primary_workload": "CONFIGURATION_OPTION_BEHAVIOR",
+      "evidence_action_ids": [
+        0,
+        2,
+        4,
+        5
+      ],
+      "notes": "ignore-paths behavior concerns config parsing/application."
+    },
+    {
+      "trace_id": "pytest-dev__pytest-5787@solver_C",
+      "primary_workload": "DISTRIBUTED_EXCEPTION_REPORTING",
+      "evidence_action_ids": [
+        0,
+        2,
+        3,
+        5
+      ],
+      "notes": "Issue hinges on xdist/pytest exception-chain serialization."
+    },
+    {
+      "trace_id": "pytest-dev__pytest-6197@solver_C",
+      "primary_workload": "TEST_COLLECTION_SEMANTICS",
+      "evidence_action_ids": [
+        0,
+        5,
+        6,
+        7
+      ],
+      "notes": "Package __init__.py collection behavior requires pytest collector logic."
+    },
+    {
+      "trace_id": "pytest-dev__pytest-6202@solver_C",
+      "primary_workload": "LOCALIZED_NODEID_FORMATTING",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "notes": "getmodpath string handling is localized."
+    },
+    {
+      "trace_id": "scikit-learn__scikit-learn-13439@solver_C",
+      "primary_workload": "ESTIMATOR_CONTAINER_PROTOCOL",
+      "evidence_action_ids": [
+        0,
+        2,
+        4,
+        5
+      ],
+      "notes": "Pipeline __len__ behavior is a localized API addition."
+    },
+    {
+      "trace_id": "scikit-learn__scikit-learn-9288@solver_C",
+      "primary_workload": "NUMERICAL_PARALLELISM_REPRODUCTION",
+      "evidence_action_ids": [
+        0,
+        2,
+        5,
+        6
+      ],
+      "notes": "KMeans n_jobs inconsistency requires reproducing numerical behavior and locating parallelization."
+    },
+    {
+      "trace_id": "sphinx-doc__sphinx-7985@solver_C",
+      "primary_workload": "LINKCHECK_LOCAL_REFERENCE_SEMANTICS",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "notes": "Linkchecker behavior requires understanding local vs external link paths."
+    },
+    {
+      "trace_id": "django__django-11400@solver_B",
+      "primary_workload": "ADMIN_FILTER_ORDERING_SEMANTICS",
+      "evidence_action_ids": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "notes": "RelatedFieldListFilter choices need ordering propagation."
+    },
+    {
+      "trace_id": "astropy__astropy-7606@solver_B",
+      "primary_workload": "LOCALIZED_EQUALITY_EDGE_CASE",
+      "evidence_action_ids": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "notes": "UnrecognizedUnit equality with None maps to __eq__ handling."
+    },
+    {
+      "trace_id": "sphinx-doc__sphinx-8475@solver_B",
+      "primary_workload": "HTTP_EXCEPTION_FALLBACK_LOGIC",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "notes": "HEAD-to-GET fallback must include TooManyRedirects exception."
+    },
+    {
+      "trace_id": "sympy__sympy-18199@solver_B",
+      "primary_workload": "NUMBER_THEORY_EDGE_CASE",
+      "evidence_action_ids": [
+        0,
+        3,
+        4
+      ],
+      "notes": "nthroot_mod zero root case is localized but mathematical."
+    },
+    {
+      "trace_id": "django__django-13512@solver_B",
+      "primary_workload": "FORM_FIELD_SERIALIZATION_DISPLAY",
+      "evidence_action_ids": [
+        1,
+        3,
+        4
+      ],
+      "notes": "Admin JSONField unicode display maps to JSON serialization in forms/model fields."
+    },
+    {
+      "trace_id": "django__django-14404@solver_B",
+      "primary_workload": "LOCALIZED_REDIRECT_PATH_FIX",
+      "evidence_action_ids": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "notes": "catch_all_view FORCE_SCRIPT_NAME support is a request.path vs path_info fix."
+    },
+    {
+      "trace_id": "sympy__sympy-15599@solver_B",
+      "primary_workload": "SYMBOLIC_SIMPLIFICATION_RULE",
+      "evidence_action_ids": [
+        1,
+        3,
+        4
+      ],
+      "notes": "Mod simplification requires preserving symbolic algebra invariants."
+    },
+    {
+      "trace_id": "django__django-15732@solver_B",
+      "primary_workload": "SCHEMA_CONSTRAINT_DISAMBIGUATION",
+      "evidence_action_ids": [
+        1,
+        2,
+        4
+      ],
+      "notes": "Dropping unique_together with overlapping unique constraints is backend schema logic."
+    },
+    {
+      "trace_id": "django__django-15104@solver_B",
+      "primary_workload": "MIGRATION_AUTODETECTOR_EDGE_CASE",
+      "evidence_action_ids": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "notes": "Hardcoded FK reference deconstruction maps to autodetector field comparison."
+    },
+    {
+      "trace_id": "sympy__sympy-17630@solver_B",
+      "primary_workload": "MATRIX_EXPRESSION_TYPE_INVARIANT",
+      "evidence_action_ids": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "notes": "BlockMatrix multiplication with ZeroMatrix requires shape/type invariant reasoning."
+    },
+    {
+      "trace_id": "astropy__astropy-8872@solver_B",
+      "primary_workload": "NUMPY_DTYPE_PRESERVATION",
+      "evidence_action_ids": [
+        0,
+        3,
+        4
+      ],
+      "notes": "Quantity constructor dtype promotion behavior is numerical type handling."
+    },
+    {
+      "trace_id": "django__django-13343@solver_B",
+      "primary_workload": "FIELD_DECONSTRUCTION_SERIALIZATION",
+      "evidence_action_ids": [
+        1,
+        3,
+        4
+      ],
+      "notes": "FileField callable storage migration serialization requires deconstruct reasoning."
+    },
+    {
+      "trace_id": "scikit-learn__scikit-learn-14894@solver_B",
+      "primary_workload": "SPARSE_MODEL_EDGE_CASE",
+      "evidence_action_ids": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "notes": "SVM sparse fit support_vectors_ empty case requires sparse data structure handling."
+    },
+    {
+      "trace_id": "django__django-11141@solver_A",
+      "primary_workload": "MIGRATION_MODULE_NAMESPACE_PACKAGE_HANDLING",
+      "evidence_action_ids": [
+        0,
+        1,
+        4,
+        5
+      ],
+      "notes": "Migration loader/questioner __file__ handling for namespace packages."
+    },
+    {
+      "trace_id": "sphinx-doc__sphinx-8035@solver_A",
+      "primary_workload": "AUTODOC_MEMBER_FILTERING_OPTION",
+      "evidence_action_ids": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "notes": "Private/special member option semantics in autodoc."
+    },
+    {
+      "trace_id": "sympy__sympy-15976@solver_A",
+      "primary_workload": "MATHML_PRESENTATION_PRINTER_FIX",
+      "evidence_action_ids": [
+        0,
+        1,
+        4,
+        5
+      ],
+      "notes": "Symbol subscript presentation output requires printer tree structure reasoning."
+    },
+    {
+      "trace_id": "astropy__astropy-13398@solver_A",
+      "primary_workload": "COORDINATE_TRANSFORM_CROSS_FILE_FEATURE",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        3,
+        7
+      ],
+      "notes": "ITRS observed transforms span new module and package import integration."
+    },
+    {
+      "trace_id": "astropy__astropy-13453@solver_A",
+      "primary_workload": "ASCII_HTML_WRITER_FORMATTING",
+      "evidence_action_ids": [
+        0,
+        2,
+        3,
+        5
+      ],
+      "notes": "HTML writer must apply column formats consistently with ascii core."
+    },
+    {
+      "trace_id": "pytest-dev__pytest-5787@solver_A",
+      "primary_workload": "REPORT_SERIALIZATION_FOR_EXCEPTION_CHAINS",
+      "evidence_action_ids": [
+        1,
+        2,
+        4
+      ],
+      "notes": "Core pytest report serialization of ExceptionChainRepr."
+    },
+    {
+      "trace_id": "django__django-11749@solver_A",
+      "primary_workload": "MANAGEMENT_COMMAND_ARGPARSE_REQUIRED_GROUP",
+      "evidence_action_ids": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "notes": "call_command must respect argparse mutually exclusive required group semantics."
+    },
+    {
+      "trace_id": "django__django-14500@solver_A",
+      "primary_workload": "MIGRATION_EXECUTOR_STATE_REASONING",
+      "evidence_action_ids": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "notes": "Squashed migration application records require executor test reasoning."
+    },
+    {
+      "trace_id": "pytest-dev__pytest-7236@solver_A",
+      "primary_workload": "UNITTEST_COLLECTION_LIFECYCLE",
+      "evidence_action_ids": [
+        0,
+        1
+      ],
+      "notes": "Trace starts in _pytest/unittest.py but times out before localization completes."
+    },
+    {
+      "trace_id": "sympy__sympy-13974@solver_A",
+      "primary_workload": "QUANTUM_TENSORPRODUCT_SIMPLIFICATION",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "notes": "TensorProduct simplification with powers/multiplication requires symbolic expression logic."
+    },
+    {
+      "trace_id": "sphinx-doc__sphinx-11445@solver_A",
+      "primary_workload": "RST_PARSER_PROLOG_DOCINFO_EDGE_CASE",
+      "evidence_action_ids": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "notes": "rst_prolog insertion must distinguish docinfo fields from role syntax."
+    },
+    {
+      "trace_id": "django__django-15863@solver_A",
+      "primary_workload": "TEMPLATE_FILTER_NUMERIC_PRECISION",
+      "evidence_action_ids": [
+        0,
+        2,
+        3
+      ],
+      "notes": "floatformat must preserve Decimal precision."
+    },
+    {
+      "trace_id": "django__django-13297@solver_A",
+      "primary_workload": "GENERIC_VIEW_DEPRECATION_WRAPPER_BEHAVIOR",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        5
+      ],
+      "notes": "TemplateView kwargs SimpleLazyObject behavior requires compatibility reasoning."
+    },
+    {
+      "trace_id": "django__django-7530@solver_A",
+      "primary_workload": "MANAGEMENT_COMMAND_ROUTER_CONSISTENCY_CHECK",
+      "evidence_action_ids": [
+        0,
+        2,
+        3,
+        5
+      ],
+      "notes": "makemigrations consistency check must use app-specific model iteration."
+    },
+    {
+      "trace_id": "django__django-16819@solver_A",
+      "primary_workload": "MIGRATION_OPERATION_REDUCTION_RULE",
+      "evidence_action_ids": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "notes": "AddIndex/RemoveIndex optimization requires operation reduce semantics."
+    },
+    {
+      "trace_id": "psf__requests-6028@solver_A",
+      "primary_workload": "PROXY_URL_AUTH_PARSING_COMPATIBILITY",
+      "evidence_action_ids": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "notes": "Requests proxy auth extraction depends on urlparse behavior and adapter headers."
+    }
+  ],
+  "uncovered_patterns": [
+    {
+      "description": "Some traces show possible over-broad production edits, but visible snippets are insufficient to distinguish broad but necessary integration from unnecessary scope expansion.",
+      "trace_ids": [
+        "matplotlib__matplotlib-25775@solver_B",
+        "astropy__astropy-13398@solver_A"
+      ],
+      "evidence_action_ids": {
+        "matplotlib__matplotlib-25775@solver_B": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "astropy__astropy-13398@solver_A": [
+          2,
+          3,
+          7,
+          8
+        ]
+      }
+    },
+    {
+      "description": "Several solver_C traces make confident edits immediately after reading only a small region; this may be under-localization, but without final diff or hidden later context it is not crisply separable from a targeted fix.",
+      "trace_ids": [
+        "django__django-14765@solver_C",
+        "django__django-16595@solver_C",
+        "pylint-dev__pylint-7080@solver_C"
+      ],
+      "evidence_action_ids": {
+        "django__django-14765@solver_C": [
+          2,
+          3
+        ],
+        "django__django-16595@solver_C": [
+          5,
+          6
+        ],
+        "pylint-dev__pylint-7080@solver_C": [
+          4,
+          5
+        ]
+      }
+    }
+  ],
+  "needs_unavailable_info": [
+    {
+      "candidate_category": "LOW_RESULT_UTILIZATION",
+      "why_unavailable": "The transcript is truncated and does not reliably show whether earlier search/read results were used in omitted later actions."
+    },
+    {
+      "candidate_category": "TOKEN_WASTE_PER_EVENT",
+      "why_unavailable": "Only action counts and snippets are provided, not tokens consumed per thought, observation, or command output."
+    },
+    {
+      "candidate_category": "FINAL_PATCH_CORRECTNESS",
+      "why_unavailable": "Gold patches and final success/failure outcomes are explicitly hidden."
+    },
+    {
+      "candidate_category": "HIDDEN_REASONING_CONFUSION",
+      "why_unavailable": "Only observable commands and observations are available; mental state labels would violate the protocol."
+    },
+    {
+      "candidate_category": "LATER_RECOVERY_AFTER_TRUNCATION",
+      "why_unavailable": "Some transcripts are truncated before all post-edit validation or recovery steps."
+    }
+  ],
+  "outcome_collapse_risks": [
+    {
+      "risky_label": "FAILED_TO_SOLVE",
+      "reason": "This is merely outcome in disguise and cannot be observed because outcomes are hidden."
+    },
+    {
+      "risky_label": "BAD_REASONING",
+      "reason": "It relies on hidden cognition rather than command/observation evidence."
+    },
+    {
+      "risky_label": "LOW_QUALITY_PATCH",
+      "reason": "Patch quality requires final diff/gold comparison, not just trace behavior."
+    },
+    {
+      "risky_label": "NO_TESTS_MEANS_FAILURE",
+      "reason": "No tests is a verification-process pattern only when a local oracle was plausible; it is not equivalent to a failed run."
+    },
+    {
+      "risky_label": "MANY_SEARCHES_MEANS_WASTE",
+      "reason": "Search count alone can reflect a cross-file task; each search must be judged against new evidence."
+    }
+  ],
+  "false_positive_examples": [
+    {
+      "trace_id": "matplotlib__matplotlib-25775@solver_B",
+      "metric_that_looks_like_waste": "search_call_count=28 and unique_files_searched=65",
+      "why_not_necessarily_waste": "The workload is a cross-file Text antialiasing enhancement involving Text objects and backend drawing, so broad search can be justified by task structure.",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "trace_id": "astropy__astropy-13398@solver_A",
+      "metric_that_looks_like_waste": "files_modified=26",
+      "why_not_necessarily_waste": "The task introduces coordinate transforms that may require new transform module, imports, and frame integration across ITRS/AltAz/HADec.",
+      "evidence_action_ids": [
+        0,
+        1,
+        2,
+        3,
+        7
+      ]
+    },
+    {
+      "trace_id": "django__django-14500@solver_A",
+      "metric_that_looks_like_waste": "targeted_test_count=5",
+      "why_not_necessarily_waste": "Migration executor behavior with squashed migrations is verification-heavy and tests are used to inspect existing squashed migration fixtures before patching.",
+      "evidence_action_ids": [
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "trace_id": "sympy__sympy-18199@solver_B",
+      "metric_that_looks_like_waste": "multiple searches and environment setup",
+      "why_not_necessarily_waste": "The number-theory function has tests and implementation in different files, and reproduction of a mathematical edge case can justify focused checking.",
+      "evidence_action_ids": [
+        0,
+        3,
+        4
+      ]
+    }
+  ],
+  "justified_repeat_examples": [
+    {
+      "trace_id": "django__django-13109@solver_B",
+      "repeat_type": "search_refinement",
+      "why_warranted": "After finding related.py and seeing _default_manager in ForeignKey.validate, searching for _base_manager usage elsewhere checks consistency with existing Django patterns.",
+      "evidence_action_ids": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "trace_id": "django__django-14500@solver_A",
+      "repeat_type": "fixture_inspection",
+      "why_warranted": "Multiple reads of migration executor tests and squashed migration fixture files gather necessary state-transition examples before editing executor behavior.",
+      "evidence_action_ids": [
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "trace_id": "sphinx-doc__sphinx-11445@solver_A",
+      "repeat_type": "reproduction_then_source_search",
+      "why_warranted": "The agent reproduces the rst_prolog/docinfo issue, then searches for docinfo_re and tests, so repeated commands are driven by new evidence.",
+      "evidence_action_ids": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "trace_id": "scikit-learn__scikit-learn-9288@solver_C",
+      "repeat_type": "numerical_reproduction",
+      "why_warranted": "Running a KMeans script with multiple n_jobs values directly tests the reported parallelism-sensitive numerical discrepancy before source localization.",
+      "evidence_action_ids": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "trace_id": "astropy__astropy-8872@solver_B",
+      "repeat_type": "dtype_matrix_check",
+      "why_warranted": "The reproduction compares float16, float32, float64, and float128 Quantity dtypes to isolate the specific promotion edge case described in the issue.",
+      "evidence_action_ids": [
+        3,
+        4
+      ]
+    }
+  ]
+}

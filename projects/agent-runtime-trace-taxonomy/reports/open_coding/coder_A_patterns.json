@@ -1,0 +1,978 @@
+{
+  "coder_id": "coder_A",
+  "patterns": [
+    {
+      "proposed_name": "PREEMPTIVE_HELPER_TOOL_BUILD",
+      "proposed_parent": "SETUP_OVERHEAD",
+      "definition": "Agent spends an edit/tool-call authoring a generic custom helper script (e.g. edit_file.py / view_file.py) before reading or editing the actual task file, independent of any demonstrated need for it over built-in commands.",
+      "observable_unit": "event",
+      "positive_indicators": [
+        "an EDIT event whose payload writes a *.py helper that re-implements view/replace",
+        "occurs before first READ of the target source file",
+        "immediately follows the harness 'create tools' reflection nudge"
+      ],
+      "required_evidence": [
+        "\u22651 EDIT/WRITE event creating a helper script not part of the repo",
+        "no preceding evidence that built-in read/edit was insufficient"
+      ],
+      "exclusions": [
+        "editing the actual repo file under test",
+        "writing a reproduction script for the issue (that is verification, see VERIFICATION workloads)"
+      ],
+      "near_neighbor_labels": [
+        "SELF_BUILT_TOOL_BREAKAGE",
+        "PATCH_CHURN_WITHOUT_VERIFICATION"
+      ],
+      "distinguishing_rule": "PREEMPTIVE_HELPER_TOOL_BUILD = creating the helper. SELF_BUILT_TOOL_BREAKAGE = that helper later erroring and needing rework. Reproduction scripts are excluded because they exercise the bug, not just edit files.",
+      "evidence_trace_ids": [
+        "django__django-10999@solver_B",
+        "django__django-13109@solver_B",
+        "django__django-13513@solver_B",
+        "matplotlib__matplotlib-25775@solver_B",
+        "django__django-14500@solver_B",
+        "astropy__astropy-7606@solver_B",
+        "sympy__sympy-18199@solver_B",
+        "django__django-13512@solver_B",
+        "scikit-learn__scikit-learn-14894@solver_B",
+        "astropy__astropy-8872@solver_B"
+      ],
+      "evidence_action_ids": {
+        "django__django-10999@solver_B": [
+          1
+        ],
+        "django__django-13109@solver_B": [
+          1
+        ],
+        "django__django-13513@solver_B": [
+          1
+        ],
+        "matplotlib__matplotlib-25775@solver_B": [
+          3
+        ],
+        "django__django-14500@solver_B": [
+          1
+        ],
+        "astropy__astropy-7606@solver_B": [
+          2
+        ],
+        "sympy__sympy-18199@solver_B": [
+          1
+        ],
+        "django__django-13512@solver_B": [
+          2
+        ],
+        "scikit-learn__scikit-learn-14894@solver_B": [
+          1
+        ],
+        "astropy__astropy-8872@solver_B": [
+          1
+        ]
+      },
+      "candidate_interventions": [
+        "SUPPRESS_TOOL_BUILD_NUDGE",
+        "PREFER_BUILTIN_EDIT"
+      ],
+      "observability": "HIGH",
+      "notes": "Strongly correlated with one solver interface; the harness 'Reflect... create tools' message after every step appears to induce it. Cheap individually but a fixed per-run tax, and it is the precursor to SELF_BUILT_TOOL_BREAKAGE."
+    },
+    {
+      "proposed_name": "SELF_BUILT_TOOL_BREAKAGE",
+      "proposed_parent": "SETUP_OVERHEAD",
+      "definition": "The agent's own helper tool fails at use (encoding error, wrong usage signature) and must be re-created or worked around, consuming cycles that would not exist had a built-in been used.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "TOOL_ERROR raised from the agent-authored script",
+        "followed by re-writing/patching that same script",
+        "then retrying the original intended view/edit"
+      ],
+      "required_evidence": [
+        "a TOOL_ERROR whose traceback points at the self-authored helper",
+        "a subsequent EDIT re-creating/fixing that helper"
+      ],
+      "exclusions": [
+        "TOOL_ERROR from repo code or harness commands (those are environment, not self-built)",
+        "first failed attempt at a legitimate command typo"
+      ],
+      "near_neighbor_labels": [
+        "PREEMPTIVE_HELPER_TOOL_BUILD",
+        "ENVIRONMENT_TOOL_FAILURE"
+      ],
+      "distinguishing_rule": "Breakage of the AGENT'S OWN script = this pattern; failure of harness/built-in tooling (e.g. _split_string SyntaxError, str_replace_editor crash) = ENVIRONMENT_TOOL_FAILURE (uncovered).",
+      "evidence_trace_ids": [
+        "django__django-13513@solver_B",
+        "django__django-16667@solver_B",
+        "django__django-13343@solver_B"
+      ],
+      "evidence_action_ids": {
+        "django__django-13513@solver_B": [
+          2,
+          3,
+          4
+        ],
+        "django__django-16667@solver_B": [
+          3
+        ],
+        "django__django-13343@solver_B": [
+          3
+        ]
+      },
+      "candidate_interventions": [
+        "PREFER_BUILTIN_EDIT",
+        "TOOL_SELFTEST_BEFORE_USE"
+      ],
+      "observability": "HIGH",
+      "notes": "django-13513 is the clean exemplar: create [1] -> UnicodeDecodeError [2] -> rewrite with utf-8 [3] -> retry [4]."
+    },
+    {
+      "proposed_name": "FILENAME_SEARCH_THRASH",
+      "proposed_parent": "LOCALIZATION_WASTE",
+      "definition": "Two or more consecutive file-location searches return no matches for the same conceptual target because the search tool's semantics are misapplied (find_file matches filenames, not symbols/content), before the agent pivots to a working strategy.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "\u22652 SEARCH events with 'No matches found' for the same target",
+        "same tool form repeated with only the query string tweaked",
+        "eventual pivot to find/grep/ls that succeeds"
+      ],
+      "required_evidence": [
+        "\u22652 SEARCH events returning empty for semantically the same goal",
+        "no new evidence acquired between them"
+      ],
+      "exclusions": [
+        "a single failed search then immediate pivot (normal)",
+        "a new search after FALSIFYING a hypothesis (justified)",
+        "searches across genuinely different targets"
+      ],
+      "near_neighbor_labels": [
+        "BLIND_INFILE_NAVIGATION",
+        "REDUNDANT_FILE_REREAD"
+      ],
+      "distinguishing_rule": "THRASH = locating WHICH FILE via repeated no-match filename searches. BLIND_INFILE_NAVIGATION = file already open, wrong line jumped to. REDUNDANT_FILE_REREAD = re-viewing content already seen.",
+      "evidence_trace_ids": [
+        "django__django-11239@solver_C",
+        "django__django-12050@solver_C",
+        "django__django-15732@solver_C",
+        "django__django-16595@solver_C",
+        "django__django-16899@solver_C",
+        "django__django-14765@solver_C",
+        "django__django-16560@solver_C"
+      ],
+      "evidence_action_ids": {
+        "django__django-11239@solver_C": [
+          0,
+          1
+        ],
+        "django__django-12050@solver_C": [
+          0,
+          1
+        ],
+        "django__django-15732@solver_C": [
+          0,
+          1
+        ],
+        "django__django-16595@solver_C": [
+          0,
+          1,
+          2
+        ],
+        "django__django-16899@solver_C": [
+          0,
+          1,
+          2
+        ],
+        "django__django-14765@solver_C": [
+          0,
+          1
+        ],
+        "django__django-16560@solver_C": [
+          0,
+          1
+        ]
+      },
+      "candidate_interventions": [
+        "TEACH_TOOL_SEMANTICS",
+        "DEFAULT_TO_CONTENT_GREP"
+      ],
+      "observability": "HIGH",
+      "notes": "Tightly tied to the open/goto/find_file interface. The agent repeatedly treats find_file as a symbol/content search; 2-3 wasted no-match rounds per affected run before falling back to `find . -name` or `grep -r`."
+    },
+    {
+      "proposed_name": "BLIND_INFILE_NAVIGATION",
+      "proposed_parent": "LOCALIZATION_WASTE",
+      "definition": "After opening a file, the agent jumps to a guessed line number (goto N) that does not contain the target, then must run an in-file search and re-navigate, wasting the first jump.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "open -> goto <guessed line> showing irrelevant code -> search_file -> goto <correct line>"
+      ],
+      "required_evidence": [
+        "a goto whose observed window does not contain the target symbol",
+        "a following in-file search that then yields the real line"
+      ],
+      "exclusions": [
+        "goto directly to a line already located by a prior search (efficient)",
+        "scrolling within a region already identified as relevant"
+      ],
+      "near_neighbor_labels": [
+        "FILENAME_SEARCH_THRASH",
+        "REDUNDANT_FILE_REREAD"
+      ],
+      "distinguishing_rule": "Occurs AFTER the correct file is open and is about line-within-file; THRASH is about which file; REDUNDANT_FILE_REREAD re-shows identical content rather than guessing a new wrong line.",
+      "evidence_trace_ids": [
+        "django__django-16100@solver_C"
+      ],
+      "evidence_action_ids": {
+        "django__django-16100@solver_C": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "candidate_interventions": [
+        "SEARCH_BEFORE_GOTO"
+      ],
+      "observability": "MEDIUM",
+      "notes": "django-16100: open options.py [2] -> goto 1500 [3] (function not there) -> search_file finds 1914 [4] -> goto 1914 [5]. Lower-frequency than THRASH in the visible windows; many instances likely past truncation."
+    },
+    {
+      "proposed_name": "PATCH_CHURN_WITHOUT_VERIFICATION",
+      "proposed_parent": "EDIT_WASTE",
+      "definition": "A large number of edit attempts concentrated on a small set of files (high patch_attempts, low files_modified) with no intervening test execution that would supply new evidence to justify each successive edit.",
+      "observable_unit": "phase",
+      "positive_indicators": [
+        "patch_attempts >> files_modified",
+        "targeted_test_count == 0 / first_test_step == null while editing continues",
+        "repeated EDIT events on the same path with no TEST between"
+      ],
+      "required_evidence": [
+        "\u22653 patch_attempts",
+        "no TEST event separating consecutive edits to the same file"
+      ],
+      "exclusions": [
+        "edit -> failing test -> fix (normal iteration)",
+        "edits to genuinely different files (cross-file work)",
+        "high files_modified that is actually inflated by helper/repro scripts (see false positives)"
+      ],
+      "near_neighbor_labels": [
+        "VERIFICATION_GAP_BEFORE_SUBMIT",
+        "STAGNATION_DUPLICATE_LOOP"
+      ],
+      "distinguishing_rule": "CHURN = repeated edits to the SAME region with no new evidence between. VERIFICATION_GAP = absence of ANY test across the whole run (may have few edits). STAGNATION = exact-duplicate calls / no-new-evidence streak not necessarily edits.",
+      "evidence_trace_ids": [
+        "django__django-16560@solver_C",
+        "matplotlib__matplotlib-26113@solver_C",
+        "sympy__sympy-15599@solver_B"
+      ],
+      "evidence_action_ids": {
+        "django__django-16560@solver_C": [
+          3,
+          5
+        ],
+        "matplotlib__matplotlib-26113@solver_C": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "sympy__sympy-15599@solver_B": [
+          2,
+          3,
+          4
+        ]
+      },
+      "candidate_interventions": [
+        "FORCE_TEST_AFTER_N_EDITS",
+        "LIMIT_PATCH_SCOPE"
+      ],
+      "observability": "MEDIUM",
+      "notes": "django-16560: patch_attempts=22 on files_modified=1 with first_test_step=null. sympy-15599: patch_attempts=39, terminated LimitsExceeded. Mostly inferred from features since the churn lies past the visible window \u2014 flagged as outcome-collapse risk."
+    },
+    {
+      "proposed_name": "VERIFICATION_GAP_BEFORE_SUBMIT",
+      "proposed_parent": "VERIFICATION_WASTE",
+      "definition": "The run modifies source and terminates 'Submitted' without ever executing a test OR a reproduction script that exercises the changed code.",
+      "observable_unit": "full_trace",
+      "positive_indicators": [
+        "files_modified>0 and patch_attempts>0",
+        "first_test_step == null",
+        "no EXECUTE event running a repro that imports the changed path",
+        "termination_reason == Submitted"
+      ],
+      "required_evidence": [
+        "\u22651 edit to repo source",
+        "zero TEST events and zero repro-execution events across the trace"
+      ],
+      "exclusions": [
+        "runs that DID execute a reproduction script (e.g. astropy-7606 [3], astropy-8872 [3]) \u2014 those verified via repro",
+        "runs killed by environment before they could test"
+      ],
+      "near_neighbor_labels": [
+        "PATCH_CHURN_WITHOUT_VERIFICATION"
+      ],
+      "distinguishing_rule": "GAP is defined by TOTAL absence of any execution-based check before submit; CHURN is about edit repetition regardless of submit. Excludes repro-script verification, which is execution evidence even if targeted_test_count==0.",
+      "evidence_trace_ids": [
+        "sphinx-doc__sphinx-8475@solver_B",
+        "django__django-13343@solver_B",
+        "django__django-13512@solver_B",
+        "sympy__sympy-17630@solver_B",
+        "scikit-learn__scikit-learn-14894@solver_B"
+      ],
+      "evidence_action_ids": {
+        "sphinx-doc__sphinx-8475@solver_B": [
+          3,
+          4
+        ],
+        "django__django-13343@solver_B": [
+          2,
+          3,
+          4
+        ],
+        "django__django-13512@solver_B": [
+          2,
+          3,
+          4
+        ],
+        "sympy__sympy-17630@solver_B": [
+          4
+        ],
+        "scikit-learn__scikit-learn-14894@solver_B": [
+          1,
+          2,
+          4
+        ]
+      },
+      "candidate_interventions": [
+        "REQUIRE_REPRO_OR_TEST_BEFORE_SUBMIT"
+      ],
+      "observability": "MEDIUM",
+      "notes": "OUTCOME-COLLAPSE RISK: 'no test' is not 'failed'. Kept because it is a resource/process pattern observable without knowing the outcome \u2014 the agent committed edits it never exercised. Truncation means a late test could exist; relying on first_test_step==null feature."
+    },
+    {
+      "proposed_name": "STAGNATION_DUPLICATE_LOOP",
+      "proposed_parent": "CONTROL_WASTE",
+      "definition": "High rate of exact-duplicate tool calls and/or long streaks of actions producing no new evidence, indicating the agent re-issuing equivalent actions without advancing state.",
+      "observable_unit": "phase",
+      "positive_indicators": [
+        "exact_duplicate_call_rate elevated",
+        "longest_no_new_evidence_streak large",
+        "repeated identical commands in visible window"
+      ],
+      "required_evidence": [
+        "exact_duplicate_call_rate>0.10 OR longest_no_new_evidence_streak>=3",
+        "duplicates not separated by a state change (edit/test/install)"
+      ],
+      "exclusions": [
+        "re-running a command after the environment changed (install, edit) \u2014 justified",
+        "a couple of orientation re-lists"
+      ],
+      "near_neighbor_labels": [
+        "PATCH_CHURN_WITHOUT_VERIFICATION",
+        "REDUNDANT_FILE_REREAD"
+      ],
+      "distinguishing_rule": "STAGNATION is about exact-duplicate / no-progress calls of ANY kind; CHURN is specifically repeated edits; REDUNDANT_FILE_REREAD is specifically repeated reads of same content.",
+      "evidence_trace_ids": [
+        "django__django-7530@solver_A",
+        "pydata__xarray-6461@solver_C",
+        "sympy__sympy-15599@solver_B"
+      ],
+      "evidence_action_ids": {
+        "django__django-7530@solver_A": [
+          1,
+          4
+        ],
+        "pydata__xarray-6461@solver_C": [
+          4,
+          5
+        ],
+        "sympy__sympy-15599@solver_B": [
+          2,
+          3
+        ]
+      },
+      "candidate_interventions": [
+        "DUPLICATE_CALL_DETECTOR",
+        "ABORT_ON_STAGNATION_STREAK"
+      ],
+      "observability": "MEDIUM",
+      "notes": "django-7530 is extreme: exact_duplicate_call_rate=2.38 and longest_no_new_evidence_streak=61, terminating submitted(exit_cost). exit_cost/LimitsExceeded co-occurs -> partial outcome-collapse risk, flagged."
+    },
+    {
+      "proposed_name": "REDUNDANT_FILE_REREAD",
+      "proposed_parent": "LOCALIZATION_WASTE",
+      "definition": "Re-reading the same file or region already viewed, with no intervening edit/test that would have changed it.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "duplicate_file_reads elevated",
+        "same path opened/cat'd multiple times",
+        "no edit to that file between reads"
+      ],
+      "required_evidence": [
+        "\u22652 reads of the same file/region",
+        "no modifying event between them"
+      ],
+      "exclusions": [
+        "re-read after editing that file (to confirm the edit)",
+        "reading different regions of a large file"
+      ],
+      "near_neighbor_labels": [
+        "BLIND_INFILE_NAVIGATION",
+        "STAGNATION_DUPLICATE_LOOP"
+      ],
+      "distinguishing_rule": "REREAD = identical content re-fetched; NAVIGATION = guessing a wrong new line; STAGNATION = duplicate calls of any tool type. Re-read strictly after an edit to the same file is excluded (verification).",
+      "evidence_trace_ids": [
+        "scikit-learn__scikit-learn-9288@solver_C",
+        "pydata__xarray-6461@solver_C",
+        "django__django-15732@solver_C",
+        "django__django-16100@solver_C"
+      ],
+      "evidence_action_ids": {
+        "scikit-learn__scikit-learn-9288@solver_C": [
+          6
+        ],
+        "pydata__xarray-6461@solver_C": [
+          6
+        ],
+        "django__django-15732@solver_C": [
+          3,
+          4
+        ],
+        "django__django-16100@solver_C": [
+          2,
+          3
+        ]
+      },
+      "candidate_interventions": [
+        "READ_CACHE_HINT",
+        "MAINTAIN_FILE_VIEW_STATE"
+      ],
+      "observability": "MEDIUM",
+      "notes": "Largely inferred from duplicate_file_reads (scikit-9288=12, xarray-6461=9, django-15732=5) since the repeats occur past truncation; visible-window evidence is partial."
+    },
+    {
+      "proposed_name": "NON_CONVERGENT_LOCALIZATION",
+      "proposed_parent": "LOCALIZATION_WASTE",
+      "definition": "A large fraction of the run is consumed by exploration/reading/environment activity before the first edit, AND the run fails to converge (terminates on cost/limit or a long no-progress streak) rather than landing a focused fix.",
+      "observable_unit": "full_trace",
+      "positive_indicators": [
+        "first_edit_step late relative to n_events",
+        "high environment_setup_events / search_call_count",
+        "termination exit_cost / LimitsExceeded OR long no-new-evidence streak"
+      ],
+      "required_evidence": [
+        "first_edit_step is a large fraction of total events",
+        "co-occurring non-convergence signal (exit_cost/limits/large stagnation streak)"
+      ],
+      "exclusions": [
+        "genuinely localization-gated tasks that still converged to a focused patch (e.g. matplotlib-25775 broad search but submitted) \u2014 that is workload, not waste",
+        "late edit that immediately succeeds"
+      ],
+      "near_neighbor_labels": [
+        "STAGNATION_DUPLICATE_LOOP",
+        "FILENAME_SEARCH_THRASH"
+      ],
+      "distinguishing_rule": "Requires BOTH late-first-edit AND a non-convergence signal; pure late-first-edit on a hard-to-localize task that still lands a clean patch is the LOCALIZATION_GATED workload, not waste.",
+      "evidence_trace_ids": [
+        "psf__requests-6028@solver_A",
+        "django__django-7530@solver_A"
+      ],
+      "evidence_action_ids": {
+        "psf__requests-6028@solver_A": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "django__django-7530@solver_A": [
+          0,
+          1,
+          4
+        ]
+      },
+      "candidate_interventions": [
+        "LOCALIZATION_BUDGET_CAP",
+        "EARLY_HYPOTHESIS_COMMIT"
+      ],
+      "observability": "MEDIUM",
+      "notes": "psf-requests-6028: first_edit_step=47 of 76 events, environment_setup_events=59, exit_cost. Guarded against outcome-collapse by requiring the non-convergence co-signal, not failure per se."
+    }
+  ],
+  "workload_notes": [
+    {
+      "trace_id": "django__django-10999@solver_B",
+      "workload": "CLEAR_POINTER",
+      "evidence": "PR gives exact regex + file django/utils/dateparse.py; localization trivial, fix is mechanical [0][2]"
+    },
+    {
+      "trace_id": "django__django-13109@solver_B",
+      "workload": "CLEAR_POINTER",
+      "evidence": "PR names related.py line 917 _default_manager->_base_manager [2]"
+    },
+    {
+      "trace_id": "django__django-13513@solver_B",
+      "workload": "CLEAR_POINTER",
+      "evidence": "PR names debug.py explicit_or_implicit_cause + line [0]"
+    },
+    {
+      "trace_id": "django__django-14500@solver_B",
+      "workload": "REASONING_GATED",
+      "evidence": "squashed-migration unapply logic in executor.py; needs record/unapply reasoning [3][4]"
+    },
+    {
+      "trace_id": "django__django-16667@solver_B",
+      "workload": "CLEAR_POINTER",
+      "evidence": "PR names widgets.py SelectDateWidget.value_from_datadict line; add OverflowError [1][2]"
+    },
+    {
+      "trace_id": "matplotlib__matplotlib-25775@solver_B",
+      "workload": "CROSS_FILE_LOCALIZATION",
+      "evidence": "ENH add get/set_antialiased across text.py + backends; 28 searches/65 files, first_test_step=80"
+    },
+    {
+      "trace_id": "psf__requests-1142@solver_B",
+      "workload": "LOCALIZATION_GATED",
+      "evidence": "find where Content-Length set; grep -> models.py [3][4]"
+    },
+    {
+      "trace_id": "pytest-dev__pytest-10081@solver_B",
+      "workload": "REASONING_GATED",
+      "evidence": "skip-class tearDown under --pdb in _pytest/unittest.py [3][4]"
+    },
+    {
+      "trace_id": "pytest-dev__pytest-8399@solver_B",
+      "workload": "CLEAR_POINTER",
+      "evidence": "PR names unittest.py line 145 fixture name underscore [2][3]"
+    },
+    {
+      "trace_id": "astropy__astropy-13398@solver_C",
+      "workload": "CROSS_FILE_REASONING",
+      "evidence": "ITRS<->Observed transforms across itrs/altaz/hadec [2][3][4]"
+    },
+    {
+      "trace_id": "django__django-11239@solver_C",
+      "workload": "LOCALIZATION_THEN_REASONING",
+      "evidence": "postgresql dbshell ssl cert in client.py [2][3][4]"
+    },
+    {
+      "trace_id": "django__django-11951@solver_C",
+      "workload": "CLEAR_POINTER",
+      "evidence": "bulk_create batch_size cap in query.py bulk_create [1][2]"
+    },
+    {
+      "trace_id": "django__django-12050@solver_C",
+      "workload": "LOCALIZATION_GATED",
+      "evidence": "resolve_lookup_value list->tuple in sql/query.py [3][4][5]"
+    },
+    {
+      "trace_id": "django__django-14011@solver_C",
+      "workload": "LOCALIZATION_GATED",
+      "evidence": "LiveServerThread connection close in test/testcases.py [3][4][5]"
+    },
+    {
+      "trace_id": "django__django-14765@solver_C",
+      "workload": "CLEAR_POINTER",
+      "evidence": "ProjectState.__init__ real_apps set assert in migrations/state.py [2][3]"
+    },
+    {
+      "trace_id": "django__django-15268@solver_C",
+      "workload": "REASONING_GATED",
+      "evidence": "AlterFooTogether optimizer reduction in operations/models.py [3][4]"
+    },
+    {
+      "trace_id": "django__django-15732@solver_C",
+      "workload": "REASONING_GATED",
+      "evidence": "drop unique_together with own unique= in schema.py; localization noisy [0-5]"
+    },
+    {
+      "trace_id": "django__django-16100@solver_C",
+      "workload": "LOCALIZATION_GATED",
+      "evidence": "changelist_view list_editable in admin/options.py [2][4][5]"
+    },
+    {
+      "trace_id": "django__django-16560@solver_C",
+      "workload": "REASONING_GATED",
+      "evidence": "BaseConstraint violation_error_code across 3 validate methods [2][4]"
+    },
+    {
+      "trace_id": "django__django-16595@solver_C",
+      "workload": "REASONING_GATED",
+      "evidence": "AlterField optimizer.reduce in optimizer.py [5][6]"
+    },
+    {
+      "trace_id": "django__django-16899@solver_C",
+      "workload": "LOCALIZATION_GATED",
+      "evidence": "ModelAdmin readonly_fields check in admin/checks.py [4][6]"
+    },
+    {
+      "trace_id": "django__django-17029@solver_C",
+      "workload": "CLEAR_POINTER",
+      "evidence": "apps registry clear_cache cached_property in apps/registry.py [2][3]"
+    },
+    {
+      "trace_id": "matplotlib__matplotlib-26113@solver_C",
+      "workload": "VERIFICATION_GATED",
+      "evidence": "hexbin mincnt; repro hard, tuned seed/size to reproduce [2][3][4]"
+    },
+    {
+      "trace_id": "pydata__xarray-6461@solver_C",
+      "workload": "REASONING_GATED",
+      "evidence": "where() keep_attrs; initial repro didn't trigger (version drift) [2][3]"
+    },
+    {
+      "trace_id": "pylint-dev__pylint-7080@solver_C",
+      "workload": "CLEAR_POINTER",
+      "evidence": "ignore-paths config in pylintrc [2][5]"
+    },
+    {
+      "trace_id": "pytest-dev__pytest-5787@solver_C",
+      "workload": "VERIFICATION_ENV_GATED",
+      "evidence": "chained exception xdist serialize; needed xdist install [3][4][5]"
+    },
+    {
+      "trace_id": "pytest-dev__pytest-6197@solver_C",
+      "workload": "REPRO_GATED",
+      "evidence": "collect __init__ assert error; built minimal repro dir [0][1][6]"
+    },
+    {
+      "trace_id": "pytest-dev__pytest-6202@solver_C",
+      "workload": "CLEAR_POINTER",
+      "evidence": "getmodpath replace('.[','[') in python.py line 289 [2][3][4]"
+    },
+    {
+      "trace_id": "scikit-learn__scikit-learn-13439@solver_C",
+      "workload": "CLEAR_POINTER",
+      "evidence": "Pipeline.__len__ in pipeline.py; repro->fix [2][4][5]"
+    },
+    {
+      "trace_id": "scikit-learn__scikit-learn-9288@solver_C",
+      "workload": "REASONING_VERIFICATION_GATED",
+      "evidence": "KMeans n_jobs determinism in k_means_.py [2][6]"
+    },
+    {
+      "trace_id": "sphinx-doc__sphinx-7985@solver_C",
+      "workload": "REASONING_GATED",
+      "evidence": "linkcheck local-link support new function in linkcheck.py [2][4]"
+    },
+    {
+      "trace_id": "django__django-11400@solver_B",
+      "workload": "LOCALIZATION_GATED",
+      "evidence": "RelatedFieldListFilter ordering fallback in admin/filters.py [2][3][4]"
+    },
+    {
+      "trace_id": "astropy__astropy-7606@solver_B",
+      "workload": "CLEAR_POINTER",
+      "evidence": "UnrecognizedUnit.__eq__ None handling in units/core.py [1][3]"
+    },
+    {
+      "trace_id": "sphinx-doc__sphinx-8475@solver_B",
+      "workload": "CLEAR_POINTER",
+      "evidence": "linkcheck TooManyRedirects except clause in linkcheck.py [2][3]"
+    },
+    {
+      "trace_id": "sympy__sympy-18199@solver_B",
+      "workload": "REASONING_GATED",
+      "evidence": "nthroot_mod x=0 root in residue_ntheory.py [3][4]"
+    },
+    {
+      "trace_id": "django__django-13512@solver_B",
+      "workload": "LOCALIZATION_GATED",
+      "evidence": "JSONField unicode ensure_ascii; which file (forms vs json) [1][3][4]"
+    },
+    {
+      "trace_id": "django__django-14404@solver_B",
+      "workload": "CLEAR_POINTER",
+      "evidence": "catch_all_view path_info->path in admin/sites.py line 424 [3][4]"
+    },
+    {
+      "trace_id": "sympy__sympy-15599@solver_B",
+      "workload": "REASONING_GATED",
+      "evidence": "Mod(3*i,2) distributive reduction in core/mod.py; complex, LimitsExceeded [2][4]"
+    },
+    {
+      "trace_id": "django__django-15732@solver_B",
+      "workload": "REASONING_GATED",
+      "evidence": "drop unique_together with own unique= in schema.py [2][3]"
+    },
+    {
+      "trace_id": "django__django-15104@solver_B",
+      "workload": "CLEAR_POINTER",
+      "evidence": "autodetector KeyError del->pop('to',None) [0][2][3]"
+    },
+    {
+      "trace_id": "sympy__sympy-17630@solver_B",
+      "workload": "REASONING_GATED",
+      "evidence": "BlockMatrix Zero->ZeroMatrix in blockmatrix.py rowblocksizes [2][3][4]"
+    },
+    {
+      "trace_id": "astropy__astropy-8872@solver_B",
+      "workload": "REASONING_GATED",
+      "evidence": "float16 dtype upgrade in units/quantity.py [3][4]"
+    },
+    {
+      "trace_id": "django__django-13343@solver_B",
+      "workload": "REASONING_GATED",
+      "evidence": "FileField callable storage deconstruct in fields/files.py [2][4]"
+    },
+    {
+      "trace_id": "scikit-learn__scikit-learn-14894@solver_B",
+      "workload": "CLEAR_POINTER",
+      "evidence": "SVM empty support_vectors ZeroDiv in svm/base.py _sparse_fit [2][4]"
+    },
+    {
+      "trace_id": "django__django-11141@solver_A",
+      "workload": "REASONING_LOCALIZATION",
+      "evidence": "migrations namespace __file__ None handling in loader.py/questioner.py [0][1]"
+    },
+    {
+      "trace_id": "sphinx-doc__sphinx-8035@solver_A",
+      "workload": "REASONING_GATED",
+      "evidence": "autodoc private-members :meta: option in ext/autodoc/__init__.py [2][3][5]"
+    },
+    {
+      "trace_id": "sympy__sympy-15976@solver_A",
+      "workload": "REASONING_GATED",
+      "evidence": "mathml msub nested in mi in printing/mathml.py [2][4][5]"
+    },
+    {
+      "trace_id": "astropy__astropy-13398@solver_A",
+      "workload": "CROSS_FILE_REASONING",
+      "evidence": "ITRS observed transforms new module; reads itrs/altaz/hadec/intermediate [2][3][4][5]"
+    },
+    {
+      "trace_id": "astropy__astropy-13453@solver_A",
+      "workload": "REASONING_GATED",
+      "evidence": "HTML writer not applying formats in io/ascii/html.py + core.py [2][3]"
+    },
+    {
+      "trace_id": "pytest-dev__pytest-5787@solver_A",
+      "workload": "VERIFICATION_ENV_GATED",
+      "evidence": "exception chain serialize in reports.py/_code/code.py [2][3][4]"
+    },
+    {
+      "trace_id": "django__django-11749@solver_A",
+      "workload": "REASONING_GATED",
+      "evidence": "call_command mutually-exclusive required group in management/__init__.py [1][3]"
+    },
+    {
+      "trace_id": "django__django-14500@solver_A",
+      "workload": "REASONING_GATED",
+      "evidence": "squashed migration unapply in executor.py record_migration [2][6]"
+    },
+    {
+      "trace_id": "pytest-dev__pytest-7236@solver_A",
+      "workload": "REASONING_GATED(env-killed)",
+      "evidence": "unittest tearDown; run died to command timeouts [0][2]"
+    },
+    {
+      "trace_id": "sympy__sympy-13974@solver_A",
+      "workload": "REASONING_GATED",
+      "evidence": "TensorProduct power simp in physics/quantum/tensorproduct.py [2][3][4]"
+    },
+    {
+      "trace_id": "sphinx-doc__sphinx-11445@solver_A",
+      "workload": "REASONING_GATED",
+      "evidence": "rst_prolog docinfo_re mis-matching :mod: in util/rst.py [2][4][5]"
+    },
+    {
+      "trace_id": "django__django-15863@solver_A",
+      "workload": "REASONING_GATED",
+      "evidence": "floatformat Decimal repr precision in defaultfilters.py [1][2][3]"
+    },
+    {
+      "trace_id": "django__django-13297@solver_A",
+      "workload": "REASONING_GATED",
+      "evidence": "TemplateView SimpleLazyObject url kwargs in generic/base.py [1][2][5]"
+    },
+    {
+      "trace_id": "django__django-7530@solver_A",
+      "workload": "REASONING_GATED",
+      "evidence": "makemigrations allow_migrate get_models(app_label) bug in makemigrations.py [0][3]"
+    },
+    {
+      "trace_id": "django__django-16819@solver_A",
+      "workload": "REASONING_GATED",
+      "evidence": "AddIndex/RemoveIndex optimizer reduce in operations/models.py [2][5]"
+    },
+    {
+      "trace_id": "psf__requests-6028@solver_A",
+      "workload": "LOCALIZATION_ENV_GATED",
+      "evidence": "proxy auth urlparse py3.8 change across utils.py/adapters.py [1][2][3]"
+    }
+  ],
+  "uncovered_patterns": [
+    {
+      "name": "ENVIRONMENT_TOOL_FAILURE",
+      "definition": "Harness/built-in tooling (not agent-authored) breaks: the _split_string 'future feature annotations' SyntaxError on edit, str_replace_editor crashing, command timeouts, missing deps (tox/xdist).",
+      "evidence_action_ids": {
+        "django__django-11239@solver_C": [
+          5
+        ],
+        "django__django-11951@solver_C": [
+          3
+        ],
+        "scikit-learn__scikit-learn-13439@solver_C": [
+          1
+        ],
+        "scikit-learn__scikit-learn-9288@solver_C": [
+          1
+        ],
+        "django__django-7530@solver_A": [
+          1,
+          4
+        ],
+        "pytest-dev__pytest-7236@solver_A": [
+          2
+        ],
+        "pytest-dev__pytest-6202@solver_C": [
+          5
+        ],
+        "pytest-dev__pytest-5787@solver_C": [
+          3
+        ]
+      },
+      "note": "Per rule 6 these are environment failures, NOT agent reasoning/edit waste; recovery cost is real but should not be attributed to the model's choices."
+    },
+    {
+      "name": "REPRO_VERSION_DRIFT_DEADEND",
+      "definition": "Agent writes a reproduction script that does not reproduce because the checked-out dev version already differs from the reported version; time spent before realizing.",
+      "evidence_action_ids": {
+        "pydata__xarray-6461@solver_C": [
+          2,
+          3
+        ],
+        "pytest-dev__pytest-6197@solver_C": [
+          4,
+          5
+        ]
+      },
+      "note": "Could be waste or necessary diligence; cannot decide without later events."
+    },
+    {
+      "name": "MID_RUN_DEPENDENCY_INSTALL",
+      "definition": "Agent installs a missing package to proceed (pip install).",
+      "evidence_action_ids": {
+        "pytest-dev__pytest-5787@solver_C": [
+          4
+        ]
+      },
+      "note": "Environment remediation; usually justified."
+    },
+    {
+      "name": "POST_EDIT_CONFIRM_READ",
+      "definition": "Agent re-reads the just-edited region to confirm the change landed.",
+      "evidence_action_ids": {
+        "django__django-10999@solver_B": [
+          4
+        ],
+        "django__django-16667@solver_B": [
+          4
+        ]
+      },
+      "note": "Likely legitimate micro-verification, not waste."
+    }
+  ],
+  "needs_unavailable_info": [
+    {
+      "category": "TRANSCRIPT_TRUNCATION",
+      "why": "Nearly every transcript is cut at ~event 4-7 while n_events is 11-108. The bulk of patch_attempts, repeated tests, churn and recovery occur AFTER the visible window. Patterns 5-9 lean on deterministic features precisely because the events are invisible."
+    },
+    {
+      "category": "TOKENS_PER_EVENT",
+      "why": "Cannot size the actual resource cost of waste (a cheap duplicate ls vs an expensive re-read of a 2000-line file)."
+    },
+    {
+      "category": "HIDDEN_REASONING",
+      "why": "Cannot confirm whether a repeated search was a justified hypothesis-falsification or aimless thrash without the agent's intent."
+    },
+    {
+      "category": "FINAL_OUTCOME_AND_GOLD_PATCH",
+      "why": "Cannot validate that VERIFICATION_GAP / PATCH_CHURN actually correlate with failure vs. correct one-shot fixes."
+    },
+    {
+      "category": "PER_CALL_WALLCLOCK",
+      "why": "No timing; cannot separate slow-but-progressing from stalled."
+    }
+  ],
+  "outcome_collapse_risks": [
+    {
+      "pattern": "VERIFICATION_GAP_BEFORE_SUBMIT",
+      "risk": "Easily becomes a proxy for 'the run that failed'. Mitigation: defined purely as 'edited code never executed before submit' \u2014 observable without the outcome \u2014 and excludes runs that ran a repro script."
+    },
+    {
+      "pattern": "PATCH_CHURN_WITHOUT_VERIFICATION",
+      "risk": "'Never converged' can collapse into 'failed'. Mitigation: require repeated edits to the SAME file with no test between, not just many edits."
+    },
+    {
+      "pattern": "STAGNATION_DUPLICATE_LOOP",
+      "risk": "exit_cost/LimitsExceeded co-signal (django-7530, sympy-15599) is close to an outcome. Mitigation: primary evidence is exact_duplicate_call_rate / no-new-evidence streak, which are process metrics independent of pass/fail."
+    },
+    {
+      "pattern": "NON_CONVERGENT_LOCALIZATION",
+      "risk": "Late first edit may just mean a hard-to-localize task. Mitigation: requires a co-occurring non-convergence signal AND is explicitly distinguished from the LOCALIZATION_GATED workload (matplotlib-25775 excluded)."
+    }
+  ],
+  "false_positive_examples": [
+    {
+      "trace_id": "django__django-13512@solver_B",
+      "metric": "files_modified=13",
+      "why_not_waste": "For a one-line ensure_ascii change, 13 'modified files' almost certainly counts the created edit_file.py helper, a reproduce script, and possibly .pyc/test scaffolding \u2014 not 13 source files churned. files_modified must not be read as multi-file churn."
+    },
+    {
+      "trace_id": "sympy__sympy-15599@solver_B",
+      "metric": "files_modified=52",
+      "why_not_waste": "Implausible as real source edits for a single core/mod.py fix; inflated by helper/repro/test artifacts and re-writes of the same file. Needs path-level inspection before calling churn."
+    },
+    {
+      "trace_id": "matplotlib__matplotlib-25775@solver_B",
+      "metric": "search_call_count=28, unique_files_searched=65",
+      "why_not_waste": "The task is an enhancement spanning text.py and multiple backend modules; broad search is warranted breadth, not redundant search."
+    },
+    {
+      "trace_id": "pytest-dev__pytest-5787@solver_C",
+      "metric": "unchanged_repeated_tests=4",
+      "why_not_waste": "Tests were re-run after installing pytest-xdist [4] \u2014 the environment changed between runs, so repetition is justified, not redundant."
+    },
+    {
+      "trace_id": "django__django-13109@solver_B",
+      "metric": "search_call_count=3 with one returning empty",
+      "why_not_waste": "The empty grep at [3] FALSIFIED 'is _base_manager already used here?'; the next broader grep [4] is evidence-driven, not thrash."
+    }
+  ],
+  "justified_repeat_examples": [
+    {
+      "trace_id": "astropy__astropy-13398@solver_A",
+      "action_ids": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "why": "Reads itrs.py, intermediate_rotation_transforms.py, utils.py, altaz.py \u2014 distinct files all required because the task adds cross-frame transforms; not redundant re-reads."
+    },
+    {
+      "trace_id": "pytest-dev__pytest-5787@solver_C",
+      "action_ids": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "why": "Ran tests, hit missing xdist, installed it, re-ran \u2014 each test repetition followed a state change."
+    },
+    {
+      "trace_id": "django__django-13109@solver_B",
+      "action_ids": [
+        3,
+        4
+      ],
+      "why": "Second/broader grep issued only after the first returned empty, falsifying the local-usage hypothesis."
+    },
+    {
+      "trace_id": "matplotlib__matplotlib-26113@solver_C",
+      "action_ids": [
+        2,
+        3
+      ],
+      "why": "Re-ran the reproduction with larger sample/different probe after the first repro showed no signal \u2014 new evidence sought, not blind repetition."
+    }
+  ]
+}

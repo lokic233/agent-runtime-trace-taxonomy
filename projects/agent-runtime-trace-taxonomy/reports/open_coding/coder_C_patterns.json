@@ -1,0 +1,288 @@
+{
+  "coder_id": "coder_C",
+  "patterns": [
+    {
+      "proposed_name": "OUTPUT_TRUNCATION_RECOVERY",
+      "proposed_parent": "READ_FILE",
+      "definition": "The agent attempts to read an entire file using a basic command (e.g., `cat`), triggers an environment truncation warning ('The output of your last command was too long'), and must spend subsequent turns re-reading the file with paginated commands (e.g., `sed`, `head`, or a custom viewer tool).",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "Use of unbounded `cat` or `read` on a source file",
+        "Observation contains 'output of your last command was too long' or '<NOTE>This file is too large'",
+        "Immediate subsequent command uses `head`, `tail`, `sed -n`, or `view_range` on the same file"
+      ],
+      "required_evidence": [
+        "A failed or truncated read event",
+        "A subsequent scoped read event on the exact same file"
+      ],
+      "exclusions": [
+        "Reading a file in chunks intentionally from the start without triggering a truncation warning"
+      ],
+      "near_neighbor_labels": [
+        "REDUNDANT_READ"
+      ],
+      "distinguishing_rule": "OUTPUT_TRUNCATION_RECOVERY is strictly reactive to an environment truncation limit, whereas REDUNDANT_READ is reading the same file twice without a truncation constraint forcing it.",
+      "evidence_trace_ids": [
+        "django__django-14500@solver_B",
+        "pytest-dev__pytest-10081@solver_B",
+        "django__django-13512@solver_B"
+      ],
+      "evidence_action_ids": {
+        "django__django-14500@solver_B": [
+          2,
+          3
+        ],
+        "pytest-dev__pytest-10081@solver_B": [
+          4
+        ],
+        "django__django-13512@solver_B": [
+          3,
+          4
+        ]
+      },
+      "candidate_interventions": [
+        "AUTO_PAGINATE_READS",
+        "WARN_LARGE_FILE_SIZE"
+      ],
+      "observability": "HIGH",
+      "notes": "Highlights an inefficiency in the agent's initial assumption about environment capabilities regarding stdout limits."
+    },
+    {
+      "proposed_name": "ENVIRONMENT_TOOL_NOT_FOUND",
+      "proposed_parent": "EXECUTE_TEST",
+      "definition": "The agent attempts to invoke a testing tool or dependency (e.g., `tox`, `pytest -n auto`) that is not installed or available in the path, receives a 'command not found' or 'unrecognized arguments' error, and must spend turns installing the dependency or finding an alternative test runner.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "Command execution of a specific tool like `tox` or `pytest-xdist`",
+        "Error output 'command not found' or 'unrecognized arguments'",
+        "Follow-up command installing the tool via `pip` or switching to an alternative runner"
+      ],
+      "required_evidence": [
+        "Execution event failing due to missing executable/plugin",
+        "Remediation event directly addressing the missing tool"
+      ],
+      "exclusions": [
+        "Syntax errors inside a test script",
+        "Test failures due to the bug being fixed"
+      ],
+      "near_neighbor_labels": [
+        "SETUP_FAILURE"
+      ],
+      "distinguishing_rule": "ENVIRONMENT_TOOL_NOT_FOUND is specific to executing a secondary harness tool assumed to be present, rather than failing to set up the primary project environment.",
+      "evidence_trace_ids": [
+        "pytest-dev__pytest-5787@solver_C",
+        "pytest-dev__pytest-6197@solver_C",
+        "pytest-dev__pytest-6202@solver_C"
+      ],
+      "evidence_action_ids": {
+        "pytest-dev__pytest-5787@solver_C": [
+          3,
+          4,
+          5
+        ],
+        "pytest-dev__pytest-6197@solver_C": [
+          2,
+          3
+        ],
+        "pytest-dev__pytest-6202@solver_C": [
+          5,
+          6
+        ]
+      },
+      "candidate_interventions": [
+        "PREINSTALL_COMMON_TOOLS",
+        "ENVIRONMENT_HINT_PROMPT"
+      ],
+      "observability": "HIGH",
+      "notes": "Agents often assume standard ecosystem tools exist based on their training, but specific docker images lack them."
+    },
+    {
+      "proposed_name": "BLIND_DIRECTORY_WALK",
+      "proposed_parent": "SEARCH",
+      "definition": "The agent navigates the repository by issuing sequential `cd` and `ls -la` commands down multiple directory levels instead of using a single recursive search tool like `find` or `grep` to locate the target file.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "Successive events using `ls`, `cd`, `ls`, `cd` into progressively deeper directories",
+        "No use of recursive flags or `find` during the sequence"
+      ],
+      "required_evidence": [
+        "At least 3 sequential events performing manual directory traversal (`cd` + `ls`)"
+      ],
+      "exclusions": [
+        "Using `ls` once to orient in the root directory before using `find`",
+        "Looking inside a specific test directory to see which test files exist after finding it via `find`"
+      ],
+      "near_neighbor_labels": [
+        "INEFFICIENT_SEARCH"
+      ],
+      "distinguishing_rule": "BLIND_DIRECTORY_WALK specifically targets the anti-pattern of manual level-by-level `cd/ls` traversal, while INEFFICIENT_SEARCH might refer to using bad `grep` regexes.",
+      "evidence_trace_ids": [
+        "django__django-15732@solver_C",
+        "django__django-16595@solver_C"
+      ],
+      "evidence_action_ids": {
+        "django__django-15732@solver_C": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "django__django-16595@solver_C": [
+          3,
+          4
+        ]
+      },
+      "candidate_interventions": [
+        "SUGGEST_FIND_COMMAND",
+        "TOOL_USE_PROMPT_REMINDER"
+      ],
+      "observability": "HIGH",
+      "notes": "Consumes many turns just to locate a single nested file."
+    },
+    {
+      "proposed_name": "UNOPENED_FILE_EDIT_ATTEMPT",
+      "proposed_parent": "EDIT_PATCH",
+      "definition": "The agent attempts to apply an edit using an interactive editor tool without first loading or opening the target file in the tool, resulting in an interface error requiring the agent to back up and open the file.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "Action is `edit`",
+        "Observation is an error like 'No file open. Use the `open` command first.'"
+      ],
+      "required_evidence": [
+        "An `edit` command failure due to missing state (file not open)",
+        "A subsequent `open` command for the intended file"
+      ],
+      "exclusions": [
+        "Syntax errors within the edit block",
+        "Editing the wrong lines of an already opened file"
+      ],
+      "near_neighbor_labels": [
+        "TOOL_MISUSE"
+      ],
+      "distinguishing_rule": "UNOPENED_FILE_EDIT_ATTEMPT is a specific state-machine failure with the bespoke CLI environment tools, unlike general tool misuse which could be bad arguments.",
+      "evidence_trace_ids": [
+        "pylint-dev__pylint-7080@solver_C"
+      ],
+      "evidence_action_ids": {
+        "pylint-dev__pylint-7080@solver_C": [
+          3,
+          4,
+          5
+        ]
+      },
+      "candidate_interventions": [
+        "AUTO_OPEN_ON_EDIT",
+        "IMPROVE_TOOL_DOCSTRINGS"
+      ],
+      "observability": "HIGH",
+      "notes": "Highlights an interface impedance mismatch where the agent assumes stateless edits but the tool requires state."
+    },
+    {
+      "proposed_name": "EXACT_MATCH_REPLACE_FAILURE",
+      "proposed_parent": "EDIT_PATCH",
+      "definition": "The agent uses a string-replacement tool but fails because the provided 'old_string' does not perfectly match the file's contents (often due to indentation, trailing whitespace, or missing context lines), resulting in a failed replacement and necessitating a retry.",
+      "observable_unit": "event_sequence",
+      "positive_indicators": [
+        "A `str_replace` or similar command",
+        "Observation indicating 'No replacement was performed' or 'old_str is the same as new_str'",
+        "Immediate retry with slightly adjusted whitespace or context"
+      ],
+      "required_evidence": [
+        "A failed replacement tool call due to string mismatch",
+        "The file actually contains a semantically identical block of code that failed to match due to formatting"
+      ],
+      "exclusions": [
+        "Replacement failing because the code simply doesn't exist in the file (wrong file or wrong hypothesis)"
+      ],
+      "near_neighbor_labels": [
+        "PATCH_CHURN"
+      ],
+      "distinguishing_rule": "EXACT_MATCH_REPLACE_FAILURE is a tool mechanical failure due to strict matching constraints, whereas PATCH_CHURN is successfully applying edits but logically changing the approach multiple times.",
+      "evidence_trace_ids": [
+        "django__django-15863@solver_A"
+      ],
+      "evidence_action_ids": {
+        "django__django-15863@solver_A": [
+          3,
+          4
+        ]
+      },
+      "candidate_interventions": [
+        "FUZZY_MATCH_REPLACEMENT",
+        "GIVE_LINE_NUMBER_EDIT_ACCESS"
+      ],
+      "observability": "HIGH",
+      "notes": "Very common when agents copy-paste code from truncated views and lose exact whitespace padding."
+    },
+    {
+      "proposed_name": "HARNESS_SYNTAX_ERROR_BLOCK",
+      "proposed_parent": "TOOL_ERROR",
+      "definition": "The agent's attempt to use a custom environment edit tool triggers a python SyntaxError sourced from the tool wrapper itself (e.g., 'future feature annotations is not defined' or broken strings inside the environment's testbed scripts), confusing the agent about whether its own patch caused the error.",
+      "observable_unit": "event",
+      "positive_indicators": [
+        "Observation shows `SyntaxError` referencing paths outside the target repository (e.g., `/root/tools/edit_tool/bin/str_replace_editor` or `/root/commands/_split_string`)",
+        "The agent's proposed edit or command was actually valid, but the harness parsing failed."
+      ],
+      "required_evidence": [
+        "A tool error containing a Python SyntaxError that traces back to the environment's execution harness rather than the agent's code."
+      ],
+      "exclusions": [
+        "SyntaxError inside the target repository files caused by a bad patch",
+        "SyntaxError in a script the agent authored itself from scratch"
+      ],
+      "near_neighbor_labels": [
+        "ENVIRONMENT_TOOL_NOT_FOUND"
+      ],
+      "distinguishing_rule": "HARNESS_SYNTAX_ERROR_BLOCK represents a bug in the evaluation environment's tooling that intercepts and fails valid agent actions, whereas ENVIRONMENT_TOOL_NOT_FOUND is the absence of an expected third-party binary.",
+      "evidence_trace_ids": [
+        "django__django-7530@solver_A",
+        "django__django-11951@solver_C",
+        "scikit-learn__scikit-learn-13439@solver_C"
+      ],
+      "evidence_action_ids": {
+        "django__django-7530@solver_A": [
+          1,
+          4
+        ],
+        "django__django-11951@solver_C": [
+          3
+        ],
+        "scikit-learn__scikit-learn-13439@solver_C": [
+          1
+        ]
+      },
+      "candidate_interventions": [
+        "FIX_HARNESS_ESCAPING",
+        "UPGRADE_HARNESS_PYTHON_VERSION"
+      ],
+      "observability": "HIGH",
+      "notes": "This represents execution waste enforced completely by brittle evaluation harnesses, forcing agents to fall back to raw `sed`."
+    }
+  ],
+  "workload_notes": [
+    "Django traces predominantly focus on locating deeply nested files (e.g., in db/migrations or db/models) followed by surgical replacements, and require running specific test modules. Success is gated heavily by finding the correct abstraction layer.",
+    "Pytest traces often require isolating the environment or ensuring runner dependencies like xdist are available. Success is gated by complex mock setups and reproducing highly specific stack traces.",
+    "Scikit-learn traces center around creating Python scripts using numpy/scipy to reproduce bugs with matrices. Success is gated by algorithm understanding and ensuring the reproduction script properly sets random seeds or shapes."
+  ],
+  "uncovered_patterns": [
+    "CUSTOM_TOOL_AUTHORING_LOOP: In several solver_B traces, the agent writes its own `edit_file.py` Python script to bypass bash limitations, but then encounters `UnicodeDecodeError` or logic errors in its own tool, spending turns debugging the tool it just wrote instead of the target repository."
+  ],
+  "needs_unavailable_info": [
+    "Context on whether the agent explicitly realized `str_replace_editor` was broken in trace django__django-7530@solver_A, or if it randomly guessed to use `sed -i` as a fallback. Hidden CoT would clarify recovery reasoning."
+  ],
+  "outcome_collapse_risks": [
+    "Calling an agent 'incapable of string replacement' when in reality the environment's `str_replace_editor` Python script crashes on multi-line strings due to harness bugs."
+  ],
+  "false_positive_examples": [
+    {
+      "trace_id": "django__django-11400@solver_B",
+      "reason": "The agent uses `sed` and `tail` on the same file multiple times. This looks like REDUNDANT_READ, but it is actually proper pagination to explore different functions in a large file."
+    }
+  ],
+  "justified_repeat_examples": [
+    {
+      "trace_id": "matplotlib__matplotlib-26113@solver_C",
+      "reason": "The agent edits the reproduction script multiple times (steps 0, 1, 3, 4). This is justified because the initial script failed to reproduce the bug due to a small random sample size, so the agent iteratively expanded the script to catch the edge case."
+    }
+  ]
+}
