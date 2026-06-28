@@ -37,6 +37,10 @@ _SCRUB = [
     (re.compile(r"\bdeepseek[-_ ]?[\w.]*\b", re.I), "the_model"),
     (re.compile(r"\bmini-swe-agent[-_ ]?[\w.]*\b", re.I), "agent_harness"),
     (re.compile(r"\blive-swe-agent\b", re.I), "agent_harness"),
+    (re.compile(r"\bopenhands\b", re.I), "agent_harness"),
+    (re.compile(r"\bswe-?agent(?:-lm)?\b", re.I), "agent_harness"),
+    (re.compile(r"\bskywork\b", re.I), "agent_harness"),
+    (re.compile(r"\bentropo\b|\bR2E[-_ ]?Gym\b", re.I), "agent_harness"),
     # absolute user paths that include the unixname / data root
     (re.compile(r"/data/users/\w+", ), "/data/USER"),
     (re.compile(r"/home/\w+", ), "/home/USER"),
@@ -93,6 +97,7 @@ def render(trace_id: str, alias: str, cutoff: str="FULL", max_obs_chars=600, max
     # Hard blinding guarantee: assert no vendor/model fingerprint survived the scrub.
     _blob = json.dumps(out).lower()
     for _banned in ("anthropic","claude","opus","sonnet","qwen","gemini","deepseek",
+                    "openhands","skywork","entropo",
                     "/data/users/","/home/dengcchi"):
         if _banned in _blob:
             raise AssertionError(f"BLINDING LEAK survived scrub in {trace_id}: {_banned!r}")
