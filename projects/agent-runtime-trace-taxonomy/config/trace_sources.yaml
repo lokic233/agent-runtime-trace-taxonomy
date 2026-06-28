@@ -64,3 +64,14 @@ trace_sources:
     status: available
     note: Qwen2.5-Coder-32B-Instruct base (SWE-RL tuned, general OpenHands scaffold). REPLACES solver_E
       (SWE-agent-LM-32B outlier) in training per owner decision.
+  entropo_r2e_qwen30b:
+    alias: solver_H
+    path: /data/users/dengcchi/swebench_traces/verified/20250901_entroPO_R2E_QwenCoder30BA3B
+    node: devvm14382
+    layout: openhands_flat
+    harness: openhands(R2E)
+    resolve_rate: 0.535
+    n_trajectories: 488
+    status: candidate
+    note: Qwen3-Coder-30B-A3B (MoE) + EntroPO diversity-preserving RL. Candidate 32B-class replacement;
+      diversity-preservation may reduce looping vs Skywork. Arch=Qwen3 MoE (not 2.5-32B dense).

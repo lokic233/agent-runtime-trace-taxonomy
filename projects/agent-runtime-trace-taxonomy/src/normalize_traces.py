@@ -208,7 +208,7 @@ def _events_from_openhands(messages: list[dict]) -> list[dict]:
                 oc = messages[i+1].get("content")
                 obs = oc if isinstance(oc, str) else json.dumps(oc)
             # map function -> type
-            if fn in ("str_replace_editor","str_replace_based_edit_tool","edit_file","edit"):
+            if fn in ("str_replace_editor","str_replace_based_edit_tool","edit_file","edit","file_editor","oh_editor"):
                 ntype = "EDIT"
             elif fn == "finish":
                 ntype = "FINISH"
@@ -245,11 +245,11 @@ def _split_openhands_action(content: str) -> tuple[Optional[str], Optional[str],
     fn = None; cmd = None
     mfn = re.search(r"<function=(\w+)>", content)
     if mfn: fn = mfn.group(1)
-    # command parameter (execute_bash) or path/new_str (editor)
-    mc = re.search(r"<parameter=command>(.*?)</parameter>", content, re.S)
+    # command parameter (execute_bash) or path/new_str (editor). Harnesses vary: command|cmd.
+    mc = re.search(r"<parameter=(?:command|cmd)>(.*?)</parameter>", content, re.S)
     if mc: cmd = mc.group(1).strip()
     else:
-        mp = re.search(r"<parameter=(?:path|file_text|new_str|old_str)>(.*?)</parameter>", content, re.S)
+        mp = re.search(r"<parameter=(?:path|file_text|new_str|old_str|view_range)>(.*?)</parameter>", content, re.S)
         if mp: cmd = mp.group(1).strip()[:200]
     # thought = text before the first <function=
     thought = None
@@ -354,7 +354,11 @@ def normalize_trace(raw: dict, *, trace_id: str, task_id: str, solver_alias: str
 
 def load_raw(path: str) -> dict:
     with open(path) as f:
-        return json.load(f)
+        raw = json.load(f)
+    # some harnesses (EntroPO/R2E) store the trajectory as a BARE LIST of messages.
+    if isinstance(raw, list):
+        return {"messages": raw, "_bare_list": True}
+    return raw
 
 if __name__ == "__main__":
     import argparse
