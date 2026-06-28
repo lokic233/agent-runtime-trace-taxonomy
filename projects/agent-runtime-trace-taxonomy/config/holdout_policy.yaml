@@ -1,11 +1,10 @@
-policy_version: v2
+policy_version: v3
 decided_by: orchestrator_autonomous
 decided_at: '2026-06-28'
 taxonomy_development_models:
 - claude_4_7
 - claude_opus_4_5
 - claude_sonnet_3_5
-- qwen2_5_code_agent_32b
 heldout_solver_models:
 - claude_4_6
 capability_audit_models:
@@ -37,3 +36,28 @@ v2_change:
   - solver_F (opus-4.6) reserved as the FUTURE model-transfer holdout (annotated good-to-have, NOT in
     this training round).
   reversible: revert to v1 by re-excluding solver_E from the training export.
+v3_change:
+  decided_by: orchestrator autonomous (owner granted full autonomy 2026-06-28)
+  rationale: 'Empirical behavioral-distribution test of ALL downloadable 32B-class sets showed NONE is
+    clean: E(SWE-agent-LM) custom-ACI outlier; G(Skywork) RL-looping (88% dup-calls,44% stag); H(EntroPO)
+    WORST (100% dup,89% stag,89% search). Distances to clean-instruct centroid: E=86,G=90,H=128. Conclusion:
+    tuned-32B traces would contaminate the improvement-opportunity distribution.'
+  CLEAN_TRAINING_COHORT:
+  - claude_4_7
+  - claude_opus_4_5
+  - claude_sonnet_3_5
+  OPEN_WEIGHT_32B_COHORT_separate:
+  - skywork_swe_32b
+  ARCHIVED_not_annotated:
+  - qwen2_5_code_agent_32b
+  - entropo_r2e_qwen30b
+  MODEL_TRANSFER_HOLDOUT:
+  - claude_4_6
+  guarantee: G is reported in a SEPARATE cohort; clean opportunity tables use ONLY A/B/C. E,H never enter
+    annotation.
+separate_cohorts:
+  open_weight_32b:
+  - skywork_swe_32b
+archived_outliers:
+- qwen2_5_code_agent_32b
+- entropo_r2e_qwen30b
