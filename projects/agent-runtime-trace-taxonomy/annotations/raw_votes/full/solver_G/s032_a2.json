@@ -1,0 +1,390 @@
+Looking at this task, I need to annotate 12 blinded traces against the frozen v1 taxonomy. This is a self-contained analytical labeling job. Let me produce the JSON records.
+
+```json
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-10466@solver_G",
+    "task_id": "sphinx-doc__sphinx-10466",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue names the concrete target (Message.__init__ in sphinx/builders/gettext.py plus babel methods) and asks for de-duplication of message locations; fix is a small targeted semantic change, location effectively given.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10614@solver_G",
+    "task_id": "sphinx-doc__sphinx-10614",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE"],
+      "evidence": "Issue concerns SVG link generation in inheritance diagrams; understanding spans sphinx/ext/inheritance_diagram.py and sphinx/ext/graphviz.py (render_dot_html, render_dot, fix_svg_relative_paths) before a targeted edit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10673@solver_G",
+    "task_id": "sphinx-doc__sphinx-10673",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": "Issue: toctree warns on special pages (genindex/modindex/search); fix is a guarded skip in _entries_from_toctree in sphinx/environment/adapters/toctree.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [2, 3]}
+    },
+    "candidate_interventions": ["REQUIRE_TEST_RUN"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-11445@solver_G",
+    "task_id": "sphinx-doc__sphinx-11445",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: rst_prolog suppresses a top :mod: heading; subtle docutils parsing behavior in sphinx/util/rst.py prepend_prolog; oracle is a doc build + grep of generated HTML.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "NONE",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE"},
+      "evidence_action_ids": {"STAGNATION": [0, 1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18, 20]}
+    },
+    "candidate_interventions": ["LOOP_BREAKER", "LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-11510@solver_G",
+    "task_id": "sphinx-doc__sphinx-11510",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: source-read not fired for docutils include; fix requires overriding the Include directive across sphinx/io.py, sphinx/directives/include.py and __init__.py; oracle is a custom build + grep.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"PREMATURE_SCRATCH_REPRO": [5, 6, 7, 8, 9, 10], "EDIT_TOOL_MECHANICAL_FAILURE": [11]}
+    },
+    "candidate_interventions": ["REPRO_SCAFFOLD", "LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7440@solver_G",
+    "task_id": "sphinx-doc__sphinx-7440",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: case-insensitive glossary terms wrongly flagged duplicate; requires tracing make_glossary_term -> note_object in sphinx/domains/std.py and preserving original case.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [8, 9]}
+    },
+    "candidate_interventions": ["REQUIRE_TEST_RUN"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7454@solver_G",
+    "task_id": "sphinx-doc__sphinx-7454",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: link None type in signatures to python docs; touches sphinx/util/typing.py stringify and autodoc rendering; no provided test, agent builds own repro (unclear oracle).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "NONE",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [9, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]}
+    },
+    "candidate_interventions": ["LOOP_BREAKER", "LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7462@solver_G",
+    "task_id": "sphinx-doc__sphinx-7462",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE"],
+      "evidence": "Issue: IndexError pop-from-empty-list on Tuple[()] in sphinx/domains/python.py (line given); trivial guard fix; difficulty is in reproduction/verification.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [5, 7, 9]}
+    },
+    "candidate_interventions": ["ENVIRONMENT_REPAIR", "REPRO_SCAFFOLD"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7590@solver_G",
+    "task_id": "sphinx-doc__sphinx-7590",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": "Issue: C++ user-defined literals fail to parse; requires locating _parse_literal in sphinx/domains/cpp.py and extending suffix handling; issue line pointer was imprecise.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [7, 8]}
+    },
+    "candidate_interventions": ["REQUIRE_TEST_RUN"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7748@solver_G",
+    "task_id": "sphinx-doc__sphinx-7748",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPENSIVE_SUITE"],
+      "evidence": "Issue: support multiple signatures from docstring (autodoc_docstring_signature); multi-method change to sphinx/ext/autodoc/__init__.py with autodoc test suite as oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "MILD"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [7]}
+    },
+    "candidate_interventions": ["ENVIRONMENT_REPAIR"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7757@solver_G",
+    "task_id": "sphinx-doc__sphinx-7757",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": "Issue: wrong default values shown for positional-only args; requires locating visit_arguments in sphinx/pycode/ast.py and fixing defaults indexing alignment.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [7, 8]}
+    },
+    "candidate_interventions": ["REQUIRE_TEST_RUN"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7889@solver_G",
+    "task_id": "sphinx-doc__sphinx-7889",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE"],
+      "evidence": "Issue names mock._make_subclass concatenating str to TypeVar in sphinx/ext/autodoc/mock.py; small fix (str() coercion); location effectively given.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {"FILENAME_SEARCH_THRASH": "MILD"},
+      "evidence_action_ids": {"FILENAME_SEARCH_THRASH": [3, 4, 5]}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

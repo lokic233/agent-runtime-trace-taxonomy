@@ -1,0 +1,630 @@
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-7910@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue identifies napoleon __init__ skip logic and the failing cls lookup for decorated __init__ methods.",
+        "Change is localized to sphinx/ext/napoleon/__init__.py with straightforward behavioral verification."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT",
+        "REDUNDANT_FILE_REREAD"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD",
+        "REDUNDANT_FILE_REREAD": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          3
+        ],
+        "REDUNDANT_FILE_REREAD": [
+          4,
+          5
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7985@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "INTEGRATION",
+        "REPOSITORY_CONTEXT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue targets linkcheck behavior for local links but requires understanding builder path resolution and link output.",
+        "Implementation is centered on sphinx/builders/linkcheck.py with integration-style Sphinx builds."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "ENVIRONMENT_TOOLING"
+      ],
+      "l2_labels": [
+        "HELPER_TOOL_FAILURE_LOOP"
+      ],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {
+        "HELPER_TOOL_FAILURE_LOOP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "HELPER_TOOL_FAILURE_LOOP": [
+          4,
+          6,
+          7,
+          19,
+          24
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8035@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Feature request is to extend existing autodoc private-members option semantics.",
+        "Work centers on option parsing and filtering logic in sphinx/ext/autodoc/__init__.py."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "EDIT_PATCH"
+      ],
+      "l2_labels": [
+        "PATCH_CHURN"
+      ],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [
+          18,
+          19,
+          22,
+          24,
+          27,
+          30,
+          33
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8056@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue concerns napoleon parsing/rendering of multiple parameter names in a NumPy docstring.",
+        "Fix is localized to sphinx/ext/napoleon/docstring.py formatting behavior."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          13
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8120@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "INTEGRATION",
+        "REPOSITORY_CONTEXT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue is about translation loading order for user locale directories versus bundled locale files.",
+        "Requires integration verification with Sphinx build output and fallback behavior."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "ENVIRONMENT_TOOLING"
+      ],
+      "l2_labels": [
+        "DEPENDENCY_SETUP_DRIFT"
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "DEPENDENCY_SETUP_DRIFT": "MILD"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [
+          17,
+          18
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8265@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue is about signature/default rendering for tuple default values.",
+        "Fix requires locating AST unparsing used by signature rendering."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "ENVIRONMENT_TOOLING"
+      ],
+      "l2_labels": [
+        "PREEMPTIVE_HELPER_TOOL_BUILD"
+      ],
+      "primary_bottleneck": "PREEMPTIVE_HELPER_TOOL_BUILD",
+      "severity": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": [
+          2,
+          44
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8269@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue directly targets linkcheck anchor handling and HTTP error reporting.",
+        "Relevant code is localized to sphinx/builders/linkcheck.py."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          2
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8459@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue describes linkcheck HEAD-to-GET fallback behavior for TooManyRedirects.",
+        "Patch is a small change in sphinx/builders/linkcheck.py exception handling."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          1
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8475@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue states linkcheck should retry GET when HEAD raises TooManyRedirects.",
+        "Implementation is localized to linkcheck exception handling."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          1
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8548@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "MULTI_FILE",
+        "CROSS_MODULE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue concerns inherited autodoc attribute docstrings across class/module boundaries.",
+        "Fix touches member discovery and content lookup across autodoc/importer paths."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "ENVIRONMENT_TOOLING"
+      ],
+      "l2_labels": [
+        "HELPER_TOOL_FAILURE_LOOP"
+      ],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {
+        "HELPER_TOOL_FAILURE_LOOP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "HELPER_TOOL_FAILURE_LOOP": [
+          2,
+          15,
+          17,
+          30,
+          31,
+          46,
+          64
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8551@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue concerns Python domain xref resolution behavior for doc field types.",
+        "Fix requires matching doc field xrefs to existing Python-domain context resolution."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "ENVIRONMENT_TOOLING"
+      ],
+      "l2_labels": [
+        "PREEMPTIVE_HELPER_TOOL_BUILD"
+      ],
+      "primary_bottleneck": "PREEMPTIVE_HELPER_TOOL_BUILD",
+      "severity": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": "MILD"
+      },
+      "evidence_action_ids": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": [
+          2
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8593@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue concerns autodoc metadata handling for variables documented via source comments.",
+        "Fix is localized to member filtering metadata extraction in autodoc."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "EDIT_PATCH"
+      ],
+      "l2_labels": [
+        "EDIT_TOOL_MECHANICAL_FAILURE"
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [
+          18,
+          19,
+          21,
+          22
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

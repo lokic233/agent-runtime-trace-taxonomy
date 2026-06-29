@@ -1,0 +1,442 @@
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-7910@solver_G",
+    "task_id": "sphinx-doc__sphinx-7910",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "Trace immediately edits sphinx/ext/napoleon/__init__.py and later runs a targeted napoleon test, indicating a localized code fix with a clear unit oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [2, 3, 5, 7]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7985@solver_G",
+    "task_id": "sphinx-doc__sphinx-7985",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR", "STATELESS", "UNCLEAR_ORACLE"],
+      "evidence": "The task localizes to linkcheck.py after a file search and requires modifying linkcheck behavior in one builder file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCHED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [3, 4, 5]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8035@solver_G",
+    "task_id": "sphinx-doc__sphinx-8035",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "The work targets autodoc option parsing and member filtering in sphinx/ext/autodoc/__init__.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCHED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [2, 3, 7, 8, 9, 10]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8056@solver_G",
+    "task_id": "sphinx-doc__sphinx-8056",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "SHORT_STATE"],
+      "evidence": "The trace focuses on napoleon docstring parsing in sphinx/ext/napoleon/docstring.py with an attempted local Sphinx repro.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT", "STAGNATION"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "DEPENDENCY_SETUP_DRIFT": "MILD",
+        "STAGNATION": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [6, 7, 8, 12, 13, 14, 15, 16],
+        "DEPENDENCY_SETUP_DRIFT": [9],
+        "STAGNATION": [14, 15, 16]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8120@solver_G",
+    "task_id": "sphinx-doc__sphinx-8120",
+    "workload_annotation": {
+      "primary_l1": "MIXED_END_TO_END",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "REPOSITORY_CONTEXT", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": "The trace spans config initialization, command entrypoints, make-mode behavior, and repeated build checks across several Sphinx modules.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "LOW",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PATCH_CHURN", "STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "PATCH_CHURN": "SEVERE",
+        "STAGNATION": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [1, 2, 4, 5, 7, 8, 9, 11, 12, 14, 15, 17, 18, 20, 21, 23, 24, 26, 27, 29, 30, 31, 33, 35, 36],
+        "STAGNATION": [3, 10, 16, 22, 28, 32, 34]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8265@solver_G",
+    "task_id": "sphinx-doc__sphinx-8265",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "REPOSITORY_CONTEXT", "PARTIAL", "UNCLEAR_ORACLE", "STATELESS"],
+      "evidence": "The trace is largely spent finding the relevant source location after inspecting generated HTML output.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [1, 3, 4, 6, 7, 8, 9, 10, 11, 12]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8269@solver_G",
+    "task_id": "sphinx-doc__sphinx-8269",
+    "workload_annotation": {
+      "primary_l1": "MIXED_END_TO_END",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "INTEGRATION", "UNCLEAR_ORACLE", "SHORT_STATE"],
+      "evidence": "The task involves linkcheck behavior in one builder file but requires reproducing HTTP/linkcheck semantics through an integration-style Sphinx build.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "PREMATURE_SCRATCH_REPRO"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [11, 12, 13, 14, 17, 18, 19, 21, 22, 23, 24],
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 2, 3, 4, 5]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8459@solver_G",
+    "task_id": "sphinx-doc__sphinx-8459",
+    "workload_annotation": {
+      "primary_l1": "VERIFICATION_DOMINANT",
+      "l2_attributes": ["TARGETED_UNIT", "INTEGRATION", "EXPENSIVE_SUITE", "UNCLEAR_ORACLE", "STATELESS"],
+      "evidence": "Only build/verification attempts are shown; the agent is trying to restrict a Sphinx build to a small fixture.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "LOW",
+      "candidate_location_found": null,
+      "plausible_patch_found": null,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["REDUNDANT_TEST"],
+      "primary_bottleneck": "REDUNDANT_TEST",
+      "severity": {
+        "REDUNDANT_TEST": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_TEST": [0, 1]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8475@solver_G",
+    "task_id": "sphinx-doc__sphinx-8475",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "The trace identifies linkcheck.py, changes TooManyRedirects handling, and runs the related linkcheck test file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8548@solver_G",
+    "task_id": "sphinx-doc__sphinx-8548",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "PARTIAL", "SHORT_STATE"],
+      "evidence": "The trace concerns autodoc inherited attribute doc handling and searches inspect/autodoc/pycode before testing autodoc-related files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCHED_PARTIALLY_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "REDUNDANT_TEST"],
+      "primary_bottleneck": "REDUNDANT_TEST",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD",
+        "REDUNDANT_TEST": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [6, 9],
+        "REDUNDANT_TEST": [13, 14, 15]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8551@solver_G",
+    "task_id": "sphinx-doc__sphinx-8551",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "PARTIAL", "UNCLEAR_ORACLE", "SHORT_STATE"],
+      "evidence": "The trace spends most actions identifying how Python-domain field type xrefs are created and resolved.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCHED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE",
+      "severity": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [9, 10, 11, 12, 14, 15]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8593@solver_G",
+    "task_id": "sphinx-doc__sphinx-8593",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "REPOSITORY_CONTEXT", "UNCLEAR_ORACLE", "SHORT_STATE"],
+      "evidence": "The trace investigates autodoc member filtering, inspect.getdoc, ModuleAnalyzer, and pycode parser behavior before patching.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCHED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE",
+      "severity": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [21, 24, 25, 26, 27, 28],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [30, 31, 32]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

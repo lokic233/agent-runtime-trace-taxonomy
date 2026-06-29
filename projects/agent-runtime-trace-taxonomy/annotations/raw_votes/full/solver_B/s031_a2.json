@@ -1,0 +1,386 @@
+[
+  {
+    "trace_id": "scikit-learn__scikit-learn-15100@solver_B",
+    "task_id": "scikit-learn__scikit-learn-15100",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue names the exact function strip_accents_unicode and the buggy early-return logic; fix is local reasoning in one file with a clear unit-test oracle (test_strip_accents).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MODERATE"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [1, 2, 3, 4]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-25102@solver_B",
+    "task_id": "scikit-learn__scikit-learn-25102",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_FILE", "INTEGRATION", "CLEAR"],
+      "evidence": "Issue names _SetOutputMixin / _wrap_in_pandas_container and proposes the dtype-preservation design; requires reasoning about the wrap flow and validating across transformers.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-25232@solver_B",
+    "task_id": "scikit-learn__scikit-learn-25232",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_FILE", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Feature-add: thread fill_value from IterativeImputer to SimpleImputer; issue spells out the parameter and the SimpleImputer reference; cross-reads _base.py for the constraint format.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_functionally_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-25747@solver_B",
+    "task_id": "scikit-learn__scikit-learn-25747",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Traceback points directly at _set_output.py _wrap_in_pandas_container index assignment; fix is length-guard reasoning in one file, edge case (expanding transformer) surfaced via tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-25931@solver_B",
+    "task_id": "scikit-learn__scikit-learn-25931",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue links the exact _iforest.py line where score_samples is re-called during fit; requires reasoning about validation flow and a sparse CSC/CSR edge case found via tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-25973@solver_B",
+    "task_id": "scikit-learn__scikit-learn-25973",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Bug is generator exhaustion; the fix requires discovering the existing check_cv convention from _rfe.py/_split.py and applying it in _sequential.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-26194@solver_B",
+    "task_id": "scikit-learn__scikit-learn-26194",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue cites the exact roc_curve line (thresholds[0]+1) and proposes the clip approach; the work is conditional-logic reasoning (probability vs decision-function) in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-26323@solver_B",
+    "task_id": "scikit-learn__scikit-learn-26323",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue points to the ColumnTransformer.set_output method and the failing gather; fix is adding remainder handling in one method.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-9288@solver_B",
+    "task_id": "scikit-learn__scikit-learn-9288",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Determinism bug in k_means_.py n_jobs==1 path; the insight is to generate seeds consistently for both branches — localized reasoning in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10323@solver_B",
+    "task_id": "sphinx-doc__sphinx-10323",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Fix is reordering the filter chain (dedent before prepend/append) in LiteralIncludeReader; requires locating the file then understanding filter-order semantics.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10435@solver_B",
+    "task_id": "sphinx-doc__sphinx-10435",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Whitespace bug in latex.py visit_literal; fix is string/escaping manipulation of the Verbatim-to-sphinxcode replacement, all in one method.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "SEVERE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [5, 18, 20, 22, 25]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10449@solver_B",
+    "task_id": "sphinx-doc__sphinx-10449",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "INTEGRATION"],
+      "evidence": "Class shows spurious 'Return type: None' under autodoc_typehints='description'; fix is a one-line guard in record_typehints, but requires tracing the autodoc-process-signature flow and an integration (doc-build) oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

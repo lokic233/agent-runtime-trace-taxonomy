@@ -1,0 +1,395 @@
+Looking at this task — it's a self-contained annotation job. I'll work through each blinded trace against the frozen v1 taxonomy and emit one schema-shaped record each, citing `[i]` evidence for every waste label and setting exactly one `primary_bottleneck`.
+
+```json
+[
+  {
+    "trace_id": "sympy__sympy-14531@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Issue concerns StrPrinter sympy_integers behavior routing through _print_Half/_print_Rational in one file (str.py); wrong-output (no exception) class of bug.",
+      "unknown_fields": ["MULTI_FILE_vs_SINGLE_FILE_certainty"]
+    },
+    "execution_state": {
+      "phase": "DEBUGGING",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [3, 5, 6, 7, 8, 9]}
+    },
+    "candidate_interventions": ["SUGGEST_STRATEGY_CHANGE", "RECOMMEND_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14711@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT"],
+      "evidence": "Issue is type-check (_check_vector) rejecting a zero Vector in physics/vector/vector.py; reasoning about isinstance/Vector identity dominates.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DEBUGGING",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [9, 10, 11, 13]}
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14976@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is lambdify('mpmath') generating code that fails on symbolic input; fix concentrated in printing/pycode.py MpmathPrinter._print_Symbol.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DEBUGGING",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["STAGNATION", "PATCH_CHURN", "REDUNDANT_TEST"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "PATCH_CHURN": "SEVERE", "REDUNDANT_TEST": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [2, 4, 6, 8, 10, 12, 14, 16, 34],
+        "PATCH_CHURN": [1, 3, 5, 7, 9, 11, 33, 35],
+        "REDUNDANT_TEST": [2, 4, 6, 8, 10]
+      }
+    },
+    "candidate_interventions": ["INTERRUPT_STAGNATION_LOOP", "SUGGEST_STRATEGY_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15017@solver_G",
+    "workload_annotation": {
+      "primary_l1": "VERIFICATION_DOMINANT",
+      "l2_attributes": ["TARGETED_UNIT", "EXPENSIVE_SUITE", "LOCAL_CONTEXT"],
+      "evidence": "Task hinges on a specific failing test (test_ndim_array_initiation, len of rank-0 array); the repo's bin/test runs a broad, slow suite.",
+      "unknown_fields": ["candidate_location_found", "phase_after_cutoff"]
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["RECOMMEND_TARGETED_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15345@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue is Mathematica code printer emitting Max(2,x) instead of Max[x,2]; fix localized to printing/mathematica.py _print_Max / _print_Function dispatch.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DEBUGGING",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "PATCH_CHURN": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {
+        "STAGNATION": [5, 9, 11, 16, 18, 20, 23],
+        "PATCH_CHURN": [4, 6, 7, 8, 10, 12, 17, 19, 22],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [13, 21]
+      }
+    },
+    "candidate_interventions": ["INTERRUPT_STAGNATION_LOOP", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15349@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue gives explicit location (line 489 to_rotation_matrix) in algebras/quaternion.py and a sign error in one matrix element; reasoning about which element.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [9, 10, 11, 12]}
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15599@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT"],
+      "evidence": "Issue provides a diff for Mod.doit Mul-distribution in core/mod.py with a named test (test_arit.py test_Mod); reasoning is applying/verifying the supplied change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15809@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue clearly specifies desired behavior (Min()/Max() no-arg -> ±oo); main effort is grepping to find MinMaxBase.__new__ in functions/elementary/miscellaneous.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [5, 6]}
+    },
+    "candidate_interventions": ["RECOMMEND_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15875@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue is Add._eval_is_zero giving wrong False for complex sums in core/add.py; reasoning about fuzzy is_zero with regression risk to existing assumption tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [5, 6, 11]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15976@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue is MathML symbols ending in digits rendered invisible; investigation spans printing/mathml.py and the fix lands in printing/conventions.py split_super_sub.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [5, 6, 7, 8]}
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16450@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue is posify dropping symbol assumptions; fix in simplify/posify with exploration of core/basic.py and symbol.py to understand Dummy assumption passing.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTING",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {
+        "PATCH_CHURN": [3, 5, 6, 8, 9, 11, 12, 13],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [0, 7, 10],
+        "VERIFICATION_GAP": [13, 14]
+      }
+    },
+    "candidate_interventions": ["RECOMMEND_VERIFICATION", "INTERRUPT_STAGNATION_LOOP"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16597@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue is even-implies-finite in the assumptions engine; reasoning spans core/assumptions.py (_ask) and core/symbol.py (_eval_is_finite).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DEBUGGING",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["STAGNATION", "PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE", "REDUNDANT_TEST"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "PATCH_CHURN": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE", "REDUNDANT_TEST": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [4, 8, 13, 17, 22, 26, 31, 35],
+        "PATCH_CHURN": [2, 3, 6, 11, 12, 16, 20, 21, 25, 29, 30, 34],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [0, 1, 9, 10, 18, 19, 27, 28],
+        "REDUNDANT_TEST": [4, 8, 13, 17, 22, 26, 31, 35]
+      }
+    },
+    "candidate_interventions": ["INTERRUPT_STAGNATION_LOOP", "SUGGEST_STRATEGY_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_claude_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

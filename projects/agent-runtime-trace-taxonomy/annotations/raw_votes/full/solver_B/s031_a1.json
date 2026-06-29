@@ -1,0 +1,504 @@
+[
+  {
+    "sample_id": "scikit-learn__scikit-learn-15100@solver_B_FULL",
+    "trace_id": "scikit-learn__scikit-learn-15100@solver_B",
+    "task_id": "scikit-learn__scikit-learn-15100",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": ["Issue names strip_accents_unicode and gives a minimal Unicode normalization reproducer; relevant implementation and tests are in sklearn/feature_extraction/text.py and test_text.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {
+        "HELPER_TOOL_FAILURE_LOOP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "HELPER_TOOL_FAILURE_LOOP": [1, 2, 3, 4]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-25102@solver_B_FULL",
+    "trace_id": "scikit-learn__scikit-learn-25102@solver_B",
+    "task_id": "scikit-learn__scikit-learn-25102",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_MODULE", "MULTI_FILE", "INTEGRATION", "REPOSITORY_CONTEXT", "PARTIAL", "SILENT_SEMANTIC"],
+      "evidence": ["Issue explicitly points to set_output and _wrap_in_pandas_container, but preserving pandas dtypes across transformers requires reasoning about transformer output contracts and integration behavior."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-25232@solver_B_FULL",
+    "trace_id": "scikit-learn__scikit-learn-25232@solver_B",
+    "task_id": "scikit-learn__scikit-learn-25232",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": ["Issue explicitly asks to add fill_value to IterativeImputer and pass it through to the SimpleImputer used for initial_strategy='constant'."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [1]
+      }
+    },
+    "candidate_interventions": ["REDUCE_CONTEXT"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-25747@solver_B_FULL",
+    "trace_id": "scikit-learn__scikit-learn-25747@solver_B",
+    "task_id": "scikit-learn__scikit-learn-25747",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "INTEGRATION", "LOCAL_CONTEXT", "CLEAR", "SILENT_SEMANTIC"],
+      "evidence": ["Traceback and issue point to pandas transform output wrapping in _set_output.py when FeatureUnion aggregation changes row count."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-25931@solver_B_FULL",
+    "trace_id": "scikit-learn__scikit-learn-25931@solver_B",
+    "task_id": "scikit-learn__scikit-learn-25931",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "SILENT_SEMANTIC"],
+      "evidence": ["Issue identifies IsolationForest.fit calling score_samples on already validated training data when contamination is not auto."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-25973@solver_B_FULL",
+    "trace_id": "scikit-learn__scikit-learn-25973@solver_B",
+    "task_id": "scikit-learn__scikit-learn-25973",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": ["Issue points to SequentialFeatureSelector.cv accepting iterable splits; fix requires preserving reusable CV splits inside SFS."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-26194@solver_B_FULL",
+    "trace_id": "scikit-learn__scikit-learn-26194@solver_B",
+    "task_id": "scikit-learn__scikit-learn-26194",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "PARTIAL", "SILENT_SEMANTIC"],
+      "evidence": ["Issue points to roc_curve threshold construction in sklearn/metrics/_ranking.py and requires preserving semantics for probability estimates versus score outputs."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["PATCH_CHURN", "REDUNDANT_TEST"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MILD",
+        "REDUNDANT_TEST": "MILD"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [12, 13],
+        "REDUNDANT_TEST": [23, 24]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "STOP_REDUNDANT_TESTING"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-26323@solver_B_FULL",
+    "trace_id": "scikit-learn__scikit-learn-26323@solver_B",
+    "task_id": "scikit-learn__scikit-learn-26323",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "INTEGRATION", "LOCAL_CONTEXT", "CLEAR", "SILENT_SEMANTIC"],
+      "evidence": ["Issue explicitly identifies ColumnTransformer.set_output not propagating transform output settings to an estimator-valued remainder."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-9288@solver_B_FULL",
+    "trace_id": "scikit-learn__scikit-learn-9288@solver_B",
+    "task_id": "scikit-learn__scikit-learn-9288",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": ["Issue describes KMeans n_jobs-dependent randomness; relevant implementation is the n_jobs branching in sklearn/cluster/k_means_.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-10323@solver_B_FULL",
+    "trace_id": "sphinx-doc__sphinx-10323@solver_B",
+    "task_id": "sphinx-doc__sphinx-10323",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "SILENT_SEMANTIC"],
+      "evidence": ["Issue concerns literalinclude prepend/append whitespace interaction with dedent; implementation is in Sphinx literalinclude filtering order."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-10435@solver_B_FULL",
+    "trace_id": "sphinx-doc__sphinx-10435@solver_B",
+    "task_id": "sphinx-doc__sphinx-10435",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "INTEGRATION", "LOCAL_CONTEXT", "PARTIAL", "SILENT_SEMANTIC"],
+      "evidence": ["Issue requires changing LaTeX writer handling for highlighted inline code emitted from Pygments Verbatim wrappers."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [18, 20]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-10449@solver_B_FULL",
+    "trace_id": "sphinx-doc__sphinx-10449@solver_B",
+    "task_id": "sphinx-doc__sphinx-10449",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_B",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "SILENT_SEMANTIC"],
+      "evidence": ["Issue concerns autodoc_typehints='description' recording class return annotations from constructor signatures; relevant code is autodoc/typehints.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREEMPTIVE_HELPER_TOOL_BUILD"],
+      "primary_bottleneck": "PREEMPTIVE_HELPER_TOOL_BUILD",
+      "severity": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": [2, 47]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

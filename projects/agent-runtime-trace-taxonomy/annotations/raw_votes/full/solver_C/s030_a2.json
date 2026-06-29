@@ -1,0 +1,434 @@
+meta-ml-expert v2.4.2
+
+```json
+[
+  {
+    "trace_id": "scikit-learn__scikit-learn-13328@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "SILENT_SEMANTIC", "SHORT_STATE"],
+      "evidence": "Issue is a reproducible TypeError on boolean input to HuberRegressor; localization is shallow (huber.py named-ish), but the core difficulty is reasoning out a correct dtype/handling fix that interacts with the solver path and shared LinearModel base.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "labels": [
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "FAILED_RECOVERY",
+          "severity": "SEVERE",
+          "evidence_action_ids": [6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 22, 23, 24, 27]
+        }
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["CONVERGENCE_INTERRUPT", "SCOPE_GUARD", "RUN_TEST_SUITE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-13439@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": "Error 'Pipeline has no len()' names the class directly; fix is adding __len__ to the Pipeline class in a single known file. Trace ends after reproduction + navigation to the class.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-13496@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SEARCH_REQUIRED", "MULTI_FILE", "TARGETED_UNIT", "SHORT_STATE"],
+      "evidence": "Issue names IsolationForest + warm_start; task is exposing a param through __init__/super and adding a unit test. Location discoverable, patch mechanical, oracle is a targeted test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "labels": [
+        {
+          "l1": "SEARCH_LOCALIZATION",
+          "l2": "FILENAME_SEARCH_THRASH",
+          "severity": "MILD",
+          "evidence_action_ids": [0, 1, 2, 10, 13]
+        }
+      ],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH"
+    },
+    "candidate_interventions": ["LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-13779@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT", "SHORT_STATE"],
+      "evidence": "Clear repro: setting an estimator to None breaks the sample_weight support check in VotingClassifier.fit; fix is a guarded None check in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14053@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "SHORT_STATE"],
+      "evidence": "Traceback pins export_text in export.py; the work is reasoning out correct feature_names handling for the single-feature case. Single file, clear error oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "labels": [
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "FAILED_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [5, 6, 8, 9, 10, 11, 12, 13, 14, 16]
+        }
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["CONVERGENCE_INTERRUPT", "RUN_TEST_SUITE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14087@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "SHORT_STATE"],
+      "evidence": "Traceback pins LogisticRegressionCV.fit; difficulty is reasoning about coefs_paths dimensionality and l1_ratios handling under refit=False. Single file, multiple latent failure modes.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "labels": [
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "FAILED_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [5, 6, 8, 9, 10, 11, 12]
+        }
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["CONVERGENCE_INTERRUPT", "RUN_TEST_SUITE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14141@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "CROSS_FILE", "CLEAR", "SHORT_STATE"],
+      "evidence": "Enhancement clearly specifies adding joblib to show_versions and the issue template; the effort is locating the two files (_show_versions.py and ISSUE_TEMPLATE.md). Edits themselves are trivial.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {
+          "l1": "VERIFICATION",
+          "l2": "VERIFICATION_GAP",
+          "severity": "MILD",
+          "evidence_action_ids": [4, 8, 9, 10]
+        }
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["VERIFICATION_PROMPT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14496@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": "Issue points to optics_.py around line 439 with a clear min_samples int-conversion fix; single-file targeted change with an existing test suite as oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14629@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC", "SHORT_STATE"],
+      "evidence": "Issue pins _validation._fit_and_predict; the hard part is reasoning about MultiOutputClassifier handling, and the expected behavior (work vs. raise) is ambiguous, which the trace reflects.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "PATCH_CHURN"],
+      "labels": [
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "FAILED_RECOVERY",
+          "severity": "SEVERE",
+          "evidence_action_ids": [5, 6, 7, 15, 16, 18, 19, 21, 22, 23, 24]
+        },
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "PATCH_CHURN",
+          "severity": "MODERATE",
+          "evidence_action_ids": [8, 9, 10, 11, 12]
+        }
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["CONVERGENCE_INTERRUPT", "SCOPE_GUARD"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14710@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "SHORT_STATE"],
+      "evidence": "Traceback pins _hist_gradient_boosting/gradient_boosting.py; fix is decoding string targets in early-stopping scorer. Two same-named files require disambiguation; single-file patch.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "labels": [
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "PATCH_CHURN",
+          "severity": "MODERATE",
+          "evidence_action_ids": [5, 6, 7, 9, 10]
+        }
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["RUN_TEST_SUITE", "SCOPE_GUARD"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14894@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "SHORT_STATE"],
+      "evidence": "Reproducible 'float division by zero' in svm/base._sparse_fit; difficulty is reasoning about the n_SV==0 edge case in the sparse path. Single file, error oracle via repro.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14983@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "SHORT_STATE"],
+      "evidence": "Issue is missing __repr__ on RepeatedKFold/RepeatedStratifiedKFold in _split.py; named classes, single file, trivial conceptual change verified by repr output.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PATCH_CHURN", "STAGNATION"],
+      "labels": [
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "PATCH_CHURN",
+          "severity": "SEVERE",
+          "evidence_action_ids": [8, 9, 10, 12, 13, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31]
+        },
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "STAGNATION",
+          "severity": "MODERATE",
+          "evidence_action_ids": [13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28]
+        }
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["RUN_TEST_SUITE", "SCOPE_GUARD"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

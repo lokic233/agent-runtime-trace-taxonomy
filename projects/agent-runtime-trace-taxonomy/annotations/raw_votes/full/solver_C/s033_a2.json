@@ -1,0 +1,417 @@
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-7910@solver_C",
+    "task_id": "sphinx-doc__sphinx-7910",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue is a bug report that decorated __init__ methods are not documented by autodoc; the real fix lives in autodoc internals (sphinx/ext/autodoc) and requires reasoning about decorator handling, not just locating a known file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "partial",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [35, 36, 37, 38, 39, 40, 41]}
+    },
+    "candidate_interventions": ["localization_hint", "stop_churn"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7985@solver_C",
+    "task_id": "sphinx-doc__sphinx-7985",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE"],
+      "evidence": "Issue targets linkcheck behavior; target file (sphinx/builders/linkcheck.py) is obvious from the name, so the work is implementing/reasoning about a new local-link check rather than localization.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "partial",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [3, 4, 5, 6, 7]}
+    },
+    "candidate_interventions": ["edit_tool_retry_guidance"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8035@solver_C",
+    "task_id": "sphinx-doc__sphinx-8035",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue requests extending the private-members option to accept a list of names; work is concentrated in autodoc filter_members/option_spec logic and requires careful patch reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "patching",
+      "progress": "partial",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [34, 35, 36, 45, 46, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [13, 17, 26, 27, 31, 32, 47, 48, 53, 58],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [60]
+      }
+    },
+    "candidate_interventions": ["patch_convergence_hint", "edit_tool_retry_guidance"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8056@solver_C",
+    "task_id": "sphinx-doc__sphinx-8056",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue concerns napoleon docstring rendering of multiple parameters on one line; fix is localized to napoleon/docstring.py but requires nontrivial reasoning through consume/format pipeline.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "patching",
+      "progress": "partial",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "STAGNATION": "MODERATE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [22, 25, 26, 29, 30, 42, 43, 45, 46, 57, 58],
+        "STAGNATION": [47, 48, 51, 52, 53, 54, 55, 56, 59, 60, 64, 65],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [67]
+      }
+    },
+    "candidate_interventions": ["patch_convergence_hint", "reread_suppression"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8120@solver_C",
+    "task_id": "sphinx-doc__sphinx-8120",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE"],
+      "evidence": "Issue is that custom locale_dirs translations are not used; the difficulty is tracing the locale-loading flow across config.py, application.py, locale/__init__.py and util/i18n.py to find where user dirs are overridden.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "localizing",
+      "progress": "partial",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "REDUNDANT_FILE_REREAD": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {
+        "STAGNATION": [27, 28, 29, 30, 31, 32, 33, 37, 38, 39, 40, 41, 42, 44, 45, 46, 47],
+        "REDUNDANT_FILE_REREAD": [10, 12, 14, 16, 43],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [17, 18, 19, 21, 22, 23, 25, 28, 30, 32, 34, 37, 39, 40, 42],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [48]
+      }
+    },
+    "candidate_interventions": ["localization_hint", "reread_suppression"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8265@solver_C",
+    "task_id": "sphinx-doc__sphinx-8265",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE"],
+      "evidence": "Issue is incorrect rendering of tuple default arguments in autodoc signatures; the actual stringification lives in util/inspect.py (object_description/stringify_signature) and the agent struggled to localize it across autodoc and util.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "localizing",
+      "progress": "partial",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "REDUNDANT_FILE_REREAD": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {
+        "STAGNATION": [49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79],
+        "REDUNDANT_FILE_REREAD": [44, 46, 52, 58, 60, 66, 68, 74, 76, 41, 49, 55, 63, 71, 79],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [80]
+      }
+    },
+    "candidate_interventions": ["localization_hint", "reread_suppression"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8269@solver_C",
+    "task_id": "sphinx-doc__sphinx-8269",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue is about linkcheck reporting an anchor-not-found instead of the underlying HTTP error; target file is obvious and fix is a small reasoning change in the anchor-check path.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "substantial",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8459@solver_C",
+    "task_id": "sphinx-doc__sphinx-8459",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is that autodoc_type_aliases is ignored when autodoc_typehints='description'; requires reasoning about the interaction in autodoc, and the oracle is non-trivial to set up (full sphinx build).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "patching",
+      "progress": "partial",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {"HELPER_TOOL_FAILURE_LOOP": "SEVERE", "STAGNATION": "MODERATE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {
+        "HELPER_TOOL_FAILURE_LOOP": [22, 23, 24, 25, 26, 30, 33, 34, 35, 38, 42, 43, 44, 49, 50],
+        "STAGNATION": [27, 28, 29, 31, 32, 36, 37, 39, 40, 41, 45, 46, 47, 48, 51],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [52]
+      }
+    },
+    "candidate_interventions": ["tooling_fix", "scratch_repro_guidance"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8475@solver_C",
+    "task_id": "sphinx-doc__sphinx-8475",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue is that linkcheck should retry with GET on TooManyRedirects; target file is obvious and the change is a small exception-handling addition plus import.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "substantial",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [3, 5, 6]}
+    },
+    "candidate_interventions": ["verification_nudge"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8548@solver_C",
+    "task_id": "sphinx-doc__sphinx-8548",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "Issue is inherited-members not working for instance attributes; fix centers on getdoc/inheritance handling in util/inspect.py with supporting logic in autodoc, requiring reasoning about MRO/baseclass lookup.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "substantial",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTEXT_MEMORY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE", "REDUNDANT_FILE_REREAD": "MILD"},
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [22, 23, 24],
+        "REDUNDANT_FILE_REREAD": [9, 11, 18, 29, 30]
+      }
+    },
+    "candidate_interventions": ["edit_tool_retry_guidance"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8551@solver_C",
+    "task_id": "sphinx-doc__sphinx-8551",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue is ambiguous py:class cross-references ignoring the current module; fix is an algorithmic change to find_obj/resolve_xref in domains/python.py requiring careful patch reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "substantial",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {
+        "PATCH_CHURN": [16, 21, 22, 29, 30],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [10, 18, 29]
+      }
+    },
+    "candidate_interventions": ["stop_churn"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8593@solver_C",
+    "task_id": "sphinx-doc__sphinx-8593",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue is that ':meta public:' on a module-level variable is ignored; fix requires reasoning about filter_members metadata handling in autodoc for variables.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "partial",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "VERIFICATION"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "VERIFICATION_GAP"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "REDUNDANT_FILE_REREAD": "SEVERE", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [18, 20, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41],
+        "REDUNDANT_FILE_REREAD": [11, 14, 17, 23, 25, 27, 30, 32, 35, 37, 39, 41, 45, 47],
+        "VERIFICATION_GAP": [48, 50]
+      }
+    },
+    "candidate_interventions": ["reread_suppression", "verification_nudge"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]

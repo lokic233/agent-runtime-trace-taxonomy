@@ -1,50 +1,11 @@
-Looking past the session-boot noise — the actual task is to annotate these 12 blinded solver_B traces against the frozen v1 taxonomy. Here is the JSON array.
-
 ```json
 [
   {
-    "trace_id": "pytest-dev__pytest-8399@solver_B",
-    "workload_annotation": {
-      "primary_l1": "LOCALIZATION_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
-      "evidence": "Issue names the file/line (_pytest/unittest.py:145) and the exact symptom (generated fixture name lacks leading underscore); oracle is the observable `pytest --fixtures` output.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "COMPLETE",
-      "progress": "COMPLETE",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": ["CONTEXT_MEMORY"],
-      "l2_labels": ["CONTEXT_BLOAT"],
-      "primary_bottleneck": "CONTEXT_BLOAT",
-      "labels": [
-        {
-          "l2_label": "CONTEXT_BLOAT",
-          "l1": "CONTEXT_MEMORY",
-          "severity": "MILD",
-          "evidence_action_ids": [2]
-        }
-      ]
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "solver_B-a2",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "scikit-learn__scikit-learn-10297@solver_B",
+    "trace_id": "sympy__sympy-13372@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
-      "evidence": "Issue points at RidgeClassifierCV; task is to propagate store_cv_values through the __init__/super().__init__ inheritance chain in ridge.py. Oracle is a clear repro (constructor accepts kwarg, cv_values_ populated).",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue is a full traceback naming sympy/core/evalf.py and the exact lines; PR even suggests the fix (add else: raise NotImplementedError to the elif chain). Localization explicit; work is confirming and applying the patch.",
       "unknown_fields": []
     },
     "execution_state": {
@@ -58,23 +19,24 @@ Looking past the session-boot noise — the actual task is to annotate these 12 
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "labels": []
+      "severity": {},
+      "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
       "annotator_id": "solver_B-a2",
       "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
+      "timestamp": "2026-06-28",
       "abstain": false,
       "abstain_reason": null
     }
   },
   {
-    "trace_id": "scikit-learn__scikit-learn-10844@solver_B",
+    "trace_id": "sympy__sympy-13480@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
-      "evidence": "Issue cites supervised.py:859 and proposes the algebraically-equivalent overflow-safe form; work is confirming int64 overflow and applying the reformulation.",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Traceback names hyperbolic.py line 590 and the NameError (cotm); a single-token typo fix (cotm->cothm). Location explicit, oracle clear via reproduction.",
       "unknown_fields": []
     },
     "execution_state": {
@@ -88,60 +50,24 @@ Looking past the session-boot noise — the actual task is to annotate these 12 
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "labels": []
+      "severity": {},
+      "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
       "annotator_id": "solver_B-a2",
       "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
+      "timestamp": "2026-06-28",
       "abstain": false,
       "abstain_reason": null
     }
   },
   {
-    "trace_id": "scikit-learn__scikit-learn-10908@solver_B",
+    "trace_id": "sympy__sympy-13551@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
-      "evidence": "Issue explains get_feature_names should call _validate_vocabulary (mirroring transform) in feature_extraction/text.py; oracle is the documented before/after behavior.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "COMPLETE",
-      "progress": "COMPLETE",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": ["ENVIRONMENT_TOOLING"],
-      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
-      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
-      "labels": [
-        {
-          "l2_label": "HELPER_TOOL_FAILURE_LOOP",
-          "l1": "ENVIRONMENT_TOOLING",
-          "severity": "MILD",
-          "evidence_action_ids": [8, 9, 10]
-        }
-      ]
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "solver_B-a2",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "scikit-learn__scikit-learn-11310@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
-      "evidence": "Feature request to expose refit_time_ in BaseSearchCV; requires locating the refit block in _search.py, wrapping it in timing, and documenting the attribute in two classes.",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Product returns a silently wrong symbolic result; no error/traceback. Requires understanding the is_Add branch of _eval_product (sum-of-products bug) and deciding to return None. Reproduction gives a clear numeric oracle (15/2 vs 9/2).",
       "unknown_fields": []
     },
     "execution_state": {
@@ -155,60 +81,24 @@ Looking past the session-boot noise — the actual task is to annotate these 12 
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "labels": []
+      "severity": {},
+      "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
       "annotator_id": "solver_B-a2",
       "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
+      "timestamp": "2026-06-28",
       "abstain": false,
       "abstain_reason": null
     }
   },
   {
-    "trace_id": "scikit-learn__scikit-learn-11578@solver_B",
+    "trace_id": "sympy__sympy-13615@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
-      "evidence": "Issue pinpoints logistic.py L922 and the one-line fix (pass multi_class through to the scoring LogisticRegression); oracle is neg_log_loss matching the multinomial path.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "COMPLETE",
-      "progress": "COMPLETE",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": ["EDIT_PATCH"],
-      "l2_labels": ["PATCH_CHURN"],
-      "primary_bottleneck": "PATCH_CHURN",
-      "labels": [
-        {
-          "l2_label": "PATCH_CHURN",
-          "l1": "EDIT_PATCH",
-          "severity": "MILD",
-          "evidence_action_ids": [9, 11]
-        }
-      ]
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "solver_B-a2",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "scikit-learn__scikit-learn-12585@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
-      "evidence": "Issue supplies the exact one-line guard for base.py clone() (isinstance(estimator, type)); oracle is the repro raising no error.",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Complement of FiniteSet with mixed symbols/numbers silently drops the Interval; requires finding Interval._complement and reasoning about in/out/unknown membership. One evidence-driven regression cycle (broke Interval-Interval at [20-22], restored fallback at [24]) which converged.",
       "unknown_fields": []
     },
     "execution_state": {
@@ -222,23 +112,24 @@ Looking past the session-boot noise — the actual task is to annotate these 12 
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "labels": []
+      "severity": {},
+      "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
       "annotator_id": "solver_B-a2",
       "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
+      "timestamp": "2026-06-28",
       "abstain": false,
       "abstain_reason": null
     }
   },
   {
-    "trace_id": "scikit-learn__scikit-learn-12682@solver_B",
+    "trace_id": "sympy__sympy-13647@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
-      "evidence": "Open-ended request to expose max_iter for Lasso in SparseCoder; no exact location or fix given, and the convergence warning was not reproducible initially (unclear oracle). Solver threaded transform_max_iter through mixin + three classes in dict_learning.py.",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "col_insert produces a silently shifted matrix (no error). Requires locating _eval_col_insert and correcting the index formula (j-pos-other.cols -> j-other.cols). Clear reproduction oracle.",
       "unknown_fields": []
     },
     "execution_state": {
@@ -252,23 +143,24 @@ Looking past the session-boot noise — the actual task is to annotate these 12 
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "labels": []
+      "severity": {},
+      "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
       "annotator_id": "solver_B-a2",
       "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
+      "timestamp": "2026-06-28",
       "abstain": false,
       "abstain_reason": null
     }
   },
   {
-    "trace_id": "scikit-learn__scikit-learn-12973@solver_B",
+    "trace_id": "sympy__sympy-13757@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
-      "evidence": "Issue describes the copy_X duplication in LassoLarsIC.fit and the proposed copy_X=None + deprecation approach; oracle is consistency between __init__ and fit values.",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "x*Poly(x) fails to evaluate (no error, just unevaluated Mul). Required cross-file understanding of the call_highest_priority/_op_priority dispatch (expr.py, decorators.py, polytools.py) to conclude Poly needs an _op_priority attribute.",
       "unknown_fields": []
     },
     "execution_state": {
@@ -282,97 +174,24 @@ Looking past the session-boot noise — the actual task is to annotate these 12 
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "labels": []
+      "severity": {},
+      "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
       "annotator_id": "solver_B-a2",
       "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
+      "timestamp": "2026-06-28",
       "abstain": false,
       "abstain_reason": null
     }
   },
   {
-    "trace_id": "scikit-learn__scikit-learn-13124@solver_B",
+    "trace_id": "sympy__sympy-13798@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
-      "evidence": "Bug in StratifiedKFold._make_test_folds shuffle semantics (order-only shuffle); requires understanding the per-class KFold shuffling and fixing in-stratum sample shuffling in _split.py. Oracle is a clear repro (folds differ across seeds).",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "COMPLETE",
-      "progress": "COMPLETE",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": ["ENVIRONMENT_TOOLING"],
-      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
-      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
-      "labels": [
-        {
-          "l2_label": "HELPER_TOOL_FAILURE_LOOP",
-          "l1": "ENVIRONMENT_TOOLING",
-          "severity": "MODERATE",
-          "evidence_action_ids": [4, 8, 17]
-        }
-      ]
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "solver_B-a2",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "scikit-learn__scikit-learn-13135@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
-      "evidence": "Issue traces KBinsDiscretizer kmeans failure to unsorted bin_edges and the fix region (_discretization.py); oracle is fit_transform not raising on the given example.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "COMPLETE",
-      "progress": "COMPLETE",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": ["ENVIRONMENT_TOOLING"],
-      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
-      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
-      "labels": [
-        {
-          "l2_label": "HELPER_TOOL_FAILURE_LOOP",
-          "l1": "ENVIRONMENT_TOOLING",
-          "severity": "MILD",
-          "evidence_action_ids": [6, 7, 8]
-        }
-      ]
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "solver_B-a2",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "scikit-learn__scikit-learn-13142@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
-      "evidence": "Bug where fit_predict disagrees with predict when n_init>1; requires reasoning that the final e-step runs before best_params are set in mixture/base.py, then reordering. Oracle is array equality across n_init.",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Feature request to allow arbitrary mul_symbol in latex(). Area named (latex.py mul_symbol_table); change is dict[] -> dict.get(x, x) plus docstring. Existing tests give clear oracle.",
       "unknown_fields": []
     },
     "execution_state": {
@@ -386,13 +205,169 @@ Looking past the session-boot noise — the actual task is to annotate these 12 
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "labels": []
+      "severity": {},
+      "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
       "annotator_id": "solver_B-a2",
       "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13852@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "polylog(2,1/2) silently fails to evaluate and expand_func emits spurious exp_polar. Requires math reasoning in zeta_functions.py (add eval special value, simplify expand_func, update docstring). Verifiable by diff/evalf.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_B-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13877@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Invalid NaN comparison from det(); traceback points into matrices.py bareiss. Hard part is tracing the algorithm to the discarded cancel() result (cancel(ret) -> ret = cancel(ret)). Reproduction gives clear oracle; scratch debug scripts were post-localization tracing (each step new evidence).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_B-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13878@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "CLEAR"],
+      "evidence": "Broad task: precompute _cdf for ~12 distributions in crv_types.py plus dispatch handling in crv.py. Mostly distinct per-distribution math work; oracle is differentiate-CDF-equals-PDF. Large event count is justified by scope, not thrash.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_B-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13974@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Powers of TensorProduct silently not simplified (1x1**2). Requires reasoning in tensorproduct.py Pow branch and the Mul(...,evaluate=False) trick. Two evidence-driven fix cycles (recursion at [11], then accidental Mul-branch removal at [21]) which both converged via existing tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_B-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14248@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_CUTTING", "MULTI_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "MatrixSymbol differences print as (-1)* sums across three printers (str, pretty, latex) plus core _coeff_isneg. Cross-cutting change touching 4 files; verifiable against printer tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [51, 53, 55, 68, 74]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_B-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
       "abstain": false,
       "abstain_reason": null
     }

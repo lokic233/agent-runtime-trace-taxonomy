@@ -1,0 +1,394 @@
+[
+  {
+    "trace_id": "sympy__sympy-13372@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue names sympy/core/evalf.py and traceback points to evalf variable initialization around reprec/imprec.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13480@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue traceback directly names hyperbolic.py and the undefined cotm variable near coth evaluation.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREEMPTIVE_HELPER_TOOL_BUILD"],
+      "primary_bottleneck": "PREEMPTIVE_HELPER_TOOL_BUILD",
+      "severity": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": [1, 11]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13551@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "PARTIAL"],
+      "evidence": "Product symbolic evaluation gives mathematically wrong result; fix requires understanding Product._eval_product behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [3]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13615@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "PARTIAL"],
+      "evidence": "Complement behavior with mixed symbolic and numeric FiniteSet elements requires reasoning about set membership uncertainty.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13647@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Issue identifies Matrix.col_insert; relevant implementation is a small index calculation in matrix code.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13757@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue concerns binary-operation dispatch for Poly multiplication; solution depends on SymPy operation priority behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREEMPTIVE_HELPER_TOOL_BUILD"],
+      "primary_bottleneck": "PREEMPTIVE_HELPER_TOOL_BUILD",
+      "severity": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": [2, 40]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13798@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue names latex mul_symbol behavior; implementation is localized to latex printer settings.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13852@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Polylog special-function expansion and special-value evaluation require mathematical formula reasoning in zeta_functions.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13877@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Traceback points to Matrix determinant Bareiss implementation and invalid NaN comparison during symbolic determinant calculation.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [2]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13878@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CROSS_CUTTING", "LOCAL_CONTEXT", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Task requires adding CDF formulas across many continuous distributions implemented in crv_types.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13974@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Issue identifies TensorProduct simplification behavior; fix requires handling Pow cases inside tensor_product_simp.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14248@solver_B",
+    "workload_annotation": {
+      "primary_l1": "MIXED_END_TO_END",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "REPOSITORY_CONTEXT", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Issue spans str, pretty, and latex printers for MatrixSymbol difference formatting, requiring coordinated printer changes.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREEMPTIVE_HELPER_TOOL_BUILD"],
+      "primary_bottleneck": "PREEMPTIVE_HELPER_TOOL_BUILD",
+      "severity": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": [2, 93]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_codex",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

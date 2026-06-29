@@ -1,0 +1,380 @@
+I'll work through the task directly — this is a self-contained annotation task with a strict JSON-only output contract.
+
+Analyzing all 12 blinded traces against the FROZEN v1 taxonomy, applying the boundary rules (helper-build = harness norm → omit; prefer fewer well-evidenced labels; cite [i] for every label; one primary_bottleneck).
+
+```json
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-10466@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue names the exact file sphinx/builders/gettext.py and even proposes a dedup solution; remaining work is deciding placement of dedup (__init__ vs __iter__) and verifying."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {"CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"CONTEXT_BLOAT": [1]}
+    },
+    "candidate_interventions": ["use_scoped_reads"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10614@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": ["Issue describes 404 SVG links in nested dirs; fix requires reasoning about relative path math between current doc, _images/, and target, coordinating with graphviz.py fix_svg_relative_paths."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {"CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"CONTEXT_BLOAT": [2]}
+    },
+    "candidate_interventions": ["use_scoped_reads"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10673@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "INTEGRATION"],
+      "evidence": ["Issue requests toctree accept genindex/modindex/search; crux is locating that the warning fires in two places (directives/other.py AND environment/adapters/toctree.py)."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {"CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"CONTEXT_BLOAT": [4]}
+    },
+    "candidate_interventions": ["use_scoped_reads"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-11445@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": ["Issue: rst_prolog drops a domain-directive heading; diagnosis requires understanding that docinfo_re matches the :mod: role and the inserted blank line separates title from underline; fix localized to util/rst.py prepend_prolog."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {"CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"CONTEXT_BLOAT": [4]}
+    },
+    "candidate_interventions": ["use_scoped_reads"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-11510@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "SILENT_SEMANTIC"],
+      "evidence": ["Issue: source-read event not applied to included files; requires understanding event system (events.py, io.py) and the docutils Include directive flow in directives/other.py to decide where to hook."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {"CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"CONTEXT_BLOAT": [3]}
+    },
+    "candidate_interventions": ["use_scoped_reads"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7440@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": ["Issue: glossary treats MySQL/mysql as duplicates; requires reasoning about termtext.lower() storage vs case-insensitive lookup and what the warning should display; fix localized to domains/std.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7454@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "SILENT_SEMANTIC"],
+      "evidence": ["Issue: None clickable in description mode but not signature mode; essential difficulty is tracing the rendering path across typehints.py/inspect.py/domains/python.py/intersphinx.py to find the divergence point (make_xref reftype + builtin_resolver)."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7462@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue traceback names domains/python.py unparse result.pop() for empty tuple Tuple[()]; fix is a guarded pop. Location and cause given explicitly."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7590@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_FILE", "SEARCH_REQUIRED"],
+      "evidence": ["Issue links cpp.py _parse_literal (~line 4770) and requests UDL support; feature addition spanning a new AST class plus a regex in util/cfamily.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7748@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "PARTIAL"],
+      "evidence": ["Feature request: autodoc_docstring_signature should pick up multiple overloaded signatures; requires modifying _find_signature in ext/autodoc/__init__.py to loop consecutive signature lines and leverage existing multi-line directive rendering."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7757@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": ["Clear repro (foo(a, b=0, /, c=1) loses defaults); fix requires correct right-aligned defaults index math across posonlyargs+args in util/inspect.py signature_from_str."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7889@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": ["Issue traceback names mock._make_subclass concatenating str to TypeVar; fix is to coerce __getitem__ key via str() in ext/autodoc/mock.py. Location and cause explicit."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

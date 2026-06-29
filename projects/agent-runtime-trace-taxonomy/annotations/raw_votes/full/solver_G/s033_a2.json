@@ -1,0 +1,454 @@
+Looking at this, it's a self-contained data-annotation task: produce schema-valid JSON annotation records for each blinded trace using the frozen taxonomy. Outputting JSON only.
+
+```json
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-7910@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SEARCH_REQUIRED"],
+      "evidence": "Issue is a localized behavior fix in napoleon skip/member logic; solver edits one file (napoleon/__init__.py) and relevant unit tests (test_ext_napoleon.py) exist as an oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "labels": [
+        {
+          "l2": "ENVIRONMENT_BLOCKED",
+          "l1": "ENVIRONMENT_TOOLING",
+          "severity": "MODERATE",
+          "evidence_action_ids": [2, 3, 4, 5, 6, 7]
+        }
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7985@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is a feature/behavior change to local-link checking in a single known file (builders/linkcheck.py); located immediately, core difficulty is the patch logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {
+          "l2": "VERIFICATION_GAP",
+          "l1": "VERIFICATION",
+          "severity": "MODERATE",
+          "evidence_action_ids": [3, 4, 5]
+        }
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["VERIFICATION_NUDGE"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8035@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED"],
+      "evidence": "Issue extends :private-members: to accept a list; edits concentrated in autodoc/__init__.py (option_spec on two documenters + filter_members), requiring code reasoning, not broad localization.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {
+          "l2": "VERIFICATION_GAP",
+          "l1": "VERIFICATION",
+          "severity": "MODERATE",
+          "evidence_action_ids": [2, 3, 9, 10]
+        }
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["VERIFICATION_NUDGE"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8056@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is a parsing bug in numpy-style multi-name parameter handling within napoleon/docstring.py; localized via search then patched, oracle requires a doc build to observe rendering.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "labels": [
+        {
+          "l2": "STAGNATION",
+          "l1": "CONTROL_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [13, 14, 15, 16]
+        }
+      ],
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["VERIFICATION_NUDGE", "TEST_HARNESS_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8120@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE"],
+      "evidence": "Issue concerns locale/locale_dirs override handling; the relevant code path spans config.py and cmd/{build,make_mode}.py, so finding the correct site is the dominant challenge.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "EXPLORATION",
+      "progress": "NONE",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {
+          "l2": "STAGNATION",
+          "l1": "CONTROL_RECOVERY",
+          "severity": "SEVERE",
+          "evidence_action_ids": [2, 3, 9, 10, 15, 16, 21, 22, 27, 28, 33, 34]
+        },
+        {
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "l1": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [4, 11, 17, 26, 35, 36]
+        }
+      ],
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["LOCALIZATION_HINT", "SEARCH_REDIRECT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8265@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE"],
+      "evidence": "Issue concerns autodoc docstring rendering; solver must locate the rendering source within the sphinx/ext/autodoc package, complicated by an unfamiliar workspace layout.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "EARLY",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "labels": [
+        {
+          "l2": "FILENAME_SEARCH_THRASH",
+          "l1": "SEARCH_LOCALIZATION",
+          "severity": "MODERATE",
+          "evidence_action_ids": [6, 7, 8, 9, 10, 11]
+        }
+      ],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH"
+    },
+    "candidate_interventions": ["LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8269@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue asks linkcheck to surface HTTP errors before anchor errors; fix is localized to builders/linkcheck.py but the oracle is network/repro-dependent, making verification fragile.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "PREMATURE_SCRATCH_REPRO"],
+      "labels": [
+        {
+          "l2": "FAILED_RECOVERY",
+          "l1": "CONTROL_RECOVERY",
+          "severity": "SEVERE",
+          "evidence_action_ids": [11, 12, 13, 14, 15, 16, 17, 18, 23, 24]
+        },
+        {
+          "l2": "PREMATURE_SCRATCH_REPRO",
+          "l1": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [0, 1, 2, 4]
+        }
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["INJECT_FAILING_TEST", "VERIFICATION_NUDGE"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8459@solver_G",
+    "workload_annotation": {
+      "primary_l1": "VERIFICATION_DOMINANT",
+      "l2_attributes": ["EXPENSIVE_SUITE"],
+      "evidence": "Only two events visible; the observable activity is a full-repository sphinx-build (300+ sources) and an attempt to isolate it. Issue text is truncated, so workload is inferred from the expensive build-verification structure with low confidence.",
+      "unknown_fields": ["primary_l1_low_confidence", "issue_text_truncated"]
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "EARLY",
+      "candidate_location_found": null,
+      "plausible_patch_found": null,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["REDUNDANT_TEST"],
+      "labels": [
+        {
+          "l2": "REDUNDANT_TEST",
+          "l1": "VERIFICATION",
+          "severity": "MILD",
+          "evidence_action_ids": [0, 1]
+        }
+      ],
+      "primary_bottleneck": "REDUNDANT_TEST"
+    },
+    "candidate_interventions": ["TEST_HARNESS_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": "Only 2 events shown; labels are low-confidence but a near-identical re-run is observable."
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8475@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION"],
+      "evidence": "Issue points to handling requests.TooManyRedirects in builders/linkcheck.py; location is explicit, fix is a small import + except block, and a targeted test (test_build_linkcheck.py) exists.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8548@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "SEARCH_REQUIRED"],
+      "evidence": "Issue is autodoc inherited-members docstring caching across base-class namespaces; relevant code spans util/inspect.py, autodoc/__init__.py and pycode/__init__.py, requiring reasoning about cache keys.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": "Minor test-runner fumbling (unittest before pytest) was quickly corrected and confirmed the only failure pre-existing; no taxonomy label cleanly fits, so no waste asserted."
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8551@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED"],
+      "evidence": "Issue is unqualified :type:/:rtype: resolution (refspecific) in domains/python.py; fix is in type_to_xref within one file, but requires tracing the xref-resolution flow.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "labels": [
+        {
+          "l2": "SEARCH_WITHOUT_NEW_EVIDENCE",
+          "l1": "SEARCH_LOCALIZATION",
+          "severity": "SEVERE",
+          "evidence_action_ids": [0, 2, 4, 5, 6, 9, 10, 11, 12, 14, 27, 28]
+        }
+      ],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE"
+    },
+    "candidate_interventions": ["SEARCH_REDIRECT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8593@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "SEARCH_REQUIRED"],
+      "evidence": "Issue is autodoc documenting a private module variable marked '#: :meta public:'; relevant logic spans importer.py, autodoc/__init__.py, util/inspect.py and pycode parsing, requiring reasoning about filter_members metadata.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTEXT_MEMORY"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "REDUNDANT_FILE_REREAD"],
+      "labels": [
+        {
+          "l2": "SEARCH_WITHOUT_NEW_EVIDENCE",
+          "l1": "SEARCH_LOCALIZATION",
+          "severity": "MODERATE",
+          "evidence_action_ids": [21, 24, 25, 28]
+        },
+        {
+          "l2": "REDUNDANT_FILE_REREAD",
+          "l1": "CONTEXT_MEMORY",
+          "severity": "MILD",
+          "evidence_action_ids": [26, 27]
+        }
+      ],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE"
+    },
+    "candidate_interventions": ["SEARCH_REDIRECT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

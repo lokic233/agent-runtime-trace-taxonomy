@@ -1,0 +1,558 @@
+[
+  {
+    "sample_id": "sphinx-doc__sphinx-9602@solver_C:FULL",
+    "trace_id": "sphinx-doc__sphinx-9602@solver_C",
+    "task_id": "sphinx-doc__sphinx-9602",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Issue concerns Sphinx Python-domain rendering/resolution of typing.Literal annotations; target implementation had to be found from type annotation behavior."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTEXT_MEMORY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE", "CONTEXT_BLOAT"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "PATCH_CHURN": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD",
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 2, 3, 4, 5, 13, 14, 15, 16, 17],
+        "PATCH_CHURN": [8, 9, 10, 11],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [7, 28, 32],
+        "CONTEXT_BLOAT": [35]
+      }
+    },
+    "candidate_interventions": ["DELAY_EDIT", "LIMIT_PATCH_SCOPE", "REDUCE_CONTEXT"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-9658@solver_C:FULL",
+    "trace_id": "sphinx-doc__sphinx-9658@solver_C",
+    "task_id": "sphinx-doc__sphinx-9658",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "TARGETED_UNIT", "REPOSITORY_CONTEXT", "CLEAR"],
+      "evidence": ["Autodoc behavior for mocked/inherited classes requires locating class documenter and inspection/mock utilities, then validating with autodoc tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PATCH_CHURN"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "PATCH_CHURN": "MILD"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [9, 10, 11, 13, 17],
+        "PATCH_CHURN": [14, 15, 18, 19]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-9673@solver_C:FULL",
+    "trace_id": "sphinx-doc__sphinx-9673@solver_C",
+    "task_id": "sphinx-doc__sphinx-9673",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "REPOSITORY_CONTEXT", "PARTIAL"],
+      "evidence": ["Sphinx autodoc/nitpicky behavior task with likely localized implementation but requiring a targeted reproduction and source lookup."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "REGRESSING",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE", "PATCH_CHURN"],
+      "primary_bottleneck": "BUDGET_EXHAUSTION_NONCONVERGENCE",
+      "severity": {
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "STAGNATION": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE",
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 2, 3, 4, 5, 18, 19, 33, 34],
+        "STAGNATION": [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [35],
+        "PATCH_CHURN": [10, 11, 21, 27, 33, 34]
+      }
+    },
+    "candidate_interventions": ["CONSTRAIN_SEARCH", "DELAY_EDIT", "LIMIT_PATCH_SCOPE", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-9698@solver_C:FULL",
+    "trace_id": "sphinx-doc__sphinx-9698@solver_C",
+    "task_id": "sphinx-doc__sphinx-9698",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Property index formatting requires locating where Python-domain objects and index entries are generated across Sphinx domain and index adapter files."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "SEARCH_LOCALIZATION", "CONTROL_RECOVERY", "VERIFICATION"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "SEARCH_WITHOUT_NEW_EVIDENCE", "STAGNATION", "VERIFICATION_GAP"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "SEVERE",
+        "STAGNATION": "SEVERE",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [14, 19, 21, 25, 29, 34, 38, 42, 44, 45],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [15, 17, 18, 20, 22, 24, 30, 32, 33, 39, 41],
+        "STAGNATION": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45],
+        "VERIFICATION_GAP": [46, 47, 48]
+      }
+    },
+    "candidate_interventions": ["NARROW_RETRIEVAL", "CONSTRAIN_SEARCH", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-9711@solver_C:FULL",
+    "trace_id": "sphinx-doc__sphinx-9711@solver_C",
+    "task_id": "sphinx-doc__sphinx-9711",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": ["needs_extensions version comparison points to Sphinx extension/config handling with a narrow expected implementation site."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [6, 7]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-11618@solver_C:FULL",
+    "trace_id": "sympy__sympy-11618@solver_C",
+    "task_id": "sympy__sympy-11618",
+    "repo": "sympy",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["SymPy Point.distance dimensionality behavior is a localized geometry method fix with a simple reproduction oracle."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [3, 4, 5]
+      }
+    },
+    "candidate_interventions": ["CONSTRAIN_SEARCH"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-12096@solver_C:FULL",
+    "trace_id": "sympy__sympy-12096@solver_C",
+    "task_id": "sympy__sympy-12096",
+    "repo": "sympy",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Nested implemented_function evalf behavior points to Function._eval_evalf and requires a localized semantic patch."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [9, 10, 11]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-12419@solver_C:FULL",
+    "trace_id": "sympy__sympy-12419@solver_C",
+    "task_id": "sympy__sympy-12419",
+    "repo": "sympy",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_MODULE_CONTEXT", "TARGETED_UNIT", "PARTIAL", "SILENT_SEMANTIC"],
+      "evidence": ["Symbolic summation over matrix identity elements requires understanding assumptions, matrix indexing, and concrete summation semantics across modules."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "RECOVER",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "PREMATURE_SCRATCH_REPRO", "PATCH_CHURN", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "MODERATE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "PATCH_CHURN": "SEVERE",
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [3, 5, 6, 8, 10, 11, 13, 15, 20, 21, 23, 25, 27, 29, 31, 32, 34, 37],
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 40, 41, 43, 44, 45],
+        "PATCH_CHURN": [43, 44, 45, 47, 48, 49, 51, 53, 55, 56, 57, 59, 60, 62, 63, 64, 65, 67, 68, 69, 70, 72, 73, 74, 75, 77, 78, 79],
+        "FAILED_RECOVERY": [42, 46, 50, 52, 54, 58, 61, 66, 71, 76],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [80]
+      }
+    },
+    "candidate_interventions": ["CONSTRAIN_SEARCH", "DELAY_EDIT", "LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-12481@solver_C:FULL",
+    "trace_id": "sympy__sympy-12481@solver_C",
+    "task_id": "sympy__sympy-12481",
+    "repo": "sympy",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Permutation constructor behavior for cycle input is localized to combinatorics/permutations.py with a direct reproduction."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE", "PATCH_CHURN"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [5, 6, 8, 9, 10, 17, 21],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [13, 19, 24, 25, 26],
+        "PATCH_CHURN": [19, 22, 24, 30, 32, 34]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-12489@solver_C:FULL",
+    "trace_id": "sympy__sympy-12489@solver_C",
+    "task_id": "sympy__sympy-12489",
+    "repo": "sympy",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Permutation subclass construction points to Permutation.__new__/_af_new object construction details in a single implementation file."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "RECOVER",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTEXT_MEMORY", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE",
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [24, 25, 29, 41, 43, 45, 49, 50, 57, 59],
+        "REDUNDANT_FILE_REREAD": [23, 40, 42, 44, 48, 56, 58, 60],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [10, 12, 13, 26, 28, 51],
+        "FAILED_RECOVERY": [19, 33, 36, 39, 54],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [62]
+      }
+    },
+    "candidate_interventions": ["CONSTRAIN_SEARCH", "LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13031@solver_C:FULL",
+    "trace_id": "sympy__sympy-13031@solver_C",
+    "task_id": "sympy__sympy-13031",
+    "repo": "sympy",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Matrix.hstack behavior for zero-width matrices is a localized matrix helper issue with direct shape-based reproduction."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13091@solver_C:FULL",
+    "trace_id": "sympy__sympy-13091@solver_C",
+    "task_id": "sympy__sympy-13091",
+    "repo": "sympy",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_CUTTING", "TARGETED_UNIT", "HIDDEN_TEST_DOMINANT", "CLEAR"],
+      "evidence": ["Changing Basic.__eq__ semantics is a narrow code location but has cross-cutting equality behavior and broad downstream test risk."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "RECOVER",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY", "PATCH_CHURN"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD",
+        "FAILED_RECOVERY": "SEVERE",
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [2, 20],
+        "FAILED_RECOVERY": [5, 9, 12, 14, 16, 21, 25, 28, 31],
+        "PATCH_CHURN": [23, 24, 27, 30]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

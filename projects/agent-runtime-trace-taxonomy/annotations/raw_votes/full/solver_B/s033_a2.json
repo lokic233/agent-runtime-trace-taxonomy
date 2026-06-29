@@ -1,0 +1,386 @@
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-7910@solver_B",
+    "task_id": "sphinx-doc__sphinx-7910",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "SHORT_STATE"],
+      "evidence": "Issue names the offending commit, file (sphinx/ext/napoleon/__init__.py _skip_member) and the exact line `cls = obj.__globals__[cls_path]`; localization is given, the work is reasoning about the decorated-method/__globals__ fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severities": {"CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"CONTEXT_BLOAT": [3, 4, 5]}
+    },
+    "candidate_interventions": ["bound_read_size"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7985@solver_B",
+    "task_id": "sphinx-doc__sphinx-7985",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": "Feature request to make linkcheck check local/internal links; no existing oracle for the behavior, requires designing path-resolution logic in sphinx/builders/linkcheck.py (doc2path/srcdir).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTEXT_MEMORY"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "CONTEXT_BLOAT"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MODERATE", "CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [6, 7, 19, 24], "CONTEXT_BLOAT": [3]}
+    },
+    "candidate_interventions": ["provide_reliable_file_tools"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8035@solver_B",
+    "task_id": "sphinx-doc__sphinx-8035",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "LONG_STATE"],
+      "evidence": "Feature: make :private-members: accept arguments like :members:. Work is mirroring the special-members pattern (members_option, merge fn, filter logic) across ModuleDocumenter/ClassDocumenter in autodoc/__init__.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8056@solver_B",
+    "task_id": "sphinx-doc__sphinx-8056",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "SHORT_STATE"],
+      "evidence": "Bug: napoleon renders combined params (`x1, x2 : array_like`) wrong; fix is in _format_docutils_params in sphinx/ext/napoleon/docstring.py to split multiple names.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severities": {"CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"CONTEXT_BLOAT": [3]}
+    },
+    "candidate_interventions": ["bound_read_size"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8120@solver_B",
+    "task_id": "sphinx-doc__sphinx-8120",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT", "UNCLEAR_ORACLE"],
+      "evidence": "Bug: user locale/.po overrides ignored. Symptom described, root cause not given; core difficulty is pinpointing the locale_dirs ordering / gettext fallback in application.py _init_i18n. Final change is a one-line reorder.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {"DEPENDENCY_SETUP_DRIFT": "MILD"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [17, 18]}
+    },
+    "candidate_interventions": ["preinstall_build_dependencies"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8265@solver_B",
+    "task_id": "sphinx-doc__sphinx-8265",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "Bug: tuple default `(1,1,1)` rendered without parens. Traced python.py -> util/inspect.py -> pycode/ast.py visit_Tuple; fix requires edge-case reasoning (empty/single-element tuple, subscript context).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8269@solver_B",
+    "task_id": "sphinx-doc__sphinx-8269",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "SHORT_STATE"],
+      "evidence": "Bug: linkcheck reports 'Anchor not found' instead of HTTP error; issue effectively describes the fix (call raise_for_status in the anchor branch of linkcheck.py).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severities": {"CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"CONTEXT_BLOAT": [2]}
+    },
+    "candidate_interventions": ["bound_read_size"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8459@solver_B",
+    "task_id": "sphinx-doc__sphinx-8459",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "Bug: autodoc_type_aliases ignored with typehints='description'. Core work is tracing signature/get_type_hints flow across inspect.py/typing.py to find record_typehints in typehints.py doesn't pass type_aliases; fix is one line.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8475@solver_B",
+    "task_id": "sphinx-doc__sphinx-8475",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "SHORT_STATE"],
+      "evidence": "Bug/feature: extend linkcheck GET fallback to catch TooManyRedirects; issue describes the change directly (extend except clause in linkcheck.py HEAD->GET fallback).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severities": {"CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"CONTEXT_BLOAT": [1]}
+    },
+    "candidate_interventions": ["bound_read_size"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8548@solver_B",
+    "task_id": "sphinx-doc__sphinx-8548",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_FILE", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT", "LONG_STATE"],
+      "evidence": "Bug: inherited-members fails for inherited data attributes because (namespace, attr) docstring lookup ignores base-class namespaces. Requires MRO/attr_docs/ModuleAnalyzer reasoning across importer.py and autodoc/__init__.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MODERATE"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [15, 17, 30, 31, 46, 64]}
+    },
+    "candidate_interventions": ["provide_reliable_file_tools"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8551@solver_B",
+    "task_id": "sphinx-doc__sphinx-8551",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_FILE", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT"],
+      "evidence": "Bug: :type:/:rtype: give ambiguous xref warnings. Core difficulty is discovering the Python domain lacks a process_field_xref override (present in c/cpp/base domains); fix adds the method to PythonDomain.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8593@solver_B",
+    "task_id": "sphinx-doc__sphinx-8593",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "SHORT_STATE"],
+      "evidence": "Bug: :meta public: does not affect variables. Work is understanding that filter_members extracts metadata only from getdoc(), not from analyzer attr_docs (#: comments); fix augments metadata extraction in autodoc/__init__.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MODERATE"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [18, 19, 20, 21, 22]}
+    },
+    "candidate_interventions": ["provide_reliable_file_tools"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
