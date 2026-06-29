@@ -1,0 +1,185 @@
+# clean_trace_feature_spec_v1.yaml — clean-room deterministic feature spec
+# Derived INDEPENDENTLY from raw traces + 120-trace manual inspection (audits/raw_trace_memos.jsonl).
+# Every feature: outcome_independent, normalized by an explicit denominator, missing=None (never 0),
+# auditable via event indices. PREFIX features never use future info.
+# Each PRIMARY feature targets precision >= 0.80 (calibrated in reports/feature_calibration.md).
+
+spec_version: v1
+classifier: src/clean_classify.py        # independent; editor-ACI + command-content precedence
+loader: src/clean_loader.py              # independent; 4 layouts -> (action,obs,thought)
+denominator_note: >
+  n_actions = count of steps with a non-empty action (excludes pure-thought / OpenHands 'think' no-ops
+  where detected). Rates use n_actions or the relevant sub-population (e.g. searches) as denominator.
+
+primary_features:
+
+  - id: SEARCH_NO_NEW_EVIDENCE_RATE
+    family: search_information_gain
+    description: fraction of SEARCH actions that do not expand the running candidate-file set
+    decision_time: FULL
+    numerator: searches whose result file-set adds no new file to the cumulative candidate set
+    denominator: search_call_count
+    minimum_exposure: 3        # require >=3 searches else None (low-exposure noise)
+    algorithm: >
+      For each SEARCH in order, extract candidate files from its observation (path regex);
+      a search "expands" if it introduces >=1 file not seen in any prior search result.
+      rate = (#non-expanding) / (#searches).
+    required_fields: [action_text, observation_text]
+    missing_value: None when search_call_count < 3
+    evidence_output: list of (event_index, query_sig, new_files_count)
+    known_false_positives: >
+      A reformulated search that legitimately FALSIFIES a hypothesis (empty result) counts as
+      non-expanding but is healthy localization. Mitigated by requiring >=3 searches and by the
+      paired-intervention test (a true-waste signal should predict SEARCH_CONSTRAINED benefit).
+    known_false_negatives: searches that expand the set but to irrelevant files still count as "evidence"
+    harness_dependencies: low — search verbs differ but candidate-set expansion is layout-agnostic
+    outcome_independent: true
+
+  - id: REDUNDANT_REREAD_RATE
+    family: file_reading_context
+    description: fraction of READ actions that re-read a file already read, with no oversized/truncation justification
+    decision_time: FULL
+    numerator: reads whose target path was already read earlier in the trace
+    denominator: read_call_count
+    minimum_exposure: 3
+    algorithm: extract first path from read action (or obs head); count exact target repeats / reads
+    required_fields: [action_text, observation_text]
+    missing_value: None when read_call_count < 3
+    evidence_output: list of (event_index, target_path)
+    known_false_positives: >
+      Re-reading after an edit to confirm the change is legitimate. Pure duplicate-read != context bloat
+      (see CONTEXT spec note). This feature is REPORTED but DOWNGRADED to secondary unless it survives
+      the bloat-evidence gate below.
+    known_false_negatives: re-reads of a different region of the same large file not captured
+    harness_dependencies: medium
+    outcome_independent: true
+
+  - id: OVERSIZED_THEN_NARROW_READ_RATE
+    family: file_reading_context
+    description: fraction of reads that returned oversized/truncated output AND were followed by a narrower re-read of the same target
+    decision_time: FULL
+    numerator: oversized/truncated reads later followed by a narrow re-read of same target
+    denominator: read_call_count
+    minimum_exposure: 3
+    algorithm: >
+      mark a read oversized if observation length >= 8000 chars OR matches truncation markers
+      ('too large to display','abbreviated','truncated','view_range'); count those later re-read narrowly.
+    required_fields: [action_text, observation_text]
+    missing_value: None when read_call_count < 3
+    evidence_output: list of (oversized_event, narrow_event, target)
+    known_false_positives: minimal — this is the spec's recommended CONTEXT_BLOAT evidence, not bare duplication
+    known_false_negatives: oversized read never re-narrowed (agent abandons the file) is not counted
+    harness_dependencies: HIGH — concentrated in SWE-agent-LM (solver_E) whose editor emits 'too large' notes;
+                           report per-harness and flag as harness-specific if precision varies
+    outcome_independent: true
+
+  - id: NO_EVIDENCE_PATCH_CHURN_RATE
+    family: patch_behavior
+    description: fraction of EDITs that re-edit a file with NO intervening evidence (no test/search/read/error obs) since the prior edit of that file
+    decision_time: FULL
+    numerator: re-edits to a file with no intervening TEST/SEARCH/READ action and no error observation between
+    denominator: edit_count
+    minimum_exposure: 2
+    algorithm: >
+      walk actions; for each EDIT to target T already edited, look at actions strictly between the
+      prior edit of T and this one; if none are TEST/SEARCH/READ and none had an error observation,
+      count as no-evidence re-edit.
+    required_fields: [action_text, observation_text]
+    missing_value: None when edit_count < 2
+    evidence_output: list of (prev_edit_event, reedit_event, target)
+    known_false_positives: >
+      A multi-part edit to the same file (e.g. add import then add method) is legitimate, not churn.
+      The "no intervening evidence" gate reduces but does not eliminate this. CRITICAL CAVEAT from
+      inspection: solver_C SWE-agent-1.0 '_split_string future-annotations' HARNESS BUG makes edits
+      appear to fail and be retried; those re-edits are a harness artifact, NOT churn. The error-obs
+      detector excludes the _split_string syntax error from "evidence" so harness-failed re-edits are
+      NOT rewarded as evidence-driven; but they will inflate churn for solver_C. Report solver_C
+      separately and treat its churn as harness-contaminated.
+    known_false_negatives: churn across different files not captured
+    harness_dependencies: HIGH for solver_C (see above)
+    outcome_independent: true
+
+  - id: POST_EDIT_TEST_GAP
+    family: verification
+    description: number of steps from the last production EDIT to the next TEST action (None if no test after last edit)
+    decision_time: FULL
+    numerator: index(first test after last edit) - index(last edit)
+    denominator: n/a (a count, not a rate)
+    minimum_exposure: requires has_production_edit
+    algorithm: last_edit = max edit index; gap = (first test index > last_edit) - last_edit; None if no such test
+    required_fields: [action_text]
+    missing_value: None when no edit, OR no post-edit test (UNDEFINED gap, NOT 0 — per spec do not define gap as zero tests)
+    evidence_output: (last_edit_event, first_post_edit_test_event)
+    known_false_positives: a submit without test may be correct if the oracle is unavailable in-harness
+    known_false_negatives: a test BEFORE the last edit (then a trivial final edit) looks like a gap but may be fine
+    harness_dependencies: medium — TEST detection uniform; oracle availability NOT independently verified,
+                          hence the deterministic name POST_EDIT_TEST_GAP (not 'verification gap')
+    outcome_independent: true
+
+  - id: STAGNATION_FRACTION
+    family: stagnation_progress
+    description: fraction of actions occurring within runs that produce no new result-hash and no new file
+    decision_time: FULL
+    numerator: actions inside no-new-evidence streaks (>=1 consecutive non-novel action)
+    denominator: n_actions
+    minimum_exposure: n_actions >= 5
+    algorithm: >
+      track seen result-hashes (sha of obs[:2000]) and seen files; an action is novel if its obs hash
+      is new OR it introduces a new file path; non-novel actions accumulate streaks; fraction = (#in-streak)/n_actions.
+    required_fields: [action_text, observation_text]
+    missing_value: None when n_actions < 5
+    evidence_output: longest_streak, in_streak_count
+    known_false_positives: legitimate repeated tests during a fix attempt may share obs hashes
+    known_false_negatives: semantically-stagnant but textually-varying outputs not caught
+    harness_dependencies: low
+    outcome_independent: true
+
+  - id: TOOL_ERROR_RATE
+    family: tooling_environment
+    description: fraction of actions whose observation indicates a hard failure (traceback / nonzero exit / command-not-found / error-line)
+    decision_time: FULL
+    numerator: actions with an error observation (precise detector; warnings excluded)
+    denominator: n_actions
+    minimum_exposure: n_actions >= 5
+    algorithm: see _is_error_obs — STRONG signals only (returncode>0, Traceback, *Error:, command not found, fatal:)
+    required_fields: [observation_text]
+    missing_value: None when n_actions < 5
+    evidence_output: list of error event indices
+    known_false_positives: >
+      Calibrated DOWN from a loose regex after inspection caught UserWarning / pip-log 'error:' false hits.
+      Remaining FPs: an intentionally-run failing repro script (expected failure) counts as an error.
+    known_false_negatives: silent failures with 0 exit code not caught
+    harness_dependencies: medium — return-code markers differ (OpenHands 'exit code:' vs SWE-agent '<returncode>')
+    outcome_independent: true
+
+  - id: ENVIRONMENT_SETUP_RATE
+    family: tooling_environment
+    description: fraction of actions that are environment/build/dependency operations (pip/make/setup.py/apt/export/cd)
+    decision_time: FULL
+    numerator: ENV-classified actions
+    denominator: n_actions
+    minimum_exposure: n_actions >= 5
+    algorithm: ENV class from clean_classify command-content regex
+    required_fields: [action_text]
+    missing_value: None when n_actions < 5
+    evidence_output: list of env event indices
+    known_false_positives: a single 'cd' is classified ENV but is navigation, not setup; rate is robust to this
+    known_false_negatives: environment work hidden inside a heredoc not caught
+    harness_dependencies: HIGH — HAL/SWE-agent-1.0 runs build steps in-trace (opus A/F high ENV), live-SWE-agent
+                          and OpenHands often pre-build (low ENV). This is a HARNESS signal, NOT reasoning waste;
+                          MUST be controlled for and never interpreted as solver behavior.
+    outcome_independent: true
+
+prefix_features:
+  note: >
+    Each primary FULL feature is also computed over the first K=5,10,20 ACTION steps (prefix),
+    using ONLY events up to the cutoff. No future information. Stored under row['prefix']['T5'|'T10'|'T20'].
+    Used for online selector decisions; never for the FULL diagnosis features.
+
+secondary_or_dropped:
+  - id: REDUNDANT_REREAD_RATE
+    status: DOWNGRADED_TO_SECONDARY
+    reason: duplicate reads alone are not context bloat (spec rule); kept for descriptive use, not a headline claim
+  - id: raw counts (search_call_count, edit_count, ...)
+    status: RETAINED_AS_COVARIATES
+    reason: used as exposure/denominator and for the raw-vs-rate sensitivity analysis, not as primary signals
