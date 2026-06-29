@@ -1,3 +1,9 @@
+> # ⚠️ SAVING NUMBERS CORRECTED IN v3 (TASK-LEVEL)
+> The token-saving %% in this report are *mean prompt-token-per-call reductions*, computed from a
+> CONTAMINATED, non-task-tagged ledger. Real PAIRED TASK-LEVEL accounting (PARETO_FRONTIER_v3_TASK_LEVEL.md)
+> shows HYBRID1 saves ~−2.5%% (median), i.e. it does NOT reduce task-level cost. The resolution/regression
+> counts here remain valid (they are graded); only the SAVING column is superseded.
+
 # Safe Context-Pruning Pareto Frontier v2 — SWE-bench GRADED (VERIFIED)
 
 **Model:** Claude opus-4.7, **standard mode (extended thinking NOT enabled)** · **Tasks:** 50 golden resolved cases (SWE-bench Verified, 10 repos)
