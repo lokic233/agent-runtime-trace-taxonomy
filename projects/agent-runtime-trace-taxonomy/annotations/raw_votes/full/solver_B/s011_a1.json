@@ -1,333 +1,16 @@
 [
   {
-    "trace_id": "astropy__astropy-12907@solver_B",
+    "trace_id": "django__django-13821@solver_B",
+    "task_id": "django__django-13821",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Bug report gives concrete separability_matrix behavior and nested CompoundModel examples; fix requires reasoning about one modeling implementation path.",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Issue requires raising Django's minimum supported SQLite version and updating related backend/docs references."],
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13033@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue identifies TimeSeries required-column validation and gives exact misleading exception; implementation is a localized error-message logic change.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13236@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue quotes the exact structured ndarray-to-NdarrayMixin clause and asks for warning behavior before a future behavior change.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13398@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_FILE", "INTEGRATION", "MULTI_MODULE_CONTEXT", "PARTIAL", "LONG_STATE"],
-      "evidence": "Feature request asks for new direct ITRS<->AltAz/HADec transformations and registration in coordinate transform graph, requiring cross-frame reasoning and integration tests.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": ["ENVIRONMENT_TOOLING"],
-      "l2_labels": ["ENVIRONMENT_BLOCKED"],
-      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
-      "severity": {
-        "ENVIRONMENT_BLOCKED": "MODERATE"
-      },
-      "evidence_action_ids": {
-        "ENVIRONMENT_BLOCKED": [21, 25, 27, 29, 38, 43]
-      }
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13453@solver_B",
-    "workload_annotation": {
-      "primary_l1": "LOCALIZATION_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue states ascii HTML writer ignores formats; main work is finding the HTML writer path where column string formatting is bypassed.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13579@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "LOCAL_CONTEXT", "SHORT_STATE"],
-      "evidence": "Issue names SlicedLowLevelWCS and describes a subtle world_to_pixel semantic error with coupled WCS axes.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13977@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue provides a minimal duck-array reproduction and points to Quantity.__array_ufunc__ behavior requiring a localized protocol fix.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14096@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue gives a SkyCoord subclass property example and traceback pointing to SkyCoord.__getattr__ behavior.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14182@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue asks to support header_rows in ascii.rst, analogous to fixed_width output; implementation requires adapting one writer class.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14309@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue includes stack trace to astropy.io.fits.connect.is_fits and exact identify_format call; fix is a localized guard.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": ["ENVIRONMENT_TOOLING"],
-      "l2_labels": ["PREEMPTIVE_HELPER_TOOL_BUILD"],
-      "primary_bottleneck": "PREEMPTIVE_HELPER_TOOL_BUILD",
-      "severity": {
-        "PREEMPTIVE_HELPER_TOOL_BUILD": "MODERATE"
-      },
-      "evidence_action_ids": {
-        "PREEMPTIVE_HELPER_TOOL_BUILD": [2, 18]
-      }
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14365@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue identifies ascii.qdp command parsing as case-sensitive; expected change is localized parser behavior.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
@@ -336,11 +19,11 @@
       "l1_labels": ["ENVIRONMENT_TOOLING"],
       "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
       "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
-      "severity": {
-        "HELPER_TOOL_FAILURE_LOOP": "MODERATE"
+      "severity_by_label": {
+        "HELPER_TOOL_FAILURE_LOOP": "MILD"
       },
       "evidence_action_ids": {
-        "HELPER_TOOL_FAILURE_LOOP": [2, 3, 4, 5, 8, 11]
+        "HELPER_TOOL_FAILURE_LOOP": [14, 15, 16]
       }
     },
     "candidate_interventions": [],
@@ -353,16 +36,53 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-14369@solver_B",
+    "trace_id": "django__django-13837@solver_B",
+    "task_id": "django__django-13837",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "LOCAL_CONTEXT", "SHORT_STATE"],
-      "evidence": "Issue concerns CDS unit grammar semantics for composite MRT units; fix requires parser grammar reasoning and generated parse table update.",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue names django.utils.autoreload.get_child_arguments and describes the required __main__.__spec__ behavior."],
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "SUBMITTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity_by_label": {
+        "FAILED_RECOVERY": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [13, 20, 34, 35, 36]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13925@solver_B",
+    "task_id": "django__django-13925",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "CLEAR"],
+      "evidence": ["Issue concerns models.W042 logic for inherited manually specified primary keys."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
@@ -371,8 +91,308 @@
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "severity": {},
+      "severity_by_label": {},
       "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13933@solver_B",
+    "task_id": "django__django-13933",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue directly targets ModelChoiceField invalid_choice error parameters and message text."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity_by_label": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13964@solver_B",
+    "task_id": "django__django-13964",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "SHORT_STATE", "CLEAR"],
+      "evidence": ["Issue requires preserving ForeignKey target value when a related object's non-auto primary key changes after assignment."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity_by_label": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [5]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14007@solver_B",
+    "task_id": "django__django-14007",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "CROSS_MODULE", "REPOSITORY_CONTEXT", "CLEAR"],
+      "evidence": ["Issue spans insert/save and bulk_create paths for applying database converters to returning_fields."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity_by_label": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14011@solver_B",
+    "task_id": "django__django-14011",
+    "workload_annotation": {
+      "primary_l1": "ENVIRONMENT_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "INTEGRATION", "REPOSITORY_CONTEXT", "CLEAR"],
+      "evidence": ["Issue concerns threaded live server request handling and database connection cleanup across request threads."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity_by_label": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14017@solver_B",
+    "task_id": "django__django-14017",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "REPOSITORY_CONTEXT", "CLEAR"],
+      "evidence": ["Issue requires operator interop between Q objects and conditional Exists expressions."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity_by_label": {
+        "PATCH_CHURN": "MILD"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [10, 14, 20]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14034@solver_B",
+    "task_id": "django__django-14034",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue directly targets MultiValueField.clean behavior for required subfields under require_all_fields=False."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity_by_label": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14053@solver_B",
+    "task_id": "django__django-14053",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "INTEGRATION", "CLEAR"],
+      "evidence": ["Issue names HashedFilesMixin.post_process and duplicate yields during repeated staticfiles processing passes."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity_by_label": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14089@solver_B",
+    "task_id": "django__django-14089",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Issue asks for a straightforward __reversed__ method on OrderedSet."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity_by_label": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14122@solver_B",
+    "task_id": "django__django-14122",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "INTEGRATION", "CLEAR"],
+      "evidence": ["Issue requires changing SQLCompiler GROUP BY construction so Meta.ordering fields don't affect aggregation grouping."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severity_by_label": {
+        "STAGNATION": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [36, 38, 40, 41, 42, 43, 47, 50, 52, 58, 60, 61, 62, 63, 64]
+      }
     },
     "candidate_interventions": [],
     "annotation_metadata": {

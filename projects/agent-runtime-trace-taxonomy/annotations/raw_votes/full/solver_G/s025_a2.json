@@ -1,0 +1,436 @@
+```json
+[
+  {
+    "trace_id": "pydata__xarray-3151@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "SHORT_STATE"],
+      "evidence": "Issue is a semantic bug in combine_by_coords monotonic-index check (combine.py); fix requires reasoning about which dims are in concat_dims, not broad search. Location is narrow (one file/function).",
+      "unknown_fields": ["EXPENSIVE_SUITE", "HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "FAILED_RECOVERY"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 4, 6, 8, 11, 12],
+        "FAILED_RECOVERY": [1, 5, 9]
+      }
+    },
+    "candidate_interventions": ["fix_test_environment", "provide_import_path_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3305@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "SILENT_SEMANTIC"],
+      "evidence": "keep_attrs must be threaded through DataArray.quantile -> Dataset.quantile -> Variable.quantile and _replace/_from_temp_dataset; the issue spans several core files and requires coordinated signature/attr changes.",
+      "unknown_fields": ["EXPENSIVE_SUITE", "HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [16, 17, 18, 19, 20, 21],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [9, 24, 25]
+      }
+    },
+    "candidate_interventions": ["require_full_call_chain_review", "suggest_minimal_patch"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3677@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue points at xarray/core/merge.py (ds.merge(da)); fix is localized to coerce/merge logic with an available targeted test suite (test_merge.py).",
+      "unknown_fields": ["EXPENSIVE_SUITE"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [5, 6, 8, 9, 10, 11]
+      }
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3993@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue explicitly names DataArray.integrate vs Dataset.integrate param inconsistency (dim->coord); mechanical rename in a known method.",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MILD"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [5, 6]
+      }
+    },
+    "candidate_interventions": ["require_verification"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4075@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Issue is a boolean-weights bug in weighted.py _sum_of_weights; fix is a localized dtype/cast reasoning change in one method.",
+      "unknown_fields": ["EXPENSIVE_SUITE"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "FAILED_RECOVERY"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [3, 7, 9, 10, 11],
+        "FAILED_RECOVERY": [1, 2, 4, 6]
+      }
+    },
+    "candidate_interventions": ["fix_test_environment", "provide_import_path_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4094@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE"],
+      "evidence": "to_unstacked_dataset/reindex sparse bug requires tracing dataarray -> dataset._reindex -> alignment.reindex_variables; the location spans multiple core modules and must be discovered.",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT", "EXPENSIVE_SUITE"]
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severity": {
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [3, 9, 10],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [5, 7, 8]
+      }
+    },
+    "candidate_interventions": ["provide_location_hint", "reduce_redundant_reread"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4356@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "min_count handling in nanops.py _maybe_null_out/nansum requires reasoning over axis/mask arithmetic; bug is subtle and concentrated in one file.",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [1, 9, 10, 11, 12],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [6]
+      }
+    },
+    "candidate_interventions": ["halt_on_nonconvergence", "suggest_root_cause_analysis"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4629@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Issue names merge_attrs override returning a shared reference (merge.py line ~504); one-line dict-copy fix with available test_merge.py.",
+      "unknown_fields": ["EXPENSIVE_SUITE"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4687@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "UNCLEAR_ORACLE"],
+      "evidence": "xr.where attr-preservation fix is localized to computation.where (add keep_attrs and pass to apply_ufunc); reasoning over the wrapper, not broad search.",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "CONTEXT_MEMORY"],
+      "l2_labels": ["VERIFICATION_GAP", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MODERATE",
+        "REDUNDANT_FILE_REREAD": "MILD"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [8, 9, 10, 11, 12],
+        "REDUNDANT_FILE_REREAD": [1, 5, 6, 7]
+      }
+    },
+    "candidate_interventions": ["require_verification"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4695@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE"],
+      "evidence": "Bug (dim named 'method' colliding with sel's method kwarg) requires tracing sel through dataset.py / common.py / indexing.py / dataarray._LocIndexer; locating the right hook dominates.",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT", "EXPENSIVE_SUITE"]
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE",
+      "severity": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [1, 3, 5, 6, 11],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [10, 12, 13, 14]
+      }
+    },
+    "candidate_interventions": ["provide_location_hint", "reduce_redundant_search"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4966@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "REPOSITORY_CONTEXT"],
+      "evidence": "_Unsigned=False handling for signed bytes: agent must locate the SerializationWarning source (conventions.py -> coding/variables.UnsignedIntegerCoder) before patching; finding the emitter dominates.",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT", "EXPENSIVE_SUITE"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [8, 9, 11, 13, 16],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [0, 5, 6]
+      }
+    },
+    "candidate_interventions": ["fix_test_environment", "provide_import_path_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-6461@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SHORT_STATE"],
+      "evidence": "Traceback in issue pinpoints the keep_attrs lambda (attrs[1]) in computation.where; fix is a localized guard for scalar inputs.",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [4, 5, 7, 8, 9, 10]
+      }
+    },
+    "candidate_interventions": ["fix_test_environment", "provide_import_path_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closedlabel",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

@@ -1,0 +1,372 @@
+[
+  {
+    "trace_id": "django__django-12663@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_FILE", "MULTI_FILE", "CLEAR"],
+      "evidence": "Issue ships a full traceback localizing IntegerField.get_prep_value in fields/__init__.py; the hard work is reasoning where to resolve LazyObject vs extract pk (fields vs lookups), spanning functional.py/fields/lookups.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "FAILED_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [52, 65, 67]},
+        {"label": "HELPER_TOOL_FAILURE_LOOP", "severity": "MILD", "evidence_action_ids": [33, 34]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["provide_test_oracle", "suppress_helper_tool_scaffold"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12708@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue names schema.py _delete_composed_index and the exact failure; reasoning is realizing unique constraints also report index=True so the index deletion must pass unique=False. Single-file targeted fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12713@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue points directly at formfield_for_manytomany and contrasts with formfield_for_foreignkey; fix is wrapping widget assignment in an 'if widget not in kwargs' guard in options.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "HELPER_TOOL_FAILURE_LOOP", "severity": "MODERATE", "evidence_action_ids": [4, 5, 6]}
+      ],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP"
+    },
+    "candidate_interventions": ["suppress_helper_tool_scaffold"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12741@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "MULTI_FILE", "CLEAR"],
+      "evidence": "Signature-simplification refactor of execute_sql_flush across operations.py and flush.py; issue is explicit about the target signature. The 'do not modify tests' constraint interacts with the old call site.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [34, 35, 36, 50, 51]},
+        {"label": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [41, 42, 43, 45, 46, 48]},
+        {"label": "HELPER_TOOL_FAILURE_LOOP", "severity": "MILD", "evidence_action_ids": [15, 16]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["provide_test_oracle", "budget_or_early_stop_guard"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12754@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue describes desired operation ordering but the fix requires locating the dependency-emitting site in the large autodetector.py (generate_created_models bases loop) and understanding the dependency mechanism.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PREMATURE_SCRATCH_REPRO", "severity": "MODERATE", "evidence_action_ids": [9, 11, 12, 13]},
+        {"label": "PATCH_CHURN", "severity": "MILD", "evidence_action_ids": [44]}
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["provide_repro_or_test_oracle"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12774@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Error trace names query.py in_bulk line 680; fix reuses the existing _meta.total_unique_constraints property to permit single-field total unique constraints. Single-file change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12858@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue cites the E015 ordering check (ref #29408) in base.py; reasoning is that the check only accepts transforms and must also accept lookups via get_lookup. Single-file fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "HELPER_TOOL_FAILURE_LOOP", "severity": "MILD", "evidence_action_ids": [5, 6]}
+      ],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP"
+    },
+    "candidate_interventions": ["suppress_helper_tool_scaffold"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12965@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "LONG_HISTORY_DEPENDENT"],
+      "evidence": "Regression issue with before/after SQL; fix is in SQLDeleteCompiler.single_alias/_as_sql in compiler.py. Solver used git history to identify the regressing commit (history-dependent reasoning).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [21, 22, 23, 38]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["provide_location_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13012@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue contrasts ExpressionWrapper(Value) vs bare Value in GROUP BY; fix is overriding ExpressionWrapper.get_group_by_cols to delegate to the wrapped expression in expressions.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "HELPER_TOOL_FAILURE_LOOP", "severity": "MODERATE", "evidence_action_ids": [5, 6, 15]}
+      ],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP"
+    },
+    "candidate_interventions": ["suppress_helper_tool_scaffold"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13023@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue names DecimalField.to_python and the TypeError vs ValidationError mismatch; fix broadens the except clause in fields/__init__.py. Solver empirically enumerated which exceptions Decimal raises.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "HELPER_TOOL_FAILURE_LOOP", "severity": "MODERATE", "evidence_action_ids": [3, 4, 5]}
+      ],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP"
+    },
+    "candidate_interventions": ["suppress_helper_tool_scaffold"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13028@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue traceback points at check_filterable in query.py; fix guards on hasattr(resolve_expression) so a model instance with a 'filterable' field is not mistaken for a non-filterable expression.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13033@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue shows the wrong SQL; fix requires locating find_ordering_name in compiler.py and the subtle attname-vs-full-path bug (compare pieces[-1] not name). Reproduction is clear but the root cause needs real tracing.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "HELPER_TOOL_FAILURE_LOOP", "severity": "MODERATE", "evidence_action_ids": [7, 9, 11, 12]}
+      ],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP"
+    },
+    "candidate_interventions": ["suppress_helper_tool_scaffold"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]

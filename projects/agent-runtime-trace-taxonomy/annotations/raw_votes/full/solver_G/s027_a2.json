@@ -1,0 +1,374 @@
+[
+  {
+    "trace_id": "pylint-dev__pylint-6386@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue is a concrete CLI-flag defect (short `-v` wrongly expects an argument). Fix is a small option-config change, but the relevant definition is spread across config/lint option-handling files (base_options.py, utils.py, arguments_manager.py) requiring search to localize.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "patch_applied_and_tested",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["STRENGTHEN_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-6528@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SINGLE_FILE"],
+      "evidence": "Issue: --ignore not respected in recursive mode. Requires tracing the recursion/ignore call path across expand_modules.py, pylinter.py and run.py to find where ignore filtering should apply.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "patch_applied_tests_failing_unconfirmed",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"STAGNATION": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 17, 19, 20], "EDIT_TOOL_MECHANICAL_FAILURE": [1]}
+    },
+    "candidate_interventions": ["LOOP_BREAKER", "RECONFIRM_BASELINE_FAILURES"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-6903@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue precisely points at _query_cpu returning 0 causing a multiprocessing crash; the fix (guard to >=1) is a localized one-line change in run.py with the location essentially given.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "patch_applied_no_regressions",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-7080@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SINGLE_FILE"],
+      "evidence": "Issue: ignore-paths dropped in recursive mode. Requires tracing config loading (_parse_toml / option_manager_mixin) through to expand_modules/pylinter to find where the patterns are lost — heavy localization across config and lint modules.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "speculative_patch_applied",
+      "candidate_location_found": false,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [4, 13, 14]}
+    },
+    "candidate_interventions": ["STRENGTHEN_VERIFICATION", "VALIDATE_REPRO_REPRODUCES_BUG"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "The scratch repro passed at [4] before any change and again at [14] after editing config code, so the post-edit check provides no signal on the actual modification."
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-7277@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "SHORT_STATE"],
+      "evidence": "Issue concerns sys.path manipulation in modify_sys_path under runpy invocation — subtle semantic behavior centered in pylint/__init__.py.",
+      "unknown_fields": ["final_patch", "final_outcome"]
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "debugging_module_resolution_no_production_fix",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severity": {"REDUNDANT_FILE_REREAD": "MODERATE", "ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"REDUNDANT_FILE_REREAD": [1, 3, 4, 6], "ENVIRONMENT_BLOCKED": [10]}
+    },
+    "candidate_interventions": ["CONTEXT_RETENTION", "CORRECT_MODULE_IMPORT_PATH"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-8898@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: _splitstrip mis-splits escaped commas inside regex patterns like (foo{1,3}). Localized string-parsing logic in utils.py with a clear input/output oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "non_converging_edit_test_loop",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"},
+      "evidence_action_ids": {"STAGNATION": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], "BUDGET_EXHAUSTION_NONCONVERGENCE": [16, 17]}
+    },
+    "candidate_interventions": ["LOOP_BREAKER", "EARLY_TERMINATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-10051@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: caplog.get_records decoupled from records after clear(); issue gives strong line/method hints (get_records, clear, caplog_records_key) within logging.py — work is finding the coupling point and applying a small fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [7, 8]}
+    },
+    "candidate_interventions": ["STRENGTHEN_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-10081@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SINGLE_FILE"],
+      "evidence": "Issue: tearDown wrongly called for class-level skipped unittest cases under --pdb. Requires tracing report/skip outcome flow across runner.py, reports.py and unittest.py to find _explicit_tearDown handling.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "VERIFICATION"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "VERIFICATION_GAP"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severity": {"REDUNDANT_FILE_REREAD": "MODERATE", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"REDUNDANT_FILE_REREAD": [6, 8, 9, 10, 11], "VERIFICATION_GAP": [15, 16]}
+    },
+    "candidate_interventions": ["CONTEXT_RETENTION", "STRENGTHEN_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-10356@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: pytestmark on base classes not merged via MRO. Requires locating get_unpacked_marks (structures.py) and its callers in python.py; fix is localized once found.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [6, 7]}
+    },
+    "candidate_interventions": ["STRENGTHEN_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Solver explicitly states it cannot run tests and assumes the existing suite passes; production code edited with no relevant test executed."
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-5262@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "INTEGRATION"],
+      "evidence": "Issue: EncodedFile.mode reporting causes youtube-dl to write bytes vs str (TypeError). Centered in capture.py with subtle str/bytes semantics; verification involves an external integration (youtube-dl).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "patch_applied_partial_verification",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [4, 5]}
+    },
+    "candidate_interventions": ["CORRECT_MODULE_IMPORT_PATH", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-5631@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue points at num_mock_patch_args in compat.py where `p.new in sentinels` raises on array-valued patches (ambiguous truth value); fix is a localized membership-check rewrite, verification needs numpy.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "patch_applied_partial_verification",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [8, 9, 10, 11]}
+    },
+    "candidate_interventions": ["CORRECT_MODULE_IMPORT_PATH", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Edits to /workspace source were shadowed by an installed /testbed copy, so [8]-[11] re-ran the same test with no effect until a path workaround was applied; treated as pre-existing environment shadowing, not reasoning waste."
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-5787@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "INTEGRATION", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: chained-exception serialization across xdist (_to_json/_from_json in reports.py). Substantive serialization logic; verification requires an xdist integration run with an unclear/cross-process oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "patch_applied_verification_blocked",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [8, 9, 10]}
+    },
+    "candidate_interventions": ["PIN_COMPATIBLE_DEPENDENCIES", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Installing pytest-xdist==1.25.0 against execnet 2.1.1 introduced an unrelated ExitCode serialization incompatibility that blocked verification of the implemented fix."
+    }
+  }
+]

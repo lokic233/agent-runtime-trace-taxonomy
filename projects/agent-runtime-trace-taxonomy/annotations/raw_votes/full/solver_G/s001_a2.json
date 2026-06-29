@@ -1,0 +1,380 @@
+```json
+[
+  {
+    "trace_id": "astropy__astropy-14508@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Issue names the exact file/function/line (card.py _format_float, ~1300-1302); fix is a localized change to float formatting logic. No cross-file work implied.",
+      "unknown_fields": ["hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14539@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "FITSDiff reports spurious diffs for identical VLA columns; fix concentrated in diff.py TableDataDiff._diff. Requires inserting VLA-aware comparison logic.",
+      "unknown_fields": ["hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "SEVERE", "evidence_action_ids": [0, 1, 2, 3, 4, 5, 6, 7, 10, 11]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["IMPROVE_EDIT_RELIABILITY"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14598@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "Bug in card.py string-value regex parsing (trailing/double single-quote handling). Requires tracing several interrelated regexes (_strg, _rvkc_*) within one file.",
+      "unknown_fields": ["final_test_outcome", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [12, 13, 14, 15]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT_PATH"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14995@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "NDDataRef mask propagation when one operand lacks a mask under bitwise_or; fix in ndarithmetic.py _arithmetic_mask. Correct expected behavior is non-obvious.",
+      "unknown_fields": ["hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [5, 6, 7, 8, 9, 14, 15, 16, 20, 21, 22]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [0, 10, 11]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["ENCOURAGE_CONVERGENCE", "PROVIDE_TEST_ORACLE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7166@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue names InheritDocstrings metaclass and inspect.isfunction check in utils/misc.py; small targeted change to also accept properties.",
+      "unknown_fields": ["hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [4, 5]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [3, 4]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["RUN_VERIFICATION_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7336@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "quantity_input with '-> None' annotation calls None.to(); traceback points to units/decorators.py wrapper. Small conditional guard fix.",
+      "unknown_fields": ["hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "MODERATE", "evidence_action_ids": [5, 6, 7, 8, 14, 15, 17]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [18, 19, 20]}
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["PREPROVISION_ENVIRONMENT", "PROVIDE_TEST_RUNNER_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7606@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Unit == None raises TypeError; fix is a None-guard in UnrecognizedUnit.__eq__ in units/core.py. Requires locating the correct __eq__ among classes.",
+      "unknown_fields": ["hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "MILD", "evidence_action_ids": [13, 14]}
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT_PATH"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7671@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "minversion in utils/introspection.py uses LooseVersion which fails on dev versions; fix swaps to pkg_resources.parse_version. Location named in issue.",
+      "unknown_fields": ["hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "MODERATE", "evidence_action_ids": [13, 14, 15, 16, 17, 18]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [6, 8]}
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_COMMAND", "IMPROVE_EDIT_RELIABILITY"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-8707@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "SEARCH_REQUIRED"],
+      "evidence": "Card.fromstring / Header.fromstring should accept bytes; fix spans card.py (_pad, _parse_keyword) and header.py (fromstring), requiring str/bytes handling across files.",
+      "unknown_fields": ["final_test_outcome", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "BLOCKED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": null,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "SEVERE", "evidence_action_ids": [2, 7, 12, 16]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [4, 15]}
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["PREPROVISION_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-8872@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION"],
+      "evidence": "Quantity should preserve np.float16 dtype rather than upcasting to float64; fix is in units/quantity.py __new__ dtype logic. Small targeted change.",
+      "unknown_fields": ["final_test_outcome", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "BLOCKED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "SEVERE", "evidence_action_ids": [4, 7, 8, 16, 19]},
+        {"label": "STAGNATION", "severity": "MODERATE", "evidence_action_ids": [9, 10, 11, 13]}
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["PREPROVISION_ENVIRONMENT", "FIX_ENVIRONMENT_PATH"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-10097@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "URLValidator should reject unencoded user:pass chars; fix is a regex change in core/validators.py URLValidator. Location named in issue.",
+      "unknown_fields": ["hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": [
+        {"label": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [2, 3]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["RUN_VERIFICATION_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-10554@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE"],
+      "evidence": "union() ordering breaks; requires tracing the combinator query call chain across db/models/query.py and db/models/sql/query.py (set_values/clear_ordering) to understand the fix.",
+      "unknown_fields": ["hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [15, 17, 19, 21, 23, 24, 25]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

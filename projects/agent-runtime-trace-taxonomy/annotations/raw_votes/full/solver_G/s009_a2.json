@@ -1,0 +1,386 @@
+[
+  {
+    "trace_id": "django__django-13344@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "HIDDEN_TEST_DOMINANT", "SHORT_STATE"],
+      "evidence": "Issue names MiddlewareMixin and process_response; fix requires reasoning about ASGI __acall__ coroutine handling in one file (deprecation.py). Location is near-explicit; the hard part is the async fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINALIZE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {"label": "VERIFICATION_GAP", "parent_l1": "VERIFICATION", "severity": "MODERATE", "evidence_action_ids": [4, 5, 6, 7]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["RUN_RELEVANT_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13346@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE"],
+      "evidence": "Issue concerns JSONField key transforms / __in lookups; first action is a broad find/grep across lookups.py, transforms.py, json.py and db/models — locating the right file/lookup is the dominant up-front demand.",
+      "unknown_fields": ["execution_state", "outcome"]
+    },
+    "execution_state": {
+      "phase": "EXPLORE",
+      "progress": "NONE",
+      "candidate_location_found": null,
+      "plausible_patch_found": null,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Only one exploratory event observed; no waste assessable, but workload is inferable from the issue."
+    }
+  },
+  {
+    "trace_id": "django__django-13363@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "INTEGRATION", "UNCLEAR_ORACLE"],
+      "evidence": "Issue points to TruncDate/TruncTime.as_sql in datetime.py (line ~295); fix is get_tzname() substitution. Verifying tz behavior needs an integration/DB repro rather than a simple unit oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINALIZE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "parent_l1": "ENVIRONMENT_TOOLING", "severity": "MODERATE", "evidence_action_ids": [4, 5, 15, 16, 17, 18, 19, 20]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["USE_NATIVE_TEST_RUNNER", "SIMPLIFY_REPRO"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13401@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "HIDDEN_TEST_DOMINANT", "EXPENSIVE_SUITE"],
+      "evidence": "Issue is abstract-model Field equality (__eq__/__hash__/__lt__) in fields/__init__.py; the code change is the core demand. The shown trace is dominated by getting the test suite to run.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFY",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "FAILED_RECOVERY"],
+      "labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "parent_l1": "ENVIRONMENT_TOOLING", "severity": "SEVERE", "evidence_action_ids": [4, 7, 10, 15, 18, 21]},
+        {"label": "FAILED_RECOVERY", "parent_l1": "CONTROL_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [11, 16, 19, 22]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["USE_NATIVE_TEST_RUNNER", "FIX_TEST_HARNESS_INVOCATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13406@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue is QuerySet.values() pickling losing the iterable class (returns model instances not dicts) in query.py __getstate__/__setstate__; demand is subtle state-preservation reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "labels": [
+        {"label": "STAGNATION", "parent_l1": "CONTROL_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [0, 2, 4, 6, 8, 10, 12, 14]}
+      ],
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["BREAK_EDIT_LOOP", "VERIFY_EDIT_TARGET_PATH"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13410@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue explicitly names locks.py lock()/unlock() and the `ret == 0` vs None bug; small, well-scoped fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINALIZE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {"label": "VERIFICATION_GAP", "parent_l1": "VERIFICATION", "severity": "MODERATE", "evidence_action_ids": [5, 6, 7]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["RUN_RELEVANT_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13417@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "EXPENSIVE_SUITE"],
+      "evidence": "Issue names QuerySet.ordered and annotate()/GROUP BY in query.py; fix is a conditional in the ordered property. Verification path is the full Django suite.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFY",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["RUN_RELEVANT_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13449@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is Window + DecimalField producing invalid SQLite SQL (CAST placement around the whole OVER expression) in expressions.py; the as_sqlite generation logic is the core reasoning demand.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {"label": "STAGNATION", "parent_l1": "CONTROL_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [4, 5, 6, 7, 8, 9, 10]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "parent_l1": "EDIT_PATCH", "severity": "MODERATE", "evidence_action_ids": [0, 1, 12]}
+      ],
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["BREAK_EDIT_LOOP", "ABORT_AND_RELOCALIZE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13512@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "INTEGRATION", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is JSONField rendering unicode escapes in admin (ensure_ascii); the demand is deciding WHERE to apply ensure_ascii (model field get_prep_value vs forms.JSONField), and verifying via admin rendering — an integration-level, unclear oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTEXT_MEMORY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "CONTEXT_BLOAT"],
+      "labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "parent_l1": "ENVIRONMENT_TOOLING", "severity": "SEVERE", "evidence_action_ids": [11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22]},
+        {"label": "CONTEXT_BLOAT", "parent_l1": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [23, 24]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["SIMPLIFY_REPRO", "USE_NATIVE_TEST_RUNNER"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13513@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue points to explicit_or_implicit_cause in views/debug.py needing to honor __suppress_context__; small, located fix with view_tests.test_debug as oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFY",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "parent_l1": "ENVIRONMENT_TOOLING", "severity": "MODERATE", "evidence_action_ids": [3, 4, 5, 6, 7]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "parent_l1": "EDIT_PATCH", "severity": "MILD", "evidence_action_ids": [0]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["USE_NATIVE_TEST_RUNNER", "FIX_TEST_HARNESS_INVOCATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13516@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "Issue is flush() not working during migrate; requires locating OutputWrapper in management/base.py and adding a flush() method. Localization is light, fix is small.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINALIZE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {"label": "VERIFICATION_GAP", "parent_l1": "VERIFICATION", "severity": "MODERATE", "evidence_action_ids": [5, 6]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["RUN_RELEVANT_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13551@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue explicitly names PasswordResetTokenGenerator._make_hash_value in auth/tokens.py; fix is appending user.email to the hash value.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINALIZE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {"label": "VERIFICATION_GAP", "parent_l1": "VERIFICATION", "severity": "MODERATE", "evidence_action_ids": [3, 4]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["RUN_RELEVANT_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

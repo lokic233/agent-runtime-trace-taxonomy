@@ -1,0 +1,354 @@
+[
+  {
+    "trace_id": "pydata__xarray-3151@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue is a wrong ValueError from combine_by_coords on non-monotonic coords; fix requires reasoning about when the monotonicity check should apply (guarding on differing indexes) within a single file xarray/core/combine.py. Location is discoverable by searching the named function.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["run_existing_tests"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3305@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "keep_attrs is silently dropped by quantile; the parameter must be threaded through three layers (DataArray.quantile -> Dataset.quantile -> Variable.quantile) across dataarray.py, dataset.py, variable.py. Multi-file edit driven by a runtime TypeError surfacing the missing kwarg.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FILENAME_SEARCH_THRASH"],
+      "labels": [
+        {"l1_label": "EDIT_PATCH", "l2_label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [10, 11, 23, 24, 25]},
+        {"l1_label": "SEARCH_LOCALIZATION", "l2_label": "FILENAME_SEARCH_THRASH", "severity": "MILD", "evidence_action_ids": [17, 18, 19, 20]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["edit_retry_guard"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3677@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT", "CLEAR"],
+      "evidence": "AttributeError ('DataArray' has no attribute 'items') from ds.merge(da); resolving it requires tracing the call chain Dataset.merge -> dataset_merge_method (imported from merge.py) -> merge_core across two files. Bulk of effort is following imports to the right location; the fix (coerce DataArray to Dataset) is small.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["run_existing_tests"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3993@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "SEARCH_REQUIRED"],
+      "evidence": "API-consistency change: rename DataArray.integrate's `dim` argument to `coord` to match Dataset.integrate, requiring coordinated edits to dataarray.py, dataset.py and the test file. Issue is structural/consistency rather than a runtime crash.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {"l1_label": "VERIFICATION", "l2_label": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [6, 23, 30]},
+        {"l1_label": "EDIT_PATCH", "l2_label": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [12, 14, 23, 24, 25]},
+        {"l1_label": "EDIT_PATCH", "l2_label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [5]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["run_existing_tests", "edit_retry_guard"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4075@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Weighted mean with boolean weights returns a wrong numeric result (2.0 vs 1.0). Issue hints the bug is in sum-of-weights; fix localized to _sum_of_weights in weighted.py (cast bool weights to int). Single-file targeted patch.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4356@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "LOCAL_CONTEXT"],
+      "evidence": "Issue reports min_count unavailable for multi-dim reduction and points directly at nanops.py line 35; fix is to make _maybe_null_out handle tuple/list axes. Location is explicit; effort is the patch logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {"l1_label": "EDIT_PATCH", "l2_label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [6, 7]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["edit_retry_guard"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4629@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "merge with combine_attrs='override' returns the original attrs object so mutating the merged result mutates inputs; issue names line 504 in merge.py. Tiny single-line fix (copy the dict). Location explicit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4687@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": "xr.where silently drops attributes; the hard part is understanding how keep_attrs propagates through apply_ufunc / apply_variable_ufunc / merge_attrs (computation.py + merge.py) to make the fix actually take effect. Deep reasoning about the call pipeline.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {"l1_label": "SEARCH_LOCALIZATION", "l2_label": "SEARCH_WITHOUT_NEW_EVIDENCE", "severity": "MODERATE", "evidence_action_ids": [19, 23, 30, 34]},
+        {"l1_label": "CONTEXT_MEMORY", "l2_label": "REDUNDANT_FILE_REREAD", "severity": "MODERATE", "evidence_action_ids": [18, 20, 22, 31, 33, 35]},
+        {"l1_label": "EDIT_PATCH", "l2_label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [9, 16, 44]}
+      ],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE"
+    },
+    "candidate_interventions": ["patch_guidance", "location_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4695@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
+      "evidence": "A dimension named 'method' collides with the get_loc method kwarg during .loc indexing. The work is finding where the collision occurs by tracing .loc -> _LocIndexer -> convert_label_indexer across dataarray.py and indexing.py; first guesses target the wrong file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "labels": [
+        {"l1_label": "CONTROL_RECOVERY", "l2_label": "FAILED_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [7, 8, 9, 10]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["location_hint", "stop_earlier"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4966@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "LONG_STATE", "UNCLEAR_ORACLE"],
+      "evidence": "netcdf4 vs pydap engines decode signed bytes with _Unsigned='false' differently; correct fix requires reasoning about UnsignedIntegerCoder.decode interacting with lazy (LazilyOuterIndexedArray) arrays across coding/variables.py, backends/pydap_.py and conventions.py. Oracle is cross-engine agreement, not a single test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {"l1_label": "CONTROL_RECOVERY", "l2_label": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57]},
+        {"l1_label": "CONTROL_RECOVERY", "l2_label": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "SEVERE", "evidence_action_ids": [60]},
+        {"l1_label": "EDIT_PATCH", "l2_label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [7]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["stop_earlier", "patch_guidance"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-6461@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "xr.where(cond, scalar, scalar, keep_attrs=True) raises 'list index out of range' (initially non-reproducible until keep_attrs=True is set). Fix is in where() in computation.py plus a test in test_computation.py; reasoning about scalar attrs handling.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {"l1_label": "SEARCH_LOCALIZATION", "l2_label": "FILENAME_SEARCH_THRASH", "severity": "MODERATE", "evidence_action_ids": [4, 22, 30]},
+        {"l1_label": "EDIT_PATCH", "l2_label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [33]}
+      ],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH"
+    },
+    "candidate_interventions": ["location_hint", "edit_retry_guard"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]

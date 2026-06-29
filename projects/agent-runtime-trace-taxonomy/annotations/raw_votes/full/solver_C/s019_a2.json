@@ -1,0 +1,408 @@
+[
+  {
+    "trace_id": "django__django-16485@solver_C",
+    "task_id": "django__django-16485",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT"],
+      "evidence": "Issue is a localized bug: floatformat() raises ValueError for '0.00'/Decimal('0.00'); fix is the Decimal-construction logic in one function (floatformat) in defaultfilters.py. Localization is a single search; the crux is the patch logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [6, 8, 15, 17, 18],
+        "FAILED_RECOVERY": [10, 12, 13, 14]
+      }
+    },
+    "candidate_interventions": ["prevent_wrong_file_edits", "improve_edit_tool_reliability"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closed",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16493@solver_C",
+    "task_id": "django__django-16493",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue concerns FileField.deconstruct() handling of callable storage; fix is a one-condition change in files.py plus a regression test in test_filefield.py. Localization is immediate; the work is patch logic + a targeted unit test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTEXT_MEMORY", "CONTROL_RECOVERY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "REDUNDANT_FILE_REREAD", "FAILED_RECOVERY"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "DEPENDENCY_SETUP_DRIFT": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [5, 7, 8, 12, 14, 16, 18, 19, 20],
+        "REDUNDANT_FILE_REREAD": [28, 31, 41, 43],
+        "FAILED_RECOVERY": [33, 34, 35, 36, 37, 38, 39]
+      }
+    },
+    "candidate_interventions": ["provide_test_runner_command", "discourage_redundant_rereads"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closed",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16502@solver_C",
+    "task_id": "django__django-16502",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "INTEGRATION", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is HEAD-request body handling in the dev server (basehttp.py). Requires understanding the wsgiref handler chain and a server-level behavior fix; no obvious unit oracle, so verification is integration-style.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [12, 13, 15, 18],
+        "FAILED_RECOVERY": [22, 24, 27, 28, 29]
+      }
+    },
+    "candidate_interventions": ["improve_edit_tool_reliability", "provide_verification_harness"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closed",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16527@solver_C",
+    "task_id": "django__django-16527",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": "Issue names the exact file/line (admin_modify.py ~line 102): add has_add_permission to the show_save_as_new condition. One-line change with explicit location.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closed",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16560@solver_C",
+    "task_id": "django__django-16560",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_CUTTING", "LOCAL_CONTEXT"],
+      "evidence": "Issue adds a violation_error_code parameter that must be threaded through BaseConstraint, CheckConstraint, and UniqueConstraint (__init__, deconstruct, __eq__, __repr__, validate) within one file — cross-cutting edits across several methods.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 24],
+        "VERIFICATION_GAP": [27]
+      }
+    },
+    "candidate_interventions": ["improve_edit_tool_reliability", "encourage_real_verification"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closed",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Heavy edit-tool syntax churn; no test/repro was ever executed before submit (no EXECUTE/TEST events)."
+    }
+  },
+  {
+    "trace_id": "django__django-16569@solver_C",
+    "task_id": "django__django-16569",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue is a TypeError in formsets.add_fields when index is None; fix is a guarded comparison in one line of formsets.py. Reproduce-then-fix bug with a clear oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closed",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16595@solver_C",
+    "task_id": "django__django-16595",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": "Issue is migration optimizer not reducing consecutive AlterField operations; requires locating optimizer.py and editing optimize_inner. Localization needs some searching but the crux is the merge logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [0, 1, 2]
+      }
+    },
+    "candidate_interventions": ["provide_localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closed",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16612@solver_C",
+    "task_id": "django__django-16612",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue names sites.py catch_all_view (~line 456): preserve the query string in the APPEND_SLASH redirect. Location is explicit; oracle requires mocking resolve() to reach the redirect branch.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [2, 11, 16],
+        "FAILED_RECOVERY": [9, 13, 14, 18]
+      }
+    },
+    "candidate_interventions": ["prevent_wrong_file_edits", "provide_test_runner_command"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closed",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16631@solver_C",
+    "task_id": "django__django-16631",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: salted_hmac() should honor SECRET_KEY_FALLBACKS so session auth hashes verify across key rotation. Requires locating crypto.py (and understanding base_user usage) and editing the secret-selection logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "VERIFICATION", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["FAILED_RECOVERY", "VERIFICATION_GAP", "FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "VERIFICATION_GAP": "MODERATE",
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [13, 14, 15, 16, 17, 18, 19, 20, 21],
+        "VERIFICATION_GAP": [13, 22],
+        "FILENAME_SEARCH_THRASH": [0, 1, 2]
+      }
+    },
+    "candidate_interventions": ["discourage_mock_substitution", "provide_test_runner_command"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closed",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "After the real unittest invocation failed on DB setup [12], the agent replaced the real salted_hmac with a mock in the test file and looped editing mock+asserts to agree ([13]-[21]); the production crypto.py change is never actually exercised."
+    }
+  },
+  {
+    "trace_id": "django__django-16642@solver_C",
+    "task_id": "django__django-16642",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": "Issue: FileResponse should set correct Content-Type for '.br' and '.Z' encodings; fix is adding entries to the encoding map in response.py. Quick localization, small patch.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [8, 9]
+      }
+    },
+    "candidate_interventions": ["encourage_real_verification"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closed",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "The scratch test defines a SimpleTestCase but the run only prints 'Tests completed.' (the test method was never actually executed by a runner), then the test file is deleted [9] and the patch submitted on non-verification."
+    }
+  },
+  {
+    "trace_id": "django__django-16662@solver_C",
+    "task_id": "django__django-16662",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT"],
+      "evidence": "Issue: migration writer should order 'import' statements before 'from ... import' statements; fix is the sort key in MigrationWriter.as_string() in writer.py. Single-file targeted change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severity": {
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [15, 16, 17, 24, 25, 26],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [8, 10, 19, 20, 21]
+      }
+    },
+    "candidate_interventions": ["discourage_redundant_rereads", "prevent_wrong_file_edits"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_v1_closed",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]

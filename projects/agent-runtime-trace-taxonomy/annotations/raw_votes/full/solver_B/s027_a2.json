@@ -1,0 +1,374 @@
+[
+  {
+    "trace_id": "pylint-dev__pylint-6386@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "CLEAR", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue gives exact command (`pylint mytest.py -v`) and error; symptom is clear but root cause spans the argparse preprocessing flow across config/utils.py (PREPROCESSABLE_OPTIONS) and config/callback_actions.py (_DoNothingAction nargs). Crux is reasoning about argparse nargs semantics, not merely finding the file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-6528@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "INTEGRATION", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Issue is a clear behavioral bug (recursive mode ignores --ignore/--ignore-paths/--ignore-patterns). Fix requires understanding the relationship between _discover_files (pylinter.py) and the ignore logic in expand_modules.py and the dest aliases in base_options.py; integration over directory walking.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-6903@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue explicitly points to _query_cpu() in pylint/lint/run.py and even identifies the offending lines (int(cpu_shares/1024) -> 0). Location is given; task is a small bounded fix (clamp to >=1).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {"HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [3, 6]}
+    },
+    "candidate_interventions": ["RELIABLE_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-7080@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "INTEGRATION", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue: --recursive=y silently ignores ignore-paths from pyproject.toml. Requires tracing _discover_files vs expand_modules vs the regexp_paths_csv transformer; silent-semantic miss (files linted that should be skipped).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severity": {"REDUNDANT_FILE_REREAD": "MILD"},
+      "evidence_action_ids": {"REDUNDANT_FILE_REREAD": [26, 27, 32]}
+    },
+    "candidate_interventions": ["LOCATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-7277@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT", "SHORT_STATE"],
+      "evidence": "Issue points to pylint/__init__.py:99 (modify_sys_path) and proposes the fix (guard pop(0) on '', '.', os.getcwd()). Location and remedy are essentially given; small local change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-8898@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue + traceback localize to _regexp_csv_transfomer in config/argument.py. Crux is designing a comma-split that respects regex {m,n} quantifiers and [..] classes — nontrivial algorithm authoring.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "MODERATE"},
+      "evidence_action_ids": {"PREMATURE_SCRATCH_REPRO": [8, 9, 10, 11, 12]}
+    },
+    "candidate_interventions": ["DISCOURAGE_SCRATCH_REPRO"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-10051@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT", "SHORT_STATE", "LOCAL_CONTEXT"],
+      "evidence": "Issue pinpoints logging.py L699 vs L345 and the list-replace-vs-clear divergence between caplog.records and stash. Crux is reasoning about per-phase stash identity so get_records stays linked after clear().",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [22, 25, 26, 27, 28, 30, 31]}
+    },
+    "candidate_interventions": ["RELIABLE_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-10081@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue is the class-level analog of a known method-level bug (#7215): tearDown runs under --pdb for class-skipped TestCase. Crux is recognizing _is_skipped(self.obj) misses class skip and also checking self._testcase.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-10356@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Issue: marks lost under multiple inheritance because get_unpacked_marks reads only first pytestmark in MRO. Crux is reasoning about MRO traversal and per-class __dict__ to merge marks; fix localized to mark/structures.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-5262@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue names _pytest.capture.EncodedFile and the exact symptom (mode advertises 'rb+' via __getattr__ proxy). Fix is a small local mode property stripping 'b'.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [8, 9, 10, 11]}
+    },
+    "candidate_interventions": ["RELIABLE_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-5631@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Traceback localizes to num_mock_patch_args in compat.py:94; crux is recognizing `p.new in sentinels` does == on arrays and switching to identity (`is`). Small local fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-5787@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "INTEGRATION", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue: xdist serialization drops chained exceptions. Crux is understanding ExceptionChainRepr structure in _code/code.py and extending _to_json/_from_json in reports.py while preserving backward-compatible top-level keys.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

@@ -1,0 +1,401 @@
+```json
+[
+  {
+    "trace_id": "django__django-16100@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue asks to wrap admin changelist_view (list_editable processing) in a transaction; location (changelist_view in contrib/admin/options.py) is found via grep but the correct scope/placement of the transaction is the reasoning core. One file, no explicit test named.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [8, 9, 11, 13, 14, 15]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_HINT", "ADD_POST_EDIT_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16116@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: makemigrations --check should exit non-zero without writing files. Location (check_changes in makemigrations.py) found quickly; reasoning is reordering the check before writes. Single file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [4, 5, 6]},
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [9, 10]},
+        {"l1": "VERIFICATION", "l2": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [11, 12]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ADD_POST_EDIT_VERIFICATION", "REDUCE_EDIT_RETRIES"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16136@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CLEAR"],
+      "evidence": "Issue provides a clear async-view repro (HttpResponseNotAllowed can't be awaited). Fix requires understanding async dispatch in views/generic/base.py (http_method_not_allowed). Clear reproduction given.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO"],
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "PREMATURE_SCRATCH_REPRO", "severity": "MODERATE", "evidence_action_ids": [0, 1, 3, 4, 6]}
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["LOCALIZATION_HINT", "SCRATCH_REPRO_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16139@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue: UserChangeForm password help-text link breaks when accessed via to_field (self.instance.pk). Production fix is a single-file change in auth/forms.py; oracle is auth_tests/test_forms.py. Reasoning + test-string matching dominate.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["FAILED_RECOVERY", "DEPENDENCY_SETUP_DRIFT", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "labels": [
+        {"l1": "CONTROL_RECOVERY", "l2": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [39, 40, 42, 44, 46, 48, 50, 52, 54, 56, 59, 61, 63, 65, 68]},
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [7, 8, 9, 11, 14, 15, 16, 17, 23, 24, 25, 30]},
+        {"l1": "CONTROL_RECOVERY", "l2": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "MODERATE", "evidence_action_ids": [72]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["EARLY_STOP", "REDUCE_EDIT_RETRIES", "PROVIDE_TEST_RUNNER_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16145@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": "Issue: runserver should display 0.0.0.0/:: when addr '0' is given. Location (runserver.py addr formatting) found by directed open; reasoning is the conditional for display/binding. Single file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["PATCH_CHURN", "VERIFICATION_GAP"],
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [4, 5, 6]},
+        {"l1": "VERIFICATION", "l2": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [4, 5, 6, 7]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ADD_POST_EDIT_VERIFICATION", "PROVIDE_TEST_RUNNER_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16255@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: get_latest_lastmod raises ValueError on empty items (max of empty). Fix is a one-line except-clause widening in sitemaps/__init__.py. Clear, single-file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "DEPENDENCY_SETUP_DRIFT", "severity": "MILD", "evidence_action_ids": [4, 6, 7]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16256@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CROSS_CUTTING"],
+      "evidence": "Issue: add async acreate/aget_or_create/aupdate_or_create to related managers in related_descriptors.py. Mechanical multi-method addition across two manager factories in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PATCH_CHURN", "VERIFICATION_GAP"],
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [5, 10, 13, 14]},
+        {"l1": "EDIT_PATCH", "l2": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [15, 16, 17, 18, 19]},
+        {"l1": "VERIFICATION", "l2": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [27]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["REDUCE_EDIT_RETRIES", "ADD_POST_EDIT_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16263@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: strip unused annotations in QuerySet.count(). Requires tracing count -> get_count in sql/query.py and reasoning about which annotations are referenced. Production + test file edited.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PATCH_CHURN", "DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [12, 23, 25]},
+        {"l1": "EDIT_PATCH", "l2": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [20, 21, 24, 26]},
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [27, 29, 31]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["REDUCE_EDIT_RETRIES", "PROVIDE_TEST_RUNNER_HINT", "ADD_POST_EDIT_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16315@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_FILE"],
+      "evidence": "Issue: bulk_create ON CONFLICT must quote field.column not name for mixed-case columns. The hard part is tracing the ORM insert chain (query -> _insert -> InsertQuery -> SQLInsertCompiler -> postgres operations.on_conflict_suffix_sql); the fix itself is one line.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["PATCH_CHURN", "VERIFICATION_GAP"],
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "PATCH_CHURN", "severity": "MILD", "evidence_action_ids": [30, 31, 35, 37]},
+        {"l1": "VERIFICATION", "l2": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [32, 38]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ADD_POST_EDIT_VERIFICATION", "ENV_SETUP_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16333@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: UserCreationForm.save() omits save_m2m(). Production fix is a one-line add in auth/forms.py; bulk of work is authoring a test in auth_tests/test_forms.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE", "DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [20, 21, 26, 27, 28, 29, 30]},
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [18, 22, 25]},
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [37, 39, 41]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["REDUCE_EDIT_RETRIES", "PROVIDE_TEST_RUNNER_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16429@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: timesince() mixes naive/aware datetimes; fix is adding tzinfo=d.tzinfo to the pivot datetime in utils/timesince.py. Clear, single-file, line pointed to by issue.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "DEPENDENCY_SETUP_DRIFT", "severity": "MILD", "evidence_action_ids": [3, 7]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16454@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: CommandParser subparsers don't inherit error-formatting attributes. Reasoning-heavy (argparse subparser attribute propagation) in management/base.py; one production file plus a test command/test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [9, 10]},
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "DEPENDENCY_SETUP_DRIFT", "severity": "MILD", "evidence_action_ids": [13, 18]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["REDUCE_EDIT_RETRIES", "PROVIDE_TEST_RUNNER_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closedlabel_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

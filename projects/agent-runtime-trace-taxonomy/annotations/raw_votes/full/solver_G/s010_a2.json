@@ -1,0 +1,470 @@
+[
+  {
+    "trace_id": "django__django-13568@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue names a specific system check (auth.E003) whose logic in django/contrib/auth/checks.py must be extended to honor UniqueConstraint; localization is trivial via grep on the error id, the work is the conditional patch.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {
+          "l1": "ENVIRONMENT_TOOLING",
+          "l2": "DEPENDENCY_SETUP_DRIFT",
+          "severity": "MODERATE",
+          "evidence_action_ids": [5, 6, 8, 9, 16]
+        }
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["provide_verification_harness_hint"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13569@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue supplies the exact patch and the target method get_group_by in django/db/models/sql/compiler.py; work is applying/validating a small filtering change against the GROUP BY/order_by loop.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_unverified_positive",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "labels": [
+        {
+          "l1": "CONTEXT_MEMORY",
+          "l2": "CONTEXT_BLOAT",
+          "severity": "MODERATE",
+          "evidence_action_ids": [5, 7]
+        }
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT"
+    },
+    "candidate_interventions": ["run_targeted_tests", "reduce_output_window"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13590@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue identifies resolve_lookup_value reconstituting a named tuple in django/db/models/sql/query.py; the fix is a localized one-line unpacking change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {
+          "l1": "VERIFICATION",
+          "l2": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [3, 4]
+        }
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["enforce_post_edit_verification"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13658@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue specifies passing self.prog_name into CommandParser in ManagementUtility.execute (django/core/management/__init__.py); a single targeted constructor change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {
+          "l1": "VERIFICATION",
+          "l2": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [4, 5]
+        }
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["enforce_post_edit_verification"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13670@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue targets DateFormat.y() two-digit year handling in django/utils/dateformat.py; a single-method fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {
+          "l1": "VERIFICATION",
+          "l2": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [2, 3]
+        }
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["enforce_post_edit_verification"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13741@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue names ReadOnlyPasswordHashField and UserChangeForm in django/contrib/auth/forms.py; fix is setting disabled=True and removing clean_password, both localized.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "labels": [
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "SEVERE",
+          "evidence_action_ids": [6, 7, 9, 10, 11, 13, 15, 16, 18, 20, 22, 23, 24, 25]
+        },
+        {
+          "l1": "VERIFICATION",
+          "l2": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [4, 5, 26]
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["robust_edit_tool", "enforce_post_edit_verification"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13786@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue points to line ~144 in django/db/migrations/operations/models.py (CreateModel.reduce merging AlterModelOptions); fix is within a single file though it requires correlating two methods.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {
+          "l1": "VERIFICATION",
+          "l2": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [9, 10]
+        },
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "MILD",
+          "evidence_action_ids": [8]
+        }
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["enforce_post_edit_verification"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13794@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue concerns the add template filter in django/template/defaultfilters.py handling lazy strings; a localized except/concatenation fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {
+          "l1": "VERIFICATION",
+          "l2": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [4, 5]
+        },
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "MILD",
+          "evidence_action_ids": [2]
+        }
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["enforce_post_edit_verification"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13807@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue references lines 327-333 in django/db/backends/sqlite3/base.py; fix quotes table names in two PRAGMA queries within one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_applied_verification_failed",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "labels": [
+        {
+          "l1": "ENVIRONMENT_TOOLING",
+          "l2": "ENVIRONMENT_BLOCKED",
+          "severity": "MODERATE",
+          "evidence_action_ids": [7, 8, 9]
+        }
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["provide_verification_harness_hint"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13809@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue asks to add a --skip-checks option to runserver in django/core/management/commands/runserver.py; localized add_arguments + inner_run change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_applied_verification_failed",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {
+          "l1": "ENVIRONMENT_TOOLING",
+          "l2": "ENVIRONMENT_BLOCKED",
+          "severity": "MODERATE",
+          "evidence_action_ids": [7, 8, 9, 10, 11]
+        },
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "MILD",
+          "evidence_action_ids": [3]
+        }
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["provide_verification_harness_hint", "robust_edit_tool"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13810@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue describes MiddlewareNotUsed leaving the handler variable overwritten in django/core/handlers/base.py around line 58; localized loop-ordering fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {
+          "l1": "ENVIRONMENT_TOOLING",
+          "l2": "DEPENDENCY_SETUP_DRIFT",
+          "severity": "MILD",
+          "evidence_action_ids": [5, 6, 7, 8]
+        }
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["provide_verification_harness_hint"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13820@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue points to the __file__/__path__ namespace-package check in MigrationLoader.load_disk (django/db/migrations/loader.py); a single conditional change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {
+          "l1": "VERIFICATION",
+          "l2": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [5, 6]
+        }
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["enforce_post_edit_verification"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]

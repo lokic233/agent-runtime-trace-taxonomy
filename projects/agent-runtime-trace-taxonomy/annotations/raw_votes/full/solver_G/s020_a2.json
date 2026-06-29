@@ -1,0 +1,434 @@
+```json
+[
+  {
+    "trace_id": "django__django-16667@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Issue: SelectDateWidget raises OverflowError on very large year values. The widget class is named, so localization is trivial; the crux is reasoning about how value_from_datadict should handle the overflow. Fix is confined to one method in forms/widgets.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "severities": {
+        "FAILED_RECOVERY": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19, 20],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [12, 13, 14]
+      },
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_ORACLE", "ENFORCE_ROOT_CAUSE_ANALYSIS", "LIMIT_EDIT_RETRIES"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16801@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: ImageField should only connect the post_init signal when width_field/height_field are set (performance). Found via grep; the reasoning is the conditional guard in contribute_to_class. Single-file change in db/models/fields/files.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "severities": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [2, 3]
+      },
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["SUGGEST_RUN_TESTS", "PROVIDE_TEST_ORACLE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16819@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: add a reduce() method to IndexOperation so AddIndex/RemoveIndex are optimized out. Target class is named; fix is one method in db/migrations/operations/models.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "DEPENDENCY_SETUP_DRIFT"],
+      "severities": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        "DEPENDENCY_SETUP_DRIFT": [11, 13, 14, 15, 16, 17, 18]
+      },
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["IMPROVE_EDIT_TOOL", "PROVIDE_ENV_SETUP", "PROVIDE_TEST_RUNNER_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16877@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: add a new escapeseq template filter analogous to safeseq. Locate safeseq in template/defaultfilters.py and add a parallel filter; small implementation task in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "severities": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [6, 7]
+      },
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["SUGGEST_RUN_TESTS", "PROVIDE_TEST_ORACLE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16899@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: the admin readonly_fields check error (admin.E035) should include the offending field name, mirroring list_editable. Located via grep in contrib/admin/checks.py; small message edit in one function.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "severities": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [7, 8]
+      },
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["SUGGEST_RUN_TESTS", "PROVIDE_TEST_ORACLE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16901@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: Q(...) ^ Q(...) ^ Q(...) with >2 operands is mis-evaluated on backends lacking native XOR; needs parity fallback in db/models/sql/where.py. Fix is small/single-file, but correct verification requires a non-SQLite backend, making the oracle awkward.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "severities": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [11, 12, 13, 14, 15, 16, 17, 18]
+      },
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_ORACLE", "PROVIDE_ENV_SETUP", "BUDGET_CAP_LOOP"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16938@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: serializing a model whose default manager uses select_related raises a missing-field error; a semantic bug spanning serializers and manager/queryset behavior. Localization is non-obvious and requires understanding cross-module interaction.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "REPRODUCTION",
+      "progress": "NONE",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "severities": {
+        "PREMATURE_SCRATCH_REPRO": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 2, 4, 5, 6, 9, 10, 12, 13, 14, 15, 16, 17, 18, 20, 22, 24, 26, 27, 28],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [11, 25]
+      },
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["ENFORCE_LOCALIZATION_FIRST", "PROVIDE_REPRODUCTION", "PROVIDE_LOCATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16950@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC", "INTEGRATION", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: admin inline + parent model with a callable/UUID default fails to use the default when saving with inlines; a semantic bug surfacing through the admin flow. Reproduction naturally tends toward an integration path.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "REPRODUCTION",
+      "progress": "NONE",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "PREMATURE_SCRATCH_REPRO"],
+      "severities": {
+        "STAGNATION": "SEVERE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [18, 19, 20, 24, 25, 27, 30, 31, 32, 40, 41, 42, 47, 48, 49, 50, 55, 56, 57, 58, 59],
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 2, 14, 16]
+      },
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["BUDGET_CAP_LOOP", "ENFORCE_LOCALIZATION_FIRST", "PROVIDE_REPRODUCTION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-17029@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: apps.clear_cache() should also clear the @functools.cache on get_swappable_settings_name. Both methods are named; the fix is a one-line cache_clear() addition in apps/registry.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "severities": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [5, 6]
+      },
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["SUGGEST_RUN_TESTS", "PROVIDE_TEST_ORACLE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-17084@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: an aggregate over a window function should raise NotSupportedError. Deciding where to add the guard (compiler vs expressions.Func vs aggregates.Aggregate.resolve_expression) is the main effort; investigation spans several files before settling on one.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "severities": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [13, 14]
+      },
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["SUGGEST_RUN_TESTS", "PROVIDE_TEST_ORACLE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-17087@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SILENT_SEMANTIC", "CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: a classmethod of a nested class cannot be serialized as a Field default in migrations; the real fix lives in the migration serializer/deconstruction logic. Reproduction depends on makemigrations behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "REPRODUCTION",
+      "progress": "NONE",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "PREMATURE_SCRATCH_REPRO"],
+      "severities": {
+        "STAGNATION": "SEVERE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [13, 15, 16, 18, 19, 21, 22, 24, 25, 27, 28, 30, 31, 33, 34],
+        "PREMATURE_SCRATCH_REPRO": [0, 5, 11, 14, 20, 23, 26, 29, 32]
+      },
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["BUDGET_CAP_LOOP", "ENFORCE_LOCALIZATION_FIRST", "PROVIDE_REPRODUCTION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-7530@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CROSS_MODULE"],
+      "evidence": "Issue: makemigrations calls router.allow_migrate() with model._meta.object_name instead of model_name, producing wrong (app_label, model) pairs. The command file is named; fix is a one-token change in core/management/commands/makemigrations.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "severities": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [1, 2, 3, 4, 14, 15]
+      },
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_HINT", "PROVIDE_TEST_ORACLE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

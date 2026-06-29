@@ -1,0 +1,381 @@
+[
+  {
+    "trace_id": "django__django-12143@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue names admin/options.py and a specific line; fix is a one-line re.escape() wrap in _get_edited_object_pks. Location explicit, change targeted and single-file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "MODERATE", "evidence_action_ids": [4, 6, 8]},
+        {"label": "PATCH_CHURN", "severity": "MILD", "evidence_action_ids": [10, 11]}
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "PROVIDE_RUN_TESTS_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12155@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "trim_docstring not directly findable by name (some search needed); core work is a small indent-calculation fix in admindocs/utils.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12193@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "HIDDEN_TEST_DOMINANT", "CLEAR"],
+      "evidence": "Core fix is CheckboxInput.get_context in forms/widgets.py (stop mutating attrs); SplitArrayField is a downstream symptom not in core. Oracle is the widget test suite.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "SEARCH_WITHOUT_NEW_EVIDENCE", "severity": "MODERATE", "evidence_action_ids": [0, 1, 2, 3, 20, 21, 22]},
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [9, 12, 14, 15, 16, 17, 18]}
+      ],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE"
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "PROVIDE_TEST_HARNESS"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12209@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Issue concerns model save() / _save_table semantics with an explicit-default UUID pk; the real fix lives in db/models/base.py save logic. Subtle behavioral change, not a crash.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "STUCK",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label": "PREMATURE_SCRATCH_REPRO", "severity": "SEVERE", "evidence_action_ids": [0, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23]},
+        {"label": "PATCH_CHURN", "severity": "SEVERE", "evidence_action_ids": [46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62]},
+        {"label": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "SEVERE", "evidence_action_ids": [63]}
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["DISCOURAGE_PREMATURE_REPRO", "PROVIDE_LOCALIZATION_HINT", "BUDGET_INCREASE"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12262@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue is keyword-only args with defaults in simple_tag/inclusion_tag; fix concentrated in template/library.py parse_bits / SimpleNode.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [7, 8, 9, 10, 11, 12]},
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "SEVERE", "evidence_action_ids": [27, 28, 29, 34, 35, 40, 43, 45, 50]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_HARNESS", "REDUCE_PATCH_CHURN"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12273@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue is inherited-model save with pk reset (loaded/deferred fields); real fix belongs in db/models/base.py save logic, a silent-correctness behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "STUCK",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PREMATURE_SCRATCH_REPRO", "severity": "SEVERE", "evidence_action_ids": [0, 1, 3, 5, 6, 8, 9, 11, 13]},
+        {"label": "PATCH_CHURN", "severity": "MILD", "evidence_action_ids": [17, 23]}
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["DISCOURAGE_PREMATURE_REPRO", "PROVIDE_LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12276@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Refactor: move use_required_attribute from ClearableFileInput to FileInput in forms/widgets.py. Location explicit, mechanical single-file change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [13]},
+        {"label": "PATCH_CHURN", "severity": "MILD", "evidence_action_ids": [5, 6]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ENFORCE_VERIFICATION", "PROVIDE_TEST_HARNESS"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12304@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Add do_not_call_in_templates flag to Choices/IntegerChoices/TextChoices in db/models/enums.py; small targeted attribute add, found after brief search.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": [
+        {"label": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [6]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ENFORCE_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12308@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "HIDDEN_TEST_DOMINANT", "CLEAR"],
+      "evidence": "Issue names admin.utils.display_for_field; fix is a JSONField special-case in contrib/admin/utils.py. Oracle is the admin_utils test suite.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [7, 9, 10, 11, 12]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_HARNESS", "PROVIDE_RUN_TESTS_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12325@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Multiple OneToOneField / parent_link ordering bug requires coordinated edits across db/models/base.py and db/models/options.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [26, 27, 28, 30, 32, 34, 37]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["REDUCE_PATCH_CHURN"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12406@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "RadioSelect blank-option behavior depends on ModelChoiceField empty_label logic; correct fix spans forms/widgets.py and forms/models.py. Subtle rendering-semantics issue.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [29, 30, 34, 43, 47, 48, 52, 53, 55, 57, 59, 63, 64, 65, 70]},
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [13, 15, 17, 23, 25]},
+        {"label": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "SEVERE", "evidence_action_ids": [72]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "BUDGET_INCREASE", "REDUCE_PATCH_CHURN"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12419@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Change SECURE_REFERRER_POLICY default to 'same-origin' in conf/global_settings.py; one-line code change plus docs. Location found immediately via grep.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [12, 13, 14, 15, 16]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["REDUCE_PATCH_CHURN"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]

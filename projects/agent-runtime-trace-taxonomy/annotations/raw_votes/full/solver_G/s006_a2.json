@@ -1,0 +1,376 @@
+```json
+[
+  {
+    "trace_id": "django__django-12143@solver_G",
+    "workload_annotation": {
+      "primary_l1": "VERIFICATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "HIDDEN_TEST_DOMINANT", "UNCLEAR_ORACLE", "EXPENSIVE_SUITE", "REPOSITORY_CONTEXT"],
+      "evidence": "Bug fix targets django/contrib/admin/options.py (_get_edited_object_pks); the Django test harness must be invoked via tests/runtests.py and the correct app label, making oracle/verification setup the dominant inherent challenge.",
+      "unknown_fields": ["true_oracle_test_module"]
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "VERIFICATION"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_TEST"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "REDUNDANT_TEST": "MODERATE"},
+      "evidence_action_ids": {"STAGNATION": [6, 7, 8, 10, 11, 14, 15, 16], "REDUNDANT_TEST": [8, 10, 11, 14, 15]}
+    },
+    "candidate_interventions": ["TEST_COMMAND_HINT", "VERIFICATION_NUDGE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12155@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue names trim_docstring in admindocs/utils.py; fix is a small one-line indentation change with an existing targeted unit test (admin_docs.test_utils).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "MODERATE"},
+      "evidence_action_ids": {"STAGNATION": [9, 13]}
+    },
+    "candidate_interventions": ["TEST_COMMAND_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12193@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue is a shared-mutable-attrs bug in CheckboxInput.get_context (django/forms/widgets.py) surfacing through SplitArrayField; subtle semantic fix, location requires a grep.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "SEVERE"},
+      "evidence_action_ids": {"PREMATURE_SCRATCH_REPRO": [0, 2, 4, 6, 8, 9, 10]}
+    },
+    "candidate_interventions": ["SCRATCH_REPRO_DISCOURAGE", "LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12209@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "UNCLEAR_ORACLE"],
+      "evidence": "Model.save() with explicit pk behavior; understanding the save/_save_table/_do_insert/_insert chain spans base.py and query.py, requiring cross-file reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["VERIFICATION_GAP", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "SEVERE", "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [13, 14, 15], "SEARCH_WITHOUT_NEW_EVIDENCE": [3, 4]}
+    },
+    "candidate_interventions": ["VERIFICATION_NUDGE", "TEST_COMMAND_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12262@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "CLEAR", "HIDDEN_TEST_DOMINANT", "REPOSITORY_CONTEXT"],
+      "evidence": "simple_tag keyword-only args with defaults raise TemplateSyntaxError; fix is in parse_bits within django/template/library.py, located via grep.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [4, 5]}
+    },
+    "candidate_interventions": ["VERIFICATION_NUDGE", "TEST_COMMAND_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12273@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Resetting primary key on save (AutoField) bug; reasoning over _save_table/_do_insert across base.py and query.py; the issue's referenced SaveTestCase is not present in this version.",
+      "unknown_fields": ["true_oracle_test_module"]
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE",
+      "severity": {"SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE"},
+      "evidence_action_ids": {"SEARCH_WITHOUT_NEW_EVIDENCE": [8, 10, 11, 15, 16]}
+    },
+    "candidate_interventions": ["SEARCH_STRATEGY_HINT", "TEST_COMMAND_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12276@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Move use_required_attribute from ClearableFileInput up to FileInput in django/forms/widgets.py; small refactor with targeted widget tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [3, 4, 5, 6, 7, 8]}
+    },
+    "candidate_interventions": ["EDIT_TOOL_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12304@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "CLEAR", "HIDDEN_TEST_DOMINANT", "LOCAL_CONTEXT"],
+      "evidence": "Add do_not_call_in_templates=True to Choices in django/db/models/enums.py; located instantly via grep, fix is a single attribute.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [3, 4]}
+    },
+    "candidate_interventions": ["VERIFICATION_NUDGE", "TEST_COMMAND_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12308@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "CLEAR", "HIDDEN_TEST_DOMINANT", "LOCAL_CONTEXT"],
+      "evidence": "Add a JSONField branch to display_for_field in django/contrib/admin/utils.py; location found via find+grep, fix is one branch.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [3, 4]}
+    },
+    "candidate_interventions": ["VERIFICATION_NUDGE", "TEST_COMMAND_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12325@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "HIDDEN_TEST_DOMINANT", "EXPENSIVE_SUITE"],
+      "evidence": "Multi-table inheritance parent_link resolution ordering bug in django/db/models/base.py metaclass; subtle semantic fix verified by model_inheritance suite.",
+      "unknown_fields": ["true_oracle_test_module"]
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "STAGNATION"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "SEVERE", "STAGNATION": "MODERATE"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [4, 5, 9, 10, 15, 16, 17, 18, 19], "STAGNATION": [6, 7, 8]}
+    },
+    "candidate_interventions": ["TEST_COMMAND_HINT", "ENVIRONMENT_SETUP"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12406@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "MULTI_FILE", "REPOSITORY_CONTEXT", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "ModelChoiceField with RadioSelect should not render the empty/blank option; reasoning spans forms/models.py, forms/fields.py and db/models field formfield logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "VERIFICATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "VERIFICATION_GAP"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {"FILENAME_SEARCH_THRASH": "SEVERE", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"FILENAME_SEARCH_THRASH": [1, 2, 4, 5, 7, 8], "VERIFICATION_GAP": [15, 16, 17]}
+    },
+    "candidate_interventions": ["SEARCH_STRATEGY_HINT", "VERIFICATION_NUDGE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12419@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR", "EXPENSIVE_SUITE", "REPOSITORY_CONTEXT"],
+      "evidence": "Change default SECURE_REFERRER_POLICY to 'same-origin' in django/conf/global_settings.py; setting is explicitly named, fix is a single default value change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "MODERATE"},
+      "evidence_action_ids": {"STAGNATION": [5, 7, 8, 9]}
+    },
+    "candidate_interventions": ["TEST_COMMAND_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

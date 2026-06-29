@@ -1,15 +1,15 @@
 [
   {
-    "trace_id": "astropy__astropy-12907@solver_B",
+    "trace_id": "astropy__astropy-14508@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Bug report gives concrete separability_matrix behavior and nested CompoundModel examples; fix requires reasoning about one modeling implementation path.",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "Issue explicitly identifies astropy.io.fits.Card._format_float() and the float string formatting behavior; fix is localized to one function with a direct reproduction oracle.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
@@ -31,16 +31,16 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-13033@solver_B",
+    "trace_id": "astropy__astropy-14539@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue identifies TimeSeries required-column validation and gives exact misleading exception; implementation is a localized error-message logic change.",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "Issue points to FITSDiff and VLA comparison behavior; solver needed to locate the VLA handling branch in astropy/io/fits/diff.py and make a targeted condition change.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
@@ -62,16 +62,16 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-13236@solver_B",
+    "trace_id": "astropy__astropy-14598@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue quotes the exact structured ndarray-to-NdarrayMixin clause and asks for warning behavior before a future behavior change.",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "SHORT_STATE"],
+      "evidence": "Issue is explicitly about FITS Card quote handling and round-tripping through Card.fromstring(str(card)); relevant logic is local to card parsing.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
@@ -93,16 +93,179 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-13398@solver_B",
+    "trace_id": "astropy__astropy-14995@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_FILE", "INTEGRATION", "MULTI_MODULE_CONTEXT", "PARTIAL", "LONG_STATE"],
-      "evidence": "Feature request asks for new direct ITRS<->AltAz/HADec transformations and registration in coordinate transform graph, requiring cross-frame reasoning and integration tests.",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "Issue describes NDDataRef mask propagation for arithmetic; fix requires finding the mask-combination helper and adjusting one conditional.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7166@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "Issue names InheritDocstrings and inspect.isfunction not matching properties; expected fix is localized to metaclass member handling.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7336@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "Issue traceback identifies astropy/units/decorators.py return annotation handling in quantity_input; solution is a small conditional change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7606@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "Issue traceback identifies UnrecognizedUnit.__eq__ in astropy/units/core.py; fix is localized error handling for invalid comparison operands.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {
+        "HELPER_TOOL_FAILURE_LOOP": "MILD"
+      },
+      "evidence_action_ids": {
+        "HELPER_TOOL_FAILURE_LOOP": [5, 6, 7]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7671@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "Issue names astropy.utils.minversion and LooseVersion comparison; fix is localized to version parsing in introspection.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [2]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-8707@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "MULTI_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "Issue explicitly names Header.fromstring and Card.fromstring accepting Python 3 bytes; fix spans two FITS parsing entry points.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
@@ -115,7 +278,7 @@
         "ENVIRONMENT_BLOCKED": "MODERATE"
       },
       "evidence_action_ids": {
-        "ENVIRONMENT_BLOCKED": [21, 25, 27, 29, 38, 43]
+        "ENVIRONMENT_BLOCKED": [24, 25, 26, 27, 28, 29]
       }
     },
     "candidate_interventions": [],
@@ -128,16 +291,16 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-13453@solver_B",
+    "trace_id": "astropy__astropy-8872@solver_B",
     "workload_annotation": {
-      "primary_l1": "LOCALIZATION_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue states ascii HTML writer ignores formats; main work is finding the HTML writer path where column string formatting is bypassed.",
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "Issue concerns Quantity dtype preservation for float16; solution requires locating dtype-casting guards in quantity.py.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
@@ -159,16 +322,16 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-13579@solver_B",
+    "trace_id": "django__django-10097@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "LOCAL_CONTEXT", "SHORT_STATE"],
-      "evidence": "Issue names SlicedLowLevelWCS and describes a subtle world_to_pixel semantic error with coupled WCS axes.",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": "Issue names URLValidator and invalid username/password characters; fix is localized to the authentication component of a validation regex.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
@@ -190,189 +353,32 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-13977@solver_B",
+    "trace_id": "django__django-10554@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue provides a minimal duck-array reproduction and points to Quantity.__array_ufunc__ behavior requiring a localized protocol fix.",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_FILE", "REPOSITORY_CONTEXT", "CLEAR", "LONG_STATE"],
+      "evidence": "Issue involves queryset cloning, union/ordering state, compiler behavior, and derived queryset side effects; requires understanding ORM query object sharing across modules.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "FINAL_PATCH_SUBMITTED",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
     },
     "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14096@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue gives a SkyCoord subclass property example and traceback pointing to SkyCoord.__getattr__ behavior.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14182@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue asks to support header_rows in ascii.rst, analogous to fixed_width output; implementation requires adapting one writer class.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14309@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue includes stack trace to astropy.io.fits.connect.is_fits and exact identify_format call; fix is a localized guard.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": ["ENVIRONMENT_TOOLING"],
-      "l2_labels": ["PREEMPTIVE_HELPER_TOOL_BUILD"],
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["PREEMPTIVE_HELPER_TOOL_BUILD", "EDIT_TOOL_MECHANICAL_FAILURE"],
       "primary_bottleneck": "PREEMPTIVE_HELPER_TOOL_BUILD",
       "severity": {
-        "PREEMPTIVE_HELPER_TOOL_BUILD": "MODERATE"
+        "PREEMPTIVE_HELPER_TOOL_BUILD": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
       },
       "evidence_action_ids": {
-        "PREEMPTIVE_HELPER_TOOL_BUILD": [2, 18]
+        "PREEMPTIVE_HELPER_TOOL_BUILD": [3, 66],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [51, 52, 53, 54, 55]
       }
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14365@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue identifies ascii.qdp command parsing as case-sensitive; expected change is localized parser behavior.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": ["ENVIRONMENT_TOOLING"],
-      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
-      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
-      "severity": {
-        "HELPER_TOOL_FAILURE_LOOP": "MODERATE"
-      },
-      "evidence_action_ids": {
-        "HELPER_TOOL_FAILURE_LOOP": [2, 3, 4, 5, 8, 11]
-      }
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14369@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "LOCAL_CONTEXT", "SHORT_STATE"],
-      "evidence": "Issue concerns CDS unit grammar semantics for composite MRT units; fix requires parser grammar reasoning and generated parse table update.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {

@@ -1,0 +1,422 @@
+[
+  {
+    "trace_id": "django__django-11790@solver_B",
+    "task_id": "django__django-11790",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "CLEAR", "TARGETED_UNIT"],
+      "evidence": {
+        "issue_cues": ["regression: AuthenticationForm username field no longer renders maxlength", "names the exact form/field and regressing commit"],
+        "structural_cues": ["fix localized to django/contrib/auth/forms.py __init__", "covered by auth_tests.test_forms unit tests"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTEXT_MEMORY"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "CONTEXT_BLOAT"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MODERATE", "CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [10, 12, 13], "CONTEXT_BLOAT": [1]}
+    },
+    "candidate_interventions": ["provide_editing_tool"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11815@solver_B",
+    "task_id": "django__django-11815",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": {
+        "issue_cues": ["enum serialized by value not name", "PR gives exact expected output Status['GOOD']"],
+        "structural_cues": ["one-line change in EnumSerializer (serializer.py)", "existing migrations.test_writer.test_serialize_enums asserts old format"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["STAGNATION", "HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {"STAGNATION": "MODERATE", "HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"STAGNATION": [19, 21, 28, 30], "HELPER_TOOL_FAILURE_LOOP": [17, 18]}
+    },
+    "candidate_interventions": ["provide_editing_tool", "signal_existing_test_will_update"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11820@solver_B",
+    "task_id": "django__django-11820",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "CLEAR", "TARGETED_UNIT"],
+      "evidence": {
+        "issue_cues": ["E015 wrongly raised for related-field __pk in Meta.ordering", "names regressing commit"],
+        "structural_cues": ["fix in _check_ordering in db/models/base.py", "covered by invalid_models_tests/ordering tests"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [16, 18, 19]}
+    },
+    "candidate_interventions": ["provide_editing_tool"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11848@solver_B",
+    "task_id": "django__django-11848",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": {
+        "issue_cues": ["two-digit year logic should compare to current year per RFC 7231", "names parse_http_date function"],
+        "structural_cues": ["algorithmic change in django/utils/http.py", "covered by utils_tests.test_http"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [7, 8, 9, 10]}
+    },
+    "candidate_interventions": ["provide_editing_tool"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11880@solver_B",
+    "task_id": "django__django-11880",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": {
+        "issue_cues": ["__deepcopy__ does not deep-copy error_messages dict", "links exact method and line"],
+        "structural_cues": ["one-line addition in forms/fields.py __deepcopy__", "covered by forms_tests/model_forms"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [30, 31]}
+    },
+    "candidate_interventions": ["provide_editing_tool"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11885@solver_B",
+    "task_id": "django__django-11885",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "INTEGRATION", "UNCLEAR_ORACLE"],
+      "evidence": {
+        "issue_cues": ["combine fast-delete queries per table via OR to cut roundtrips", "performance optimization with example SQL"],
+        "structural_cues": ["change in db/models/deletion.py Collector", "existing delete tests assert hardcoded query counts"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTEXT_MEMORY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "CONTEXT_BLOAT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {"DEPENDENCY_SETUP_DRIFT": "MODERATE", "CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [21, 29], "CONTEXT_BLOAT": [2]}
+    },
+    "candidate_interventions": ["provide_test_scaffold", "provide_file_view_tool"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11951@solver_B",
+    "task_id": "django__django-11951",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": {
+        "issue_cues": ["bulk_create batch_size should take min with max_batch_size like bulk_update", "gives exact line and suggested fix"],
+        "structural_cues": ["one-line change in _batched_insert (query.py)", "covered by bulk_create tests"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11964@solver_B",
+    "task_id": "django__django-11964",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC"],
+      "evidence": {
+        "issue_cues": ["TextChoices/IntegerChoices value has differing type; str() returns 'MyChoice.FIRST' not value", "symptom-described, root cause not named"],
+        "structural_cues": ["root cause is missing __str__ on Choices (enums.py)", "required exploring fields/descriptors before landing on enums.py"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11999@solver_B",
+    "task_id": "django__django-11999",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": {
+        "issue_cues": ["cannot override get_FOO_display() since 2.2", "minimal reproducing model given"],
+        "structural_cues": ["fix is hasattr guard in Field.contribute_to_class (fields/__init__.py)", "covered by model_fields tests"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [9, 10]}
+    },
+    "candidate_interventions": ["provide_editing_tool"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12039@solver_B",
+    "task_id": "django__django-12039",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": {
+        "issue_cues": ["whitespace handling in CREATE INDEX col_suffixes/opclasses", "links exact file and line, expected output given"],
+        "structural_cues": ["fix in Columns/IndexColumns.__str__ (ddl_references.py)", "covered by backends.test_ddl_references"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12050@solver_B",
+    "task_id": "django__django-12050",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": {
+        "issue_cues": ["resolve_lookup_value coerces list to tuple; should preserve input iterable type", "names method and regressing PR"],
+        "structural_cues": ["one-line change in sql/query.py", "covered by queries/lookup tests"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12125@solver_B",
+    "task_id": "django__django-12125",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": {
+        "issue_cues": ["makemigrations emits wrong path for inner classes (uses __name__ not qualified)", "reproducer and expected path given"],
+        "structural_cues": ["fix is __name__ -> __qualname__ in TypeSerializer (serializer.py)", "covered by migrations.test_writer; existing test asserts old local-class path"]
+      },
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severities": {"PATCH_CHURN": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [33, 36], "EDIT_TOOL_MECHANICAL_FAILURE": [38, 44, 46]}
+    },
+    "candidate_interventions": ["provide_editing_tool", "discourage_cosmetic_edits"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

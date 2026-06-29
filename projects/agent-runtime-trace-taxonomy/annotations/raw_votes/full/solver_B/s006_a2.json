@@ -1,0 +1,486 @@
+```json
+[
+  {
+    "trace_id": "django__django-12143@solver_B",
+    "task_id": "django__django-12143",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue cites exact file admin/options.py and line 1634 plus the precise fix (use re.escape() on prefix); one-line targeted change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "labels": [
+        {
+          "l2_label": "HELPER_TOOL_FAILURE_LOOP",
+          "l1_parent": "ENVIRONMENT_TOOLING",
+          "severity": "MILD",
+          "evidence_action_ids": [3, 4]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12155@solver_B",
+    "task_id": "django__django-12155",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue names trim_docstring and the exact culprit line plus proposed fix (slice lines[1:]); single small function change with one edge case.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12193@solver_B",
+    "task_id": "django__django-12193",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue gives root cause and line (CheckboxInput.get_context mutates attrs at widgets.py L527); fix is to avoid mutating shared dict.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "labels": [
+        {
+          "l2_label": "DEPENDENCY_SETUP_DRIFT",
+          "l1_parent": "ENVIRONMENT_TOOLING",
+          "severity": "MILD",
+          "evidence_action_ids": [5, 6, 7]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12209@solver_B",
+    "task_id": "django__django-12209",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "INTEGRATION", "SILENT_SEMANTIC"],
+      "evidence": "Behavioral regression in save() INSERT-vs-UPDATE when pk has a default; requires tracing _save_table/_state.adding logic in base.py, not given verbatim.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "VERIFICATION"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "REDUNDANT_TEST"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "labels": [
+        {
+          "l2_label": "HELPER_TOOL_FAILURE_LOOP",
+          "l1_parent": "ENVIRONMENT_TOOLING",
+          "severity": "MODERATE",
+          "evidence_action_ids": [6, 8, 9, 11, 18, 32]
+        },
+        {
+          "l2_label": "REDUNDANT_TEST",
+          "l1_parent": "VERIFICATION",
+          "severity": "MILD",
+          "evidence_action_ids": [26, 27]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12262@solver_B",
+    "task_id": "django__django-12262",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue points to parse_bits in template/library.py and the offending condition; fix is a single condition change (kwonly handling).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12273@solver_B",
+    "task_id": "django__django-12273",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "INTEGRATION"],
+      "evidence": "MTI child pk reset bug; no fix location given, requires understanding _set_pk_val/_save_parents and parent-link sync in base.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "labels": [
+        {
+          "l2_label": "FAILED_RECOVERY",
+          "l1_parent": "CONTROL_RECOVERY",
+          "severity": "MILD",
+          "evidence_action_ids": [10, 11, 18, 21, 23]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12276@solver_B",
+    "task_id": "django__django-12276",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue prescribes moving use_required_attribute from ClearableFileInput to FileInput with exact line link; mechanical move.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12304@solver_B",
+    "task_id": "django__django-12304",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue states the fix: add do_not_call_in_templates=True to Choices classes (enums.py); one-line metaclass change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12308@solver_B",
+    "task_id": "django__django-12308",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue names display_for_field in admin/utils.py and prescribes using JSONField.prepare_value; targeted special-case addition.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["CONTEXT_BLOAT", "PATCH_CHURN"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "labels": [
+        {
+          "l2_label": "CONTEXT_BLOAT",
+          "l1_parent": "CONTEXT_MEMORY",
+          "severity": "MILD",
+          "evidence_action_ids": [1, 5, 7]
+        },
+        {
+          "l2_label": "PATCH_CHURN",
+          "l1_parent": "EDIT_PATCH",
+          "severity": "MILD",
+          "evidence_action_ids": [18, 20, 21]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12325@solver_B",
+    "task_id": "django__django-12325",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "INTEGRATION"],
+      "evidence": "Order-dependent parent_link resolution for MTI with multiple OneToOne refs; requires locating parent_links construction in base.py and reasoning about precedence.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY"],
+      "l2_labels": ["FAILED_RECOVERY", "CONTEXT_BLOAT"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "labels": [
+        {
+          "l2_label": "FAILED_RECOVERY",
+          "l1_parent": "CONTROL_RECOVERY",
+          "severity": "MILD",
+          "evidence_action_ids": [12, 17, 27, 29]
+        },
+        {
+          "l2_label": "CONTEXT_BLOAT",
+          "l1_parent": "CONTEXT_MEMORY",
+          "severity": "MILD",
+          "evidence_action_ids": [4]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12406@solver_B",
+    "task_id": "django__django-12406",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "INTEGRATION"],
+      "evidence": "RadioSelect blank-option behavior for blank=False FK; no fix prescribed, requires tracing blank->required->empty_label chain and a design choice in forms/models.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "labels": [
+        {
+          "l2_label": "HELPER_TOOL_FAILURE_LOOP",
+          "l1_parent": "ENVIRONMENT_TOOLING",
+          "severity": "MILD",
+          "evidence_action_ids": [27, 28]
+        },
+        {
+          "l2_label": "PATCH_CHURN",
+          "l1_parent": "EDIT_PATCH",
+          "severity": "MILD",
+          "evidence_action_ids": [32, 33, 34]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12419@solver_B",
+    "task_id": "django__django-12419",
+    "annotator_id": "auto-annotator-1",
+    "prompt_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "MULTI_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue prescribes changing default SECURE_REFERRER_POLICY to 'same-origin'; single value change in global_settings.py plus docs update.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "labels": [
+        {
+          "l2_label": "HELPER_TOOL_FAILURE_LOOP",
+          "l1_parent": "ENVIRONMENT_TOOLING",
+          "severity": "MILD",
+          "evidence_action_ids": [3, 4]
+        },
+        {
+          "l2_label": "PATCH_CHURN",
+          "l1_parent": "EDIT_PATCH",
+          "severity": "MILD",
+          "evidence_action_ids": [16, 17, 18, 19]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

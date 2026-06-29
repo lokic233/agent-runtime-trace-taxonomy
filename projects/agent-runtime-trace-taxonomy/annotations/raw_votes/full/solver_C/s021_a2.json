@@ -1,0 +1,396 @@
+```json
+[
+  {
+    "trace_id": "django__django-9296@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue asks to add a known __iter__ method to the Paginator class; target file/class is named, fix is a small localized method addition.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-13989@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is a silent numerical bug (hist ignores range when density=True) requiring locating the histogram/bin logic in the source tree.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "NONE",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "SEVERE"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [3, 4]}
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "PROVIDE_DEPENDENCY_SETUP"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-14623@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue: log-scale axis not inverted via set_ylim; requires searching across scale.py/axis.py/_base.py to locate the responsible method.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTEXT_MEMORY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "SEVERE", "REDUNDANT_FILE_REREAD": "MILD"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [4], "REDUNDANT_FILE_REREAD": [11, 23, 25]}
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "PROVIDE_DEPENDENCY_SETUP"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-20488@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["TARGETED_UNIT", "SINGLE_FILE", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue references a specific named test (test_huge_range_log) regarding LogNorm with huge ranges; the named test gives an entry point, fix reasoning is the core.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-20676@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue: SpanSelector(interactive=True) expands axes limits to include 0; requires locating which widgets.py code mutates limits — no explicit location.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "REDUNDANT_FILE_REREAD": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
+        "REDUNDANT_FILE_REREAD": [17, 22, 23, 24, 26, 29, 30, 31, 32, 33, 34, 35]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT", "REDUCE_REREAD"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-20826@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue: ax.clear() on shared axes mis-handles tick label visibility; cla() located quickly, the difficulty is reasoning the correct shared-axis restore logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [20, 23, 28, 32, 35, 45, 50, 54, 57, 59],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [65],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [36, 37, 43]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT", "ENFORCE_VERIFICATION", "INCREASE_BUDGET"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-20859@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CROSS_FILE"],
+      "evidence": "Issue names the exact line in legend.py and the intended fix (check FigureBase); the engineering difficulty is the import-structure detail, not localization.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [11, 12, 13, 16, 24, 25, 27, 28, 31, 32, 38, 39],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [6, 9, 10, 15, 17]
+      }
+    },
+    "candidate_interventions": ["ENFORCE_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-21568@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "UNCLEAR_ORACLE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue: usetex datetime axis spacing/layout bug; reproduction requires a LaTeX toolchain and the oracle is visual, fix requires locating date/tex formatting code.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY", "CONTEXT_MEMORY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "SEVERE", "STAGNATION": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE", "REDUNDANT_FILE_REREAD": "MODERATE"},
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [4, 27, 37],
+        "STAGNATION": [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [66],
+        "REDUNDANT_FILE_REREAD": [17, 19, 53, 55, 56, 57, 58, 59, 61, 62]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "PROVIDE_TEST_ORACLE", "INCREASE_BUDGET"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-22719@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION"],
+      "evidence": "Issue: convert() ConversionError on empty arrays; traceback points to category.py, fix is a localized empty-input guard.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [7, 8, 9]}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-22865@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "REPOSITORY_CONTEXT", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: colorbar drawedges with extend doesn't draw edges on extensions; visual bug requiring location of divider/segment logic in colorbar.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_ORACLE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-22871@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue: ConciseDateFormatter omits year in offset for sub-year spans; location (dates.py) found fast, the work is reasoning the correct offset/format logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [13, 14]}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-23299@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": "Issue: get_backend() clears Gcf.figs via backend-init side effect; fix requires reasoning about init/import ordering across __init__.py, pyplot.py, _pylab_helpers.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "CONTEXT_MEMORY"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE", "REDUNDANT_FILE_REREAD": "MODERATE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [41, 51, 53, 62, 64, 69, 75, 30, 32, 52, 60, 63, 68, 70, 73],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [38, 45, 46, 47, 48, 49, 50],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [76],
+        "REDUNDANT_FILE_REREAD": [21, 33, 42, 54, 58, 65, 71]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT", "INCREASE_BUDGET"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

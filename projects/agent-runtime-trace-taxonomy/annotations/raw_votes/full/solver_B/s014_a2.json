@@ -1,0 +1,364 @@
+[
+  {
+    "trace_id": "django__django-14771@solver_B",
+    "task_id": "django__django-14771",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue points at one function (get_child_arguments in autoreload.py); fix mirrors existing -W handling. Core work is constructing the correct -X arg format, not locating.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": [
+        {"label": "REDUNDANT_TEST", "parent_l1": "VERIFICATION", "severity": "MILD", "evidence_action_ids": [25, 34]}
+      ],
+      "primary_bottleneck": "REDUNDANT_TEST"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-14787@solver_B",
+    "task_id": "django__django-14787",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Single helper function _multi_decorate in decorators.py named by the issue; fix is to update_wrapper the partial. Location quick, reasoning about wrapper assignments is the crux.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PATCH_CHURN", "parent_l1": "EDIT_PATCH", "severity": "MILD", "evidence_action_ids": [7, 15]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-14792@solver_B",
+    "task_id": "django__django-14792",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_MODULE", "SILENT_SEMANTIC"],
+      "evidence": "Sign-handling logic for Etc/GMT must change in _prepare_tzname_delta across three DB backends (postgres/mysql/oracle); subtle POSIX-sign semantics are the core difficulty.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PATCH_CHURN", "parent_l1": "EDIT_PATCH", "severity": "MODERATE", "evidence_action_ids": [14, 15, 16, 17, 20]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-14855@solver_B",
+    "task_id": "django__django-14855",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue explicitly names get_admin_url in helpers.py and supplies the fix (add current_app=). Location is given; minimal one-call change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "parent_l1": "EDIT_PATCH", "severity": "MODERATE", "evidence_action_ids": [42, 43, 45]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-14915@solver_B",
+    "task_id": "django__django-14915",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "ModelChoiceIteratorValue named in issue; missing __hash__ given __eq__ defined. Single-class fix in forms/models.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-14999@solver_B",
+    "task_id": "django__django-14999",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "RenameModel.database_forwards in operations/models.py; fix is an early-return noop when db_table unchanged. Crux is recognizing the equality condition.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-15022@solver_B",
+    "task_id": "django__django-15022",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "get_search_results in options.py; combining per-word filters into one changes M2M/reverse-FK matching semantics. Correct behavior is genuinely ambiguous (historically reverted), making the oracle unclear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "parent_l1": "EDIT_PATCH", "severity": "MODERATE", "evidence_action_ids": [15, 16]},
+        {"label": "REDUNDANT_TEST", "parent_l1": "VERIFICATION", "severity": "MODERATE", "evidence_action_ids": [44, 45, 46, 47]}
+      ],
+      "primary_bottleneck": "REDUNDANT_TEST"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-15037@solver_B",
+    "task_id": "django__django-15037",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "CROSS_FILE"],
+      "evidence": "Fix in inspectdb command, but requires understanding get_relations structure across backend introspection files to add to_field. Reading multiple files informs the single-file edit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-15098@solver_B",
+    "task_id": "django__django-15098",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "language_code_prefix_re in trans_real.py; crafting a regex that accepts script+region while still rejecting de-simple-page (existing test) is the core, subtle work.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PATCH_CHURN", "parent_l1": "EDIT_PATCH", "severity": "MODERATE", "evidence_action_ids": [15, 17, 36]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "parent_l1": "EDIT_PATCH", "severity": "MILD", "evidence_action_ids": [15, 16]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-15103@solver_B",
+    "task_id": "django__django-15103",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "MULTI_FILE", "TARGETED_UNIT"],
+      "evidence": "json_script in utils/html.py plus its template filter in defaultfilters.py; make element_id default None and conditionally emit id. Location obvious, change small across two files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-15104@solver_B",
+    "task_id": "django__django-15104",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue and traceback pinpoint the line in autodetector.py; fix (del -> pop) is essentially provided. Trivial one-line change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-15127@solver_B",
+    "task_id": "django__django-15127",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "Root cause is module-level LEVEL_TAGS cached at import; fix adds a setting_changed receiver in test/signals.py to refresh messages.storage.base. Requires discovering the signal pattern across modules.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  }
+]

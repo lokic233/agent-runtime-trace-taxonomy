@@ -1,0 +1,433 @@
+```json
+[
+  {
+    "trace_id": "django__django-13089@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": [
+        "Issue names django/core/cache/backends/db.py and line ~277 in _cull",
+        "Fix is a single-file null-guard on cursor.fetchone()",
+        "Location explicit; effectively no search needed"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [4, 5]}
+    },
+    "candidate_interventions": ["RUN_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13109@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": [
+        "Issue points to ForeignKey.validate lines 917-919 in fields/related.py",
+        "Known one-line change _default_manager -> _base_manager",
+        "Location explicit"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [3, 5]}
+    },
+    "candidate_interventions": ["RUN_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13112@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_MODULE_CONTEXT", "REPOSITORY_CONTEXT", "CLEAR"],
+      "evidence": [
+        "makemigrations ValueError requires locating the bug in Django core migration/autodetector code",
+        "Reproduction project (DJ_RegLogin / dummy_project) is provided",
+        "Real fix location not given; requires cross-module search in core"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "NONE",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [6, 8, 10, 12, 15, 17, 19, 24, 26, 28, 33, 35, 37],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [4, 20, 22, 23, 25, 29, 31, 32, 34]
+      }
+    },
+    "candidate_interventions": ["LOOP_BREAKER", "PROVIDE_LOCATION_HINT", "EARLY_TERMINATION_GUARD"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13121@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": [
+        "Traceback points to convert_durationfield_value in db/backends/base/operations.py",
+        "Agent checks sqlite/mysql backend overrides before patching base",
+        "Targeted test test_duration_expressions referenced in issue"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13128@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": [
+        "Mixed-types FieldError in expression output_field resolution",
+        "Fix concentrated in TemporalSubtraction / _resolve_output_field in expressions.py",
+        "Single-file reasoning-heavy change"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "CONTEXT_MEMORY"],
+      "l2_labels": ["VERIFICATION_GAP", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MILD", "REDUNDANT_FILE_REREAD": "MILD"},
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [9, 10],
+        "REDUNDANT_FILE_REREAD": [3, 8]
+      }
+    },
+    "candidate_interventions": ["RUN_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13158@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_MODULE_CONTEXT", "UNCLEAR_ORACLE", "REPOSITORY_CONTEXT"],
+      "evidence": [
+        "union()+none() returning all rows; bug spans forms, query.clone, compiler.get_combinator_sql, where.NothingNode",
+        "No ready-made test; agent constructs reproduce_issue.py + testapp",
+        "Deep cross-module trace required to localize"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [13, 14, 34, 35, 37, 38]}
+    },
+    "candidate_interventions": ["PATCH_HYPOTHESIS_RESET", "FIX_REPRO_ORACLE", "PROVIDE_LOCATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13195@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": [
+        "Issue targets delete_cookie in HttpResponseBase (django/http/response.py)",
+        "Change preserves samesite on cookie deletion",
+        "Single-file, location explicit"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [3, 4]}
+    },
+    "candidate_interventions": ["RUN_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13212@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_CUTTING", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": [
+        "Add 'value' to ValidationError params across all built-in validators",
+        "Same-pattern repetitive edits concentrated in core/validators.py",
+        "Many raise-sites enumerated (Regex/Email/Decimal/FileExtension/ProhibitNull)"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [32, 33],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [22, 26]
+      }
+    },
+    "candidate_interventions": ["RUN_VERIFICATION", "USE_UNIQUE_EDIT_CONTEXT"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13279@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "LONG_HISTORY_DEPENDENT", "LOCAL_CONTEXT"],
+      "evidence": [
+        "Regression tied to commit d4fff711 changing SessionBase.encode/decode to signing",
+        "Touches signing.py and contrib/sessions/backends/base.py",
+        "Depends on prior-commit history (agent uses git show)"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [5, 6]}
+    },
+    "candidate_interventions": ["RUN_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13297@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": [
+        "SimpleLazyObject leaks from TemplateView.get_context_data kwargs wrapping",
+        "Fix in django/views/generic/base.py",
+        "Located via grep of TemplateView/get_context_data"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [4, 5]}
+    },
+    "candidate_interventions": ["RUN_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13315@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": [
+        "Duplicate formfield options when limit_choices_to is a Q with a join",
+        "Fix located in apply_limit_choices_to_to_formfield (forms/models.py) after exploration",
+        "Found via grep of limit_choices_to; model_forms suite is the oracle"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13343@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": [
+        "FileField.deconstruct evaluates callable storage; fix in db/models/fields/files.py",
+        "Single-file change to __init__ (_storage_arg) and deconstruct",
+        "Issue names deconstruct and a base commit; file_storage suite is oracle"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [12, 13, 14, 15, 16, 19, 20, 21]}
+    },
+    "candidate_interventions": ["FIX_TEST_HARNESS_ACCESS"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

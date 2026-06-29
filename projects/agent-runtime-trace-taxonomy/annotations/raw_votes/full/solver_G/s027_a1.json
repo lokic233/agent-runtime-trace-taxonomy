@@ -1,0 +1,906 @@
+[
+  {
+    "sample_id": "pylint-dev__pylint-6386@solver_G:FULL",
+    "trace_id": "pylint-dev__pylint-6386@solver_G",
+    "task_id": "pylint-dev__pylint-6386",
+    "repo": "pylint-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SHORT_STATE"
+      ],
+      "evidence": [
+        "Verbose option behavior is localized to option-definition/config parsing code; candidate files include base_options.py and config utilities.",
+        1,
+        5,
+        6
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          5
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "REDUCE_CONTEXT"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pylint-dev__pylint-6528@solver_G:FULL",
+    "trace_id": "pylint-dev__pylint-6528@solver_G",
+    "task_id": "pylint-dev__pylint-6528",
+    "repo": "pylint-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "CROSS_FILE",
+        "MULTI_FILE",
+        "REPOSITORY_CONTEXT",
+        "INTEGRATION",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Recursive ignore behavior crosses lint expansion, runner, checker, and typing/config structures.",
+        0,
+        3,
+        14,
+        21
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "RECOVER",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "EDIT_PATCH",
+        "CONTROL_RECOVERY"
+      ],
+      "l2_labels": [
+        "EDIT_TOOL_MECHANICAL_FAILURE",
+        "PATCH_CHURN",
+        "FAILED_RECOVERY"
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD",
+        "PATCH_CHURN": "MODERATE",
+        "FAILED_RECOVERY": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [
+          1,
+          2
+        ],
+        "PATCH_CHURN": [
+          14,
+          16,
+          18,
+          19
+        ],
+        "FAILED_RECOVERY": [
+          3,
+          5,
+          7,
+          14,
+          16,
+          18,
+          19,
+          21,
+          23
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "LIMIT_PATCH_SCOPE",
+      "INCREASE_TARGETED_VERIFICATION",
+      "ESCALATE_SOLVER"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pylint-dev__pylint-6903@solver_G:FULL",
+    "trace_id": "pylint-dev__pylint-6903@solver_G",
+    "task_id": "pylint-dev__pylint-6903",
+    "repo": "pylint-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SHORT_STATE"
+      ],
+      "evidence": [
+        "CPU calculation issue is localized to _query_cpu in pylint/lint/run.py.",
+        0,
+        2,
+        4
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [
+      "NO_CHANGE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pylint-dev__pylint-7080@solver_G:FULL",
+    "trace_id": "pylint-dev__pylint-7080@solver_G",
+    "task_id": "pylint-dev__pylint-7080",
+    "repo": "pylint-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "CROSS_MODULE",
+        "MULTI_FILE",
+        "REPOSITORY_CONTEXT",
+        "INTEGRATION",
+        "CLEAR"
+      ],
+      "evidence": [
+        "ignore-paths recursive behavior involves expansion, linter state, and config parsing paths.",
+        1,
+        5,
+        10,
+        11
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "RECOVER",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "EDIT_PATCH",
+        "VERIFICATION"
+      ],
+      "l2_labels": [
+        "EDIT_TOOL_MECHANICAL_FAILURE",
+        "VERIFICATION_GAP"
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [
+          9,
+          11,
+          12,
+          13
+        ],
+        "VERIFICATION_GAP": [
+          13,
+          14,
+          16
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "LIMIT_PATCH_SCOPE",
+      "INCREASE_TARGETED_VERIFICATION"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pylint-dev__pylint-7277@solver_G:FULL",
+    "trace_id": "pylint-dev__pylint-7277@solver_G",
+    "task_id": "pylint-dev__pylint-7277",
+    "repo": "pylint-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "CROSS_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "PARTIAL"
+      ],
+      "evidence": [
+        "runpy/sys.path behavior centers on pylint package entrypoints and __init__/__main__ interaction.",
+        0,
+        1,
+        10
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "ENV_BLOCKED",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": null,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "EDIT_PATCH",
+        "ENVIRONMENT_TOOLING"
+      ],
+      "l2_labels": [
+        "PATCH_CHURN",
+        "EDIT_TOOL_MECHANICAL_FAILURE",
+        "ENVIRONMENT_BLOCKED"
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "PATCH_CHURN": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD",
+        "ENVIRONMENT_BLOCKED": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [
+          1,
+          3,
+          4,
+          6
+        ],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [
+          7,
+          8,
+          9
+        ],
+        "ENVIRONMENT_BLOCKED": [
+          10,
+          11,
+          12
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "FIX_ENVIRONMENT",
+      "LIMIT_PATCH_SCOPE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pylint-dev__pylint-8898@solver_G:FULL",
+    "trace_id": "pylint-dev__pylint-8898@solver_G",
+    "task_id": "pylint-dev__pylint-8898",
+    "repo": "pylint-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SHORT_STATE"
+      ],
+      "evidence": [
+        "Comma-splitting behavior is localized to _splitstrip in pylint/utils/utils.py.",
+        1,
+        3,
+        5
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTROL_RECOVERY"
+      ],
+      "l2_labels": [
+        "FAILED_RECOVERY",
+        "STAGNATION"
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "STAGNATION": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "STAGNATION": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "LIMIT_PATCH_SCOPE",
+      "ESCALATE_SOLVER"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-10051@solver_G:FULL",
+    "trace_id": "pytest-dev__pytest-10051@solver_G",
+    "task_id": "pytest-dev__pytest-10051",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SHORT_STATE"
+      ],
+      "evidence": [
+        "caplog.clear/get_records issue is localized to src/_pytest/logging.py.",
+        1,
+        2,
+        7
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "UNKNOWN",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY",
+        "VERIFICATION"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT",
+        "VERIFICATION_GAP"
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          1
+        ],
+        "VERIFICATION_GAP": [
+          7,
+          8
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "INCREASE_TARGETED_VERIFICATION",
+      "REDUCE_CONTEXT"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-10081@solver_G:FULL",
+    "trace_id": "pytest-dev__pytest-10081@solver_G",
+    "task_id": "pytest-dev__pytest-10081",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "CROSS_FILE",
+        "MULTI_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Skip/tearDown behavior requires understanding unittest integration plus report skip outcome logic.",
+        0,
+        5,
+        13,
+        15
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "UNKNOWN",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "EDIT_PATCH",
+        "VERIFICATION"
+      ],
+      "l2_labels": [
+        "EDIT_TOOL_MECHANICAL_FAILURE",
+        "VERIFICATION_GAP"
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [
+          8,
+          9,
+          10
+        ],
+        "VERIFICATION_GAP": [
+          15,
+          16
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "INCREASE_TARGETED_VERIFICATION",
+      "LIMIT_PATCH_SCOPE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-10356@solver_G:FULL",
+    "trace_id": "pytest-dev__pytest-10356@solver_G",
+    "task_id": "pytest-dev__pytest-10356",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "CROSS_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SHORT_STATE"
+      ],
+      "evidence": [
+        "pytestmark inheritance/MRO handling centers on mark structures and Python collection marker unpacking.",
+        0,
+        2,
+        6
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "UNKNOWN",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY",
+        "VERIFICATION"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT",
+        "VERIFICATION_GAP"
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          1,
+          3
+        ],
+        "VERIFICATION_GAP": [
+          6,
+          7
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "INCREASE_TARGETED_VERIFICATION",
+      "REDUCE_CONTEXT"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-5262@solver_G:FULL",
+    "trace_id": "pytest-dev__pytest-5262@solver_G",
+    "task_id": "pytest-dev__pytest-5262",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "INTEGRATION",
+        "CLEAR",
+        "SHORT_STATE"
+      ],
+      "evidence": [
+        "EncodedFile mode/write behavior is localized to src/_pytest/capture.py, with integration impact through youtube-dl writes.",
+        0,
+        3,
+        6
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "ENVIRONMENT_TOOLING"
+      ],
+      "l2_labels": [
+        "DEPENDENCY_SETUP_DRIFT",
+        "ENVIRONMENT_BLOCKED"
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE",
+        "ENVIRONMENT_BLOCKED": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [
+          1,
+          2
+        ],
+        "ENVIRONMENT_BLOCKED": [
+          4,
+          5
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "FIX_ENVIRONMENT"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-5631@solver_G:FULL",
+    "trace_id": "pytest-dev__pytest-5631@solver_G",
+    "task_id": "pytest-dev__pytest-5631",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SHORT_STATE"
+      ],
+      "evidence": [
+        "mock patch argument counting issue is localized to num_mock_patch_args in src/_pytest/compat.py.",
+        1,
+        7,
+        9
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "ENVIRONMENT_TOOLING"
+      ],
+      "l2_labels": [
+        "DEPENDENCY_SETUP_DRIFT",
+        "ENVIRONMENT_BLOCKED"
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE",
+        "ENVIRONMENT_BLOCKED": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [
+          5
+        ],
+        "ENVIRONMENT_BLOCKED": [
+          8,
+          11,
+          12
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "FIX_ENVIRONMENT"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-5787@solver_G:FULL",
+    "trace_id": "pytest-dev__pytest-5787@solver_G",
+    "task_id": "pytest-dev__pytest-5787",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "REPOSITORY_CONTEXT",
+        "INTEGRATION",
+        "CLEAR",
+        "SHORT_STATE"
+      ],
+      "evidence": [
+        "xdist report serialization issue is localized to _to_json/_from_json in src/_pytest/reports.py.",
+        0,
+        1,
+        3
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "ENV_BLOCKED",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "EDIT_PATCH",
+        "ENVIRONMENT_TOOLING"
+      ],
+      "l2_labels": [
+        "PATCH_CHURN",
+        "DEPENDENCY_SETUP_DRIFT",
+        "ENVIRONMENT_BLOCKED"
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "PATCH_CHURN": "MODERATE",
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE",
+        "ENVIRONMENT_BLOCKED": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "DEPENDENCY_SETUP_DRIFT": [
+          8,
+          9,
+          11
+        ],
+        "ENVIRONMENT_BLOCKED": [
+          9,
+          12
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "FIX_ENVIRONMENT",
+      "LIMIT_PATCH_SCOPE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

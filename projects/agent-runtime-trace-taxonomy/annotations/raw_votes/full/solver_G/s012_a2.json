@@ -1,0 +1,403 @@
+```json
+[
+  {
+    "trace_id": "django__django-14140@solver_G",
+    "task_id": "django__django-14140",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue targets Q.deconstruct() behavior; agent must locate Q (not in query.py, actually query_utils.py) then reason about single-child tuple/list unpacking. Small localized logic change.",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [3]},
+        {"l1": "VERIFICATION", "l2": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [4, 5]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST", "IMPROVE_EDIT_TOOL_MATCHING"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14155@solver_G",
+    "task_id": "django__django-14155",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue names ResolverMatch __init__/__repr__ and functools.partial unwrapping; location explicit, fix is a small guard in __init__.",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "labels": [
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "ENVIRONMENT_BLOCKED", "severity": "MODERATE", "evidence_action_ids": [4, 5, 6]}
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["REPAIR_TEST_ENVIRONMENT", "PROVIDE_TEST_RUNNER_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14170@solver_G",
+    "task_id": "django__django-14170",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE"],
+      "evidence": "Fix is trivial (remove 5 register_lookup lines) but the work is finding WHERE ExtractIsoYear registers YearLookup variants, spanning fields/__init__.py and functions/datetime.py.",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [6]},
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "DEPENDENCY_SETUP_DRIFT", "severity": "MILD", "evidence_action_ids": [13]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_COMMAND", "IMPROVE_EDIT_TOOL_MATCHING"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14238@solver_G",
+    "task_id": "django__django-14238",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE"],
+      "evidence": "Issue centers on AutoFieldMeta.__subclasscheck__ vs issubclass check in options.py; agent investigates two files but the core is reasoning the subclass-check fix (single-file edit).",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [11, 12]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14311@solver_G",
+    "task_id": "django__django-14311",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue references a specific commit and get_child_arguments in autoreload.py; location explicit via git show, fix is a one-line __spec__.name change.",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {"l1": "VERIFICATION", "l2": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [3, 4]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14315@solver_G",
+    "task_id": "django__django-14315",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue references commit/lines; runshell env handling traced from postgresql/client.py to base/client.py, fix is None-vs-empty-dict logic in base client.",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "labels": [
+        {"l1": "CONTROL_RECOVERY", "l2": "STAGNATION", "severity": "MODERATE", "evidence_action_ids": [13, 14, 15]}
+      ],
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14349@solver_G",
+    "task_id": "django__django-14349",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "URLValidator must reject \\n\\r\\t; subtle because Python URL splitting strips them. Fix is a guard in URLValidator.__call__; oracle behavior non-obvious.",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [5]},
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [8, 9, 10]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["REPAIR_TEST_ENVIRONMENT", "ENFORCE_POST_EDIT_TEST", "IMPROVE_EDIT_TOOL_MATCHING"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14351@solver_G",
+    "task_id": "django__django-14351",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE"],
+      "evidence": "Q(__in=queryset) multi-column subquery; agent traces compiler -> query._add_q -> build_filter -> build_lookup -> In lookup across modules to find the right edit site.",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {"l1": "VERIFICATION", "l2": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [11, 12]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Event-panel error flags on view actions [3],[5],[7],[9] are not corroborated by the transcript (successful view commands); treated as non-edits per observable-only rule, not labeled."
+    }
+  },
+  {
+    "trace_id": "django__django-14373@solver_G",
+    "task_id": "django__django-14373",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "DateFormat.Y must zero-pad to 4 digits; location explicit (dateformat.py Y method), fix is a one-line f-string format.",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["REDUNDANT_TEST"],
+      "labels": [
+        {"l1": "VERIFICATION", "l2": "REDUNDANT_TEST", "severity": "MILD", "evidence_action_ids": [8, 10]}
+      ],
+      "primary_bottleneck": "REDUNDANT_TEST"
+    },
+    "candidate_interventions": ["SCOPED_TEST_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14376@solver_G",
+    "task_id": "django__django-14376",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "INTEGRATION"],
+      "evidence": "Issue names mysql/base.py lines 202-205; trivial db->database / passwd->password rename, but verification requires a live MySQL backend (integration).",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "labels": [
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "ENVIRONMENT_BLOCKED", "severity": "MODERATE", "evidence_action_ids": [9]}
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["REPAIR_TEST_ENVIRONMENT", "PROVIDE_TEST_RUNNER_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14404@solver_G",
+    "task_id": "django__django-14404",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue names catch_all_view in admin/sites.py and FORCE_SCRIPT_NAME; fix is path_info -> path one-line change.",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {"l1": "VERIFICATION", "l2": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [2, 3]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14434@solver_G",
+    "task_id": "django__django-14434",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "CROSS_MODULE"],
+      "evidence": "references_column always false because a Table is passed where a string is expected; agent traces extensively across schema.py and ddl_references.py (_create_unique_sql, _index_columns, IndexName) to localize.",
+      "unknown_fields": ["final_success", "gold_patch"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {"l1": "VERIFICATION", "l2": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [19, 21]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "auto_annotator_G1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

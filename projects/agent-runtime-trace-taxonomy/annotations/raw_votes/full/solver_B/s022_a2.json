@@ -1,0 +1,424 @@
+```json
+[
+  {
+    "trace_id": "matplotlib__matplotlib-23314@solver_B",
+    "task_id": "matplotlib__matplotlib-23314",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": ["Issue: set_visible(False) ignored for 3d projection; fix requires finding where Axes3D.draw overrides base Axes.draw and lacks the visibility guard", "Structural: compares mplot3d/axes3d.py draw to matplotlib/axes/_base.py draw to locate the missing 'if not self.get_visible(): return'"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-23412@solver_B",
+    "task_id": "matplotlib__matplotlib-23412",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "CLEAR"],
+      "evidence": ["Issue: dash offset has no effect on patch objects; fix needs locating the intentional override in Patch.draw ('Patch has traditionally ignored the dashoffset')", "Structural: traces set_linestyle -> mlines._scale_dashes -> Patch.draw across patches.py and lines.py"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-23476@solver_B",
+    "task_id": "matplotlib__matplotlib-23476",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": ["Issue: DPI doubled after unpickling on M1; root cause spans figure.py __setstate__, backend_bases FigureCanvasBase.__init__, and src/_macosx.m device_pixel_ratio flow", "Structural: fix is a guard in backend_bases (_original_dpi only set if absent), but localization required reasoning across pickling + retina scaling mechanism"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24026@solver_B",
+    "task_id": "matplotlib__matplotlib-24026",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": ["Issue traceback points directly at stackplot.py axes.set_prop_cycle(color=colors); fix replaces it with itertools.cycle so CN refs work and cycler is not mutated", "Structural: single-file change in stackplot.py"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24149@solver_B",
+    "task_id": "matplotlib__matplotlib-24149",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "CLEAR"],
+      "evidence": ["Issue traceback ends in _convert_dx; root is cbook._safe_first_finite raising StopIteration for all-nan input; fix wraps next() with StopIteration fallback", "Structural: located in cbook/__init__.py, call sites checked in axes/_axes.py"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24177@solver_B",
+    "task_id": "matplotlib__matplotlib-24177",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": ["Issue: hist density not autoscaled with histtype='step'; subtle silent root cause in _update_patch_limits where p.iter_bezier() applied path simplification dropping peak vertices", "Structural: deep trace through axes/_base.py, path.py iter_bezier/iter_segments/cleaned, patches.py Polygon to isolate simplify behavior"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [12, 18, 37]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24570@solver_B",
+    "task_id": "matplotlib__matplotlib-24570",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": ["Issue: HPacker align top/bottom reversed; fix swaps the alignment branches in offsetbox._get_aligned_offsets", "Structural: single-file change in offsetbox.py, verified via offset values"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24627@solver_B",
+    "task_id": "matplotlib__matplotlib-24627",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_FILE", "CLEAR"],
+      "evidence": ["Issue: cla()/clf() should unset .axes/.figure of deparented artists; fix touches _AxesBase.__clear and FigureBase.clear", "Structural: required understanding artist lifecycle across axes/_base.py, figure.py, artist.py (axes setter, set_figure)"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24637@solver_B",
+    "task_id": "matplotlib__matplotlib-24637",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": ["Issue: AnnotationBbox gid not emitted to SVG; fix adds renderer.open_group/close_group(gid) in AnnotationBbox.draw, matching the established pattern in legend/axis/collections", "Structural: single-file change in offsetbox.py"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24870@solver_B",
+    "task_id": "matplotlib__matplotlib-24870",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_FILE", "CLEAR"],
+      "evidence": ["Enhancement: auto-detect bool arrays in contour and default levels to [0.5]; requires reasoning about dtype handling across bool/int/float/masked and contour vs contourf (needs >=2 levels) in contour.py and tri/_tricontour.py", "Structural: detection inserted in _contour_args of both QuadContourSet and TriContourSet while preserving masked-array semantics"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24970@solver_B",
+    "task_id": "matplotlib__matplotlib-24970",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": ["Issue warning cites colors.py ~line 730 in Colormap.__call__ assigning _i_over/_i_under/_i_bad (256-258) into a uint8 array; fix casts integer xa to int before those assignments", "Structural: single-file change in colors.py"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MILD"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [11, 12, 13, 14]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Self-inflicted 'optimization' (event 11) regressed int8 handling, forcing failing-test-driven re-edits (12-14) before reverting to the simpler working fix"
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25122@solver_B",
+    "task_id": "matplotlib__matplotlib-25122",
+    "repo": "matplotlib",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": ["Issue gives exact lines (mlab.py 423-430) and scipy reference; fix removes np.abs from window correction so negative-valued windows (flattop) are handled correctly", "Structural: single-file change in mlab.py _spectral_helper"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

@@ -1,121 +1,48 @@
 [
   {
-    "trace_id": "astropy__astropy-12907@solver_B",
+    "trace_id": "django__django-15732@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Bug report gives concrete separability_matrix behavior and nested CompoundModel examples; fix requires reasoning about one modeling implementation path.",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SILENT_SEMANTIC"
+      ],
+      "evidence": "Issue points to Django schema-editor logic for deleting unique_together constraints; target is a narrow database constraint behavior with existing schema tests as oracle.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
     },
     "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13033@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue identifies TimeSeries required-column validation and gives exact misleading exception; implementation is a localized error-message logic change.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13236@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue quotes the exact structured ndarray-to-NdarrayMixin clause and asks for warning behavior before a future behavior change.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13398@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_FILE", "INTEGRATION", "MULTI_MODULE_CONTEXT", "PARTIAL", "LONG_STATE"],
-      "evidence": "Feature request asks for new direct ITRS<->AltAz/HADec transformations and registration in coordinate transform graph, requiring cross-frame reasoning and integration tests.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": ["ENVIRONMENT_TOOLING"],
-      "l2_labels": ["ENVIRONMENT_BLOCKED"],
-      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "l1_labels": [
+        "CONTEXT_MEMORY",
+        "VERIFICATION"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT",
+        "REDUNDANT_TEST"
+      ],
+      "primary_bottleneck": "REDUNDANT_TEST",
       "severity": {
-        "ENVIRONMENT_BLOCKED": "MODERATE"
+        "CONTEXT_BLOAT": "MILD",
+        "REDUNDANT_TEST": "MILD"
       },
       "evidence_action_ids": {
-        "ENVIRONMENT_BLOCKED": [21, 25, 27, 29, 38, 43]
+        "CONTEXT_BLOAT": [
+          2
+        ],
+        "REDUNDANT_TEST": [
+          36,
+          37
+        ]
       }
     },
     "candidate_interventions": [],
@@ -128,184 +55,41 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-13453@solver_B",
-    "workload_annotation": {
-      "primary_l1": "LOCALIZATION_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue states ascii HTML writer ignores formats; main work is finding the HTML writer path where column string formatting is bypassed.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13579@solver_B",
+    "trace_id": "django__django-15741@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "LOCAL_CONTEXT", "SHORT_STATE"],
-      "evidence": "Issue names SlicedLowLevelWCS and describes a subtle world_to_pixel semantic error with coupled WCS axes.",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "Issue names django.utils.formats.get_format and lazy string handling; fix is localized to format_type normalization.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
     },
     "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13977@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue provides a minimal duck-array reproduction and points to Quantity.__array_ufunc__ behavior requiring a localized protocol fix.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14096@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue gives a SkyCoord subclass property example and traceback pointing to SkyCoord.__getattr__ behavior.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14182@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue asks to support header_rows in ascii.rst, analogous to fixed_width output; implementation requires adapting one writer class.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severity": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "codex_annotator",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00-07:00",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-14309@solver_B",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue includes stack trace to astropy.io.fits.connect.is_fits and exact identify_format call; fix is a localized guard.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": true
-    },
-    "waste_annotation": {
-      "l1_labels": ["ENVIRONMENT_TOOLING"],
-      "l2_labels": ["PREEMPTIVE_HELPER_TOOL_BUILD"],
-      "primary_bottleneck": "PREEMPTIVE_HELPER_TOOL_BUILD",
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
       "severity": {
-        "PREEMPTIVE_HELPER_TOOL_BUILD": "MODERATE"
+        "CONTEXT_BLOAT": "MILD"
       },
       "evidence_action_ids": {
-        "PREEMPTIVE_HELPER_TOOL_BUILD": [2, 18]
+        "CONTEXT_BLOAT": [
+          1
+        ]
       }
     },
     "candidate_interventions": [],
@@ -318,29 +102,193 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-14365@solver_B",
+    "trace_id": "django__django-15814@solver_B",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
-      "evidence": "Issue identifies ascii.qdp command parsing as case-sensitive; expected change is localized parser behavior.",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SILENT_SEMANTIC"
+      ],
+      "evidence": "Issue gives traceback into Query/RelatedPopulator path and proxy model select_related/only semantics; narrow ORM metadata fix.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
     },
     "waste_annotation": {
-      "l1_labels": ["ENVIRONMENT_TOOLING"],
-      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
-      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15851@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "Issue describes PostgreSQL dbshell argument ordering; source change is a small command-argument construction fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15863@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SILENT_SEMANTIC"
+      ],
+      "evidence": "Issue identifies floatformat Decimal precision loss; fix is localized to numeric conversion in the template filter.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15916@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "Issue concerns ModelForm factory/metaclass behavior around Meta.formfield_callback; fix is in form model construction logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15930@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SILENT_SEMANTIC"
+      ],
+      "evidence": "Issue targets Case/When SQL generation for a simplified negated empty-IN Q condition; requires ORM expression reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
       "severity": {
-        "HELPER_TOOL_FAILURE_LOOP": "MODERATE"
+        "CONTEXT_BLOAT": "MODERATE"
       },
       "evidence_action_ids": {
-        "HELPER_TOOL_FAILURE_LOOP": [2, 3, 4, 5, 8, 11]
+        "CONTEXT_BLOAT": [
+          7,
+          11
+        ]
       }
     },
     "candidate_interventions": [],
@@ -353,16 +301,193 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-14369@solver_B",
+    "trace_id": "django__django-15957@solver_B",
     "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "LOCAL_CONTEXT", "SHORT_STATE"],
-      "evidence": "Issue concerns CDS unit grammar semantics for composite MRT units; fix requires parser grammar reasoning and generated parse table update.",
+      "primary_l1": "MIXED_END_TO_END",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "CROSS_MODULE",
+        "MULTI_MODULE_CONTEXT",
+        "INTEGRATION",
+        "CLEAR",
+        "LONG_STATE"
+      ],
+      "evidence": "Issue requires adding sliced Prefetch support across queryset prefetch flow and validating one-to-many/many-to-many behavior.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "DONE",
-      "progress": "PATCH_SUBMITTED",
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15973@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "MULTI_FILE",
+        "CROSS_MODULE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "Issue concerns schema editor handling of unresolved string through models across base and SQLite schema paths.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          1
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15987@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "Issue targets duplicate fixture directory normalization in loaddata; change is localized to FIXTURE_DIRS processing.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          1
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16032@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SILENT_SEMANTIC"
+      ],
+      "evidence": "Issue concerns Query.has_select_fields semantics for __in subqueries involving annotate()/alias()/values(); requires ORM query-state reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16082@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "Issue targets CombinedExpression output_field resolution for numeric MOD operator; fix is in connector type-combination table.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true

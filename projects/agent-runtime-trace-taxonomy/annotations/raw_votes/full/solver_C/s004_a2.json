@@ -1,0 +1,426 @@
+```json
+[
+  {
+    "trace_id": "django__django-11433@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue is a subtle semantic bug where cleaned_data should override field defaults in construct_instance; location not given (searched forms.py then models.py), fix is a small single-file logic change validated by a hidden oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {
+        "HELPER_TOOL_FAILURE_LOOP": "MODERATE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"
+      },
+      "evidence_action_ids": {
+        "HELPER_TOOL_FAILURE_LOOP": [9, 10, 11, 13, 14, 15, 16, 17, 18],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [12, 24]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_COMMAND", "DISCOURAGE_SCRATCH_HARNESS"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11451@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue names ModelBackend.authenticate() directly; small guard added in backends.py, with a targeted auth_tests unit as oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11477@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "translate_url with optional named groups; function found quickly, but the fix requires reasoning over resolve/reverse behavior in one file with no provided oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {
+        "HELPER_TOOL_FAILURE_LOOP": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "HELPER_TOOL_FAILURE_LOOP": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_ENV_SETUP", "DISCOURAGE_SCRATCH_HARNESS"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11490@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Composed queries (union + values_list) not changing selected columns; localization spans compiler.py/query.py and the fix is in get_combinator_sql, a non-obvious semantic change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {
+        "PREMATURE_SCRATCH_REPRO": "SEVERE",
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 3, 5, 7, 9, 11, 12, 14, 16, 18, 44, 45, 47, 49, 51, 53, 54, 56],
+        "FILENAME_SEARCH_THRASH": [20, 24, 27, 35, 36, 38, 40]
+      }
+    },
+    "candidate_interventions": ["DISCOURAGE_SCRATCH_REPRO", "PROVIDE_ENV_SETUP", "PROVIDE_TEST_RUNNER_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11532@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Issue points at make_msgid/DNS_NAME in mail/message.py; encoding fix in one known location, repro confirms a UnicodeEncodeError path.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11551@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Fix _check_list_display_item in admin/checks.py so it doesn't error on valid attributes; single-file logic change validated against the admin_checks suite.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["REDUNDANT_TEST", "FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "REDUNDANT_TEST",
+      "severity": {
+        "REDUNDANT_TEST": "MODERATE",
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_TEST": [10, 11, 13, 17],
+        "FILENAME_SEARCH_THRASH": [15, 16]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11555@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Meta.ordering with expressions in multi-table inheritance; the change site is non-obvious, requiring a hunt across query.py, sql/query.py and options.py before any patch.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["PATCH_CHURN", "FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MODERATE",
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [17, 18, 19],
+        "FILENAME_SEARCH_THRASH": [9, 10]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "ENFORCE_TEST_BEFORE_REEDIT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11603@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Add DISTINCT support to aggregates; the target file aggregates.py is found immediately and the change is small per-class attribute additions.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11728@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "replace_named_groups fails on a trailing named group; function found via search in admindocs/utils.py, fix is a single-file edge-case logic change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11734@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "HIDDEN_TEST_DOMINANT", "LONG_STATE"],
+      "evidence": "OuterRef inside exclude()/~Q() with Exists; deep semantic bug requiring localization in sql/query.py (resolve_lookup_value/build_filter) and non-trivial patch reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "NONCONVERGENCE",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "PATCH_CHURN", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "PATCH_CHURN": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [35, 37, 38, 39, 40, 41, 42, 43, 44, 49, 50, 51, 52, 55, 56, 58, 60, 64],
+        "PATCH_CHURN": [2, 3, 4, 5, 6, 7, 8, 9, 10],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [65]
+      }
+    },
+    "candidate_interventions": ["EARLY_STOP_ON_NONCONVERGENCE", "PROVIDE_LOCALIZATION_HINT", "ENFORCE_TEST_BEFORE_REEDIT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11740@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": "Change UUID field to FK should create dependencies; the fix sits in autodetector.py and requires understanding migration dependency generation with no clear local oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "NONCONVERGENCE",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {
+        "PREMATURE_SCRATCH_REPRO": "SEVERE",
+        "STAGNATION": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [18, 19, 21, 23, 25, 27, 29, 30, 32, 33, 35, 37, 39, 40, 42, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 62, 63, 65],
+        "STAGNATION": [46, 48, 50, 52, 58, 64, 66],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [72]
+      }
+    },
+    "candidate_interventions": ["DISCOURAGE_SCRATCH_REPRO", "EARLY_STOP_ON_NONCONVERGENCE", "PROVIDE_TEST_RUNNER_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11749@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "call_command should accept args from required mutually-exclusive groups; fix in management/__init__.py requires argparse-group reasoning with a self-built oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "PATCH_CHURN"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "MODERATE",
+        "PATCH_CHURN": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [9, 11, 14, 16, 17, 20, 21, 26, 28],
+        "PATCH_CHURN": [5, 6]
+      }
+    },
+    "candidate_interventions": ["ENFORCE_TEST_BEFORE_REEDIT", "PROVIDE_ENV_SETUP"],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_C1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

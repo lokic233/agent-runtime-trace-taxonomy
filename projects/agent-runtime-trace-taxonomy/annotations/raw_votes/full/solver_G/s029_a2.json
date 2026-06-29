@@ -1,0 +1,491 @@
+[
+  {
+    "trace_id": "pytest-dev__pytest-8399@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION"],
+      "evidence": [
+        "Single targeted edit to fixture name in src/_pytest/unittest.py (event 0, line 147)",
+        "Task structure is a one-line rename of a dynamically-generated fixture name; verification is via `pytest --fixtures`"
+      ],
+      "unknown_fields": ["issue_text is generic harness boilerplate; workload inferred from transcript structure"]
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "STAGNATION"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "labels": [
+        {
+          "l2_label": "ENVIRONMENT_BLOCKED",
+          "l1_parent": "ENVIRONMENT_TOOLING",
+          "severity": "SEVERE",
+          "evidence_action_ids": [1, 4, 5, 6, 7]
+        },
+        {
+          "l2_label": "STAGNATION",
+          "l1_parent": "CONTROL_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [1, 2, 3, 4, 5]
+        }
+      ]
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-10297@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": [
+        "Add store_cv_values param to RidgeClassifierCV.__init__ in sklearn/linear_model/ridge.py (event 0)",
+        "Verification via repro script and test_ridge.py (events 11-16)"
+      ],
+      "unknown_fields": ["issue_text boilerplate; workload inferred from transcript"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "labels": [
+        {
+          "l2_label": "ENVIRONMENT_BLOCKED",
+          "l1_parent": "ENVIRONMENT_TOOLING",
+          "severity": "MODERATE",
+          "evidence_action_ids": [4, 7, 10, 11]
+        }
+      ]
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-10844@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION"],
+      "evidence": [
+        "Issue points to a specific line (859) in metrics/cluster/supervised.py; agent uses find then views lines 855-865 (events 0-1)",
+        "One-line numerical-stability rewrite of fowlkes_mallows_score (event 2)"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "labels": [
+        {
+          "l2_label": "VERIFICATION_GAP",
+          "l1_parent": "VERIFICATION",
+          "severity": "MODERATE",
+          "evidence_action_ids": [2, 3]
+        }
+      ]
+    },
+    "candidate_interventions": ["VERIFICATION_REQUIRED"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-10908@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": [
+        "Localized within feature_extraction/text.py; grep+view to find get_feature_names/_validate_vocabulary/_check_vocabulary (events 0-6)",
+        "Single method edit + relevant test run (events 8-11), 48 tests pass"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-11310@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE"],
+      "evidence": [
+        "Feature addition (refit_time_) spanning __init__, imports, and fit in model_selection/_search.py (events 6,8,10)",
+        "Custom verification script created and run (events 11-14)"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "labels": [
+        {
+          "l2_label": "ENVIRONMENT_BLOCKED",
+          "l1_parent": "ENVIRONMENT_TOOLING",
+          "severity": "MILD",
+          "evidence_action_ids": [12, 13, 14]
+        }
+      ]
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-11578@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": [
+        "One-line fix passing multi_class to LogisticRegression in linear_model/logistic.py (_log_reg_scoring_path, event 7)",
+        "Repro script created/run to confirm score change (events 4-13)"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "labels": [
+        {
+          "l2_label": "ENVIRONMENT_BLOCKED",
+          "l1_parent": "ENVIRONMENT_TOOLING",
+          "severity": "MODERATE",
+          "evidence_action_ids": [8, 11, 12, 13]
+        }
+      ]
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-12585@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": [
+        "Fix to get_params/clone handling of class-valued params in sklearn/base.py (event 9)",
+        "Repro script iterated and run to completion (events 1-10)"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "labels": [
+        {
+          "l2_label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "l1_parent": "EDIT_PATCH",
+          "severity": "MILD",
+          "evidence_action_ids": [1, 2, 3]
+        }
+      ]
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-12682@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE"],
+      "evidence": [
+        "Add transform_max_iter across _set_sparse_coding_params, SparseCoder.__init__, transform in decomposition/dict_learning.py (events 3-5)",
+        "Test suite run, real failure found and fixed, then 66 tests pass (events 8-10)"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-12973@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION"],
+      "evidence": [
+        "Known location: LassoLarsIC.fit signature copy_X in linear_model/least_angle.py (~line 1482)",
+        "Single signature/default change (event 2), no test or repro run before finishing"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "CONTEXT_MEMORY"],
+      "l2_labels": ["VERIFICATION_GAP", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "labels": [
+        {
+          "l2_label": "VERIFICATION_GAP",
+          "l1_parent": "VERIFICATION",
+          "severity": "MODERATE",
+          "evidence_action_ids": [2, 3]
+        },
+        {
+          "l2_label": "REDUNDANT_FILE_REREAD",
+          "l1_parent": "CONTEXT_MEMORY",
+          "severity": "MILD",
+          "evidence_action_ids": [0, 1]
+        }
+      ]
+    },
+    "candidate_interventions": ["VERIFICATION_REQUIRED"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-13124@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE"],
+      "evidence": [
+        "Implement shuffle remapping logic in model_selection/_split.py StratifiedKFold (events 1-8)",
+        "Iterative test-script-driven development that converges and verifies (events 0-9)"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-13135@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": [
+        "Fix unsorted kmeans bin edges in preprocessing/_discretization.py (events 0-18)",
+        "Subtle correctness issue: bin_edges_ ordering; repeated repro shows 'bins NOT sorted'"
+      ],
+      "unknown_fields": ["trace ends at PLAN (event 19) without FINISH"]
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "CONTEXT_MEMORY"],
+      "l2_labels": ["STAGNATION", "FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "STAGNATION",
+      "labels": [
+        {
+          "l2_label": "STAGNATION",
+          "l1_parent": "CONTROL_RECOVERY",
+          "severity": "SEVERE",
+          "evidence_action_ids": [11, 12, 13, 14, 15, 16, 17, 18, 19]
+        },
+        {
+          "l2_label": "FAILED_RECOVERY",
+          "l1_parent": "CONTROL_RECOVERY",
+          "severity": "SEVERE",
+          "evidence_action_ids": [0, 1, 3, 4, 8, 9]
+        },
+        {
+          "l2_label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "l1_parent": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [6, 11, 14, 17]
+        },
+        {
+          "l2_label": "REDUNDANT_FILE_REREAD",
+          "l1_parent": "CONTEXT_MEMORY",
+          "severity": "MILD",
+          "evidence_action_ids": [12, 15, 18]
+        }
+      ]
+    },
+    "candidate_interventions": ["LOCALIZATION_HINT", "EDIT_RETRY_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-13142@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": [
+        "Fix fit_predict/predict label consistency in mixture/base.py (events 0,2,3,5,6,8,9,11)",
+        "Oracle is a stochastic assert_array_equal repro (mismatch count fluctuates 10/8/39/11), no fixed seed"
+      ],
+      "unknown_fields": ["trace ends mid-loop at event 11 without FINISH"]
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "labels": [
+        {
+          "l2_label": "FAILED_RECOVERY",
+          "l1_parent": "CONTROL_RECOVERY",
+          "severity": "SEVERE",
+          "evidence_action_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+        }
+      ]
+    },
+    "candidate_interventions": ["PATCH_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

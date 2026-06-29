@@ -1,0 +1,364 @@
+```json
+[
+  {
+    "trace_id": "pytest-dev__pytest-5809@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": ["Issue names the pastebin feature and the python3->text lexer behavior; fix is a small localized change in pastebin.py", "Oracle depends on an external network service (bpaste.net), so verification is inherently ambiguous"],
+      "unknown_fields": ["MULTI_FILE vs SINGLE_FILE confirmed single-file from edits"]
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["SUGGEST_RELEVANT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-5840@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": ["Issue is a regression (5.1.1 ok, 5.1.2 lowercases path) requiring understanding of unique_path/normcase introduced between versions", "Bug is Windows-specific (case-insensitive FS); not reproducible on the Linux testbed -> unclear oracle"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [7]}
+    },
+    "candidate_interventions": ["PROVIDE_WORKING_ENV", "SUGGEST_RELEVANT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-6197@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "SHORT_STATE"],
+      "evidence": ["Issue 523: __init__.py incorrectly collected causing AssertionError; requires reasoning about pytest collection logic in python.py", "Single reproducible test target (test_issue_523)"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["STAGNATION", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"STAGNATION": "SEVERE", "ENVIRONMENT_BLOCKED": "SEVERE"},
+      "evidence_action_ids": {
+        "STAGNATION": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        "ENVIRONMENT_BLOCKED": [9, 10, 11, 15, 16, 17]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_WORKING_ENV", "BREAK_LOOP", "FLAG_NO_EFFECT_EDITS"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-6202@solver_G",
+    "workload_annotation": {
+      "primary_l1": "VERIFICATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "EXPENSIVE_SUITE", "CLEAR"],
+      "evidence": ["Issue gives explicit line (return s.replace('.[','[')) and the exact fix (return s); localization and patch are essentially given", "Issue instructs running tox -e linting,py37 -> bulk of difficulty is verification"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"SEARCH_WITHOUT_NEW_EVIDENCE": "MILD", "ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [1, 2, 3],
+        "ENVIRONMENT_BLOCKED": [10, 11, 13, 14, 17]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_WORKING_ENV", "SUGGEST_RELEVANT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7205@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": ["Issue is a BytesWarning in setuponly.py setup-show with a bytes fixture param; fix is small (use saferepr)", "Reproducible with a single targeted command/test"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCH_APPLIED_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "SEVERE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [4, 7, 8, 10, 13, 14, 15]}
+    },
+    "candidate_interventions": ["PROVIDE_WORKING_ENV", "DOCUMENT_PYTHONPATH"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7236@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": ["Bug concerns --pdb interaction with unittest tearDown handling across unittest.py and runner.py", "Oracle requires interactive --pdb run, making automated verification awkward"],
+      "unknown_fields": ["No FINISH event observed; run appears to end mid-investigation"]
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["STAGNATION", "HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "HELPER_TOOL_FAILURE_LOOP": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+        "HELPER_TOOL_FAILURE_LOOP": [8, 9, 13, 14, 18, 19, 20]
+      }
+    },
+    "candidate_interventions": ["BREAK_LOOP", "SUGGEST_NON_INTERACTIVE_REPRO", "FLAG_NO_EFFECT_DEBUG"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7324@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": ["Bug is in mark expression parsing of constants (False/True/None) in expression.py", "Requires reasoning about ast.Constant vs ast.Name in the compile path"],
+      "unknown_fields": ["No FINISH event; run ends in a PLAN step"]
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "STAGNATION"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "STAGNATION": "MODERATE"},
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [1, 2, 3, 5, 6, 8, 9, 11, 12],
+        "STAGNATION": [3, 4, 6, 7, 9, 10, 12]
+      }
+    },
+    "candidate_interventions": ["DISCOURAGE_SCRATCH_REPRO", "REDIRECT_TO_PRODUCTION_CODE", "BREAK_LOOP"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7432@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue points to pytest_runtest_makereport in skipping.py; fix removes the runxfail short-circuit block", "Relevant test file test_skipping.py provides a clear oracle"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCH_APPLIED_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [3, 4, 6, 7]}
+    },
+    "candidate_interventions": ["EDIT_TOOL_RETRY_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7490@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "SHORT_STATE"],
+      "evidence": ["Dynamically added xfail marker not respected under --runxfail; spans skipping.py hook ordering and nodes.py add_marker", "Requires reasoning about when xfail marks are evaluated/cached"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY"],
+      "l2_labels": ["FAILED_RECOVERY", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "REDUNDANT_FILE_REREAD": "MILD"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "REDUNDANT_FILE_REREAD": [15, 16, 17]
+      }
+    },
+    "candidate_interventions": ["BREAK_LOOP", "SUGGEST_HYPOTHESIS_RESET"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7521@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": ["capfd.readouterr() converting \\r to \\n requires tracing the capture call chain (MultiCapture -> FDCapture.snap -> EncodedFile) to localize root cause", "Fix is a one-line newline='' addition once located"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCH_APPLIED_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7571@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": ["caplog fixture not restoring handler level between tests in logging.py; requires reasoning about fixture finalization/teardown lifecycle", "Cross-test state leakage makes the oracle/finalization path hard to observe"],
+      "unknown_fields": ["No FINISH event; run ends mid-debugging"]
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "HELPER_TOOL_FAILURE_LOOP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "HELPER_TOOL_FAILURE_LOOP": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [0, 1, 5, 6, 7, 8, 17, 18, 20, 21, 22],
+        "HELPER_TOOL_FAILURE_LOOP": [0, 1, 6, 8, 18, 21],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [9, 16, 19]
+      }
+    },
+    "candidate_interventions": ["BREAK_LOOP", "FLAG_NO_EFFECT_DEBUG", "EDIT_TOOL_RETRY_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

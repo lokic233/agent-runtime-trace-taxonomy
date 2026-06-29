@@ -1,0 +1,370 @@
+```json
+[
+  {
+    "trace_id": "django__django-11433@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Issue asks to change construct_instance() behavior so cleaned_data can override model defaults; the hard part is the conditional semantics (distinguishing user-modified vs omitted values) and edge cases (checkbox, FileField), not finding the location.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [11, 13, 16, 27, 40, 41, 53, 58, 61, 62, 64, 65, 67]}
+    },
+    "candidate_interventions": ["PROVIDE_EDGE_CASE_TESTS_EARLY", "ORACLE_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-11451@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue gives exact file (auth/backends.py), method, and the precise two-line guard to add; minimal reasoning required.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-11477@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Issue describes translate_url() producing wrong URL for missing optional named groups; fix is a small filter in urls/base.py, localization is quick.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-11490@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": "Issue points to compiler.py L428-433 for composed queries; correct fix required understanding combined_queries/clone semantics across compiler.py and query.py to avoid mutating shared sub-queries.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [17, 25, 30, 32, 34, 37, 38, 43]}
+    },
+    "candidate_interventions": ["EARLY_TEST_FEEDBACK", "ORACLE_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-11532@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Issue gives location (message.py line 260) and fix direction (punycode the domain); reasoning needed to handle CachedDnsName object vs patched string and FileField-style encoding.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["FAILED_RECOVERY", "HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MODERATE", "HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [10, 11, 13, 14, 23, 25],
+        "HELPER_TOOL_FAILURE_LOOP": [15, 24, 26, 32]
+      }
+    },
+    "candidate_interventions": ["EARLY_TEST_FEEDBACK", "ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-11551@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Issue precisely diagnoses _check_list_display_item and the faulty hasattr branch; fix is restructuring one conditional in checks.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-11555@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": "Issue identifies get_order_dir failing on OrderBy expressions in Meta.ordering; correct fix requires handling expressions in find_ordering_name with proper alias/related-model resolution context across compiler.py and expressions.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [17, 18, 26, 27, 30, 32, 33, 35, 60, 61]}
+    },
+    "candidate_interventions": ["EARLY_TEST_FEEDBACK", "PROVIDE_EDGE_CASE_TESTS_EARLY"],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-11603@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue explicitly states the fix is setting allow_distinct on Avg/Sum (and optionally Min/Max) in aggregates.py; near-mechanical change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-11728@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Issue names replace_named_groups() and the trailing-group bug; fix is correcting the loop's end-of-string handling in admindocs/utils.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-11734@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": "Issue describes OuterRef resolving against the wrong model in exclude()/~Q(); diagnosis required tracing split_exclude and OuterRef/ResolvedOuterRef resolution across query.py and expressions.py, fix is a small nested-OuterRef wrap.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severities": {"REDUNDANT_FILE_REREAD": "MILD"},
+      "evidence_action_ids": {"REDUNDANT_FILE_REREAD": [19, 22, 31, 37, 42]}
+    },
+    "candidate_interventions": ["CONTEXT_RETENTION"],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-11740@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Issue: changing UUIDField to FK doesn't create migration dependency; fix mirrors _generate_added_field FK dependency logic inside generate_altered_fields in autodetector.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  },
+  {
+    "trace_id": "django__django-11749@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": "Issue includes the exact code in call_command and explains required mutually-exclusive-group args aren't passed; fix extends the required-arg handling to group members and (discovered) subparsers in management/__init__.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["FAILED_RECOVERY", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MODERATE", "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [10, 37, 42, 44],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [20, 21, 22, 23, 24]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_EDGE_CASE_TESTS_EARLY", "TEST_HARNESS_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_v1_opus",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false
+    }
+  }
+]
+```

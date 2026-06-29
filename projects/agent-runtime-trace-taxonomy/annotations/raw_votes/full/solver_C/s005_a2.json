@@ -1,0 +1,428 @@
+[
+  {
+    "trace_id": "django__django-11790@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: AuthenticationForm username field should set maxlength HTML attr. Fix is a localized change in django/contrib/auth/forms.py (UsernameField/AuthenticationForm); class is named in the issue so localization is light, the crux is the field-construction reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "BUDGET_EXHAUSTION_NONCONVERGENCE", "PATCH_CHURN"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {
+        "DEPENDENCY_SETUP_DRIFT": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE",
+        "PATCH_CHURN": "MILD"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [15, 16, 19, 21, 23, 30, 32, 34, 37, 39, 41, 43],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [76],
+        "PATCH_CHURN": [66, 67, 68, 69]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_VERIFICATION_HARNESS", "SUGGEST_STOP_EDITING"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11815@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: migrations serialize an Enum default by value (Status('Good')) instead of by name (Status.GOOD). Requires reasoning about deconstruct/serialization across migration internals; multiple plausible files (serializer.py, autodetector.py, fields, enums).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "LOW",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [17, 21, 26, 43, 44, 45, 46, 52, 53, 56, 57, 58, 59],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [60]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "SUGGEST_STOP_EDITING"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11820@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: models.E015 wrongly raised when ordering refers to 'related__pk'. Fix is in base.py _check_ordering; agent located E015 quickly but the oracle (running a system check that fires the error) is awkward to drive.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "LOW",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {
+        "DEPENDENCY_SETUP_DRIFT": "SEVERE",
+        "STAGNATION": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [16, 17, 19, 21, 23, 24, 31, 32, 34, 36],
+        "STAGNATION": [53, 56, 66, 69, 72, 74, 76],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [79]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_VERIFICATION_HARNESS", "SUGGEST_STOP_EDITING"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11848@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: parse_http_date two-digit RFC850 year should be compared against current year. Localized to django/utils/http.py; crux is the year-handling logic, with a clear unit oracle in utils_tests/test_http.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11880@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue explicitly points at Field.__deepcopy__ in forms/fields.py not deep-copying error_messages. Location is given; the fix is a one-line deepcopy addition.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11885@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "INTEGRATION"],
+      "evidence": "Issue: combine fast-delete queries to reduce query count. Localized to deletion.py Collector; difficulty is an algorithmic change validated against exact query-count assertions in delete/delete_regress tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "MEDIUM",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "PATCH_CHURN", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "FAILED_RECOVERY": "SEVERE",
+        "PATCH_CHURN": "MILD",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [27, 28, 30, 31, 33, 34, 35, 36, 37, 38],
+        "PATCH_CHURN": [4, 5, 6],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [39]
+      }
+    },
+    "candidate_interventions": ["SUGGEST_STOP_EDITING", "PROVIDE_LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11951@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue names Query.bulk_create / batch_size; fix is to cap batch_size by bulk_batch_size in query.py. Location effectively given; clear bulk_create test oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11964@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: TextChoices-typed field returns the enum member, not its str value. Real fix lives in db/models/enums.py; semantic bug with a reproducible value-equality oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "LOW",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "SEARCH_LOCALIZATION", "VERIFICATION"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "SEARCH_WITHOUT_NEW_EVIDENCE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {
+        "DEPENDENCY_SETUP_DRIFT": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [4, 5, 6, 7, 8, 10, 16, 18, 21, 24, 25, 28, 34, 37, 38, 40, 44, 46],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [55, 56, 57, 59],
+        "VERIFICATION_GAP": [60, 61, 62, 63]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_VERIFICATION_HARNESS", "PROVIDE_LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11999@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: cannot override get_FOO_display() in Django 2.2+. Real fix is in db/models/fields _get_FIELD_display; semantic regression with a behavioral oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "LOW",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {
+        "PREMATURE_SCRATCH_REPRO": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 24, 25, 26, 28, 33, 35],
+        "DEPENDENCY_SETUP_DRIFT": [2, 3, 5, 7, 17, 21],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [9, 12, 13]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "SUGGEST_EDIT_SOURCE_NOT_REPRO"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12039@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: whitespace handling for opclasses/DESC in CREATE INDEX. Requires a short search chain (indexes -> schema -> ddl_references) to the Columns/IndexColumns __str__ where the fix lands; verifiable via direct unit reproduction.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12050@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue names Query.resolve_lookup_value coercing lists to tuples; fix preserves the original iterable type in sql/query.py. Location given; targeted unit oracle in queries/test_query.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12125@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: makemigrations emits wrong import path for inner (nested) Field classes. Real fix is in migration serialization (serializer/writer); semantic bug verifiable by inspecting generated migration output.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "LOW",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {
+        "PREMATURE_SCRATCH_REPRO": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 8, 9, 23, 30, 38],
+        "DEPENDENCY_SETUP_DRIFT": [4, 5, 12, 13, 33, 34, 35],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [23, 24, 26]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "SUGGEST_EDIT_SOURCE_NOT_REPRO"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

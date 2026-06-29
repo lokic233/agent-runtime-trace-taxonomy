@@ -1,0 +1,422 @@
+[
+  {
+    "trace_id": "pydata__xarray-6599@solver_C",
+    "task_id": "pydata__xarray-6599",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "Issue is wrong (not erroring) polyval results for timedelta/datetime coords; fix requires reasoning about numeric conversion (_ensure_numeric) in one core file (computation.py). Location reachable via grep.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {"FILENAME_SEARCH_THRASH": "MILD"},
+      "evidence_action_ids": {"FILENAME_SEARCH_THRASH": [3, 5, 6, 7]}
+    },
+    "candidate_interventions": ["provide_location_hint"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-6721@solver_C",
+    "task_id": "pydata__xarray-6721",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": "Accessing .chunks loads full array into memory; root cause is lazy-loading behavior buried across dataset.py/common.py/zarr.py/variable.py. Issue gives no location, so finding the responsible layer dominates.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "nonconvergent_terminated",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {
+        "PREMATURE_SCRATCH_REPRO": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [9, 25, 27, 34, 41, 43, 45, 46],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [22, 23, 32, 38, 39, 54, 59],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [63]
+      }
+    },
+    "candidate_interventions": ["encourage_replan_on_repeated_failure", "improve_edit_tooling"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-6744@solver_C",
+    "task_id": "pydata__xarray-6744",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "Manual rolling iteration ignores center kwarg; fix localized to DataArrayRolling.__iter__ in rolling.py. Wrong (non-centered) output, not an error.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [10, 11]}
+    },
+    "candidate_interventions": ["improve_edit_tooling"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-6938@solver_C",
+    "task_id": "pydata__xarray-6938",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "swap_dims mutates the original dataset's variable dims; fix localized to Dataset.swap_dims in dataset.py. Requires reasoning about variable copying / immutability.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "PATCH_CHURN": [9, 10, 11],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [12, 13, 26]
+      }
+    },
+    "candidate_interventions": ["improve_edit_tooling", "encourage_replan_on_repeated_failure"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-6992@solver_C",
+    "task_id": "pydata__xarray-6992",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue points at DataVariables.__len__ (line 368) returning negative; small targeted fix in dataset.py. Location effectively given by issue.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-7229@solver_C",
+    "task_id": "pydata__xarray-7229",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "xr.where with keep_attrs=True overwrites coordinate attrs; reasoning spans computation.py (where/apply_ufunc) and merge.py (merge_attrs). Wrong attrs, not an error.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [41, 42, 44, 46, 47, 48, 49]}
+    },
+    "candidate_interventions": ["improve_edit_tooling"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-7233@solver_C",
+    "task_id": "pydata__xarray-7233",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "coarsen().construct() demotes non-dimension coordinates to data variables; fix requires reasoning over rolling.py construct and variable.py coarsen_reshape. Coords silently mis-classified, not an error.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [26, 39, 41, 43, 44, 47, 49, 50, 51, 53],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [15, 23, 24, 36, 52]
+      }
+    },
+    "candidate_interventions": ["encourage_replan_on_repeated_failure", "improve_edit_tooling"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-7393@solver_C",
+    "task_id": "pydata__xarray-7393",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Reported int32->int64 dtype change on stack; reasoning over stack/_stack_once/reshape across dataset.py, variable.py, duck_array_ops.py. Silent dtype promotion, not an error.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "no_fix_submitted",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "No material resource waste despite a non-fix outcome; exploration was non-redundant and no production edit was made, so waste is genuinely absent (outcome failure is not labeled)."
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-4551@solver_C",
+    "task_id": "pylint-dev__pylint-4551",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "UNCLEAR_ORACLE"],
+      "evidence": "Feature: pyreverse should read type hints for UML; requires modifying inspector.py/diagrams.py and authoring a test (no provided oracle). Spans pyreverse modules.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "nonconvergent_terminated",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [15, 17, 23, 25, 27, 30, 40, 44, 48, 51, 53, 55, 57, 63, 66, 68],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [69],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [19, 29, 33, 34, 35, 58]
+      }
+    },
+    "candidate_interventions": ["encourage_replan_on_repeated_failure", "provide_test_oracle"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-4604@solver_C",
+    "task_id": "pylint-dev__pylint-4604",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "False-positive unused-import when import is used only in a type comment; fix localized to variables.py unused-import check. Wrong warning, not a crash.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "nonconvergent_terminated",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [22, 29, 31, 36, 38, 41, 43, 46, 48, 60, 62, 64],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [66],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [17, 19, 23, 26, 30, 33, 34, 45, 50, 53, 55, 58, 61, 63, 65]
+      }
+    },
+    "candidate_interventions": ["encourage_replan_on_repeated_failure", "improve_edit_tooling"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-4661@solver_C",
+    "task_id": "pylint-dev__pylint-4661",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_FILE", "SEARCH_REQUIRED", "CLEAR"],
+      "evidence": "Make PYLINT_HOME XDG-compliant; coordinated edits across config/__init__.py, doc/faq.rst and tests/lint/unittest_lint.py. Clear, well-specified change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "patch_submitted_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [2, 3, 4, 7, 10, 11, 17],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [10]
+      }
+    },
+    "candidate_interventions": ["provide_test_oracle"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-4970@solver_C",
+    "task_id": "pylint-dev__pylint-4970",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "UNCLEAR_ORACLE"],
+      "evidence": "min-similarity-lines=0 should disable the duplicate-code check; fix localized to similar.py and required authoring a unit test (no provided oracle).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [13, 14, 15, 16, 17, 18, 19],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [22, 24, 25]
+      }
+    },
+    "candidate_interventions": ["provide_test_oracle", "improve_edit_tooling"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

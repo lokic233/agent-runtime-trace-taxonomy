@@ -1,0 +1,390 @@
+Looking at this, the actual request is a self-contained annotation task — analyze 13 blinded traces against the frozen taxonomy and emit JSON. No codebase, memory, or external context applies. Here are the annotations:
+
+```json
+[
+  {
+    "trace_id": "django__django-13089@solver_B",
+    "task_id": "django__django-13089",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue names exact file/method/line (db.py _cull L270) and the failing call cursor.fetchone()[0]; fix is a None-guard on a single known region with a clear cache-test oracle."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [7, 8, 9]}
+    },
+    "candidate_interventions": ["robust_edit_tooling"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13109@solver_B",
+    "task_id": "django__django-13109",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "INTEGRATION", "CLEAR"],
+      "evidence": ["Issue gives exact file/lines (related.py L917-919) and prescribes _default_manager -> _base_manager; main demand is a one-line change plus regression verification across manager/db tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "MILD"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [11, 12]}
+    },
+    "candidate_interventions": ["provide_test_runner"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13112@solver_B",
+    "task_id": "django__django-13112",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "CROSS_MODULE", "CROSS_CUTTING"],
+      "evidence": ["Error message points to model_checks (symptom) but true cause is app_label lowercasing in two distinct spots (migrations/operations/utils.resolve_relation and models/fields/related.deconstruct), requiring cross-module tracing."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD", "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [13, 14, 16], "SEARCH_WITHOUT_NEW_EVIDENCE": [35, 37]}
+    },
+    "candidate_interventions": ["robust_edit_tooling", "search_budget_cap"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13121@solver_B",
+    "task_id": "django__django-13121",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CLEAR"],
+      "evidence": ["Traceback names convert_durationfield_value; root cause is duration+duration handling in sqlite _sqlite_format_dtdelta returning str instead of microseconds; task title references sqlite and mysql backends."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severity": {"REDUNDANT_FILE_REREAD": "MODERATE"},
+      "evidence_action_ids": {"REDUNDANT_FILE_REREAD": [15, 16, 17, 18, 19, 21, 22, 25, 39, 40, 42]}
+    },
+    "candidate_interventions": ["context_dedup", "scope_guidance"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13128@solver_B",
+    "task_id": "django__django-13128",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": ["Issue gives FieldError on mixed DateTimeField/DurationField; fix requires adding _resolve_output_field to CombinedExpression in expressions.py to infer DurationField for temporal subtraction."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {"HELPER_TOOL_FAILURE_LOOP": "MODERATE"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [4, 5, 6, 8, 10, 11, 18, 25]}
+    },
+    "candidate_interventions": ["skip_preemptive_helper", "robust_edit_tooling"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13158@solver_B",
+    "task_id": "django__django-13158",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CLEAR"],
+      "evidence": ["Issue is a behavioral symptom (none() returns all on union); fix location (compiler.as_sql combinator branch) requires tracing none()->set_empty->is_empty across query.py, sql/query.py, compiler.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "PATCH_CHURN"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {"HELPER_TOOL_FAILURE_LOOP": "MILD", "PATCH_CHURN": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [8, 15, 22], "PATCH_CHURN": [23, 25]}
+    },
+    "candidate_interventions": ["skip_preemptive_helper", "robust_edit_tooling"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13195@solver_B",
+    "task_id": "django__django-13195",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "MULTI_FILE", "CROSS_MODULE", "CLEAR"],
+      "evidence": ["Issue sketches the delete_cookie fix and the samesite gap; change spans http/response.py plus callers in contrib.messages and contrib.sessions (multi-file, cross-module mechanical edit)."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]}
+    },
+    "candidate_interventions": ["robust_edit_tooling"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13212@solver_B",
+    "task_id": "django__django-13212",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_CUTTING", "CLEAR"],
+      "evidence": ["Issue asks to add %(value)s params across built-in validators; repetitive cross-cutting edit over many validators in core/validators.py plus contrib/postgres/validators.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {"HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [4, 5]}
+    },
+    "candidate_interventions": ["skip_preemptive_helper"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13279@solver_B",
+    "task_id": "django__django-13279",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": ["Issue references a specific commit changing session encode format and proposes legacy encode() when DEFAULT_HASHING_ALGORITHM=='sha1'; fix is in sessions/backends/base.py with clear test oracle."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13297@solver_B",
+    "task_id": "django__django-13297",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "PARTIAL"],
+      "evidence": ["Cause is identified in the issue (SimpleLazyObject wrapping of TemplateView kwargs) but the appropriate fix mechanism/location is ambiguous; solver explored DB-adapter and LazyObject-coercion routes spanning sqlite3/base.py and utils/functional.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "PATCH_CHURN"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severity": {"REDUNDANT_FILE_REREAD": "MODERATE", "PATCH_CHURN": "MILD"},
+      "evidence_action_ids": {"REDUNDANT_FILE_REREAD": [26, 27, 30, 32, 35, 42, 43, 46, 47], "PATCH_CHURN": [29, 31, 34]}
+    },
+    "candidate_interventions": ["context_dedup", "scope_guidance"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13315@solver_B",
+    "task_id": "django__django-13315",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "CROSS_CUTTING"],
+      "evidence": ["Issue: Q-based limit_choices_to with a join yields duplicate formfield options; fix is adding distinct() at the apply points in forms/models.py and the get_choices methods in fields/__init__.py and reverse_related.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [37, 38, 39, 52, 53]}
+    },
+    "candidate_interventions": ["robust_edit_tooling"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13343@solver_B",
+    "task_id": "django__django-13343",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": ["Issue prescribes the fix (preserve the original callable storage, defer evaluation) and points to FileField in models/fields/files.py; single-file deconstruct change with clear deconstruction oracle."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

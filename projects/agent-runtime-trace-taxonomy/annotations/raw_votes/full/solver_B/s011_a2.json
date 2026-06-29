@@ -1,0 +1,386 @@
+[
+  {
+    "trace_id": "django__django-13821@solver_B",
+    "task_id": "django__django-13821",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE"],
+      "evidence": "Issue asks to bump the minimum supported SQLite to 3.9.0. The code change itself is a trivial version-tuple edit; the bulk of the task is locating every reference across the backend (base.py, introspection.py) and docs (databases.txt, gis install, release notes) via repeated grep sweeps [0,6,7,10,12,13,29,30].",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [14, 15]}
+    },
+    "candidate_interventions": ["PROVIDE_ROBUST_EDITOR"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13837@solver_B",
+    "task_id": "django__django-13837",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue names get_child_arguments in autoreload.py and prescribes the __main__.__spec__ approach, so location is explicit and the change is a single-file logic rewrite. The oracle is unclear because the existing tests mock sys.argv rather than __main__.__spec__, so the new implementation cannot satisfy them as written.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {"STAGNATION": "MODERATE"},
+      "evidence_action_ids": {"STAGNATION": [24, 25, 26, 27, 28, 29, 30]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_HARNESS"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13925@solver_B",
+    "task_id": "django__django-13925",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "The W042 check (_check_default_pk in base.py) must be revised to walk parent links and detect an explicitly-defined inherited pk, including multi-level inheritance. Localized via grep W042; the crux is the inheritance-walking logic in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13933@solver_B",
+    "task_id": "django__django-13933",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue quotes ModelChoiceField in models.py and the desired behavior; fix is a small change to the invalid_choice message plus passing params={'value': value} in to_python. Existing tests encode the old message string, so the oracle requires accompanying test updates the solver cannot make.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13964@solver_B",
+    "task_id": "django__django-13964",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": "FK-with-non-numeric-pk data loss; fix is localized to ForeignKeyDeferredAttribute in related_descriptors.py after reading related.py and query_utils.py. The subtle part is correctly fetching the related field value (to_field aware) rather than pk.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14007@solver_B",
+    "task_id": "django__django-14007",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE"],
+      "evidence": "from_db_value not applied to returning_fields on insert; required tracing the insert/returning flow across compiler.py, base.py, query.py and fields. Fix spans two files (base.py _save and query.py bulk_create paths).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14011@solver_B",
+    "task_id": "django__django-14011",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "UNCLEAR_ORACLE"],
+      "evidence": "ThreadedWSGIServer must close DB connections per request thread; single-file fix in basehttp.py overriding process_request_thread. The bug is a shutdown race condition that is hard to verify deterministically (the connection-close test is skipped on the in-memory sqlite backend).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [2, 3, 5, 10]}
+    },
+    "candidate_interventions": ["PROVIDE_ROBUST_EDITOR"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14017@solver_B",
+    "task_id": "django__django-14017",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE"],
+      "evidence": "Q() & Exists() commutativity bug rooted in Python operator dispatch; the fix spans query_utils.py (Q._combine and Q.deconstruct) and expressions.py (Combinable.__rand__/__ror__). Diagnosis required understanding why __rand__ is never reached (TypeError vs NotImplemented).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14034@solver_B",
+    "task_id": "django__django-14034",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "MultiValueField.clean must enforce required subfields while preserving optional-empty behavior; the subtle distinction (a list of empty values vs a scalar empty input) is constrained by an existing test (test_multivalue_optional_subfields), making the oracle unclear. Single-file fix in forms/fields.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MODERATE"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [4, 5, 10, 29, 39]}
+    },
+    "candidate_interventions": ["PROVIDE_ROBUST_EDITOR"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14053@solver_B",
+    "task_id": "django__django-14053",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "HashedFilesMixin.post_process yields the same file multiple times; fix adds a tracking dict so a file is re-yielded only when its hashed name changes. Single-file logic change in staticfiles/storage.py located via grep.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [2, 3, 5, 10]}
+    },
+    "candidate_interventions": ["PROVIDE_ROBUST_EDITOR"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14089@solver_B",
+    "task_id": "django__django-14089",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue explicitly prescribes adding a __reversed__ method to OrderedSet; the change is a trivial one-method addition in utils/datastructures.py, so the task is dominated by locating the class.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14122@solver_B",
+    "task_id": "django__django-14122",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Meta.ordering fields are wrongly added to GROUP BY in get_group_by; fix gates the order_by loop on _meta_ordering in sql/compiler.py. Understanding the order_by-to-group_by flow required reading compiler/query plus git archaeology, and reproduction needs a Meta.ordering model with aggregation, which is hard to construct standalone.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {"STAGNATION": "SEVERE"},
+      "evidence_action_ids": {"STAGNATION": [40, 42, 45, 47, 50, 52, 58, 60, 61, 63]}
+    },
+    "candidate_interventions": ["PROVIDE_REPRODUCTION", "PROVIDE_TEST_HARNESS"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-opus-4.8",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

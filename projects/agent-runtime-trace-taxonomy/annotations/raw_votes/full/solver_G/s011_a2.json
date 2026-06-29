@@ -1,0 +1,400 @@
+```json
+[
+  {
+    "trace_id": "django__django-13821@solver_G",
+    "task_id": "django__django-13821",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue asks to bump the minimum supported SQLite version (3.8.3 -> 3.9.0). The fix is a single deterministic constant change; the only real work is locating the existing check_sqlite_version() guard via grep.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [5, 6]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST", "PROVIDE_TEST_RUNNER_CMD"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13837@solver_G",
+    "task_id": "django__django-13837",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue names get_child_arguments() and proposes using __main__.__spec__.parent to detect `-m pkg`. Location is explicit; the work is re-implementing the detection logic and fallback correctly.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [5, 6]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST", "PROVIDE_TEST_RUNNER_CMD"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13925@solver_G",
+    "task_id": "django__django-13925",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "models.W042 inherited-PK warning. Issue points at the check; real work is reasoning about whether the PK is inherited (auto_created vs local_fields) before emitting the warning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Clean run: localized via grep, made a targeted edit, and ran the relevant test suites (32 tests OK). Brief test-runner discovery (events 7-8) is harness-norm and omitted."
+    }
+  },
+  {
+    "trace_id": "django__django-13933@solver_G",
+    "task_id": "django__django-13933",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "ModelChoiceField invalid_choice should include the offending value like ModelMultipleChoiceField. Requires tracing the validate() chain across models.py and fields.py (ModelChoiceField -> ChoiceField -> Field) to confirm params={'value'} flows through; edit itself is one line.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [7, 17]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST", "PROVIDE_TEST_RUNNER_CMD"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Extensive code reading (events 8-16) was legitimate flow-tracing (each search returned new evidence), not redundant search; but the run ends with no test execution despite a clear oracle."
+    }
+  },
+  {
+    "trace_id": "django__django-13964@solver_G",
+    "task_id": "django__django-13964",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "TARGETED_UNIT"],
+      "evidence": "FK assignment with a non-numeric PK set after assignment causes silent data loss on save(). Requires understanding the assignment/save flow across related.py, related_descriptors.py and base.py to find _prepare_related_fields_for_save.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [15, 16]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST", "PROVIDE_TEST_RUNNER_CMD"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "In-file paging through related_descriptors.py (events 6-8 'still not the __set__ method') is wrong-location navigation, not REREAD/BLOAT, and has no matching frozen label, so omitted. Terminal VERIFICATION_GAP is the labelable waste."
+    }
+  },
+  {
+    "trace_id": "django__django-14007@solver_G",
+    "task_id": "django__django-14007",
+    "workload_annotation": {
+      "primary_l1": "VERIFICATION_DOMINANT",
+      "l2_attributes": ["INTEGRATION", "EXPENSIVE_SUITE", "SEARCH_REQUIRED"],
+      "evidence": "AutoField/bulk_create returning-column behavior; the production edit is already applied before the visible window, and the structural task here is DB-backed test validation across model_fields/bulk_create suites.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {"STAGNATION": "MODERATE"},
+      "evidence_action_ids": {"STAGNATION": [6, 8, 10]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER_CMD", "ENV_PRECONFIGURED"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Repeated near-identical runtests invocations with mislabeled module paths (events 6/8/10) loop on the same ModuleNotFoundError with no new actionable evidence before finally using correct app labels (event 11)."
+    }
+  },
+  {
+    "trace_id": "django__django-14011@solver_G",
+    "task_id": "django__django-14011",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "MULTI_FILE", "INTEGRATION", "LONG_STATE"],
+      "evidence": "LiveServerThread leaves DB connections open due to in_atomic_block interaction. Root cause spans transaction.py, backends/base/base.py, test/testcases.py and core/handlers; oracle is servers.test_closes_connections.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [14, 15, 17, 18, 19, 20, 22],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [11, 12, 13]
+      }
+    },
+    "candidate_interventions": ["LOCATION_HINT", "EDIT_TOOL_ASSIST", "BUDGET_EXTENSION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "After the close_if_unusable_or_obsolete edit fails the test (events 14-15), the agent keeps editing new files driven by the failing oracle but never converges (no FINISH); a str_replace no-match retry loop (11-13) is a separate mechanical failure."
+    }
+  },
+  {
+    "trace_id": "django__django-14017@solver_G",
+    "task_id": "django__django-14017",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT"],
+      "evidence": "Q(...) & Exists(...) raises TypeError; fix is adding a commutative __rand__ so Q and Exists combine both ways, spanning query_utils.py (Q) and expressions.py (Exists).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {"DEPENDENCY_SETUP_DRIFT": "SEVERE"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [0, 3, 5, 7, 9, 11, 12, 14, 17, 24]}
+    },
+    "candidate_interventions": ["ENV_PRECONFIGURED", "PROVIDE_TEST_RUNNER_CMD"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "The first ~25 events are self-inflicted tox.ini churn (passenv format, editable install, DJANGO_SETTINGS_MODULE, PYTHONPATH, nonexistent tests.settings) to make a verification command work, before any code is touched. Classified as DRIFT, not ENVIRONMENT_BLOCKED, since the env was usable (runtests.py worked directly in other traces)."
+    }
+  },
+  {
+    "trace_id": "django__django-14034@solver_G",
+    "task_id": "django__django-14034",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "MultiValueField.clean() behavior with disabled / require_all_fields. Change is localized to fields.py MultiValueField.clean; correct behavior is semantic and not surfaced by an obvious error.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PREMATURE_SCRATCH_REPRO"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {"EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE", "PREMATURE_SCRATCH_REPRO": "MODERATE"},
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [0, 1, 2, 4, 5, 6, 7, 15, 16],
+        "PREMATURE_SCRATCH_REPRO": [8, 11, 12]
+      }
+    },
+    "candidate_interventions": ["EDIT_TOOL_ASSIST", "REPRO_DISCOURAGE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Dominated by str_replace/insert indentation mismatches and undo/retry of the same debug-line edit (events 0-7), plus building and re-creating an ad-hoc repro_script and inserting debug exceptions/prints into production code (events 8-16) which themselves caused an IndentationError. No real fix landed in window."
+    }
+  },
+  {
+    "trace_id": "django__django-14053@solver_G",
+    "task_id": "django__django-14053",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "HashedFilesMixin.post_process yields the same file multiple times across passes; fix requires understanding the multi-pass _post_process generator and dedping yielded names in storage.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [5, 6, 7]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST", "PROVIDE_TEST_RUNNER_CMD"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Localized and made coordinated edits to _post_process and post_process, then finished with no test/repro run despite a clear oracle. Early view-range errors (events 1-2) are minor navigation, omitted."
+    }
+  },
+  {
+    "trace_id": "django__django-14089@solver_G",
+    "task_id": "django__django-14089",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Add a __reversed__ method to OrderedSet so reversed() works. Location explicit and change is two lines; trivial reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {"EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE", "VERIFICATION_GAP": "MILD"},
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [2, 3, 5, 6, 7, 8, 9],
+        "VERIFICATION_GAP": [9, 10]
+      }
+    },
+    "candidate_interventions": ["EDIT_TOOL_ASSIST", "ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "A 2-line addition takes ~8 events because of editor-tool mechanics: unindented insert, str_replace with embedded line numbers, and two identical-old/new-str rejections before the indentation is fixed. Finishes with no verification."
+    }
+  },
+  {
+    "trace_id": "django__django-14122@solver_G",
+    "task_id": "django__django-14122",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Meta.ordering fields must not be added to the GROUP BY clause in aggregation queries; fix is in SQLCompiler in sql/compiler.py, requires reasoning about how group_by is assembled.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PATCH_CHURN", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severities": {"PATCH_CHURN": "MODERATE", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {
+        "PATCH_CHURN": [1, 2, 3],
+        "DEPENDENCY_SETUP_DRIFT": [7, 8]
+      }
+    },
+    "candidate_interventions": ["ENV_PRECONFIGURED", "PROVIDE_TEST_RUNNER_CMD"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Agent inserts a verbose/over-considered block into compiler.py then immediately re-edits the same region twice to clean it up with no intervening test (PATCH_CHURN, events 1-3); separately installs tox to enable verification (DRIFT, events 7-8). It does ultimately verify (64 tests OK)."
+    }
+  }
+]
+```

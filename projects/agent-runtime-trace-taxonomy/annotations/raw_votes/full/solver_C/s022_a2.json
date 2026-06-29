@@ -1,0 +1,332 @@
+```json
+[
+  {
+    "trace_id": "matplotlib__matplotlib-23314@solver_C",
+    "task_id": "matplotlib__matplotlib-23314",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: set_visible(False) has no effect on a 3D projection; fix requires overriding set_visible in Axes3D to propagate visibility to patch/axes sub-artists. Localization is a single class but the correct propagation set must be reasoned out; oracle is a rendered figure.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": [
+        {"label_id": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "SEVERE", "evidence_action_ids": [10, 11, 12, 23, 24, 46, 47, 49]},
+        {"label_id": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [17, 21, 22]},
+        {"label_id": "VERIFICATION_GAP", "severity": "MILD", "evidence_action_ids": [45, 52]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["SCOPED_EDIT_TOOL", "VERIFICATION_HARNESS"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-23412@solver_C",
+    "task_id": "matplotlib__matplotlib-23412",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: dash offset in patch linestyle tuples has no effect; root cause traced from patches.set_linestyle into lines._scale_dashes. Understanding spans two files; fix is a one-line semantics change verified visually.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": [
+        {"label_id": "VERIFICATION_GAP", "severity": "MILD", "evidence_action_ids": [14, 16, 19]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["VERIFICATION_HARNESS"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-23476@solver_C",
+    "task_id": "matplotlib__matplotlib-23476",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: DPI doubles on M1 Mac each unpickle; root cause is platform-specific and spans figure.__setstate__ and the macosx backend. Bug does not manifest under the available agg/Linux backend, so finding the right site is the dominant challenge.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "terminated_without_fix",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label_id": "STAGNATION", "severity": "SEVERE", "evidence_action_ids": [13, 14, 15, 16, 17, 18, 19, 20, 21]},
+        {"label_id": "SEARCH_WITHOUT_NEW_EVIDENCE", "severity": "MODERATE", "evidence_action_ids": [24, 25, 26, 27]}
+      ],
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "EARLY_STOP_ON_STAGNATION", "REPRO_ENV_FIX"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24026@solver_C",
+    "task_id": "matplotlib__matplotlib-24026",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: stackplot with CN color references raises in set_prop_cycle; the reproduction traceback names stackplot.py directly. Location is explicit; the fix is a small semantic change verifiable with a unit test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label_id": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [6, 7]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["SCOPED_EDIT_TOOL"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24149@solver_C",
+    "task_id": "matplotlib__matplotlib-24149",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: ax.bar with all-NaN raises StopIteration in cbook._safe_first_finite; reproduction traceback points directly to the function. Fix is a small guarded-return change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label_id": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "SEVERE", "evidence_action_ids": [8, 9, 17, 24]},
+        {"label_id": "FAILED_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [12, 13, 16, 19, 20, 21]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["SCOPED_EDIT_TOOL"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24177@solver_C",
+    "task_id": "matplotlib__matplotlib-24177",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: hist with density=True and histtype='step' is not normalized like 'bar'; fix is in the long hist() method of axes/_axes.py requiring scrolling to the step branch and reasoning about density scaling.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": [
+        {"label_id": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [13, 14]},
+        {"label_id": "FAILED_RECOVERY", "severity": "MILD", "evidence_action_ids": [17, 20]},
+        {"label_id": "VERIFICATION_GAP", "severity": "MILD", "evidence_action_ids": [21, 22, 23]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["SCOPED_EDIT_TOOL", "VERIFICATION_HARNESS"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24570@solver_C",
+    "task_id": "matplotlib__matplotlib-24570",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: HPacker align 'top'/'bottom' are swapped; fix is a logic correction in offsetbox._get_aligned_offsets. The challenge is locating the responsible helper among HPacker/PackerBase; oracle is visual.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": [
+        {"label_id": "REDUNDANT_FILE_REREAD", "severity": "MODERATE", "evidence_action_ids": [11, 16]},
+        {"label_id": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [19]},
+        {"label_id": "VERIFICATION_GAP", "severity": "MILD", "evidence_action_ids": [22, 23]}
+      ],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD"
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "VERIFICATION_HARNESS"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24627@solver_C",
+    "task_id": "matplotlib__matplotlib-24627",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "CLEAR"],
+      "evidence": "Issue: cla()/clf() do not unset artist.axes/.figure the way remove() does; the fix spans Axes._AxesBase.__clear and Figure.clear across two files. Repro prints make the oracle clear, but the right sites must be found.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label_id": "FILENAME_SEARCH_THRASH", "severity": "MODERATE", "evidence_action_ids": [3, 4, 6, 18, 19, 20]},
+        {"label_id": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [16, 17, 36]},
+        {"label_id": "FAILED_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [29, 30, 32, 33]}
+      ],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH"
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "SCOPED_EDIT_TOOL"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24637@solver_C",
+    "task_id": "matplotlib__matplotlib-24637",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: AnnotationBbox does not emit its gid into the SVG; fix is in AnnotationBbox.draw in offsetbox.py and requires understanding renderer open_group/gid mechanics. Oracle is SVG content inspection.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY", "SEARCH_LOCALIZATION"],
+      "l2_labels": [
+        {"label_id": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "SEVERE", "evidence_action_ids": [25, 42, 43, 45, 47, 48, 50]},
+        {"label_id": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [27, 33, 36, 37, 38, 39]},
+        {"label_id": "FILENAME_SEARCH_THRASH", "severity": "MILD", "evidence_action_ids": [8, 9, 10]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["SCOPED_EDIT_TOOL", "VERIFICATION_HARNESS"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24870@solver_C",
+    "task_id": "matplotlib__matplotlib-24870",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue: auto-detect a boolean 2D array in contour and default to a single level [0.5]; an enhancement requiring reasoning about QuadContourSet._process_args/_contour_args. Oracle is a rendered/image-comparison test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": null,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label_id": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [24, 28, 31, 36, 38, 41, 44, 48]},
+        {"label_id": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [26, 45, 46]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["VERIFICATION_HARNESS", "EARLY_STOP_ON_STAGNATION"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24970@solver_C",
+    "task_id": "matplotlib__matplotlib-24970",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "EXPENSIVE_SUITE", "CLEAR"],
+      "evidence": "Issue: NumPy out-of-bound int conversion deprecation warnings at colors.py lines ~730-732; the issue names exact lines and the fix is the recommended np.array().astype() form.",
+      "unknown_fields": ["original deprecation warning could not be reproduced under the installed NumPy version"]
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label_id": "FAILED_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [14, 15, 18, 19]},
+        {"label_id": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [16, 17]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["REPRO_ENV_FIX", "VERIFICATION_HARNESS"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25122@solver_C",
+    "task_id": "matplotlib__matplotlib-25122",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: window correction in mlab._spectral_helper uses np.abs(window).sum() rather than window.sum(); issue cites lines ~423-430. Fix is a small numerical-semantics change but reproduction requires scipy/numerical setup.",
+      "unknown_fields": ["final state of production fix ambiguous: debug prints left in mlab.py and a response.md concludes the code is 'correct'"]
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": null,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label_id": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "SEVERE", "evidence_action_ids": [12, 13, 24, 25, 49]},
+        {"label_id": "STAGNATION", "severity": "MODERATE", "evidence_action_ids": [14, 15, 17, 18, 19, 20]},
+        {"label_id": "DEPENDENCY_SETUP_DRIFT", "severity": "MILD", "evidence_action_ids": [2, 32]}
+      ],
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["REPRO_ENV_FIX", "SCOPED_EDIT_TOOL", "EARLY_STOP_ON_STAGNATION"],
+    "annotation_metadata": {"annotator_id": "claude-annotator-1", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  }
+]
+```

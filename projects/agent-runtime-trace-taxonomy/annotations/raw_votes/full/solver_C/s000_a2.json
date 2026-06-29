@@ -1,0 +1,478 @@
+```json
+[
+  {
+    "trace_id": "astropy__astropy-12907@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue names astropy.modeling.separable.separability_matrix and gives a clear reproduction with expected vs actual matrices for nested CompoundModels; a localized logic fix in one module, no runtime error (silent wrong output).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "patching",
+      "progress": "no_real_fix_submitted",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT", "PREMATURE_SCRATCH_REPRO"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "SEVERE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 3, 12],
+        "DEPENDENCY_SETUP_DRIFT": [4, 5, 9, 16, 17, 18, 22, 23],
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 24, 26, 28, 29, 31]
+      }
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX", "DISCOURAGE_SCRATCH_REPRO"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-13033@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue reports a misleading exception message from TimeSeries.remove_column; reproduction is explicit and fix is a localized message/logic change in _check_required_columns once the file is found.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "fix_applied_to_wrong_copy_not_in_repo_diff",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 18, 25],
+        "DEPENDENCY_SETUP_DRIFT": [4, 9, 20, 23, 24],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [13, 14, 42]
+      }
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX", "PIN_REPO_VERSION", "EDIT_TOOL_REPLACEMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-13236@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue quotes the exact code snippet in table.py and proposes adding a FutureWarning; location is explicit and the change is a small, targeted insertion.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "fix_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [6, 7, 17, 18, 20],
+        "DEPENDENCY_SETUP_DRIFT": [9, 12, 15]
+      }
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-13398@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "INTEGRATION", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue requests new direct ITRS<->AltAz/HADec transforms spanning builtin_frames (itrs.py, intermediate_rotation_transforms.py) plus a new test; a feature-addition requiring cross-file integration.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "fix_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [10, 11, 15, 16],
+        "DEPENDENCY_SETUP_DRIFT": [13]
+      }
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-13453@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue: HTML writer ignores the supplied 'formats' dict while other writers honor it; the relevant logic threads through io/ascii/html.py, table.py, column.py and pprint.py, making localization the dominant difficulty.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "localization",
+      "progress": "stuck_no_fix",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH", "CONTEXT_MEMORY", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "PREMATURE_SCRATCH_REPRO", "REDUNDANT_FILE_REREAD", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "STAGNATION": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 19, 23],
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 17, 22, 24],
+        "REDUNDANT_FILE_REREAD": [50, 54, 62, 66, 68, 69],
+        "STAGNATION": [46, 47, 48, 53, 55, 56, 57, 61, 63, 65, 67],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [70]
+      }
+    },
+    "candidate_interventions": ["LOCALIZATION_HINT", "ENVIRONMENT_FIX", "BUDGET_INCREASE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-13579@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: sliced WCS world_to_pixel returns wrong values when PC matrix couples spatial/spectral axes; a subtle numerical logic bug (no error, wrong output) requiring reasoning about the slicing transform.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "patching",
+      "progress": "stuck_no_fix_mock_only",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT", "PREMATURE_SCRATCH_REPRO", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE",
+        "PREMATURE_SCRATCH_REPRO": "SEVERE",
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 16, 21],
+        "DEPENDENCY_SETUP_DRIFT": [4, 9, 17],
+        "PREMATURE_SCRATCH_REPRO": [22, 24, 26, 28],
+        "FAILED_RECOVERY": [33, 35, 37, 39, 41, 44, 46, 48],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [53]
+      }
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX", "DISCOURAGE_SCRATCH_REPRO", "BUDGET_INCREASE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-13977@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Issue: Quantity __array_ufunc__ should return NotImplemented (not raise) for incompatible duck-array inputs; a localized behavioral fix in units handling.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "concluded_not_reproducible_no_fix",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "DEPENDENCY_SETUP_DRIFT": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 8, 16],
+        "DEPENDENCY_SETUP_DRIFT": [4, 7, 10, 12, 14, 15]
+      }
+    },
+    "candidate_interventions": ["PIN_REPO_VERSION", "ENVIRONMENT_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14096@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: SkyCoord subclass property access yields a misleading AttributeError naming the property instead of the missing inner attribute; localized fix in sky_coordinate.py __getattr__.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "fix_applied_and_verified_late",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 11, 13, 26, 42],
+        "DEPENDENCY_SETUP_DRIFT": [4, 14, 25, 29, 40, 41],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [17, 18, 19, 20, 45]
+      }
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX", "EDIT_TOOL_REPLACEMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14182@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: ascii.rst writer should accept header_rows like fixed_width; reproduction is explicit and the fix is a localized writer change (RST.py + fixed-width base).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "concluded_already_fixed_no_patch",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "DEPENDENCY_SETUP_DRIFT": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 13, 19, 23, 27],
+        "DEPENDENCY_SETUP_DRIFT": [4, 14, 21, 24],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [17, 18]
+      }
+    },
+    "candidate_interventions": ["PIN_REPO_VERSION", "ENVIRONMENT_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14309@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: identify_format raises IndexError on empty args; reproduction is explicit and fix is a small guard in io/fits/connect.py is_fits.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "fix_applied_verified_on_adhoc_harness",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT", "PREMATURE_SCRATCH_REPRO", "FAILED_RECOVERY"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 8, 11, 17, 20, 32],
+        "DEPENDENCY_SETUP_DRIFT": [12, 14, 19, 33],
+        "PREMATURE_SCRATCH_REPRO": [9, 10, 21, 22, 23, 24, 30, 31],
+        "FAILED_RECOVERY": [34, 35, 36, 37, 38]
+      }
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX", "DISCOURAGE_SCRATCH_REPRO"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14365@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: QDP reader fails on lowercase commands; reproduction explicit and fix is a localized case-insensitive regex change in io/ascii/qdp.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "fix_applied_and_tests_pass",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "DEPENDENCY_SETUP_DRIFT": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 11, 19, 28],
+        "DEPENDENCY_SETUP_DRIFT": [4, 8, 20]
+      }
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14369@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: CDS/MRT reader mis-parses composite units; fix involves the cds reader/units format modules (silent wrong unit output), requiring search across io/ascii/cds.py and units/format/cds.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "stuck",
+      "progress": "derailed_to_unrelated_marshmallow_no_fix",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT", "EDIT_TOOL_MECHANICAL_FAILURE", "PREMATURE_SCRATCH_REPRO", "STAGNATION"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "DEPENDENCY_SETUP_DRIFT": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "STAGNATION": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 16, 18],
+        "DEPENDENCY_SETUP_DRIFT": [4, 19, 31, 36],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [11, 12, 13],
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 17, 21],
+        "STAGNATION": [26, 27, 28, 29, 33, 34, 38, 39]
+      }
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX", "PIN_REPO_VERSION", "DISCOURAGE_SCRATCH_REPRO"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

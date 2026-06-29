@@ -1,0 +1,414 @@
+[
+  {
+    "trace_id": "mwaskom__seaborn-3187@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: seaborn objects API legend for large pointsize values should surface the offset/multiplier. Fix concentrates in seaborn/_core/scales.py legend/formatter logic; the crux is reasoning about how to format the ticks/offset. Output is a plot, so there is no easy deterministic oracle (visual/silent-semantic).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "FAILED_RECOVERY": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [8, 17, 36, 38, 39, 47],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [65]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_PATCH_HINT", "PROVIDE_TEST_ORACLE", "INTERRUPT_LOOP"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pallets__flask-5014@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: Blueprint should raise ValueError on empty name. Single small validation added to Blueprint.__init__ in src/flask/blueprints.py; oracle is clear (raise on empty name).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-1142@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: Content-Length header sent on bodyless GET. Localization traces api->sessions->models to prepare_content_length in requests/models.py (cross-file). True verification needs a live HTTP request (unclear/network oracle).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {
+        "ENVIRONMENT_BLOCKED": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 14]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_TEST_ORACLE", "PROVIDE_ENV_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-1724@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: method coercion (.upper on binary string) in old version. Work is tracing sessions.py/models.py Request/PreparedRequest.prepare_method (cross-file localization); reproduction depends on environment/version.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_ORACLE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-1766@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: Digest auth qop value should be quoted. Small fix in requests/auth.py (quote qop, tolerate quoted qop on parse); verified against repo test suite (clear oracle).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-1921@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "REPOSITORY_CONTEXT", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: setting a session header to None should suppress it (Accept-Encoding). The responsible logic spans sessions.py merge_setting, models.py prepare_headers, adapters.py and bundled urllib3 (cross-module); behavior verified via live request (network oracle).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "CONTROL_RECOVERY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "FAILED_RECOVERY", "STAGNATION"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "REDUNDANT_FILE_REREAD": "SEVERE",
+        "FAILED_RECOVERY": "SEVERE",
+        "STAGNATION": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [16, 20, 22, 29, 32, 33, 41, 44, 45, 53, 58, 77, 79],
+        "FAILED_RECOVERY": [23, 26, 28, 54, 57, 80, 83],
+        "STAGNATION": [58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "INTERRUPT_LOOP"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-2317@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue explicitly names the line `method = builtin_str(method)` in sessions.py; fix is a one-line swap to to_native_string. Explicit location, single-file, clear behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-2931@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: utf-8 bytes body fails via to_native_string ascii default. Traceback localizes to to_native_string in requests/utils.py; fix is default encoding ascii->utf-8; repro reproduces and confirms (clear oracle).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-5414@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: malformed host (leading dot) should yield InvalidURL not a raw parse error. Fix in prepare_url in requests/models.py; crux is reasoning about how/where to handle the parse failure; only a custom repro available as oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [9, 10, 11]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_PATCH_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-6028@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: proxy auth (407) regression on a specific Python/proxy combo. Fix would live in adapters.py proxy header handling (cross-file localization); reproduction requires a real proxy server, so the oracle is unclear/environment-dependent.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "NONE",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["STAGNATION", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {
+        "STAGNATION": "SEVERE",
+        "ENVIRONMENT_BLOCKED": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [13, 14, 15, 16, 17, 18],
+        "ENVIRONMENT_BLOCKED": [3]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "PROVIDE_ENV_FIX", "INTERRUPT_LOOP"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-2905@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "EXPENSIVE_SUITE"],
+      "evidence": "Issue: assigning an object with a `.values` attribute is wrongly coerced. Fix in as_compatible_data in xarray/core/variable.py (narrow the isinstance check); crux is patch reasoning. Verification via large test_variable.py suite.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3095@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: deep copy converts unicode coordinate dtype to object. Root cause is dtype handling in IndexVariable/PandasIndexAdapter, requiring tracing dataset.py -> variable.py -> indexing.py (cross-module localization). Oracle (dtype comparison) is clear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "REDUNDANT_FILE_REREAD": "SEVERE",
+        "FAILED_RECOVERY": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [4, 6, 7, 13, 15, 22, 24, 33, 35, 36, 37, 54, 58, 66, 69, 70],
+        "FAILED_RECOVERY": [28, 30, 49, 55, 56, 59, 61, 67, 68],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [28, 38, 39, 40, 42, 44, 46, 55, 59, 67],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [71]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCALIZATION_HINT", "PROVIDE_PATCH_HINT", "INTERRUPT_LOOP"],
+    "annotation_metadata": {
+      "annotator_id": "claude-closed-label-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
