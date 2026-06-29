@@ -177,28 +177,45 @@ def compute_features(steps, prefix_k=None):
         ps=_paths(s["action_text"])
         edit_targets.append(ps[0] if ps else None)
     F["unique_files_modified"]=len(set(p for p in edit_targets if p)) if edits else None
+    # detect edit-tool MECHANICAL FAILURE (old_str not matched / no replacement) — a DISTINCT behavior
+    # from reasoning churn. Surfaced by inspection (Skywork/SWE-agent-LM 'No replacement was performed').
+    def _edit_failed(obs):
+        return bool(re.search(r"(No replacement was performed|did not appear verbatim|"
+                              r"multiple occurrences|_split_string|future feature annotations|"
+                              r"No edit was made|Parameter .* is required)", obs or "", re.I))
+    def _edit_applied(obs):
+        if _edit_failed(obs): return False
+        return bool(re.search(r"(has been edited|File created|edited\.|successfully|"
+                              r"result of running .*cat -n)", obs or "", re.I)) or len(obs or "")>0
     if edits:
-        # same-region/file re-edit WITHOUT intervening evidence (test/search/read between)
-        # walk full action stream; track evidence gained since last edit to a target
-        idx_of = {id(s):i for i,s in enumerate(actions)}
+        n_failed = sum(1 for s in edits if _edit_failed(s["observation_text"]))
+        F["edit_mechanical_failure_count"]=n_failed
+        F["edit_mechanical_failure_rate"]=round(n_failed/len(edits),4)
+        # churn computed over APPLIED edits only (exclude mechanical-failure retries)
         no_evidence_reedit=0; same_file_reedit=0
         last_edit_pos={}
+        applied_edits=0
         for pos,s in enumerate(actions):
             if s["cls"]!="EDIT": continue
+            if _edit_failed(s["observation_text"]):
+                continue  # mechanical failure: not a real edit, skip for churn
+            applied_edits+=1
             ps=_paths(s["action_text"]); tgt=ps[0] if ps else None
             if tgt in last_edit_pos:
                 same_file_reedit+=1
                 between=actions[last_edit_pos[tgt]+1:pos]
                 gained=any(b["cls"] in ("TEST","SEARCH","READ") for b in between)
-                # also count an error observation between as 'evidence'
                 gained = gained or any(_is_error_obs(b["observation_text"]) for b in between)
                 if not gained: no_evidence_reedit+=1
             if tgt: last_edit_pos[tgt]=pos
+        F["applied_edit_count"]=applied_edits
         F["same_file_reedit_count"]=same_file_reedit
         F["no_evidence_reedit_count"]=no_evidence_reedit
-        F["no_evidence_patch_churn_rate"]=round(no_evidence_reedit/len(edits),4)  # PRIMARY
+        # denominator = applied edits (>=2 needed); None if too few applied edits
+        F["no_evidence_patch_churn_rate"]=round(no_evidence_reedit/applied_edits,4) if applied_edits>=2 else None  # PRIMARY
     else:
-        for k in ["same_file_reedit_count","no_evidence_reedit_count","no_evidence_patch_churn_rate"]:
+        for k in ["edit_mechanical_failure_count","edit_mechanical_failure_rate","applied_edit_count",
+                  "same_file_reedit_count","no_evidence_reedit_count","no_evidence_patch_churn_rate"]:
             F[k]=None
 
     # ===== 9.4 Verification =====

@@ -11,7 +11,7 @@ inv={json.loads(l)['trace_id']:json.loads(l) for l in open(INV)}
 
 PRIMARY=['search_no_new_evidence_rate','redundant_reread_rate','oversized_then_narrow_read_rate',
          'no_evidence_patch_churn_rate','post_edit_test_gap','fraction_actions_in_no_new_evidence_streaks',
-         'tool_error_rate','environment_setup_rate']
+         'tool_error_rate','environment_setup_rate','edit_mechanical_failure_rate']
 RAWCOUNTS=['search_call_count','read_call_count','edit_count','test_count','n_actions','n_steps',
            'exact_repeated_search_count','same_file_reedit_count','no_evidence_reedit_count',
            'tool_error_count','environment_setup_event_count','longest_no_new_evidence_streak',
