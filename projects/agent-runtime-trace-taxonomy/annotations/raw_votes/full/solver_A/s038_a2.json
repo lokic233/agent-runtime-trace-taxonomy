@@ -1,0 +1,359 @@
+```json
+[
+  {
+    "trace_id": "sympy__sympy-23413@solver_A",
+    "task_id": "sympy__sympy-23413",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": [
+        "Issue concerns hermite_normal_form returning a wrong-shape result (drops linearly-dependent rows)",
+        "Fix localized to _hermite_normal_form loop bound in sympy/polys/matrices/normalforms.py",
+        "Existing unit tests encode the prior (buggy) behavior, so the patch must reason about correct semantics"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["REDUNDANT_TEST"],
+      "primary_bottleneck": "REDUNDANT_TEST",
+      "severity": {"REDUNDANT_TEST": "MILD"},
+      "evidence_action_ids": {"REDUNDANT_TEST": [12, 21]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-23534@solver_A",
+    "task_id": "sympy__sympy-23534",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SEARCH_REQUIRED"],
+      "evidence": [
+        "Issue is that symbols() recursion drops the cls argument for iterable inputs",
+        "Single one-line fix in the else-branch of symbols() in sympy/core/symbol.py"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-23824@solver_A",
+    "task_id": "sympy__sympy-23824",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": [
+        "Issue is incorrect ordering of leading gamma matrices in kahane_simplify",
+        "Fix localized to the prepend loop in sympy/physics/hep/gamma_matrices.py"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-23950@solver_A",
+    "task_id": "sympy__sympy-23950",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_FILE", "UNCLEAR_ORACLE", "REPOSITORY_CONTEXT"],
+      "evidence": [
+        "Issue concerns Contains.as_set() behavior; correct expected behavior is ambiguous (raise vs return)",
+        "Determining correct semantics required reading boolalg.py and piecewise.py interactions",
+        "Final change confined to sympy/sets/contains.py"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24066@solver_A",
+    "task_id": "sympy__sympy-24066",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": [
+        "Issue is _collect_factor_and_dimension raising on dimensionless function arguments",
+        "Fix localized to the Function branch in sympy/physics/units/unitsystem.py",
+        "Patch must preserve existing test expectations (semantic dimension handling)"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24213@solver_A",
+    "task_id": "sympy__sympy-24213",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": [
+        "Issue is dimension equality (!=) failing for equivalent dimensions in the Add branch",
+        "Fix localized to _collect_factor_and_dimension Add branch in sympy/physics/units/unitsystem.py"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24443@solver_A",
+    "task_id": "sympy__sympy-24443",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_MODULE", "REPOSITORY_CONTEXT"],
+      "evidence": [
+        "Issue is _check_homomorphism failing for PermutationGroup inverted generators",
+        "Required understanding presentation()/free-group generator mapping internals",
+        "Fix confined to sympy/combinatorics/homomorphisms.py"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24539@solver_A",
+    "task_id": "sympy__sympy-24539",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION"],
+      "evidence": [
+        "Issue is PolyElement.as_expr ignoring passed symbols due to unconditional else reassignment",
+        "Fix localized to as_expr in sympy/polys/rings.py"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24562@solver_A",
+    "task_id": "sympy__sympy-24562",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": [
+        "Issue is Rational(p, q) mishandling string args (string multiplication bug)",
+        "Fix localized to Rational.__new__ in sympy/core/numbers.py"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24661@solver_A",
+    "task_id": "sympy__sympy-24661",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
+      "evidence": [
+        "Issue is parse_expr(evaluate=False) not preserving relational operators",
+        "Fix adds visit_Compare to EvaluateFalseTransformer in sympy/parsing/sympy_parser.py",
+        "Required handling chained-comparison edge case during patch reasoning"
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

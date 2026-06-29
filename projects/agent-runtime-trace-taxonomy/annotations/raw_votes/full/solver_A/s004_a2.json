@@ -1,0 +1,363 @@
+```json
+[
+  {
+    "trace_id": "django__django-11433@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Issue is a behavioral logic fix in construct_instance() (cleaned_data vs model default precedence); location is grep-found immediately [1], the work is reasoning about the skip condition, not finding the file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11451@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Add early-return guard in ModelBackend.authenticate; target method located directly via grep [0], small localized logic addition.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11477@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "translate_url() optional-named-group bug; required deciding fix locus between base.py and resolvers.py (two files inspected [2-5]), core work is reasoning about None groupdict handling.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PATCH_CHURN", "severity": "MILD", "evidence_action_ids": [13, 14, 28, 30, 31]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["edit_tooling_robustness"],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11490@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Combinator query mutation bug; fix is a clone() before set_values in compiler.py. Location found fast [0-1]; difficulty is the subtle state-mutation reasoning [2,12-14].",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11532@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "UNCLEAR_ORACLE", "CROSS_FILE"],
+      "evidence": "IDNA/punycode encoding of DNS_NAME for Message-ID; core fix is in mail/message.py. Test patches DNS_NAME directly making the correct call-site non-obvious [6,8]; solver also propagated a helper across validators/html/encoding.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PATCH_CHURN", "severity": "SEVERE", "evidence_action_ids": [13, 15, 16, 17, 18, 36, 37, 38, 42, 43, 44, 46, 48, 49, 53, 54]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [13, 15, 37, 38, 42, 46, 48, 49, 50, 52, 54]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["edit_tooling_robustness", "scope_discipline"],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11551@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "_check_list_display_item restructure in admin/checks.py; method grep-found [0], PR describes the fix; localized control-flow change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11555@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Meta.ordering with expressions crashing find_ordering_name; fix in compiler.py. Location found [1-4]; difficulty is reasoning about OrderBy/expression handling in the loop.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11603@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Add allow_distinct=True to Avg/Sum/Min/Max in aggregates.py; trivial attribute addition, single file fully read [1].",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11728@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Trailing-group bug in replace_named_groups/replace_unnamed_groups (admindocs/utils.py); functions grep-found [0], fix is loop-boundary reasoning verified with edge cases.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11734@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "CROSS_FILE", "REPOSITORY_CONTEXT", "LONG_STATE"],
+      "evidence": "Nested OuterRef in exclude()/split_exclude; one-line fix but requires tracing resolution flow across expressions.py, query.py, where.py, lookups.py, related_lookups.py — deep repository-wide mechanism understanding.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_found_and_broad_tests_passing_then_terminated_at_cost_limit",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "SEVERE", "evidence_action_ids": [75]},
+        {"label": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [48, 49, 51, 53]}
+      ],
+      "primary_bottleneck": "BUDGET_EXHAUSTION_NONCONVERGENCE"
+    },
+    "candidate_interventions": ["increase_budget", "localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11740@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "INTEGRATION", "CROSS_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Missing FK dependency in generate_altered_fields (autodetector.py); method located via grep [2-5], fix is adding dependency computation; difficulty is restructuring the if/else block correctly.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "SEVERE", "evidence_action_ids": [14, 16, 17, 20, 21, 22, 23]},
+        {"label": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [13, 15, 18, 19, 23]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["edit_tooling_robustness"],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11749@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "call_command must pass required mutually-exclusive-group options; fix in management/__init__.py. Location found via grep on 'required' [1]; work is argparse-group reasoning, probed empirically [3].",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_and_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

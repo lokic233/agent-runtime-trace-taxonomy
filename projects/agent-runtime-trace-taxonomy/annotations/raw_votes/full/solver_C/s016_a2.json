@@ -1,0 +1,388 @@
+[
+  {
+    "trace_id": "django__django-15467@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue names django/contrib/admin/options.py and an approximate line; the production change is a one-line conditional on empty_label, with a regression test expected.",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [13, 20, 22, 26, 28, 29, 30]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [8, 11]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["provide_test_runner_command", "preconfigure_environment"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15499@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "EXPENSIVE_SUITE"],
+      "evidence": "Issue requires implementing a migration optimizer reduce() for CreateModel+AlterModelManagers; localization across optimizer.py and operations/models.py; verified via the migrations suite which is expensive (full suite times out).",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["scope_test_run_to_relevant_suite"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15503@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "JSONField has_key silently fails for numeric string keys on SQLite; requires locating HasKeyLookup.as_sqlite and reasoning about JSON-path formatting. Clear repro available.",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PREMATURE_SCRATCH_REPRO", "severity": "MILD", "evidence_action_ids": [0, 1, 2, 3, 4, 5]}
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["provide_repro_scaffold", "provide_location_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15525@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "INTEGRATION", "UNCLEAR_ORACLE"],
+      "evidence": "Multi-db loaddata with natural keys fails during deserialization; the fix lives in the serializer/build_instance path within the framework, which must be located. Task structure centers on reproducing an integration-level loaddata failure.",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PARTIAL",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PREMATURE_SCRATCH_REPRO", "severity": "MODERATE", "evidence_action_ids": [0, 2, 4, 5, 6, 7]}
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["provide_location_hint", "require_production_code_change"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15554@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "REPOSITORY_CONTEXT", "LONG_STATE"],
+      "evidence": "Multiple FilteredRelation on the same relation; requires deep navigation of large sql/query.py join machinery (add_filtered_relation, names_to_path) and query_utils.py to locate the storage/usage of _filtered_relations.",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "VERIFICATION"],
+      "l2_labels": [
+        {"label": "REDUNDANT_FILE_REREAD", "severity": "MODERATE", "evidence_action_ids": [5, 10, 18, 31]},
+        {"label": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [19, 21, 32]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["run_authored_test_before_submit", "prune_context"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15561@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "TARGETED_UNIT"],
+      "evidence": "AlterField should be a no-op when only choices change on SQLite; requires tracing _field_should_be_altered from the sqlite backend into base/schema.py. The fix itself is adding an attr to a list.",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "SEARCH_LOCALIZATION"],
+      "l2_labels": [
+        {"label": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [11, 19, 20, 21]},
+        {"label": "FILENAME_SEARCH_THRASH", "severity": "MILD", "evidence_action_ids": [13, 14, 15, 16]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["run_authored_test_before_submit", "provide_test_runner_command"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15563@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "LONG_STATE", "REPOSITORY_CONTEXT"],
+      "evidence": "Multiple-inheritance Child.update() updates the wrong/no rows; fix requires reasoning about UpdateQuery.add_update_values/add_related_update SQL generation across query.py and sql/subqueries.py for MTI.",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label": "PREMATURE_SCRATCH_REPRO", "severity": "MODERATE", "evidence_action_ids": [0, 11, 17, 19]},
+        {"label": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [30, 33, 39, 42, 49, 50, 55, 56]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [45, 48, 49, 51, 52, 66, 67]},
+        {"label": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "SEVERE", "evidence_action_ids": [68]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["provide_location_hint", "timebox_debugging", "decompose_task"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15569@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "EXPENSIVE_SUITE"],
+      "evidence": "Issue names query_utils.py _unregister_lookup (~line 212) needing a cache clear; small change but verified against the schema test suite (177 tests) and a specific test_func_unique_constraint_lookups.",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY", "CONTEXT_MEMORY", "VERIFICATION", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "SEVERE", "evidence_action_ids": [2, 3, 4, 5, 21, 22, 30, 38, 47, 56, 65, 74]},
+        {"label": "STAGNATION", "severity": "SEVERE", "evidence_action_ids": [24, 25, 32, 33, 40, 41, 49, 58, 67]},
+        {"label": "REDUNDANT_TEST", "severity": "MODERATE", "evidence_action_ids": [17, 24, 32, 40, 49, 58, 67]},
+        {"label": "REDUNDANT_FILE_REREAD", "severity": "MODERATE", "evidence_action_ids": [9, 11, 18, 25, 33, 41, 50, 59, 68]},
+        {"label": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "SEVERE", "evidence_action_ids": [76]},
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MILD", "evidence_action_ids": [12, 13, 14, 15]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["fix_edit_tool_application", "detect_loop_and_replan", "timebox_debugging"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15572@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue names django/template/autoreload.py template_changed/get_template_directories; empty string in TEMPLATES DIRS normalizes to root. Fix is a one-line filter; regression test expected.",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "FILENAME_SEARCH_THRASH", "severity": "MILD", "evidence_action_ids": [3, 4, 5]},
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MILD", "evidence_action_ids": [9, 11]}
+      ],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH"
+    },
+    "candidate_interventions": ["provide_test_runner_command"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15629@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "CROSS_CUTTING"],
+      "evidence": "db_collation must propagate to FK columns referencing a collated PK on MySQL; requires implementing _alter_column_type_sql/alter_field in the MySQL schema editor relative to base/schema.py. Backend-specific oracle (MySQL) not readily runnable in the harness.",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "SEVERE", "evidence_action_ids": [4, 7, 8, 9, 13, 15, 16, 20]},
+        {"label": "PATCH_CHURN", "severity": "MODERATE", "evidence_action_ids": [5, 6, 10, 11, 12, 14, 17, 18, 19, 21, 22]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["fix_edit_tool_application", "run_static_check_between_edits"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15695@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "RenameIndex crashes on re-apply / unnamed (index_together/unique_together) index moving backward then forward; fix is in RenameIndex.database_forwards/backwards in operations/models.py, plus a regression test.",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "VERIFICATION", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "FILENAME_SEARCH_THRASH", "severity": "MODERATE", "evidence_action_ids": [12, 13, 14, 15]},
+        {"label": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [25, 26, 31]},
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MILD", "evidence_action_ids": [5, 7, 8]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["provide_test_runner_command", "run_authored_test_before_submit"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15731@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue names django/db/models/manager.py (~line 84) create_method; inspect.signature() is wrong on manager methods, fix is to use functools.wraps. Small, explicit-location change with a signature check as oracle.",
+      "unknown_fields": ["real_issue_text_truncated_to_setting_boilerplate"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [2, 3, 4]},
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [9, 11, 13, 15]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["preconfigure_environment", "fix_edit_tool_application"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

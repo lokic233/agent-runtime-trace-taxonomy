@@ -1,0 +1,374 @@
+[
+  {
+    "trace_id": "astropy__astropy-14508@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue names io.fits.Card._format_float in card.py and the exact failure (0.009125 -> 0.009124999999999999). Location is explicit; the work is reasoning about a shortest-round-trip float representation while preserving inf/nan/edge behavior (silent semantic).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "MILD"},
+      "evidence_action_ids": {"PREMATURE_SCRATCH_REPRO": [4, 5, 6, 7, 8, 9, 10, 11]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14539@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CROSS_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Issue suspects VLA handling but does not name the line. Work is locating the elif \"P\" in col.format branch in diff.py and confirming via column.py that _FormatQ is also a VLA; fix is then a one-line predicate change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14598@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "LONG_STATE"],
+      "evidence": "Issue is a subtle round-trip encoding bug ('' -> ') across CONTINUE cards. Location (card.py) is clear but the bug mechanism (double replace in _split plus _parse_value) requires tracing the encode/decode interaction.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14995@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue gives a clear repro and TypeError. Work is locating _arithmetic_mask and reasoning about the None-operand-mask branch; fix is a one-line condition change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7166@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Issue names InheritDocstrings metaclass and inspect.isfunction. Location is explicit; the work is reasoning about property docstring semantics (property.__doc__ caches fget.__doc__).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7336@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Traceback pins decorators.py line 225 (return_.to on None). Location explicit; fix is handling the -> None return annotation case.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7606@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Traceback pins UnrecognizedUnit.__eq__ in core.py. Location explicit; fix is guarding the Unit(None) TypeError so comparison returns False.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7671@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Traceback pins minversion in introspection.py and identifies LooseVersion bug. Location explicit; fix is swapping to pkg_resources.parse_version.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-8707@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "MULTI_FILE", "CROSS_FILE", "CLEAR"],
+      "evidence": "Issue names Header.fromstring and Card.fromstring; change spans card.py and header.py (multi-file). Decode-ascii on bytes is a fairly mechanical change once located.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {"HELPER_TOOL_FAILURE_LOOP": "MODERATE", "ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [1, 4, 10, 13, 18, 21], "ENVIRONMENT_BLOCKED": [24, 25, 26, 27, 28, 29]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-8872@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Issue describes float16 silently upgraded to float64. Work is locating the np.can_cast(np.float32, dtype) checks in quantity.py and reasoning that dtype.kind in 'fc' is the correct predicate.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-10097@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Issue points at URLValidator user:pass regex and cites RFC 1738. Location is clear; the work is crafting a regex that rejects unencoded :@/ in user/pass while keeping valid-url test cases passing.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {"HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [3, 4, 6, 7]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-10554@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "LONG_STATE", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue is a subtle shared-state bug across union/derived querysets; root cause (Query.clone not deep-copying combined_queries) is unstated and hard to reproduce, spanning query.py and compiler.py across modules. Heavy localization with an unclear oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [43, 52, 54]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]

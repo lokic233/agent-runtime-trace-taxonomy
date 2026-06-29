@@ -1,0 +1,380 @@
+Looking at the actual task here: this is a self-contained trace-annotation job with all needed material in the prompt. I'll produce the JSON array directly.
+
+```json
+[
+  {
+    "trace_id": "django__django-16100@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "SHORT_STATE"],
+      "evidence": "Issue names changelist_view and the list_editable processing; fix is to wrap the save loop in transaction.atomic mirroring existing changeform_view/delete_view patterns in the same file. Reasoning is about scope of the atomic block, not finding the file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16116@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "CROSS_FILE", "CLEAR"],
+      "evidence": "Issue asks to make makemigrations --check exit without writing, consistent with migrate/optimizemigration --check. Solver cross-reads sibling commands for the canonical pattern; the edit is reordering a check in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16136@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_FILE", "SEARCH_REQUIRED"],
+      "evidence": "Issue is a crash traceback for async views; requires understanding coroutine marking in views/generic/base.py and the async handler in core/handlers/base.py to fix http_method_not_allowed to return a coroutine when view_is_async.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16139@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue names UserChangeForm and provides the exact one-line fix in auth/forms.py. Most workload is verification: confirming behavior against tests spread across auth_tests and admin_views.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Post-fix events 13-25 are test-runner/harness friction (wrong invocation, test-class hunting) that returned new evidence each step; classified as environment/harness friction, not a reasoning waste."
+    }
+  },
+  {
+    "trace_id": "django__django-16145@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "SEARCH_REQUIRED"],
+      "evidence": "Issue is about runserver displaying http://0:8000/; fix is in runserver.py handle() where '0' is parsed as FQDN. Reasoning about the naiveip regex and where to map '0'->'0.0.0.0' without breaking ipv6.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16255@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": "Issue gives exact file (sitemaps/__init__.py get_latest_lastmod) and the precise diff (except (TypeError, ValueError)). Near-mechanical patch with provided solution.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16256@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR"],
+      "evidence": "Issue supplies the diff: add acreate/aget_or_create/aupdate_or_create to reverse-many-to-one and forward-m2m managers in related_descriptors.py plus sync_to_async import. Largely mechanical replication across two manager factories.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Scratch test scripts at 18-20 hit in-memory sqlite table setup errors during verification; env friction, immediately worked around by switching to existing test suites. Not material reasoning waste."
+    }
+  },
+  {
+    "trace_id": "django__django-16263@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "HIDDEN_TEST_DOMINANT", "REPOSITORY_CONTEXT", "LONG_STATE"],
+      "evidence": "Open-ended optimization (strip unused annotations from count queries) with no explicit location and no provided test. Correctness is semantic: count() must equal unannotated count, which requires reasoning about GROUP BY, joins, and DISTINCT in sql/query.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "patch_applied_iterating_on_regressions",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [37, 46, 52, 55, 66, 73, 80, 87, 97, 99]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16315@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SINGLE_FILE", "MULTI_MODULE_CONTEXT"],
+      "evidence": "Issue is a symptom (ON CONFLICT uses field name not db_column). Main work is tracing the call chain query.py -> subqueries.py -> compiler.py -> backend operations to find the single chokepoint (SQLInsertCompiler.as_sql) where field names should be mapped to columns.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Views of the three backend operations.py files (16/21/23) are inspection, not edits; final diff touches only compiler.py, so no patch churn."
+    }
+  },
+  {
+    "trace_id": "django__django-16333@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue names UserCreationForm.save omitting save_m2m and points to the ModelForm pattern. One-line fix in auth/forms.py; oracle is hidden m2m-save behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Self-built edit_file helper errored a few times (3,4,10) on oversized views but was worked around immediately; MILD helper friction, omitted per guidance."
+    }
+  },
+  {
+    "trace_id": "django__django-16429@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR", "SHORT_STATE"],
+      "evidence": "Issue pinpoints the pivot construction in utils/timesince.py (lines 93-100) and proposes adding tzinfo. Localized, mostly-given fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16454@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_FILE", "SEARCH_REQUIRED"],
+      "evidence": "Issue requires propagating CommandParser's missing_args_message/called_from_command_line into subparsers. Solver must read argparse internals (_SubParsersAction.add_parser, add_subparsers) to design the propagation in management/base.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "llm_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Helper/test-script TOOL_ERRORs (11-13) and test-runner trial-and-error are MILD harness friction, omitted per guidance; the chosen dynamic-subclass approach is a design choice, not waste."
+    }
+  }
+]
+```

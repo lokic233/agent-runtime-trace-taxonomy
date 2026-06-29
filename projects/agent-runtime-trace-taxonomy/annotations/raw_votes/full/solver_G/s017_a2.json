@@ -1,0 +1,441 @@
+[
+  {
+    "trace_id": "django__django-15732@solver_G",
+    "task_id": "django__django-15732",
+    "solver_alias": "solver_G",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue concerns dropping a unique_together constraint when the column is also a primary key; fix region (_delete_composed_index/_constraint_names) is not named in the issue and must be traced through options.py -> migrations -> backends/base/schema.py. Fix concentrated in one file.",
+      "unknown_fields": ["capability_tier", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "labels": [
+        {
+          "l2_label": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [11, 12]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15741@solver_G",
+    "task_id": "django__django-15741",
+    "solver_alias": "solver_G",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue names get_format and the regressing commit; localization is cheap. The substance is reasoning about lazy-string (Promise) handling and where to coerce. Fix is one file (django/utils/formats.py).",
+      "unknown_fields": ["capability_tier", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED_AND_REPRO_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "labels": [
+        {
+          "l2_label": "FILENAME_SEARCH_THRASH",
+          "severity": "MILD",
+          "evidence_action_ids": [19, 20, 21]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15814@solver_G",
+    "task_id": "django__django-15814",
+    "solver_alias": "solver_G",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_FILE", "SHORT_STATE"],
+      "evidence": "Issue gives an explicit fix (opts = cur_model._meta.concrete_model._meta in sql/query.py) for a proxy-model select_related crash; understanding spans sql/query.py and query.py RelatedPopulator.",
+      "unknown_fields": ["capability_tier", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED_AND_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "labels": [
+        {
+          "l2_label": "ENVIRONMENT_BLOCKED",
+          "severity": "SEVERE",
+          "evidence_action_ids": [4, 12, 15, 17, 18, 20]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15851@solver_G",
+    "task_id": "django__django-15851",
+    "solver_alias": "solver_G",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE"],
+      "evidence": "dbshell psql arg-ordering issue; must trace dbshell.py -> client.runshell -> base/client.py -> postgresql/client.settings_to_cmd_args_env. Reorder fix is simple once located.",
+      "unknown_fields": ["capability_tier", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "labels": [
+        {
+          "l2_label": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [9, 10]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15863@solver_G",
+    "task_id": "django__django-15863",
+    "solver_alias": "solver_G",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "floatformat named in issue; localization trivial. Crux is reasoning about Decimal-vs-float precision loss and short-circuiting the Decimal path. One file (defaultfilters.py).",
+      "unknown_fields": ["capability_tier", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "labels": [
+        {
+          "l2_label": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [3, 5]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15916@solver_G",
+    "task_id": "django__django-15916",
+    "solver_alias": "solver_G",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE"],
+      "evidence": "modelform_factory named; the work is reasoning about formfield_callback inheritance through ModelFormMetaclass and conditionally forwarding it. One file (forms/models.py).",
+      "unknown_fields": ["capability_tier", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "labels": [
+        {
+          "l2_label": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [7, 8]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15930@solver_G",
+    "task_id": "django__django-15930",
+    "solver_alias": "solver_G",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "UNCLEAR_ORACLE"],
+      "evidence": "Case()/~Q(pk__in=[]) invalid SQL; requires tracing Q -> tree.Node -> sql/where.py -> expressions.When/Case across multiple modules to find where an empty condition produces broken SQL.",
+      "unknown_fields": ["capability_tier", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "labels": [
+        {
+          "l2_label": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [15, 17, 19, 20]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15957@solver_G",
+    "task_id": "django__django-15957",
+    "solver_alias": "solver_G",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LONG_STATE"],
+      "evidence": "Prefetch with sliced querysets; Prefetch class is locatable directly, but the design work (store slice, apply in get_current_queryset, preserve in __getstate__) is the dominant effort. One file (db/models/query.py).",
+      "unknown_fields": ["capability_tier", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "labels": [
+        {
+          "l2_label": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [12, 13]
+        },
+        {
+          "l2_label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "MILD",
+          "evidence_action_ids": [6, 9, 10]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15973@solver_G",
+    "task_id": "django__django-15973",
+    "solver_alias": "solver_G",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "M2M 'through' given as a string crashes create_model; example apps in the issue are external and not in-repo. The fix region (local_many_to_many loop in backends/base/schema.py) is found directly and requires resolving the string via apps.get_model.",
+      "unknown_fields": ["capability_tier", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "labels": [
+        {
+          "l2_label": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [7, 8]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15987@solver_G",
+    "task_id": "django__django-15987",
+    "solver_alias": "solver_G",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "FIXTURE_DIRS duplicate check fails for Path instances; loaddata.py located via grep. Crux is realizing Path('/a/b') != Path('/a/../b') and normalizing before the dup check. One file.",
+      "unknown_fields": ["capability_tier", "hidden_test_scope"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "labels": [
+        {
+          "l2_label": "VERIFICATION_GAP",
+          "severity": "MODERATE",
+          "evidence_action_ids": [5, 6]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16032@solver_G",
+    "task_id": "django__django-16032",
+    "solver_alias": "solver_G",
+    "cutoff": "FULL",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Visible events concern an annotate/alias-in-subquery values() test (Book/Publisher). Workload inferred from the test content rather than behavior; full issue text is the truncated harness preamble, so confidence is limited.",
+      "unknown_fields": ["capability_tier", "hidden_test_scope", "issue_detail_truncated"]
+    },
+    "execution_state": {
+      "phase": "STUCK_IMPLEMENTATION",
+      "progress": "NO_PROGRESS",
+      "candidate_location_found": null,
+      "plausible_patch_found": null,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "STAGNATION"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "labels": [
+        {
+          "l2_label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "SEVERE",
+          "evidence_action_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43]
+        },
+        {
+          "l2_label": "STAGNATION",
+          "severity": "SEVERE",
+          "evidence_action_ids": [0, 5, 10, 15, 20, 25, 30, 35, 40, 43]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

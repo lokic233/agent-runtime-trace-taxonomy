@@ -1,0 +1,434 @@
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-9602@solver_G",
+    "task_id": "sphinx-doc__sphinx-9602",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue is a rendering bug in restify/_restify_py37/_restify_py36 for Literal[...] args; location implied by issue, work is constructing the correct reST formatting in a single file (sphinx/util/typing.py).",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [7, 9, 11],
+        "VERIFICATION_GAP": [0, 2, 5, 8, 10, 12, 13]
+      }
+    },
+    "candidate_interventions": ["EDIT_TOOL_RETRY_GUARD", "ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9658@solver_G",
+    "task_id": "sphinx-doc__sphinx-9658",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue: mocked base class names truncated in autodoc 'Bases:' output; requires searching across mock.py, autodoc/__init__.py and util/typing.py to find where bases are formatted (restify) and where mock subclasses are built.",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTATION",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [14, 15, 16, 17]
+      }
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9673@solver_G",
+    "task_id": "sphinx-doc__sphinx-9673",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CROSS_MODULE", "CLEAR"],
+      "evidence": "Issue: return types dropped with autodoc_typehints_description_target='documented' under Napoleon Google style; a targeted one-line fix in typehints.py (handle 'returns' alias). Clear oracle via autodoc/napoleon tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9698@solver_G",
+    "task_id": "sphinx-doc__sphinx-9698",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue: property index entry renders 'bar()' instead of 'bar'; one-line fix in PyMethod.format_name in domains/python.py, verifiable by rebuilding genindex.html.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9711@solver_G",
+    "task_id": "sphinx-doc__sphinx-9711",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION", "CLEAR"],
+      "evidence": "Issue: needs_extensions does string version comparison ('0.10' < '0.6'); fix in extension.verify_needs_extensions to use packaging.version.Version. Location found directly via grep.",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTATION",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [5, 6, 7]
+      }
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-11618@solver_G",
+    "task_id": "sympy__sympy-11618",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue: Point.distance drops the 3rd coordinate because zip() truncates; clear single-function fix (zip -> zip_longest) in geometry/point.py. Workload itself is a small, clearly-located patch.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {
+        "ENVIRONMENT_BLOCKED": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [9, 11, 12, 13]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "PYTHONPATH_SETUP"],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-12096@solver_G",
+    "task_id": "sympy__sympy-12096",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue explicitly names Function._eval_evalf not recursing into _imp_ result; localized single-file fix in core/function.py with a clear repro oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {
+        "DEPENDENCY_SETUP_DRIFT": "MILD"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [9, 10, 11]
+      }
+    },
+    "candidate_interventions": ["PREINSTALL_DEPENDENCIES"],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-12419@solver_G",
+    "task_id": "sympy__sympy-12419",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "CLEAR"],
+      "evidence": "Issue: summing all elements of an Identity matrix yields 0 instead of n; correct fix point is unclear and spans summations.py and matrices/expressions/matexpr.py (KroneckerDelta handling). Clear numeric oracle but non-obvious patch location.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTATION",
+      "progress": "NONE",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "FAILED_RECOVERY": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 21, 22]
+      }
+    },
+    "candidate_interventions": ["LOCALIZATION_HINT", "STEP_BACK_REPLAN"],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-12481@solver_G",
+    "task_id": "sympy__sympy-12481",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "PARTIAL"],
+      "evidence": "Issue: Permutation constructor should accept non-disjoint cycles (apply left-to-right) instead of erroring; requires reasoning about cyclic_form/__repr__ semantics in combinatorics/permutations.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "FAILED_RECOVERY": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [7, 9, 11, 12, 13, 15, 17, 18, 20, 21]
+      }
+    },
+    "candidate_interventions": ["STEP_BACK_REPLAN", "LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-12489@solver_G",
+    "task_id": "sympy__sympy-12489",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue explicitly states _af_new should become a classmethod (cls-aware) to support subclassing; clear mechanical refactor in combinatorics/permutations.py, main effort locating the 3 call sites.",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTATION",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "CONTEXT_MEMORY"],
+      "l2_labels": ["VERIFICATION_GAP", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {
+        "VERIFICATION_GAP": "MODERATE",
+        "REDUNDANT_FILE_REREAD": "MILD"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [12, 13, 15, 16],
+        "REDUNDANT_FILE_REREAD": [6, 11]
+      }
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13031@solver_G",
+    "task_id": "sympy__sympy-13031",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "CROSS_MODULE", "MULTI_MODULE_CONTEXT", "REPOSITORY_CONTEXT", "CROSS_CUTTING", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue: hstack/vstack of zero-row matrices regressed in 1.1; the fix lives deep in the matrix class hierarchy (common.py/dense.py/sparse.py/matrices.py/immutable.py) requiring MRO tracing across modules.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "NONE",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTROL_RECOVERY"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "SEARCH_WITHOUT_NEW_EVIDENCE", "STAGNATION"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severities": {
+        "FILENAME_SEARCH_THRASH": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE",
+        "STAGNATION": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [0, 4, 7, 9, 11, 12, 14, 16, 18, 19],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [21, 23, 24, 27],
+        "STAGNATION": [25, 26, 28, 29, 30]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT", "STEP_BACK_REPLAN"],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13091@solver_G",
+    "task_id": "sympy__sympy-13091",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_CUTTING", "SEARCH_REQUIRED", "CLEAR"],
+      "evidence": "Issue: rich-comparison methods should return NotImplemented for unknown types; a clear cross-cutting pattern applied across comparison methods in tensor/indexed.py (and audited in core/basic.py).",
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTATION",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [9, 10, 11, 12, 14]
+      }
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

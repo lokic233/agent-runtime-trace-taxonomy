@@ -1,0 +1,321 @@
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-8595@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "HIDDEN_TEST_DOMINANT", "LOCAL_CONTEXT"],
+      "evidence": "Issue: an empty __all__ should suppress documented members in autodoc; reproduction (example.py + index.rst) supplied. Behavioral/semantic fix concentrated in autodoc member-collection logic (get_object_members / __all__ handling).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "STALLED",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE", "FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "labels": [
+        {"l1": "CONTROL_RECOVERY", "l2": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [37, 46, 47, 49, 51, 52, 56, 57, 60, 61, 62, 63, 64, 65, 66, 67]},
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [15, 16, 17, 60, 62, 64, 66]},
+        {"l1": "CONTROL_RECOVERY", "l2": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "MODERATE", "evidence_action_ids": [68]},
+        {"l1": "SEARCH_LOCALIZATION", "l2": "FILENAME_SEARCH_THRASH", "severity": "MILD", "evidence_action_ids": [6, 7, 8, 9, 10, 11, 12]}
+      ]
+    },
+    "candidate_interventions": ["ORACLE_OR_TEST_HARNESS", "EARLY_STOP_ON_NONCONVERGENCE", "PATCH_REASONING_GUIDANCE"],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": null}
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8621@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "SEARCH_REQUIRED", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: :kbd: role must split compound keystrokes into separate elements with correct separator handling. Localized fix in sphinx/roles.py; core difficulty is designing the splitting logic, not finding it.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": null}
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8638@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue: autodoc incorrectly cross-links same-named variables across classes/modules; fix in domains/python.py find_obj resolution. Understanding spans autodoc/roles/domains but change is single-file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [30, 31]}
+      ]
+    },
+    "candidate_interventions": ["EDIT_TOOL_ASSIST", "ORACLE_OR_TEST_HARNESS"],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": null}
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8721@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue: viewcode must not generate pages for epub when viewcode_enable_epub is False. Small, clearly-scoped change across viewcode.py (guard), config.py (config value), and docs.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "labels": [
+        {"l1": "VERIFICATION", "l2": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [2, 5, 8, 9]}
+      ]
+    },
+    "candidate_interventions": ["ORACLE_OR_TEST_HARNESS"],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": null}
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9229@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue: type alias docstrings rendered inconsistently by autodoc. Semantic rendering fix in autodoc source; no crash, needs source-level reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "REPRODUCTION",
+      "progress": "MINIMAL",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["STAGNATION", "PREMATURE_SCRATCH_REPRO", "EDIT_TOOL_MECHANICAL_FAILURE", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "STAGNATION",
+      "labels": [
+        {"l1": "CONTROL_RECOVERY", "l2": "STAGNATION", "severity": "SEVERE", "evidence_action_ids": [29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 45, 46, 47, 48]},
+        {"l1": "EDIT_PATCH", "l2": "PREMATURE_SCRATCH_REPRO", "severity": "SEVERE", "evidence_action_ids": [0, 1, 19, 20, 22, 24, 26, 28]},
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [37, 40, 41, 42, 49, 50, 56]},
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "ENVIRONMENT_BLOCKED", "severity": "MODERATE", "evidence_action_ids": [2, 8, 15, 18, 55, 58]}
+      ]
+    },
+    "candidate_interventions": ["REPRODUCTION_GUIDANCE", "LOCATION_HINT", "ENVIRONMENT_FIX", "EARLY_STOP_ON_NONCONVERGENCE"],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": null}
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9230@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "REPOSITORY_CONTEXT", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: a rendering/serialization bug; agent searched autodoc, docfields, type files. Crux is finding the responsible code; agent failed to localize and concluded (incorrectly) it was external.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "MINIMAL",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": ["LOCATION_HINT"],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": "No resource-thrash waste pattern present; short run ending in early (mis)diagnosis. Outcome-failure is not a waste label."}
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9258@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "SEARCH_REQUIRED", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: napoleon should support '|' union-type syntax in docstrings. Fix localized to napoleon/docstring.py tokenizer/type-spec converter; core work is the parsing logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "labels": [
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [9, 10, 11]}
+      ]
+    },
+    "candidate_interventions": ["EDIT_TOOL_ASSIST", "ORACLE_OR_TEST_HARNESS"],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": null}
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9281@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue: Python Enum values render poorly in function signatures. Fix belongs in autodoc signature/object_description handling; semantic formatting change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTATION",
+      "progress": "MINIMAL",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "STAGNATION", "DEPENDENCY_SETUP_DRIFT", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "labels": [
+        {"l1": "CONTROL_RECOVERY", "l2": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [20, 21, 24, 27, 30, 34, 38, 40]},
+        {"l1": "CONTROL_RECOVERY", "l2": "STAGNATION", "severity": "MODERATE", "evidence_action_ids": [44, 45, 48, 49, 51, 52, 55, 56, 58, 59]},
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [42, 43, 47, 53, 57]},
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [18]}
+      ]
+    },
+    "candidate_interventions": ["PATCH_REASONING_GUIDANCE", "EARLY_STOP_ON_NONCONVERGENCE", "ENVIRONMENT_FIX"],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": null}
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9320@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Issue: sphinx-quickstart should exit when an empty new root path is entered. Small targeted fix in cmd/quickstart.py do_prompt; location strongly implied by the issue.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "labels": [
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "ENVIRONMENT_BLOCKED", "severity": "MILD", "evidence_action_ids": [13]}
+      ]
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX", "ORACLE_OR_TEST_HARNESS"],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": null}
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9367@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue: ast.unparse drops the trailing comma for single-element tuples; test file and target (pycode/ast.py visit_Tuple) are explicit. Small well-specified fix with a unit-test oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": null}
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9461@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue: methods decorated with both @classmethod and @property are not documented. Fix belongs in autodoc PropertyDocumenter (can_document_member / add_directive_header); semantic change verified by a test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "STALLED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "CONTEXT_MEMORY"],
+      "l2_labels": ["FAILED_RECOVERY", "STAGNATION", "EDIT_TOOL_MECHANICAL_FAILURE", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "labels": [
+        {"l1": "CONTROL_RECOVERY", "l2": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [21, 29, 32, 40, 43, 49, 53, 58, 63, 68, 72]},
+        {"l1": "CONTROL_RECOVERY", "l2": "STAGNATION", "severity": "MODERATE", "evidence_action_ids": [50, 51, 54, 55, 56, 59, 61, 64, 66, 69, 70, 73]},
+        {"l1": "CONTEXT_MEMORY", "l2": "REDUNDANT_FILE_REREAD", "severity": "MODERATE", "evidence_action_ids": [44, 45, 46, 47, 50, 51, 54, 55, 56]},
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [6, 7, 8]}
+      ]
+    },
+    "candidate_interventions": ["ORACLE_OR_TEST_HARNESS", "EARLY_STOP_ON_NONCONVERGENCE", "PATCH_REASONING_GUIDANCE"],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": null}
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9591@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "LOCAL_CONTEXT"],
+      "evidence": "Issue: cross-references missing in property type annotations. Fix localized to autodoc/typehints.py merge_typehints; semantic rendering/linking change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "labels": [
+        {"l1": "ENVIRONMENT_TOOLING", "l2": "ENVIRONMENT_BLOCKED", "severity": "MILD", "evidence_action_ids": [10, 14]},
+        {"l1": "EDIT_PATCH", "l2": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [5]}
+      ]
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX", "ORACLE_OR_TEST_HARNESS"],
+    "annotation_metadata": {"annotator_id": "annotator-a2", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "reason": null}
+  }
+]

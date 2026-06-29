@@ -1,0 +1,316 @@
+```json
+[
+  {
+    "trace_id": "django__django-14493@solver_G",
+    "task_id": "django__django-14493",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue names ManifestStaticFilesStorage and the exact mechanism (substitutions referenced when max_post_process_passes=0). Single-file control-flow init fix with an existing test oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "STAGNATION"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "SEVERE", "STAGNATION": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [8, 9, 10, 11, 12, 13, 14], "STAGNATION": [10, 11, 14]}
+    },
+    "candidate_interventions": ["FIX_TEST_ENVIRONMENT", "PROVIDE_TEST_COMMAND"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "django__django-14500@solver_G",
+    "task_id": "django__django-14500",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "INTEGRATION", "CLEAR"],
+      "evidence": "Issue names MigrationExecutor and squashed-migration unapply behavior; fix localized to executor.unapply_migration with the migration test suite as oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": null,
+      "severity": {"STAGNATION": "MILD"},
+      "evidence_action_ids": {"STAGNATION": [15, 16]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_COMMAND"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "django__django-14534@solver_G",
+    "task_id": "django__django-14534",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue targets BoundWidget.id_for_label but resolving it requires tracing the widget class hierarchy (boundfield.py + widgets.py: MultiWidget/RadioSelect/CheckboxSelectMultiple) to find the right override.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": null,
+      "severity": {"SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"},
+      "evidence_action_ids": {"SEARCH_WITHOUT_NEW_EVIDENCE": [0, 1]}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "django__django-14539@solver_G",
+    "task_id": "django__django-14539",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue concerns subtle urlize trailing-punctuation / HTML-entity unescape handling in django/utils/html.py trim_punctuation; correctness hinges on string-slice reasoning, an output-equivalence bug.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "PREMATURE_SCRATCH_REPRO", "FAILED_RECOVERY"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "SEVERE", "PREMATURE_SCRATCH_REPRO": "MILD", "FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [4, 6, 7, 8, 9, 10, 12], "PREMATURE_SCRATCH_REPRO": [3, 5, 13], "FAILED_RECOVERY": [14, 15, 16, 17, 18, 19, 20]}
+    },
+    "candidate_interventions": ["FIX_TEST_ENVIRONMENT", "PROVIDE_TEST_COMMAND"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "django__django-14559@solver_G",
+    "task_id": "django__django-14559",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue asks bulk_update to return the matched-row count; names bulk_update in query.py. Trivial accumulate-and-return change with a clear unit oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [2, 3]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "django__django-14580@solver_G",
+    "task_id": "django__django-14580",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue points at migrations.writer (missing models import) but the real fix is in serializer.py TypeSerializer special_cases; requires following serializer_factory from writer to serializer.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [6, 7]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "django__django-14608@solver_G",
+    "task_id": "django__django-14608",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue asks to add a 'nonform' CSS class for non-form errors in FormSets; names ErrorList (utils.py) and formsets.py. Small targeted change passing error_class to ErrorList construction.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [8, 9, 10]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "django__django-14631@solver_G",
+    "task_id": "django__django-14631",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "TARGETED_UNIT", "PARTIAL"],
+      "evidence": "Issue is a refactor: move per-field changed_data logic into BoundField._did_change and have BaseForm.changed_data access via BoundField; spans boundfield.py and forms.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [1, 2, 3, 4, 5, 6, 9]}
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "django__django-14672@solver_G",
+    "task_id": "django__django-14672",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue names ManyToManyRel and make_hashable (unhashable through_fields list); fix is wrapping through_fields in make_hashable in the identity property, single file with test oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "django__django-14725@solver_G",
+    "task_id": "django__django-14725",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "CROSS_MODULE", "TARGETED_UNIT"],
+      "evidence": "Feature request to allow disabling new-object creation (can_add) in model formsets; coordinated parameter threading across formsets.py (factory + BaseFormSet) and models.py (BaseModelFormSet + save_new_objects).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [7, 8, 9, 11, 12, 13]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "django__django-14752@solver_G",
+    "task_id": "django__django-14752",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Refactor request to extract a serialize_result method from AutocompleteJsonView.get for extensibility; single-file mechanical refactor with named target.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [8, 9], "EDIT_TOOL_MECHANICAL_FAILURE": [5, 6]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST", "ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  },
+  {
+    "trace_id": "django__django-14765@solver_G",
+    "task_id": "django__django-14765",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue asks ProjectState.__init__ to assert real_apps is a set rather than coercing it; names the exact method, single-file minimal change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [2, 3]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST"],
+    "annotation_metadata": {"annotator_id": "annotator_auto_01", "prompt_version": "v1", "timestamp": "2026-06-28T00:00:00Z", "abstain": false, "abstain_reason": null}
+  }
+]
+```

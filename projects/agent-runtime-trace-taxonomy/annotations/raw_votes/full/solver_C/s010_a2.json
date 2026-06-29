@@ -1,0 +1,378 @@
+```json
+[
+  {
+    "trace_id": "django__django-13568@solver_C",
+    "task_id": "django__django-13568",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue asks to extend the auth.E003 USERNAME_FIELD-uniqueness system check to also accept a UniqueConstraint in Meta.constraints. Localized fix in contrib/auth/checks.py plus a regression test in auth_tests/test_checks.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [16, 19, 20, 21, 22, 23]},
+      "notes": "Test-fixture iteration: repeated KeyError('customuseruniqueconstraint') from isolate_apps/AUTH_USER_MODEL drives successive re-edits of the test until it converges and passes at [24]. The 'error' on EDITs [4-9] is the harness _split_string SyntaxError artifact (edits actually applied) and is NOT labeled."
+    },
+    "candidate_interventions": ["CONVERGENCE_DETECTOR", "TEST_RUNNER_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13569@solver_C",
+    "task_id": "django__django-13569",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: order_by('?') combined with an aggregation/annotation wrongly breaks GROUP BY (silent wrong results, no crash). Fix lives in db/models/sql/compiler.py get_group_by handling of Random expressions.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 2, 9, 11, 13, 17, 19, 22, 24, 27, 29, 30, 32, 33, 37, 42, 51, 53],
+        "DEPENDENCY_SETUP_DRIFT": [24, 33, 44, 55, 56, 58, 59]
+      },
+      "notes": "~60 events spent building/repairing an ad-hoc reproduction harness (reproduce_issue.py, test_settings.py, test_models/test_case, django_setup.py, run_test.sh, combined script) BEFORE locating the bug; productive localization+fix only at [61-74]. Repeated AppRegistryNotReady/circular-import recovery and scaffolding (startapp, makemigrations, migrate, hand-written manage.py) to make the repro runnable = setup drift."
+    },
+    "candidate_interventions": ["LOCALIZE_BEFORE_REPRO", "SCRATCH_REPRO_BUDGET", "TEST_RUNNER_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13590@solver_C",
+    "task_id": "django__django-13590",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: resolve_lookup_value rebuilds tuples with type(value)(...) which fails for named tuples (no iterable constructor). Fix is a small, well-localized change in db/models/sql/query.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severities": {"PATCH_CHURN": "MILD"},
+      "evidence_action_ids": {"PATCH_CHURN": [12, 13]},
+      "notes": "After test passed at [9], agent believed the source file was 'reset' [10-11] and re-applied the same resolve_lookup_value edit [12], then re-edited [13] to clean a duplicate it introduced — same region, no new failing evidence between. Mild. Scratch test [5-9] occurred AFTER localization and is a reasonable repro, not labeled."
+    },
+    "candidate_interventions": ["CONVERGENCE_DETECTOR"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13658@solver_C",
+    "task_id": "django__django-13658",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: ManagementUtility should pass prog=self.prog_name to CommandParser. The production fix is a one-line localized change in core/management/__init__.py; remaining work is a regression test in user_commands/tests.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "TERMINATED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE", "PATCH_CHURN"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE", "PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [39, 42, 43, 44, 45, 46, 47, 49, 51, 53, 54, 58, 60, 66, 67, 68],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [69],
+        "PATCH_CHURN": [32, 34, 35, 37, 38]
+      },
+      "notes": "Core fix correct at [6]. Then a long non-converging test-authoring loop: test method placed in wrong file/class, indentation/import breakage, whole test file rewritten [53] breaking pre-existing tests, failing-test-driven re-edits never stabilize and the run ends via exit_cost ([69], BUDGET_EXHAUSTION). PATCH_CHURN covers the production __init__.py corruption+repair from the misplaced test method [21]->[32,34,35,37,38]."
+    },
+    "candidate_interventions": ["CONVERGENCE_DETECTOR", "BUDGET_GUARD"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13670@solver_C",
+    "task_id": "django__django-13670",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: dateformat 'y' specifier uses str(year)[2:] which fails for years <1000; should zero-pad to last 2 digits. Single targeted method fix in utils/dateformat.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {},
+      "notes": "Clean, efficient solve. Brief settings-config iteration [2-5] is normal scratch-repro setup needed to surface the bug, then localize via scrolls [8-11] (distinct regions, not REREAD), fix [12], verify [14]. No material waste."
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13741@solver_C",
+    "task_id": "django__django-13741",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: make ReadOnlyPasswordHashField set disabled=True by default. One-line known-location change in contrib/auth/forms.py; existing auth_tests/test_forms.py is the oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE",
+      "severities": {"SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE"},
+      "evidence_action_ids": {"SEARCH_WITHOUT_NEW_EVIDENCE": [10, 11, 12, 13, 14, 15]},
+      "notes": "After fix [2] and a passing test run [8], the agent went on a documentation hunt (README, docs/ref/contrib/auth.txt, docs forms) looking for docs to update, found nothing actionable, and returned to merely add a code comment [16]. The searches/reads yielded no new evidence and produced no doc change. Test-runner discovery [3-7] is minor harness friction and not separately labeled."
+    },
+    "candidate_interventions": ["DOC_SEARCH_SUPPRESS"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13786@solver_C",
+    "task_id": "django__django-13786",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: CreateModel.reduce() squashing with AlterModelOptions must clear options not present in the new operation. Localized fix in db/migrations/operations/models.py plus a regression test in migrations/test_operations.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {},
+      "notes": "Efficient solve: localize [0-2], fix [3], add test [8], verify whole OperationTests class passes [17]. Test-invocation discovery [9-15] (manage.py/module-path trial-and-error) is normal harness friction, below the materiality bar; no clean waste category and not labeled."
+    },
+    "candidate_interventions": ["TEST_RUNNER_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13794@solver_C",
+    "task_id": "django__django-13794",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue: the 'add' template filter returns empty when concatenating a lazy (gettext_lazy) string instead of joining. Localized fix to add() in template/defaultfilters.py (silent wrong output, no exception).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY", "VERIFICATION"],
+      "l2_labels": ["PATCH_CHURN", "FAILED_RECOVERY", "VERIFICATION_GAP"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severities": {"PATCH_CHURN": "SEVERE", "FAILED_RECOVERY": "SEVERE", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {
+        "PATCH_CHURN": [12, 14, 15, 16, 18, 30, 42, 43, 44, 51, 52],
+        "FAILED_RECOVERY": [20, 21, 32, 33, 46, 47],
+        "VERIFICATION_GAP": [24, 26, 39, 48]
+      },
+      "notes": "Repeated re-edits of the add() region in defaultfilters.py with no successful test of the real filter between = churn. The edit tool repeatedly OVERWRITES defaultfilters.py with reproduce-script content, forcing rediscovery+repair cycles [20,21]/[32,33]/[46,47] = failed recovery (final submit diff shows defaultfilters.py header still corrupted -> patch not actually valid). 'Passing' runs [24,26,39,48] exercise a LOCAL COPY of add() in the repro, never the production filter -> verification did not cover the real change."
+    },
+    "candidate_interventions": ["VERIFY_REAL_CODE", "CONVERGENCE_DETECTOR"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13807@solver_C",
+    "task_id": "django__django-13807",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: SQLite check_constraints fails when a table name is a SQL keyword; needs proper quoting in PRAGMA/SELECT statements. Localized change in db/backends/sqlite3/base.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "COMPLETED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "SEVERE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [2, 3, 4, 5]},
+      "notes": "Three production edits adding identifier quoting [2,3,4] then immediate submit [5] with NO TEST or repro run anywhere in the trace, despite an obvious oracle (sqlite backend tests). Edits target distinct lines/regions (foreign_key_check, foreign_key_list, SELECT) so this is not PATCH_CHURN. Environment was not blocked, so the gap is not excused."
+    },
+    "candidate_interventions": ["ADD_POST_EDIT_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13809@solver_C",
+    "task_id": "django__django-13809",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: add a --skip-checks option to the runserver management command. Localized change in core/management/commands/runserver.py (add_arguments, inner_run, requires_system_checks).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "COMPLETED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "SEVERE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [2, 4, 5, 6]},
+      "notes": "Edits add_arguments [2], inner_run [4], and requires_system_checks [5], then submit [6] with no TEST/EXECUTE at any point despite available admin_scripts/runserver test coverage. Coherent multi-region change (not churn); the only waste is the absent post-edit verification."
+    },
+    "candidate_interventions": ["ADD_POST_EDIT_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13810@solver_C",
+    "task_id": "django__django-13810",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: when middleware raises MiddlewareNotUsed, the 'handler' variable is poisoned by the adapted handler, corrupting the chain. Localized fix in core/handlers/base.py (use a separate adapted_handler), plus a regression test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [19, 20, 21, 22, 23, 24]},
+      "notes": "Production fix made early [2-3] and existing handlers tests pass [11,14]. New test then iterates against failing evidence (request/URL-resolution errors) with successive re-edits [19-23] until it converges and passes [24] = evidence-driven, eventually-converging recovery. Test-runner discovery [4-10] and the full-suite timeout [12]/wrong-module run [13] are minor harness friction, not separately labeled."
+    },
+    "candidate_interventions": ["CONVERGENCE_DETECTOR", "TEST_RUNNER_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "closed_label_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

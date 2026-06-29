@@ -1,0 +1,401 @@
+```json
+[
+  {
+    "trace_id": "sympy__sympy-13372@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "UNCLEAR_ORACLE", "SHORT_STATE"],
+      "evidence": "Issue is an UnboundLocalError in Mul(...).evalf(); traceback localizes to sympy/core/evalf.py evalf() fallback branch. Fix is a control-flow correction in one known function; no hidden test referenced, only an ad-hoc repro.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13480@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": "Issue/error names 'cotm' not defined; error string points to hyperbolic.py:590. Fix is a one-token typo (cotm -> cothm) at an explicitly indicated line.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13551@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": "Issue is a wrong-value Product(n + 1/2**k).doit() result (no exception, silent numeric error). Target is _eval_product in concrete/products.py; requires deriving correct symbolic evaluation. No real test oracle, only a value-comparison repro.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "EXHAUSTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [23, 29, 30, 34, 36, 45, 49, 55, 56, 58, 59, 61, 62, 64, 65, 67, 69, 70],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [72]
+      }
+    },
+    "candidate_interventions": ["approach_reset", "verification_oracle", "budget_extension"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13615@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "UNCLEAR_ORACLE", "SHORT_STATE"],
+      "evidence": "Issue: Complement(FiniteSet, Interval) not simplifying. Target Complement.reduce in sets/sets.py; localization straightforward via class search, edit-reasoning is the substance.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [10, 11, 12]
+      }
+    },
+    "candidate_interventions": ["tooling_repair"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13647@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": "Issue: col_insert shifts identity rows. The fix is a one-line index correction in _eval_col_insert, but the method lives in the matrix class hierarchy (common.py vs dense.py vs matrices.py), making location discovery across files the dominant work.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "EXHAUSTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTEXT_MEMORY", "CONTROL_RECOVERY"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "REDUNDANT_FILE_REREAD", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {"FILENAME_SEARCH_THRASH": "SEVERE", "REDUNDANT_FILE_REREAD": "MODERATE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"},
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [3, 4, 7, 9, 16, 18, 20, 31, 32, 33],
+        "REDUNDANT_FILE_REREAD": [25, 26, 30, 41, 47, 53, 55, 60, 66],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [81]
+      }
+    },
+    "candidate_interventions": ["localization_hint", "search_dedup", "budget_extension"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13757@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": "Issue: Poly(x)*x and x*Poly(x) do not evaluate consistently. Target __mul__/__rmul__ in polys/polytools.py; the work is reasoning the correct dispatch logic. Located via __rmul__ search early.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "EXHAUSTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [77]
+      }
+    },
+    "candidate_interventions": ["approach_reset", "budget_extension"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13798@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": "Issue: allow custom mul_symbol in latex(). Target mul_symbol_table handling in printing/latex.py; clear feature request, located via mul_symbol search.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13852@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": "Issue: polylog(2,1/2) and polylog expansion not evaluated. Target polylog class in functions/special/zeta_functions.py; requires reasoning eval/_eval_expand_func special cases. Located via polylog grep.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "EXHAUSTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [24, 25, 27, 28, 30, 31, 33, 35, 37, 39, 46, 47, 49, 51, 53, 55, 56, 58],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [13, 20, 40],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [61]
+      }
+    },
+    "candidate_interventions": ["approach_reset", "tooling_repair", "budget_extension"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13877@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": "Issue: det() Bareiss algorithm hits invalid NaN comparison for symbolic matrices. Target det/_eval_det_bareiss in matrices/matrices.py; located via det search, fix is algorithm-selection logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13878@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "MULTI_FILE", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": "Issue: precompute CDFs for ~15 distributions (several hang). Work concentrated in stats/crv_types.py adding _cdf methods per distribution; repetitive derivation across many entities, no provided test oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "EXHAUSTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "MODERATE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"},
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 3, 5, 7, 9],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [74]
+      }
+    },
+    "candidate_interventions": ["scaffold_repro", "budget_extension"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13974@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": "Issue: tensor_product_simp and expand(tensorproduct=True) do not evaluate powers of TensorProducts. Target tensor_product_simp / TensorProduct.expand in physics/quantum/tensorproduct.py; located after directory navigation.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "EXHAUSTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTROL_RECOVERY"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FILENAME_SEARCH_THRASH": "MODERATE", "FAILED_RECOVERY": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"},
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [3, 4, 5, 6, 7],
+        "FAILED_RECOVERY": [33, 34, 37, 38, 44, 46, 48, 49, 51, 53, 55, 57, 58, 60, 62, 64, 66, 68],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [70]
+      }
+    },
+    "candidate_interventions": ["approach_reset", "localization_hint", "budget_extension"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14248@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "CLEAR", "SHORT_STATE"],
+      "evidence": "Issue: A - A*B - B prints with (-1) coefficients instead of subtraction. Fix touches matexpr.py (__sub__/__rsub__) and matadd.py (new MatSub); requires reasoning across two expression files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {"FILENAME_SEARCH_THRASH": "MILD"},
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [3, 4, 5]
+      }
+    },
+    "candidate_interventions": ["localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

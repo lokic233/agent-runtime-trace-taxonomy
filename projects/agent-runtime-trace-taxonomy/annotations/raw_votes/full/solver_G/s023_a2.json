@@ -1,0 +1,374 @@
+[
+  {
+    "trace_id": "matplotlib__matplotlib-25287@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue names axis.py and concerns offset-text color sourced from xtick.color vs xtick.labelcolor; core work is finding the two color= assignment sites (x and y offset text) in one file. Visual/silent semantic difference, no exception.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [6, 7, 8]}
+    },
+    "candidate_interventions": ["VERIFICATION_NUDGE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25311@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Pickle failure of figure with draggable legend; task requires localizing which object holds the non-picklable reference across figure.py/legend.py. Oracle is backend (Qt) specific, hard to exercise in a headless env.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [7, 9]}
+    },
+    "candidate_interventions": ["ENVIRONMENT_SETUP_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25332@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR"],
+      "evidence": "Pickling weakref error in cbook.Grouper after align_labels; reproduction succeeds early ([1]) giving a clear oracle. Core work is authoring __getstate__/__setstate__ on the Grouper class in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "edit_tool_failure_loop",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [4, 5, 6, 7, 8, 9]}
+    },
+    "candidate_interventions": ["EDIT_TOOL_ASSIST"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25479@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR"],
+      "evidence": "Colormap registered under a name differing from its internal name fails lookup; the bug reproduces via test_colormap.py (clear oracle). Core difficulty is designing the correct register/get_cmap fix in cm.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "nonconvergent_edits",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [2, 5, 6, 10, 11, 12], "EDIT_TOOL_MECHANICAL_FAILURE": [0, 1, 3, 7, 8]}
+    },
+    "candidate_interventions": ["RESET_LOOP", "EDIT_TOOL_ASSIST"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25775@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Feature: per-artist text antialiasing instead of global rcParam. Requires tracing the render path across backend_bases.py and backends/backend_agg.py and designing a None/inherit fallback. Rendering oracle is fuzzy ('slightly different').",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [0, 1], "VERIFICATION_GAP": [15, 16]}
+    },
+    "candidate_interventions": ["VERIFICATION_NUDGE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25960@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SHORT_STATE"],
+      "evidence": "subfigures wspace/hspace ignored; fix is in SubFigure.__init__ in figure.py, computing bbox_relative from the subplotspec. Existing unit tests (test_figure/test_subplots/test_gridspec) provide the oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "edit_tool_failure_loop",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE", "FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [12, 13, 14, 15], "FAILED_RECOVERY": [9, 10, 11]}
+    },
+    "candidate_interventions": ["EDIT_TOOL_ASSIST"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26113@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "EXPENSIVE_SUITE"],
+      "evidence": "hexbin mincnt inconsistency between C=None (>=) and C-specified (>) branches; issue points to specific lines in _axes.py. Fix is a one-character comparison change; test suite is large/slow.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_tested",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26208@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "REPOSITORY_CONTEXT"],
+      "evidence": "stackplot + twinx corrupts shared-axis dataLim to inf; root cause requires tracing stackplot.py -> fill_between -> add_collection/_request_autoscale_view across modules. Deep, exploratory localization.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "stuck_loop",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "SEARCH_LOCALIZATION", "CONTEXT_MEMORY"],
+      "l2_labels": ["STAGNATION", "SEARCH_WITHOUT_NEW_EVIDENCE", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE", "REDUNDANT_FILE_REREAD": "MODERATE"},
+      "evidence_action_ids": {"STAGNATION": [13, 14, 15, 16, 17, 18, 19], "SEARCH_WITHOUT_NEW_EVIDENCE": [13, 15, 17, 19], "REDUNDANT_FILE_REREAD": [14, 16, 18]}
+    },
+    "candidate_interventions": ["RESET_LOOP", "LOCALIZATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26291@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "inset_axes AttributeError ('NoneType' has no _get_renderer); traceback names inset_locator.py:73 and offsetbox.get_window_extent. Bug does not reproduce on the checked-out dev version, making the oracle unclear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_applied_nonreproducible",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [11, 12, 13, 14, 15, 16]}
+    },
+    "candidate_interventions": ["ENVIRONMENT_SETUP_HINT", "REPRODUCTION_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26342@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SEARCH_REQUIRED"],
+      "evidence": "Feature request to add ContourSet.set_paths (mirroring get_paths). Issue names the class; some search to confirm inherited get_paths, then a small method added in contour.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [9, 10], "VERIFICATION_GAP": [11, 12]}
+    },
+    "candidate_interventions": ["VERIFICATION_NUDGE", "EDIT_TOOL_ASSIST"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26466@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Mutating the np.array passed as annotate(xy=...) later mutates the annotation; crux is finding where self.xy is stored (_AnnotationBase in text.py). Fix is a trivial .copy(); reproduction is straightforward.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_repro_ran",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [13, 14, 15, 17, 20]}
+    },
+    "candidate_interventions": ["REPRODUCTION_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "mwaskom__seaborn-3069@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "UNCLEAR_ORACLE"],
+      "evidence": "Nominal scales should adopt categorical-axis behavior (+/-0.5 limits, no grid, inverted y). Requires reading categorical.py/_core/plot.py/_core/scales.py and adding logic in _finalize_figure. Behavior is visual, oracle unclear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_applied_smoke_only",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [10, 11]}
+    },
+    "candidate_interventions": ["VERIFICATION_NUDGE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

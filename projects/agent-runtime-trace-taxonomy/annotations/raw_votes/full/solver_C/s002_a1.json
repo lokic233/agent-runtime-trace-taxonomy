@@ -1,0 +1,448 @@
+[
+  {
+    "trace_id": "django__django-10880@solver_C",
+    "task_id": "django__django-10880",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "MULTI_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue required a small aggregate SQL rendering fix plus a focused regression test around Count(distinct=True) with Case.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-10914@solver_C",
+    "task_id": "django__django-10914",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "LOCAL_CONTEXT", "CLEAR", "UNCLEAR_ORACLE"],
+      "evidence": "Task involved changing a Django file upload permission default and related documentation.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "PATCH_CHURN", "VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "MILD",
+        "PATCH_CHURN": "MILD",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [10, 11, 12, 13],
+        "PATCH_CHURN": [15, 16, 17],
+        "VERIFICATION_GAP": [9, 15, 16, 17, 18]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-10973@solver_C",
+    "task_id": "django__django-10973",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "UNCLEAR_ORACLE", "LOCAL_CONTEXT"],
+      "evidence": "Task centered on PostgreSQL backend client behavior in a known backend file, with verification requiring command/test mocking.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "NONCONVERGED_LIMIT",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PATCH_CHURN", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "PATCH_CHURN": "SEVERE",
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [27, 28, 35, 36, 46, 51, 53, 59, 60, 62, 67, 69, 70, 72],
+        "FAILED_RECOVERY": [21, 23, 25, 31, 33, 39, 42, 44, 49, 52, 57, 61, 65, 68],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [73]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-10999@solver_C",
+    "task_id": "django__django-10999",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Task concerned parse_duration behavior in django/utils/dateparse.py with a small regex/parser change and targeted cases.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "NONCONVERGED_LIMIT",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE", "PATCH_CHURN"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE",
+        "PATCH_CHURN": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [9, 11, 13, 15, 17, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [63],
+        "PATCH_CHURN": [8, 10, 12, 14, 16, 18, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11066@solver_C",
+    "task_id": "django__django-11066",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue pointed to a specific contenttypes management line and required a one-line database routing save change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [2, 4]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11087@solver_C",
+    "task_id": "django__django-11087",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "REPOSITORY_CONTEXT", "PARTIAL", "UNCLEAR_ORACLE"],
+      "evidence": "Deletion optimization required finding the ORM deletion/query path across deletion.py, compiler.py, and subqueries.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "PATCH_CHURN", "VERIFICATION_GAP"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "MODERATE",
+        "PATCH_CHURN": "MODERATE",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [0, 1, 2, 3, 7, 8],
+        "PATCH_CHURN": [12, 13, 14, 15],
+        "VERIFICATION_GAP": [12, 13, 14, 15, 16]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11095@solver_C",
+    "task_id": "django__django-11095",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Task added ModelAdmin.get_inlines() and regression coverage for admin behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11099@solver_C",
+    "task_id": "django__django-11099",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Task changed username validator regex anchors in django.contrib.auth.validators.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11119@solver_C",
+    "task_id": "django__django-11119",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_FILE", "TARGETED_UNIT", "REPOSITORY_CONTEXT", "PARTIAL"],
+      "evidence": "Template autoescape behavior required reasoning across Engine, Template, Context, and tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "NONCONVERGED_LIMIT",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "CONTEXT_MEMORY"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE", "PATCH_CHURN", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE",
+        "PATCH_CHURN": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [13, 15, 17, 37, 39, 41, 45, 51, 60],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [77],
+        "PATCH_CHURN": [34, 36, 38, 40, 44, 49, 50, 55, 58, 59],
+        "REDUNDANT_FILE_REREAD": [61, 63, 65, 67, 69, 70, 72, 73, 75]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11133@solver_C",
+    "task_id": "django__django-11133",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Task concerned HttpResponse handling of memoryview content in django/http/response.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {
+        "PREMATURE_SCRATCH_REPRO": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 2, 3, 4]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11138@solver_C",
+    "task_id": "django__django-11138",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "INTEGRATION", "UNCLEAR_ORACLE"],
+      "evidence": "Task targeted MySQL timezone conversion SQL in a backend operations file, with backend-specific verification needs.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "ENVIRONMENT_BLOCKED", "PATCH_CHURN"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE",
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [9, 10, 12, 14, 16, 18, 19],
+        "ENVIRONMENT_BLOCKED": [11],
+        "PATCH_CHURN": [14, 16, 18]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11141@solver_C",
+    "task_id": "django__django-11141",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_FILE", "TARGETED_UNIT", "REPOSITORY_CONTEXT", "PARTIAL"],
+      "evidence": "Namespace migration handling required loader changes and command/test adjustments across migrations and management command code.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [5, 6, 7, 17, 18, 20, 21, 22, 23, 24, 25]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

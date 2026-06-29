@@ -1,0 +1,409 @@
+```json
+[
+  {
+    "trace_id": "django__django-16667@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Issue names SelectDateWidget.value_from_datadict; fix is a bounds check in one method of forms/widgets.py. Core difficulty is the correctness reasoning of the guard, not finding files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_complete_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {"DEPENDENCY_SETUP_DRIFT": "MILD"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [9, 11, 12]}
+    },
+    "candidate_interventions": ["provide_test_runner_command"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16801@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue is the ImageField post_init signal connection; fix is a one-line condition in contribute_to_class of db/models/fields/files.py. Verifying signal connection has no obvious unit oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_complete_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "FAILED_RECOVERY"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {"DEPENDENCY_SETUP_DRIFT": "SEVERE", "FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [6, 8, 10, 12, 14, 20, 24, 25, 26, 27],
+        "FAILED_RECOVERY": [28, 30, 31, 32, 35, 36, 40, 41, 42, 43, 44, 45, 46, 47]
+      }
+    },
+    "candidate_interventions": ["use_existing_test_runner", "provide_test_runner_command"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16819@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "Issue asks to add reduce() to AddIndex/RemoveIndex in db/migrations/operations/models.py; the logic of when to reduce is the core work.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_complete_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["FAILED_RECOVERY", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MODERATE", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [28, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43],
+        "DEPENDENCY_SETUP_DRIFT": [22, 24, 25, 26]
+      }
+    },
+    "candidate_interventions": ["use_existing_test_runner", "provide_test_runner_command"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16877@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Feature addition: new escapeseq filter in template/defaultfilters.py, modeled on safeseq. Location is explicit; work is implementing the small filter.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_complete_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["VERIFICATION_GAP", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE", "DEPENDENCY_SETUP_DRIFT": "MILD"},
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [11, 14, 15, 16, 19],
+        "DEPENDENCY_SETUP_DRIFT": [11, 12, 14, 15, 16]
+      }
+    },
+    "candidate_interventions": ["use_existing_test_runner", "provide_test_runner_command"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16899@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "Issue is a trivial error-message change in _check_readonly_fields_item; the work is locating the right check method in contrib/admin/checks.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_complete_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["VERIFICATION_GAP", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE", "DEPENDENCY_SETUP_DRIFT": "MILD"},
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [14, 16, 17, 18, 19],
+        "DEPENDENCY_SETUP_DRIFT": [14, 16, 17]
+      }
+    },
+    "candidate_interventions": ["use_existing_test_runner", "provide_test_runner_command"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16901@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SILENT_SEMANTIC", "SINGLE_FILE"],
+      "evidence": "Issue is incorrect XOR (Q ^ Q ^ Q) parity in SQL WHERE generation; bug lives in query/where compilation. Requires semantic reasoning about XOR over >2 operands.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "REPRODUCTION",
+      "progress": "no_production_change",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "SEVERE"},
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 2, 3, 4, 6, 8, 10, 12, 14, 16, 18, 20, 21, 23, 25],
+        "DEPENDENCY_SETUP_DRIFT": [7, 9, 11, 13, 15, 17, 19, 22, 24]
+      }
+    },
+    "candidate_interventions": ["skip_repro_build", "earlier_localization", "provide_file_location"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16938@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SILENT_SEMANTIC", "CROSS_FILE", "SEARCH_REQUIRED"],
+      "evidence": "Issue is serialization failing when a default manager uses select_related (deferred+select_related conflict); fix belongs in core serializer/query code, not in a user model.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "REPRODUCTION",
+      "progress": "no_production_change",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "SEVERE"},
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 5, 7, 9, 11, 12, 30, 31, 32, 33, 38],
+        "DEPENDENCY_SETUP_DRIFT": [3, 8, 13, 14, 19, 20, 22, 24, 25, 26, 28]
+      }
+    },
+    "candidate_interventions": ["skip_repro_build", "earlier_localization", "provide_file_location"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16950@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SILENT_SEMANTIC", "UNCLEAR_ORACLE", "SEARCH_REQUIRED"],
+      "evidence": "Issue is admin inline + UUID default PK behavior; fix lives in contrib/admin or forms. Reproduction/oracle is non-obvious.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "REPRODUCTION",
+      "progress": "no_production_change",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 3, 5, 7, 9, 11],
+        "DEPENDENCY_SETUP_DRIFT": [2, 4, 6, 8, 10]
+      }
+    },
+    "candidate_interventions": ["earlier_localization", "skip_repro_build", "provide_file_location"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-17029@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT"],
+      "evidence": "Issue: Apps.clear_cache() must also clear get_swappable_settings_name cache; fix is one line in apps/registry.py clear_cache(), location effectively named.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_complete_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "FAILED_RECOVERY"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {"DEPENDENCY_SETUP_DRIFT": "SEVERE", "FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [8, 9, 13, 17, 18, 19, 21, 23, 24, 25, 26],
+        "FAILED_RECOVERY": [28, 30, 31, 32, 33]
+      }
+    },
+    "candidate_interventions": ["use_existing_test_runner", "provide_test_runner_command"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-17084@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SILENT_SEMANTIC", "SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": "Issue is 'misuse of window function' when wrapping a Window in an aggregate/Coalesce; bug lives in SQL compiler/aggregate handling. Requires semantic SQL reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "REPRODUCTION",
+      "progress": "no_production_change",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "SEVERE"},
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 3, 5, 7, 9, 16, 18, 20, 22, 24],
+        "DEPENDENCY_SETUP_DRIFT": [2, 4, 6, 8, 11, 13, 15, 17, 19, 23]
+      }
+    },
+    "candidate_interventions": ["earlier_localization", "skip_repro_build", "provide_file_location"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-17087@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "Issue: class methods on nested classes mis-serialized in migration FunctionTypeSerializer; fix is in db/migrations/serializer.py qualname handling.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_attempted_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {"DEPENDENCY_SETUP_DRIFT": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [30, 33, 35, 37, 38, 40, 41, 45, 50, 52],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [57]
+      }
+    },
+    "candidate_interventions": ["use_existing_test_runner", "provide_test_runner_command", "earlier_verification"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-7530@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "Issue: makemigrations calls allow_migrate() with cross-product of app_labels and models; fix is the nested loop in commands/makemigrations.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "patch_complete_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["FAILED_RECOVERY", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MODERATE", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [27, 28, 29, 30, 31, 32, 33, 34, 35],
+        "DEPENDENCY_SETUP_DRIFT": [18, 20, 21]
+      }
+    },
+    "candidate_interventions": ["use_existing_test_runner", "provide_test_runner_command"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

@@ -1,0 +1,558 @@
+[
+  {
+    "sample_id": "matplotlib__matplotlib-23314@solver_C",
+    "trace_id": "matplotlib__matplotlib-23314@solver_C",
+    "task_id": "matplotlib__matplotlib-23314",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["3D Axes visibility bug localized to mplot3d axes implementation, requiring a targeted behavioral patch plus regression test."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PATCH_CHURN", "VERIFICATION_GAP"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "PATCH_CHURN": "SEVERE",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [10, 12, 23, 24, 46, 47, 49],
+        "PATCH_CHURN": [17, 21, 22, 23, 24, 26, 31, 32, 40],
+        "VERIFICATION_GAP": [45, 51, 52]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "matplotlib__matplotlib-23412@solver_C",
+    "trace_id": "matplotlib__matplotlib-23412@solver_C",
+    "task_id": "matplotlib__matplotlib-23412",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR", "TARGETED_UNIT"],
+      "evidence": ["Dash offset handling for patch linestyles required finding the shared dash scaling helper and adjusting normalization semantics."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [14, 16, 19]
+      }
+    },
+    "candidate_interventions": ["INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "matplotlib__matplotlib-23476@solver_C",
+    "trace_id": "matplotlib__matplotlib-23476@solver_C",
+    "task_id": "matplotlib__matplotlib-23476",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "ENVIRONMENT_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "UNCLEAR_ORACLE", "INTEGRATION", "SILENT_SEMANTIC"],
+      "evidence": ["The reported DPI behavior was macOS/M1 backend-specific, while the observed run was on Linux/Agg and could not reproduce the platform-specific failure."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "SEARCH_LOCALIZATION", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "SEARCH_WITHOUT_NEW_EVIDENCE", "PATCH_CHURN"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD",
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 13, 18],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [24, 25, 26, 27],
+        "PATCH_CHURN": [15, 20, 21]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "CONSTRAIN_SEARCH", "LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "matplotlib__matplotlib-24026@solver_C",
+    "trace_id": "matplotlib__matplotlib-24026@solver_C",
+    "task_id": "matplotlib__matplotlib-24026",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Stackplot color handling required localizing the stackplot implementation and preserving color cycle semantics."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [6, 7]
+      }
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "matplotlib__matplotlib-24149@solver_C",
+    "trace_id": "matplotlib__matplotlib-24149@solver_C",
+    "task_id": "matplotlib__matplotlib-24149",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["The all-NaN bar input failure localized to first-finite value handling in matplotlib.cbook."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [6, 9, 10, 16, 21],
+        "FAILED_RECOVERY": [12, 15, 19, 20, 23]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "matplotlib__matplotlib-24177@solver_C",
+    "trace_id": "matplotlib__matplotlib-24177@solver_C",
+    "task_id": "matplotlib__matplotlib-24177",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": ["Histogram density mismatch between bar and step required reasoning about normalization in Axes.hist."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [21, 22, 23],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [13, 14]
+      }
+    },
+    "candidate_interventions": ["INCREASE_TARGETED_VERIFICATION", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "matplotlib__matplotlib-24570@solver_C",
+    "trace_id": "matplotlib__matplotlib-24570@solver_C",
+    "task_id": "matplotlib__matplotlib-24570",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": ["Offsetbox alignment bug required finding HPacker alignment calculations and changing top/bottom offset behavior."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["VERIFICATION_GAP", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MODERATE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [18, 22, 23],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [8, 10, 12, 15]
+      }
+    },
+    "candidate_interventions": ["INCREASE_TARGETED_VERIFICATION", "CONSTRAIN_SEARCH"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "matplotlib__matplotlib-24627@solver_C",
+    "trace_id": "matplotlib__matplotlib-24627@solver_C",
+    "task_id": "matplotlib__matplotlib-24627",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": ["Clearing axes/figures required understanding artist ownership and cleanup behavior across Axes and Figure code."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [16, 17, 29, 36],
+        "FILENAME_SEARCH_THRASH": [3, 4, 5, 6, 7, 8, 9, 10]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "CONSTRAIN_SEARCH"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "matplotlib__matplotlib-24637@solver_C",
+    "trace_id": "matplotlib__matplotlib-24637@solver_C",
+    "task_id": "matplotlib__matplotlib-24637",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "INTEGRATION", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": ["SVG gid propagation for AnnotationBbox required renderer/backend interaction reasoning in offsetbox drawing."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE", "FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [27, 33, 34, 37, 38, 40, 42],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [24, 25, 43, 45, 47, 48, 50],
+        "FILENAME_SEARCH_THRASH": [8, 9, 10, 11, 12, 13, 14, 16]
+      }
+    },
+    "candidate_interventions": ["ESCALATE_SOLVER", "INCREASE_TARGETED_VERIFICATION", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "matplotlib__matplotlib-24870@solver_C",
+    "trace_id": "matplotlib__matplotlib-24870@solver_C",
+    "task_id": "matplotlib__matplotlib-24870",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Boolean contour auto-level behavior required localizing contour argument processing and adding a regression check."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [24, 28, 31, 36, 38, 41, 44, 48],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [26, 45, 46]
+      }
+    },
+    "candidate_interventions": ["ESCALATE_SOLVER", "INCREASE_TARGETED_VERIFICATION", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "matplotlib__matplotlib-24970@solver_C",
+    "trace_id": "matplotlib__matplotlib-24970@solver_C",
+    "task_id": "matplotlib__matplotlib-24970",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Colormap empty uint8 deprecation warning fix localized to integer sentinel assignment in colors.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [14, 16, 18, 19, 20],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [16, 17, 19]
+      }
+    },
+    "candidate_interventions": ["ESCALATE_SOLVER", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "matplotlib__matplotlib-25122@solver_C",
+    "trace_id": "matplotlib__matplotlib-25122@solver_C",
+    "task_id": "matplotlib__matplotlib-25122",
+    "repo": "matplotlib",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": ["Spectral helper window normalization required reasoning about PSD scaling and window sums in mlab._spectral_helper."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "ENVIRONMENT_BLOCKED": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [16, 18, 20, 28, 34, 38, 41, 46, 48, 52],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [12, 13, 14, 24, 25, 49],
+        "ENVIRONMENT_BLOCKED": [2, 32]
+      }
+    },
+    "candidate_interventions": ["ESCALATE_SOLVER", "FIX_ENVIRONMENT", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

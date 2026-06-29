@@ -1,0 +1,404 @@
+[
+  {
+    "trace_id": "django__django-12663@solver_C",
+    "task_id": "django__django-12663",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: filtering/annotating with a SimpleLazyObject (wrapped User) against an integer FK raises when IntegerField coerces it; fix requires resolving the lazy object inside get_prep_value. Target file not given explicitly (must locate IntegerField in db/models/fields). No project test provided.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT", "FAILED_RECOVERY"],
+      "labels": [
+        {"l2": "PREMATURE_SCRATCH_REPRO", "l1": "EDIT_PATCH", "severity": "SEVERE", "evidence_action_ids": [0, 1, 2, 3, 4, 5, 7, 9, 11, 16, 17]},
+        {"l2": "DEPENDENCY_SETUP_DRIFT", "l1": "ENVIRONMENT_TOOLING", "severity": "MODERATE", "evidence_action_ids": [13, 15, 18, 19, 20, 21, 22, 24]},
+        {"l2": "FAILED_RECOVERY", "l1": "CONTROL_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [33, 35, 36, 37, 38, 39, 40]}
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["PROVIDE_REPRO_HARNESS", "PROVIDE_TEST_RUNNER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12708@solver_C",
+    "task_id": "django__django-12708",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue points directly at django/db/backends/base/schema.py _delete_composed_index raising ValueError when both unique_together and index_together exist on the same fields; fix is in the named method. Test location discoverable.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12713@solver_C",
+    "task_id": "django__django-12713",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: formfield_for_manytomany() should honor a widget passed in kwargs (parity with formfield_for_foreignkey). Method located via grep in contrib/admin/options.py; change is a guarded widget assignment. No supplied test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT", "PATCH_CHURN"],
+      "labels": [
+        {"l2": "PREMATURE_SCRATCH_REPRO", "l1": "EDIT_PATCH", "severity": "SEVERE", "evidence_action_ids": [17, 19, 21, 23, 25, 27, 29, 31]},
+        {"l2": "DEPENDENCY_SETUP_DRIFT", "l1": "ENVIRONMENT_TOOLING", "severity": "MODERATE", "evidence_action_ids": [6, 8, 13, 15]},
+        {"l2": "PATCH_CHURN", "l1": "EDIT_PATCH", "severity": "SEVERE", "evidence_action_ids": [33, 34, 36, 38, 39]}
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER", "PROVIDE_REPRO_HARNESS"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12741@solver_C",
+    "task_id": "django__django-12741",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "CROSS_FILE"],
+      "evidence": "Issue: simplify execute_sql_flush() signature (drop `using`, use self.connection.alias). Requires editing the method in base/operations.py plus its caller in management/commands/flush.py; mechanical cross-file refactor.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "labels": [
+        {"l2": "VERIFICATION_GAP", "l1": "VERIFICATION", "severity": "MODERATE", "evidence_action_ids": [5, 8, 9, 10, 12]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ENFORCE_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12754@solver_C",
+    "task_id": "django__django-12754",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: migration autodetector emits AddField before RemoveField when a field is moved to a new MTI subclass; fix is reordering generate_removed_fields before generate_added_fields in autodetector._detect_changes. Requires understanding operation ordering.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "labels": [
+        {"l2": "DEPENDENCY_SETUP_DRIFT", "l1": "ENVIRONMENT_TOOLING", "severity": "MODERATE", "evidence_action_ids": [14, 15, 16, 18, 20, 22]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12774@solver_C",
+    "task_id": "django__django-12774",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: in_bulk(field_name=...) should accept a field made unique via Meta.UniqueConstraint, not only unique=True. Fix is the uniqueness guard in QuerySet.in_bulk in db/models/query.py. Test setup non-trivial (dynamic model).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY", "CONTEXT_MEMORY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "FAILED_RECOVERY", "REDUNDANT_FILE_REREAD"],
+      "labels": [
+        {"l2": "DEPENDENCY_SETUP_DRIFT", "l1": "ENVIRONMENT_TOOLING", "severity": "SEVERE", "evidence_action_ids": [14, 16, 19, 21, 23, 25, 27, 29]},
+        {"l2": "FAILED_RECOVERY", "l1": "CONTROL_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [13, 15, 18, 20, 22, 24, 26, 28]},
+        {"l2": "REDUNDANT_FILE_REREAD", "l1": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [31, 33]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER", "PROVIDE_REPRO_HARNESS"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12858@solver_C",
+    "task_id": "django__django-12858",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": "Issue: models.E015 false positive when Meta.ordering uses a lookup spanning related fields; check in db/models/base.py wrongly flags valid related-field/transform lookups. Located via grep on E015; fix narrows the error condition.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12965@solver_C",
+    "task_id": "django__django-12965",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE"],
+      "evidence": "Issue: delete() performance regression — subquery emitted for simple deletes. The historical DeleteQuery was refactored into SQLDeleteCompiler.as_sql in sql/compiler.py; the hard part is locating where the DELETE SQL is generated across query/deletion/compiler modules.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "PATCH_CHURN"],
+      "labels": [
+        {"l2": "SEARCH_WITHOUT_NEW_EVIDENCE", "l1": "SEARCH_LOCALIZATION", "severity": "MILD", "evidence_action_ids": [10, 11, 12, 13]},
+        {"l2": "PATCH_CHURN", "l1": "EDIT_PATCH", "severity": "MILD", "evidence_action_ids": [24, 26]}
+      ],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE"
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13012@solver_C",
+    "task_id": "django__django-13012",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: a constant ExpressionWrapper(Value(...)) is wrongly placed in the GROUP BY clause; fix is in SQLCompiler.get_group_by in sql/compiler.py to skip constant expressions. Requires understanding group-by construction; no supplied test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "PREMATURE_SCRATCH_REPRO", "FAILED_RECOVERY"],
+      "labels": [
+        {"l2": "DEPENDENCY_SETUP_DRIFT", "l1": "ENVIRONMENT_TOOLING", "severity": "SEVERE", "evidence_action_ids": [25, 27, 29, 31, 33, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 57, 59]},
+        {"l2": "PREMATURE_SCRATCH_REPRO", "l1": "EDIT_PATCH", "severity": "MODERATE", "evidence_action_ids": [19, 20]},
+        {"l2": "FAILED_RECOVERY", "l1": "CONTROL_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [24, 26, 28, 30, 32, 34, 37, 39, 43, 47, 49, 51, 53, 55, 58, 60]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER", "PROVIDE_REPRO_HARNESS"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13023@solver_C",
+    "task_id": "django__django-13023",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: DecimalField.to_python should raise ValidationError (not TypeError) on dict input. Located via search of forms/fields.py; small guarded fix in to_python.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13028@solver_C",
+    "task_id": "django__django-13028",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE"],
+      "evidence": "Issue traceback points to Query.check_filterable in sql/query.py raising NotSupportedError because a model field literally named 'filterable' is mistaken for a non-filterable expression. Location explicit; fix is in that method.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO"],
+      "labels": [
+        {"l2": "PREMATURE_SCRATCH_REPRO", "l1": "EDIT_PATCH", "severity": "MODERATE", "evidence_action_ids": [3, 5, 6, 9]}
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["PROVIDE_REPRO_HARNESS"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13033@solver_C",
+    "task_id": "django__django-13033",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: ordering by a self-referential FK with Meta.ordering yields an unexpected extra LEFT JOIN and DESC direction. Root cause is deep in the join/ordering machinery (setup_joins/trim_joins/find_ordering_name across sql/query.py and sql/compiler.py); finding the correct site dominates.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "labels": [
+        {"l2": "PREMATURE_SCRATCH_REPRO", "l1": "EDIT_PATCH", "severity": "SEVERE", "evidence_action_ids": [0, 1, 2, 3, 4, 5, 7, 14, 18, 20, 21, 23]},
+        {"l2": "DEPENDENCY_SETUP_DRIFT", "l1": "ENVIRONMENT_TOOLING", "severity": "SEVERE", "evidence_action_ids": [9, 10, 12, 16, 17, 19, 54, 55, 57, 58, 65]},
+        {"l2": "FAILED_RECOVERY", "l1": "CONTROL_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [51, 53, 56, 59, 66, 68]},
+        {"l2": "BUDGET_EXHAUSTION_NONCONVERGENCE", "l1": "CONTROL_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [69]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_RUNNER", "PROVIDE_REPRO_HARNESS", "PROVIDE_LOCATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

@@ -1,113 +1,172 @@
 {
+  "_cohorts": {
+    "clean": [
+      "solver_A",
+      "solver_B",
+      "solver_C"
+    ],
+    "open_weight_separate": [
+      "solver_G"
+    ],
+    "archived": [
+      "solver_E",
+      "solver_H"
+    ],
+    "transfer_holdout": [
+      "solver_F"
+    ]
+  },
   "per_model": {
-    "solver_B": {
-      "trace_count": 42,
-      "repos": {
-        "django": 21,
-        "sphinx-doc": 4,
-        "astropy": 3,
-        "matplotlib": 4,
-        "sympy": 5,
-        "scikit-learn": 2,
-        "mwaskom": 1,
-        "pylint-dev": 1,
-        "psf": 1
-      },
-      "outcomes": {
-        "SOLVED": 24,
-        "UNSOLVED": 17,
-        "UNKNOWN": 1
-      },
-      "token_median": null,
-      "length_median": 33.5,
-      "waste_l2_prevalence": {
-        "CONTEXT_BLOAT": 5,
-        "PREMATURE_SCRATCH_REPRO": 2,
-        "SEARCH_WITHOUT_NEW_EVIDENCE": 1,
-        "ENVIRONMENT_BLOCKED": 1,
-        "REDUNDANT_FILE_REREAD": 3,
-        "EDIT_TOOL_MECHANICAL_FAILURE": 2,
-        "HELPER_TOOL_FAILURE_LOOP": 2,
-        "BUDGET_EXHAUSTION_NONCONVERGENCE": 1,
-        "FAILED_RECOVERY": 1,
-        "PREEMPTIVE_HELPER_TOOL_BUILD": 1,
-        "DEPENDENCY_SETUP_DRIFT": 2,
-        "REDUNDANT_TEST": 1,
-        "PATCH_CHURN": 1
+    "solver_A": {
+      "model": "opus-4.7",
+      "n_traces": 500,
+      "waste_l2_prevalence_pct": {
+        "REDUNDANT_FILE_REREAD": 0.0,
+        "CONTEXT_BLOAT": 1.2,
+        "FILENAME_SEARCH_THRASH": 1.0,
+        "SEARCH_WITHOUT_NEW_EVIDENCE": 3.8,
+        "PATCH_CHURN": 15.0,
+        "PREMATURE_SCRATCH_REPRO": 0.8,
+        "EDIT_TOOL_MECHANICAL_FAILURE": 12.0,
+        "VERIFICATION_GAP": 0.2,
+        "REDUNDANT_TEST": 3.0,
+        "STAGNATION": 3.0,
+        "FAILED_RECOVERY": 4.6,
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": 7.6,
+        "PREEMPTIVE_HELPER_TOOL_BUILD": 0.0,
+        "HELPER_TOOL_FAILURE_LOOP": 0.2,
+        "DEPENDENCY_SETUP_DRIFT": 1.0,
+        "ENVIRONMENT_BLOCKED": 4.8
       },
       "primary_bottleneck_dist": {
-        "CONTEXT_BLOAT": 4,
-        "PREMATURE_SCRATCH_REPRO": 1,
-        "SEARCH_WITHOUT_NEW_EVIDENCE": 1,
-        "ENVIRONMENT_BLOCKED": 1,
-        "HELPER_TOOL_FAILURE_LOOP": 2,
-        "FAILED_RECOVERY": 1,
-        "REDUNDANT_FILE_REREAD": 2,
-        "PATCH_CHURN": 1
+        "PATCH_CHURN": 59,
+        "EDIT_TOOL_MECHANICAL_FAILURE": 36,
+        "ENVIRONMENT_BLOCKED": 22,
+        "FAILED_RECOVERY": 21,
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": 20,
+        "REDUNDANT_TEST": 12,
+        "SEARCH_WITHOUT_NEW_EVIDENCE": 8,
+        "STAGNATION": 6,
+        "CONTEXT_BLOAT": 5,
+        "FILENAME_SEARCH_THRASH": 5,
+        "DEPENDENCY_SETUP_DRIFT": 4,
+        "PREMATURE_SCRATCH_REPRO": 2,
+        "VERIFICATION_GAP": 1
+      }
+    },
+    "solver_B": {
+      "model": "opus-4.5",
+      "n_traces": 500,
+      "waste_l2_prevalence_pct": {
+        "REDUNDANT_FILE_REREAD": 2.4,
+        "CONTEXT_BLOAT": 16.6,
+        "FILENAME_SEARCH_THRASH": 1.6,
+        "SEARCH_WITHOUT_NEW_EVIDENCE": 1.2,
+        "PATCH_CHURN": 8.2,
+        "PREMATURE_SCRATCH_REPRO": 2.2,
+        "EDIT_TOOL_MECHANICAL_FAILURE": 7.0,
+        "VERIFICATION_GAP": 0.4,
+        "REDUNDANT_TEST": 2.6,
+        "STAGNATION": 1.8,
+        "FAILED_RECOVERY": 8.4,
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": 0.0,
+        "PREEMPTIVE_HELPER_TOOL_BUILD": 7.6,
+        "HELPER_TOOL_FAILURE_LOOP": 13.2,
+        "DEPENDENCY_SETUP_DRIFT": 2.4,
+        "ENVIRONMENT_BLOCKED": 2.6
+      },
+      "primary_bottleneck_dist": {
+        "CONTEXT_BLOAT": 68,
+        "HELPER_TOOL_FAILURE_LOOP": 47,
+        "PREEMPTIVE_HELPER_TOOL_BUILD": 41,
+        "PATCH_CHURN": 34,
+        "FAILED_RECOVERY": 27,
+        "EDIT_TOOL_MECHANICAL_FAILURE": 27,
+        "ENVIRONMENT_BLOCKED": 10,
+        "DEPENDENCY_SETUP_DRIFT": 10,
+        "PREMATURE_SCRATCH_REPRO": 8,
+        "REDUNDANT_TEST": 7,
+        "FILENAME_SEARCH_THRASH": 7,
+        "REDUNDANT_FILE_REREAD": 5,
+        "STAGNATION": 4,
+        "SEARCH_WITHOUT_NEW_EVIDENCE": 3,
+        "VERIFICATION_GAP": 1
       }
     },
     "solver_C": {
-      "trace_count": 43,
-      "repos": {
-        "django": 17,
-        "psf": 4,
-        "pydata": 3,
-        "sphinx-doc": 4,
-        "sympy": 7,
-        "scikit-learn": 3,
-        "pytest-dev": 1,
-        "astropy": 2,
-        "matplotlib": 2
-      },
-      "outcomes": {
-        "UNKNOWN": 3,
-        "UNSOLVED": 19,
-        "SOLVED": 21
-      },
-      "token_median": 248393,
-      "length_median": 20,
-      "waste_l2_prevalence": {
-        "PATCH_CHURN": 10,
-        "REDUNDANT_FILE_REREAD": 5,
-        "VERIFICATION_GAP": 9,
-        "ENVIRONMENT_BLOCKED": 4,
-        "PREMATURE_SCRATCH_REPRO": 2,
-        "EDIT_TOOL_MECHANICAL_FAILURE": 6,
-        "DEPENDENCY_SETUP_DRIFT": 2,
-        "BUDGET_EXHAUSTION_NONCONVERGENCE": 2,
-        "STAGNATION": 1,
-        "FILENAME_SEARCH_THRASH": 2,
-        "FAILED_RECOVERY": 2,
-        "SEARCH_WITHOUT_NEW_EVIDENCE": 1
+      "model": "sonnet-3.5",
+      "n_traces": 500,
+      "waste_l2_prevalence_pct": {
+        "REDUNDANT_FILE_REREAD": 8.2,
+        "CONTEXT_BLOAT": 1.0,
+        "FILENAME_SEARCH_THRASH": 6.4,
+        "SEARCH_WITHOUT_NEW_EVIDENCE": 4.6,
+        "PATCH_CHURN": 13.4,
+        "PREMATURE_SCRATCH_REPRO": 16.0,
+        "EDIT_TOOL_MECHANICAL_FAILURE": 32.0,
+        "VERIFICATION_GAP": 13.8,
+        "REDUNDANT_TEST": 0.6,
+        "STAGNATION": 5.6,
+        "FAILED_RECOVERY": 23.8,
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": 17.0,
+        "PREEMPTIVE_HELPER_TOOL_BUILD": 0.0,
+        "HELPER_TOOL_FAILURE_LOOP": 0.4,
+        "DEPENDENCY_SETUP_DRIFT": 9.8,
+        "ENVIRONMENT_BLOCKED": 5.0
       },
       "primary_bottleneck_dist": {
-        "VERIFICATION_GAP": 4,
-        "PREMATURE_SCRATCH_REPRO": 1,
-        "PATCH_CHURN": 4,
-        "STAGNATION": 1,
-        "ENVIRONMENT_BLOCKED": 2,
-        "FAILED_RECOVERY": 2,
-        "DEPENDENCY_SETUP_DRIFT": 1
+        "FAILED_RECOVERY": 117,
+        "EDIT_TOOL_MECHANICAL_FAILURE": 80,
+        "VERIFICATION_GAP": 55,
+        "PREMATURE_SCRATCH_REPRO": 49,
+        "PATCH_CHURN": 32,
+        "DEPENDENCY_SETUP_DRIFT": 28,
+        "ENVIRONMENT_BLOCKED": 20,
+        "FILENAME_SEARCH_THRASH": 20,
+        "STAGNATION": 17,
+        "SEARCH_WITHOUT_NEW_EVIDENCE": 6,
+        "HELPER_TOOL_FAILURE_LOOP": 5,
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": 5,
+        "REDUNDANT_FILE_REREAD": 4,
+        "CONTEXT_BLOAT": 2
       }
     },
-    "solver_A": {
-      "trace_count": 30,
-      "repos": {
-        "sphinx-doc": 5,
-        "sympy": 5,
-        "django": 16,
-        "pylint-dev": 1,
-        "scikit-learn": 2,
-        "astropy": 1
+    "solver_G": {
+      "model": "Skywork-32B",
+      "n_traces": 500,
+      "waste_l2_prevalence_pct": {
+        "REDUNDANT_FILE_REREAD": 2.4,
+        "CONTEXT_BLOAT": 2.0,
+        "FILENAME_SEARCH_THRASH": 3.0,
+        "SEARCH_WITHOUT_NEW_EVIDENCE": 4.2,
+        "PATCH_CHURN": 4.4,
+        "PREMATURE_SCRATCH_REPRO": 3.4,
+        "EDIT_TOOL_MECHANICAL_FAILURE": 26.2,
+        "VERIFICATION_GAP": 32.6,
+        "REDUNDANT_TEST": 1.4,
+        "STAGNATION": 9.4,
+        "FAILED_RECOVERY": 11.4,
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": 0.0,
+        "PREEMPTIVE_HELPER_TOOL_BUILD": 0.0,
+        "HELPER_TOOL_FAILURE_LOOP": 0.6,
+        "DEPENDENCY_SETUP_DRIFT": 13.8,
+        "ENVIRONMENT_BLOCKED": 15.2
       },
-      "outcomes": {
-        "UNKNOWN": 30
-      },
-      "token_median": 196239.5,
-      "length_median": 28.5,
-      "waste_l2_prevalence": {},
-      "primary_bottleneck_dist": {}
+      "primary_bottleneck_dist": {
+        "VERIFICATION_GAP": 148,
+        "ENVIRONMENT_BLOCKED": 72,
+        "FAILED_RECOVERY": 64,
+        "EDIT_TOOL_MECHANICAL_FAILURE": 49,
+        "DEPENDENCY_SETUP_DRIFT": 41,
+        "STAGNATION": 24,
+        "PATCH_CHURN": 20,
+        "PREMATURE_SCRATCH_REPRO": 15,
+        "FILENAME_SEARCH_THRASH": 9,
+        "CONTEXT_BLOAT": 7,
+        "REDUNDANT_TEST": 5,
+        "REDUNDANT_FILE_REREAD": 4,
+        "SEARCH_WITHOUT_NEW_EVIDENCE": 3
+      }
     }
-  },
-  "matched_task_set_size": 1
+  }
 }

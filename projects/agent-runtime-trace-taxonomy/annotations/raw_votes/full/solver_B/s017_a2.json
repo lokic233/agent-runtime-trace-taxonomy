@@ -1,0 +1,386 @@
+[
+  {
+    "trace_id": "django__django-15732@solver_B",
+    "task_id": "django__django-15732",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: dropping unique_together on a PK column fails because the schema editor finds two unique constraints (PK + unique_together) and expects exactly one. Fix requires understanding _delete_composed_index/alter_unique_together and adding a primary_key=False filter; single backend file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15741@solver_B",
+    "task_id": "django__django-15741",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "TARGETED_UNIT"],
+      "evidence": "Issue names get_format in django.utils.formats and the exact TypeError from getattr on a lazy string; fix is a small targeted change (force_str(format_type)) in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15814@solver_B",
+    "task_id": "django__django-15814",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CROSS_MODULE", "LOCAL_CONTEXT"],
+      "evidence": "Issue supplies a full traceback pointing into django/db/models/sql/query.py (deferred_to_data) and the proxy-vs-concrete model distinction; fix is opts = cur_model._meta.concrete_model._meta in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15851@solver_B",
+    "task_id": "django__django-15851",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue states psql expects options before dbname and that args must be reordered; fix is a two-line reorder in postgresql/client.py. Oracle clear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15863@solver_B",
+    "task_id": "django__django-15863",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT"],
+      "evidence": "Issue names floatformat and the repr()->Decimal conversion that loses precision for Decimal inputs; fix is a one-line guard in defaultfilters.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15916@solver_B",
+    "task_id": "django__django-15916",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
+      "evidence": "Issue: modelform_factory overwrites Meta.formfield_callback. Fix requires understanding ModelFormMetaclass/ModelFormOptions interaction in forms/models.py; non-trivial reasoning in a single file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15930@solver_B",
+    "task_id": "django__django-15930",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": "Issue: Case() with ~Q(pk__in=[]) yields empty WHEN condition SQL. Requires tracing WhereNode->When.as_sql across where.py/expressions.py; fix is a guard in When.as_sql.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15957@solver_B",
+    "task_id": "django__django-15957",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT", "MULTI_FILE"],
+      "evidence": "Issue: Prefetch with sliced querysets raises 'Cannot filter once sliced'. Adding slice support requires reasoning across prefetch_one_level (query.py) and get_prefetch_queryset implementations (related_descriptors.py); larger feature-style change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [3, 4, 5, 10, 11, 38]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15973@solver_B",
+    "task_id": "django__django-15973",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_CUTTING", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: through model in another app stays a str during migration -> 'str' has no _meta. Fix is the same isinstance(...,str) guard applied at many call sites across base/schema.py and sqlite3/schema.py (cross-cutting).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15987@solver_B",
+    "task_id": "django__django-15987",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT"],
+      "evidence": "Issue: FIXTURE_DIRS duplicate check fails for Path instances in loaddata. Fix is normalizing entries (os.fspath) in fixture_dirs property; single file, clear location.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MILD"},
+      "evidence_action_ids": {"PATCH_CHURN": [6, 8]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16032@solver_B",
+    "task_id": "django__django-16032",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": "Issue: __in subquery keeps selected fields when alias() follows annotate(), producing N-column subselect. Requires deep reasoning about has_select_fields / annotation_select_mask / default_cols in sql/query.py; investigation spans lookups and related_lookups.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [14, 15, 25]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16082@solver_B",
+    "task_id": "django__django-16082",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
+      "evidence": "Issue: MOD operator does not resolve output_field for mixed Decimal/Integer like other operators. Fix is adding MOD/POW to _connector_combinations for different-type operands in expressions.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]

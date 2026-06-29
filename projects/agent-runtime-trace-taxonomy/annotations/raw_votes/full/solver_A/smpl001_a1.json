@@ -1,0 +1,514 @@
+[
+  {
+    "trace_id": "matplotlib__matplotlib-23412@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "The trace localizes a dash-offset rendering bug to Patch.draw in lib/matplotlib/patches.py and fixes one local behavior with focused reproduction and tests.",
+      "unknown_fields": [
+        "issue_text"
+      ]
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-23476@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "MULTI_FILE",
+        "CROSS_MODULE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "PARTIAL"
+      ],
+      "evidence": "The task involves pickle/DPI behavior spanning figure state, canvas/device pixel ratio, and macOS backend interactions.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24026@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "The trace changes stackplot color handling in a single module and validates with a focused stackplot test.",
+      "unknown_fields": [
+        "issue_text"
+      ]
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          0,
+          7
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24149@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "The task centers on _safe_first_finite handling all-nonfinite inputs, with a single source-file fix and bar-related tests.",
+      "unknown_fields": [
+        "issue_text"
+      ]
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24177@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "CROSS_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "PARTIAL"
+      ],
+      "evidence": "The task requires tracing incorrect histogram autoscaling through hist, fill/add_patch limit handling, Path iteration, and simplification.",
+      "unknown_fields": [
+        "issue_text"
+      ]
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          2
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24570@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "The trace fixes swapped top/bottom alignment semantics in offsetbox _get_aligned_offsets and verifies offsetbox/legend behavior.",
+      "unknown_fields": [
+        "issue_text"
+      ]
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24627@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "MULTI_FILE",
+        "CROSS_MODULE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "The task concerns artist deparenting on cla/clf, requiring coordinated changes in Axes.clear and Figure.clear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24637@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "The trace identifies AnnotationBbox.draw lacking renderer group handling for gid and applies a single local draw-method fix.",
+      "unknown_fields": [
+        "issue_text"
+      ]
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24870@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "MULTI_FILE",
+        "CROSS_MODULE",
+        "TARGETED_UNIT",
+        "PARTIAL"
+      ],
+      "evidence": "The task requires changing contour level selection for boolean arrays in both regular contour and tricontour code paths.",
+      "unknown_fields": [
+        "issue_text"
+      ]
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "EDIT_PATCH"
+      ],
+      "l2_labels": [
+        "PATCH_CHURN"
+      ],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MILD"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [
+          8,
+          9,
+          11
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24970@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "The task fixes integer dtype handling in Colormap.__call__ for out-of-range sentinel indices and validates color-mapping edge cases.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "EDIT_PATCH"
+      ],
+      "l2_labels": [
+        "PATCH_CHURN"
+      ],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [
+          3,
+          4,
+          5,
+          7
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25122@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "The task changes spectral window normalization in matplotlib.mlab and compares behavior against a scipy-based reproduction.",
+      "unknown_fields": [
+        "issue_text"
+      ]
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "ENVIRONMENT_TOOLING"
+      ],
+      "l2_labels": [
+        "DEPENDENCY_SETUP_DRIFT"
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25287@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": "The trace fixes offsetText color initialization for x/y tick labelcolor rcParams in lib/matplotlib/axis.py.",
+      "unknown_fields": [
+        "issue_text"
+      ]
+    },
+    "execution_state": {
+      "phase": "FINISHED_SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

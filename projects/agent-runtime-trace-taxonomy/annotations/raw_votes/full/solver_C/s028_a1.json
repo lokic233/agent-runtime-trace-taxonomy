@@ -1,0 +1,558 @@
+[
+  {
+    "sample_id": "pytest-dev__pytest-5809@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-5809@solver_C",
+    "task_id": "pytest-dev__pytest-5809",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "STATELESS"],
+      "evidence": ["Issue/transcript points directly to pastebin lexer parameter in src/_pytest/pastebin.py and existing pastebin tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "PATCH_CHURN"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "MODERATE",
+        "PATCH_CHURN": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [7, 8, 9, 10, 12, 13, 14, 15, 16, 17],
+        "PATCH_CHURN": [5, 6]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-5840@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-5840@solver_C",
+    "task_id": "pytest-dev__pytest-5840",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "REPOSITORY_CONTEXT", "PARTIAL", "INTEGRATION"],
+      "evidence": ["Windows path/import-conftest behavior required identifying path/import collection code across pytest modules."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "SEARCH_LOCALIZATION", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "FILENAME_SEARCH_THRASH", "EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "FILENAME_SEARCH_THRASH": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [9, 10, 13, 14, 15, 19, 20, 21, 30, 34, 35, 55],
+        "FILENAME_SEARCH_THRASH": [4, 17, 18, 32, 33, 36, 38, 40, 41, 43, 45],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [46, 47, 48, 49, 50, 51, 52, 53],
+        "FAILED_RECOVERY": [57, 58, 59, 60, 61, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [79]
+      }
+    },
+    "candidate_interventions": ["CONSTRAIN_SEARCH", "LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-6197@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-6197@solver_C",
+    "task_id": "pytest-dev__pytest-6197",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Issue involves collection of __init__.py and requires finding pytest_collect_file in src/_pytest/python.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-6202@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-6202@solver_C",
+    "task_id": "pytest-dev__pytest-6202",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "STATELESS"],
+      "evidence": ["Issue/transcript identifies getmodpath in src/_pytest/python.py and a targeted output formatting change."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "DEPENDENCY_SETUP_DRIFT": "MILD"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [7, 8, 9]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-7205@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-7205@solver_C",
+    "task_id": "pytest-dev__pytest-7205",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "STATELESS"],
+      "evidence": ["BytesWarning under --setup-show localized directly to fixture setup display in src/_pytest/setuponly.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {
+        "PREMATURE_SCRATCH_REPRO": "MILD"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1]
+      }
+    },
+    "candidate_interventions": ["DELAY_EDIT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-7236@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-7236@solver_C",
+    "task_id": "pytest-dev__pytest-7236",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "PARTIAL", "SHORT_STATE"],
+      "evidence": ["Unittest skip/pdb teardown behavior required locating runtime protocol handling in src/_pytest/runner.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [1, 2, 3, 4]
+      }
+    },
+    "candidate_interventions": ["DELAY_EDIT", "LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-7324@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-7324@solver_C",
+    "task_id": "pytest-dev__pytest-7324",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "ENVIRONMENT_DOMINANT",
+      "l2_attributes": ["UNCLEAR_ORACLE", "HIDDEN_TEST_DOMINANT", "PARTIAL", "REPOSITORY_CONTEXT"],
+      "evidence": ["Issue depended on reproducing a Python debug-build assertion rewriting/compiler behavior not available in the observed environment."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "ENV_BLOCKED",
+      "progress": "FLAT",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "STAGNATION", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "STAGNATION": "MODERATE",
+        "ENVIRONMENT_BLOCKED": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 8, 13, 15, 17, 19, 23, 26],
+        "STAGNATION": [14, 16, 18, 20, 21, 22, 23, 24, 25, 27],
+        "ENVIRONMENT_BLOCKED": [24, 25, 27, 28, 29]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "ESCALATE_SOLVER", "DELAY_EDIT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-7432@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-7432@solver_C",
+    "task_id": "pytest-dev__pytest-7432",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Skip location with --runxfail required targeted changes in src/_pytest/skipping.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "PATCH_CHURN"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "MODERATE",
+        "PATCH_CHURN": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [6, 7, 9, 10, 12, 13],
+        "PATCH_CHURN": [6, 9, 12]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-7490@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-7490@solver_C",
+    "task_id": "pytest-dev__pytest-7490",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "TARGETED_UNIT", "PARTIAL", "SHORT_STATE"],
+      "evidence": ["Dynamic xfail marker behavior required understanding marker storage and skipping report generation."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [16, 17, 18, 19, 27, 28, 29],
+        "FAILED_RECOVERY": [24, 30, 31, 32, 33]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-7521@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-7521@solver_C",
+    "task_id": "pytest-dev__pytest-7521",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "PARTIAL", "SHORT_STATE"],
+      "evidence": ["capfd carriage-return preservation required modifying capture internals and validating with a targeted fixture reproduction."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FAILED_RECOVERY": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [6, 8, 9, 12, 14, 18, 20, 22, 23, 25, 37, 42, 52, 54, 56, 58],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [15, 43, 45, 46, 64, 65, 68],
+        "FAILED_RECOVERY": [16, 26, 27, 28, 29, 34, 35, 36, 39, 40, 43, 44, 59, 60, 61, 62, 65, 66, 69, 70]
+      }
+    },
+    "candidate_interventions": ["NARROW_RETRIEVAL", "LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-7571@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-7571@solver_C",
+    "task_id": "pytest-dev__pytest-7571",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["caplog level reset between tests required localizing LogCaptureFixture and caplog fixture behavior."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [14, 15, 17],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [19, 20, 22, 23, 27, 28]
+      }
+    },
+    "candidate_interventions": ["CONSTRAIN_SEARCH", "LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pytest-dev__pytest-7982@solver_C:FULL",
+    "trace_id": "pytest-dev__pytest-7982@solver_C",
+    "task_id": "pytest-dev__pytest-7982",
+    "repo": "pytest-dev",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "PARTIAL", "REPOSITORY_CONTEXT"],
+      "evidence": ["Symlink traversal issue required finding visit() in _pytest.pathlib and adding pathlib coverage."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "UNKNOWN",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "REDUNDANT_FILE_REREAD": "MILD",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD",
+        "VERIFICATION_GAP": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [4, 5, 6, 8],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [9, 12],
+        "VERIFICATION_GAP": [9, 12, 13]
+      }
+    },
+    "candidate_interventions": ["INCREASE_TARGETED_VERIFICATION", "LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

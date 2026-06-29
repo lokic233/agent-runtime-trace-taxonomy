@@ -1,0 +1,512 @@
+[
+  {
+    "sample_id": "sphinx-doc__sphinx-7910@solver_C|FULL",
+    "trace_id": "sphinx-doc__sphinx-7910@solver_C",
+    "task_id": "sphinx-doc__sphinx-7910",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Autodoc decorated __init__ behavior requires finding the autodoc implementation and adding focused regression coverage."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "FAILED_RECOVERY": "MODERATE",
+        "PATCH_CHURN": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [16, 17, 18, 20, 21, 23, 24, 25, 26],
+        "PATCH_CHURN": [35, 36, 37, 38, 39, 40, 41]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-7985@solver_C|FULL",
+    "trace_id": "sphinx-doc__sphinx-7985@solver_C",
+    "task_id": "sphinx-doc__sphinx-7985",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Linkcheck behavior is localized to sphinx/builders/linkcheck.py with an existing targeted test file."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [4, 5, 6, 7]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-8035@solver_C|FULL",
+    "trace_id": "sphinx-doc__sphinx-8035@solver_C",
+    "task_id": "sphinx-doc__sphinx-8035",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Private-members option behavior is an autodoc filtering/parsing change with existing focused private-members tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [10, 11, 13, 17, 26, 27, 31, 32, 47, 48, 53, 58],
+        "FAILED_RECOVERY": [34, 35, 36, 45, 46, 49, 50, 51, 52, 54, 55, 56, 57, 59],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [60]
+      }
+    },
+    "candidate_interventions": ["ESCALATE_SOLVER", "LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-8056@solver_C|FULL",
+    "trace_id": "sphinx-doc__sphinx-8056@solver_C",
+    "task_id": "sphinx-doc__sphinx-8056",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Napoleon parameter parsing is localized to sphinx/ext/napoleon/docstring.py with a focused formatting/parser fix."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE", "REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [22, 25, 26, 29, 30, 42, 43, 45, 46, 49, 50, 57, 58, 61, 62, 63, 66],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [67],
+        "REDUNDANT_FILE_REREAD": [37, 39, 41, 52, 54, 56, 59, 60, 64, 65],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [32, 33]
+      }
+    },
+    "candidate_interventions": ["ESCALATE_SOLVER", "LIMIT_PATCH_SCOPE", "REDUCE_CONTEXT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-8120@solver_C|FULL",
+    "trace_id": "sphinx-doc__sphinx-8120@solver_C",
+    "task_id": "sphinx-doc__sphinx-8120",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "REPOSITORY_CONTEXT", "INTEGRATION", "PARTIAL"],
+      "evidence": ["Locale-dir translation behavior spans configuration, application initialization, and i18n catalog handling."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PATCH_CHURN", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "PATCH_CHURN": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [17, 18, 19, 21, 22, 23, 25, 28, 30, 32, 34, 37, 39, 40, 42, 44],
+        "PATCH_CHURN": [15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 32, 34, 37, 39, 40, 42, 44, 45],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [48]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "DELAY_EDIT", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-8265@solver_C|FULL",
+    "trace_id": "sphinx-doc__sphinx-8265@solver_C",
+    "task_id": "sphinx-doc__sphinx-8265",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "LOCAL_CONTEXT", "UNCLEAR_ORACLE"],
+      "evidence": ["Tuple default rendering in autodoc signatures requires tracing signature formatting from autodoc into util.inspect and validating rendered HTML."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "PREMATURE_SCRATCH_REPRO", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "STAGNATION": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "SEVERE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79],
+        "REDUNDANT_FILE_REREAD": [29, 31, 32, 34, 41, 43, 49, 51, 55, 57, 63, 65, 71, 73, 79],
+        "PREMATURE_SCRATCH_REPRO": [11, 12, 14, 15, 16, 17, 18, 19, 20],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [80]
+      }
+    },
+    "candidate_interventions": ["CONSTRAIN_SEARCH", "REDUCE_CONTEXT", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-8269@solver_C|FULL",
+    "trace_id": "sphinx-doc__sphinx-8269@solver_C",
+    "task_id": "sphinx-doc__sphinx-8269",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Linkcheck anchor and HTTP-status behavior is localized to linkcheck.py with an existing targeted linkcheck test."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-8475@solver_C|FULL",
+    "trace_id": "sphinx-doc__sphinx-8475@solver_C",
+    "task_id": "sphinx-doc__sphinx-8475",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Issue points to linkcheck HEAD fallback behavior; fix is a small exception-handling change in linkcheck.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [3, 5, 6],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [3, 5]
+      }
+    },
+    "candidate_interventions": ["INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-8548@solver_C|FULL",
+    "trace_id": "sphinx-doc__sphinx-8548@solver_C",
+    "task_id": "sphinx-doc__sphinx-8548",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "PARTIAL"],
+      "evidence": ["Inherited autodoc member docstring behavior requires tracing autodoc filtering and util.inspect.getdoc interactions."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [22, 23, 24, 25]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-8551@solver_C|FULL",
+    "trace_id": "sphinx-doc__sphinx-8551@solver_C",
+    "task_id": "sphinx-doc__sphinx-8551",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC", "PARTIAL"],
+      "evidence": ["Python-domain cross-reference ambiguity requires understanding find_obj resolution and domain test roots."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "REGRESSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [16, 17, 19, 20, 21, 22, 26, 29, 30, 36],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [10, 18, 29, 49],
+        "VERIFICATION_GAP": [50, 51, 52, 53, 54, 55, 56]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sphinx-doc__sphinx-8593@solver_C|FULL",
+    "trace_id": "sphinx-doc__sphinx-8593@solver_C",
+    "task_id": "sphinx-doc__sphinx-8593",
+    "repo": "sphinx-doc",
+    "solver_alias": "solver_C",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Autodoc :meta public: handling is localized to member filtering and metadata extraction."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "VERIFICATION"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [17, 23, 25, 27, 30, 32, 37, 39, 41, 45, 47],
+        "VERIFICATION_GAP": [48, 49, 50]
+      }
+    },
+    "candidate_interventions": ["INCREASE_TARGETED_VERIFICATION", "REDUCE_CONTEXT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

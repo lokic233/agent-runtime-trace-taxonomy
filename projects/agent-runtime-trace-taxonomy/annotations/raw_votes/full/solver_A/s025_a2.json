@@ -1,0 +1,353 @@
+[
+  {
+    "trace_id": "pytest-dev__pytest-5631@solver_A",
+    "task_id": "pytest-dev__pytest-5631",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Bug is a semantic defect: `p.new in sentinels` triggers numpy array element-wise __eq__. Target is one named function (num_mock_patch_args) in a single file; the work is reasoning the `in`->`is` fix, not finding the location.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-5787@solver_A",
+    "task_id": "pytest-dev__pytest-5787",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Serialize/deserialize chained exceptions; requires reading code.py ExceptionChainRepr structure and refactoring reports.py _to_json/_from_json. Edit is single-file but reasoning spans two files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [11, 24]}
+      ],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["edit_tool_retry_guard"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-5809@solver_A",
+    "task_id": "pytest-dev__pytest-5809",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "One-line change of lexer 'python3'/'python' -> 'text' in pastebin.create_new_paste. Location explicit, change trivial.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-5840@solver_A",
+    "task_id": "pytest-dev__pytest-5840",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC", "LONG_HISTORY_DEPENDENT"],
+      "evidence": "Windows mixed-case conftest import; fix spans pathlib.unique_path and config/__init__.py. Bug is platform-specific (case-insensitive FS) so oracle is hard to exercise on Linux; requires git archaeology of the casing-fix commit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "partial",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [25, 26, 27, 30, 31, 32]},
+        {"label": "STAGNATION", "severity": "MODERATE", "evidence_action_ids": [14, 16, 53]},
+        {"label": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "SEVERE", "evidence_action_ids": [75]}
+      ],
+      "primary_bottleneck": "BUDGET_EXHAUSTION_NONCONVERGENCE"
+    },
+    "candidate_interventions": ["budget_increase", "reduce_reproduction_overhead", "edit_tool_retry_guard"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-6197@solver_A",
+    "task_id": "pytest-dev__pytest-6197",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "LONG_HISTORY_DEPENDENT", "TARGETED_UNIT"],
+      "evidence": "Regression: package __init__.py eagerly imported via Package.collect _mount_obj_if_needed. Fix must preserve skip-marker propagation (#5830) while not importing empty packages; reasoning spans python.py/main.py/nodes.py/runner.py and the regressing commit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "implementing",
+      "progress": "partial",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [40, 42, 50, 55, 57, 60, 68, 69, 74]},
+        {"label": "FAILED_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [46, 47, 50, 54, 57, 59, 66, 71, 73]},
+        {"label": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "SEVERE", "evidence_action_ids": [75]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["budget_increase", "edit_tool_retry_guard"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-6202@solver_A",
+    "task_id": "pytest-dev__pytest-6202",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "PR points directly at getmodpath's `s.replace('.[', '[')` mangling param ids like '..['. Fix is removing one line in python.py; location explicit, change clear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [4, 5]},
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MILD", "evidence_action_ids": [9, 10]}
+      ],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["dependency_preinstall"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7236@solver_A",
+    "task_id": "pytest-dev__pytest-7236",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE"],
+      "evidence": "Only structural cue available: agent inspected _pytest/unittest.py TestCaseFunction setup/teardown. No issue text and run truncated; workload inference is low-confidence.",
+      "unknown_fields": ["l2_attributes_confidence"]
+    },
+    "execution_state": {
+      "phase": "blocked",
+      "progress": "minimal",
+      "candidate_location_found": null,
+      "plausible_patch_found": null,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "SEVERE", "evidence_action_ids": [1, 2]}
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["environment_repair"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Run terminated after 2 inspection actions via consecutive command timeouts; environment breakage is clear but workload/execution state are largely indeterminate."
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7324@solver_A",
+    "task_id": "pytest-dev__pytest-7324",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "-k/-m expression with True/False/None creates ast.Name on a constant (crash). Fix is in mark/expression.py (prefix idents); reasoning is about the AST constraint, single file, clear oracle in test_mark_expression.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7432@solver_A",
+    "task_id": "pytest-dev__pytest-7432",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "--runxfail short-circuits the skip-location fixup in pytest_runtest_makereport. Fix is a one-token control-flow change (elif->if) in skipping.py; subtle semantic reasoning, single file, clear test oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTEXT_MEMORY", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "SEVERE", "evidence_action_ids": [3, 5, 6, 7, 10, 29, 30]},
+        {"label": "REDUNDANT_FILE_REREAD", "severity": "MODERATE", "evidence_action_ids": [8, 11, 12, 17, 18, 19, 20, 23]},
+        {"label": "STAGNATION", "severity": "MODERATE", "evidence_action_ids": [5, 6, 7, 10, 13, 29, 30]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["edit_tool_retry_guard", "skip_redundant_reads"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7490@solver_A",
+    "task_id": "pytest-dev__pytest-7490",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Dynamically added xfail marker (request.node.add_marker) not honored because xfailed is fetched once before call. Fix re-evaluates xfail after yield in skipping.py; single file, subtle semantic timing issue.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [4, 5, 7, 9, 11]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["edit_tool_retry_guard"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7521@solver_A",
+    "task_id": "pytest-dev__pytest-7521",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "capfd strips carriage returns because EncodedFile (TextIOWrapper) applies default newline translation. Fix adds newline='' in FDCaptureBinary; requires locating capture.py internals and reasoning about TextIOWrapper newline semantics.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

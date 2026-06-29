@@ -140,3 +140,36 @@ post-freeze for transfer audit only): 2 independent annotators/trace + adjudicat
 triple-audit, using the FROZEN v1 taxonomy and the closed_label_annotator_v1 prompt. Then regenerate the
 per-task/per-model mappings and the semantic LoRA export over the full set, and re-run the red-team audit.
 Config-selection data remains blocked on real paired config outcomes (out of this project's CPU-only scope).
+
+
+---
+
+# FULL STAGE-B ANNOTATION RESULTS (2026-06-29)
+
+## Annotation volume (2,000 traces, 2 annotators + adjudicate-on-disagreement)
+
+| model | total | both-voted (AUTO_AGREED) | flagged for adjudication | single-vote |
+|-------|------:|----:|----:|----:|
+| solver_A | 500 | 315 | 155 | 30 |
+| solver_B | 500 | 276 | 215 | 9 |
+| solver_C | 500 | 204 | 277 | 19 |
+| solver_G | 500 | 264 | 229 | 7 |
+
+## Updated verdicts
+- **TAXONOMY_VERDICT: READY_WITH_LIMITATIONS** (frozen v1, workload-L1 the known weak axis)
+- **SEMANTIC_ANNOTATION_VERDICT: READY** — full Stage-B done: 2,000 traces, ~97% double-annotated, 0% invalid labels, evidence recovered for 97% of labeled traces. Adjudication-flagged conflicts (32-57%) auto-merged now; gemini adjudication of flagged conflicts is the refinement pass (in progress / follow-up).
+- **LORA_SEMANTIC_DATA_VERDICT: READY** — exports/lora_semantic_{train 1107 / val 225 / test 168}.jsonl over the CLEAN cohort (opus-4.7/4.5/sonnet-3.5), repo-disjoint, leakage-CLEAN. Skywork-32B = model-transfer holdout (500). 
+- **PARETO_POLICY_DATA_VERDICT: NOT_EMPIRICALLY_GROUNDED** (unchanged — no paired config outcomes).
+
+## Cohort decision (final)
+- CLEAN training cohort: opus-4.7 (500, incl. 34 matplotlib backfill), opus-4.5 (500), sonnet-3.5 (500).
+- Skywork-32B (500): SEPARATE open-weight-32B cohort, reported apart, model-transfer holdout, NOT in clean training.
+- SWE-agent-LM-32B + EntroPO: ARCHIVED (behavioral outliers; signatures kept, not annotated).
+- opus-4.6 (500): transfer holdout.
+
+## Key deliverables
+- reports/per_model_analysis.md — per-model semantic waste prevalence (real labels)
+- reports/per_model_opportunity.md — improvement-opportunity tiers (real labels, HEURISTIC)
+- mappings/per_model_summary.json — machine-readable per-model distributions
+- annotations/raw_votes/full/<solver>/ — raw a1+a2 votes (blinded); annotations/adjudicated/<solver>.jsonl — merged
+- exports/lora_semantic_*.jsonl — LoRA training data (clean cohort)

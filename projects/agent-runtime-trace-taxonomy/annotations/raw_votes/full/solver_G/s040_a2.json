@@ -1,0 +1,350 @@
+```json
+[
+  {
+    "trace_id": "sympy__sympy-21379@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue is a subs({1:1.0}) PolynomialError surfacing only with real symbols on Piecewise; root cause hidden behind decompose_power/as_base_exp/subs spread across expr.py, function.py, basic.py, piecewise.py. No explicit location given; finding the fault site is the dominant cost.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "STUCK",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label": "REDUNDANT_FILE_REREAD", "parent": "CONTEXT_MEMORY", "severity": "MODERATE", "evidence_action_ids": [14, 15, 16, 17]},
+        {"label": "STAGNATION", "parent": "CONTROL_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [14, 15, 16, 17]}
+      ],
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT", "BREAK_STAGNATION_LOOP"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-21596@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "LOCAL_CONTEXT"],
+      "evidence": "Target file (fancysets.py) found immediately; the hard part is reasoning the correct semantics for ImageSet intersect/contains with Reals (a wrong-result, not a crash). Edits concentrate in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "CONVERGED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "FAILED_RECOVERY", "parent": "CONTROL_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [12, 15, 16, 18, 20, 22, 24, 27]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "parent": "EDIT_PATCH", "severity": "MILD", "evidence_action_ids": [6]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["GUIDE_PATCH_STRATEGY", "ENFORCE_TEST_SUITE_RUN"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-21612@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Issue points directly at convert_frac in _parse_latex_antlr.py (missing denominator grouping); the change is a small targeted edit. Verification requires a generated antlr parser.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "BLOCKED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "ENVIRONMENT_BLOCKED", "parent": "ENVIRONMENT_TOOLING", "severity": "MODERATE", "evidence_action_ids": [2, 4, 6]},
+        {"label": "DEPENDENCY_SETUP_DRIFT", "parent": "ENVIRONMENT_TOOLING", "severity": "MILD", "evidence_action_ids": [3]}
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "PROVIDE_BUILD_TOOLING"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-21847@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Issue names itermonomials in monomials.py; bug is a logic error (max vs sum of powers for min_degrees). Localization trivial, fix is a one-line semantic correction.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "IN_PROGRESS",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "parent": "EDIT_PATCH", "severity": "MILD", "evidence_action_ids": [6]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["GUIDE_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-21930@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC"],
+      "evidence": "LaTeX printing of a daggered operator raised to a power; the difficulty is finding which printer path renders Bd(a)**2 (latex.py _print_Pow vs secondquant _latex methods). Requires tracing dispatch across files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label": "FAILED_RECOVERY", "parent": "CONTROL_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [0, 1, 2, 12, 13, 14, 15]},
+        {"label": "STAGNATION", "parent": "CONTROL_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [15, 16, 17]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["CLARIFY_PRINTER_DISPATCH", "PROVIDE_LOCATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-22080@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC"],
+      "evidence": "lambdify prints -Mod(x,y) as -x%y; the bug requires locating the responsible printer (_print_Mul/_print_Mod across codeprinter.py, lambdarepr.py, pycode.py). Heavy dispatch-tracing dominates.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "STUCK",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "STAGNATION", "parent": "CONTROL_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [9, 10, 11, 12, 15, 16, 17]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "parent": "EDIT_PATCH", "severity": "MODERATE", "evidence_action_ids": [6, 7, 13, 14, 18, 19]}
+      ],
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["BREAK_STAGNATION_LOOP", "GUIDE_EDIT_TOOL", "CLARIFY_PRINTER_DISPATCH"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-22456@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "codegen String argument-invariance bug requires understanding the Token/__slots__/not_in_args machinery and class hierarchy in codegen/ast.py; the fix is small but the comprehension cost dominates.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "IN_PROGRESS",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "PATCH_CHURN", "parent": "EDIT_PATCH", "severity": "MODERATE", "evidence_action_ids": [13, 14, 15]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "parent": "EDIT_PATCH", "severity": "MILD", "evidence_action_ids": [9]},
+        {"label": "DEPENDENCY_SETUP_DRIFT", "parent": "ENVIRONMENT_TOOLING", "severity": "MILD", "evidence_action_ids": [7]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["GUIDE_EDIT_TOOL", "PROVIDE_LOCATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-22714@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC"],
+      "evidence": "evaluate(False) + Point2D(Integer(1),Integer(2)) raises; fault traced from sympy_parser auto_number/stringify through sympify into geometry/point.py imaginary-coord check. Multi-file localization dominates.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "IN_PROGRESS",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "HELPER_TOOL_FAILURE_LOOP", "parent": "ENVIRONMENT_TOOLING", "severity": "SEVERE", "evidence_action_ids": [0, 1, 2, 3, 16, 20, 21, 22, 23]}
+      ],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP"
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "GUIDE_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-22914@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC"],
+      "evidence": "pycode lacks Min/Max support; difficulty is understanding printer dispatch (PythonCodePrinter vs StrPrinter, _known_funcs, _print_* registration) and why edits don't change output. Dispatch tracing dominates.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "SEARCH_LOCALIZATION"],
+      "l2_labels": [
+        {"label": "FAILED_RECOVERY", "parent": "CONTROL_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [2, 3, 4, 6, 7, 8, 10, 14, 16, 18, 22]},
+        {"label": "STAGNATION", "parent": "CONTROL_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [24, 25, 29, 30]},
+        {"label": "SEARCH_WITHOUT_NEW_EVIDENCE", "parent": "SEARCH_LOCALIZATION", "severity": "MILD", "evidence_action_ids": [26, 27, 28]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["CLARIFY_PRINTER_DISPATCH", "BREAK_STAGNATION_LOOP"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-23262@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC"],
+      "evidence": "lambdify drops the comma in single-element tuples; correct site is the printer used by lambdify (_EvaluatorPrinter), not the str/pycode _print_Tuple the solver first hypothesized. Cross-module dispatch tracing dominates.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "IN_PROGRESS",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT", "CLARIFY_PRINTER_DISPATCH"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-23413@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_FILE", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Issue names hermite_normal_form and describes the rank-deficient (flip/transpose) failure; two definitions exist (matrices/ and polys/matrices/). The reasoning about correct rank handling is the dominant work; location is largely given.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "EARLY",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

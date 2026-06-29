@@ -1,0 +1,392 @@
+Looking at this task, I have a clear, well-specified annotation job: label 12 blinded traces against the frozen v1 taxonomy and emit a JSON array. I'll work through each trace applying the boundary rules and evidence requirements, then output only the JSON.
+
+```json
+[
+  {
+    "trace_id": "django__django-11433@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue is a semantic bug in construct_instance (cleaned_data not overwriting model defaults). Location reachable by a single grep; crux is reasoning about which condition to drop in one file (django/forms/models.py).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [6, 7]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_VERIFICATION", "PROVIDE_TEST_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11451@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue names ModelBackend.authenticate and asks for an early username/password None guard. Location effectively explicit; existing auth_tests provide a clear oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [4, 5]}
+    },
+    "candidate_interventions": ["EDIT_TOOL_RETRY_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11477@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue is a URL-reverse logic bug (set symmetric_difference of kwargs/params/defaults) in resolvers.py. Core work is reformulating the conditional; test exists in check_framework/test_urls.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE"},
+      "evidence_action_ids": {"STAGNATION": [10, 11, 12, 13, 14, 17, 18, 19]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_COMMAND", "PROVIDE_TEST_HARNESS", "EARLY_TERMINATION_GUARD"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11490@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue is an ORM compiler bug for composed/combined queries with values_list (extra_select/annotation_select reset). Fix lives in sql/compiler.py & sql/query.py internals; deep patch reasoning.",
+      "unknown_fields": ["final_outcome"]
+    },
+    "execution_state": {
+      "phase": "patching",
+      "progress": "patch_drafted",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "EDIT_TOOL_MECHANICAL_FAILURE", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [1, 2, 3, 4, 12, 16, 18, 20, 22, 23, 24],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [6, 8, 9],
+        "DEPENDENCY_SETUP_DRIFT": [16, 17, 18, 19, 20, 22, 23]
+      }
+    },
+    "candidate_interventions": ["USE_EXISTING_TEST_RUNNER", "DISCOURAGE_SCRATCH_REPRO", "PROVIDE_TEST_HARNESS"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11532@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Issue is a small targeted patch (IDNA/punycode encode domain for email headers in core/mail/utils.py) with the mail test suite as oracle.",
+      "unknown_fields": ["candidate_location_found", "plausible_patch_found"]
+    },
+    "execution_state": {
+      "phase": "stuck",
+      "progress": "blocked",
+      "candidate_location_found": null,
+      "plausible_patch_found": null,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE"},
+      "evidence_action_ids": {"STAGNATION": [0, 1, 4, 7]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_COMMAND", "PROVIDE_TEST_HARNESS", "EARLY_TERMINATION_GUARD"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11551@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue requires restructuring _check_list_display_item (E108) control flow in admin/checks.py to try get_field before failing; oracle is modeladmin/test_checks.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "patching",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["PATCH_CHURN", "VERIFICATION_GAP"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "SEVERE", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {
+        "PATCH_CHURN": [10, 11, 12, 13, 14],
+        "VERIFICATION_GAP": [14, 15]
+      }
+    },
+    "candidate_interventions": ["EDIT_TOOL_RETRY_GUIDANCE", "ENFORCE_POST_EDIT_VERIFICATION", "PROVIDE_TEST_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11555@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Issue: order_by crashes when Meta.ordering holds OrderBy expressions; fix get_order_dir in sql/query.py after reading OrderBy in expressions.py. Core is patch reasoning across two files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [6, 7]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_VERIFICATION", "PROVIDE_TEST_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11603@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue names Avg/Sum aggregates and asks to set allow_distinct=True in aggregates.py. Near-mechanical single-file change with explicit targets.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [2, 3, 4]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_VERIFICATION", "PROVIDE_TEST_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11728@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "LOCAL_CONTEXT", "TARGETED_UNIT"],
+      "evidence": "Issue: replace_named_groups (admindocs/utils.py) fails to replace a trailing named group. Core is reasoning about the parenthesis-balancing loop; bug reproducible with a small script.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [2, 4, 6]}
+    },
+    "candidate_interventions": ["DISCOURAGE_DEBUG_PRINT_CHURN", "USE_DEBUGGER_OR_THINK"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11734@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "EXPENSIVE_SUITE"],
+      "evidence": "Issue: OuterRef in exclude()/filter on combined queries (ResolvedOuterRef/Subquery in expressions.py). Deep ORM patch reasoning; verification needs the queries test suite.",
+      "unknown_fields": ["final_outcome"]
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "patch_drafted",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "DEPENDENCY_SETUP_DRIFT", "STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"REDUNDANT_FILE_REREAD": "MODERATE", "DEPENDENCY_SETUP_DRIFT": "MILD", "STAGNATION": "MODERATE"},
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [0, 2],
+        "DEPENDENCY_SETUP_DRIFT": [8, 9],
+        "STAGNATION": [16, 17, 18, 19]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_TEST_HARNESS", "PROVIDE_TEST_COMMAND", "PREVENT_REDUNDANT_REREAD"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11740@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: changing a field to a ForeignKey should add a migration dependency; fix in db/migrations/autodetector.py generate_altered_fields/add_operation. Reasoning over a large single file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [8, 9]}
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_VERIFICATION", "PROVIDE_TEST_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11749@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue: call_command should pass required args from required mutually-exclusive groups; fix the argument-collection logic in core/management/__init__.py. Targeted patch reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "patch_applied",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [4, 5],
+        "VERIFICATION_GAP": [7, 8]
+      }
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_VERIFICATION", "EDIT_TOOL_RETRY_GUIDANCE", "PROVIDE_TEST_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

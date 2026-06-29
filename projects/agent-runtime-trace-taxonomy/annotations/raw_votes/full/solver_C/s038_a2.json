@@ -1,0 +1,436 @@
+```json
+[
+  {
+    "trace_id": "sympy__sympy-16766@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: pycode() does not support Indexed; clear repro provided. Fix is adding a _print_Indexed method to the PythonCodePrinter class — main effort is locating the printer class.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [10, 11, 13, 19, 20, 21],
+        "FILENAME_SEARCH_THRASH": [3, 4, 5]
+      }
+    },
+    "candidate_interventions": ["harden_edit_tool", "provide_location_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16792@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "INTEGRATION", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: autowrap cython backend mishandles array arg absent from final expr; the real fix is in code generation (autowrap.py/ccode.py). Verifying genuinely requires a compile toolchain.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "TERMINATED_NO_FIX",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 4, 6]
+      }
+    },
+    "candidate_interventions": ["environment_fix"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16886@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: Morse code map has '----':'1' instead of '.----':'1'. A single dict-literal correction; the only work is finding the line via content search.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MILD"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [3, 4, 5, 6]
+      }
+    },
+    "candidate_interventions": ["prompt_run_tests"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17139@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: simplify(cos(x)**I) raises on complex exponent comparison; traceback points to fu.py. Fix is reasoning about the right complex-exponent guard.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17318@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: sqrtdenest IndexError on complex surd; deep single-file algorithm (sqrtdenest.py). The input is hard to construct unevaluated, making the oracle unclear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "TERMINATED",
+      "progress": "BUDGET_EXHAUSTED_NO_CONVERGENCE",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [36, 37, 38, 39, 43, 45, 57, 58, 59],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [23, 24, 36, 38, 49, 52, 62],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [64]
+      }
+    },
+    "candidate_interventions": ["discourage_scratch_churn", "harden_edit_tool", "budget_increase"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17630@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "INTEGRATION"],
+      "evidence": "Issue: BlockMatrix with ZeroMatrix blocks collapses incorrectly under repeated _blockmul; fix spans __new__ and _blockmul in blockmatrix.py, exercised through matrix-op integration.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [6, 7, 12, 17, 18, 20],
+        "FAILED_RECOVERY": [24, 26, 29, 32, 34, 36, 38, 40]
+      }
+    },
+    "candidate_interventions": ["harden_edit_tool"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17655@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: point1 + sympify(2.0)*point2 fails while the reversed order works; fix is in Point.__add__ in geometry/point.py with a clearly stated failing case.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18189@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE"],
+      "evidence": "Issue: diophantine result depends on syms ordering with permute=True; fix threads through several functions (diophantine, merge_solution, _diop_general_sum_of_even_powers) in diophantine.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [8, 9, 10, 11, 29, 30, 31, 32, 33, 34, 39],
+        "FAILED_RECOVERY": [26, 27, 36, 39, 40]
+      }
+    },
+    "candidate_interventions": ["harden_edit_tool"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18199@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: nthroot_mod misses the a % p == 0 root; small guard added in residue_ntheory.py. Main effort is locating the function (not in modular.py as guessed).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [8, 9, 10],
+        "FILENAME_SEARCH_THRASH": [0, 1, 2]
+      }
+    },
+    "candidate_interventions": ["harden_edit_tool", "provide_location_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18211@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": "Issue: Eq(...).as_set() raises NotImplementedError instead of returning a ConditionSet; fix is in _eval_as_set in core/relational.py. Main effort is locating that method.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [5, 6, 7, 8, 9, 10],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [18, 19]
+      }
+    },
+    "candidate_interventions": ["provide_location_hint", "harden_edit_tool"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18698@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: sqf_list returns wrong multiplicity grouping (silent wrong output, no error). Underlying algorithm lives in sqfreetools; understanding/fixing the decomposition is the core difficulty.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "TERMINATED",
+      "progress": "BUDGET_EXHAUSTED_NO_EDIT",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "SEARCH_LOCALIZATION", "CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "SEARCH_WITHOUT_NEW_EVIDENCE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "STAGNATION": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [26, 39, 49, 59, 69, 79],
+        "REDUNDANT_FILE_REREAD": [28, 29, 31, 42, 44, 52, 54, 62, 64, 72, 74, 81],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [27, 30, 40, 43, 50, 53, 60, 63, 70, 73, 80],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [82]
+      }
+    },
+    "candidate_interventions": ["discourage_redundant_search", "provide_location_hint", "budget_increase"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18763@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: LaTeX of Subs needs parentheses around the substituted expression; small change to _print_Subs in printing/latex.py, located via search.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [8, 15, 16]
+      }
+    },
+    "candidate_interventions": ["harden_edit_tool"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

@@ -1,0 +1,357 @@
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-8595@solver_B",
+    "task_id": "sphinx-doc__sphinx-8595",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR", "SILENT_SEMANTIC"],
+      "evidence": ["Issue gives a clear minimal repro (empty __all__) with expected behavior; crux is the falsy-empty-list vs None semantic distinction in a single autodoc handler"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8621@solver_B",
+    "task_id": "sphinx-doc__sphinx-8621",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Issue requires designing a separator-vs-keystroke splitting algorithm in KeyboardTransform; location is narrow but the crux is the parsing logic"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8638@solver_B",
+    "task_id": "sphinx-doc__sphinx-8638",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": ["Issue describes unwanted auto-linking of instance variables; the dominant work is finding that PyTypedField('variable', rolename='obj') in the Python domain causes the xref, requiring cross-file understanding of docfields and xref resolution"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8721@solver_B",
+    "task_id": "sphinx-doc__sphinx-8721",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR", "SILENT_SEMANTIC"],
+      "evidence": ["Issue is a missing guard: collect_pages lacks the epub/viewcode_enable_epub early-return that doctree_read already has; crux is locating the asymmetric check site"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9229@solver_B",
+    "task_id": "sphinx-doc__sphinx-9229",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "UNCLEAR_ORACLE"],
+      "evidence": ["Issue reports inconsistent type-alias docstring rendering; desired behavior is ambiguous (existing tests expect both docstring AND 'alias of'), and the fix requires reasoning across update_content/get_doc interactions in autodoc mixins"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [53, 54, 55, 56]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9230@solver_B",
+    "task_id": "sphinx-doc__sphinx-9230",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Issue: ':param dict(str, str) name' splits incorrectly; crux is writing a paren/bracket-aware split helper in docfields, a localized but logic-centric fix"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [13, 15, 16, 17]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9258@solver_B",
+    "task_id": "sphinx-doc__sphinx-9258",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Feature request: support '|' union syntax in docstring :type:; crux is locating that PyXrefMixin.make_xrefs delims regex (not _parse_annotation) must be extended"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9281@solver_B",
+    "task_id": "sphinx-doc__sphinx-9281",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Issue: Enum default values render with ugly repr; crux is locating object_description in util/inspect and adding an enum branch — a localized, low-reasoning fix"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9320@solver_B",
+    "task_id": "sphinx-doc__sphinx-9320",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Issue: quickstart's is_path validator rejects empty Enter so exit path is unreachable; crux is locating the validator/ask_user flow in a single CLI file"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severities": {"PATCH_CHURN": "MILD"},
+      "evidence_action_ids": {"PATCH_CHURN": [10, 12, 13, 14]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9367@solver_B",
+    "task_id": "sphinx-doc__sphinx-9367",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Issue nearly pinpoints the fix (1-element tuple in visit_Tuple); crux is the trailing-comma special case in the AST unparser"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9461@solver_B",
+    "task_id": "sphinx-doc__sphinx-9461",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "CROSS_MODULE", "CROSS_CUTTING", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": ["Issue: @classmethod @property not documented (py3.9+); fix spans detection (util/inspect), member collection (importer), documenter (autodoc), and directive (domains/python) — genuinely cross-cutting reasoning"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "PATCH_CHURN"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {"HELPER_TOOL_FAILURE_LOOP": "SEVERE", "PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {
+        "HELPER_TOOL_FAILURE_LOOP": [35, 42, 43, 44, 45, 50, 51, 52, 65, 67],
+        "PATCH_CHURN": [25, 35, 41, 50, 52, 60, 62]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

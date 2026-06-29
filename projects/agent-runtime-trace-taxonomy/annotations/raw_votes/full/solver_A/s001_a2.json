@@ -1,0 +1,399 @@
+Looking at this, it's a self-contained annotation task with explicit output requirements — pure data labeling, no personal context. I'll analyze each trace against the frozen taxonomy and emit the JSON array.
+
+```json
+[
+  {
+    "trace_id": "astropy__astropy-14508@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Issue is float formatting in _format_float (precision expansion 0.009125 -> 0.009124999999999999); location is a single known function, difficulty is getting formatting/round-trip + inf/nan edge logic right.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "done",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14539@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "FITSDiff VLA handling; once the `\"P\" in col.format` branch in diff.py is found, the fix is a trivial `or \"Q\"` addition — the work is locating the branch.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "done",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14598@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Double single-quote loss in CONTINUE-convention long strings; localization to _split/_strg regex is quick but the difficulty is reasoning about the escape/unescape logic of the regex and the `&` continuation marker.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "done",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-14995@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "NDDataRef mask handling when one operand mask is None; fix is a one-condition change in _arithmetic_mask after reasoning about the branch coverage.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "done",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7166@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "InheritDocstrings metaclass fails for properties; fix requires recognizing property is a data descriptor (inspect.isdatadescriptor) in a known single function.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "done",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7336@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT"],
+      "evidence": "quantity_input crashes when return annotation is None; fix is guarding the return-annotation check in decorators.py, a known location.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "done",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Note: only a POC reproduction (event 5) was run, no regression test suite; reproduction ran so no VERIFICATION_GAP labeled, but verification_sufficient set false."
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7606@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "UnrecognizedUnit.__eq__ crashes on None; fix mirrors the existing UnitBase.__eq__ try/except pattern in the same file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "done",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-7671@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "minversion crashes via distutils LooseVersion TypeError on dev versions; fix adds a pkg_resources fallback in a known function.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "done",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Minor str_replace_editor view/range tool errors (events 1,9) were non-material single-step retries, not labeled."
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-8707@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "SEARCH_REQUIRED", "EXPENSIVE_SUITE", "INTEGRATION"],
+      "evidence": "Header.fromstring / Card.fromstring must accept bytes; fix is a bytes->str decode applied across two files (card.py, header.py).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "done",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {"ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [14, 15, 16, 17, 24, 25, 27]}
+    },
+    "candidate_interventions": ["environment_fix"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "A large block of events fought a broken nose/pytest teardown harness and pre-existing failures; classified as environment (not reasoning) per env-vs-reasoning rule. Agent confirmed failures pre-existing via git stash."
+    }
+  },
+  {
+    "trace_id": "astropy__astropy-8872@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "EXPENSIVE_SUITE"],
+      "evidence": "Quantity drops float16/float32 dtype due to can_cast(np.float32,...) check; fix is reasoning about which dtype.kinds to upcast in quantity.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "done",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "PATCH_CHURN"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {"ENVIRONMENT_BLOCKED": "MODERATE", "PATCH_CHURN": "MILD"},
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [14, 15, 16, 17, 18, 22, 24, 26],
+        "PATCH_CHURN": [6, 7, 8, 10]
+      }
+    },
+    "candidate_interventions": ["environment_fix"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Edits 6-8 reconsidered the same dtype.kind expression repeatedly before external evidence (MILD churn, converged). Bulk of run fought np.int/distutils deprecation pre-existing failures (environment, MODERATE)."
+    }
+  },
+  {
+    "trace_id": "django__django-10097@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "URLValidator regex wrongly accepts invalid userinfo chars; the task is crafting the userinfo regex sub-pattern in validators.py while preserving valid-url cases.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "terminated",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE", "EDIT_TOOL_MECHANICAL_FAILURE", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {
+        "STAGNATION": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [51, 54, 56, 60, 62, 64, 66, 68, 70, 72, 74],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [8],
+        "DEPENDENCY_SETUP_DRIFT": [25]
+      }
+    },
+    "candidate_interventions": ["environment_fix", "budget_increase"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Fix was completed and verified (tests pass at 50), but str_replace_editor and the submit tool are broken under Python 3.5; the agent looped ~11 identical failing submits and was autosubmitted at the cost limit. Root cause is broken harness tooling; STAGNATION is the dominant observable waste."
+    }
+  },
+  {
+    "trace_id": "django__django-10554@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": "Union queryset ordering breaks with derived querysets; the bug spans compiler.py/expressions.py/query.py and is hard to reproduce (SQLite doesn't surface the column-mismatch), so the dominant work is localizing the mutation/ordering path.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "localizing",
+      "progress": "low",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY"],
+      "l2_labels": ["STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {
+        "STAGNATION": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [11, 30, 31, 32, 33, 34, 58, 59, 64, 66, 67, 74, 75],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75],
+        "REDUNDANT_FILE_REREAD": [13, 24, 54, 56, 57, 62, 17, 18, 19]
+      }
+    },
+    "candidate_interventions": ["repro_provided", "localization_hint", "budget_increase"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Agent never reproduced the bug or edited production code; it cycled through 5 repro scripts (events 11,31,33,58,67,74) and repeatedly re-read compiler.py/expressions.py/sql/query.py without converging, exiting at the cost limit (75)."
+    }
+  }
+]
+```

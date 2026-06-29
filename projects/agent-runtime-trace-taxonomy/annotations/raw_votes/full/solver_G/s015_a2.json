@@ -1,0 +1,388 @@
+```json
+[
+  {
+    "trace_id": "django__django-15128@solver_G",
+    "task_id": "django__django-15128",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "Issue is qs1|qs2 raising AssertionError in change_aliases during combine(); fix requires reasoning across table_alias/join/combine/change_aliases alias-generation logic in one file (query.py).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_applied_repro_passed_suite_blocked",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [9, 13, 14]}
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL", "PRECONFIGURED_TEST_ENV"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15161@solver_G",
+    "task_id": "django__django-15161",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "MULTI_FILE"],
+      "evidence": "Task is mechanically adding @deconstructible(path=...) decorators to known expression classes (ExpressionWrapper, OrderBy) in expressions.py; locations are class definitions.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTATION",
+      "progress": "non_convergent_edit_loop",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {"STAGNATION": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"STAGNATION": [1, 3, 5, 7], "EDIT_TOOL_MECHANICAL_FAILURE": [2, 4, 6]}
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL", "EARLY_STOP_ON_LOOP"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15252@solver_G",
+    "task_id": "django__django-15252",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION"],
+      "evidence": "Issue explicitly names MigrationRecorder.ensure_schema needing to respect db_router.allow_migrate; localized, targeted single-method change in recorder.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [4, 5]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_COMMAND", "PRECONFIGURED_TEST_ENV"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15268@solver_G",
+    "task_id": "django__django-15268",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "INTEGRATION", "EXPLICIT_LOCATION"],
+      "evidence": "Issue concerns autodetector generating redundant AlterFooTogether removal ops; fix is in _generate_(removed_)altered_foo_together in autodetector.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_applied_verification_blocked",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {"ENVIRONMENT_BLOCKED": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [8, 9, 11, 12], "EDIT_TOOL_MECHANICAL_FAILURE": [4]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_COMMAND", "PRECONFIGURED_TEST_ENV"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15277@solver_G",
+    "task_id": "django__django-15277",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": "Issue gives the exact change (guard MaxLengthValidator with max_length is not None) in CharField.__init__; main work is locating the (non-unique) line in fields/__init__.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MILD", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [8, 11], "EDIT_TOOL_MECHANICAL_FAILURE": [6]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_COMMAND"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15278@solver_G",
+    "task_id": "django__django-15278",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE"],
+      "evidence": "Issue: SQLite cannot add nullable unique OneToOneField; fix requires understanding add_field path across operations/fields.py, base/schema.py, sqlite3/schema.py and changing the remake-table condition.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["VERIFICATION_GAP", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE", "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [6, 7], "SEARCH_WITHOUT_NEW_EVIDENCE": [0, 1]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_COMMAND", "REPRO_HARNESS_PROVIDED"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15280@solver_G",
+    "task_id": "django__django-15280",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Subtle prefetch_related deferred-fields bug; agent must trace Prefetch/_prefetch_related_objects/prefetch_one_level/get_current_queryset in query.py to find where the queryset must be cloned.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_applied_verification_blocked",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {"ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [8, 10, 11, 13]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_COMMAND", "PRECONFIGURED_TEST_ENV"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15315@solver_G",
+    "task_id": "django__django-15315",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "SILENT_SEMANTIC"],
+      "evidence": "Issue: Field.__hash__ mutates after contribute_to_class assigns model; fix is reverting __hash__ to hash(creation_counter). Location and intended fix are explicit; difficulty is in reproduction.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_applied_repro_passed",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "FAILED_RECOVERY"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"PREMATURE_SCRATCH_REPRO": [5, 7, 9, 11, 13, 15, 19, 21], "FAILED_RECOVERY": [6, 8, 10, 12, 14, 16, 20]}
+    },
+    "candidate_interventions": ["REPRO_HARNESS_PROVIDED", "PRECONFIGURED_TEST_ENV"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15368@solver_G",
+    "task_id": "django__django-15368",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPENSIVE_SUITE", "INTEGRATION"],
+      "evidence": "Issue: bulk_update with F() expressions; fix in query.py type handling. Verification requires the Django test harness (runtests.py).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "patch_claimed_targeted_verification_failed",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {"STAGNATION": "SEVERE"},
+      "evidence_action_ids": {"STAGNATION": [7, 8, 9, 10, 11, 13, 14, 15, 16]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_COMMAND", "EARLY_STOP_ON_LOOP"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15375@solver_G",
+    "task_id": "django__django-15375",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC"],
+      "evidence": "aggregate(default=...) after annotate() crash; agent must navigate expressions.py and sql/compiler.py (as_sql/get_from_clause/get_select/get_default_columns) to localize the compilation defect.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "patch_applied_unverified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [13, 14]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_COMMAND", "REPRO_HARNESS_PROVIDED"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15380@solver_G",
+    "task_id": "django__django-15380",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SEARCH_REQUIRED"],
+      "evidence": "KeyError traceback points to generate_renamed_fields line in autodetector.py; one-token fix (old_model_name -> model_name). Agent also used git blame to confirm the regression.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "complete_verified",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15382@solver_G",
+    "task_id": "django__django-15382",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Exists() over empty queryset drops the WHERE clause (EmptyResultSet); fix requires reasoning about Exists/Subquery.as_sql SQL generation in expressions.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "non_convergent_fix_still_failing",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "FAILED_RECOVERY": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"PREMATURE_SCRATCH_REPRO": [6, 8, 10, 12, 14], "FAILED_RECOVERY": [15, 17, 18], "EDIT_TOOL_MECHANICAL_FAILURE": [3]}
+    },
+    "candidate_interventions": ["REPRO_HARNESS_PROVIDED", "PRECONFIGURED_TEST_ENV", "ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

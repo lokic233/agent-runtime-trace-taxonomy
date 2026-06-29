@@ -1,0 +1,493 @@
+```json
+[
+  {
+    "trace_id": "sympy__sympy-14531@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "Issue is about printer behavior: sstr should respect sympy_integers across Relational/Limit (str.py) AND python() should emit symbol definitions (python.py). Requires reasoning about how printer settings propagate and what python() should output; spans two printer files; no error, wrong output (silent semantic).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "labels": [
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "SEVERE",
+          "evidence_action_ids": [16, 17, 26, 27, 32, 33, 38, 39, 44, 45, 50, 51, 58, 59]
+        },
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "FAILED_RECOVERY",
+          "severity": "SEVERE",
+          "evidence_action_ids": [62, 63, 64, 65, 66, 67, 68, 70, 71, 72]
+        },
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "BUDGET_EXHAUSTION_NONCONVERGENCE",
+          "severity": "MODERATE",
+          "evidence_action_ids": [73]
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL", "INCREASE_BUDGET"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14711@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "sum([N.x, 0*N.x]) raises in _check_vector; fix is a tiny guard once the correct vector.py (physics vs vector) is located. Hard part is disambiguating/locating the file and function.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14976@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "CROSS_FILE"],
+      "evidence": "lambdify mpmath loses precision on rationals; the fix is a small _print_Rational on MpmathPrinter, but it requires tracing lambdify -> lambdarepr -> pycode -> codeprinter to find the right printer class. Localization across modules dominates.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "labels": [
+        {
+          "l1": "CONTEXT_MEMORY",
+          "l2": "REDUNDANT_FILE_REREAD",
+          "severity": "MODERATE",
+          "evidence_action_ids": [5, 8, 14, 17, 19, 36, 41, 44]
+        },
+        {
+          "l1": "SEARCH_LOCALIZATION",
+          "l2": "SEARCH_WITHOUT_NEW_EVIDENCE",
+          "severity": "MILD",
+          "evidence_action_ids": [27, 28, 29, 32, 34, 35, 37, 38]
+        }
+      ],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD"
+    },
+    "candidate_interventions": ["DEDUP_READS", "SEARCH_STRATEGY_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15017@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Array(3) (rank-0) gives len 0; fix is a small rank==0 guard in NDimArray.__len__. Main effort is locating ndim_array.py via grep since the filename isn't NDimArray.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "MILD",
+          "evidence_action_ids": [13, 14]
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15345@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "mathematica_code(Max(x,2)) prints Max(2,x) instead of Max[x,2]; printer file is small and easily found. Hard part is reasoning about which method handles Max and how to format/order args (silent wrong output).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "FAILED_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [8, 9, 10, 11, 12, 13, 20, 21, 22]
+        },
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "MILD",
+          "evidence_action_ids": [14, 15]
+        }
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL", "PATCH_REASONING_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15349@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "MULTI_FILE", "TARGETED_UNIT"],
+      "evidence": "to_rotation_matrix has a wrong sign; issue points to ~line 489 (explicit location). Fix is a one-char sign change in quaternion.py plus updating the existing test expectation; reasoning about the correct sign/matrix entries dominates.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "FAILED_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [17, 23, 24, 25, 26]
+        },
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "MILD",
+          "evidence_action_ids": [13]
+        }
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["PROVIDE_TEST_ORACLE", "ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15599@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Mod(3*i,2) should simplify to Mod(i,2); issue suggests code near mod.py line 123. Fix requires reasoning about the eval/distribution logic in a single file (mod.py); wrong simplification output, not an error.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "labels": [
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "SEVERE",
+          "evidence_action_ids": [5, 6, 7, 11, 16, 17, 19]
+        },
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "FAILED_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [8, 9, 18, 20]
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15809@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Min()/Max() with no args should return -oo/oo; class is easily located in miscellaneous.py. The hard part is reasoning about where in the MinMaxBase/Application/LatticeOp machinery the no-arg case must be handled (the solver's __new__ override never takes effect). Custom repro script (unclear oracle).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_TEST", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "labels": [
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "STAGNATION",
+          "severity": "SEVERE",
+          "evidence_action_ids": [49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 63, 64, 65, 66, 67, 68, 70, 71, 72]
+        },
+        {
+          "l1": "VERIFICATION",
+          "l2": "REDUNDANT_TEST",
+          "severity": "MODERATE",
+          "evidence_action_ids": [48, 55, 62, 69]
+        },
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "MODERATE",
+          "evidence_action_ids": [6, 7, 10, 11, 17, 20, 26, 27, 36]
+        },
+        {
+          "l1": "CONTROL_RECOVERY",
+          "l2": "BUDGET_EXHAUSTION_NONCONVERGENCE",
+          "severity": "MODERATE",
+          "evidence_action_ids": [73]
+        }
+      ],
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": ["EARLY_STOP_ON_STAGNATION", "PATCH_REASONING_HINT", "ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15875@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "REPOSITORY_CONTEXT"],
+      "evidence": "is_zero inconsistency for a complex expr; is_zero is assumption-generated (not a plain method), so locating the effective code (_eval_is_zero in Add) requires broad cross-module search. Localization dominates the run.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTEXT_MEMORY"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "FILENAME_SEARCH_THRASH", "REDUNDANT_FILE_REREAD"],
+      "labels": [
+        {
+          "l1": "SEARCH_LOCALIZATION",
+          "l2": "SEARCH_WITHOUT_NEW_EVIDENCE",
+          "severity": "MODERATE",
+          "evidence_action_ids": [8, 9, 15, 16, 18, 28, 29, 30, 32, 35]
+        },
+        {
+          "l1": "SEARCH_LOCALIZATION",
+          "l2": "FILENAME_SEARCH_THRASH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [3, 4, 19, 20, 33, 36]
+        },
+        {
+          "l1": "CONTEXT_MEMORY",
+          "l2": "REDUNDANT_FILE_REREAD",
+          "severity": "MILD",
+          "evidence_action_ids": [7, 27, 17, 31]
+        }
+      ],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE"
+    },
+    "candidate_interventions": ["SEARCH_STRATEGY_GUIDANCE", "PROVIDE_LOCATION_HINT", "DEDUP_READS"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15976@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Presentation MathML renders symbol 'x2' as x subscript 2; fix is in the presentation _print_Symbol of mathml.py. Need to locate the correct _print_Symbol (two definitions exist) and adjust split_super_sub handling.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16450@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "posify drops the finite (and other) assumptions on the dummy symbol; fix is a small change to the Dummy construction in posify (simplify.py). Once located via grep, the patch is straightforward.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16597@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "even=True should imply finite; symbol.py is easily found. Hard part is deciding where/how to propagate the finite implication for an even symbol (assumption reasoning); no error, just missing implication.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "labels": [
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "MODERATE",
+          "evidence_action_ids": [7, 8, 10]
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

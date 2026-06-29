@@ -1,0 +1,343 @@
+[
+  {
+    "trace_id": "django__django-11149@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue concerns enforcing view-only permissions for admin inlines; fix spans options.py (form/permission logic) plus tabular/stacked/fieldset templates. Core difficulty is reasoning about where to enforce permission, not finding files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "PATCH_CHURN"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE", "PATCH_CHURN": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [10, 15, 20, 23, 24], "PATCH_CHURN": [10, 11, 12]}
+    },
+    "candidate_interventions": ["RUN_EXISTING_TEST_SUITE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11163@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue is a single-line semantics fix in model_to_dict (empty fields list should yield empty dict). Localization is trivial; oracle is a simple unit test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "CUSTOM_TEST_PASSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {"PREMATURE_SCRATCH_REPRO": [4, 5, 9, 12, 14, 15, 19, 20, 22, 26, 33, 37, 39], "DEPENDENCY_SETUP_DRIFT": [7, 8, 24, 29]}
+    },
+    "candidate_interventions": ["USE_REPO_TEST_RUNNER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11179@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT"],
+      "evidence": "Issue points to deletion.py ~line 280 fast-delete path; fix sets PK to None. Location is explicit; work is a small source change plus a unit test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "TESTS_PASSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [3, 4, 10, 11, 14]}
+    },
+    "candidate_interventions": ["RELIABLE_EDIT_PLACEMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11206@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: numberformat.format renders tiny Decimals in scientific notation when decimal_pos given; expected 0.00. Clear repro, single-file fix in numberformat.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "REPRO_PASSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [9, 10, 13, 14, 15]}
+    },
+    "candidate_interventions": ["RELIABLE_EDIT_PLACEMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11211@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "GenericForeignKey prefetch_related with UUID PK; root cause is buried in contenttypes fields.py prefetch machinery, requiring exploration across fields.py and query.py before a small fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "CUSTOM_TEST_PASSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {"PREMATURE_SCRATCH_REPRO": [0, 1, 7, 9, 11, 13, 15, 17, 19, 20, 22, 28, 30, 32], "DEPENDENCY_SETUP_DRIFT": [24, 26]}
+    },
+    "candidate_interventions": ["USE_REPO_TEST_RUNNER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11239@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Add SSL options (sslmode/sslcert/sslkey) to postgresql dbshell client. Single-file change in client.py with an existing targeted test (test_postgresql.py).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [5, 6, 8, 9, 10, 11]}
+    },
+    "candidate_interventions": ["USE_REPO_TEST_RUNNER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11265@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "FilteredRelation with exclude()/~Q() raises FieldError; the real fix lies in query-building (sql/query.py). Issue references the filtered_relation test, but resolution requires source reasoning in the ORM.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "NO_SOURCE_FIX_TEST_WORKAROUND_ONLY",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [10, 11, 13, 15, 17, 19]}
+    },
+    "candidate_interventions": ["REDIRECT_TO_SOURCE_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11276@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Replace custom escape() with stdlib html.escape() in utils/html.py; single-quote encoding changes to &#x27;. Clear, single-file change with a targeted test (test_html.py).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "TESTS_PASSING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PATCH_CHURN", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [22, 23, 26, 27, 28, 29, 30], "DEPENDENCY_SETUP_DRIFT": [5, 7, 9, 17, 18, 20]}
+    },
+    "candidate_interventions": ["RELIABLE_EDIT_PLACEMENT", "USE_REPO_TEST_RUNNER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11292@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT"],
+      "evidence": "Expose --skip-checks on management BaseCommand. Location (create_parser/execute in base.py) is well-defined; skip_checks already exists internally, so the change is localized.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "PATCH_CORRUPTED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "SEARCH_LOCALIZATION", "VERIFICATION"],
+      "l2_labels": ["PATCH_CHURN", "FILENAME_SEARCH_THRASH", "VERIFICATION_GAP"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "SEVERE", "FILENAME_SEARCH_THRASH": "MODERATE", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [9, 10, 15, 16, 23, 24, 26, 27], "FILENAME_SEARCH_THRASH": [17, 18, 19, 20], "VERIFICATION_GAP": [23, 24, 32]}
+    },
+    "candidate_interventions": ["RELIABLE_EDIT_PLACEMENT", "RUN_EXISTING_TEST_SUITE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11299@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "CheckConstraint with OR emits fully-qualified column names breaking SQLite table rename; fix touches constraints.py _get_check_sql and involves schema backends. Requires reasoning about SQL generation across files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["VERIFICATION_GAP", "PATCH_CHURN", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE", "PATCH_CHURN": "MILD", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [11, 28, 29, 32], "PATCH_CHURN": [11, 28, 29], "DEPENDENCY_SETUP_DRIFT": [22, 23, 24, 26]}
+    },
+    "candidate_interventions": ["USE_REPO_TEST_RUNNER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11333@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "CROSS_MODULE"],
+      "evidence": "get_resolver should resolve settings.ROOT_URLCONF before caching to avoid multiple URLResolvers; change spans resolvers.py and propagates to urls/__init__.py, base.py, handlers/base.py across modules.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "PATCH_CHURN"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "SEVERE", "PATCH_CHURN": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [2, 4, 6, 8, 9, 11, 17], "PATCH_CHURN": [2, 4]}
+    },
+    "candidate_interventions": ["RUN_EXISTING_TEST_SUITE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

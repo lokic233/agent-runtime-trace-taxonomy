@@ -1,0 +1,536 @@
+[
+  {
+    "sample_id": "sympy__sympy-13372@solver_G:FULL",
+    "trace_id": "sympy__sympy-13372@solver_G",
+    "task_id": "sympy__sympy-13372",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "SILENT_SEMANTIC", "PARTIAL"],
+      "evidence": ["Issue concerns symbolic evalf behavior localized to sympy/core/evalf.py; trace repeatedly edits and verifies one evalf code path."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "RECOVER",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "FAILED_RECOVERY"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [0, 3, 6, 9, 10, 12],
+        "FAILED_RECOVERY": [1, 2, 5, 8, 11, 12]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13480@solver_G:FULL",
+    "trace_id": "sympy__sympy-13480@solver_G",
+    "task_id": "sympy__sympy-13480",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace locates a variable-name mismatch in hyperbolic.py and fixes one local reference from cotm to cothm."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13551@solver_G:FULL",
+    "trace_id": "sympy__sympy-13551@solver_G",
+    "task_id": "sympy__sympy-13551",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": ["Task requires changing Product simplification logic in sympy/concrete/products.py and validating symbolic behavior."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "RECOVER",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "ENVIRONMENT_BLOCKED": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [5, 6, 7],
+        "ENVIRONMENT_BLOCKED": [10, 11, 12]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13615@solver_G:FULL",
+    "trace_id": "sympy__sympy-13615@solver_G",
+    "task_id": "sympy__sympy-13615",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "SILENT_SEMANTIC", "PARTIAL"],
+      "evidence": ["Trace modifies Interval/FiniteSet complement simplification in sympy/sets/sets.py and runs a reproduction plus sets tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13647@solver_G:FULL",
+    "trace_id": "sympy__sympy-13647@solver_G",
+    "task_id": "sympy__sympy-13647",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace searches for col_insert, identifies sympy/matrices/common.py, and changes index logic in one method."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFY",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MILD"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [8, 9]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13757@solver_G:FULL",
+    "trace_id": "sympy__sympy-13757@solver_G",
+    "task_id": "sympy__sympy-13757",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "MULTI_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": ["Task involves interaction between Poly and core multiplication semantics, requiring cross-module reasoning across polys and core."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "REGRESSING",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "STAGNATION", "FAILED_RECOVERY"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "STAGNATION": "SEVERE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [9, 10, 11, 12],
+        "STAGNATION": [9, 10, 11, 12, 13],
+        "FAILED_RECOVERY": [4, 5, 6, 7, 8]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13798@solver_G:FULL",
+    "trace_id": "sympy__sympy-13798@solver_G",
+    "task_id": "sympy__sympy-13798",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Task asks for latex mul_symbol behavior; trace modifies LatexPrinter setting handling in sympy/printing/latex.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [3, 4, 5]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13852@solver_G:FULL",
+    "trace_id": "sympy__sympy-13852@solver_G",
+    "task_id": "sympy__sympy-13852",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "MULTI_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": ["Task involves polylog expansion and expand_func dispatch across zeta_functions.py and core expansion machinery."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["STAGNATION", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "STAGNATION": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [14, 15, 16, 17, 18, 19, 20, 21],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [14, 19, 20]
+      }
+    },
+    "candidate_interventions": ["CONSTRAIN_SEARCH", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13877@solver_G:FULL",
+    "trace_id": "sympy__sympy-13877@solver_G",
+    "task_id": "sympy__sympy-13877",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "MULTI_FILE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": ["Task concerns determinant evaluation for symbolic matrices across concrete matrix det and matrix-expression determinant paths."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "RECOVER",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [11, 13, 14, 15, 16, 17]
+      }
+    },
+    "candidate_interventions": ["ESCALATE_SOLVER", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13878@solver_G:FULL",
+    "trace_id": "sympy__sympy-13878@solver_G",
+    "task_id": "sympy__sympy-13878",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "CONTEXT_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_CUTTING", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Task requires adding analogous CDF methods to several distribution classes spread through one large stats file."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "EDIT",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severity": {
+        "REDUNDANT_FILE_REREAD": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [8, 9, 14, 15, 20, 21, 26, 27, 32, 33],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [0, 7, 13, 19, 25, 31]
+      }
+    },
+    "candidate_interventions": ["REDUCE_CONTEXT", "NARROW_RETRIEVAL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-13974@solver_G:FULL",
+    "trace_id": "sympy__sympy-13974@solver_G",
+    "task_id": "sympy__sympy-13974",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": ["Task concerns tensor_product_simp behavior for TensorProduct powers in physics/quantum/tensorproduct.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [16, 17, 18]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-14248@solver_G:FULL",
+    "trace_id": "sympy__sympy-14248@solver_G",
+    "task_id": "sympy__sympy-14248",
+    "repo": "sympy",
+    "solver_alias": "solver_G",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_MODULE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Task involves printer behavior for MatAdd across string and LaTeX printers."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "STAGNATION"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "STAGNATION": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [1, 2, 4, 5, 6, 7, 8],
+        "STAGNATION": [4, 5, 6, 7, 8, 9]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

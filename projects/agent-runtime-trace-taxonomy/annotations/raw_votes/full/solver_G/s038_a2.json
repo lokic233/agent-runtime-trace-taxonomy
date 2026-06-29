@@ -1,0 +1,392 @@
+```json
+[
+  {
+    "trace_id": "sympy__sympy-16766@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "EXPLICIT_LOCATION", "SILENT_SEMANTIC"],
+      "evidence": "Issue names the exact class (PythonCodePrinter) and the method to add (_print_Indexed); work is writing one small printer method.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16792@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE"],
+      "evidence": "Task spans autowrap.py and codegen.py across a deep CodeWrapper/CodeGen class hierarchy with many same-named methods; finding the right method/class is the dominant work.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "LOW",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTROL_RECOVERY"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE", "STAGNATION": "SEVERE"},
+      "evidence_action_ids": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [19, 23, 24],
+        "STAGNATION": [5, 6, 7, 8, 10, 12, 20, 22, 25, 27, 28, 32, 35, 36, 37, 38, 41]
+      }
+    },
+    "candidate_interventions": ["provide_localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16886@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue gives the exact wrong Morse mapping string ('----':'1'); locate the dict entry and apply a one-character fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [6, 8, 9]}
+    },
+    "candidate_interventions": ["provide_test_runner"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17139@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "SILENT_SEMANTIC"],
+      "evidence": "Error trace points directly to fu.py:504; fix requires reasoning about complex-exponent comparison (is_real guard).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17318@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "SILENT_SEMANTIC"],
+      "evidence": "Traceback identifies _split_gcd IndexError on empty input in radsimp.py; fix is an empty-arg guard.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severity": {"REDUNDANT_FILE_REREAD": "MILD"},
+      "evidence_action_ids": {"REDUNDANT_FILE_REREAD": [1, 2]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17630@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "BlockMatrix._blockmul must handle ZeroMatrix-producing block products; requires reasoning over block-multiplication logic in blockmatrix.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE", "ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [0, 8, 9, 10],
+        "ENVIRONMENT_BLOCKED": [4, 6, 7]
+      }
+    },
+    "candidate_interventions": ["fix_environment_path", "robust_edit_tool"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17655@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "Point.__add__ must handle number*Point (Mul) operands symmetrically in geometry/point.py; reasoning about operand ordering.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severity": {"REDUNDANT_FILE_REREAD": "MILD"},
+      "evidence_action_ids": {"REDUNDANT_FILE_REREAD": [1, 2]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18189@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "EXPENSIVE_SUITE"],
+      "evidence": "diophantine drops solutions when syms order changes with permute=True; fix requires understanding permute propagation through the recursive call.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18199@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "nthroot_mod must return root 0 when a%p==0; number-theory edge case reasoning in residue_ntheory.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["STAGNATION", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"STAGNATION": "MODERATE", "ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [6, 7, 8],
+        "ENVIRONMENT_BLOCKED": [3, 10]
+      }
+    },
+    "candidate_interventions": ["fix_environment_path"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18211@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC"],
+      "evidence": "Eq.as_set behavior is dispatched across an inheritance chain (relational/boolalg/expr/basic) and solvers/inequalities; pinning where the failure originates is the dominant work.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "LOW",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTROL_RECOVERY"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE", "STAGNATION": "MODERATE"},
+      "evidence_action_ids": {
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [0, 2, 3, 5],
+        "STAGNATION": [8, 9, 10, 11]
+      }
+    },
+    "candidate_interventions": ["provide_localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18698@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "sqf_list must combine factors of equal multiplicity; requires reasoning over the square-free decomposition logic threaded through polytools/sqfreetools/euclidtools.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "MEDIUM",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"REDUNDANT_FILE_REREAD": "MILD", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [1, 3],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [9],
+        "VERIFICATION_GAP": [11, 12]
+      }
+    },
+    "candidate_interventions": ["enforce_verification"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18763@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": "Subs LaTeX needs parentheses; main work is locating _print_Subs in printing/latex.py, after which the fix is a trivial wrapping.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

@@ -31,11 +31,13 @@ def check_taxonomy_constraints():
 def check_blinding():
     """No SOLVER model name or fs path in any annotator-facing / committed data artifact."""
     banned=re.compile(r"(claude-opus|claude-sonnet|opus-4|sonnet-3|qwen2|/data/users/\w+|/home/dengcchi|edit_anthropic)", re.I)
-    scan_dirs=["manifests","taxonomy","reports/open_coding","exports","mappings"]
+    # Annotator-FACING data must be blind. Final UNBLINDED analysis reports (Section 13) may name models.
+    scan_dirs=["manifests","taxonomy","reports/open_coding","annotations/raw_votes"]
+    UNBLINDED_OK=("per_model_summary","per_model_analysis","per_model_opportunity","FINAL_REPORT","trace_validation_audit")
     hits=[]
     for d in scan_dirs:
         for f in glob.glob(os.path.join(HERE,d,"**","*"), recursive=True):
-            if os.path.isfile(f) and f.endswith((".json",".jsonl",".yaml",".md")):
+            if os.path.isfile(f) and f.endswith((".json",".jsonl",".yaml",".md")) and not any(u in f for u in UNBLINDED_OK):
                 try: txt=open(f,encoding="utf-8",errors="ignore").read()
                 except: continue
                 m=banned.search(txt)

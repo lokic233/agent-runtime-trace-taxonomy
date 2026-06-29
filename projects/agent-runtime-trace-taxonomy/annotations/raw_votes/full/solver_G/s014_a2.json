@@ -1,0 +1,379 @@
+```json
+[
+  {
+    "trace_id": "django__django-14771@solver_G",
+    "workload_annotation": {
+      "primary_l1": "VERIFICATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "INTEGRATION", "UNCLEAR_ORACLE", "SEARCH_REQUIRED"],
+      "evidence": "Issue is a runtime autoreloader behavior (-X options not propagated to the child process); reproducing/verifying requires standing up a runnable Django project and observing a live reload, while the actual code fix is a small single-file change in django/utils/autoreload.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED_VIA_REPRO",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PREMATURE_SCRATCH_REPRO", "severity": "MODERATE", "evidence_action_ids": [0, 1, 3, 4, 5, 6, 7]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [1, 2, 8, 9, 10]}
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["EARLIER_LOCALIZATION", "REUSE_EXISTING_REPRO", "FUZZY_EDIT_MATCHING"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14787@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "UNCLEAR_ORACLE"],
+      "evidence": "Issue names method_decorator/partial directly; localization is one grep, the work is reasoning the fix in _multi_decorate (django/utils/decorators.py). No supplied test, so an ad-hoc repro is needed.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCHED_VERIFIED_VIA_MODIFIED_REPRO",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "PREMATURE_SCRATCH_REPRO", "severity": "MODERATE", "evidence_action_ids": [3, 4, 5, 9]}
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST", "REUSE_EXISTING_REPRO"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14792@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "INTEGRATION", "SEARCH_REQUIRED", "UNCLEAR_ORACLE"],
+      "evidence": "Underlying task is a DB-backend datetime/timezone fix exercised by db_functions tests (DB-backed). Inferred from issue/test target db_functions/datetime/test_extract_trunc.py, not from solver behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "NO_PROGRESS_ON_PRODUCT_BUG",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "SEVERE", "evidence_action_ids": [4, 8, 9, 11, 13, 14, 15, 17, 20]},
+        {"label": "FAILED_RECOVERY", "severity": "MODERATE", "evidence_action_ids": [5, 16, 18]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [0, 8, 13, 19, 21]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PRECONFIGURED_TEST_HARNESS", "PROVIDE_TEST_INVOCATION", "FUZZY_EDIT_MATCHING"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14855@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue points at admin helpers.get_admin_url needing current_app passed to reverse(); small single-file fix with explicit target.",
+      "unknown_fields": ["plausible_patch_found", "verification_sufficient"]
+    },
+    "execution_state": {
+      "phase": "LOCALIZING",
+      "progress": "MISDIAGNOSED_NO_CHANGE_NEEDED",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [1]}
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["FUZZY_EDIT_MATCHING", "SHOW_BASELINE_DIFF"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14915@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue names ModelChoiceIteratorValue as unhashable; fix is adding __hash__ in django/forms/models.py, a tightly targeted single-file change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCHED_VERIFIED_AFTER_ENV_FIX",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "SEVERE", "evidence_action_ids": [3, 5, 7, 15, 20, 26]}
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["FIX_ENV_MODULE_PATH", "PRELOAD_EDITABLE_SOURCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Repro imported installed django (/testbed) shadowing edited /workspace source; long debugging spiral attributed to environment, not solver reasoning."
+    }
+  },
+  {
+    "trace_id": "django__django-14999@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE"],
+      "evidence": "RenameModel-with-db_table noop requires tracing alter_db_table across base/postgresql/sqlite schema editors and migrations/operations/models.py to find where to add the guard.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCHED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [10, 11]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [9]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST", "FUZZY_EDIT_MATCHING"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15022@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "INTEGRATION"],
+      "evidence": "Issue points at admin get_search_results repeatedly filtering per word; fix is to accumulate Q objects in one file. Verification needs the admin test suite (DB-backed).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCHED_WEAKLY_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [3, 4, 6, 9, 10]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PRECONFIGURED_TEST_HARNESS", "PROVIDE_TEST_INVOCATION", "TARGETED_TEST_SELECTION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15037@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "INTEGRATION", "EXPENSIVE_SUITE", "UNCLEAR_ORACLE"],
+      "evidence": "inspectdb foreign-key-to-specific-column change verified by DB-introspection tests (tests/inspectdb), which are environment/DB heavy.",
+      "unknown_fields": ["plausible_patch_found"]
+    },
+    "execution_state": {
+      "phase": "STUCK_THEN_RAN_TESTS",
+      "progress": "PARTIAL_PRODUCT_FIX_UNCLEAR",
+      "candidate_location_found": null,
+      "plausible_patch_found": null,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "SEVERE", "evidence_action_ids": [0, 2, 3, 4, 6, 7]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PRECONFIGURED_TEST_HARNESS", "PROVIDE_TEST_INVOCATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15098@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE"],
+      "evidence": "i18n locale-with-script-and-region symptom requires tracing get_language/to_language/get_language_from_path across utils/translation and urls/resolvers to find LocalePrefixPattern; location not given in issue.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCHED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": [
+        {"label": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [13, 14]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST", "PROVIDE_TEST_INVOCATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15103@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "MULTI_FILE", "CROSS_FILE"],
+      "evidence": "Issue names json_script; element_id must be made optional in both django/utils/html.py and django/template/defaultfilters.py — explicit, multi-file, low reasoning depth.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCHED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": [
+        {"label": "VERIFICATION_GAP", "severity": "MODERATE", "evidence_action_ids": [6, 8, 9]},
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MILD", "evidence_action_ids": [7]}
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["ENFORCE_POST_EDIT_TEST", "FUZZY_EDIT_MATCHING"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15104@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue gives the exact line (del deconstruction[2]['to'] -> pop) in autodetector.py; trivially explicit single-file fix, verified by migrations.test_autodetector.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCHED_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": [
+        {"label": "DEPENDENCY_SETUP_DRIFT", "severity": "MODERATE", "evidence_action_ids": [3, 6, 7, 9, 10]}
+      ],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT"
+    },
+    "candidate_interventions": ["PRECONFIGURED_TEST_HARNESS", "PROVIDE_TEST_INVOCATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15127@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue names LEVEL_TAGS not updating under override_settings; fix is making level_tag dynamic in messages/storage/base.py, verified via messages_tests/check_framework.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCHED_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Clean run: localize, fix, verify (286 tests pass). Single runtests path miss [5->6] is below materiality threshold."
+    }
+  }
+]
+```

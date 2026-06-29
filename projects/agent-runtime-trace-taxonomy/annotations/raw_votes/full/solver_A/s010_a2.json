@@ -1,0 +1,384 @@
+```json
+[
+  {
+    "trace_id": "django__django-13568@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SEARCH_REQUIRED"],
+      "evidence": "Task is to extend the auth.E003 uniqueness check to honor a total UniqueConstraint; localization is a single grep ([0]) and the work is reasoning about which constraints guarantee uniqueness, all within checks.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13569@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "INTEGRATION"],
+      "evidence": "Random() in order_by leaking into GROUP BY; localization via get_group_by grep ([0]-[2]) is quick, core work is reasoning about how to strip Random from the group-by list in compiler.py, verified against a live DB query.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "labels": [
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "PATCH_CHURN",
+          "severity": "MILD",
+          "evidence_action_ids": [13, 16]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13590@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "namedtuple reconstruction in resolve_lookup_value; one grep to the function ([0]) then reasoning about generator-vs-splat reconstruction in query.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13658@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION"],
+      "evidence": "ManagementUtility CommandParser must receive prog=self.prog_name; single targeted grep ([0]) lands on the exact line and the fix is a one-kwarg change in management/__init__.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13670@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "dateformat y() must zero-pad two-digit years; grep to def y ([0]) then reasoning about %02d/year%100 formatting in dateformat.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13741@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "Set ReadOnlyPasswordHashField disabled=True and drop now-redundant clean_password; involves reading forms.py and docs ([0]-[4]) then reasoning about form-field semantics, all in forms.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Pre-existing PasswordResetFormTest email/FQDN errors ([9]-[10]) are environment noise, correctly triaged and worked around ([11]); not labeled as waste."
+    }
+  },
+  {
+    "trace_id": "django__django-13786@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "CreateModel.reduce must strip removed ALTER_OPTION_KEYS when merging AlterModelOptions; localization via grep ([0]-[2]) then reasoning about option-merge semantics in operations/models.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13794@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "add filter fails on lazy (__proxy__) string concatenation; correct fix is in functional.py not defaultfilters.py, requiring cross-file reasoning about str.__add__/__radd__ semantics while not breaking existing add filter tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "labels": [
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "PATCH_CHURN",
+          "severity": "MODERATE",
+          "evidence_action_ids": [6, 7, 19, 25, 27, 28]
+        },
+        {
+          "l1": "EDIT_PATCH",
+          "l2": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "severity": "MILD",
+          "evidence_action_ids": [24]
+        }
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13807@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "INTEGRATION"],
+      "evidence": "sqlite check_constraints must quote table/column names via ops.quote_name; localization across base.py/operations.py ([0]-[3]) then reasoning about safe identifier quoting, verified with reserved-word repros.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13809@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Add --skip-checks to runserver; requires understanding how skip_checks is wired across base.py, management/__init__.py and testserver.py ([2]-[4],[18]-[21]) and reconciling with test expectations.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Test FAIL at [17] drove legitimate cross-file investigation ([18]-[22]) that resolved without re-editing; not waste."
+    }
+  },
+  {
+    "trace_id": "django__django-13810@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "MiddlewareNotUsed poisons handler/handler_is_async invariant in load_middleware; subtle async-mode bug reasoned about in handlers/base.py and demonstrated by a refined repro ([6]-[8]).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13820@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED"],
+      "evidence": "Migration loader namespace-package detection should use __path__ type rather than __file__; grep to __file__ ([0]) then reasoning about regular-vs-namespace package detection in loader.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

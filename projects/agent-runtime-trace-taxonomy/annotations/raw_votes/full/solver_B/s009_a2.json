@@ -1,0 +1,399 @@
+```json
+[
+  {
+    "trace_id": "django__django-13344@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue gives a symptom (first middleware gets a coroutine in process_response under ASGI); the true cause (MiddlewareMixin/_is_coroutine not set when a subclass overrides __init__ without super) must be traced across asgi.py, base.py, exception.py, deprecation.py, security.py. Fix is one file but localization is the hard part.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label_id": "HELPER_TOOL_FAILURE_LOOP",
+          "parent": "ENVIRONMENT_TOOLING",
+          "severity": "SEVERE",
+          "evidence_action_ids": [50, 51, 53, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+        },
+        {
+          "label_id": "PREMATURE_SCRATCH_REPRO",
+          "parent": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [21, 23, 24, 28]
+        }
+      ],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13346@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "SINGLE_FILE", "INTEGRATION"],
+      "evidence": "Issue: __in lookup broken on JSONField key transforms on MySQL/Oracle/SQLite. Requires designing a new KeyTransformIn lookup with per-backend value wrapping (JSON_EXTRACT/JSON_VALUE/JSON_QUERY) — backend-integration reasoning concentrated in json.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label_id": "PATCH_CHURN",
+          "parent": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [31, 32, 34, 36, 37, 39]
+        },
+        {
+          "label_id": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent": "EDIT_PATCH",
+          "severity": "MILD",
+          "evidence_action_ids": [4, 5, 10]
+        }
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13363@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue names the exact file/lines (datetime.py L295/L308) and the expected method (get_tzname). Two-line fix in TruncDate/TruncTime; location is explicit and oracle is clear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13401@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue points to Field.__eq__ comparing only creation_counter; asks to adjust __eq__/__hash__/__lt__ to consider model. Location is clear; the reasoning is about ordering semantics to avoid reordering regressions.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13406@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: values()/values_list() queryset crashes when rebuilt from a pickled query. Requires reasoning about where _iterable_class lives (QuerySet vs Query) across query.py and sql/query.py; fix is a small query-setter change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label_id": "PREMATURE_SCRATCH_REPRO",
+          "parent": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [4, 20, 25, 26]
+        }
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13410@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Issue provides the exact file (locks.py) and a full unified diff for the posix lock/unlock try/except fix. Essentially patch application; location and solution are given.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label_id": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [3, 4, 5]
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13417@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: QuerySet.ordered wrong for GROUP BY with Meta.ordering. Requires correlating the ordered property in query.py with compiler behavior that drops ORDER BY when grouping with _meta_ordering. Fix is a guard in query.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13449@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "INTEGRATION"],
+      "evidence": "Issue: Lag() over DecimalField crashes on SQLite (CAST wraps function not full OVER clause). Requires reasoning about SQLiteNumericMixin and Window.as_sql across expressions.py; fix makes Window inherit the mixin and compile the source without inner CAST.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13512@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: admin renders JSONField unicode as ASCII escapes; fix is adding ensure_ascii=False to json.dumps in forms JSONField.prepare_value. Oracle is clear; mild search to pick the right dumps call.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13513@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Issue names the exact function (explicit_or_implicit_cause in views/debug.py) and gives the corrected logic respecting __suppress_context__. Location and fix are explicit; the change is a trivial single-file edit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": [
+        {
+          "label_id": "STAGNATION",
+          "parent": "CONTROL_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [8, 15, 16, 17, 18, 19, 20, 21, 26, 27, 28, 29, 30]
+        }
+      ],
+      "primary_bottleneck": "STAGNATION"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13516@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue: stdout/stderr flush() no-ops during migrate. Requires understanding that OutputWrapper(TextIOBase) inherits a no-op flush so __getattr__ never delegates; fix adds an explicit flush in base.py. Cause spans base.py and migrate.py usage.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13551@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue names the fix target (PasswordResetTokenGenerator._make_hash_value) and the goal (mix in user email so changing email invalidates tokens). Reasoning needed to support users lacking an email via get_email_field_name; single-file change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "auto-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

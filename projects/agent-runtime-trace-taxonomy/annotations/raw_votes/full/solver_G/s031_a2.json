@@ -1,0 +1,404 @@
+Looking at this task, it's a self-contained trace-annotation job: apply the frozen v1 taxonomy to each blinded trace and emit schema-shaped JSON. Here are my annotations.
+
+```json
+[
+  {
+    "trace_id": "scikit-learn__scikit-learn-15100@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SILENT_SEMANTIC"],
+      "evidence": "Issue names strip_accents_unicode explicitly; fix is a small logic change (drop the early `if normalized == s: return s`) in one file. Core difficulty is reasoning about NFKD decomposition, not finding the code.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severities": {"REDUNDANT_FILE_REREAD": "MILD"},
+      "evidence_action_ids": {"REDUNDANT_FILE_REREAD": [1, 2, 3]}
+    },
+    "candidate_interventions": ["CONTEXT_READ_BUDGET", "EDITABLE_INSTALL_OR_PYTHONPATH"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-25102@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SEARCH_REQUIRED"],
+      "evidence": "Task is adding a preserve_dtypes path inside _set_output.py (file given). Localization within the file is needed but the file is known; work is editing class/methods.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {"STAGNATION": "SEVERE", "REDUNDANT_FILE_REREAD": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+        "REDUNDANT_FILE_REREAD": [0, 1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [2, 5]
+      }
+    },
+    "candidate_interventions": ["LOOP_BREAKER", "EDIT_TOOL_ROBUSTNESS", "CONTEXT_READ_BUDGET"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-25232@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_FILE", "MULTI_FILE", "SEARCH_REQUIRED", "CLEAR"],
+      "evidence": "Issue: add fill_value to IterativeImputer mirroring SimpleImputer; spans _iterative.py and _base.py. Mechanical parameter threading across two files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [5, 6, 7, 12, 14, 16, 17],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [8]
+      }
+    },
+    "candidate_interventions": ["VERIFICATION_PROMPT", "EDIT_TOOL_ROBUSTNESS"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-25747@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "FeatureUnion + transform_output='pandas' with a Series-returning transformer; bug spans pipeline.py and _set_output.py. Subtle index/Series-vs-DataFrame semantics, no obvious unit oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [1, 2, 3, 10, 11, 13, 14, 15]}
+    },
+    "candidate_interventions": ["ROOT_CAUSE_REFOCUS", "REPRO_SCAFFOLD"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-25931@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Single-file change in _iforest.py fit() (wrap validation so feature-name warning is not spuriously emitted). Location clear from the start.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PATCH_CHURN", "VERIFICATION_GAP"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {"EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE", "PATCH_CHURN": "MODERATE", "VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [0, 5, 9, 10],
+        "PATCH_CHURN": [12, 13, 14, 15],
+        "VERIFICATION_GAP": [12, 13, 14, 15, 16]
+      }
+    },
+    "candidate_interventions": ["EDIT_TOOL_ROBUSTNESS", "VERIFICATION_PROMPT"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-25973@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "cross_validate IndexError when all CV folds drop out (SequentialFeatureSelector + LeaveOneGroupOut). Reasoning about empty-results edge case in _validation.py; root cause non-obvious.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "ENVIRONMENT_BLOCKED",
+      "progress": "PATCH_APPLIED_DISPROVEN",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {"ENVIRONMENT_BLOCKED": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [7, 8],
+        "DEPENDENCY_SETUP_DRIFT": [7, 8]
+      }
+    },
+    "candidate_interventions": ["ENV_PRE_SETUP", "EDITABLE_INSTALL_OR_PYTHONPATH"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-26194@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue points to exact line in _ranking.py (roc_curve synthetic threshold > 1). One-line clamp fix; location and intent fully specified.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [3, 4]}
+    },
+    "candidate_interventions": ["VERIFICATION_PROMPT"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-26323@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "ColumnTransformer remainder estimator not receiving set_output config (bool dtype lost); spans _column_transformer.py, feature_selection/_base.py, _variance_threshold.py. Silent dtype semantics.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "STAGNATION"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MODERATE", "STAGNATION": "MILD"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [0, 1, 7, 8, 9, 11, 12, 15, 16],
+        "STAGNATION": [12, 13, 14]
+      }
+    },
+    "candidate_interventions": ["EDITABLE_INSTALL_OR_PYTHONPATH", "LOOP_BREAKER"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-9288@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "KMeans gives different inertia for n_jobs=1 vs >1 (random_state seeding across parallel runs) in k_means_.py. Numerical/reproducibility reasoning with a fuzzy oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "PATCH_APPLIED_DISPROVEN",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [5, 10, 12, 13, 14, 15, 16, 17, 18],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [7]
+      }
+    },
+    "candidate_interventions": ["ROOT_CAUSE_REFOCUS", "LOOP_BREAKER"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10323@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "INTEGRATION", "UNCLEAR_ORACLE"],
+      "evidence": "literalinclude prepend/dedent filter ordering in directives/code.py; verification requires a full sphinx-build + HTML inspection (integration-level), making the oracle indirect.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "PATCH_APPLIED_DISPROVEN",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["STAGNATION", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {"STAGNATION": "SEVERE", "ENVIRONMENT_BLOCKED": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [2, 3, 5, 6, 9, 12, 13, 15, 16],
+        "ENVIRONMENT_BLOCKED": [4, 7]
+      }
+    },
+    "candidate_interventions": ["EDITABLE_INSTALL_OR_PYTHONPATH", "LOOP_BREAKER", "ROOT_CAUSE_REFOCUS"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10435@solver_G",
+    "workload_annotation": {
+      "primary_l1": "ENVIRONMENT_DOMINANT",
+      "l2_attributes": ["INTEGRATION", "EXPENSIVE_SUITE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is a LaTeX/PDF rendering defect whose verification inherently requires a working LaTeX toolchain (latexmk, fonts). The task's dominant cost is environment/build, not localization.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "ENVIRONMENT_BLOCKED",
+      "progress": "NONE",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {"DEPENDENCY_SETUP_DRIFT": "SEVERE", "ENVIRONMENT_BLOCKED": "SEVERE"},
+      "evidence_action_ids": {
+        "DEPENDENCY_SETUP_DRIFT": [0, 1, 4, 5, 8, 9],
+        "ENVIRONMENT_BLOCKED": [3, 6, 7, 10, 11]
+      }
+    },
+    "candidate_interventions": ["ENV_PRE_SETUP", "ROOT_CAUSE_REFOCUS"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10449@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "HIDDEN_TEST_DOMINANT", "EXPENSIVE_SUITE"],
+      "evidence": "autodoc_typehints='description' incorrectly emits class rtype; fix in ext/autodoc/typehints.py. Correctness is governed by the autodoc test suite (test-suite-driven oracle).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "MILD"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [6, 7, 8, 10, 12, 13]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_label_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

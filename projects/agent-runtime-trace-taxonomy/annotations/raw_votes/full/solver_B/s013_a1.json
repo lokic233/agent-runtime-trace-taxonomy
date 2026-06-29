@@ -1,0 +1,664 @@
+[
+  {
+    "sample_id": "django__django-14493@solver_B|FULL",
+    "trace_id": "django__django-14493@solver_B",
+    "task_id": "django__django-14493",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "STATELESS"
+      ],
+      "evidence": [
+        "Issue identifies django/contrib/staticfiles/storage.py and the uninitialized substitutions variable when max_post_process_passes=0."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [
+      "NO_CHANGE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-14500@solver_B|FULL",
+    "trace_id": "django__django-14500@solver_B",
+    "task_id": "django__django-14500",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "INTEGRATION",
+        "PARTIAL",
+        "SHORT_STATE"
+      ],
+      "evidence": [
+        "Issue requires understanding MigrationExecutor behavior for squashed migrations and applied/unapplied recorder state."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY",
+        "EDIT_PATCH"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT",
+        "PATCH_CHURN"
+      ],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD",
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          2
+        ],
+        "PATCH_CHURN": [
+          24,
+          30,
+          32,
+          41,
+          43
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "REDUCE_CONTEXT",
+      "LIMIT_PATCH_SCOPE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-14534@solver_B|FULL",
+    "trace_id": "django__django-14534@solver_B",
+    "task_id": "django__django-14534",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "STATELESS"
+      ],
+      "evidence": [
+        "Issue names BoundWidget.id_for_label and explains it should use widget attrs id from ChoiceWidget.options."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTROL_RECOVERY"
+      ],
+      "l2_labels": [
+        "FAILED_RECOVERY"
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [
+          18,
+          29,
+          31,
+          32
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "INCREASE_TARGETED_VERIFICATION"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-14539@solver_B|FULL",
+    "trace_id": "django__django-14539@solver_B",
+    "task_id": "django__django-14539",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "SILENT_SEMANTIC"
+      ],
+      "evidence": [
+        "Issue gives a concrete urlize escaped-entity punctuation example requiring a localized logic change."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          3
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "REDUCE_CONTEXT"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-14559@solver_B|FULL",
+    "trace_id": "django__django-14559@solver_B",
+    "task_id": "django__django-14559",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "STATELESS"
+      ],
+      "evidence": [
+        "Issue points to QuerySet.bulk_update and asks to sum update() return values."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [
+      "NO_CHANGE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-14580@solver_B|FULL",
+    "trace_id": "django__django-14580@solver_B",
+    "task_id": "django__django-14580",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "CROSS_MODULE",
+        "SINGLE_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue suspects migration writer, but the fix requires locating serialization of models.Model in migrations serializer."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          3
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "REDUCE_CONTEXT"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-14608@solver_B|FULL",
+    "trace_id": "django__django-14608@solver_B",
+    "task_id": "django__django-14608",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "STATELESS"
+      ],
+      "evidence": [
+        "Issue asks to mirror Form nonfield ErrorList CSS behavior for FormSet non_form_errors."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [
+      "NO_CHANGE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-14631@solver_B|FULL",
+    "trace_id": "django__django-14631@solver_B",
+    "task_id": "django__django-14631",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "CROSS_FILE",
+        "MULTI_FILE",
+        "REPOSITORY_CONTEXT",
+        "TARGETED_UNIT",
+        "PARTIAL",
+        "SHORT_STATE"
+      ],
+      "evidence": [
+        "Issue asks to route BaseForm._clean_fields() and changed_data through BoundField and move per-field changed logic into BoundField."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "ENVIRONMENT_TOOLING",
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "PREEMPTIVE_HELPER_TOOL_BUILD",
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "PREEMPTIVE_HELPER_TOOL_BUILD",
+      "severity": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": "MODERATE",
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "PREEMPTIVE_HELPER_TOOL_BUILD": [
+          2,
+          3
+        ],
+        "CONTEXT_BLOAT": [
+          1,
+          7
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "REDUCE_CONTEXT",
+      "NO_CHANGE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-14672@solver_B|FULL",
+    "trace_id": "django__django-14672@solver_B",
+    "task_id": "django__django-14672",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "STATELESS"
+      ],
+      "evidence": [
+        "Issue explicitly names ManyToManyRel.identity and missing make_hashable on through_fields."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [
+        "CONTEXT_MEMORY"
+      ],
+      "l2_labels": [
+        "CONTEXT_BLOAT"
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {
+        "CONTEXT_BLOAT": "MILD"
+      },
+      "evidence_action_ids": {
+        "CONTEXT_BLOAT": [
+          1
+        ]
+      }
+    },
+    "candidate_interventions": [
+      "REDUCE_CONTEXT"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-14725@solver_B|FULL",
+    "trace_id": "django__django-14725@solver_B",
+    "task_id": "django__django-14725",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "SEARCH_REQUIRED",
+        "CROSS_FILE",
+        "CROSS_MODULE",
+        "MULTI_FILE",
+        "REPOSITORY_CONTEXT",
+        "INTEGRATION",
+        "CLEAR"
+      ],
+      "evidence": [
+        "Issue requests a new model formset API to disallow new object creation and requires propagation across model, inline, and generic inline formset factories."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [
+      "NO_CHANGE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-14752@solver_B|FULL",
+    "trace_id": "django__django-14752@solver_B",
+    "task_id": "django__django-14752",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "STATELESS"
+      ],
+      "evidence": [
+        "Issue explicitly requests extracting autocomplete result serialization into an overridable method."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [
+      "NO_CHANGE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-14765@solver_B|FULL",
+    "trace_id": "django__django-14765@solver_B",
+    "task_id": "django__django-14765",
+    "repo": "django",
+    "solver_alias": "solver_B",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": [
+        "EXPLICIT_LOCATION",
+        "SINGLE_FILE",
+        "LOCAL_CONTEXT",
+        "TARGETED_UNIT",
+        "CLEAR",
+        "STATELESS"
+      ],
+      "evidence": [
+        "Issue explicitly identifies ProjectState.__init__ and asks to replace conversion of real_apps with a set assertion."
+      ],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [
+      "NO_CHANGE"
+    ],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T12:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

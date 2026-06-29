@@ -1,0 +1,392 @@
+```json
+[
+  {
+    "trace_id": "django__django-15467@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SEARCH_REQUIRED", "CLEAR", "SHORT_STATE"],
+      "evidence": "Single small behavioral fix to admin formfield empty_label handling in one file; location reachable via a couple of targeted greps; the core work is shaping the conditional expression. Repro assertion gives a clear oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15499@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": "Add a CreateModel+AlterModelManagers reduction branch mirroring an existing pattern in operations/models.py; one file, optimizer tests give a clear oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15503@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_CUTTING", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "CLEAR", "LONG_STATE"],
+      "evidence": "Numeric-key has_key/has_keys lookups on SQLite/MySQL/Oracle: requires reasoning across multiple call sites (HasKeyLookup, KeyTransformIsNull, KeyTransformExact) in json.py; existing jsonfield tests are the oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Initial fix introduced 6 regressions but iteration was evidence-driven and converged (events 14-33); not FAILED_RECOVERY. View TOOL_ERRORs are minor and omitted."
+    }
+  },
+  {
+    "trace_id": "django__django-15525@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": "Multi-db natural_key serialization bug; fix is in build_instance but requires reasoning about _state.db routing across serializers and related descriptors. Reproduction is non-obvious (manager must expose get_by_natural_key), making the oracle unclear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [3, 4, 7]
+      }
+    },
+    "candidate_interventions": ["IMPROVE_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Repro-setup struggles (events 11-26, 44-50) stem from Django app/test bootstrapping, not from a reasoning-waste pattern, and the repro was built after localization so PREMATURE_SCRATCH_REPRO does not apply."
+    }
+  },
+  {
+    "trace_id": "django__django-15554@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC", "CLEAR", "LONG_STATE"],
+      "evidence": "Two FilteredRelations over the same relation collapse to one join; fix spans datastructures.py (Join.equals/identity) and query.py (join reuse). filtered_relation tests are the oracle; reasoning about alias reuse/history is deep.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTING",
+      "progress": "STALLED",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [45, 48, 49, 52, 54, 55],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["IMPROVE_EDIT_TOOL", "INCREASE_BUDGET"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Repeated str_replace no-ops (old_str == new_str, agent acknowledges at event 56) burned many edit attempts; run terminated by cost limit at 75 with no converged patch."
+    }
+  },
+  {
+    "trace_id": "django__django-15561@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": "Add 'choices' to non_database_attrs so AlterField(choices) is a no-op on SQLite; one-line change in base/schema.py confirmed via repro and schema/migrations suites.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15563@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_FILE", "SILENT_SEMANTIC", "CLEAR", "SHORT_STATE"],
+      "evidence": "MTI update() collects wrong parent ptr ids; fix spans compiler.py pre_sql_setup and subqueries.py get_related_updates. Repro plus model_inheritance/update suites give a clear oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Test-name ImportError at event 18 was an environment/naming hiccup corrected immediately at 19; not materially wasteful, so omitted."
+    }
+  },
+  {
+    "trace_id": "django__django-15569@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "PARTIAL", "SHORT_STATE"],
+      "evidence": "One-line fix: call _clear_cached_lookups() in _unregister_lookup, mirroring register_lookup. Location is essentially given; the failing schema test reflects an unmodified test file (PARTIAL oracle).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Failing test at event 6 is due to the (intentionally) unmodified test file; agent verified the fix via custom repro at event 4, so this is not VERIFICATION_GAP."
+    }
+  },
+  {
+    "trace_id": "django__django-15572@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": "Filter falsy entries in get_template_directories (autoreload.py); single, well-localized change validated by repro and the 10 autoreloader tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-15629@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "CLEAR", "LONG_STATE"],
+      "evidence": "Propagate db_collation from PK to referencing FK columns; fix spans related.py (FK db_parameters) and base/schema.py (rels_to_update loop). Schema tests are the oracle; SQLite's table-rebuild path obscures direct reproduction.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFYING",
+      "progress": "STALLED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "STAGNATION": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [62, 63, 64, 65, 66, 67, 71, 72, 73, 74],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["EARLY_STOP_GUIDANCE", "INCREASE_BUDGET"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "A working fix existed with passing suites by ~event 48, but the agent kept re-reading code/git for edge cases (62-74) without new converging changes until the cost limit at 75."
+    }
+  },
+  {
+    "trace_id": "django__django-15695@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "SHORT_STATE"],
+      "evidence": "RenameIndex re-apply of an unnamed index crashes on backends that rename in place (PG/Oracle); fix is a guard in operations/models.py. The reproducing backend (PG) is unavailable locally, so the oracle is partly unverifiable.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Test-file edit (20) then revert (34) reflects ambiguous instructions, not a taxonomy waste pattern; inability to test the PG path (23-24) is an environment limitation but SQLite tests still pass, so no label rises to MODERATE."
+    }
+  },
+  {
+    "trace_id": "django__django-15731@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": "Use functools.wraps on manager_method so inspect.signature reflects the queryset method; one-file change in manager.py validated by repro and managers/basic suites.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

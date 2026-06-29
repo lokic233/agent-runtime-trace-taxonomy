@@ -1,0 +1,378 @@
+[
+  {
+    "trace_id": "sympy__sympy-14531@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue: StrPrinter settings (sympy_integers) silently ignored by certain _print_* subexpression methods; no crash, wrong string output. Fix requires finding ALL affected methods in printing/str.py and mirroring the self._print() pattern.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "labels": [
+        {"l2_label": "CONTEXT_BLOAT", "l1_parent": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [4]}
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT"
+    },
+    "candidate_interventions": ["PROVIDE_TARGETED_FILE_VIEW"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14711@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue includes a full traceback pinpointing Vector.__add__/_check_vector in physics/vector/vector.py (explicit location); the work is deciding how to handle the 0 sentinel so sum() works.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD"],
+      "labels": [
+        {"l2_label": "REDUNDANT_FILE_REREAD", "l1_parent": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [2, 9]}
+      ],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD"
+    },
+    "candidate_interventions": ["PROVIDE_FILE_OUTLINE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14976@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: lambdify(mpmath) emits unwrapped rationals (precision loss, no crash). Required surveying multiple printer classes (lambdarepr, pycode, codeprinter, str, ccode, theanocode) to find MpmathPrinter and the right place to add _print_Rational.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "labels": [
+        {"l2_label": "CONTEXT_BLOAT", "l1_parent": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [3]}
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT"
+    },
+    "candidate_interventions": ["PROVIDE_TARGETED_FILE_VIEW"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15017@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue: len() of rank-0 arrays returns 0 instead of 1 (wrong value, no crash). Fix is a tiny ternary change but must be located across 4 _loop_size assignments in dense_ndim_array.py and sparse_ndim_array.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "labels": [
+        {"l2_label": "CONTEXT_BLOAT", "l1_parent": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [1]}
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT"
+    },
+    "candidate_interventions": ["PROVIDE_TARGETED_FILE_VIEW"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15345@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
+      "evidence": "Issue: mathematica_code(Max) emits parentheses not brackets. Location (mathematica.py) is obvious, but the fix requires reasoning about the printer MRO dispatch (_print_Expr aliased to _print_Function precedes _print_LatticeOp) to choose the working override.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15349@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue links the exact line of Quaternion.to_rotation_matrix (explicit location). Work is determining the correct sign convention (m12 should be c*d - b*a) and verifying orthogonality.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15599@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "LONG_STATE"],
+      "evidence": "Issue (with proposed diff) targets Mod.eval Mul branch in core/mod.py. The naive diff causes infinite recursion and breaks float/negative-modulus cases; the difficulty is crafting a guard condition that satisfies all existing test_Mod cases — pure patch-reasoning over subtle semantics.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "labels": [
+        {"l2_label": "FAILED_RECOVERY", "l1_parent": "CONTROL_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [5, 10, 16, 18, 21, 30, 32, 42, 45, 47, 49, 52, 54, 56, 59, 91, 92, 105, 107]}
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["PROVIDE_REFERENCE_PATCH", "EARLY_STOP_ON_NONCONVERGENCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15809@solver_B",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue: Min()/Max() with no args raise ValueError; should return identity (oo/-oo). Fix is a one-line return cls.identity in MinMaxBase.__new__; main work is finding the raise site in functions/elementary/miscellaneous.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "labels": [
+        {"l2_label": "PATCH_CHURN", "l1_parent": "EDIT_PATCH", "severity": "MODERATE", "evidence_action_ids": [21, 23, 24, 25, 26, 27]}
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": ["AVOID_SCOPE_CREEP"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15875@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
+      "evidence": "Issue: is_zero wrongly returns False on a complex Add. Location (Add._eval_is_zero in core/add.py) is found quickly; the work is reasoning about the all-imaginary branch and adding the imaginary-part zero check.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "labels": [
+        {"l2_label": "CONTEXT_BLOAT", "l1_parent": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [7]}
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT"
+    },
+    "candidate_interventions": ["PROVIDE_TARGETED_FILE_VIEW"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15976@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Issue: symbol like x2 renders invisible in MathML. Fix is in _print_Symbol of both content and presentation printers; key insight is that msub/msup must not be nested inside mi/ci — a reasoning task about MathML structure.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16450@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
+      "evidence": "Issue: posify drops finiteness/other assumptions. posify is located instantly via grep; the work is reasoning about the assumptions API (assumptions0) to preserve original assumptions on the new Dummy.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16597@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "TARGETED_UNIT", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
+      "evidence": "Issue: even symbol has is_finite=None. The _assume_rules block in core/assumptions.py is the location; work is reasoning about which implication to add (integer->finite vs real->finite) given sympy treats oo as real.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "completed",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "labels": [
+        {"l2_label": "CONTEXT_BLOAT", "l1_parent": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [7]}
+      ],
+      "primary_bottleneck": "CONTEXT_BLOAT"
+    },
+    "candidate_interventions": ["PROVIDE_TARGETED_FILE_VIEW"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

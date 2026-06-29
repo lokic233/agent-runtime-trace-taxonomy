@@ -1,0 +1,386 @@
+```json
+[
+  {
+    "trace_id": "django__django-9296@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": "Issue is a small feature addition (add __iter__ to Paginator). Target class found in one file via a single find; fix is a localized method insertion with an existing pagination test suite as oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels_detail": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "mwaskom__seaborn-3069@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "LOCAL_CONTEXT", "LONG_STATE"],
+      "evidence": "Nominal-scale categorical behavior (sticky edges / grid hiding / y-invert) requires reasoning about matplotlib internals across scales.py and plot.py; expected behavior is not given by an explicit failing test (had to derive expected limits).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "TERMINATED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["BUDGET_EXHAUSTION_NONCONVERGENCE", "ENVIRONMENT_BLOCKED", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "BUDGET_EXHAUSTION_NONCONVERGENCE",
+      "labels_detail": [
+        {"label": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "SEVERE", "evidence_action_ids": [75]},
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "MODERATE", "evidence_action_ids": [21, 44, 46, 49, 51, 52]},
+        {"label": "SEARCH_WITHOUT_NEW_EVIDENCE", "severity": "MILD", "evidence_action_ids": [12, 14, 15, 18]}
+      ]
+    },
+    "candidate_interventions": ["increase_step_budget", "repair_test_environment"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "mwaskom__seaborn-3187@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "LOCAL_CONTEXT"],
+      "evidence": "Legend labels omit the formatter offset; fix is concentrated in ContinuousBase legend handling in scales.py. No existing offset/legend test, so the correct presentation must be reasoned out.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "PATCH_CHURN"],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE",
+      "labels_detail": [
+        {"label": "SEARCH_WITHOUT_NEW_EVIDENCE", "severity": "MODERATE", "evidence_action_ids": [8, 9, 11, 14, 15, 16, 17]},
+        {"label": "PATCH_CHURN", "severity": "MILD", "evidence_action_ids": [21, 23, 29]}
+      ]
+    },
+    "candidate_interventions": ["suppress_redundant_search"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pallets__flask-5014@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": "Add an empty-name validation in Blueprint.__init__; location adjacent to the existing dot-check, found immediately via grep, with the blueprint test suite as oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels_detail": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-1142@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue: GET sends Content-Length:0. Fix concentrated in prepare_content_length in models.py; method-conditional logic is the reasoning content. Location grep-found quickly.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "labels_detail": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "MILD", "evidence_action_ids": [10, 12, 13]}
+      ]
+    },
+    "candidate_interventions": ["repair_test_environment"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-1724@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Wrap method in builtin_str in prepare_method (models.py). Location found directly via grep; small targeted fix with compat import already present.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels_detail": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-1766@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": "One-line RFC-2617 qop quoting fix in auth.py build_digest_header; located via a single grep for qop. Inline reproduction confirms quoted output.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels_detail": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-1921@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "merge_setting must drop session-level None keys, not only request-level. Reasoning is over the merge logic in sessions.py; location grep-found and confirmed with a small repro.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "labels_detail": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "MILD", "evidence_action_ids": [8, 9]}
+      ]
+    },
+    "candidate_interventions": ["repair_test_environment"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-2317@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Binary string method b'GET' becomes literal \"b'GET'\"; fix is decoding bytes before builtin_str in sessions.request. Location found immediately, small reasoning about the py3 str(bytes) behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "labels_detail": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "MILD", "evidence_action_ids": [8, 9]}
+      ]
+    },
+    "candidate_interventions": ["repair_test_environment"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-2931@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "LOCAL_CONTEXT", "LONG_HISTORY_DEPENDENT"],
+      "evidence": "Binary body broken by a prior to_native_string change (#2844). Fix must preserve bytes body while keeping bytes params encoded for URL; required reading git history to understand the dual use of _encode_params in models.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "labels_detail": [
+        {"label": "EDIT_TOOL_MECHANICAL_FAILURE", "severity": "MODERATE", "evidence_action_ids": [11, 13, 17, 18, 19]},
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "MILD", "evidence_action_ids": [23, 29]}
+      ]
+    },
+    "candidate_interventions": ["improve_edit_tooling", "repair_test_environment"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-5414@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Leading-dot host raises raw UnicodeError instead of InvalidURL; fix extends the ASCII wildcard guard in prepare_url. The problematic code path is identified and the fix is a small targeted predicate change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "labels_detail": [
+        {"label": "ENVIRONMENT_BLOCKED", "severity": "MILD", "evidence_action_ids": [12, 13, 14]}
+      ]
+    },
+    "candidate_interventions": ["repair_test_environment"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "psf__requests-6028@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "MULTI_MODULE_CONTEXT", "LONG_HISTORY_DEPENDENT", "LONG_STATE"],
+      "evidence": "Proxy-Authorization 407 bug whose root cause is buried in the request/proxy flow spanning sessions.py, adapters.py, utils.py and urllib3 internals; the dominant effort is tracing where auth gets stripped (prepend_scheme_if_needed via urllib3 parse_url).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "TERMINATED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY"],
+      "l2_labels": ["BUDGET_EXHAUSTION_NONCONVERGENCE", "STAGNATION", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "BUDGET_EXHAUSTION_NONCONVERGENCE",
+      "labels_detail": [
+        {"label": "BUDGET_EXHAUSTION_NONCONVERGENCE", "severity": "SEVERE", "evidence_action_ids": [75]},
+        {"label": "STAGNATION", "severity": "MODERATE", "evidence_action_ids": [53, 56, 58, 59, 60, 61, 62, 63]},
+        {"label": "REDUNDANT_FILE_REREAD", "severity": "MILD", "evidence_action_ids": [19, 26, 29, 43, 44, 46, 55]}
+      ]
+    },
+    "candidate_interventions": ["increase_step_budget", "provide_localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

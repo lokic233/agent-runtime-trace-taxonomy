@@ -1,0 +1,391 @@
+[
+  {
+    "trace_id": "django__django-14493@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue pins exact file/lines (storage.py L246-257) and root cause (substitutions only set if loop runs)", "Fix is a one-line initialization before the loop; minimal reasoning, no cross-file search needed"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "labels": [
+        {"l2_label": "DEPENDENCY_SETUP_DRIFT", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "MILD", "evidence_action_ids": [13, 14]}
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14500@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "HIDDEN_TEST_DOMINANT"],
+      "evidence": ["Terse issue: squash migration wrongly marked unapplied; requires understanding MigrationExecutor/loader interaction", "Fix localized to check_replacements in executor.py but reasoning spans executor, loader, graph"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING", "CONTEXT_MEMORY"],
+      "l2_labels": ["FAILED_RECOVERY", "DEPENDENCY_SETUP_DRIFT", "CONTEXT_BLOAT"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "labels": [
+        {"l2_label": "FAILED_RECOVERY", "l1_parent": "CONTROL_RECOVERY", "severity": "SEVERE", "evidence_action_ids": [24, 25, 26, 27, 29, 30, 31, 32, 33, 41, 42, 43]},
+        {"l2_label": "DEPENDENCY_SETUP_DRIFT", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "MILD", "evidence_action_ids": [12, 13, 14]},
+        {"l2_label": "CONTEXT_BLOAT", "l1_parent": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [2]}
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14534@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CROSS_FILE", "CLEAR"],
+      "evidence": ["Issue names exact method BoundWidget.id_for_label and supplies the intended fix", "Requires confirming option_inherits_attrs behavior across boundfield.py and widgets.py"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["REDUNDANT_TEST"],
+      "primary_bottleneck": "REDUNDANT_TEST",
+      "labels": [
+        {"l2_label": "REDUNDANT_TEST", "l1_parent": "VERIFICATION", "severity": "MILD", "evidence_action_ids": [29, 32]}
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14539@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue gives concrete failing example and expected output for urlize()", "Bug is in trim_punctuation index math; reasoning-heavy but single-function scope"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "labels": []
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14559@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue points to exact line (query.py L568) and prescribes summing update() return values", "Small, well-scoped change with clear test oracle"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTEXT_MEMORY"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "CONTEXT_BLOAT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "labels": [
+        {"l2_label": "DEPENDENCY_SETUP_DRIFT", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "MILD", "evidence_action_ids": [13, 14]},
+        {"l2_label": "CONTEXT_BLOAT", "l1_parent": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [1]}
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14580@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "PARTIAL"],
+      "evidence": ["Issue suspects writer module but actual fix is in serializer.py TypeSerializer special_cases", "Requires tracing how models.Model is serialized to discover the missing import"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTEXT_MEMORY"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "DEPENDENCY_SETUP_DRIFT", "CONTEXT_BLOAT"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "labels": [
+        {"l2_label": "HELPER_TOOL_FAILURE_LOOP", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "MODERATE", "evidence_action_ids": [3, 7, 9]},
+        {"l2_label": "DEPENDENCY_SETUP_DRIFT", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "MILD", "evidence_action_ids": [16, 17]},
+        {"l2_label": "CONTEXT_BLOAT", "l1_parent": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [3]}
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14608@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CROSS_FILE", "CLEAR"],
+      "evidence": ["Issue requests a nonform CSS class mirroring existing nonfield in forms", "Requires locating _non_form_errors construction in formsets.py and matching forms.py pattern"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "labels": [
+        {"l2_label": "DEPENDENCY_SETUP_DRIFT", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "MILD", "evidence_action_ids": [15, 16]}
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14631@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "CLEAR"],
+      "evidence": ["Issue prescribes refactor: route _clean_fields/changed_data through BoundField, add _bound_items and bf._did_change()", "Touches both forms.py and boundfield.py with interacting behavior"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTEXT_MEMORY"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "DEPENDENCY_SETUP_DRIFT", "CONTEXT_BLOAT"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "labels": [
+        {"l2_label": "HELPER_TOOL_FAILURE_LOOP", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "SEVERE", "evidence_action_ids": [9, 13, 21, 26, 46, 49]},
+        {"l2_label": "DEPENDENCY_SETUP_DRIFT", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "MILD", "evidence_action_ids": [34, 35, 44]},
+        {"l2_label": "CONTEXT_BLOAT", "l1_parent": "CONTEXT_MEMORY", "severity": "MILD", "evidence_action_ids": [1, 7]}
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14672@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue names exact missing call (make_hashable on through_fields in ManyToManyRel.identity)", "One-line fix in reverse_related.py with clear hash repro"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "labels": [
+        {"l2_label": "DEPENDENCY_SETUP_DRIFT", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "MILD", "evidence_action_ids": [10, 11]}
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14725@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "CROSS_MODULE", "CLEAR"],
+      "evidence": ["Feature request: an edit-only formset mode with no explicit location given", "Requires adding edit_only across BaseModelFormSet, modelformset_factory, inlineformset_factory, generic_inlineformset_factory"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "labels": [
+        {"l2_label": "DEPENDENCY_SETUP_DRIFT", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "MILD", "evidence_action_ids": [31, 32, 33]}
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14752@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue prescribes extracting result construction in AutocompleteJsonView.get() into a serialize_result method", "Pure refactor/extension point in autocomplete.py"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "labels": [
+        {"l2_label": "DEPENDENCY_SETUP_DRIFT", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "MODERATE", "evidence_action_ids": [6, 7, 8, 9]}
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14765@solver_B",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Issue prescribes asserting real_apps is a set in ProjectState.__init__ instead of converting", "Small, well-scoped change in state.py"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "labels": [
+        {"l2_label": "DEPENDENCY_SETUP_DRIFT", "l1_parent": "ENVIRONMENT_TOOLING", "severity": "MILD", "evidence_action_ids": [16]}
+      ]
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

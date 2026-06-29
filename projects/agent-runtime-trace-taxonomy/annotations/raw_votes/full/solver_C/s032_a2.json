@@ -1,0 +1,374 @@
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-10466@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": ["Issue names the Message class __init__ in sphinx/builders/gettext.py", "Fix is a small dedup of locations in one known file"],
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10614@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": ["Issue about SVG relative links in nested dirs; spans inheritance_diagram.py and graphviz.py", "Wrong-output bug, hard to verify rendered HTML/SVG"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PATCH_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "PATCH_CHURN"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "SEVERE", "PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [9, 12, 15, 18, 21], "PATCH_CHURN": [9, 12, 15, 18]}
+    },
+    "candidate_interventions": ["RUN_TEST_BEFORE_SUBMIT", "BUILD_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-10673@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "UNCLEAR_ORACLE", "SINGLE_FILE"],
+      "evidence": ["Issue about reserved toctree names (genindex/modindex/search)", "Solver scoped it to documentation edit in directives.rst"],
+      "unknown_fields": ["CODE_VS_DOC_TARGET"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PATCH_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": ["PATCH_CHURN", "VERIFICATION_GAP"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE", "VERIFICATION_GAP": "MILD"},
+      "evidence_action_ids": {"PATCH_CHURN": [7, 8, 9, 10], "VERIFICATION_GAP": [12]}
+    },
+    "candidate_interventions": ["CONSOLIDATE_EDITS", "RUN_BUILD_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-11445@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": ["rst_prolog interaction with leading domain-directive heading", "Fix sits in prolog injection logic across parsers.py / util/rst.py"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL_NONCONVERGENT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "REDUNDANT_FILE_REREAD": "MODERATE", "FAILED_RECOVERY": "MODERATE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {"STAGNATION": [16, 17, 18, 19, 29, 30, 31, 32, 42, 43, 44, 50, 51], "REDUNDANT_FILE_REREAD": [16, 17, 18, 30, 31, 32, 42, 43, 44, 50, 51], "FAILED_RECOVERY": [35, 36, 46, 47, 52, 53, 54], "BUDGET_EXHAUSTION_NONCONVERGENCE": [55]}
+    },
+    "candidate_interventions": ["BREAK_REREAD_LOOP", "LOCALIZATION_HINT", "BUDGET_GUARDRAIL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-11510@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": ["Issue about source-read event not applying to included files / rst_prolog substitution", "Requires locating extension event handling in sphinx source"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "OFF_TASK",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {"PREMATURE_SCRATCH_REPRO": [10, 11, 12, 13, 15, 17, 19, 20, 21], "DEPENDENCY_SETUP_DRIFT": [16]}
+    },
+    "candidate_interventions": ["TASK_REFOCUS", "AVOID_UNNEEDED_DEPENDENCIES"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7440@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": ["Glossary duplicate-term warning; fix is in case-insensitive term handling", "Solver inspected only glossary.rst then judged it the wrong repo and quit"],
+      "unknown_fields": ["intended_fix_location"]
+    },
+    "execution_state": {
+      "phase": "LOCALIZING",
+      "progress": "ABANDONED",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["ENCOURAGE_DEEPER_LOCALIZATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7454@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": ["None return type not hyperlinked vs int is; touches autodoc, util/inspect, util/typing", "Verification is link presence in generated HTML"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL_NONCONVERGENT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "REDUNDANT_FILE_REREAD": "SEVERE", "FAILED_RECOVERY": "MODERATE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {"STAGNATION": [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80], "REDUNDANT_FILE_REREAD": [48, 53, 56, 57, 62, 65, 66, 71, 74, 75, 80], "FAILED_RECOVERY": [25, 35, 36, 43, 44], "BUDGET_EXHAUSTION_NONCONVERGENCE": [81]}
+    },
+    "candidate_interventions": ["BREAK_REREAD_LOOP", "FORCE_HYPOTHESIS_CHANGE", "BUDGET_GUARDRAIL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7462@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CLEAR"],
+      "evidence": ["Tuple[()] empty-tuple annotation raises in autodoc; issue includes a traceback", "Reproducible crash, fix in type annotation rendering code"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "ENVIRONMENT_SETUP",
+      "progress": "NO_FIX_ATTEMPTED",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT", "PREMATURE_SCRATCH_REPRO"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "SEVERE", "PREMATURE_SCRATCH_REPRO": "MODERATE"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [14, 16, 18, 20, 22], "PREMATURE_SCRATCH_REPRO": [0, 1, 8, 25, 31, 38]}
+    },
+    "candidate_interventions": ["STABLE_ENV_SETUP", "AVOID_DEPENDENCY_CHURN"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7590@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LONG_STATE"],
+      "evidence": ["Feature request: C++ user-defined literal support; issue cites cpp.py line 4770", "Requires new AST class + parser changes plus a unit test"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL_NONCONVERGENT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE", "FAILED_RECOVERY": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [4, 5, 8, 9, 10, 11, 13, 50, 52, 55, 56], "FAILED_RECOVERY": [23, 24, 25, 26, 27, 39, 40, 41, 42, 63], "BUDGET_EXHAUSTION_NONCONVERGENCE": [69]}
+    },
+    "candidate_interventions": ["EDIT_TOOL_ASSIST", "BUDGET_GUARDRAIL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7748@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LONG_STATE"],
+      "evidence": ["Feature: autodoc_docstring_signature should support multiple signatures", "Changes localized to autodoc/__init__ _find_signature/format_signature plus a test"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PATCH_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE", "FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [5, 6, 8, 19, 20, 21, 23, 25, 27, 29, 31, 39], "FAILED_RECOVERY": [14, 16, 24, 26, 28, 30, 32]}
+    },
+    "candidate_interventions": ["EDIT_TOOL_ASSIST"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7757@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": ["Rendering of positional-only args / default values in py-domain signatures", "Spans domains/python.py (_parse_arglist) and writers/html.py"],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZING",
+      "progress": "NO_FIX_ATTEMPTED",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY", "CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "REDUNDANT_FILE_REREAD": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"},
+      "evidence_action_ids": {"STAGNATION": [29, 30, 31, 32, 36, 37, 38, 39, 45, 46, 47, 48, 54, 55, 56, 57, 63, 64, 65, 66, 72, 73, 74, 75, 76], "REDUNDANT_FILE_REREAD": [29, 32, 36, 39, 45, 48, 54, 57, 63, 66, 72, 75], "BUDGET_EXHAUSTION_NONCONVERGENCE": [77]}
+    },
+    "candidate_interventions": ["BREAK_REREAD_LOOP", "FORCE_EDIT_ATTEMPT", "BUDGET_GUARDRAIL"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7889@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": ["Issue names mock._make_subclass TypeError concatenating str to TypeVar", "Single targeted fix in autodoc/mock.py"],
+      "unknown_fields": ["HIDDEN_TEST_DOMINANT"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "PATCH_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [6, 8]}
+    },
+    "candidate_interventions": ["RUN_TEST_BEFORE_SUBMIT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T12:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

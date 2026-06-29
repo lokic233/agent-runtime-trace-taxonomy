@@ -1,0 +1,415 @@
+```json
+[
+  {
+    "trace_id": "matplotlib__matplotlib-25287@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "UNCLEAR_ORACLE", "LOCAL_CONTEXT"],
+      "evidence": "Issue supplies the suggested patch and line numbers in axis.py for XAxis/YAxis offset-text color; the task is applying a conditional in one known file. No hidden unit oracle named; verification is visual/attribute-based.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "Applied the conditional color fix to XAxis (2258) and YAxis (2518); ad-hoc offsetText.get_color() check confirms 'red'.",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [9, 10]}
+    },
+    "candidate_interventions": ["edit_tool_robustness"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25311@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE", "LOCAL_CONTEXT"],
+      "evidence": "Issue: pickling a figure with a draggable legend raises TypeError; fixing requires locating the unpicklable draggable state. Oracle is unclear since the repro does not trigger on this checkout.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "Could not reproduce (newer version pickles fine); added a draggable-legend pickle test and an issue_comment.txt; no production code change.",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [12, 14, 15, 16]}
+    },
+    "candidate_interventions": ["scaffold_repro_provided", "localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25332@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "UNCLEAR_ORACLE", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: pickling a figure after align_labels fails on weakref; fix requires a picklable Grouper variant wired across cbook, figure, and axes/_base. Oracle is the repro script, not a named unit test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "Reproduced; added PicklableGrouper in cbook; switched figure and axes/_base to it; repro pickles successfully.",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [15, 24, 25, 26, 27, 28, 29, 30]}
+    },
+    "candidate_interventions": ["edit_tool_robustness"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25479@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue: registering a colormap then using its from_list name raises ValueError; the real fix belongs in the colormap registry/get_cmap path. Issue is clearly stated.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "Reproduced the ValueError, then modified ONLY the reproduction script (matching name + new colormaps API) so it runs clean; never opened or edited library code.",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "SEVERE"},
+      "evidence_action_ids": {"PREMATURE_SCRATCH_REPRO": [0, 1, 3, 5]}
+    },
+    "candidate_interventions": ["localization_hint", "force_verification_before_submit"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25775@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "TARGETED_UNIT", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
+      "evidence": "Issue: add get/set_antialiased to Text, wire param into __init__/_reset_visual_defaults and draw; targeted feature addition plus a unit test in test_text.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "Added methods, antialiased param, and draw wiring in text.py; added an antialiasing test (weakened to assert the private _antialiased attr) that passes.",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "PATCH_CHURN": [22, 23, 24, 25, 53, 54, 55, 56, 57],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [10, 20, 23, 51, 52]
+      }
+    },
+    "candidate_interventions": ["edit_tool_robustness"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25960@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "SEARCH_REQUIRED"],
+      "evidence": "Issue: subfigures(wspace/hspace) has no visible effect; fix requires understanding/propagating spacing through GridSpec and subfigure layout transforms — a silent-semantic spacing bug.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STALLED",
+      "progress": "Reproduced; located subfigures, SubFigure, _redo_transform_rel_fig, gridspec get_grid_positions but never made an edit; auto-submitted on cost limit.",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "SEARCH_WITHOUT_NEW_EVIDENCE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "STAGNATION": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [38, 39, 40, 41, 42, 43, 48, 49, 50, 51, 52, 53, 58, 59, 60, 61, 62, 63, 78, 79, 80, 81, 82],
+        "REDUNDANT_FILE_REREAD": [29, 31, 33, 39, 41, 43, 46, 49, 51, 53, 57, 59, 61, 63],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [28, 30, 32, 38, 40, 42, 48, 50, 52, 58, 60, 62],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [83]
+      }
+    },
+    "candidate_interventions": ["stagnation_circuit_breaker", "localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26113@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "SILENT_SEMANTIC", "SEARCH_REQUIRED"],
+      "evidence": "Issue: hexbin mincnt is off-by-one / inconsistent when C is supplied; the fix is a comparison-operator change in axes/_axes.py (issue cites ~line 4594). Silent-semantic numeric boundary.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "Reproduced after tuning repro params; changed len(acc) > mincnt to >= mincnt; repro confirms C/no-C parity; added a test and clarified docstring.",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {"PREMATURE_SCRATCH_REPRO": "MILD", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [3, 4, 6, 8],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [19]
+      }
+    },
+    "candidate_interventions": ["scaffold_repro_provided"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26208@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "SEARCH_REQUIRED"],
+      "evidence": "Issue: stackplot then twinx corrupts an axis dataLim to +/-inf; root cause spans dataLim/transforms updates and twin-axes creation — a subtle silent-semantic interaction across files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STALLED",
+      "progress": "Reproduced; added debug prints to transforms.py; cycled through twinx/_make_twin_axes/add_subplot/_add_axes_internal/transforms repeatedly without isolating root cause; auto-submitted on cost limit with no fix.",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "SEARCH_WITHOUT_NEW_EVIDENCE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "STAGNATION": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [41, 42, 43, 44, 45, 46, 47, 48, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67],
+        "REDUNDANT_FILE_REREAD": [32, 34, 41, 43, 46, 48, 55, 57, 59, 61, 63, 67],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [33, 42, 45, 47, 52, 56, 58, 60, 62, 64, 66],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [80]
+      }
+    },
+    "candidate_interventions": ["stagnation_circuit_breaker", "localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26291@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "UNCLEAR_ORACLE", "LOCAL_CONTEXT"],
+      "evidence": "Issue: inset_axes raises AttributeError during draw (figure None/closed); fix belongs in inset_locator AnchoredLocatorBase.__call__. Repro does not trigger on this checkout, so oracle is unclear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "Could not reproduce; added a defensive None-figure check and a docstring note; then churned on an off-topic CHANGES.txt before submitting.",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [16, 17, 18, 19, 20, 21]}
+    },
+    "candidate_interventions": ["scaffold_repro_provided", "force_verification_before_submit"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26342@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
+      "evidence": "Issue: add ContourSet.set_paths; a small additive method in contour.py validated by a unit test. The task itself is simple; the run was dominated by a test-harness import problem.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STALLED",
+      "progress": "Added set_paths to ContourSet; pytest failed at import because lib/matplotlib/typing.py shadows stdlib typing when run from that dir; repeatedly edited/renamed typing.py without resolving it; auto-submitted on cost.",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "PATCH_CHURN", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "PATCH_CHURN": "SEVERE",
+        "STAGNATION": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [15, 20, 22, 24, 31, 34, 37, 39, 41, 43],
+        "PATCH_CHURN": [19, 21, 23, 33, 35, 36, 38, 40, 42, 55, 57, 59],
+        "STAGNATION": [34, 37, 39, 41, 43, 53, 56, 58, 60],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [72]
+      }
+    },
+    "candidate_interventions": ["environment_repair", "stagnation_circuit_breaker"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26466@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
+      "evidence": "Issue: annotate stores the xy array by reference so a later in-place mutation moves the arrow; fix is to copy xy in _AnnotationBase.__init__ (traced from axes annotate to text.py).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "Reproduced; copied xy in _AnnotationBase.__init__; repro confirms annotation positions are stable after mutating the source array.",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [24, 25]}
+    },
+    "candidate_interventions": ["edit_tool_robustness"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "mwaskom__seaborn-3069@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: Nominal scale should pad +/-0.5, hide the grid, and invert for categorical y; requires changes to Nominal scale internals in _core/scales.py. Subtle layout/semantic behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STALLED",
+      "progress": "Located Nominal; repeatedly edited CatScale/_setup but axis limits stayed at -0.2/4.2 instead of -0.5/4.5; ultimately achieved the visual goal only via a test-side set_xlim/ylim workaround; final library edit left unverified.",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [17, 22, 23]
+      }
+    },
+    "candidate_interventions": ["localization_hint", "force_verification_before_submit"],
+    "annotation_metadata": {
+      "annotator_id": "annotator-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

@@ -1,0 +1,458 @@
+```json
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-9602@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue is a nitpicky cross-ref bug: Literal annotation values (True/False) are treated as py:class targets. Fix requires understanding/extending annotation parsing in the Python domain; oracle is a doc-build warning, not a unit test.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "EDIT_TOOL_MECHANICAL_FAILURE", "ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD",
+        "ENVIRONMENT_BLOCKED": "MILD"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 2, 3, 4, 5, 8, 9, 10, 11, 14, 15, 16, 17],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [7, 28, 32],
+        "ENVIRONMENT_BLOCKED": [6, 12]
+      }
+    },
+    "candidate_interventions": ["LOCALIZE_BEFORE_REPRO", "AVOID_SCRATCH_REPRO", "RUN_REAL_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9658@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT"],
+      "evidence": "Mocked inherited classes in autodoc; fix spans ClassDocumenter.format_args (autodoc/__init__.py) plus defining ismock helper in util/inspect.py. Verified by test_ext_autodoc.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "FAILED_RECOVERY"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [4, 9, 10, 11, 13, 17],
+        "FAILED_RECOVERY": [12, 16, 20, 22, 24, 25, 27, 28]
+      }
+    },
+    "candidate_interventions": ["BETTER_EDIT_TOOL", "IMPORT_VERIFY_FIRST"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9673@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "autodoc_typehints='description' + napoleon return-type rendering. Requires locating napoleon/typehints handling; oracle is rendered doc output (unclear).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "localizing",
+      "progress": "none",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "PREMATURE_SCRATCH_REPRO", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {
+        "STAGNATION": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [13, 14, 16, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32],
+        "REDUNDANT_FILE_REREAD": [9, 12, 15, 17, 20, 24, 26, 28],
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 18, 19, 27, 33, 34],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [35]
+      }
+    },
+    "candidate_interventions": ["LOCALIZE_BEFORE_REPRO", "ANTI_LOOP_GUARD", "VERIFY_REPO_CONTEXT"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9698@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Property index entries get spurious parentheses; the task is primarily finding where the index text/entry is formatted across python domain and indexentries adapter.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "patching",
+      "progress": "partial",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "SEARCH_LOCALIZATION", "VERIFICATION"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "SEARCH_WITHOUT_NEW_EVIDENCE", "VERIFICATION_GAP"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {
+        "STAGNATION": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE",
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 29, 30, 31, 32, 33, 34, 38, 39, 40, 41, 42],
+        "REDUNDANT_FILE_REREAD": [6, 23, 40, 10, 25, 42, 16, 31, 13, 36, 45, 28, 44],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [11, 12, 26, 27, 35, 43],
+        "VERIFICATION_GAP": [46, 47, 48]
+      }
+    },
+    "candidate_interventions": ["ANTI_LOOP_GUARD", "AVOID_REDUNDANT_REREAD", "RUN_REAL_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9711@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "needs_extensions version compares as strings; fix is to use packaging.version in extension.py verify_needs_extensions. Small, localized reasoning fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [6, 7]
+      }
+    },
+    "candidate_interventions": ["BETTER_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-11618@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Point.distance gives wrong result for points of differing dimension; clear repro and single-method fix in geometry/point.py distance.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-12096@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Nested implemented_function evalf doesn't recurse; fix in Function._eval_evalf in core/function.py. Clear repro and localized fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": null,
+      "severities": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [8, 9]
+      }
+    },
+    "candidate_interventions": ["BETTER_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-12419@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Sum over all elements of refined identity matrix yields 0 instead of n; requires deep reasoning across Sum.doit/eval_sum and expr_with_limits. Subtle semantic bug with no obvious oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "patching",
+      "progress": "low",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "EDIT_PATCH", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "PREMATURE_SCRATCH_REPRO", "PATCH_CHURN", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severities": {
+        "STAGNATION": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "PREMATURE_SCRATCH_REPRO": "SEVERE",
+        "PATCH_CHURN": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [43, 44, 45, 46, 47, 48, 49, 50, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79],
+        "REDUNDANT_FILE_REREAD": [14, 17, 38, 22, 33, 24, 30, 26, 36],
+        "PREMATURE_SCRATCH_REPRO": [40, 41, 43, 44, 45, 47, 48, 49, 51, 53, 55, 56, 57, 59, 60, 62, 63, 64, 65, 67, 68, 69, 70, 72, 73, 74, 75, 77, 78, 79],
+        "PATCH_CHURN": [44, 45, 56, 57, 69, 70, 74, 75],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [80]
+      }
+    },
+    "candidate_interventions": ["ANTI_LOOP_GUARD", "AVOID_SCRATCH_REPRO", "BUDGET_REALLOCATION"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-12481@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Permutation constructor should accept non-disjoint cycles instead of raising; fix in Permutation.__new__ in combinatorics/permutations.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "CONTEXT_MEMORY"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "FAILED_RECOVERY": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "REDUNDANT_FILE_REREAD": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [16, 19, 20, 22, 23, 24, 28, 29, 30, 31, 32, 33, 34],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [13, 25, 26],
+        "REDUNDANT_FILE_REREAD": [5, 6, 7, 8, 9, 10]
+      }
+    },
+    "candidate_interventions": ["ANTI_LOOP_GUARD", "BETTER_EDIT_TOOL", "USE_SEARCH_NOT_SCROLL"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-12489@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT"],
+      "evidence": "Permutation subclassing fails because __new__/_af_new hardcode the base class; fix must use cls. Touches permutations.py and ripple effects elsewhere.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "patching",
+      "progress": "low",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "SEARCH_LOCALIZATION", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "REDUNDANT_FILE_REREAD", "SEARCH_WITHOUT_NEW_EVIDENCE", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "FAILED_RECOVERY": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [10, 12, 13, 19, 26, 28, 33, 36, 51],
+        "REDUNDANT_FILE_REREAD": [3, 23, 40, 48, 56, 5, 42, 58, 60],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [4, 8, 24, 25, 41, 43, 49, 50, 57, 59],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [11, 13, 28, 51],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [62]
+      }
+    },
+    "candidate_interventions": ["ANTI_LOOP_GUARD", "VERIFY_REPO_CONTEXT", "BUDGET_REALLOCATION"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13031@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Matrix hstack of zero-row matrices loses column counts; fix would be in matrices/common.py hstack. Issue is version-dependent.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "partial",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["RUN_REAL_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-13091@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_CUTTING", "TARGETED_UNIT"],
+      "evidence": "Issue pinpoints basic.py:316 __eq__ returning False instead of NotImplemented. Change is one line but cross-cutting across the core, so the work is verifying ripple effects.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verifying",
+      "progress": "partial",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "DEPENDENCY_SETUP_DRIFT", "FAILED_RECOVERY"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severities": {
+        "HELPER_TOOL_FAILURE_LOOP": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE",
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "HELPER_TOOL_FAILURE_LOOP": [4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16],
+        "DEPENDENCY_SETUP_DRIFT": [3, 5, 6],
+        "FAILED_RECOVERY": [21, 24, 25, 27, 28, 30]
+      }
+    },
+    "candidate_interventions": ["USE_NATIVE_TEST_RUNNER", "ANTI_LOOP_GUARD", "SCOPE_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

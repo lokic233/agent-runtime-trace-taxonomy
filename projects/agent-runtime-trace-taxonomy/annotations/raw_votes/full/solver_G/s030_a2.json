@@ -1,0 +1,468 @@
+```json
+[
+  {
+    "trace_id": "scikit-learn__scikit-learn-13328@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: make HuberRegressor accept boolean X (TypeError on numpy boolean negative). Fix concentrated in huber.py with supporting reads of base.py/validation.py to understand how LinearRegression coerces dtype. Core difficulty is reasoning about why X stays boolean inside the bfgs objective, not finding the file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {
+          "label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "SEVERE",
+          "evidence_action_ids": [9, 15, 16, 18, 19, 20, 21, 23],
+          "is_primary_bottleneck": true
+        },
+        {
+          "label": "FAILED_RECOVERY",
+          "parent_l1": "CONTROL_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [8, 22],
+          "is_primary_bottleneck": false
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL", "PROVIDE_LOCATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-13439@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR"],
+      "evidence": "Issue: implement Pipeline.__len__ so len(pipe) and slicing work. Trivial single-method addition to a known class in sklearn/pipeline.py; difficulty was incidental (import precedence), not the change itself.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label": "ENVIRONMENT_BLOCKED",
+          "parent_l1": "ENVIRONMENT_TOOLING",
+          "severity": "MODERATE",
+          "evidence_action_ids": [1, 3, 4, 5, 7, 8, 13],
+          "is_primary_bottleneck": true
+        },
+        {
+          "label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "MILD",
+          "evidence_action_ids": [22],
+          "is_primary_bottleneck": false
+        }
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["FIX_IMPORT_PATH", "ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-13496@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR"],
+      "evidence": "Issue: add warm_start parameter (docstring + __init__) to IsolationForest in iforest.py. Location explicit; work is a localized docstring/signature edit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [0, 1, 2, 3, 4],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-13779@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: VotingClassifier should tolerate None estimators when checking sample_weight support. Fix is a single guard in _BaseVoting.fit in voting.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": [
+        {
+          "label": "VERIFICATION_GAP",
+          "parent_l1": "VERIFICATION",
+          "severity": "MODERATE",
+          "evidence_action_ids": [6, 7],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "VERIFICATION_GAP"
+    },
+    "candidate_interventions": ["RUN_TESTS_BEFORE_FINISH", "WRITE_REPRO"],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14053@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR"],
+      "evidence": "Issue: export_text raises IndexError when feature_names given for a single-feature tree. Fix is a bounded list-comprehension guard in tree/export.py with a repro script.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label": "ENVIRONMENT_BLOCKED",
+          "parent_l1": "ENVIRONMENT_TOOLING",
+          "severity": "MODERATE",
+          "evidence_action_ids": [6, 10, 11, 12],
+          "is_primary_bottleneck": true
+        },
+        {
+          "label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "MILD",
+          "evidence_action_ids": [3],
+          "is_primary_bottleneck": false
+        }
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": ["FIX_IMPORT_PATH", "ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14087@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: LogisticRegressionCV with refit=False raises IndexError due to coefs_paths dimensionality. Requires reasoning about array shapes for the refit=False branch in logistic.py; repro built and iterated against.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": [
+        {
+          "label": "FAILED_RECOVERY",
+          "parent_l1": "CONTROL_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [6, 8, 10, 12, 15],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["INSPECT_SHAPES_FIRST", "ADD_DIAGNOSTICS"],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14141@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR"],
+      "evidence": "Issue: add joblib to the deps list in _show_versions.py. Trivial, explicit, single-file list addition.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "MILD",
+          "evidence_action_ids": [1, 2],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14496@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR"],
+      "evidence": "Issue gives exact lines: cast float min_samples to int in optics_.py. Repeated pattern in two functions; localized arithmetic fix. User stated tests already handled.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "MILD",
+          "evidence_action_ids": [2],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL"],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14629@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: cross_val_predict fails for MultiOutputClassifier with method=predict_proba. Spans _validation.py and multioutput.py; reasoning about per-estimator classes_, circular imports, and output shape.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": [
+        {
+          "label": "FAILED_RECOVERY",
+          "parent_l1": "CONTROL_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [8, 9, 11, 13],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["ADD_DIAGNOSTICS", "INSPECT_SHAPES_FIRST"],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14710@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "UNCLEAR_ORACLE"],
+      "evidence": "Issue: HistGradientBoosting early-stopping scorer fails on string labels (TypeError in _check_targets). Requires tracing _check_early_stopping_scorer / _get_small_trainset / _encode_y within gradient_boosting.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "STUCK",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "VERIFICATION"],
+      "l2_labels": [
+        {
+          "label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [8, 9],
+          "is_primary_bottleneck": true
+        },
+        {
+          "label": "VERIFICATION_GAP",
+          "parent_l1": "VERIFICATION",
+          "severity": "MODERATE",
+          "evidence_action_ids": [12, 13],
+          "is_primary_bottleneck": false
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL", "RUN_TESTS_BEFORE_FINISH"],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14894@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue: ZeroDivisionError in SVM _sparse_fit when there are no support vectors. Single guard added in svm/base.py and verified with repro.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-14983@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR"],
+      "evidence": "Issue: RepeatedKFold/RepeatedStratifiedKFold lack a proper __repr__. Add __repr__ to both classes in model_selection/_split.py; mechanically simple but exact-match edits were hard.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "SEVERE",
+          "evidence_action_ids": [0, 5, 7, 8, 9, 12, 13, 14],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": ["ROBUST_EDIT_TOOL", "ANCHORED_EDIT_CONTEXT"],
+    "annotation_metadata": {
+      "annotator_id": "solver_G-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

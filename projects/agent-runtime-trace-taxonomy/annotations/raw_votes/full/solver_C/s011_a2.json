@@ -1,0 +1,264 @@
+```json
+[
+  {
+    "trace_id": "django__django-13821@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Issue asks to raise the minimum supported SQLite version; this requires finding every version reference (code check in base.py, feature flags in features.py, plus docs/release notes). Spread-out edits across code and documentation, no single clear test oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "PATCH_CHURN"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MILD", "PATCH_CHURN": "MILD"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [2, 19], "PATCH_CHURN": [17, 18]}
+    },
+    "candidate_interventions": ["suggest_running_existing_tests"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13837@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Issue names get_child_arguments directly; fix is a localized rewrite of one function to detect -m for any package. Location explicit, oracle clear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13925@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue concerns auto-created primary key warnings resolved by setting default_auto_field on AppConfig classes; work is finding the relevant apps.py files across contrib apps.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [11, 15]}
+    },
+    "candidate_interventions": ["suggest_running_existing_tests"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13933@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "Issue asks ModelChoiceField invalid_choice message to include the bad value; main effort is locating ModelChoiceField (which is in forms/models.py, not the expected forms/fields.py) then a clear targeted edit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severities": {"FILENAME_SEARCH_THRASH": "MILD"},
+      "evidence_action_ids": {"FILENAME_SEARCH_THRASH": [0, 1, 3, 4, 5, 6]}
+    },
+    "candidate_interventions": ["provide_localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13964@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": "Issue is a subtle ORM bug: setting a parent FK with a non-numeric PK before save loses the relation. Requires understanding ORM save/related-descriptor internals; silent semantic failure with no obvious single oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "PARTIAL",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT", "FAILED_RECOVERY"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "MODERATE", "FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 2, 3, 4, 6, 15, 17, 24, 29, 31, 33],
+        "DEPENDENCY_SETUP_DRIFT": [20, 22, 25, 27, 30, 32],
+        "FAILED_RECOVERY": [40, 41, 43, 45, 47, 50]
+      }
+    },
+    "candidate_interventions": ["recommend_locating_source_before_repro", "provide_localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14007@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "LONG_STATE"],
+      "evidence": "Issue: custom BigAutoField from_db_value not applied to returned ids after create()/bulk_create(). Requires ORM internals understanding; silent semantic behavior, no single trivial oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCH",
+      "progress": "PARTIAL",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "DEPENDENCY_SETUP_DRIFT", "FAILED_RECOVERY"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severities": {"PREMATURE_SCRATCH_REPRO": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "MODERATE", "FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [0, 1, 2, 3, 4, 8, 13, 18, 20, 22],
+        "DEPENDENCY_SETUP_DRIFT": [14, 19, 21, 24, 25, 29, 32],
+        "FAILED_RECOVERY": [33, 35, 36, 38, 40, 42]
+      }
+    },
+    "candidate_interventions": ["recommend_locating_source_before_repro", "provide_localization_hint"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14011@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CROSS_FILE", "CLEAR"],
+      "evidence": "Issue: LiveServerThread leaks DB connections via ThreadedWSGIServer; effort is finding the LiveServerThread definition in test/testcases.py and adding a connection-closing server subclass.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "SUBSTANTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severities": {"VERIFICATION_GAP": "MODERATE"},
+      "evidence_action_ids": {"VERIFICATION_GAP": [9, 12]}
+    },
+    "candidate_interventions": ["suggest_running_existing_tests"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14017@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "CLEAR", "TARGETED_UNIT", "LONG_STATE"],
+      "evidence": "Issue: Q() & Exists() not commutative (TypeError) while Exists() & Q() works; fix involves operator-overload reasoning (__rand__/_combine) across query_utils.py and expressions.py, complicated by circular-import structure. Oracle is clear (commutative result).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "TERMINATED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {"FAILED_RECOVERY": "SEVERE", "STAGNATION": "MODERATE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [53, 55, 57, 59, 61, 63, 65, 67, 69],
+        "STAGNATION": [58, 60, 62, 64, 66, 68],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [70]
+      }
+    },
+    "candidate_interventions": ["early_stop_on_nonconvergence", "warn_circular_import"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```
