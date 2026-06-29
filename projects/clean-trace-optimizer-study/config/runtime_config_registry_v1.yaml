@@ -1,0 +1,60 @@
+# runtime_config_registry_v1.yaml — bounded intervention configs (SPECS; NOT yet implemented)
+# Every config: exact implementation, thresholds, fallback, runtime version, hash, token overhead,
+# regression mechanism. implemented:false where no live runtime hook exists yet.
+
+runtime: SWE-agent-1.0 (HAL) + litellm; live model endpoint required for paired runs
+registry_version: v1
+
+configs:
+  DEFAULT:
+    intervention_family: NONE
+    description: Original unmodified runtime.
+    implemented: true
+    thresholds: {}
+    fallback: n/a
+    token_overhead: 0
+    regression_mechanism: none (baseline)
+    config_hash: TBD_at_freeze
+
+  SEARCH_CONSTRAINED:
+    intervention_family: SEARCH
+    description: >
+      After K consecutive searches that do not expand the candidate-file set (SEARCH_NO_NEW_EVIDENCE),
+      inject a system nudge requiring a strategy change (read a candidate file or state a hypothesis)
+      and apply a bounded search budget B.
+    implemented: false
+    thresholds: {no_new_evidence_run_K: 3, search_budget_B: 12}
+    fallback: if budget hit, force a READ of the top candidate file; never hard-stop the agent.
+    token_overhead: small (one injected message per trigger)
+    regression_mechanism: >
+      could suppress a legitimate broadening search that would have found the right file -> miss ->
+      regression on hard-to-localize tasks.
+    config_hash: TBD_at_freeze
+
+  PATCH_GUARD:
+    intervention_family: PATCH
+    description: >
+      On a 2nd same-region edit with NO intervening evidence (NO_EVIDENCE_PATCH_CHURN), require a
+      verification step (run the targeted test or re-read the region) before another edit.
+    implemented: false
+    thresholds: {no_evidence_reedit_K: 2}
+    fallback: allow the edit after one forced verification, regardless of result.
+    token_overhead: small-medium (forced test/read)
+    regression_mechanism: >
+      forcing a test mid-fix on a slow suite burns budget; could push a near-correct trace over the
+      step/token cap -> regression.
+    config_hash: TBD_at_freeze
+
+  VERIFY_HEAVY:
+    intervention_family: VERIFICATION
+    description: >
+      If the trace reaches a SUBMIT with POST_EDIT_TEST_GAP undefined (no post-edit test) AND a
+      plausible test target exists, require one relevant test before submit.
+    implemented: false
+    thresholds: {require_post_edit_test: true}
+    fallback: if no test target can be identified, allow submit (do NOT block on missing oracle).
+    token_overhead: medium (one test run)
+    regression_mechanism: >
+      a forced test that fails on an environment issue (not the patch) could mislead the agent into
+      reverting a correct patch -> regression. Oracle availability NOT independently verified.
+    config_hash: TBD_at_freeze
