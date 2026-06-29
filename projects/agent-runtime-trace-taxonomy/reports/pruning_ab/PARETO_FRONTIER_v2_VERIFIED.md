@@ -83,6 +83,7 @@ AGG1 keeps 3× more recent observations than AGG3 yet regresses the same 3 tasks
 
 ## Files
 - `results/pruning_ab/final_verified_table.json` — machine-readable
-- `results/pruning_ab/per_task_outcomes.json` — full per-method × per-task pass/regress/improve map
+- `reports/pruning_ab/PER_TASK_MATRIX.md` — **human-readable per-task pass/regress/improve matrix** (the task mapping)
+- `results/pruning_ab/per_task_outcomes.json` — machine-readable per-method × per-task map + fragility ranking
 - `results/pruning_ab/grade_*.json` — raw SWE-bench reports (13 arms)
 - `src/pruning_ab/prune_methods.py` — all method implementations
