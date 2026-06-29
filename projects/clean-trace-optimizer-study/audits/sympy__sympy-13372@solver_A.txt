@@ -1,0 +1,37 @@
+TRACE sympy__sympy-13372@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] READ       | "sed -n '1270,1320p' /testbed/sympy/core/evalf.py"
+      thought: "I'll analyze the issue and fix it. Let me first explore the relevant code."
+      obs: 're: evalf_re,         im: evalf_im,         floor: evalf_floor,         ceiling: evalf_ceiling,          Integral: evalf_integral,         S'
+[1] EXEC_OTHER | 'cd /testbed && python -c "\nfrom sympy import Mul, Max, symbols\nx, y = symbols(\'x y\')\nprint'
+      thought: 'Now let me reproduce the error:'
+      obs: "/testbed/sympy/core/basic.py:3: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is depr"
+[2] EDIT       | "str_replace_editor str_replace /testbed/sympy/core/evalf.py   --old_str '            if re"
+      thought: 'Confirmed. Now apply the fix:'
+      obs: "The file /testbed/sympy/core/evalf.py has been edited. Here's the result of running `cat -n` on a snippet of /testbed/sympy/core/evalf.py:  "
+[3] READ       | "sed -n '525,560p' /testbed/sympy/core/evalf.py"
+      thought: 'Now let me check that `NotImplementedError` is handled in the calling code (`eva'
+      obs: 'def evalf_mul(v, prec, options):     res = pure_complex(v)     if res:         # the only pure complex that is a mul is h*I         _, h = r'
+[4] READ       | "sed -n '1385,1415p' /testbed/sympy/core/evalf.py"
+      thought: 'Let me check the top-level `evalf` method that calls this:'
+      obs: 'rv = self.evalf(2, subs, maxn, chop, strict, quad, verbose)             m = _mag(rv)             rv = rv.round(1 - m)             return rv '
+[5] SEARCH     | 'cd /testbed && python -c "\nfrom sympy import Mul, Max, symbols\nx, y = symbols(\'x y\')\nprint'
+      thought: 'Good. The `NotImplementedError` raised from inside `evalf` will propagate up. Le'
+      obs: 'x*Max(0, y) x*Max(0, y)'
+[6] SEARCH     | 'cd /testbed && python -c "\nfrom sympy import Mul, Add, Max, Min, symbols, sin, cos, pi, I,'
+      thought: 'Both orders now work the same way. Let me test a few edge cases:'
+      obs: 'x*Max(0, y) x*Max(0, y) x + Max(0, y) Max(0, y)*Min(1.0, x) x*Max(0, y) 2.0*Max(0, y) 0 1.0 + 1.0*I 1.41421356237310 2.5*Max(0, y)'
+[7] TEST       | 'cd /testbed && python -m pytest sympy/core/tests/test_evalf.py -q 2>&1 | tail -20'
+      thought: 'All edge cases work. Let me also run the existing evalf tests to make sure nothi'
+      obs: '/opt/miniconda3/envs/testbed/bin/python: No module named pytest'
+[8] EXEC_OTHER | 'cd /testbed && python -c "import sympy; sympy.test(\'sympy/core/tests/test_evalf.py\')" 2>&1'
+      obs: "/testbed/sympy/plotting/plot.py:28: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is "
+[9] OTHER      | ''
+      thought: 'All 46 tests pass (2 expected failures are unrelated). The fix:  **Summary of ch'
+      obs: ''
+[10] SUBMIT     | 'submit'
+      thought: 'The fix is complete and verified. Let me submit the changes.'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[11] SUBMIT     | 'submit'
+      thought: 'The changes look correct. No test files were modified and no reproduction script'
+      obs: 'diff --git a/sympy/core/evalf.py b/sympy/core/evalf.py index 72a5fbae5..f34908710 100644 --- a/sympy/core/evalf.py +++ b/sympy/core/evalf.py'

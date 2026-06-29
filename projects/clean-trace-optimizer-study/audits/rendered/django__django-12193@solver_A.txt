@@ -1,0 +1,53 @@
+TRACE django__django-12193@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] SEARCH     | 'find /testbed -type f -name "*.py" | xargs grep -l "SplitArrayField" | head -20'
+      thought: "I'll analyze the repository structure and find the relevant code to fix this iss"
+      obs: '/testbed/django/contrib/postgres/forms/array.py /testbed/tests/postgres_tests/test_array.py'
+[1] READ       | 'cat /testbed/django/contrib/postgres/forms/array.py'
+      obs: 'import copy from itertools import chain  from django import forms from django.contrib.postgres.validators import (     ArrayMaxLengthValidat'
+[2] READ       | "sed -n '510,540p' /testbed/django/forms/widgets.py"
+      thought: "Now let's look at the CheckboxInput widget mentioned in the issue:"
+      obs: 'def __init__(self, attrs=None, check_test=None):         super().__init__(attrs)         # check_test is a callable that takes a value and r'
+[3] EDIT       | "str_replace_editor create /testbed/reproduce_bug.py --file_text 'import django\nfrom django"
+      thought: 'Now I understand the issue. Let me create a reproduction script:'
+      obs: 'File created successfully at: /testbed/reproduce_bug.py'
+[4] EXEC_OTHER | 'cd /testbed && python reproduce_bug.py'
+      obs: 'Traceback (most recent call last):   File "reproduce_bug.py", line 10, in <module>     django.setup()   File "/testbed/django/__init__.py", '
+[5] EDIT       | "str_replace_editor create /testbed/reproduce_bug2.py --file_text 'import django\nfrom djang"
+      thought: 'Let me reproduce without using the postgres app:'
+      obs: 'File created successfully at: /testbed/reproduce_bug2.py'
+[6] EXEC_OTHER | 'cd /testbed && python reproduce_bug2.py'
+      obs: 'Traceback (most recent call last):   File "reproduce_bug2.py", line 13, in <module>     from django.contrib.postgres.forms.array import Spli'
+[7] ENV        | 'pip install psycopg2-binary 2>&1 | tail -3'
+      obs: "Installing collected packages: psycopg2-binary Successfully installed psycopg2-binary-2.9.5 WARNING: Running pip as the 'root' user can resu"
+[8] EXEC_OTHER | 'cd /testbed && python reproduce_bug.py'
+      obs: '<tr><th><label for="id_bool_array_0">Bool array:</label></th><td><input type="checkbox" name="bool_array_0" required id="id_bool_array_0"><i'
+[9] EDIT       | 'str_replace_editor str_replace /testbed/django/contrib/postgres/forms/array.py   --old_str'
+      thought: "Bug reproduced. Now let's fix the `get_context` in `SplitArrayWidget`. The issue"
+      obs: "The file /testbed/django/contrib/postgres/forms/array.py has been edited. Here's the result of running `cat -n` on a snippet of /testbed/dja"
+[10] EXEC_OTHER | 'cd /testbed && python reproduce_bug.py'
+      thought: 'Wait — let me reconsider. The `final_attrs` is what is passed to `self.widget.ge'
+      obs: '<tr><th><label for="id_bool_array_0">Bool array:</label></th><td><input type="checkbox" name="bool_array_0" required id="id_bool_array_0"><i'
+[11] EDIT       | "str_replace_editor create /testbed/test_edge_cases.py --file_text 'import django\nfrom djan"
+      thought: 'The fix works. Now let me test a few edge cases:'
+      obs: 'File created successfully at: /testbed/test_edge_cases.py'
+[12] EXEC_OTHER | 'cd /testbed && python test_edge_cases.py'
+      thought: '[System: Empty message content sanitised to satisfy protocol]'
+      obs: 'Test 1 - All True: <tr><th><label for="id_bool_array_0">Bool array:</label></th><td><input type="checkbox" name="bool_array_0" required id="'
+[13] SEARCH     | 'cd /testbed && grep -n "SplitArray" tests/postgres_tests/test_array.py | head -30'
+      thought: "All edge cases pass. Let's also run the existing tests for SplitArrayField/Widge"
+      obs: '32:        SimpleArrayField, SplitArrayField, SplitArrayWidget, 934:            array = SplitArrayField(forms.CharField(), size=3) 943:     '
+[14] EXEC_OTHER | 'cd /testbed && python -c "\nimport django\nfrom django.conf import settings\nsettings.configu'
+      obs: 'subwidgets: 2 OK'
+[15] EXEC_OTHER | 'cd /testbed && python -c "\nimport django\nfrom django.conf import settings\nsettings.configu'
+      thought: 'Let me also run the actual postgres test suite for the SplitArrayField tests if '
+      obs: 'def get_context(self, name, value, attrs=None):         attrs = {} if attrs is None else attrs         context = super().get_context(name, v'
+[16] SUBMIT     | 'submit'
+      thought: 'The fix is in place. Let me summarize what was done:  ## Summary  **Problem:** `'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[17] EXEC_OTHER | 'cd /testbed && python reproduce_bug.py && rm reproduce_bug.py reproduce_bug2.py test_edge_'
+      thought: 'Let me clean up the reproduction scripts and verify the fix still works:'
+      obs: '<tr><th><label for="id_bool_array_0">Bool array:</label></th><td><input type="checkbox" name="bool_array_0" required id="id_bool_array_0"><i'
+[18] SUBMIT     | 'submit'
+      thought: 'The fix works correctly and the reproduction scripts have been cleaned up. I did'
+      obs: 'diff --git a/django/contrib/postgres/forms/array.py b/django/contrib/postgres/forms/array.py index 2e19cd574a..d2d46c1603 100644 --- a/djang'

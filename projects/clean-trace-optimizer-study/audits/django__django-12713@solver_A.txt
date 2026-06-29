@@ -1,0 +1,45 @@
+TRACE django__django-12713@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] SEARCH     | 'grep -n "formfield_for_manytomany\\|formfield_for_foreignkey" /testbed/django/contrib/admin'
+      thought: "I'll analyze the repository structure and find the relevant code for this issue."
+      obs: '153:                formfield = self.formfield_for_foreignkey(db_field, request, **kwargs) 155:                formfield = self.formfield_fo'
+[1] READ       | 'str_replace_editor view /testbed/django/contrib/admin/options.py  --view_range 218 290'
+      obs: "Here's the result of running `cat -n` on /testbed/django/contrib/admin/options.py:    218\t    def formfield_for_foreignkey(self, db_field, r"
+[2] EDIT       | "str_replace_editor str_replace /testbed/django/contrib/admin/options.py   --old_str '     "
+      thought: 'Now I can see the issue. In `formfield_for_manytomany`, the widget is unconditio'
+      obs: "The file /testbed/django/contrib/admin/options.py has been edited. Here's the result of running `cat -n` on a snippet of /testbed/django/con"
+[3] SEARCH     | 'cd /testbed && find tests -path \'*admin*\' -name \'tests.py\' | xargs grep -l "formfield_for_'
+      thought: 'Now let me create a reproduction script to verify the fix works:'
+      obs: 'tests/admin_ordering/tests.py'
+[4] SEARCH     | 'cd /testbed && grep -rn "formfield_overrides\\|formfield_for_manytomany" tests/admin_widget'
+      obs: "120:    def test_formfield_overrides(self): 122:                             formfield_overrides={DateField: {'widget': forms.TextInput}}) 1"
+[5] TEST       | 'cd /testbed && python -m pytest tests/admin_widgets/tests.py -x -q 2>&1 | tail -20'
+      thought: 'Let me run the admin_widgets tests to make sure existing tests still pass:'
+      obs: '/opt/miniconda3/envs/testbed/bin/python: No module named pytest'
+[6] EXEC_OTHER | 'cd /testbed/tests && python runtests.py admin_widgets -v 0 2>&1 | tail -20'
+      obs: 'System check identified no issues (0 silenced). ---------------------------------------------------------------------- Ran 81 tests in 0.639'
+[7] EDIT       | 'str_replace_editor create /tmp/reproduce.py --file_text \'"""Reproduce the issue: widget ov'
+      thought: 'All tests pass. Now let me create a quick reproduction script to verify the fix '
+      obs: 'File created successfully at: /tmp/reproduce.py'
+[8] EXEC_OTHER | 'cd /testbed && python /tmp/reproduce.py'
+      obs: 'Widget class: CustomWidget SUCCESS: custom widget was used.'
+[9] EXEC_OTHER | 'cd /testbed && git stash && python /tmp/reproduce.py 2>&1 | tail -5; git stash pop'
+      thought: 'The fix works. Let me verify the fix is correct by reverting it temporarily to c'
+      obs: 'Saved working directory and index state WIP on main: 5b884d45ac Fixed #29501 -- Allowed dbshell to pass options to underlying tool. Widget c'
+[10] EXEC_OTHER | 'cd /testbed/tests && python runtests.py admin_widgets admin_views admin_ordering admin_inl'
+      thought: 'Confirmed: - **Before the fix**: `FilteredSelectMultiple` is used, overriding th'
+      obs: 'File "/testbed/django/core/mail/utils.py", line 18, in get_fqdn     self._fqdn = punycode(socket.getfqdn())   File "/testbed/django/utils/en'
+[11] SEARCH     | 'cd /testbed/tests && python runtests.py admin_widgets admin_views admin_ordering admin_inl'
+      thought: "The errors are unrelated to my change (they're about `socket.getfqdn()` returnin"
+      obs: 'ERROR: test_custom_function_mail_action (admin_views.test_actions.AdminActionsTest) ERROR: test_default_redirect (admin_views.test_actions.A'
+[12] EXEC_OTHER | 'cd /testbed && git stash && cd tests && python runtests.py admin_views.test_actions -v 0 2'
+      obs: 'Saved working directory and index state WIP on main: 5b884d45ac Fixed #29501 -- Allowed dbshell to pass options to underlying tool.  -------'
+[13] SUBMIT     | 'submit'
+      thought: 'Confirmed - those 4 errors exist on `main` without any of my changes. They are e'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[14] EXEC_OTHER | 'cd /testbed && python /tmp/reproduce.py && rm /tmp/reproduce.py'
+      thought: 'Let me clean up the reproduction script and confirm the fix once more:'
+      obs: 'Widget class: CustomWidget SUCCESS: custom widget was used.'
+[15] SUBMIT     | 'submit'
+      thought: 'The fix is verified to be working. The reproduction script has been removed. I d'
+      obs: 'diff --git a/django/contrib/admin/options.py b/django/contrib/admin/options.py index 69a5fbf389..db7df891e3 100644 --- a/django/contrib/admi'

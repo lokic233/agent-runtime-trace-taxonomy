@@ -1,0 +1,38 @@
+TRACE astropy__astropy-13579@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] SEARCH     | 'find /testbed -type f -name "*.py" | xargs grep -l "SlicedLowLevelWCS" | head -20'
+      thought: 'Let me start by exploring the repository structure to understand the codebase.'
+      obs: '/testbed/astropy/nddata/mixins/ndslicing.py /testbed/astropy/nddata/nddata.py /testbed/astropy/nddata/tests/test_nddata.py /testbed/astropy/'
+[1] READ       | 'str_replace_editor view /testbed/astropy/wcs/wcsapi/wrappers/sliced_wcs.py'
+      obs: "Here's the result of running `cat -n` on /testbed/astropy/wcs/wcsapi/wrappers/sliced_wcs.py:      1\timport numbers      2\tfrom collections i"
+[2] EDIT       | "cat > /tmp/repro.py <<'EOF'\nimport numpy as np\nimport astropy.wcs\nfrom astropy.coordinates"
+      thought: 'Now I understand the issue. In `world_to_pixel_values`, when a world dimension i'
+      obs: 'Traceback (most recent call last):   File "/tmp/repro.py", line 34, in <module>     pt = SkyCoord(Tx=0*u.arcsec, Ty=0*u.arcsec, frame=astrop'
+[3] EDIT       | "cat > /tmp/repro.py <<'EOF'\nimport numpy as np\nimport astropy.wcs\nfrom astropy.coordinates"
+      obs: 'WARNING: No observer defined on WCS, SpectralCoord will be converted without any velocity frame change [astropy.wcs.wcsapi.fitswcs] Full: (a'
+[4] EDIT       | 'str_replace_editor str_replace /testbed/astropy/wcs/wcsapi/wrappers/sliced_wcs.py   --old_'
+      thought: 'Reproduced. Now let me understand the fix. When dropping world dimensions, we su'
+      obs: "The file /testbed/astropy/wcs/wcsapi/wrappers/sliced_wcs.py has been edited. Here's the result of running `cat -n` on a snippet of /testbed/"
+[5] EXEC_OTHER | 'cd /testbed && python /tmp/repro.py'
+      thought: 'Now let me check if `_pixel_to_world_values_all` always returns a tuple/list. Lo'
+      obs: 'WARNING: No observer defined on WCS, SpectralCoord will be converted without any velocity frame change [astropy.wcs.wcsapi.fitswcs] Full: (a'
+[6] TEST       | 'cd /testbed && python -m pytest astropy/wcs/wcsapi/wrappers/tests/test_sliced_wcs.py -x -q'
+      thought: 'Now the sliced WCS returns the expected values. Let me run the existing tests fo'
+      obs: 'Internet access disabled ........................................                                 [100%] 40 passed in 0.86s'
+[7] TEST       | 'cd /testbed && python -m pytest astropy/wcs/wcsapi/ -x -q 2>&1 | tail -20'
+      thought: 'All tests pass. Let me also run related WCS API tests:'
+      obs: 'n_update : int             Number of items updated.              """         try:             from astropy.utils import iers                '
+[8] TEST       | 'cd /testbed && python -m pytest astropy/wcs/wcsapi/ -q --deselect astropy/wcs/wcsapi/tests'
+      thought: "This failure is unrelated to my fix (it's about leap-seconds). Let me skip that "
+      obs: 'except Exception as exc: >           warn("leap-second auto-update failed due to the following "                  f"exception: {exc!r}", Ast'
+[9] EDIT       | "cat > /tmp/repro2.py <<'EOF'\nimport numpy as np\nimport astropy.wcs\nfrom astropy.coordinate"
+      thought: 'Same unrelated leap-second issue. All other tests pass.  Let me also think about'
+      obs: 'WARNING: No observer defined on WCS, SpectralCoord will be converted without any velocity frame change [astropy.wcs.wcsapi.fitswcs] Full @ 1'
+[10] SUBMIT     | 'submit'
+      thought: 'All cases work correctly. The fix handles edge cases properly:  1. The slicing a'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[11] EXEC_OTHER | 'rm -f /tmp/repro.py /tmp/repro2.py\ncd /testbed && git status'
+      obs: 'On branch main Changes to be committed:   (use "git restore --staged <file>..." to unstage) \tmodified:   astropy/wcs/wcsapi/wrappers/sliced_'
+[12] SUBMIT     | 'submit'
+      thought: 'Only the source file has been modified, no test files. Reproduction scripts remo'
+      obs: 'diff --git a/astropy/wcs/wcsapi/wrappers/sliced_wcs.py b/astropy/wcs/wcsapi/wrappers/sliced_wcs.py index d7605b078..773663f6e 100644 --- a/a'

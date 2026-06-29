@@ -1,0 +1,21 @@
+TRACE django__django-12143@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] READ       | "sed -n '1630,1640p' /testbed/django/contrib/admin/options.py"
+      obs: 'return self.changeform_view(request, object_id, form_url, extra_context)      def _get_edited_object_pks(self, request, prefix):         """'
+[1] EDIT       | "str_replace_editor str_replace /testbed/django/contrib/admin/options.py   --old_str '     "
+      obs: "The file /testbed/django/contrib/admin/options.py has been edited. Here's the result of running `cat -n` on a snippet of /testbed/django/con"
+[2] EXEC_OTHER | 'cd /testbed && python -c "\nimport re\nprefix = \'foo.bar+baz\'\npk_name = \'id\'\n# Without fix\no'
+      thought: 'The change is minimal and direct: it wraps `prefix` in `re.escape()` before subs'
+      obs: 'Old matches correct key: False New matches correct key: True Old matches bad key (BUG): False New matches bad key: False'
+[3] EXEC_OTHER | 'cd /testbed && python tests/runtests.py admin_changelist -v 0 2>&1 | tail -20'
+      thought: 'The fix works correctly:  1. **Old code**: Failed to match the correct key `foo.'
+      obs: 'System check identified no issues (0 silenced). ---------------------------------------------------------------------- Ran 57 tests in 0.922'
+[4] OTHER      | ''
+      thought: 'All tests pass. The fix is complete:  **Summary of the change:** In `/testbed/dj'
+      obs: ''
+[5] SUBMIT     | 'submit'
+      thought: 'The fix is complete and verified. Submitting the changes.'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[6] SUBMIT     | 'submit'
+      thought: 'No reproduction script was created as a file (only inline `python -c` commands),'
+      obs: 'diff --git a/django/contrib/admin/options.py b/django/contrib/admin/options.py index 137e6faa0f..85896bed7e 100644 --- a/django/contrib/admi'

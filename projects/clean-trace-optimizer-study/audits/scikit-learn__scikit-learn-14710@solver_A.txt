@@ -1,0 +1,50 @@
+TRACE scikit-learn__scikit-learn-14710@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] SEARCH     | 'find /testbed/sklearn/ensemble/_hist_gradient_boosting -type f -name "*.py" | head -20'
+      thought: "I'll analyze the repository structure and the issue, then implement a fix."
+      obs: '/testbed/sklearn/ensemble/_hist_gradient_boosting/__init__.py /testbed/sklearn/ensemble/_hist_gradient_boosting/binning.py /testbed/sklearn/'
+[1] READ       | 'str_replace_editor view /testbed/sklearn/ensemble/_hist_gradient_boosting/gradient_boostin'
+      obs: "Here's the result of running `cat -n` on /testbed/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py:    400\t            if hasat"
+[2] EDIT       | "cat > /tmp/repro.py << 'EOF'\nimport numpy as np\nfrom sklearn.experimental import enable_hi"
+      thought: 'Now let me create a reproduce script:'
+      obs: 'Traceback (most recent call last):   File "/tmp/repro.py", line 8, in <module>     gbrt.fit(X, y)   File "/testbed/sklearn/ensemble/_hist_gr'
+[3] EDIT       | 'str_replace_editor str_replace /testbed/sklearn/ensemble/_hist_gradient_boosting/gradient_'
+      thought: 'Confirmed. Now let me apply the fix:'
+      obs: "The file /testbed/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py has been edited. Here's the result of running `cat -n` on a "
+[4] SEARCH     | 'grep -n "is_classifier" /testbed/sklearn/ensemble/_hist_gradient_boosting/gradient_boostin'
+      thought: 'Verify `is_classifier` is imported:'
+      obs: '10:                     is_classifier) 412:            stratify = y_train if is_classifier(self) else None 429:        if is_classifier(self'
+[5] EXEC_OTHER | 'cd /testbed && python /tmp/repro.py'
+      thought: 'Good. Let me run the reproduction script:'
+      obs: 'OK'
+[6] EDIT       | "cat > /tmp/edge.py << 'EOF'\nimport numpy as np\nfrom sklearn.experimental import enable_his"
+      thought: 'Let me also test edge cases - regression (should still work), classification wit'
+      obs: 'Regression OK Classification int OK Classification str OK Classification str (no val) OK Multiclass str OK'
+[7] TEST       | 'cd /testbed && python -m pytest sklearn/ensemble/_hist_gradient_boosting/tests/test_gradie'
+      thought: 'All edge cases pass. Let me also run the existing test suite to make sure nothin'
+      obs: "The command 'cd /testbed && python -m pytest sklearn/ensemble/_hist_gradient_boosting/tests/test_gradient_boosting.py -q 2>&1 | tail -20' wa"
+[8] TEST       | 'cd /testbed && timeout 120 python -m pytest sklearn/ensemble/_hist_gradient_boosting/tests'
+      obs: 'ERROR: usage: __main__.py [options] [file_or_dir] [file_or_dir] [...] __main__.py: error: unrecognized arguments: --timeout=30   inifile: /t'
+[9] TEST       | 'cd /testbed && timeout 200 python -m pytest sklearn/ensemble/_hist_gradient_boosting/tests'
+      obs: 'Terminated'
+[10] TEST       | 'cd /testbed && timeout 120 python -m pytest sklearn/ensemble/_hist_gradient_boosting/tests'
+      thought: 'The test suite is slow. Let me run a subset focusing on related tests:'
+      obs: 'Terminated'
+[11] TEST       | 'cd /testbed && timeout 60 python -m pytest sklearn/ensemble/_hist_gradient_boosting/tests/'
+      obs: 'sklearn/ensemble/_hist_gradient_boosting/tests/test_gradient_boosting.py::test_early_stopping_regression[neg_mean_squared_error-0.1-5-1e-07]'
+[12] TEST       | 'cd /testbed && timeout 120 python -m pytest sklearn/ensemble/_hist_gradient_boosting/tests'
+      obs: 'Terminated'
+[13] TEST       | 'cd /testbed && timeout 60 python -m pytest "sklearn/ensemble/_hist_gradient_boosting/tests'
+      thought: 'These tests are inherently slow. Let me run just one:'
+      obs: '============================= test session starts ============================== platform linux -- Python 3.6.13, pytest-6.2.4, py-1.11.0, p'
+[14] OTHER      | ''
+      thought: 'The fix is working. Let me summarize the changes:  ## Summary  The issue was in '
+      obs: ''
+[15] SUBMIT     | 'submit'
+      thought: 'The fix has been verified and works correctly across all edge cases. Let me subm'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[16] EXEC_OTHER | 'cd /testbed && python /tmp/repro.py && python /tmp/edge.py && rm /tmp/repro.py /tmp/edge.p'
+      obs: 'OK Regression OK Classification int OK Classification str OK Classification str (no val) OK Multiclass str OK'
+[17] SUBMIT     | 'submit'
+      thought: "All changes are confirmed working. I haven't modified any test files. Let me sub"
+      obs: 'diff --git a/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py b/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py i'
