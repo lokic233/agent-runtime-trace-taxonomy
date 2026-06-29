@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "model": "claude-opus-4-7",
+    "n_tasks": 50,
+    "n_baseline_submitted": 49,
+    "loss_ub_at_0_regressions": 0.052,
+    "certified_at_delta": 0.06,
+    "status": "PRE_GRADE (submission-proxy; SWE-bench grading pending)",
+    "killed_screen": [
+      "M1_dedup_exact(-5%)",
+      "M2_stale_read_elide(-7%)",
+      "M3_obs_cap_10k(-8%)",
+      "M5_search_head(-1%)",
+      "CNEG_recency(2 regressions)"
+    ],
+    "date": "2026-06-29",
+    "apparatus": "prune-shim -> PlugBoard mTLS -> opus-4.7; SWE-agent-1.0 re-run"
+  },
+  "results": {
+    "C0_identity": {
+      "saving_pct": 0,
+      "regressions": 0,
+      "role": "baseline"
+    },
+    "AGG3_recency_obs_4": {
+      "saving_pct": 50.6,
+      "regressions": 0
+    },
+    "AGG2_recency_obs_8": {
+      "saving_pct": 47.7,
+      "regressions": 0
+    },
+    "COMBO1_m7_cap5k": {
+      "saving_pct": 42.5,
+      "regressions": 0
+    },
+    "HYBRID1_m7_agg2": {
+      "saving_pct": 41.5,
+      "regressions": 0
+    },
+    "AGG1_recency_obs_12": {
+      "saving_pct": 39.9,
+      "regressions": 0
+    },
+    "SUM1_summarize_old": {
+      "saving_pct": 38.2,
+      "regressions": 0
+    },
+    "PROG1_progressive": {
+      "saving_pct": 37.9,
+      "regressions": 0
+    },
+    "M7_old_obs_elide": {
+      "saving_pct": 37.0,
+      "regressions": 0
+    },
+    "COMP1_tool_compress": {
+      "saving_pct": 22.6,
+      "regressions": 0
+    },
+    "DEDUP2_similar_obs": {
+      "saving_pct": 19.0,
+      "regressions": 0
+    },
+    "M4_obs_cap_5k": {
+      "saving_pct": 1.4,
+      "regressions": 0
+    },
+    "M6_env_log_collapse": {
+      "saving_pct": 0.5,
+      "regressions": 0
+    }
+  }
+}
