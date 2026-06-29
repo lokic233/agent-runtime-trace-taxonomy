@@ -2,6 +2,28 @@
 
 **Generated:** 2026-06-29 · from full Stage-B annotation (clean cohort: opus-4.7/4.5/sonnet-3.5).
 
+## Executive Summary
+
+We annotated **2,000 SWE-agent traces** (4 models × 500) with 2 independent annotators + adjudicate-on-disagreement under the frozen v1 waste taxonomy (16 labels), then ranked each waste pattern by *improvement opportunity* = prevalence × capability-gap (how much more the weak model does it than the strong one), penalizing harness artifacts.
+
+**Top finding — three waste patterns are the real capability discriminators** (weak sonnet-3.5 vs strong opus), and they're where a runtime controller has the most leverage:
+
+| Rank | Waste pattern | sonnet-3.5 | opus | what to do |
+|------|---------------|-----------:|-----:|-----------|
+| 1 | **EDIT_TOOL_MECHANICAL_FAILURE** | 32% | 7-12% | detect repeated edit-tool errors → switch edit strategy |
+| 2 | **FAILED_RECOVERY** | 24% | 5-8% | loops on failing tests → ESCALATE_SOLVER |
+| 3 | **BUDGET_EXHAUSTION** | 17% | 0-8% | runs out of budget → earlier escalation |
+| 4 | **VERIFICATION_GAP** | 14% | 0.4% | submits unverified → INCREASE_TARGETED_VERIFICATION |
+
+**Second finding — three "high-prevalence" patterns are HARNESS ARTIFACTS, not waste.** CONTEXT_BLOAT, HELPER_TOOL_FAILURE_LOOP, PREEMPTIVE_HELPER_TOOL_BUILD are ~13-17% in opus-4.5's live-SWE-agent scaffold but **near-zero in opus-4.7's classic scaffold** — same model family, different harness. Annotation proved these are scaffold behaviors; a controller intervening on them would fix the harness, not the agent. **Skip them.**
+
+**Controller takeaway:** be **solver-aware**. Weak/local models need verify-and-recover discipline (targets 1-4 above); strong models need only light patch-scope limits. The same trace pattern means different things at different capability tiers.
+
+**Honesty line:** these are *observed prevalences + heuristic opportunity*, NOT proven efficacy. Confirming an intervention actually helps needs paired config outcomes (`PARETO_POLICY_DATA_VERDICT = NOT_EMPIRICALLY_GROUNDED`). The open-weight Skywork-32B cohort is reported separately (`per_model_analysis.md`), not mixed into this clean-cohort ranking.
+
+---
+
+
 > ⚠️ HEURISTIC opportunity, NOT proven efficacy. Tier = prevalence + capability-gap (weak−strong on clean cohort) + harness-penalty. Proving an intervention HELPS still needs paired config outcomes → PARETO_POLICY_DATA_VERDICT = NOT_EMPIRICALLY_GROUNDED. Now computed on SEMANTIC labels (annotated), upgrading the earlier deterministic-proxy version.
 
 ## Clean-cohort opportunity (opus-4.7/4.5/sonnet-3.5)
