@@ -1,3 +1,8 @@
+> # ⚠️ SUPERSEDED BY v2 — THIS TABLE WAS SUBMISSION-PROXY, NOT GRADED
+> The "0 regressions / ∞ ratio / STRICT" claims below were based on submission counts, not
+> SWE-bench grading. Real grading (see PARETO_FRONTIER_v2_VERIFIED.md) shows EVERY method
+> regresses 1-5 tasks. No method is STRICT. Kept for provenance; **use v2 for real numbers.**
+
 # Safe Context-Pruning Pareto Frontier v1
 
 **Model:** Claude opus-4.7 (frontier) via PlugBoard · **Tasks:** 50 golden resolved cases (SWE-bench Verified, evenly stratified across 10 repos)

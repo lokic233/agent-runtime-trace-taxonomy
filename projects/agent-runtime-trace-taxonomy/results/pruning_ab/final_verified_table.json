@@ -1,0 +1,224 @@
+{
+  "baseline_resolved": 48,
+  "n_tasks": 50,
+  "model": "claude-opus-4-7",
+  "thinking": false,
+  "date": "2026-06-29",
+  "methods": [
+    {
+      "method": "AGG3_recency_obs_4",
+      "saving_pct": 50.6,
+      "resolved": 46,
+      "regressions": 3,
+      "improvements": 1,
+      "sav_per_reg": 16.9,
+      "loss_ub": 0.146,
+      "tier": "MED",
+      "regressed_ids": [
+        "astropy__astropy-14096",
+        "pylint-dev__pylint-4551",
+        "sympy__sympy-14248"
+      ],
+      "improved_ids": [
+        "pytest-dev__pytest-6197"
+      ]
+    },
+    {
+      "method": "AGG2_recency_obs_8",
+      "saving_pct": 47.7,
+      "resolved": 46,
+      "regressions": 3,
+      "improvements": 1,
+      "sav_per_reg": 15.9,
+      "loss_ub": 0.146,
+      "tier": "MED",
+      "regressed_ids": [
+        "pylint-dev__pylint-4551",
+        "pylint-dev__pylint-6386",
+        "sphinx-doc__sphinx-8638"
+      ],
+      "improved_ids": [
+        "pytest-dev__pytest-6197"
+      ]
+    },
+    {
+      "method": "COMBO1_m7_cap5k",
+      "saving_pct": 42.5,
+      "resolved": 47,
+      "regressions": 2,
+      "improvements": 1,
+      "sav_per_reg": 21.2,
+      "loss_ub": 0.118,
+      "tier": "MED",
+      "regressed_ids": [
+        "pylint-dev__pylint-4551",
+        "sphinx-doc__sphinx-8638"
+      ],
+      "improved_ids": [
+        "pytest-dev__pytest-6197"
+      ]
+    },
+    {
+      "method": "HYBRID1_m7_agg2",
+      "saving_pct": 41.5,
+      "resolved": 48,
+      "regressions": 1,
+      "improvements": 1,
+      "sav_per_reg": 41.5,
+      "loss_ub": 0.088,
+      "tier": "MED",
+      "regressed_ids": [
+        "pylint-dev__pylint-4551"
+      ],
+      "improved_ids": [
+        "pytest-dev__pytest-6197"
+      ]
+    },
+    {
+      "method": "AGG1_recency_obs_12",
+      "saving_pct": 39.9,
+      "resolved": 46,
+      "regressions": 3,
+      "improvements": 1,
+      "sav_per_reg": 13.3,
+      "loss_ub": 0.146,
+      "tier": "MED",
+      "regressed_ids": [
+        "pylint-dev__pylint-4551",
+        "sphinx-doc__sphinx-9658",
+        "sympy__sympy-14248"
+      ],
+      "improved_ids": [
+        "pytest-dev__pytest-6197"
+      ]
+    },
+    {
+      "method": "SUM1_summarize_old",
+      "saving_pct": 38.2,
+      "resolved": 46,
+      "regressions": 3,
+      "improvements": 1,
+      "sav_per_reg": 12.7,
+      "loss_ub": 0.146,
+      "tier": "MED",
+      "regressed_ids": [
+        "pylint-dev__pylint-4551",
+        "sympy__sympy-14248",
+        "sympy__sympy-19040"
+      ],
+      "improved_ids": [
+        "pytest-dev__pytest-6197"
+      ]
+    },
+    {
+      "method": "PROG1_progressive",
+      "saving_pct": 37.9,
+      "resolved": 47,
+      "regressions": 2,
+      "improvements": 1,
+      "sav_per_reg": 19.0,
+      "loss_ub": 0.118,
+      "tier": "MED",
+      "regressed_ids": [
+        "pylint-dev__pylint-4551",
+        "sympy__sympy-14248"
+      ],
+      "improved_ids": [
+        "pytest-dev__pytest-6197"
+      ]
+    },
+    {
+      "method": "M7_old_obs_elide",
+      "saving_pct": 37.0,
+      "resolved": 44,
+      "regressions": 5,
+      "improvements": 1,
+      "sav_per_reg": 7.4,
+      "loss_ub": 0.199,
+      "tier": "HIGH",
+      "regressed_ids": [
+        "astropy__astropy-14096",
+        "pylint-dev__pylint-4551",
+        "pylint-dev__pylint-6386",
+        "sphinx-doc__sphinx-8638",
+        "sympy__sympy-19040"
+      ],
+      "improved_ids": [
+        "pytest-dev__pytest-6197"
+      ]
+    },
+    {
+      "method": "COMP1_tool_compress",
+      "saving_pct": 22.6,
+      "resolved": 46,
+      "regressions": 3,
+      "improvements": 1,
+      "sav_per_reg": 7.5,
+      "loss_ub": 0.146,
+      "tier": "MED",
+      "regressed_ids": [
+        "pylint-dev__pylint-4551",
+        "sphinx-doc__sphinx-9658",
+        "sympy__sympy-14248"
+      ],
+      "improved_ids": [
+        "pytest-dev__pytest-6197"
+      ]
+    },
+    {
+      "method": "DEDUP2_similar_obs",
+      "saving_pct": 19.0,
+      "resolved": 46,
+      "regressions": 3,
+      "improvements": 1,
+      "sav_per_reg": 6.3,
+      "loss_ub": 0.146,
+      "tier": "MED",
+      "regressed_ids": [
+        "pylint-dev__pylint-4551",
+        "sphinx-doc__sphinx-8638",
+        "sympy__sympy-13091"
+      ],
+      "improved_ids": [
+        "pytest-dev__pytest-6197"
+      ]
+    },
+    {
+      "method": "M4_obs_cap_5k",
+      "saving_pct": 1.4,
+      "resolved": 47,
+      "regressions": 3,
+      "improvements": 2,
+      "sav_per_reg": 0.5,
+      "loss_ub": 0.146,
+      "tier": "MED",
+      "regressed_ids": [
+        "pylint-dev__pylint-4551",
+        "pylint-dev__pylint-6386",
+        "sphinx-doc__sphinx-9658"
+      ],
+      "improved_ids": [
+        "pylint-dev__pylint-8898",
+        "pytest-dev__pytest-6197"
+      ]
+    },
+    {
+      "method": "M6_env_log_collapse",
+      "saving_pct": 0.5,
+      "resolved": 46,
+      "regressions": 3,
+      "improvements": 1,
+      "sav_per_reg": 0.2,
+      "loss_ub": 0.146,
+      "tier": "MED",
+      "regressed_ids": [
+        "pylint-dev__pylint-4551",
+        "sphinx-doc__sphinx-9658",
+        "sympy__sympy-14248"
+      ],
+      "improved_ids": [
+        "pytest-dev__pytest-6197"
+      ]
+    }
+  ]
+}
