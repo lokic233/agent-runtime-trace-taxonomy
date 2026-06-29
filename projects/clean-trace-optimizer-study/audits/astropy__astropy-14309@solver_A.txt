@@ -1,0 +1,23 @@
+TRACE astropy__astropy-14309@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] READ       | 'str_replace_editor view /testbed/astropy/io/fits/connect.py  --view_range 45 80'
+      thought: 'Looking at the issue, I need to fix the `is_fits` function in `astropy/io/fits/c'
+      obs: "Here's the result of running `cat -n` on /testbed/astropy/io/fits/connect.py:     45\t    return re.match(COLUMN_KEYWORD_REGEXP, keyword) is "
+[1] EXEC_OTHER | 'cd /testbed && python -c "\nfrom astropy.io.registry import identify_format\nfrom astropy.ta'
+      thought: 'Let me reproduce the issue first:'
+      obs: 'Traceback (most recent call last):   File "<string>", line 4, in <module>   File "/testbed/astropy/io/registry/compat.py", line 52, in wrapp'
+[2] EDIT       | "str_replace_editor str_replace /testbed/astropy/io/fits/connect.py   --old_str '    elif f"
+      thought: "Now I'll fix it by checking if `args` has elements before accessing `args[0]`:"
+      obs: "The file /testbed/astropy/io/fits/connect.py has been edited. Here's the result of running `cat -n` on a snippet of /testbed/astropy/io/fits"
+[3] EXEC_OTHER | 'cd /testbed && python -c "\nfrom astropy.io.registry import identify_format\nfrom astropy.ta'
+      thought: "Now let's verify the fix:"
+      obs: "No FITS ext: ['ascii.ecsv'] FITS ext: ['fits'] Empty args with HDUList: ['fits']"
+[4] READ       | 'str_replace_editor view /testbed/astropy/io/registry/base.py  --view_range 305 325'
+      thought: 'All three cases work properly: 1. Non-FITS file with empty args returns no FITS '
+      obs: "Here's the result of running `cat -n` on /testbed/astropy/io/registry/base.py:    305\t        Returns    306\t        -------    307\t        "
+[5] SUBMIT     | 'submit'
+      thought: 'The caller uses the result as a truthy/falsy check via `if`, so returning an emp'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[6] SUBMIT     | 'submit'
+      thought: "I haven't created a reproduction script as a separate file (I used `python -c` i"
+      obs: 'diff --git a/astropy/io/fits/connect.py b/astropy/io/fits/connect.py index 4b6150f4a..01770463d 100644 --- a/astropy/io/fits/connect.py +++ '

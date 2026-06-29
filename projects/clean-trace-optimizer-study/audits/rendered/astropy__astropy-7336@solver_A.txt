@@ -1,0 +1,19 @@
+TRACE astropy__astropy-7336@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] READ       | "sed -n '200,240p' /testbed/astropy/units/decorators.py"
+      obs: '#   specified                 if isinstance(targets, str) or not isiterable(targets):                     valid_targets = [targets]         '
+[1] EDIT       | "str_replace_editor str_replace /testbed/astropy/units/decorators.py   --old_str '         "
+      obs: "The file /testbed/astropy/units/decorators.py has been edited. Here's the result of running `cat -n` on a snippet of /testbed/astropy/units/"
+[2] EDIT       | "cat > /tmp/poc.py << 'EOF'\nimport astropy.units as u\n\n\nclass PoC(object):\n\n    @u.quantity"
+      thought: 'Now let me verify by creating and running a reproducer:'
+      obs: 'Constructor OK Return annotated: 2.0 V No annotation: 3.0 V'
+[3] OTHER      | ''
+      thought: 'All three cases work correctly:  1. **Constructor with `-> None`**: No longer ra'
+      obs: ''
+[4] SUBMIT     | 'submit'
+      thought: 'The fix is complete and verified. Let me submit the changes.'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[5] EXEC_OTHER | 'rm -f /tmp/poc.py'
+      obs: ''
+[6] SUBMIT     | 'submit'
+      obs: 'diff --git a/astropy/units/decorators.py b/astropy/units/decorators.py index 8bece5a85..a7ac743e4 100644 --- a/astropy/units/decorators.py +'

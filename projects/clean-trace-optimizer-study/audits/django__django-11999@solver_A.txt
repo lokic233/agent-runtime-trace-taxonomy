@@ -1,0 +1,47 @@
+TRACE django__django-11999@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] SEARCH     | 'find /testbed -type f -name "*.py" | head -20 && echo "---" && cat /testbed/setup.py 2>/de'
+      thought: "I'll start by exploring the repository structure to understand what we're workin"
+      obs: '/testbed/django/__init__.py /testbed/django/__main__.py /testbed/django/apps/__init__.py /testbed/django/apps/config.py /testbed/django/apps'
+[1] SEARCH     | 'grep -n "get_FIELD_display\\|get_%s_display\\|_get_FIELD_display" /testbed/django/db/models/'
+      obs: "766:            setattr(cls, 'get_%s_display' % self.name, 767:                    partialmethod(cls._get_FIELD_display, field=self))"
+[2] READ       | 'str_replace_editor view /testbed/django/db/models/fields/__init__.py  --view_range 750 780'
+      obs: 'Here\'s the result of running `cat -n` on /testbed/django/db/models/fields/__init__.py:    750\t        """    751\t        Register the field '
+[3] EDIT       | "cat > /tmp/reproduce.py << 'EOF'\nimport django\nfrom django.conf import settings\nsettings.c"
+      thought: 'Now let me understand the issue. The `contribute_to_class` is called from the mo'
+      obs: 'Result: foo Traceback (most recent call last):   File "/tmp/reproduce.py", line 26, in <module>     assert f.get_foo_bar_display() == "somet'
+[4] SEARCH     | 'grep -n "contribute_to_class" /testbed/django/db/models/base.py | head -10'
+      thought: 'Bug reproduced. Now I need to check if `get_FOO_display` is already defined in t'
+      obs: "66:def _has_contribute_to_class(value): 67:    # Only call contribute_to_class() if it's bound. 68:    return not inspect.isclass(value) and"
+[5] EDIT       | "str_replace_editor str_replace /testbed/django/db/models/fields/__init__.py   --old_str ' "
+      thought: 'At the time `contribute_to_class` runs, the class is already being constructed v'
+      obs: "The file /testbed/django/db/models/fields/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /testbed/django"
+[6] EXEC_OTHER | 'cd /testbed && python /tmp/reproduce.py'
+      obs: 'Result: something OK'
+[7] EDIT       | "cat > /tmp/reproduce2.py << 'EOF'\nimport django\nfrom django.conf import settings\nsettings."
+      thought: 'Fix works. Now let me think about edge cases:  1. **Inheritance**: Could a paren'
+      obs: 'Test 1 OK: something Test 2 OK: foo Test 3 OK: overridden Test 4 OK: foo Test 5a OK: foo Test 5b OK: child override All tests passed!'
+[8] EXEC_OTHER | 'cd /testbed && python tests/runtests.py model_fields.test_charfield model_fields.tests --v'
+      thought: 'All edge cases pass. Let me run the existing tests for model fields and choices '
+      obs: "Cloning test database for alias 'default'... Cloning test database for alias 'default'... Cloning test database for alias 'default'... Cloni"
+[9] EXEC_OTHER | 'cd /testbed && python tests/runtests.py model_fields choices --verbosity 1 2>&1 | tail -10'
+      obs: "Destroying test database for alias 'default'... Destroying test database for alias 'default'... Destroying test database for alias 'default'"
+[10] SEARCH     | 'cd /testbed && python tests/runtests.py model_fields choices --verbosity 1 2>&1 | grep -E '
+      obs: 'ERROR: choices (unittest.loader._FailedTest) Ran 311 tests in 0.812s FAILED (errors=1, skipped=2)'
+[11] SEARCH     | 'cd /testbed && python tests/runtests.py model_fields choices --verbosity 2 2>&1 | grep -E '
+      obs: 'choices (unittest.loader._FailedTest) ... ERROR ERROR: choices (unittest.loader._FailedTest) FAILED (errors=1, skipped=2)'
+[12] SEARCH     | 'cd /testbed && ls tests/ | grep -i choice'
+      obs: ''
+[13] SEARCH     | 'cd /testbed && python tests/runtests.py model_fields --verbosity 1 2>&1 | grep -E "Ran|OK|'
+      thought: "The `choices` test doesn't exist - the loader failure is unrelated to my change."
+      obs: 'Ran 310 tests in 0.743s OK (skipped=2)'
+[14] OTHER      | ''
+      thought: 'All 310 model_fields tests pass. The fix is minimal and correct.  ## Summary  Th'
+      obs: ''
+[15] SUBMIT     | 'submit'
+      thought: 'The fix is complete and all tests pass. Let me submit the changes.'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[16] EXEC_OTHER | 'rm -f /tmp/reproduce.py /tmp/reproduce2.py'
+      obs: ''
+[17] SUBMIT     | 'submit'
+      obs: 'diff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py index ee45bb941e..fe550169bd 100644 --- a/django/db/m'

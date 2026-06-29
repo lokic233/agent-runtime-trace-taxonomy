@@ -1,0 +1,13 @@
+TRACE scikit-learn__scikit-learn-14710@solver_F (solver=solver_F)  [neutral render — no labels]
+
+[0] READ       | 'str_replace_editor view /testbed/sklearn/ensemble/_hist_gradient_boosting/gradient_boostin'
+      obs: "Here's the result of running `cat -n` on /testbed/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py:    420\t        else:    421"
+[1] EDIT       | 'str_replace_editor str_replace /testbed/sklearn/ensemble/_hist_gradient_boosting/gradient_'
+      obs: "The file /testbed/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py has been edited. Here's the result of running `cat -n` on a "
+[2] EXEC_OTHER | 'cd /testbed && python -c "\nimport numpy as np\nfrom sklearn.experimental import enable_hist'
+      obs: 'Success!'
+[3] SUBMIT     | 'submit'
+      thought: 'The fix works. The change ensures that when early stopping uses a scorer, the en'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[4] SUBMIT     | 'submit'
+      obs: 'diff --git a/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py b/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py i'

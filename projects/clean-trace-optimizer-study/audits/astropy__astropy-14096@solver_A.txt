@@ -1,0 +1,42 @@
+TRACE astropy__astropy-14096@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] READ       | "sed -n '570,620p' /testbed/astropy/coordinates/sky_coordinate.py"
+      thought: "I'll analyze the issue and implement a fix."
+      obs: ')          # Set the output values. This is where validation of `values` takes place to ensure         # that it can indeed be inserted.    '
+[1] SEARCH     | 'grep -n "__getattr__" /testbed/astropy/coordinates/sky_coordinate.py'
+      obs: '869:    def __getattr__(self, attr): 903:        # This is to make anything available through __getattr__ immutable 918:            # variab'
+[2] READ       | "sed -n '860,910p' /testbed/astropy/coordinates/sky_coordinate.py"
+      obs: 'def _is_name(self, string):         """         Returns whether a string is one of the aliases for the frame.         """         return sel'
+[3] EDIT       | "cat > /tmp/repro.py << 'EOF'\nimport astropy.coordinates as coord\n\n\nclass custom_coord(coor"
+      thought: 'Now I understand. When `c.prop` is accessed, Python finds the property `prop` an'
+      obs: 'Traceback (most recent call last):   File "/tmp/repro.py", line 11, in <module>     c.prop   File "/testbed/astropy/coordinates/sky_coordina'
+[4] EDIT       | 'str_replace_editor str_replace /testbed/astropy/coordinates/sky_coordinate.py   --old_str '
+      thought: 'Confirmed. The fix: in `__getattr__`, we should check first whether the attribut'
+      obs: "The file /testbed/astropy/coordinates/sky_coordinate.py has been edited. Here's the result of running `cat -n` on a snippet of /testbed/astr"
+[5] EXEC_OTHER | 'cd /testbed && python /tmp/repro.py'
+      thought: "Wait - there's a concern. If a property exists, `object.__getattribute__` will b"
+      obs: 'Traceback (most recent call last):   File "/tmp/repro.py", line 11, in <module>     c.prop   File "/testbed/astropy/coordinates/sky_coordina'
+[6] EDIT       | "cat > /tmp/edge.py << 'EOF'\nimport astropy.coordinates as coord\n\n# Normal attribute access"
+      thought: 'Now the error message correctly says `random_attr` is missing instead of `prop`.'
+      obs: "ra: 10d37m30s dec: 41d12m00s galactic: 121d07m24.03621669s myra: 10d37m30s Expected error: 'SkyCoord' object has no attribute 'nonexistent' "
+[7] TEST       | 'cd /testbed && python -m pytest astropy/coordinates/tests/test_sky_coord.py -x -q 2>&1 | t'
+      thought: 'All edge cases work. Let me also run the existing tests to ensure no regressions'
+      obs: '----------         files : list of path-like, optional             List of files/URLs to attempt to open.  By default, uses defined by      '
+[8] TEST       | 'cd /testbed && python -m pytest astropy/coordinates/tests/test_sky_coord.py -q --deselect '
+      thought: "The only failure is unrelated to my change (it's a leap-second IERS issue). Let "
+      obs: '<frozen importlib._bootstrap>:228: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility. Expected 80 from C heade'
+[9] TEST       | 'cd /testbed && python -m pytest astropy/coordinates/tests/ -q --deselect astropy/coordinat'
+      thought: 'All other tests pass. Let me also run a broader test to be safe:'
+      obs: 'f"leap-second auto-update failed due to the following exception: {exc!r}",                 AstropyWarning,             ) E           astropy'
+[10] TEST       | 'cd /testbed && python -m pytest astropy/coordinates/tests/ -q -k "not altaz and not atciqz'
+      thought: 'Again, only unrelated IERS issues. Let me filter out leap-second related tests:'
+      obs: '" https://github.com/astropy/astropy/issues.",                 AstropyWarning,             ) E           astropy.utils.exceptions.AstropyWar'
+[11] SUBMIT     | 'submit'
+      thought: 'Both failures are pre-existing and unrelated to my change. The fix is working co'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[12] EXEC_OTHER | 'rm -f /tmp/repro.py /tmp/edge.py'
+      thought: 'Let me clean up the reproduction scripts and finalize:'
+      obs: ''
+[13] SUBMIT     | 'submit'
+      thought: 'My changes are confined to `/testbed/astropy/coordinates/sky_coordinate.py` and '
+      obs: 'diff --git a/astropy/coordinates/sky_coordinate.py b/astropy/coordinates/sky_coordinate.py index ab475f7d0..23ee3f0e9 100644 --- a/astropy/c'

@@ -68,6 +68,18 @@ def classify(raw_action_type: Optional[str], tool_name: Optional[str],
     if lead in _NATIVE:
         return _NATIVE[lead], f"native:{lead}"
 
+    # 2b) editor ACI as a raw string: "str_replace_editor <subcmd> ..." / "file_editor <subcmd> ..."
+    #     (SWE-agent-1.0 / SWE-agent-LM emit the editor tool + subcommand as one action string)
+    if lead in ("str_replace_editor", "file_editor", "edit_file"):
+        sub = (rat.split()[1].lower() if len(rat.split()) > 1 else "")
+        if sub in ("view", "open", "read"):
+            return "READ", f"editor:{sub}"
+        if sub in ("str_replace", "create", "insert", "append", "write", "edit"):
+            return "EDIT", f"editor:{sub}"
+        # unknown editor subcmd: treat as READ (viewing is the safe default; editor calls w/o
+        # explicit write keyword are usually navigation)
+        return "READ", f"editor:ambiguous->read"
+
     # 3) command-content precedence (write-to-file BEFORE test/env, since heredoc edits look like exec)
     if _RE_TEST.search(text):
         # a test invocation, even if it also writes — TEST wins for verification semantics

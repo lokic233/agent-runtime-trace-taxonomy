@@ -1,0 +1,32 @@
+TRACE astropy__astropy-14995@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] SEARCH     | 'find /testbed -type f -name "*.py" | xargs grep -l "handle_mask" | head -20'
+      thought: "I'll analyze the repository structure and find the relevant code to fix this iss"
+      obs: '/testbed/astropy/nddata/mixins/ndarithmetic.py /testbed/astropy/nddata/mixins/tests/test_ndarithmetic.py'
+[1] SEARCH     | 'grep -n "handle_mask\\|_arithmetic_mask\\|def _arithmetic" /testbed/astropy/nddata/mixins/nd'
+      obs: "44:    handle_mask : callable, ``'first_found'`` or ``None``, optional 166:    def _arithmetic( 171:        handle_mask=np.logical_or, 199: "
+[2] READ       | 'str_replace_editor view /testbed/astropy/nddata/mixins/ndarithmetic.py  --view_range 485 5'
+      obs: "Here's the result of running `cat -n` on /testbed/astropy/nddata/mixins/ndarithmetic.py:    485\t    def _arithmetic_mask(self, operation, op"
+[3] EDIT       | "cat > /tmp/repro.py << 'EOF'\nimport numpy as np\nfrom astropy.nddata import NDDataRef\n\narra"
+      thought: 'Now I see the issue. When `operand is not None` but `operand.mask is None` (and '
+      obs: "Test 1 (no mask * scalar): None Test 2 (no mask * no mask): None Test 3 FAILED: unsupported operand type(s) for |: 'int' and 'NoneType' Test"
+[4] EDIT       | 'str_replace_editor str_replace /testbed/astropy/nddata/mixins/ndarithmetic.py   --old_str '
+      thought: 'Confirmed. Now let me fix the `_arithmetic_mask` function:'
+      obs: "The file /testbed/astropy/nddata/mixins/ndarithmetic.py has been edited. Here's the result of running `cat -n` on a snippet of /testbed/astr"
+[5] EXEC_OTHER | 'python /tmp/repro.py'
+      thought: 'The fix adds `or operand.mask is None` to the third condition, so when self has '
+      obs: 'Test 1 (no mask * scalar): None Test 2 (no mask * no mask): None Test 3 (mask * scalar): [[ 0  1 64]  [ 8  0  1]  [ 2  1  0]] Test 4 (mask *'
+[6] TEST       | 'cd /testbed && python -m pytest astropy/nddata/mixins/tests/test_ndarithmetic.py -x -q 2>&'
+      thought: 'All tests pass now. Let me think about edge cases:  1. **Both masks None** → han'
+      obs: '<frozen importlib._bootstrap>:228: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility. Expected 80 from C heade'
+[7] OTHER      | ''
+      thought: 'All 179 tests pass. The fix is minimal and correct:  **Summary of the change:** '
+      obs: ''
+[8] SUBMIT     | 'submit'
+      thought: 'The fix is complete and all tests pass. Let me submit the changes.'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[9] EXEC_OTHER | 'rm -f /tmp/repro.py'
+      obs: ''
+[10] SUBMIT     | 'submit'
+      thought: "I haven't modified any test files. The change is minimal and only modifies the `"
+      obs: 'diff --git a/astropy/nddata/mixins/ndarithmetic.py b/astropy/nddata/mixins/ndarithmetic.py index 4153dfccb..56a867879 100644 --- a/astropy/n'

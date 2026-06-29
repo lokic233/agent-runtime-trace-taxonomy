@@ -1,0 +1,49 @@
+TRACE django__django-13512@solver_A (solver=solver_A)  [neutral render — no labels]
+
+[0] SEARCH     | 'find /testbed -type f -name "*.py" | xargs grep -l "JSONField" | head -20'
+      thought: "I'll analyze the repository structure and find the relevant code for JSONField i"
+      obs: '/testbed/django/contrib/admin/utils.py /testbed/django/contrib/postgres/aggregates/general.py /testbed/django/contrib/postgres/fields/jsonb.'
+[1] READ       | 'cat /testbed/django/contrib/postgres/forms/jsonb.py'
+      obs: 'import warnings  from django.forms import JSONField as BuiltinJSONField from django.utils.deprecation import RemovedInDjango40Warning  __all'
+[2] SEARCH     | 'grep -n "JSONField\\|json.dumps\\|bound_data\\|prepare_value" /testbed/django/forms/fields.py'
+      obs: "42:    'JSONField', 'SlugField', 'TypedChoiceField', 'TypedMultipleChoiceField', 120:    def prepare_value(self, value): 154:    def bound_d"
+[3] READ       | 'str_replace_editor view /testbed/django/forms/fields.py  --view_range 1219 1275'
+      obs: 'Invalid `view_range`: [1219, 1275]. Its second element `1275` should be smaller than the number of lines in the file: `1272`'
+[4] READ       | 'str_replace_editor view /testbed/django/forms/fields.py  --view_range 1219 1272'
+      obs: "Here's the result of running `cat -n` on /testbed/django/forms/fields.py:   1219\tclass JSONField(CharField):   1220\t    default_error_messag"
+[5] EDIT       | "str_replace_editor create /testbed/reproduce.py --file_text 'import django\nfrom django.con"
+      thought: 'Now let me create a reproduction script:'
+      obs: 'File created successfully at: /testbed/reproduce.py'
+[6] EXEC_OTHER | 'cd /testbed && python reproduce.py'
+      obs: 'prepare_value output: {"name": "\\u4e2d\\u56fd"} Traceback (most recent call last):   File "reproduce.py", line 12, in <module>     assert \'中国'
+[7] EDIT       | "str_replace_editor str_replace /testbed/django/forms/fields.py   --old_str '    def prepar"
+      thought: "Bug confirmed. Now let's fix it by passing `ensure_ascii=False`:"
+      obs: "The file /testbed/django/forms/fields.py has been edited. Here's the result of running `cat -n` on a snippet of /testbed/django/forms/fields"
+[8] EXEC_OTHER | 'cd /testbed && python reproduce.py'
+      obs: 'prepare_value output: {"name": "中国"} OK'
+[9] SEARCH     | 'grep -n "json.dumps\\|json.loads\\|prepare_value" /testbed/django/db/models/fields/json.py'
+      thought: "The fix works. Let me also check if there's an equivalent issue elsewhere – ther"
+      obs: '74:            return json.loads(value, cls=self.decoder) 84:        return json.dumps(value, cls=self.encoder) 95:            json.dumps(va'
+[10] READ       | 'str_replace_editor view /testbed/django/db/models/fields/json.py  --view_range 70 100'
+      thought: '[System: Empty message content sanitised to satisfy protocol]'
+      obs: "Here's the result of running `cat -n` on /testbed/django/db/models/fields/json.py:     70\t    def from_db_value(self, value, expression, con"
+[11] TEST       | 'cd /testbed && python -m pytest tests/forms_tests/field_tests/test_jsonfield.py -x 2>&1 | '
+      thought: "These are for DB storage/preparation, not for displaying in admin, so we don't n"
+      obs: '/opt/miniconda3/envs/testbed/bin/python: No module named pytest'
+[12] EXEC_OTHER | 'cd /testbed && python tests/runtests.py forms_tests.field_tests.test_jsonfield 2>&1 | tail'
+      obs: '............ ---------------------------------------------------------------------- Ran 12 tests in 0.008s  OK Testing against Django instal'
+[13] EXEC_OTHER | 'cd /testbed && python tests/runtests.py model_fields.test_jsonfield 2>&1 | tail -10'
+      thought: 'All form JSON field tests pass. Let me also run the model JSONField tests to mak'
+      obs: "OK (skipped=8) Destroying test database for alias 'default'... Destroying test database for alias 'default'... Destroying test database for "
+[14] EXEC_OTHER | 'rm /testbed/reproduce.py'
+      thought: 'All tests pass. Let me clean up:'
+      obs: ''
+[15] OTHER      | ''
+      thought: '## Summary  The issue was that `JSONField.prepare_value()` in `django/forms/fiel'
+      obs: ''
+[16] SUBMIT     | 'submit'
+      thought: 'The fix is complete and all tests pass. Submitting changes.'
+      obs: 'Thank you for your work on this issue. Please carefully follow the steps below to help review your changes.  1. If you made any changes to y'
+[17] SUBMIT     | 'submit'
+      thought: "I've verified my changes are complete:  1. Modified `/testbed/django/forms/field"
+      obs: 'diff --git a/django/forms/fields.py b/django/forms/fields.py index 9de2c60b35..17c7956b53 100644 --- a/django/forms/fields.py +++ b/django/f'
