@@ -1,0 +1,21 @@
+{
+ "development_resolution_cohort": [
+  "solver_A",
+  "solver_B",
+  "solver_C"
+ ],
+ "capability_audit": [
+  "solver_F"
+ ],
+ "ood_robustness": [
+  "solver_E",
+  "solver_G",
+  "solver_H"
+ ],
+ "heldout_sealed": [
+  "solver_QWEN (no traces yet)"
+ ],
+ "split_rule": "GroupKFold(5) by task_id for all CV; all traces of a task in one fold",
+ "n_tasks": 500,
+ "shared_all_solvers": 466
+}
