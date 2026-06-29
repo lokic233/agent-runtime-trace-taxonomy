@@ -1,0 +1,148 @@
+{
+  "model": "anthropic/claude-opus-4-7",
+  "thinking_enabled": false,
+  "temperature": 0.0,
+  "harness": "SWE-agent-1.0 (sweagent run-batch)",
+  "dataset": "princeton-nlp/SWE-bench_Verified, split=test, golden-50 subset (resolved cases)",
+  "swe_agent_config": "config/benchmarks/250225_anthropic_filemap_simple_review.yaml",
+  "per_instance_call_limit": 75,
+  "per_instance_cost_limit": 0,
+  "num_workers": 4,
+  "container_runtime": "podman",
+  "docker_args": "--memory=10g",
+  "baseline_resolved": 48,
+  "n_tasks": 50,
+  "egress_path": "agent -> localhost shim (ANTHROPIC_BASE_URL=http://127.0.0.1:<port>) -> PlugBoard mTLS (curl --noproxy *) -> opus-4.7",
+  "token_measurement": "true_prompt = usage.input + cache_read_input_tokens + cache_creation_input_tokens",
+  "grading": "python -m swebench.harness.run_evaluation --dataset princeton-nlp/SWE-bench_Verified --split test --max_workers 4 --cache_level instance (network-isolated podman)",
+  "critical_env_per_arm": {
+    "TS_PRUNE_METHOD": "<method key> \u2014 selects the function in prune_methods.METHODS",
+    "PB_SHIM_PORT": "<shim_port>",
+    "PB_LEDGER": "logs/ledger_<method>.jsonl",
+    "ANTHROPIC_API_KEY": "shim",
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:<shim_port>",
+    "MSWEA_DOCKER_EXECUTABLE": "podman",
+    "DOCKER_HOST": "unix:///run/user/$(id -u)/podman/podman.sock",
+    "MUST_UNSET": "http_proxy https_proxy HTTP_PROXY HTTPS_PROXY no_proxy NO_PROXY all_proxy ALL_PROXY (inherited [::1] in no_proxy breaks litellm/httpx with 'Invalid port: :1]')"
+  },
+  "replay_per_method": "TS_PRUNE_METHOD=<m> PB_SHIM_PORT=<port> PB_LEDGER=logs/ledger_<m>.jsonl python scripts/prune_shim.py &  THEN  bash scripts/run_arm.sh <m> <port> '<golden50_regex>' arms/full_<m> 4  THEN  bash scripts/grade_arm.sh <m>",
+  "methods": {
+    "C0_identity": {
+      "fn_in_prune_methods": "identity",
+      "doc": "",
+      "shim_port": 8751,
+      "saving_pct": null,
+      "regressions": null,
+      "loss_ub": null,
+      "tier": null
+    },
+    "HYBRID1_m7_agg2": {
+      "fn_in_prune_methods": "hybrid_m7_agg2",
+      "doc": "HYBRID1: M7 for VERY old observations (>12 steps) + AGG2-style obs-clear for medium-old (8-12).",
+      "shim_port": 8773,
+      "saving_pct": 41.5,
+      "regressions": 1,
+      "loss_ub": 0.088,
+      "tier": "MED"
+    },
+    "COMBO1_m7_cap5k": {
+      "fn_in_prune_methods": "m7_plus_cap5k",
+      "doc": "COMBO1: M7 (old-obs-elide) + M4 (obs-cap-5k) \u2014 compound safe methods.",
+      "shim_port": 8764,
+      "saving_pct": 42.5,
+      "regressions": 2,
+      "loss_ub": 0.118,
+      "tier": "MED"
+    },
+    "PROG1_progressive": {
+      "fn_in_prune_methods": "progressive_compression",
+      "doc": "PROG1: compress more as history grows. Recent 4 obs = full; next 4 = head+tail 2k;",
+      "shim_port": 8775,
+      "saving_pct": 37.9,
+      "regressions": 2,
+      "loss_ub": 0.118,
+      "tier": "MED"
+    },
+    "AGG3_recency_obs_4": {
+      "fn_in_prune_methods": "recency_keep_task_4",
+      "doc": "AGG3: window=4 (very aggressive, likely regresses some).",
+      "shim_port": 8763,
+      "saving_pct": 50.6,
+      "regressions": 3,
+      "loss_ub": 0.146,
+      "tier": "MED"
+    },
+    "AGG2_recency_obs_8": {
+      "fn_in_prune_methods": "recency_keep_task_8",
+      "doc": "AGG2: same as AGG1 but window=8 (more aggressive).",
+      "shim_port": 8762,
+      "saving_pct": 47.7,
+      "regressions": 3,
+      "loss_ub": 0.146,
+      "tier": "MED"
+    },
+    "AGG1_recency_obs_12": {
+      "fn_in_prune_methods": "recency_keep_task",
+      "doc": "AGG1: keep system + task + last `window` user/assistant PAIRS; elide middle observations",
+      "shim_port": 8761,
+      "saving_pct": 39.9,
+      "regressions": 3,
+      "loss_ub": 0.146,
+      "tier": "MED"
+    },
+    "SUM1_summarize_old": {
+      "fn_in_prune_methods": "summarize_old_obs",
+      "doc": "SUM1: for observations older than last `keep_recent` actions, replace long content with",
+      "shim_port": 8771,
+      "saving_pct": 38.2,
+      "regressions": 3,
+      "loss_ub": 0.146,
+      "tier": "MED"
+    },
+    "COMP1_tool_compress": {
+      "fn_in_prune_methods": "tool_result_compress",
+      "doc": "COMP1: for ALL tool_result observations, if >2000 chars, keep first 1000 + last 500 + count.",
+      "shim_port": 8772,
+      "saving_pct": 22.6,
+      "regressions": 3,
+      "loss_ub": 0.146,
+      "tier": "MED"
+    },
+    "DEDUP2_similar_obs": {
+      "fn_in_prune_methods": "dedup_similar_obs",
+      "doc": "DEDUP2: if an observation is >90% character-overlap with a previous one (not just exact),",
+      "shim_port": 8774,
+      "saving_pct": 19.0,
+      "regressions": 3,
+      "loss_ub": 0.146,
+      "tier": "MED"
+    },
+    "M4_obs_cap_5k": {
+      "fn_in_prune_methods": "METHODS['M4_obs_cap_5k'] (lambda)",
+      "doc": "",
+      "shim_port": 8755,
+      "saving_pct": 1.4,
+      "regressions": 3,
+      "loss_ub": 0.146,
+      "tier": "MED"
+    },
+    "M6_env_log_collapse": {
+      "fn_in_prune_methods": "env_log_collapse",
+      "doc": "M6: collapse a successful build/install/env observation (no error markers,",
+      "shim_port": 8757,
+      "saving_pct": 0.5,
+      "regressions": 3,
+      "loss_ub": 0.146,
+      "tier": "MED"
+    },
+    "M7_old_obs_elide": {
+      "fn_in_prune_methods": "old_tool_obs_elide",
+      "doc": "M7: Anthropic context-editing pattern \u2014 clear tool observations older than the",
+      "shim_port": 8758,
+      "saving_pct": 37.0,
+      "regressions": 5,
+      "loss_ub": 0.199,
+      "tier": "HIGH"
+    }
+  }
+}
