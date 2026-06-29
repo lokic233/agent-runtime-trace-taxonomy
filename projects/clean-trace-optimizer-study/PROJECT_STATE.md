@@ -2,13 +2,13 @@
 
 state_version: v1
 project: clean-trace-optimizer-study
-stage: TRACE_INVENTORY
+stage: PHASE1_FROZEN
 clean_room_status: ACTIVE
 semantic_annotation_status: PARALLEL_EXTERNAL
 qwen_validation_status: SEALED
 paired_outcomes_status: PENDING
-clean_feature_status: DRAFT
-correlation_protocol_status: DRAFT
+clean_feature_status: FROZEN_V1
+correlation_protocol_status: FROZEN_V1
 
 ## Lane model (single-operator, multi-pass)
 - Lane A Raw Trace Auditor — neutral one-by-one memos (delegated to an independent sub-agent w/o opportunity access)
