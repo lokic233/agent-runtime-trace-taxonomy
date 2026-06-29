@@ -338,6 +338,66 @@ def progressive_compression(messages):
     return out
 
 
+
+def recency_brutal_2(messages):
+    """BRUTAL1: keep system + task + only last 2 observation turns. Everything else = 1-line stub.
+    WILL regress — tests how much saving you get for a known regression cost."""
+    return recency_keep_task(messages, window=2)
+
+def recency_brutal_1(messages):
+    """BRUTAL2: keep only the LAST observation. Maximum aggression. High regression expected."""
+    return recency_keep_task(messages, window=1)
+
+def nuke_all_obs(messages):
+    """NUKE: replace ALL observations with "[observation cleared]". Pure pathological control —
+    the agent flies blind after every action. Establishes the MAXIMUM possible saving."""
+    import copy
+    out = copy.deepcopy(messages); n = len(out)
+    for i, m in enumerate(out):
+        if _is_obs(i, m, n):
+            t = _txt(m.get("content"))
+            if len(t) > 50:
+                _set_obs_text(out[i], "[observation cleared]")
+    return out
+
+def keep_errors_only(messages):
+    """ERR_ONLY: clear ALL observations EXCEPT those containing error/traceback markers.
+    Hypothesis: the agent only truly needs error feedback; success confirmations are redundant."""
+    import copy
+    out = copy.deepcopy(messages); n = len(out)
+    error_markers = ("error", "traceback", "failed", "exception", "fatal", "no such file", "permission denied")
+    for i, m in enumerate(out):
+        if not _is_obs(i, m, n): continue
+        t = _txt(m.get("content")).lower()
+        if not any(e in t for e in error_markers):
+            if len(_txt(m.get("content"))) > 200:
+                _set_obs_text(out[i], "[success observation cleared; errors preserved]")
+    return out
+
+def summarize_all_obs(messages):
+    """SUM_ALL: every observation > 500 chars → first 150 + last 80 chars + count. Applies to ALL
+    observations (not just old ones like SUM1). Aggressive but preserves some signal."""
+    import copy
+    out = copy.deepcopy(messages); n = len(out)
+    for i, m in enumerate(out):
+        if not _is_obs(i, m, n): continue
+        t = _txt(m.get("content"))
+        if len(t) > 500:
+            _set_obs_text(out[i], t[:150] + "..." + t[-80:] + f" [{len(t)}c]")
+    return out
+
+def half_context(messages):
+    """HALF: keep only the SECOND HALF of all observations (drop the first half of each).
+    Tests whether the agent mostly needs the END of tool output (where results/errors are)."""
+    import copy
+    out = copy.deepcopy(messages); n = len(out)
+    for i, m in enumerate(out):
+        if not _is_obs(i, m, n): continue
+        t = _txt(m.get("content"))
+        if len(t) > 400:
+            _set_obs_text(out[i], t[len(t)//2:])
+    return out
+
 METHODS={
  "C0_identity": identity,
  "M1_dedup_exact": dedup_exact_obs,
@@ -358,6 +418,12 @@ METHODS={
  "HYBRID1_m7_agg2": hybrid_m7_agg2,
  "DEDUP2_similar_obs": dedup_similar_obs,
  "PROG1_progressive": progressive_compression,
+ "BRUTAL1_window_2": recency_brutal_2,
+ "BRUTAL2_window_1": recency_brutal_1,
+ "NUKE_all_obs": nuke_all_obs,
+ "ERR_ONLY_keep_errors": keep_errors_only,
+ "SUM_ALL_summarize": summarize_all_obs,
+ "HALF_context": half_context,
 }
 
 def apply_method(method, messages):
