@@ -1,0 +1,400 @@
+[
+  {
+    "trace_id": "sympy__sympy-19040@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue is a logic bug in factor(extension=True) dropping a factor; the relevant function (_symbolic_factor/_symbolic_factor_list) is given as 'in the provided range', so localization is cheap and the work is reasoning about the correct fix. Oracle is test_polytools.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["FAILED_RECOVERY", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "DEPENDENCY_SETUP_DRIFT": "MILD"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        "DEPENDENCY_SETUP_DRIFT": [5, 6]
+      }
+    },
+    "candidate_interventions": ["DETECT_OSCILLATION_AND_HALT", "PROVIDE_TEST_DIFF_FEEDBACK"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19346@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION"],
+      "evidence": "Issue is srepr not handling dict/set; srepr is named directly and found with one grep, so the work is implementing _print_set/_print_dict in ReprPrinter (one file). Oracle is a small repro comparing actual vs expected.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [5, 6]}
+    },
+    "candidate_interventions": ["ROBUST_EDIT_MATCHING"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19495@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is a subtle wrong result from ConditionSet.subs over an ImageSet base set; requires reasoning across ConditionSet/ImageSet/Lambda but the fix lands in conditionset._eval_subs. Symptom is a wrong symbolic value (silent semantic), no failing exception.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "NONE",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["STAGNATION", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"},
+      "evidence_action_ids": {
+        "STAGNATION": [9, 11, 12, 13, 14, 15, 16],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [0, 1, 2]
+      }
+    },
+    "candidate_interventions": ["BREAK_NONPROGRESS_LOOP", "VERIFY_EDIT_TAKES_EFFECT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19637@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR"],
+      "evidence": "Issue is a kernS UnboundLocalError (kern referenced before assignment) localized to one function in sympify.py; a control-flow fix in a single known function. Clear failure oracle (the traceback).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "NONE",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "SEVERE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [2, 6, 12, 16, 22],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [3, 7, 9, 10, 13, 17, 19, 20, 23]
+      }
+    },
+    "candidate_interventions": ["FIX_RUNTIME_PATH_SHADOWING", "ROBUST_EDIT_MATCHING"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19783@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue is Dagger(A)*IdentityOperator not simplifying; requires reading operator.py to mirror the IdentityOperator handling, fix lands in dagger.py. Oracle is targeted dagger/operator tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "MILD"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [5, 6, 7]}
+    },
+    "candidate_interventions": ["PROVISION_TEST_RUNNER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19954@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CLEAR"],
+      "evidence": "Issue is an IndexError in minimal_blocks (perm_groups.py) reached via sylow_subgroup; the traceback names the file/line, so it's a bounded list-mutation fix in one known function. Clear exception oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "SEVERE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [6, 11, 13, 15, 16, 17, 18, 19, 20, 22]}
+    },
+    "candidate_interventions": ["FIX_RUNTIME_PATH_SHADOWING", "PROVISION_TEST_RUNNER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20154@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION"],
+      "evidence": "Issue is partitions() reusing the same dict object; the fix (yield a copy) is named in the issue and lands on the two yields of one function. Oracle is trivial (list(partitions(...))).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION", "EDIT_PATCH"],
+      "l2_labels": ["VERIFICATION_GAP", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {"VERIFICATION_GAP": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [7, 8, 9],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [6]
+      }
+    },
+    "candidate_interventions": ["REQUIRE_POST_EDIT_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20428@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "CROSS_FILE"],
+      "evidence": "Issue is a mis-represented zero Poly (DMP not normalized); the issue gives a repro but not where to fix, requiring tracing Poly->DMP->dmp_normal->dup_normal->dup_strip across polytools/polyclasses/densebasic. Localization dominates a small final edit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTEXT_MEMORY"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {"FILENAME_SEARCH_THRASH": "MODERATE", "REDUNDANT_FILE_REREAD": "MODERATE"},
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [0, 1, 3, 4],
+        "REDUNDANT_FILE_REREAD": [13, 14, 16, 17, 18]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT", "AVOID_REDUNDANT_REREAD"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20438@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "MULTI_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is ProductSet.is_subset returning None (asymmetric with the reverse); requires understanding the multipledispatch is_subset_sets handlers across sets.py/handlers/issubset.py/basic.py. Symptom is a wrong/None value, not an exception.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "NONE",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "SEVERE", "REDUNDANT_FILE_REREAD": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {
+        "STAGNATION": [1, 4, 6, 16, 19, 21, 31],
+        "REDUNDANT_FILE_REREAD": [8, 10, 23, 25, 33, 35],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [12, 27]
+      }
+    },
+    "candidate_interventions": ["BREAK_NONPROGRESS_LOOP", "VERIFY_EDIT_TAKES_EFFECT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20590@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue is Symbol now having an unexpected empty __dict__ (missing __slots__=() somewhere in the MRO); fix location is non-obvious and requires walking Basic/Atom/Expr/AtomicExpr/Symbol across core files. Localization dominates a tiny edit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STUCK",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTEXT_MEMORY"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {"FILENAME_SEARCH_THRASH": "MODERATE", "REDUNDANT_FILE_REREAD": "MILD"},
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [2, 3, 6, 7, 8],
+        "REDUNDANT_FILE_REREAD": [10, 11]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20801@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Issue is S(0.0)==S.false returning True (asymmetric); fix is in Float.__eq__ in numbers.py. Wrong-boolean symptom (silent semantic). Oracle is targeted test_numbers/test_boolalg.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["STAGNATION", "DEPENDENCY_SETUP_DRIFT", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "MODERATE", "DEPENDENCY_SETUP_DRIFT": "MILD", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {
+        "STAGNATION": [8, 9, 10, 11, 13],
+        "DEPENDENCY_SETUP_DRIFT": [22, 23],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [3, 19]
+      }
+    },
+    "candidate_interventions": ["VERIFY_EDIT_TAKES_EFFECT", "PROVISION_TEST_RUNNER"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20916@solver_G",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Issue is a greek-name+digit not rendering as a subscript in pretty print; appears matrix-specific but the real fix is in conventions.split_super_sub. Finding the spot across the pretty-print call chain dominates a one-line change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {"FILENAME_SEARCH_THRASH": "MODERATE"},
+      "evidence_action_ids": {"FILENAME_SEARCH_THRASH": [2, 3, 4, 7, 8]}
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_v1_claude",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

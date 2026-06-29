@@ -1,0 +1,422 @@
+[
+  {
+    "trace_id": "sympy__sympy-19040@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: factor(..., extension=[I]) silently drops a factor — wrong result, no error (silent semantic). Fix location is non-obvious and requires tracing a deep call chain across polytools/factortools/sqfreetools/euclidtools to dmp_ext_factor; no explicit location given.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "RECOVERY",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY", "CONTEXT_MEMORY"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE", "REDUNDANT_FILE_REREAD", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [62, 65, 67, 69, 71, 79],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [80],
+        "REDUNDANT_FILE_REREAD": [54, 56, 61],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [75, 76, 77]
+      }
+    },
+    "candidate_interventions": ["PATCH_STRATEGY_HINT", "EARLY_STOP_OR_BUDGET_REALLOCATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19346@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue: srepr does not properly print elements of sets/dicts — wrong output, single file (printing/repr.py). srepr located quickly; the work is adding _print_set/_print_dict methods and the supporting import.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [8, 9]
+      }
+    },
+    "candidate_interventions": ["EDIT_TOOL_ROBUSTNESS"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19495@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: ConditionSet.subs gives wrong substitution behavior. Work is tracing where subs is handled across the class hierarchy (conditionset/sets/basic) and locating _eval_subs; the fix is in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19637@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue/repro yields a crash (UnboundLocalError 'kern' before assignment) whose traceback names sympify.py:516 kernS directly — explicit location, clear crash oracle, small single-file fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19783@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: Dagger(A)*IdentityOperator does not simplify — wrong/unsimplified result with no crash and no provided test (unclear oracle). Location found quickly; the hard part is reasoning about how Mul/Identity interact across operator.py and dagger.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "RECOVERY",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [24, 25, 28, 29, 34, 35, 46, 48, 62, 64, 71, 73],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [39, 40, 49, 60]
+      }
+    },
+    "candidate_interventions": ["PATCH_STRATEGY_HINT", "EARLY_STOP_OR_BUDGET_REALLOCATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19954@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue: sylow_subgroup raises IndexError; traceback names perm_groups.py minimal_blocks (explicit location, crash oracle). Single-file fix; work is reasoning out the correct guard/rewrite.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [4, 9]
+      }
+    },
+    "candidate_interventions": ["EDIT_TOOL_ROBUSTNESS"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20154@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue names the partitions() function and its dict-reuse behavior; located via one search in utilities/iterables.py. Single-file fix (copy() on yields + docstring) — clear, contained task.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20428@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: clear_denoms yields an inconsistent zero Poly (is_zero False while as_expr().is_zero True; terms_gcd errors) — subtle silent-semantic bug whose true fix site is non-obvious and spread across polytools/polyclasses/densetools.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "PARTIAL",
+      "candidate_location_found": false,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_FILE_REREAD", "SEARCH_WITHOUT_NEW_EVIDENCE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "STAGNATION": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [18, 26, 34, 42, 50, 58, 66, 74],
+        "REDUNDANT_FILE_REREAD": [22, 28, 30, 36, 44, 52, 60, 68, 76],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [19, 27, 35, 43, 51, 59, 67, 75],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [77]
+      }
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT", "DEDUP_READS_CONTEXT_CACHE", "EARLY_STOP_OR_BUDGET_REALLOCATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20438@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue is multi-part (ProductSet.is_subset returns None, Eq(b,c).simplify errors, rewrite incomplete). Work centers on reasoning out several methods to add (_eval_is_subset, _eval_Eq, _eval_rewrite_as_FiniteSet) plus a relational.py investigation.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "REDUNDANT_FILE_REREAD",
+      "severity": {
+        "REDUNDANT_FILE_REREAD": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_FILE_REREAD": [16, 17, 33, 35, 40]
+      }
+    },
+    "candidate_interventions": ["DEDUP_READS_CONTEXT_CACHE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20590@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: Symbol unexpectedly has __dict__ despite __slots__. Resolving requires walking the MRO (Symbol→AtomicExpr→Atom→Expr→Boolean→Basic→Printable) to find which base lacks __slots__; the culprit (Printable) is non-obvious.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20801@solver_C",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "REPOSITORY_CONTEXT"],
+      "evidence": "Issue: S(0.0)==S.false is True but the reverse is False (asymmetric equality) — silent semantic inconsistency. Relevant __eq__/_hashable_content methods across boolalg/basic/numbers are found, but determining the correct fix is the hard, ambiguous part.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "RECOVERY",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "CONTEXT_MEMORY"],
+      "l2_labels": ["FAILED_RECOVERY", "REDUNDANT_FILE_REREAD", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "REDUNDANT_FILE_REREAD": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [37, 40, 43, 44, 50, 51, 71, 73, 76, 77],
+        "REDUNDANT_FILE_REREAD": [23, 28, 29, 32, 52, 58, 62, 69, 74],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [83]
+      }
+    },
+    "candidate_interventions": ["PATCH_STRATEGY_HINT", "EARLY_STOP_OR_BUDGET_REALLOCATION"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20916@solver_C",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Issue: pretty-printing fails to render subscripts on Greek-letter symbols — wrong rendered output. Work is locating pretty_symbol/translate across pretty.py and pretty_symbology.py; fix is in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]

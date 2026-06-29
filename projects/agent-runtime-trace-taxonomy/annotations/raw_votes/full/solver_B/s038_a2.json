@@ -1,0 +1,396 @@
+```json
+[
+  {
+    "trace_id": "sympy__sympy-16766@solver_B",
+    "task_id": "sympy__sympy-16766",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue names target class PythonCodePrinter and supplies the exact _print_Indexed method to add; work is implementing the printer method (and discovering IndexedBase also needs handling) in one file with a clear pycode() oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTEXT_MEMORY"],
+      "l2_labels": ["CONTEXT_BLOAT"],
+      "primary_bottleneck": "CONTEXT_BLOAT",
+      "severity": {"CONTEXT_BLOAT": "MILD"},
+      "evidence_action_ids": {"CONTEXT_BLOAT": [2]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16792@solver_B",
+    "task_id": "sympy__sympy-16792",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "INTEGRATION", "SILENT_SEMANTIC"],
+      "evidence": "Issue points to codegen (routine arg handling) for a wrong C signature when array args are absent from expr; fix requires reasoning about dimension metadata for missing InputArguments, and verification inherently needs cython/numpy compilation (integration oracle).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {"HELPER_TOOL_FAILURE_LOOP": "MODERATE", "DEPENDENCY_SETUP_DRIFT": "MILD"},
+      "evidence_action_ids": {
+        "HELPER_TOOL_FAILURE_LOOP": [6, 11, 12, 13, 15, 19, 21, 23, 48],
+        "DEPENDENCY_SETUP_DRIFT": [9]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16886@solver_B",
+    "task_id": "sympy__sympy-16886",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue states exact mapping bug ('----':'1' should be '.----':'1') in sympy.crypto.crypto; once the dict line is found the change is a single trivial string replacement.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17139@solver_B",
+    "task_id": "sympy__sympy-17139",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Traceback pinpoints fu.py _TR56 line 504 (rv.exp < 0 on complex I); work is reasoning about the correct guard (is_real check) at a known location with a direct reproduction oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17318@solver_B",
+    "task_id": "sympy__sympy-17318",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "CROSS_FILE", "SINGLE_FILE", "CLEAR"],
+      "evidence": "Traceback gives the call chain into radsimp.split_surds/_split_gcd IndexError; the fix is reasoning about the empty-surds edge case and returning unchanged, with a reproducible (if auto-simplifying) example.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17630@solver_B",
+    "task_id": "sympy__sympy-17630",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Traceback points to blockmatrix.py _blockmul/colblocksizes; core work is diagnosing that ZeroMatrix products collapse to scalar Zero and converting them back, in one file with a clear block_collapse oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17655@solver_B",
+    "task_id": "sympy__sympy-17655",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Traceback names point.py __add__/__new__; the order-dependent failure (number*Point yields a Mul) requires reasoning about commutativity handling in __add__, single file, clear reproduction.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18189@solver_B",
+    "task_id": "sympy__sympy-18189",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue shows syms-order-dependent incomplete results with permute=True; the bug is a missing permute pass-through in diophantine's recursive call, requiring tracing the recursion within one large function.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18199@solver_B",
+    "task_id": "sympy__sympy-18199",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "SILENT_SEMANTIC", "CLEAR"],
+      "evidence": "Issue names nthroot_mod and the missing x=0 mod p root when a%p==0; work is the math edge-case reasoning and adding an early guard, with comparison to sqrt_mod's existing handling.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18211@solver_B",
+    "task_id": "sympy__sympy-18211",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "CROSS_FILE", "CLEAR"],
+      "evidence": "Expected behavior (return ConditionSet) is clear; the challenge is tracing the as_set -> _eval_as_set -> solve_univariate_inequality -> solvify -> solveset chain across boolalg/relational/inequalities/solveset to find where to intercept the NotImplementedError.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18698@solver_B",
+    "task_id": "sympy__sympy-18698",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "UNCLEAR_ORACLE", "PARTIAL", "SILENT_SEMANTIC"],
+      "evidence": "Issue asks for consistent sqf_list output (combine equal-multiplicity factors); the correct behavior is debatable and collides with an existing test (test_factor_terms), making the oracle/spec unclear and requiring reasoning across the factorization pipeline.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["STAGNATION"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "MODERATE"},
+      "evidence_action_ids": {
+        "STAGNATION": [38, 39, 40, 41, 42, 43, 45, 46, 49, 50, 51, 52, 53, 54, 55, 56, 58, 59]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18763@solver_B",
+    "task_id": "sympy__sympy-18763",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue gives the exact desired LaTeX parenthesization for Subs; fix is in latex.py _print_Subs using self.parenthesize, mirroring _print_Derivative, at a known location with a direct latex() oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["STAGNATION", "HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"STAGNATION": "MODERATE", "HELPER_TOOL_FAILURE_LOOP": "MILD"},
+      "evidence_action_ids": {
+        "STAGNATION": [24, 26, 27, 28, 29, 30, 31, 39, 40, 41, 42, 44, 45, 46],
+        "HELPER_TOOL_FAILURE_LOOP": [12, 13, 14, 15, 16]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed_annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

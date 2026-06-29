@@ -1,0 +1,298 @@
+Looking at this task, it's a self-contained closed-label annotation job. The genuine instruction is to output a JSON array of annotation records, one per trace. I'll annotate based strictly on the observable action/observation streams and the frozen taxonomy.
+
+```json
+[
+  {
+    "trace_id": "sympy__sympy-23824@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Issue ships a diff with explicit line/region in sympy/physics/hep/gamma_matrices.py (Kahane leading-gamma simplification); fix is a localized algorithmic correction in one file with a clear repro oracle (test_kahane.py).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH", "CONTEXT_MEMORY"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "FAILED_RECOVERY": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "REDUNDANT_FILE_REREAD": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [0, 1, 3, 9, 10],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [1, 3],
+        "REDUNDANT_FILE_REREAD": [4, 5]
+      }
+    },
+    "candidate_interventions": ["CONVERGENCE_CHECK", "EDIT_TOOL_RETRY_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-23950@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue traceback names Contains.as_set() in sympy/sets/contains.py with a clear expected behavior (return the set); single-file targeted change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED_VERIFIED_REPRO",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [8, 9, 10],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [3, 4, 5]
+      }
+    },
+    "candidate_interventions": ["ENV_PATH_FIX", "RUN_OFFICIAL_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24066@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "INTEGRATION", "SILENT_SEMANTIC"],
+      "evidence": "Issue concerns SI._collect_factor_and_dimension handling of exp() in sympy/physics/units/unitsystem.py; localized semantic fix validated against units test suite (integration tests).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCH_APPLIED_TEST_FAILING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [1, 2, 3, 4, 5, 7, 11, 12],
+        "DEPENDENCY_SETUP_DRIFT": [16, 17]
+      }
+    },
+    "candidate_interventions": ["ENV_PATH_FIX", "CONVERGENCE_CHECK"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24213@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Issue targets Add-branch dimension equivalence in SI._collect_factor_and_dimension (sympy/physics/units/unitsystem.py); single-file semantic fix with units tests as oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED_VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "DEPENDENCY_SETUP_DRIFT": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [1, 4, 5],
+        "DEPENDENCY_SETUP_DRIFT": [7, 8]
+      }
+    },
+    "candidate_interventions": ["ENV_PATH_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24443@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Issue gives the exact snippet in _check_homomorphism (sympy/combinatorics/homomorphisms.py) about inverted generators failing the `in gens` test; localized logic fix with a repro oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PATCH_APPLIED_TEST_FAILING",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "EDIT_PATCH"],
+      "l2_labels": ["FAILED_RECOVERY", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "FAILED_RECOVERY": "MODERATE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [2, 4, 5, 6],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [4]
+      }
+    },
+    "candidate_interventions": ["CONVERGENCE_CHECK", "RECONSIDER_ROOT_CAUSE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24539@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue names PolyElement.as_expr() in sympy/polys/rings.py (ignores provided symbols); small, well-specified single-file fix with a clear behavioral oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED_VERIFIED_REPRO",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["RUN_OFFICIAL_TESTS"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24562@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Issue concerns Rational.__new__ two-string-argument parsing in sympy/core/numbers.py; localized fix with a deterministic repro oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCH_APPLIED_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTEXT_MEMORY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "REDUNDANT_FILE_REREAD"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "REDUNDANT_FILE_REREAD": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [10, 11, 12],
+        "REDUNDANT_FILE_REREAD": [3, 4]
+      }
+    },
+    "candidate_interventions": ["ENV_PATH_FIX", "CONVERGENCE_CHECK"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Agent attributed unverified fix to @cacheit but evidence (debug never executing) is consistent with wrong module path; labeled ENVIRONMENT_BLOCKED on the observable not-entering/not-printing symptom."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-24661@solver_G",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Issue: parse_expr(evaluate=False) ignored for relationals; fix requires adding visit_Compare to EvaluateFalseTransformer in sympy/parsing/sympy_parser.py, with some in-file localization of evaluateFalse/stringify_expr and a clear repro oracle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_APPLIED_VERIFIED_REPRO",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "EDIT_PATCH"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severities": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [3, 7, 12, 14, 19, 21, 24, 25],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [0, 1, 2]
+      }
+    },
+    "candidate_interventions": ["ENV_PATH_FIX", "EDIT_TOOL_RETRY_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```
