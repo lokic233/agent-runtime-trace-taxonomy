@@ -45,3 +45,21 @@ Until validated on held-out data, the per-call number must be called **"mean pro
 
 ## Caveat on this analysis
 `instance_cost` aggregates are outlier-sensitive (a few thrashing tasks dominate sums), which is why **median paired** is the headline. Even the median is negative/flat. Phase 3 (A/A noise) will establish whether the −2.5% is within run-to-run noise (likely) or a real cost.
+
+---
+
+## Addendum: the three cost signals (read this before trusting any single number)
+
+SWE-agent + the shim expose THREE distinct cost signals. They measure different things:
+
+| signal | source | what it measures | cache-aware? |
+|--------|--------|------------------|:---:|
+| **tokens_sent** | `.traj` model_stats (litellm `token_counter` on messages, **line 690**) | client-side count of the FULL history **BEFORE the shim prunes** | no — it's a pre-prune trajectory-size proxy |
+| **instance_cost** | `.traj` model_stats (`litellm.completion_cost(response)`) | priced from the model's RESPONSE usage (post-prune, cache-aware) | yes, but opus-4.7 may be unmapped → fallback price |
+| **true-prompt** | shim ledger (`input + cache_read + cache_creation` from PlugBoard usage) | the POST-prune tokens the model actually billed | yes (ground truth) |
+
+**Critical architectural fact:** SWE-agent counts `tokens_sent` on the messages it builds, which is **before** the HTTP request reaches the shim where pruning happens. So `tokens_sent` does NOT reflect what pruning removed — a lower HYBRID `tokens_sent` means HYBRID took a **different/shorter trajectory** (an indirect, confounded effect), not that pruning cut the billed prompt.
+
+**The only ground-truth billing signal is the shim ledger true-prompt** — and the original one was contaminated/untagged. That is why Phase 2 rebuilt a **task-tagged** ledger (shim v2). The Phase 3/4/6 runs use it; their numbers supersede everything derived from the old ledger.
+
+**Distribution finding (instance_cost, golden-50):** HYBRID1 is cheaper on 24 tasks, more expensive on 26, with catastrophic outliers (pylint-6528 −457%, pytest-7432 −408%) where cache-busting + extra calls dominated. Median ≈ flat. This is textbook **Hard Kill Rule #6** (result depends on a small number of unstable tasks) — pending confirmation from the A/A noise floor.
