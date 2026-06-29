@@ -1,0 +1,442 @@
+```json
+[
+  {
+    "trace_id": "django__django-13089@solver_A",
+    "task_id": "django__django-13089",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION"],
+      "evidence": "Solver went directly to the single file django/core/cache/backends/db.py and edited the _cull method; fix is a localized None-guard on cursor.fetchone(). No cross-file search needed.",
+      "unknown_fields": ["issue_text_null"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": [
+        {
+          "label": "REDUNDANT_TEST",
+          "parent_l1": "VERIFICATION",
+          "severity": "MILD",
+          "evidence_action_ids": [4, 5, 6],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "REDUNDANT_TEST"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13109@solver_A",
+    "task_id": "django__django-13109",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION"],
+      "evidence": "One-line change in ForeignKey.validate (_default_manager -> _base_manager) in a single file; solver opened the exact region immediately.",
+      "unknown_fields": ["issue_text_null"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13112@solver_A",
+    "task_id": "django__django-13112",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE"],
+      "evidence": "Solver used find/git-log/grep and several sed reads to locate the .lower() call in ForeignKey.deconstruct before a focused edit; fix landed in one file.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": [
+        {
+          "label": "REDUNDANT_TEST",
+          "parent_l1": "VERIFICATION",
+          "severity": "MILD",
+          "evidence_action_ids": [16, 17],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "REDUNDANT_TEST"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13121@solver_A",
+    "task_id": "django__django-13121",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Duration+duration arithmetic spans sqlite3/base.py, expressions.py and operations.py; the correct intervention point is non-obvious, requiring repeated reasoning about DurationExpression/CombinedExpression dispatch.",
+      "unknown_fields": ["issue_text_minimal"]
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": [
+        {
+          "label": "PATCH_CHURN",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "SEVERE",
+          "evidence_action_ids": [37, 38, 39, 40, 41, 44, 45, 46, 48, 49, 50, 51, 55, 56, 58],
+          "is_primary_bottleneck": true
+        },
+        {
+          "label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [40, 50, 51],
+          "is_primary_bottleneck": false
+        },
+        {
+          "label": "BUDGET_EXHAUSTION_NONCONVERGENCE",
+          "parent_l1": "CONTROL_RECOVERY",
+          "severity": "SEVERE",
+          "evidence_action_ids": [75],
+          "is_primary_bottleneck": false
+        }
+      ],
+      "primary_bottleneck": "PATCH_CHURN"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13128@solver_A",
+    "task_id": "django__django-13128",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Fix designs a new _connector_combinations registry and _resolve_output_field override for temporal arithmetic; substantial design reasoning concentrated in expressions.py.",
+      "unknown_fields": ["issue_text_minimal"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13158@solver_A",
+    "task_id": "django__django-13158",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Solver traced none()/set_empty through compiler.get_combinator_sql and Query.clone across query.py and compiler.py, then reasoned about clone-mutation of combined_queries.",
+      "unknown_fields": ["issue_text_null"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label": "EDIT_TOOL_MECHANICAL_FAILURE",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [15, 17, 20],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13195@solver_A",
+    "task_id": "django__django-13195",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "TARGETED_UNIT"],
+      "evidence": "Change threads a samesite parameter through delete_cookie and its two callers (messages cookie storage, sessions middleware); coordinated multi-file edit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": [
+        {
+          "label": "REDUNDANT_TEST",
+          "parent_l1": "VERIFICATION",
+          "severity": "MILD",
+          "evidence_action_ids": [10, 11],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "REDUNDANT_TEST"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13212@solver_A",
+    "task_id": "django__django-13212",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_CUTTING"],
+      "evidence": "Repetitive but cross-cutting change adding params={'value': value} to many validators within core/validators.py.",
+      "unknown_fields": ["issue_text_null"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": [
+        {
+          "label": "SEARCH_WITHOUT_NEW_EVIDENCE",
+          "parent_l1": "SEARCH_LOCALIZATION",
+          "severity": "MILD",
+          "evidence_action_ids": [2, 3, 4],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13279@solver_A",
+    "task_id": "django__django-13279",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LONG_HISTORY_DEPENDENT"],
+      "evidence": "Solver used git log/show of the referenced commit to understand encode/decode signing change, then added a DEFAULT_HASHING_ALGORITHM=='sha1' legacy branch in one file.",
+      "unknown_fields": ["issue_text_null"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13297@solver_A",
+    "task_id": "django__django-13297",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SILENT_SEMANTIC"],
+      "evidence": "Deep root-cause chain from SQLite param-binding failure to CharField.to_python isinstance(str) check, resolved by switching SimpleLazyObject to lazy(); spans base.py and functional.py reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13315@solver_A",
+    "task_id": "django__django-13315",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Target function (apply_limit_choices_to_to_formfield) found early, but reproducing the duplicate-options behavior required substantial harness setup; fix is one file using Exists/OuterRef.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": [
+        {
+          "label": "PREMATURE_SCRATCH_REPRO",
+          "parent_l1": "EDIT_PATCH",
+          "severity": "MODERATE",
+          "evidence_action_ids": [10, 12, 14, 16, 17, 19, 20, 22, 23],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13343@solver_A",
+    "task_id": "django__django-13343",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Solver located FileField in db/models/fields/files.py and added _storage_callable preservation plus deconstruct fallback; all in one file.",
+      "unknown_fields": ["issue_text_null"]
+    },
+    "execution_state": {
+      "phase": "DONE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": [
+        {
+          "label": "REDUNDANT_TEST",
+          "parent_l1": "VERIFICATION",
+          "severity": "MILD",
+          "evidence_action_ids": [9, 10],
+          "is_primary_bottleneck": true
+        }
+      ],
+      "primary_bottleneck": "REDUNDANT_TEST"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-opus-annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

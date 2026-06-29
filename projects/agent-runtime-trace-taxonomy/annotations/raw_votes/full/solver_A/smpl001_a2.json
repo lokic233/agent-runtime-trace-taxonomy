@@ -1,0 +1,374 @@
+[
+  {
+    "trace_id": "matplotlib__matplotlib-23412@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": "Rendering bug: dash offset ignored in Patch.draw; agent must grep/locate the override line in patches.py before a small targeted edit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-23476@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "REPOSITORY_CONTEXT"],
+      "evidence": "dpi-doubling on pickle/unpickle; requires tracing behavior across figure.py, backend_bases.py and _macosx.m to find _original_dpi handling before fixing __getstate__.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24026@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": "stackplot CN-alias color failure; location is obvious (stackplot.py), core work is reasoning the itertools.cycle / get_next_color replacement that avoids mutating the prop cycle.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24149@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": "bar([nan],[nan]) crashes via StopIteration in _safe_first_finite; once grepped, fix is reasoning the generator->loop with fallback.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24177@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "REPOSITORY_CONTEXT"],
+      "evidence": "hist(histtype='step') fails to autoscale; root cause requires tracing axes/_base._update_patch_limits into path.iter_bezier/simplification across _axes.py, _base.py and path.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24570@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": "HPacker align top/bottom swapped in _get_aligned_offsets; core difficulty is reasoning the offset semantics, fix is a localized branch swap in offsetbox.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24627@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "REPOSITORY_CONTEXT"],
+      "evidence": "cla()/clf() should deparent children like remove(); fix spans axes/_base.__clear and figure.clear, requiring reasoning about which artist containers to deparent.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24637@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": "AnnotationBbox gid not emitted to SVG; agent must find AnnotationBbox.draw and the open_group/close_group pattern used by other artists before a one-line insertion.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24870@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_FILE", "REPOSITORY_CONTEXT"],
+      "evidence": "Feature: auto-detect boolean arrays in contour to default levels=[0.5]; requires threading z_dtype through _process_contour_level_args in contour.py and tri/_tricontour.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Edit cluster [8-14] shows approach reconsideration (signature change then revert) but each rework was preceded by an evidence-gathering search [10], so it does not meet PATCH_CHURN's no-evidence-between rule; labeled clean."
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-24970@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "LOCAL_CONTEXT"],
+      "evidence": "uint8 input to Colormap.__call__ triggers NumPy out-of-bound deprecation; location known (colors.py), difficulty is reasoning the correct dtype-promotion guard.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severities": {"PATCH_CHURN": "MILD"},
+      "evidence_action_ids": {"PATCH_CHURN": [3, 4, 5]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Edits 3->4->5 rework the same dtype-promotion region without an intervening failing test ('this is getting complex, let me simplify'); mild churn, quickly converged and verified."
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25122@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "UNCLEAR_ORACLE"],
+      "evidence": "Window-normalization correctness in mlab._spectral_helper (np.abs(window).sum vs window.sum); the fix is small but the oracle requires comparison against scipy for windows with negative lobes.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severities": {"DEPENDENCY_SETUP_DRIFT": "MODERATE"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [5, 6, 7, 8]}
+    },
+    "candidate_interventions": ["PRECONFIGURE_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "scipy missing forced pip install scipy [6], which pulled NumPy 2 and broke the import [7], requiring a pip install 'numpy<2' downgrade [8] to verify; this is environment/dependency churn, not a reasoning waste."
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25287@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT"],
+      "evidence": "offsetText ignores tick.labelcolor (uses tick.color); fix is the same 'inherit' conditional applied symmetrically to XAxis and YAxis offsetText setup in axis.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "verification",
+      "progress": "complete",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]

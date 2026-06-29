@@ -1,0 +1,324 @@
+[
+  {
+    "trace_id": "matplotlib__matplotlib-25311@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace localizes a pickle failure for draggable Matplotlib artists to DraggableBase in offsetbox.py and changes one source file.", "Verification uses a focused reproduction plus offsetbox, legend, and pickle-related tests."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25332@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace identifies Grouper weakref pickling as the issue and modifies cbook.py.", "Verification includes focused repros plus cbook, pickle, and figure alignment tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MILD"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [5, 6, 7]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25479@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace concerns colormap registration/name behavior involving cm.py and pyplot.py.", "The task requires reasoning about API behavior and existing compatibility tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [8, 26, 27, 29, 30, 34, 39, 40, 45, 46]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25775@solver_A",
+    "workload_annotation": {
+      "primary_l1": "MIXED_END_TO_END",
+      "l2_attributes": ["MULTI_FILE", "CROSS_MODULE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace implements Text antialiasing across Text, mathtext parsing, Agg/Cairo backends, and stubs.", "Verification spans text, mathtext, backend, artist, and axes tests."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-25960@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace targets Figure/SubFigure layout computation for wspace/hspace in figure.py.", "Verification uses repros plus figure, gridspec, constrained layout, subplot, and tight layout tests."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [8, 11, 12, 13, 16, 17, 20, 26]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26113@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace immediately targets hexbin mincnt handling in axes/_axes.py.", "Patch is a small conditional/doc change with focused reproduction and hexbin tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26208@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace diagnoses dataLim loss through relim on shared axes and updates axes/_base.py collection limit handling.", "Verification includes the original stackplot/twinx reproduction and focused axes/collections tests."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26291@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace localizes bbox_inches='tight' inset failure to AnchoredLocatorBase.__call__ in inset_locator.py.", "Patch is a small renderer fallback with focused axes_grid1 test coverage."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26342@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace implements missing ContourSet.set_paths in contour.py.", "Verification uses repro scripts and contour tests except for a documented pre-existing deprecated API failure."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "matplotlib__matplotlib-26466@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Trace fixes Annotation xy mutation by changing _AnnotationBase.xy storage in text.py.", "Verification covers numpy arrays, lists, tuples, datetimes, drawing, and related text/offsetbox/patch tests."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

@@ -1,0 +1,470 @@
+[
+  {
+    "sample_id": "astropy__astropy-14508@solver_A",
+    "trace_id": "astropy__astropy-14508@solver_A",
+    "task_id": "astropy__astropy-14508",
+    "repo": "astropy",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": ["Issue behavior localizes to FITS card float formatting; implementation touches astropy/io/fits/card.py and targeted reproductions exercise one formatting path."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MILD"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [4, 7]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "astropy__astropy-14539@solver_A",
+    "trace_id": "astropy__astropy-14539@solver_A",
+    "task_id": "astropy__astropy-14539",
+    "repo": "astropy",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": ["Bug concerns FITSDiff handling of Q-format variable length arrays; one search identifies astropy/io/fits/diff.py and the fix is a local condition change."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "astropy__astropy-14598@solver_A",
+    "trace_id": "astropy__astropy-14598@solver_A",
+    "task_id": "astropy__astropy-14598",
+    "repo": "astropy",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "SHORT_STATE"],
+      "evidence": ["FITS Card double single-quote behavior requires understanding CONTINUE parsing and escaping within astropy/io/fits/card.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "astropy__astropy-14995@solver_A",
+    "trace_id": "astropy__astropy-14995@solver_A",
+    "task_id": "astropy__astropy-14995",
+    "repo": "astropy",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": ["Mask handling bug is localized to NDArithmeticMixin._arithmetic_mask with a one-condition fix and focused reproduction."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "astropy__astropy-7166@solver_A",
+    "trace_id": "astropy__astropy-7166@solver_A",
+    "task_id": "astropy__astropy-7166",
+    "repo": "astropy",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": ["InheritDocstrings property docstring inheritance requires modifying one metaclass implementation in astropy/utils/misc.py."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "astropy__astropy-7336@solver_A",
+    "trace_id": "astropy__astropy-7336@solver_A",
+    "task_id": "astropy__astropy-7336",
+    "repo": "astropy",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": ["QuantityInput return annotation None handling is localized to astropy/units/decorators.py with a one-line conditional change."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "astropy__astropy-7606@solver_A",
+    "trace_id": "astropy__astropy-7606@solver_A",
+    "task_id": "astropy__astropy-7606",
+    "repo": "astropy",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": ["UnrecognizedUnit equality against invalid operands is localized to __eq__ in astropy/units/core.py."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "astropy__astropy-7671@solver_A",
+    "trace_id": "astropy__astropy-7671@solver_A",
+    "task_id": "astropy__astropy-7671",
+    "repo": "astropy",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": ["minversion version-comparison bug requires a focused change in astropy/utils/introspection.py and targeted version comparison tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "astropy__astropy-8707@solver_A",
+    "trace_id": "astropy__astropy-8707@solver_A",
+    "task_id": "astropy__astropy-8707",
+    "repo": "astropy",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": ["Header/Card fromstring bytes handling spans astropy/io/fits/card.py and astropy/io/fits/header.py, with direct byte-string reproductions."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "astropy__astropy-8872@solver_A",
+    "trace_id": "astropy__astropy-8872@solver_A",
+    "task_id": "astropy__astropy-8872",
+    "repo": "astropy",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": ["Quantity dtype preservation for float16 is localized to astropy/units/quantity.py dtype coercion logic."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [6, 7, 8, 10]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-10097@solver_A",
+    "trace_id": "django__django-10097@solver_A",
+    "task_id": "django__django-10097",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT", "STATELESS"],
+      "evidence": ["URLValidator userinfo validation is localized to django/core/validators.py regex behavior and validators test corpus."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "ENV_BLOCKED",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "STAGNATION": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [51, 54, 56, 60, 62, 64, 66, 68, 70, 72, 74],
+        "STAGNATION": [53, 54, 55, 56, 57, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-10554@solver_A",
+    "trace_id": "django__django-10554@solver_A",
+    "task_id": "django__django-10554",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "INTEGRATION", "REPOSITORY_CONTEXT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Combined QuerySet ordering/value selection behavior requires tracing compiler.py, query.py, expressions.py, and Django query tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "SEARCH_LOCALIZATION", "CONTROL_RECOVERY"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO", "FILENAME_SEARCH_THRASH", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "BUDGET_EXHAUSTION_NONCONVERGENCE",
+      "severity": {
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "FILENAME_SEARCH_THRASH": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [7, 11, 27, 29, 31, 33, 58, 67, 74],
+        "FILENAME_SEARCH_THRASH": [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 54, 55, 56, 57, 60, 61, 62, 69, 70],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["CONSTRAIN_SEARCH", "ESCALATE_SOLVER"],
+    "annotation_metadata": {
+      "annotator_id": "codex",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

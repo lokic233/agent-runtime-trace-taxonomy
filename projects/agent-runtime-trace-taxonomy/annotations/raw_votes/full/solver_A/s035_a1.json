@@ -1,0 +1,502 @@
+[
+  {
+    "sample_id": "sympy__sympy-16450@solver_A|FULL",
+    "trace_id": "sympy__sympy-16450@solver_A",
+    "task_id": "sympy__sympy-16450",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Issue concerns preserving assumptions in posify; target located in sympy/simplify/simplify.py and fixed with one production-line change."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-16597@solver_A|FULL",
+    "trace_id": "sympy__sympy-16597@solver_A",
+    "task_id": "sympy__sympy-16597",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Task requires changing SymPy assumption implication rules for integer/even/odd finiteness while preserving existing assumptions behavior."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [17, 22, 25, 29, 30, 34, 35]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-16766@solver_A|FULL",
+    "trace_id": "sympy__sympy-16766@solver_A",
+    "task_id": "sympy__sympy-16766",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Task is to add Indexed printing support to PythonCodePrinter; target file is sympy/printing/pycode.py after search."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-16792@solver_A|FULL",
+    "trace_id": "sympy__sympy-16792@solver_A",
+    "task_id": "sympy__sympy-16792",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "SINGLE_FILE", "INTEGRATION", "REPOSITORY_CONTEXT", "CLEAR"],
+      "evidence": ["Autowrap/codegen argument handling requires understanding MatrixSymbol and IndexedBase metadata across codegen paths."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "DEPENDENCY_SETUP_DRIFT": "MILD"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [8, 13, 14, 20, 23],
+        "DEPENDENCY_SETUP_DRIFT": [3]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-16886@solver_A|FULL",
+    "trace_id": "sympy__sympy-16886@solver_A",
+    "task_id": "sympy__sympy-16886",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": ["Morse mapping defect is a one-line table correction in sympy/crypto/crypto.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-17139@solver_A|FULL",
+    "trace_id": "sympy__sympy-17139@solver_A",
+    "task_id": "sympy__sympy-17139",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["Task requires guarding trig simplification against non-real exponents in sympy/simplify/fu.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-17318@solver_A|FULL",
+    "trace_id": "sympy__sympy-17318@solver_A",
+    "task_id": "sympy__sympy-17318",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "PARTIAL"],
+      "evidence": ["sqrtdenest failure requires understanding interaction between sqrtdenest.py and radsimp split_surds behavior."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [20, 22, 23, 26],
+        "PATCH_CHURN": [19, 21, 24, 25, 28, 29]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-17630@solver_A|FULL",
+    "trace_id": "sympy__sympy-17630@solver_A",
+    "task_id": "sympy__sympy-17630",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["BlockMatrix zero-block preservation requires patching block multiplication/addition behavior in blockmatrix.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-17655@solver_A|FULL",
+    "trace_id": "sympy__sympy-17655@solver_A",
+    "task_id": "sympy__sympy-17655",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "CLEAR"],
+      "evidence": ["Point scalar multiplication requires understanding SymPy binary-op priority and Point arithmetic methods."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-18189@solver_A|FULL",
+    "trace_id": "sympy__sympy-18189@solver_A",
+    "task_id": "sympy__sympy-18189",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": ["diophantine syms/permute bug localizes to recursive call argument forwarding in sympy/solvers/diophantine.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-18199@solver_A|FULL",
+    "trace_id": "sympy__sympy-18199@solver_A",
+    "task_id": "sympy__sympy-18199",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": ["nthroot_mod zero-residue handling is localized to modular root logic in residue_ntheory.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "sympy__sympy-18211@solver_A|FULL",
+    "trace_id": "sympy__sympy-18211@solver_A",
+    "task_id": "sympy__sympy-18211",
+    "repo": "sympy",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "SINGLE_FILE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "PARTIAL"],
+      "evidence": ["Relational.as_set fallback requires understanding relationals, boolalg as_set behavior, inequalities, and ConditionSet semantics."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [3, 8, 15, 16, 18]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

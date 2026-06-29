@@ -1,0 +1,384 @@
+```json
+[
+  {
+    "trace_id": "django__django-16667@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue points at SelectDateWidget.value_from_datadict; fix is a small guard (OverflowError) in one method of widgets.py with an existing targeted test file (test_selectdatewidget).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16801@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "ImageField post_init connection in db/models/fields/files.py; localization via grep then a one-condition fix to contribute_to_class. Reasoning about when to connect the signal is the core work.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Repro-script assertion debugging ([5]-[11]) cost steps but was productive verification with new evidence each step and no clean taxonomy fit (not premature, not editor/view helper); production fix correct from [3]."
+    }
+  },
+  {
+    "trace_id": "django__django-16819@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "AddIndex/RemoveIndex reduce optimization in migrations/operations/models.py; required reading reduce() patterns across base.py/fields.py/models.py to author a correct reduce method.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Extensive reads ([0]-[14]) were each information-gaining across different regions/files (not REREAD); methodical and justified for an optimizer change."
+    }
+  },
+  {
+    "trace_id": "django__django-16877@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "New escapeseq filter modeled on safeseq in defaultfilters.py plus docs in builtins.txt; clear analogous pattern, code+docs touched.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Edge-script backend-config error at [18] fixed in one step [19]; not material."
+    }
+  },
+  {
+    "trace_id": "django__django-16899@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Error-message format change for readonly_fields (admin.E035) in contrib/admin/checks.py; localized via grep, fix aligns message with the 'refers to' family.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE",
+      "severity": {"SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"},
+      "evidence_action_ids": {"SEARCH_WITHOUT_NEW_EVIDENCE": [4, 6]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16901@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_FILE", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "XOR fallback parity fix in sql/where.py requiring a Mod import; reproduce-driven correctness reasoning (MOD ..==1 vs ==1).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-16938@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "m2m serialization conflict between manager select_related and only('pk'); fix applied to both python.py and xml_serializer.py (select_related(None)).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "[7]->[10] select_related()->select_related(None) was evidence-driven (read query.py docs) not churn; [11] no-op str_replace was a single immediately-corrected mechanical hiccup, not material."
+    }
+  },
+  {
+    "trace_id": "django__django-16950@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "SINGLE_FILE", "LONG_STATE", "UNCLEAR_ORACLE"],
+      "evidence": "Inline FK to_field on UUID-alternate-key parent with default; deep reasoning across forms/models.py and db/models/base.py about when resetting the parent key is safe (PK regenerated on save vs non-PK).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [32, 33, 34, 35, 36]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Edits [45]-[46] were failing-test-driven and converged (productive recovery, not FAILED_RECOVERY); only the pre-test same-region reconsideration cluster [32]-[36] qualifies as churn."
+    }
+  },
+  {
+    "trace_id": "django__django-17029@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "PR specifies adding get_swappable_settings_name.cache_clear() to Apps.clear_cache in apps/registry.py; explicit one-line change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-17084@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CROSS_FILE", "TARGETED_UNIT"],
+      "evidence": "aggregate() over window-function annotations must force a subquery; reasoning in sql/query.py around contains_over_clause, informed by reading expressions.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Window import add [22] then refactor-away/remove [24]-[25] was post-verification quality polishing with a passing repro between; not material churn."
+    }
+  },
+  {
+    "trace_id": "django__django-17087@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Nested-class method serialization should use __qualname__ not __name__ in migrations/serializer.py FunctionTypeSerializer; single targeted one-line change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "complete",
+      "progress": "patch_submitted",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Single str_replace_editor view TOOL_ERROR at [2] was a transient harness glitch worked around immediately; not material."
+    }
+  },
+  {
+    "trace_id": "django__django-7530@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "makemigrations passes app_label into apps.get_models() (which doesn't accept it); one-line fix to use apps.get_app_config(app_label).get_models() in management/commands/makemigrations.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "stuck",
+      "progress": "fix_complete_but_autosubmitted_at_cost_limit",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "SEVERE",
+        "STAGNATION": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [1, 4, 11],
+        "STAGNATION": [11, 13, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 40, 46, 52, 60, 66, 72, 74],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "solver_A-a2",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Correct fix and passing tests by [10]; root cause is broken harness tooling (str_replace_editor [1]/[4] and a submit binary that SyntaxErrors every call), so primary_bottleneck is ENVIRONMENT_BLOCKED rather than agent reasoning. The identical submit retries [11]-[74] are STAGNATION that drove BUDGET_EXHAUSTION at [75]."
+    }
+  }
+]
+```

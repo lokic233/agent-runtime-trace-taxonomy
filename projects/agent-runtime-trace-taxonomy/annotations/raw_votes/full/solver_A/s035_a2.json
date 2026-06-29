@@ -1,0 +1,374 @@
+[
+  {
+    "trace_id": "sympy__sympy-16450@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue is a localized semantics bug in posify (Dummy created with positive=True only, dropping other assumptions). Target found by a single grep; the work is reasoning about which assumptions to carry over (assumptions0).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16597@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "REPOSITORY_CONTEXT", "UNCLEAR_ORACLE"],
+      "evidence": "Issue is a small assumption-rule change (even/odd/integer -> finite) in FactRules. Location found quickly; difficulty is deciding the correct rule and an ambiguous oracle (user claimed tests updated but on-disk tests still assert old oo.is_integer/is_even behavior).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [17, 20, 22, 25, 26, 29, 30, 32, 34, 35]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16766@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Feature-add: implement _print_Indexed on PythonCodePrinter. Class located by one grep; work is authoring the small method.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16792@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CROSS_CUTTING", "INTEGRATION", "CLEAR"],
+      "evidence": "Bug in codegen argument_sequence handling for array args (MatrixSymbol/IndexedBase); the same buggy pattern repeats across 4 routine methods, and verification needs the cython/autowrap integration path.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [8, 23]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-16886@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Data-correction bug: Morse mapping for '1' wrong in a dict. Once the entry is located by grep, the fix is a single obvious character change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17139@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Crash on cos(x)**I in fu._f because non-real exponent comparisons fail; fix is a guard. Location read directly, work is reasoning the correct guard condition.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17318@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "UNCLEAR_ORACLE"],
+      "evidence": "IndexError in split_surds via _sqrt_match when no surds present; spans sqrtdenest.py and radsimp.py. PR example auto-evaluates to I so the oracle is partial and the real bug must be isolated.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [19, 20, 22, 23, 26]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17630@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "BlockMatrix _blockmul/_blockadd collapse ZeroMatrix to scalar Zero; fix requires authoring a helper to restore ZeroMatrix blocks. Localized in blockmatrix.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-17655@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "sympify(2.0)*Point yields Mul, not Point; fix requires understanding the _op_priority dispatch (expr.py/decorators.py) to make Point's __rmul__ win. Patch lands in point.py but requires cross-file mechanism understanding.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18189@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "diophantine drops permute=permute in the recursive call when syms order differs from var; one-line fix once the recursion path is understood. Localized in diophantine.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18199@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "nthroot_mod fails/omits root when a % p == 0; fix is an early-return guard. Located by grep; work is reasoning the math edge case and confirming against master via stash.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18211@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "MULTI_MODULE_CONTEXT", "CLEAR"],
+      "evidence": "Eq(...).as_set() raises NotImplementedError; the as_set/_eval_as_set machinery is distributed across relational.py, boolalg.py, inequalities.py and sets, so most effort is mapping the call chain to the right place to catch and return a ConditionSet.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [16, 18]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1_A",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]

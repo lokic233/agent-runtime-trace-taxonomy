@@ -1,0 +1,386 @@
+Looking at this, it's a self-contained annotation task with a defined output (a JSON array, "JSON only"). I'll analyze each blinded trace against the frozen taxonomy and emit schema-shaped records.
+
+```json
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-7757@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Bug is defaults-indexing for positional-only args in signature_from_str; location found quickly via grep, but the fix requires reasoning about how AST defaults map across posonlyargs+args.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7889@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "_make_subclass str-concat failure on TypeVar key; once located in mock.py the fix is a trivial str() coercion, so the effort is dominated by locating the symbol.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7910@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "_skip_member relies on obj.__globals__ which breaks for functools.wraps-decorated methods; reproduction is module-dependent and the fix (inspect.unwrap) requires understanding wrapper globals.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-7985@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "PARTIAL"],
+      "evidence": "Feature addition to linkcheck to validate local links; location is immediate (linkcheck.py) but the design (uri_re, docname-relative resolution) is the bulk of the work.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [18, 19, 20, 22]}
+    },
+    "candidate_interventions": ["robust_edit_tool", "apply_patch_format"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8035@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Change private-members option from bool_option to members_option and update filter_members; touches autodoc/__init__.py plus docs/CHANGES, requiring reasoning about ALL/None/list semantics.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["HELPER_TOOL_FAILURE_LOOP"],
+      "primary_bottleneck": "HELPER_TOOL_FAILURE_LOOP",
+      "severity": {"HELPER_TOOL_FAILURE_LOOP": "MODERATE"},
+      "evidence_action_ids": {"HELPER_TOOL_FAILURE_LOOP": [22, 23, 26, 29]}
+    },
+    "candidate_interventions": ["repro_harness_template"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Self-built verification scripts repeatedly failed on fixture/import/timing before the existing suite already validated the fix; HELPER_TOOL_FAILURE_LOOP is the closest fit but boundary with scratch-verification overhead is imperfect."
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8056@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Napoleon must expand combined params (x1, x2) into separate :param: fields under napoleon_use_param; the design (multiple flag through _consume_fields) requires substantial reasoning in docstring.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "INCOMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PATCH_CHURN", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "PATCH_CHURN": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [18, 20, 22, 38, 39, 41, 42, 46, 50],
+        "PATCH_CHURN": [17, 27, 29, 30, 43, 44, 45, 57, 59, 60, 61, 62],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["robust_edit_tool", "apply_patch_format", "earlier_stop"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8120@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "PARTIAL"],
+      "evidence": "User locale catalogs must take precedence over built-in ones; requires reasoning about locale.init load/fallback order, fixed by reordering locale_dirs in application.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
+      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [4, 5, 6, 7]}
+    },
+    "candidate_interventions": ["robust_edit_tool", "apply_patch_format"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8265@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "visit_Tuple dropped parentheses for tuple defaults; fix must also avoid breaking Subscript tuple slices (Tuple[int,int]), requiring careful AST-unparse reasoning in pycode/ast.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8269@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "linkcheck anchor path swallowed HTTP errors; once located the fix is a single response.raise_for_status() line, so locating the anchor branch dominates.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8459@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "autodoc_type_aliases ignored in description mode; the work is finding the inspect.signature call in record_typehints that omits type_aliases, the fix being a one-arg addition.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8475@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "linkcheck must catch TooManyRedirects; fix is importing the exception and adding it to an existing except tuple, so locating the HEAD/GET fallback is the main step.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8548@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "inherited-members must surface inherited instance/data attributes; ~17 events of exploring get_class_members/add_content and the failing test precede a focused MRO-iteration edit in importer.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

@@ -1,0 +1,514 @@
+[
+  {
+    "sample_id": "django__django-9296@solver_A",
+    "trace_id": "django__django-9296@solver_A",
+    "task_id": "django__django-9296",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Task required adding iterator behavior to Django Paginator in a single known core module; trace localized directly to django/core/paginator.py and verified pagination behavior."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "mwaskom__seaborn-3069@solver_A",
+    "trace_id": "mwaskom__seaborn-3069@solver_A",
+    "task_id": "mwaskom__seaborn-3069",
+    "repo": "mwaskom",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC", "PARTIAL", "SHORT_STATE"],
+      "evidence": ["Nominal scale behavior required understanding seaborn objects scale setup, matplotlib axis behavior, and targeted tests/repros; final source changes were concentrated in seaborn/_core/scales.py."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "STAGNATE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["PATCH_CHURN", "ENVIRONMENT_BLOCKED", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "BUDGET_EXHAUSTION_NONCONVERGENCE",
+      "severity": {
+        "PATCH_CHURN": "MODERATE",
+        "ENVIRONMENT_BLOCKED": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [32, 33, 41, 59],
+        "ENVIRONMENT_BLOCKED": [45, 46, 47, 49, 50, 51, 52],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "INCREASE_TARGETED_VERIFICATION", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "mwaskom__seaborn-3187@solver_A",
+    "trace_id": "mwaskom__seaborn-3187@solver_A",
+    "task_id": "mwaskom__seaborn-3187",
+    "repo": "mwaskom",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Issue involved correcting continuous scale legend labels with formatter offsets; localization and patch were in seaborn/_core/scales.py with targeted plot/scale verification."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "pallets__flask-5014@solver_A",
+    "trace_id": "pallets__flask-5014@solver_A",
+    "task_id": "pallets__flask-5014",
+    "repo": "pallets",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": ["Task required adding validation for empty Flask blueprint names in src/flask/blueprints.py; single-file guard with existing blueprint tests."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "psf__requests-1142@solver_A",
+    "trace_id": "psf__requests-1142@solver_A",
+    "task_id": "psf__requests-1142",
+    "repo": "psf",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Content-Length behavior was localized to PreparedRequest.prepare_content_length in requests/models.py; fix required method/body conditional logic and targeted request preparation checks."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [10, 11, 12, 13]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "psf__requests-1724@solver_A",
+    "trace_id": "psf__requests-1724@solver_A",
+    "task_id": "psf__requests-1724",
+    "repo": "psf",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Unicode/native method normalization was localized to PreparedRequest.prepare_method in requests/models.py; change was a single-line conversion using existing compat helper."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "psf__requests-1766@solver_A",
+    "trace_id": "psf__requests-1766@solver_A",
+    "task_id": "psf__requests-1766",
+    "repo": "psf",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": ["Digest auth qop formatting was directly localized to requests/auth.py and required a single string-format correction plus inline header verification."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "psf__requests-1921@solver_A",
+    "trace_id": "psf__requests-1921@solver_A",
+    "task_id": "psf__requests-1921",
+    "repo": "psf",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Header merging behavior was localized to requests.sessions.merge_setting; task required preserving existing merge semantics while removing None-valued headers from both session and request sources."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [8, 9, 10]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "psf__requests-2317@solver_A",
+    "trace_id": "psf__requests-2317@solver_A",
+    "task_id": "psf__requests-2317",
+    "repo": "psf",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": ["Binary method normalization was localized to Session.request in requests/sessions.py; task required decoding bytes before native-string conversion."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "psf__requests-2931@solver_A",
+    "trace_id": "psf__requests-2931@solver_A",
+    "task_id": "psf__requests-2931",
+    "repo": "psf",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Requests parameter encoding bug required distinguishing URL params from request body handling in shared _encode_params logic within requests/models.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [11, 13, 17, 19, 20]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "psf__requests-5414@solver_A",
+    "trace_id": "psf__requests-5414@solver_A",
+    "task_id": "psf__requests-5414",
+    "repo": "psf",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Invalid leading-dot hostname handling was localized to requests/models.py URL host validation; fix extended existing invalid-label check."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {
+        "ENVIRONMENT_BLOCKED": "MILD"
+      },
+      "evidence_action_ids": {
+        "ENVIRONMENT_BLOCKED": [12, 13, 14]
+      }
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "psf__requests-6028@solver_A",
+    "trace_id": "psf__requests-6028@solver_A",
+    "task_id": "psf__requests-6028",
+    "repo": "psf",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "CROSS_MODULE", "INTEGRATION", "REPOSITORY_CONTEXT", "MULTI_MODULE_CONTEXT", "PARTIAL", "SHORT_STATE"],
+      "evidence": ["Proxy authorization regression required tracing requests session proxy resolution, adapter proxy headers, urllib3 proxy manager behavior, and tests across requests/sessions.py, requests/adapters.py, requests/utils.py, and tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "LOCALIZE",
+      "progress": "UNKNOWN",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "DEPENDENCY_SETUP_DRIFT", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "BUDGET_EXHAUSTION_NONCONVERGENCE",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "SEVERE",
+        "DEPENDENCY_SETUP_DRIFT": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [1, 2, 3, 4, 5, 9, 11, 14, 16, 17, 19, 20, 27, 28, 30, 31, 32, 33, 34, 50, 65, 66, 67, 69, 70, 71],
+        "DEPENDENCY_SETUP_DRIFT": [22, 23, 24, 25],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["CONSTRAIN_SEARCH", "NARROW_RETRIEVAL", "FIX_ENVIRONMENT"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "annotator_model": null,
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T10:40:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

@@ -1,15 +1,15 @@
 ```json
 [
   {
-    "trace_id": "astropy__astropy-12907@solver_A",
+    "trace_id": "pydata__xarray-2905@solver_A",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
-      "evidence": "Issue is a wrong-result bug in separability_matrix for nested CompoundModels; one function (_cstack) localizes via a single grep [0], and the difficulty is reasoning that cright should be `right` not `1`.",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "Bug is a semantic over-broad getattr(data,'values',data) in as_compatible_data; target file obvious (variable.py) but the substance is reasoning which types to restrict the .values extraction to.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "SUBMITTED",
+      "phase": "COMPLETE",
       "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
@@ -19,12 +19,12 @@
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "severities": {},
+      "severity": {},
       "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
+      "annotator_id": "annotator_01",
       "prompt_version": "v1",
       "timestamp": "2026-06-28T00:00:00Z",
       "abstain": false,
@@ -32,108 +32,15 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-13033@solver_A",
+    "trace_id": "pydata__xarray-3095@solver_A",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "UNCLEAR_ORACLE", "SEARCH_REQUIRED"],
-      "evidence": "Issue is a confusing error message in TimeSeries._check_required_columns; fix is contained to core.py, but the exact expected message wording is ambiguous (agent repeatedly probes test expectations [5][8]).",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "IndexVariable.copy(deep=True) drops dtype; localization quick via grep, core work is reasoning that PandasIndexAdapter must be reconstructed with dtype=self._data.dtype.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "SUBMITTED",
-      "progress": "COMPLETE",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": false
-    },
-    "waste_annotation": {
-      "l1_labels": ["VERIFICATION"],
-      "l2_labels": ["REDUNDANT_TEST"],
-      "primary_bottleneck": "REDUNDANT_TEST",
-      "severities": {"REDUNDANT_TEST": "MILD"},
-      "evidence_action_ids": {"REDUNDANT_TEST": [13, 14]}
-    },
-    "candidate_interventions": ["oracle_hint"],
-    "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13236@solver_A",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SEARCH_REQUIRED"],
-      "evidence": "Issue asks to emit a FutureWarning when adding a structured ndarray; fix is a localized insertion in table.py at the NdarrayMixin-view branch found via grep [0][1].",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "SUBMITTED",
-      "progress": "COMPLETE",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": false
-    },
-    "waste_annotation": {
-      "l1_labels": [],
-      "l2_labels": [],
-      "primary_bottleneck": null,
-      "severities": {},
-      "evidence_action_ids": {}
-    },
-    "candidate_interventions": [],
-    "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13398@solver_A",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["MULTI_FILE", "CROSS_MODULE", "INTEGRATION", "REPOSITORY_CONTEXT", "SEARCH_REQUIRED"],
-      "evidence": "Task implements new direct ITRS<->AltAz/HADec transforms: creates a new module [7] and registers it in __init__ [8]; requires reading several frame files [2][3][5] and integration via the transform graph.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "SUBMITTED",
-      "progress": "COMPLETE",
-      "candidate_location_found": true,
-      "plausible_patch_found": true,
-      "verification_sufficient": false
-    },
-    "waste_annotation": {
-      "l1_labels": ["ENVIRONMENT_TOOLING"],
-      "l2_labels": ["ENVIRONMENT_BLOCKED"],
-      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
-      "severities": {"ENVIRONMENT_BLOCKED": "MODERATE"},
-      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [11, 12, 13, 14]}
-    },
-    "candidate_interventions": ["environment_fix"],
-    "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
-      "prompt_version": "v1",
-      "timestamp": "2026-06-28T00:00:00Z",
-      "abstain": false,
-      "abstain_reason": null
-    }
-  },
-  {
-    "trace_id": "astropy__astropy-13453@solver_A",
-    "workload_annotation": {
-      "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "SEARCH_REQUIRED"],
-      "evidence": "Issue: HTML writer ignores `formats`; fix is in html.py write path (call _set_col_formats and carry format into multicol split). Second edit [10] is driven by new repro evidence [8] that multicol path was unformatted.",
-      "unknown_fields": []
-    },
-    "execution_state": {
-      "phase": "SUBMITTED",
+      "phase": "COMPLETE",
       "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
@@ -143,12 +50,12 @@
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "severities": {},
+      "severity": {},
       "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
+      "annotator_id": "annotator_01",
       "prompt_version": "v1",
       "timestamp": "2026-06-28T00:00:00Z",
       "abstain": false,
@@ -156,15 +63,15 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-13579@solver_A",
+    "trace_id": "pydata__xarray-3151@solver_A",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "SEARCH_REQUIRED"],
-      "evidence": "Wrong-value bug in SlicedLowLevelWCS.world_to_pixel_values (substituting 1.0 for dropped world coords); fix is in sliced_wcs.py and is semantic, validated by numeric repro [5].",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "combine_by_coords monotonic check wrongly applied to bystander dims; fix is to iterate only concat_dims — a targeted reasoning fix in combine.py.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "SUBMITTED",
+      "phase": "COMPLETE",
       "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
@@ -174,12 +81,12 @@
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "severities": {},
+      "severity": {},
       "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
+      "annotator_id": "annotator_01",
       "prompt_version": "v1",
       "timestamp": "2026-06-28T00:00:00Z",
       "abstain": false,
@@ -187,15 +94,15 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-13977@solver_A",
+    "trace_id": "pydata__xarray-3305@solver_A",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "REPOSITORY_CONTEXT", "SEARCH_REQUIRED"],
-      "evidence": "Task: Quantity.__array_ufunc__ should return NotImplemented for unhandled duck types instead of raising; requires tracing the conversion flow across quantity/converters/core/helpers [2][3][5][9] before a small try/except fix [13].",
+      "l2_attributes": ["MULTI_FILE", "CROSS_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "quantile drops per-variable attrs; fix spans Variable.quantile (add keep_attrs) and Dataset.quantile (pass it through) — coordinated change across two files.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "SUBMITTED",
+      "phase": "COMPLETE",
       "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
@@ -205,12 +112,12 @@
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "severities": {},
+      "severity": {},
       "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
+      "annotator_id": "annotator_01",
       "prompt_version": "v1",
       "timestamp": "2026-06-28T00:00:00Z",
       "abstain": false,
@@ -218,15 +125,15 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-14096@solver_A",
+    "trace_id": "pydata__xarray-3677@solver_A",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "SEARCH_REQUIRED", "LOCAL_CONTEXT"],
-      "evidence": "Bug: SkyCoord.__getattr__ masks AttributeError raised inside subclass properties; fix delegates class-defined descriptors. Localized via grep for __getattr__ [1] and reasoning about descriptor lookup.",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "ds.merge(da) fails because dataset_merge_method does not coerce DataArray; fix mirrors top-level merge by adding to_dataset() conversion in merge.py.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "SUBMITTED",
+      "phase": "COMPLETE",
       "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
@@ -236,12 +143,12 @@
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "severities": {},
+      "severity": {},
       "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
+      "annotator_id": "annotator_01",
       "prompt_version": "v1",
       "timestamp": "2026-06-28T00:00:00Z",
       "abstain": false,
@@ -249,15 +156,15 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-14182@solver_A",
+    "trace_id": "pydata__xarray-3993@solver_A",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "REPOSITORY_CONTEXT", "SEARCH_REQUIRED", "CLEAR"],
-      "evidence": "Task: support header_rows in RST writer; fix is in rst.py but requires understanding FixedWidth inheritance (multiple reads of fixedwidth.py [2]-[9]) to compute the position-line index correctly.",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "API inconsistency between DataArray.integrate(dim) and Dataset.integrate(coord); fix is a backward-compatible signature change with deprecation warning in dataarray.py.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "SUBMITTED",
+      "phase": "COMPLETE",
       "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
@@ -267,12 +174,12 @@
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "severities": {},
+      "severity": {},
       "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
+      "annotator_id": "annotator_01",
       "prompt_version": "v1",
       "timestamp": "2026-06-28T00:00:00Z",
       "abstain": false,
@@ -280,15 +187,15 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-14309@solver_A",
+    "trace_id": "pydata__xarray-4075@solver_A",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION", "CLEAR"],
-      "evidence": "Issue text names is_fits in io/fits/connect.py and the IndexError on empty args; fix is a one-line guard. Location is explicit, oracle clear.",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "Weighted mean wrong with boolean weights because xr.dot on bools returns bool; fix casts bool weights to int in weighted.py — a focused semantic fix.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "SUBMITTED",
+      "phase": "COMPLETE",
       "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
@@ -298,12 +205,12 @@
       "l1_labels": [],
       "l2_labels": [],
       "primary_bottleneck": null,
-      "severities": {},
+      "severity": {},
       "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
+      "annotator_id": "annotator_01",
       "prompt_version": "v1",
       "timestamp": "2026-06-28T00:00:00Z",
       "abstain": false,
@@ -311,30 +218,30 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-14365@solver_A",
+    "trace_id": "pydata__xarray-4094@solver_A",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "SEARCH_REQUIRED"],
-      "evidence": "Issue: QDP commands should be case-insensitive; fix adds re.IGNORECASE and a .upper() on the NO check in qdp.py, located via grep [1].",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "to_unstacked_dataset roundtrip fails because sel leaves a residual scalar multiindex coord; fix adds drop=True to sel in dataarray.py — required debug-driven reasoning.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "SUBMITTED",
+      "phase": "COMPLETE",
       "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
     },
     "waste_annotation": {
-      "l1_labels": ["EDIT_PATCH"],
-      "l2_labels": ["PATCH_CHURN"],
-      "primary_bottleneck": "PATCH_CHURN",
-      "severities": {"PATCH_CHURN": "MILD"},
-      "evidence_action_ids": {"PATCH_CHURN": [4, 5]}
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
     },
     "candidate_interventions": [],
     "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
+      "annotator_id": "annotator_01",
       "prompt_version": "v1",
       "timestamp": "2026-06-28T00:00:00Z",
       "abstain": false,
@@ -342,30 +249,123 @@
     }
   },
   {
-    "trace_id": "astropy__astropy-14369@solver_A",
+    "trace_id": "pydata__xarray-4356@solver_A",
     "workload_annotation": {
       "primary_l1": "PATCH_REASONING_DOMINANT",
-      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "UNCLEAR_ORACLE", "SILENT_SEMANTIC", "SEARCH_REQUIRED"],
-      "evidence": "Task: CDS unit parser must evaluate '.'/'/' strictly left-to-right; requires rewriting the ply grammar in cds.py and regenerating parse tables, with semantics inferred from the CDS standard (ambiguous oracle).",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "min_count unsupported for multi-dim reductions; fix generalizes _maybe_null_out in nanops.py with np.take(...).prod() — reasoning over axis handling, not just location.",
       "unknown_fields": []
     },
     "execution_state": {
-      "phase": "SUBMITTED",
+      "phase": "COMPLETE",
       "progress": "COMPLETE",
       "candidate_location_found": true,
       "plausible_patch_found": true,
       "verification_sufficient": true
     },
     "waste_annotation": {
-      "l1_labels": ["EDIT_PATCH"],
-      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
-      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
-      "severities": {"EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"},
-      "evidence_action_ids": {"EDIT_TOOL_MECHANICAL_FAILURE": [11, 13, 14]}
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
     },
-    "candidate_interventions": ["edit_tool_robustness"],
+    "candidate_interventions": [],
     "annotation_metadata": {
-      "annotator_id": "solver_A-a2",
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4629@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT"],
+      "evidence": "merge_attrs combine_attrs='override' returns a reference to source attrs causing aliasing; one-line dict() wrap, location effectively pinpointed by the issue.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4687@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": "xr.where must preserve attrs; correct implementation requires understanding apply_ufunc/merge_attrs keep_attrs plumbing (computation.py + merge.py), making the patch-reasoning the dominant cost.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [14, 16, 19, 26, 30, 32, 33, 34, 37, 38, 39]}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4695@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT"],
+      "evidence": ".loc fails when a dim is named like a sel kwarg (e.g. 'method') because _LocIndexer used sel(**key); fix passes the dict positionally in dataarray.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_01",
       "prompt_version": "v1",
       "timestamp": "2026-06-28T00:00:00Z",
       "abstain": false,

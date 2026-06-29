@@ -1,0 +1,386 @@
+Looking at this task, it's a self-contained closed-label annotation job — the taxonomy and traces are all inline. Here are the schema-valid annotation records.
+
+```json
+[
+  {
+    "trace_id": "sphinx-doc__sphinx-8551@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Issue is wrong cross-reference resolution for doc-field xrefs (:param/:type/:rtype) in the py domain; no error is raised, the link silently resolves to the wrong target. Fix requires understanding the make_xref/process_field_xref flow and injecting py:module/py:class context. Localized to sphinx/domains/python.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8593@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "':meta public:' in attribute comments not honored for module-level variables. Requires tracing that for attr_docs members the docstring comes from attribute comments not __doc__, then sourcing doc from attr_docs. Fix in sphinx/ext/autodoc/__init__.py filter_members.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8595@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Empty __all__ ([]) incorrectly treated like missing __all__ (None) due to falsy check 'if not self.__all__'. Subtle boolean-vs-None distinction in ModuleDocumenter.get_object_members. Single-line fix in autodoc/__init__.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8621@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "kbd role splits compound keystrokes incorrectly when separator chars (-, +, ^) are themselves keystrokes. Fix is a regex redesign (lookbehind/lookahead) in KeyboardTransform. Core difficulty is designing correct splitting logic, verified against existing test cases.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8638@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "':ivar somename:' creates a spurious cross-reference to unrelated objects via rolename='obj' on the variable PyTypedField. Diagnosis requires understanding the docfield make_xref flow and fuzzy find_obj matching; fix removes rolename='obj' in sphinx/domains/python.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE",
+      "severity": {"SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE"},
+      "evidence_action_ids": {"SEARCH_WITHOUT_NEW_EVIDENCE": [16, 17, 18, 19, 23, 24, 25, 26, 27, 39, 40]}
+    },
+    "candidate_interventions": ["LIMIT_HISTORY_SEARCH"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-8721@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT", "INTEGRATION"],
+      "evidence": "viewcode generates module pages for epub even when viewcode_enable_epub=False because collect_pages lacks the builder/epub guard present in doctree_read. Localizing the missing guard in sphinx/ext/viewcode.py is the main task; fix adds early returns.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9229@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["UNCLEAR_ORACLE", "SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "autodoc: docstrings vs 'alias of ...' for type aliases. The desired behavior is ambiguous (replace vs append), and current master already shows both consistently, so the oracle is unclear. Fix would be in the update_content/add_content mixins of autodoc/__init__.py.",
+      "unknown_fields": ["intended_final_behavior"]
+    },
+    "execution_state": {
+      "phase": "IMPLEMENTING",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "STAGNATION": "SEVERE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [30, 31, 32, 33, 34, 35, 36, 37, 42, 43, 44, 45, 46, 47, 52, 53, 54, 55, 56],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [13, 14, 15, 16, 17, 18, 19, 39, 40, 62, 63]
+      }
+    },
+    "candidate_interventions": ["AMBIGUITY_RESOLUTION", "CONVERGENCE_GUARD", "BUDGET_GUARD", "LIMIT_HISTORY_SEARCH"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9230@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "':param dict(str, str) name:' is split incorrectly by fieldarg.split(None, 1) because spaces inside brackets are treated as separators. Fix adds a bracket-aware split helper in sphinx/util/docfields.py; core work is designing correct parsing logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9258@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT", "TARGETED_UNIT"],
+      "evidence": "Union types written with '|' in :type:/:rtype: fields are not split into separate xrefs. The delimiter regex in PyXrefMixin.make_xrefs lacks '|'. Main task is locating that regex; fix adds '|' to the delims character class.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9281@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "object_description returns the raw enum repr (<MyEnum.ValueA: 10>) instead of a reST-safe form. Fix adds an enum.Enum branch in sphinx/util/inspect.py.object_description; primarily a localization + small targeted fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9320@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "sphinx-quickstart: pressing Enter at the 'new root path (or just Enter to exit)' prompt fails is_path validation instead of exiting. Fix adds an is_path_or_empty validator in sphinx/cmd/quickstart.py and wires it into the prompt.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sphinx-doc__sphinx-9367@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "ast unparse drops the trailing comma for single-element tuples, e.g. (1,) -> (1). Fix special-cases len(elts)==1 in _UnparseVisitor.visit_Tuple in sphinx/pycode/ast.py. Small, well-scoped, unit-testable.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_v1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

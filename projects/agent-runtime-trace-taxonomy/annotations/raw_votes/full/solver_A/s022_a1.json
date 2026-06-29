@@ -1,0 +1,396 @@
+[
+  {
+    "trace_id": "pydata__xarray-2905@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Fix centers on preserving arbitrary objects with .values in xarray/core/variable.py; localized by reading as_compatible_data and __setitem__, with reproduction and targeted xarray tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3095@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue requires preserving dtype through IndexVariable.copy deep-copy path in xarray/core/variable.py; solver localizes PandasIndexAdapter construction and verifies copy behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3151@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "INTEGRATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Task concerns combine_by_coords monotonicity validation in xarray/core/combine.py; fix is localized to checking only concat_dims with reproduction and combine/concat/backends tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3305@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "PARTIAL"],
+      "evidence": "Trace modifies quantile attr preservation across Variable.quantile and Dataset.quantile, requiring call-chain reasoning across dataarray/dataset/variable.",
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["VERIFICATION_GAP"],
+      "primary_bottleneck": "VERIFICATION_GAP",
+      "severity": {
+        "VERIFICATION_GAP": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "VERIFICATION_GAP": [5, 7, 9, 11]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3677@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Task is to make Dataset.merge accept DataArray consistently; target is dataset_merge_method in xarray/core/merge.py after brief localization.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-3993@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "PARTIAL"],
+      "evidence": "Trace addresses DataArray.integrate API consistency with Dataset.integrate, localized to xarray/core/dataarray.py with targeted integrate/trapz tests.",
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [0]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4075@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Weighted boolean-weight mean bug is localized to xarray/core/weighted.py, requiring reasoning about bool dot/sum_of_weights behavior.",
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4094@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "to_unstacked_dataset failure requires understanding stacked MultiIndex scalar coordinate handling in xarray/core/dataarray.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [0]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4356@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "min_count multidimensional reduction behavior is localized to _maybe_null_out in xarray/core/nanops.py; verification covers reproduction and reduction-related tests.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4629@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Simple attrs aliasing fix in merge_attrs override branch in xarray/core/merge.py; one-line patch plus targeted merge tests.",
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4687@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "UNCLEAR_ORACLE", "LOCAL_CONTEXT", "PARTIAL"],
+      "evidence": "Task involves xr.where keep_attrs behavior in xarray/core/computation.py, with ambiguity around attrs from cond/x/y and Dataset behavior.",
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "PATCH_CHURN"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "SEVERE",
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [14, 16, 26, 30, 31, 32, 35, 37, 38, 39, 48, 49, 55, 60],
+        "PATCH_CHURN": [32, 33, 34, 38, 39, 54]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pydata__xarray-4695@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Bug is a keyword collision in DataArray.loc when dimension is named method/drop/tolerance, localized to _LocIndexer.__getitem__ in xarray/core/dataarray.py.",
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "FINISHED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH"],
+      "primary_bottleneck": "FILENAME_SEARCH_THRASH",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "MILD"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [0]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

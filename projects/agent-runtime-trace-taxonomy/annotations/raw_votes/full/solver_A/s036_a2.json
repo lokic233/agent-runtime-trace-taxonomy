@@ -1,0 +1,376 @@
+```json
+[
+  {
+    "trace_id": "sympy__sympy-18698@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "TARGETED_UNIT"],
+      "evidence": "Issue is a wrong-output bug in sqf_list (factors of equal multiplicity not merged); requires understanding the symbolic factor pipeline (_symbolic_factor_list/_sorted_factors) and crafting a merge step. Wrong-result, not a crash; an existing test (test_factor_terms) encodes a conflicting expectation, making the oracle partly ambiguous.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-18763@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Issue is incorrect LaTeX parenthesizing of Subs; single printer method _print_Subs in latex.py, fix is to parenthesize the inner expr. Location found via one grep; the work is the printing-precedence reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19040@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "factor(..., extension=[I]) drops factors; root cause is missing multivariate content extraction in dmp_ext_factor. Requires tracing the polys factorization stack (factortools/sqfreetools/densetools/euclidtools) to localize and design the fix; wrong-result bug.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19346@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "SEARCH_REQUIRED", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "srepr lacks _print_dict/_print_set so dict/set print non-reconstructably; fix adds printer methods to ReprPrinter in repr.py. Localization is direct; the work is matching srepr's eval-roundtrip semantics.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19495@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "UNCLEAR_ORACLE", "LONG_HISTORY_DEPENDENT"],
+      "evidence": "ConditionSet._eval_subs returns a malformed set when condition simplifies to True; subtle substitution semantics in conditionset.py. The existing test_subs_CondSet encodes behavior that conflicts with the desired fix, so the correct oracle is ambiguous and required git-history archaeology.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "MODERATE"},
+      "evidence_action_ids": {"FAILED_RECOVERY": [19, 21, 22, 26, 28, 36, 59, 60, 62]}
+    },
+    "candidate_interventions": ["ORACLE_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19637@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "EXPLICIT_LOCATION", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "kernS raises UnboundLocalError because 'kern' is referenced outside the branch that defines it; traceback gives the exact line (sympify.py:516). One-line indentation fix; deterministic crash makes oracle clear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19783@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Dagger(A)*IdentityOperator does not simplify because Dagger is an adjoint, not an Operator; fix requires understanding __mul__/__rmul__ dispatch and touches both operator.py and dagger.py. Wrong-result bug, two-file fix.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-19954@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "EXPLICIT_LOCATION", "CLEAR", "TARGETED_UNIT"],
+      "evidence": "sylow_subgroup raises IndexError from minimal_blocks deleting list items by index while iterating; traceback gives exact location (perm_groups.py:2201). Fix replaces in-loop deletion with a removal mask; deterministic crash.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20154@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "partitions() reuses the same dict object, so list(partitions(...)) yields identical copies; fix yields copies and updates docstring/doctests in iterables.py. Conceptually simple semantic fix plus doctest maintenance.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [5, 6, 7, 8, 9]}
+    },
+    "candidate_interventions": ["EDIT_TOOL_GUIDANCE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20428@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "SINGLE_FILE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "clear_denoms can leave an unstripped zero DMP, breaking downstream primitive/terms_gcd; fix strips after multiplication in dup/dmp_clear_denoms. Requires tracing densetools/densearith/densebasic/polyclasses to confirm both convert and non-convert paths.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20438@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "CROSS_MODULE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "ProductSet.is_subset returns None, Eq(b,c).simplify() raises AttributeError, and rewrite is missing; multi-part fix touching issubset.py, sets.py, and core/relational.py. Spans sets and core modules.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20590@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "Symbol instances gained __dict__ because the Printable mixin lacks __slots__; localized via MRO inspection, fix adds __slots__=() to _print_helpers.py. Non-crashing behavioral regression.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE",
+      "severity": {"SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"},
+      "evidence_action_ids": {"SEARCH_WITHOUT_NEW_EVIDENCE": [8, 9, 10, 11]}
+    },
+    "candidate_interventions": ["REDUCE_REDUNDANT_SEARCH"],
+    "annotation_metadata": {
+      "annotator_id": "annot_closed_v1_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

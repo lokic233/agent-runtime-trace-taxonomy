@@ -1,0 +1,371 @@
+```json
+[
+  {
+    "trace_id": "pytest-dev__pytest-7571@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Bug is in caplog handler-level lifecycle (set_level modifies a reused handler, _finalize restores only logger levels). Fix requires reasoning about save/restore semantics in __init__/_finalize/set_level within one file; localization was light (2 searches + 2 views).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-7982@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "CLEAR", "REPOSITORY_CONTEXT"],
+      "evidence": "Known 6.1.0 regression; fix is a one-line change (drop follow_symlinks=False in visit()). Effort is in pinpointing the regressing line via git history + grep; the patch itself is trivial.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-8399@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue points directly at the auto-generated unittest fixture name; fix is prefixing it with an underscore to hide by default. Solver went straight to the known location via sed and applied a one-line edit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-10297@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Feature add: thread store_cv_values through RidgeClassifierCV.__init__ to the _BaseRidgeCV parent plus docstring. Location is named in the issue; work is the parameter-plumbing edit and edge-case (cv!=None) behavior.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-10844@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Single-line numerical-overflow fix in fowlkes_mallows_score (sqrt(tk/pk)*sqrt(tk/qk) instead of tk/sqrt(pk*qk)). The location and form are essentially given by the PR; reasoning is about the overflow-safe rewrite.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-10908@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "get_feature_names should validate the provided vocabulary before _check_vocabulary so it works without fit. Work is reasoning about the validate/check ordering and preserving NotFittedError for the no-vocabulary case within one method.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-11310@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Feature add of refit_time_ to BaseSearchCV: import time, wrap the refit fit() with timing, document the attribute on two classes. Multiple coordinated edits in _search.py with a guarded (refit-only) semantic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-11578@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "_log_reg_scoring_path constructed LogisticRegression without solver/multi_class, silently scoring via ovr. Fix is a one-line constructor change but the bug is a silent semantic mismatch requiring correctness reasoning + multinomial-vs-ovr verification.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-12585@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "clone() must treat a class (isinstance(estimator, type)) like a non-estimator. One-line guard in base.clone; reasoning about safe/unsafe branches and edge cases.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "TOOL_ERROR/error='cannot' tags on events [0] and [1] are not corroborated by observations (view returned content, edit succeeded with no retry); treated as harness noise, not EDIT_TOOL_MECHANICAL_FAILURE."
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-12682@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "CROSS_FILE", "INTEGRATION", "REPOSITORY_CONTEXT"],
+      "evidence": "Add transform_max_iter and thread it through SparseCodingMixin._set_sparse_coding_params, transform(), sparse_encode/_sparse_encode (LassoLars max_iter), SparseCoder/DictionaryLearning/MiniBatchDictionaryLearning docstrings, and an example. Coordinated multi-class, multi-file plumbing.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-12973@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "LassoLarsIC.fit must default copy_X=None and only override the init value when explicitly passed. Reasoning about default-precedence semantics; one-method change in least_angle.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "scikit-learn__scikit-learn-13124@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "INTEGRATION", "EXPENSIVE_SUITE", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "StratifiedKFold._make_test_folds must shuffle within each class instead of pairing fixed indices, while preserving fold-size allocation so downstream tests (search/validation) still hold. Algorithmic redesign in _split.py with broad cross-module test interactions.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "high",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED"],
+      "labels": [
+        {
+          "l1": "ENVIRONMENT_TOOLING",
+          "l2": "ENVIRONMENT_BLOCKED",
+          "severity": "MODERATE",
+          "evidence_action_ids": [20, 21, 26, 31, 32, 33]
+        }
+      ],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED"
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "closed-label-annotator-1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

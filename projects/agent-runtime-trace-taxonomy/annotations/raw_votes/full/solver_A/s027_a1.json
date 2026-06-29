@@ -1,0 +1,478 @@
+[
+  {
+    "sample_id": "scikit-learn__scikit-learn-13135@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-13135@solver_A",
+    "task_id": "scikit-learn__scikit-learn-13135",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Localized to KBinsDiscretizer kmeans bin-edge logic in one preprocessing file; required a small semantic patch and a targeted reproduction."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-13142@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-13142@solver_A",
+    "task_id": "scikit-learn__scikit-learn-13142",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Bug involved BaseMixture.fit_predict ordering of final e-step and best parameter restoration in one file, with focused reproduction and mixture test suite."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-13328@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-13328@solver_A",
+    "task_id": "scikit-learn__scikit-learn-13328",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Small dtype validation fix in HuberRegressor.fit after locating check_X_y call in huber.py."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-13439@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-13439@solver_A",
+    "task_id": "scikit-learn__scikit-learn-13439",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Task required adding Pipeline.__len__ in the existing indexing/sequence behavior area of pipeline.py."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-13496@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-13496@solver_A",
+    "task_id": "scikit-learn__scikit-learn-13496",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["IsolationForest needed warm_start exposed through constructor and docs in one estimator file, verified by focused warm-start behavior and existing tests."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-13779@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-13779@solver_A",
+    "task_id": "scikit-learn__scikit-learn-13779",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["VotingClassifier sample_weight handling with dropped estimators required locating the voting implementation and making a small guard in one file."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-14053@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-14053@solver_A",
+    "task_id": "scikit-learn__scikit-learn-14053",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["export_text feature-name bug was localized to tree/export.py and fixed by handling TREE_UNDEFINED leaf features."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-14087@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-14087@solver_A",
+    "task_id": "scikit-learn__scikit-learn-14087",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["LogisticRegressionCV refit=False bug required understanding coefficient path shape and resolved multi_class/l1_ratio indexing within one function."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-14141@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-14141@solver_A",
+    "task_id": "scikit-learn__scikit-learn-14141",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Task was a small dependency-list update for show_versions, with main work finding the relevant utility and confirming joblib output/tests."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-14496@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-14496@solver_A",
+    "task_id": "scikit-learn__scikit-learn-14496",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["OPTICS fractional min_samples/min_cluster_size needed count conversion in two related regions of the same file, with focused reproduction and existing tests."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-14629@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-14629@solver_A",
+    "task_id": "scikit-learn__scikit-learn-14629",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["cross_val_predict predict_proba with MultiOutputClassifier required selecting class labels from sub-estimators in model_selection/_validation.py."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [3, 15, 17]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "scikit-learn__scikit-learn-14710@solver_A:FULL",
+    "trace_id": "scikit-learn__scikit-learn-14710@solver_A",
+    "task_id": "scikit-learn__scikit-learn-14710",
+    "repo": "scikit-learn",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "PARTIAL", "SHORT_STATE"],
+      "evidence": ["HistGradientBoostingClassifier early-stopping scorer needed label inverse-transform handling for classifier y values in one file, with focused reproduction and edge-case checks."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["REDUNDANT_TEST"],
+      "primary_bottleneck": "REDUNDANT_TEST",
+      "severity": {
+        "REDUNDANT_TEST": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_TEST": [7, 9, 10, 12]
+      }
+    },
+    "candidate_interventions": ["STOP_REDUNDANT_TESTING", "INCREASE_TARGETED_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]

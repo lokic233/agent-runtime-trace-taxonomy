@@ -1,0 +1,266 @@
+```json
+[
+  {
+    "trace_id": "django__django-11149@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "SILENT_SEMANTIC"],
+      "evidence": "Issue is permission-logic for auto-created M2M intermediate inline models; fix concentrated in one file (admin/options.py) and exercised by existing admin_inlines.TestInlinePermissions. Core difficulty is reasoning about which target-model perms map to add/change/delete, not finding the code.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "VERIFICATION"],
+      "l2_labels": ["STAGNATION", "REDUNDANT_TEST"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {
+        "STAGNATION": "MODERATE",
+        "REDUNDANT_TEST": "MILD"
+      },
+      "evidence_action_ids": {
+        "STAGNATION": [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
+        "REDUNDANT_TEST": [11, 12]
+      }
+    },
+    "candidate_interventions": ["GIT_STATE_GUIDANCE", "DEDUP_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_LLM_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11163@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "model_to_dict with fields=[] should return {}; one-line truthiness->'is not None' semantic fix in forms/models.py. Localization trivial via grep; the work is recognizing the falsy-empty-list bug.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_LLM_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11179@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "SILENT_SEMANTIC"],
+      "evidence": "Fast-delete path in deletion.py fails to reset PK to None; single localized one-line addition. Issue points directly at the fast-delete optimization branch; oracle is deletion test suite.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_LLM_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11206@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "UNCLEAR_ORACLE", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "numberformat.format() must render tiny Decimals (e.g. 1e-200) as zero-padded fixed point under decimal_pos; single file utils/numberformat.py. Oracle is ambiguous — an existing test_decimal_numbers case (~1.234e-300 -> '1.234e-300') conflicts with the PR semantics, making the verification target unclear.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED_WITH_FAILING_TEST",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "VERIFICATION"],
+      "l2_labels": ["FAILED_RECOVERY", "STAGNATION", "REDUNDANT_TEST"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {
+        "FAILED_RECOVERY": "MODERATE",
+        "STAGNATION": "MILD",
+        "REDUNDANT_TEST": "MILD"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [7, 13, 20, 22, 28],
+        "STAGNATION": [11, 12, 16, 17, 18, 24],
+        "REDUNDANT_TEST": [22, 28]
+      }
+    },
+    "candidate_interventions": ["ORACLE_HINT", "GIT_STATE_GUIDANCE", "DEDUP_VERIFICATION"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_LLM_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11211@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "GenericForeignKey prefetch fails for UUID PKs because gfk_key uses get_prep_value vs obj.pk type; fix is one-line get_prep_value->to_python in contenttypes/fields.py, but requires cross-file understanding of UUIDField behavior in fields/__init__.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_LLM_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11239@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT"],
+      "evidence": "Add SSL params (sslmode/sslrootcert/sslcert/sslkey) to postgresql dbshell client; single file client.py with a clear analog (mysql TLS commit) and a dedicated dbshell test as oracle. Mostly implementation following an existing pattern.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_LLM_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11265@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "SILENT_SEMANTIC", "TARGETED_UNIT"],
+      "evidence": "FilteredRelation used in exclude() crashes because split_exclude builds an inner Query without copying _filtered_relations; one-line fix in sql/query.py. Requires tracing split_exclude/_add_q flow before the fix is obvious.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_LLM_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11276@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "LOCAL_CONTEXT", "UNCLEAR_ORACLE", "TARGETED_UNIT"],
+      "evidence": "Replace hand-rolled _html_escapes dict with stdlib html.escape() in utils/html.py; single localized change. Oracle is partly ambiguous because the existing test_escape still expects '&#39;' while stdlib emits '&#x27;', so the test target conflicts with the intended change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "PATCH_SUBMITTED_WITH_FAILING_TEST",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["ORACLE_HINT"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_LLM_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

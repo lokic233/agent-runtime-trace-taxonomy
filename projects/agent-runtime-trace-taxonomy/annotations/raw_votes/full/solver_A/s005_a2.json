@@ -1,0 +1,398 @@
+Output only the JSON, per the annotation spec.
+
+```json
+[
+  {
+    "trace_id": "django__django-11790@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Bug is scoped to AuthenticationForm.username maxlength; single-file fix requiring understanding of CharField.widget_attrs flow. Locating the symptom needed a short grep but the file was obvious.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11815@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "EnumSerializer.serialize is the single locus; grep located it immediately. Core work is changing value-based to name-based serialization.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11820@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LONG_HISTORY_DEPENDENT", "LOCAL_CONTEXT", "PARTIAL"],
+      "evidence": "Regression in Meta.ordering pk validation; solver used git show on the introducing commit to localize, then a single-file logic fix to handle the 'pk' alias in related-field lookups.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [7, 8, 10, 11, 12, 13]}
+    },
+    "candidate_interventions": ["EDIT_TOOL_RELIABILITY"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11848@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "parse_http_date two-digit-year RFC7231 logic; grep located the function directly, fix is one self-contained block.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11880@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Field.__deepcopy__ shares error_messages dict; one-line fix in a known method. Direct view then edit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11885@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "REPOSITORY_CONTEXT", "INTEGRATION", "UNCLEAR_ORACLE", "PARTIAL"],
+      "evidence": "Performance feature: combine fast-delete queries per model across deletion.py/query.py/subqueries.py. Oracle is assertNumQueries behavior, requiring restructuring of collection logic — implementation-heavy.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "MEDIUM",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PREMATURE_SCRATCH_REPRO", "FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "FAILED_RECOVERY": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [27, 28, 33, 34, 35, 36, 39, 52, 53],
+        "PREMATURE_SCRATCH_REPRO": [8, 9, 10, 11, 61, 62, 64, 66],
+        "FAILED_RECOVERY": [48, 49, 54, 56, 57, 58, 59],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["EDIT_TOOL_RELIABILITY", "BUDGET_INCREASE"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11951@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "_batched_insert should clamp batch_size to DB max like bulk_update; single-file two-line fix mirrored from an existing pattern in the same module.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11964@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "TextChoices/IntegerChoices __str__ returns enum repr instead of value; fix is adding __str__ to the Choices base class in enums.py. Located in a couple of steps.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-11999@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Field.contribute_to_class unconditionally overrides get_FOO_display; fix guards with hasattr. Single-file change in a directly grep-located method.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12039@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Whitespace/opclass handling in ddl_references Columns.__str__ and IndexColumns.__str__; two related edits in one file with clear expected SQL output.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12050@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "resolve_lookup_value coerces lists to tuples; fix preserves input iterable type with a namedtuple edge case. Single method, located via grep.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "HIGH",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12125@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "MULTI_FILE", "REPOSITORY_CONTEXT", "UNCLEAR_ORACLE", "PARTIAL"],
+      "evidence": "Inner/nested class deconstruct paths must serialize with __qualname__ and correct import; spans serializer.py (TypeSerializer, _serialize_path) plus field deconstruct/writer. Crux is the _serialize_path import-resolution logic.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "MEDIUM",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PREMATURE_SCRATCH_REPRO", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severity": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "PREMATURE_SCRATCH_REPRO": "MODERATE",
+        "STAGNATION": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [23, 24, 29, 32, 51, 55, 56, 57, 58, 59, 63, 64, 68, 71],
+        "PREMATURE_SCRATCH_REPRO": [13, 14, 15, 16, 61, 66, 67],
+        "STAGNATION": [17, 18, 19, 20],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["EDIT_TOOL_RELIABILITY", "BUDGET_INCREASE"],
+    "annotation_metadata": {
+      "annotator_id": "annot-A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

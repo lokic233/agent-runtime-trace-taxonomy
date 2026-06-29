@@ -1,0 +1,390 @@
+```json
+[
+  {
+    "trace_id": "django__django-13821@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "MULTI_FILE", "CLEAR"],
+      "evidence": "Task is to drop SQLite<3.9.0 support; core work is finding every reference (version check, docs, gis install table, release notes) and applying a trivial version bump. Events [0],[1],[6],[22] are broad searches to enumerate locations across code+docs.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13837@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "HIDDEN_TEST_DOMINANT", "SILENT_SEMANTIC"],
+      "evidence": "Issue targets get_child_arguments in autoreload.py; location found immediately [0]. Core difficulty is reasoning about __main__.__spec__ semantics to rewrite the -m detection, a single-function semantic change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13925@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CROSS_MODULE", "SILENT_SEMANTIC"],
+      "evidence": "W042 check located instantly via grep [0],[1]; fix is in _check_default_pk (base.py) but requires understanding parent_link/auto_created semantics traced through options.py [3],[4]. Reasoning-dominant.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13933@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "ModelChoiceField located instantly [0]; the actual change (message %(value)s + params) is small and well-located. The task is a localized code edit, not a search problem.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE", "PATCH_CHURN"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "SEVERE",
+        "PATCH_CHURN": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [2, 3, 6, 9],
+        "PATCH_CHURN": [5, 7, 8, 10, 11, 12, 13]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13964@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CROSS_MODULE", "SILENT_SEMANTIC", "SHORT_STATE"],
+      "evidence": "Issue concerns FK handling for non-numeric PKs; fix is one line in _prepare_related_fields_for_save (base.py) but requires tracing assignment-time FK caching across related_descriptors/related.py [0]-[14]. Reasoning-dominant.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": "Repro/edge-script setup hit several self-inflicted Django config tracebacks ([15],[16],[19],[28]-[31]), but each step yielded new info and the env was not broken; no single frozen-taxonomy waste label cleanly applies, so no label asserted."
+    }
+  },
+  {
+    "trace_id": "django__django-14007@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "CROSS_MODULE", "UNCLEAR_ORACLE", "SILENT_SEMANTIC"],
+      "evidence": "Issue is applying DB converters to returning_fields; spans compiler.py/query.py/base.py [0]-[6]. SQLite cannot return bulk rows, making the oracle partially unobservable. Reasoning + cross-module.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": "Repro construction repeatedly failed on AppRegistry/ImproperlyConfigured ([16],[19],[21],[24]) and pytest-not-found [28], but these are info-bearing setup hiccups in throwaway scripts with a working real test harness; no frozen waste label fits cleanly."
+    }
+  },
+  {
+    "trace_id": "django__django-14011@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_FILE", "INTEGRATION", "LONG_STATE"],
+      "evidence": "Fix spans basehttp.py (ThreadedWSGIServer) and testcases.py (LiveServerThread) [0],[1]; requires threading/connection-lifecycle reasoning across the WSGI server and test harness wiring.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14017@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "CROSS_MODULE"],
+      "evidence": "Q & Exists fails in Q._combine (query_utils.py); located via expressions.py __and__ reasoning [1],[2]. Small, well-located semantic fix to accept conditional expressions.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14034@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "UNCLEAR_ORACLE", "HIDDEN_TEST_DOMINANT", "SILENT_SEMANTIC"],
+      "evidence": "MultiValueField.clean located quickly [1],[2]; the hard part is reconciling require_all_fields behavior with an existing test that encodes contradictory expectations, making the correct branch logic non-obvious.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severities": {
+        "FAILED_RECOVERY": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [12, 13, 15, 21, 22, 24, 25, 26, 32]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14053@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "SHORT_STATE"],
+      "evidence": "HashedFilesMixin.post_process located instantly [0]; fix accumulates results so each path is yielded once. Localized control-flow change in one method.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14089@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION", "TARGETED_UNIT", "CLEAR"],
+      "evidence": "Spec is to add __reversed__ to OrderedSet; class located instantly [0]. Trivial, fully-specified single-method addition.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severities": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-14122@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "REPOSITORY_CONTEXT", "LONG_HISTORY_DEPENDENT", "SILENT_SEMANTIC"],
+      "evidence": "Meta.ordering leaking into GROUP BY; fix is in compiler.get_group_by. Agent uses git history of prior deprecation commits [1]-[9] to understand intended behavior, indicating history/repo-context dependence.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTING",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "EDIT_TOOL_MECHANICAL_FAILURE",
+      "severities": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "EDIT_TOOL_MECHANICAL_FAILURE": [15, 16, 20, 23, 24]
+      }
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "claude-annotator-01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

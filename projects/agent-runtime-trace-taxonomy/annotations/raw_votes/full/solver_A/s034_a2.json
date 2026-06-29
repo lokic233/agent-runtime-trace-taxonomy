@@ -1,0 +1,383 @@
+```json
+[
+  {
+    "trace_id": "sympy__sympy-13974@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue is a localized semantic bug in tensor_product_simp/expand for Pow of TensorProduct; target file (tensorproduct.py) is named in the task and found immediately [0]. Bulk of work is reasoning about _eval_power vs Pow handling, not search.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14248@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_CUTTING", "REPOSITORY_CONTEXT", "CLEAR"],
+      "evidence": "Issue (printing of A - A*B - B) requires the same MatAdd/MatMul sign-handling fix replicated across three printers (str.py, latex.py, pretty.py) plus _coeff_isneg in function.py [2]; cross-cutting parallel logic across modules.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "ADVANCED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY", "VERIFICATION"],
+      "l2_labels": ["FAILED_RECOVERY", "REDUNDANT_TEST", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "labels": [
+        {
+          "l2_label": "FAILED_RECOVERY",
+          "l1_parent": "CONTROL_RECOVERY",
+          "severity": "MODERATE",
+          "evidence_action_ids": [22, 26, 27, 28, 30, 31, 36, 41, 42, 44, 46, 47]
+        },
+        {
+          "l2_label": "REDUNDANT_TEST",
+          "l1_parent": "VERIFICATION",
+          "severity": "MILD",
+          "evidence_action_ids": [64, 65, 66, 67, 68, 69, 70]
+        },
+        {
+          "l2_label": "BUDGET_EXHAUSTION_NONCONVERGENCE",
+          "l1_parent": "CONTROL_RECOVERY",
+          "severity": "SEVERE",
+          "evidence_action_ids": [75]
+        }
+      ],
+      "primary_bottleneck": "FAILED_RECOVERY"
+    },
+    "candidate_interventions": ["CONVERGENCE_GUIDANCE", "LIMIT_REDUNDANT_VERIFICATION", "EARLY_STOP_ON_NONCONVERGENCE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14531@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue is that str-printer methods format raw expr objects instead of calling self._print; fix is many small targeted edits in one file (str.py) [4][6-15]. Location obvious; work is methodical patching.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14711@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue (sum([N.x, 0*N.x]) fails) is a localized Vector arithmetic bug in vector.py; reasoning centers on where to add the zero-handling (_check_vector vs __add__).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Initial _check_vector approach reverted after a test failure (14), but the revision was evidence-driven and converged quickly to the __add__ fix — normal recovery, not material waste."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-14976@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "CROSS_FILE", "CLEAR"],
+      "evidence": "Issue (lambdify mpmath loses precision on Rationals) requires tracing lambdify -> MpmathPrinter [2-7] then adding _print_Rational in pycode.py; some cross-file reading to localize the printer responsibility.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15017@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "SEARCH_REQUIRED", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue (len of rank-0 array == 0) requires locating the three _loop_size computations via grep [2] across dense_ndim_array.py and sparse_ndim_array.py and changing the empty-shape default; small uniform fix in multiple files.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15345@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "EXPLICIT_LOCATION"],
+      "evidence": "Issue (mathematica_code(Max/Min) uses parens not brackets) localizes directly to mathematica.py [0]; fix is adding _print_Max/_print_Min methods. Small, well-scoped.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15349@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "EXPLICIT_LOCATION", "SILENT_SEMANTIC"],
+      "evidence": "Issue names Quaternion.to_rotation_matrix() directly; bug is a single sign error in m12 in quaternion.py [0]. Semantic correctness fix verified via repro and orthogonality/det checks.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15599@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue (Mod(3*i, 2) should reduce to Mod(i, 2)) localizes to the Mul branch of Mod.eval in mod.py [0]; the difficulty is reasoning about avoiding infinite recursion and regressions, not search.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Multiple edit-test cycles on mod.py (2,5,14,19,22,26,30) were each driven by new failing evidence (recursion, regressions) and converged to a passing fix; this is hard but legitimate evidence-driven recovery, not non-converging FAILED_RECOVERY."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15809@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "EXPLICIT_LOCATION"],
+      "evidence": "Issue (Min()/Max() with no args should return identity) localizes to MinMaxBase.__new__ in miscellaneous.py [0-2]; fix is a small conditional returning cls.identity.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15875@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue (Add.is_zero wrong for canceling imaginary terms) localizes to _eval_is_zero in add.py [2-3]; the difficulty is reasoning about the imaginary-part branch, verified with intermediate debugging.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Early edit/undo/re-edit (5,6,7) and the debugging at 11-16 were evidence-driven investigation that converged to the correct fix (17); not material waste."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-15976@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "TARGETED_UNIT", "CLEAR", "LOCAL_CONTEXT"],
+      "evidence": "Issue (invalid mi>msub nesting in presentation MathML) localizes to _print_Symbol in mathml.py [1-2]; fix restructures element creation so sub/sup nodes are top-level.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "labels": [],
+      "primary_bottleneck": null
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": "Test file edit (17) then revert (23-25) was a harness-instruction self-correction, not a production-patch waste category; not labeled."
+    }
+  }
+]
+```

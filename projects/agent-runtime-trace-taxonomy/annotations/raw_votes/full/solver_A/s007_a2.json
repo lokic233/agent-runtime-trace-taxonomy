@@ -1,0 +1,390 @@
+```json
+[
+  {
+    "trace_id": "django__django-12663@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "HIDDEN_TEST_DOMINANT", "LONG_STATE"],
+      "evidence": "Issue: SimpleLazyObject used with a nested subquery annotation crashes (TypeError: int() on SimpleLazyObject) in resolve_lookup_value. Location (resolve_lookup_value) is found early; the difficulty is reasoning about the correct unwrap/resolution fix across query.py, functional.py and fields/__init__.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "PATCHING",
+      "progress": "STALLED",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE",
+        "STAGNATION": "MODERATE",
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [17, 50, 51, 63, 64, 65, 66, 67, 69, 70, 71],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [13, 19, 49, 58],
+        "STAGNATION": [40, 41, 43, 44, 45, 46, 47, 53, 57],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["reduce_patch_churn", "improve_edit_tool_matching", "budget_nonconvergence_guard"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12708@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue: removing index_together fails when unique_together exists on the same fields ('Found wrong number of constraints'). Core work is reasoning that introspection returns the unique constraint as index=True and constraining _delete_composed_index kwargs; single source file (base/schema.py).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12713@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: widget passed via kwargs to formfield_for_manytomany is unconditionally overwritten (asymmetry vs formfield_for_foreignkey). Location grep-found immediately; fix is guarding with 'if widget not in kwargs'.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12741@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "MULTI_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: simplify signature of execute_sql_flush(self, sql_list). Mechanical refactor with explicit target; main work is finding all non-test call sites (flush.py, base/operations.py) via grep.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12754@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "HIDDEN_TEST_DOMINANT", "LONG_STATE"],
+      "evidence": "Issue: migration ordering — CreateModel for a model with a base must depend on RemoveField of base fields (analogous to #21890). Core work is reasoning about autodetector dependency tuples; converged after discovering lowercase model-key bug.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12774@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: in_bulk() should accept a field covered by a single-field total UniqueConstraint, not only unique=True fields. Work is locating total_unique_constraints (options.py) and relaxing the guard in query.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12858@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue: models.E015 false positive for ordering paths ending in a lookup like __isnull. Work is locating _check_ordering (base.py) and extending the relation/transform check to also accept get_lookup.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-12965@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_FILE", "HIDDEN_TEST_DOMINANT", "LONG_STATE"],
+      "evidence": "Issue: performance regression — Model.objects.all().delete() emits a subquery instead of a plain DELETE. Work spans git archaeology to find the regressing commit and reasoning about SQLDeleteCompiler.single_alias when alias_map is empty.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["VERIFICATION"],
+      "l2_labels": ["REDUNDANT_TEST"],
+      "primary_bottleneck": "REDUNDANT_TEST",
+      "severity": {
+        "REDUNDANT_TEST": "MILD"
+      },
+      "evidence_action_ids": {
+        "REDUNDANT_TEST": [40, 41, 42]
+      }
+    },
+    "candidate_interventions": ["preserve_test_output"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13012@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue: ExpressionWrapper of a constant pushes the constant into GROUP BY. Work is locating ExpressionWrapper (expressions.py) and overriding get_group_by_cols to delegate to the wrapped expression.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13023@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT"],
+      "evidence": "Issue: DecimalField.to_python raises TypeError instead of ValidationError for dict/list values. Location grep-found immediately; fix is widening the except clause to include TypeError/ValueError.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13028@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue: filtering on a model instance whose class has a 'filterable' attribute raises NotSupportedError. Work is locating check_filterable (sql/query.py) and gating the check on resolve_expression so model instances are excluded while Window stays disallowed.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "trace_id": "django__django-13033@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "HIDDEN_TEST_DOMINANT"],
+      "evidence": "Issue: ordering by a self-referencing FK field (record__root_id) produces a wrong extra JOIN and DESC ordering. Work is locating find_ordering_name (sql/compiler.py) and comparing against pieces[-1] instead of the full name.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "SUBMITTED",
+      "progress": "COMPLETE",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["none"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_closed_label_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
+```

@@ -1,0 +1,376 @@
+```json
+[
+  {
+    "trace_id": "pylint-dev__pylint-4661@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT"],
+      "evidence": "Task changes the default PYLINT_HOME from ~/.pylint.d to the XDG ~/.local/share/pylint with a legacy-warning, plus coordinated doc/ChangeLog updates (config/__init__.py [4,10,12], doc/faq.rst [13], ChangeLog [18]). Location is shallow; the work is reasoning about the default-resolution logic and keeping multiple docs consistent.",
+      "unknown_fields": ["hidden_test_scope", "issue_text_not_provided"]
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [26, 27, 28, 30, 33, 34, 35, 38]}
+    },
+    "candidate_interventions": ["DIFF_HYGIENE_TOOLING"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-4970@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED"],
+      "evidence": "Task is to make min-similarity-lines=0 disable the duplicate-code checker. Single file (checkers/similar.py); requires understanding the hash/lineset algorithm to place an early-return guard in process_module/close ([20,21]).",
+      "unknown_fields": ["issue_text_not_provided"]
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "SEARCH_WITHOUT_NEW_EVIDENCE",
+      "severity": {"SEARCH_WITHOUT_NEW_EVIDENCE": "MILD", "EDIT_TOOL_MECHANICAL_FAILURE": "MILD"},
+      "evidence_action_ids": {"SEARCH_WITHOUT_NEW_EVIDENCE": [7, 8, 10], "EDIT_TOOL_MECHANICAL_FAILURE": [21, 22]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_ORACLE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-6386@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_FILE", "SEARCH_REQUIRED"],
+      "evidence": "Task fixes the -v/--verbose short option requiring an argument and showing a VERBOSE metavar. Requires cross-file reasoning over argparse plumbing (base_options.py, argument.py, arguments_manager.py, utils.py callback action nargs/metavar). The argparse nargs/preprocessor interaction is the core difficulty.",
+      "unknown_fields": ["issue_text_not_provided"]
+    },
+    "execution_state": {
+      "phase": "VERIFICATION",
+      "progress": "PATCH_UNVERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "CONTROL_RECOVERY"],
+      "l2_labels": ["PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MODERATE", "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"},
+      "evidence_action_ids": {"PATCH_CHURN": [23, 24, 33], "EDIT_TOOL_MECHANICAL_FAILURE": [36, 38, 39, 40], "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]}
+    },
+    "candidate_interventions": ["PROVIDE_LOCATION_HINT", "INCREASE_BUDGET"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-6528@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT"],
+      "evidence": "Recursive mode (--recursive=y) does not apply ignore/ignore-paths/ignore-patterns during _discover_files. Bulk of work is tracing the discovery vs expand_modules ignore flow ([2-9]) to find where filtering is missing; the patch (make _discover_files instance method, reuse _is_ignored_file) is small once located.",
+      "unknown_fields": ["issue_text_not_provided"]
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-6903@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION"],
+      "evidence": "K8s/cgroup _query_cpu can return 0; fix clamps avail_cpu to >=1. Location was known immediately (run.py _query_cpu [0,1]); the work is the small reasoning + edge verification ([2]).",
+      "unknown_fields": ["issue_text_not_provided"]
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-7080@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["CROSS_FILE", "SEARCH_REQUIRED", "REPOSITORY_CONTEXT"],
+      "evidence": "ignore-paths not honored in recursive mode; tracing the config-load + _discover_files + _ignore_paths initialization order. Most of the trace is reproduction and code reading; no source edit is ever made (only /tmp/repro configs).",
+      "unknown_fields": ["issue_text_not_provided"]
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "NO_PATCH",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "CONTROL_RECOVERY"],
+      "l2_labels": ["SEARCH_WITHOUT_NEW_EVIDENCE", "STAGNATION", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "STAGNATION",
+      "severity": {"SEARCH_WITHOUT_NEW_EVIDENCE": "MODERATE", "STAGNATION": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"},
+      "evidence_action_ids": {"SEARCH_WITHOUT_NEW_EVIDENCE": [49, 50, 51, 52], "STAGNATION": [11, 12, 13, 16, 17, 28, 30, 31, 32], "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]}
+    },
+    "candidate_interventions": ["PROVIDE_REPRO_SCRIPT", "PROVIDE_LOCATION_HINT", "INCREASE_BUDGET"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-7277@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION"],
+      "evidence": "modify_sys_path unconditionally pops sys.path[0], removing legitimate non-cwd entries. Location was direct (pylint/__init__.py [0,1]); fix guards the pop to only remove '', '.', or cwd.",
+      "unknown_fields": ["issue_text_not_provided"]
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pylint-dev__pylint-8898@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED"],
+      "evidence": "regexp_csv option splits on commas inside regex quantifier braces (e.g. (foo{1,3})). Fix adds a brace-aware _regexp_csv_split in config/argument.py [16,17]. Note: a pre-existing _distutils_hack env traceback prints on most commands but does not block execution.",
+      "unknown_fields": ["issue_text_not_provided"]
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PATCH_CHURN"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {"PATCH_CHURN": "MILD"},
+      "evidence_action_ids": {"PATCH_CHURN": [16, 17]}
+    },
+    "candidate_interventions": ["PROVIDE_TEST_ORACLE"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-10051@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "caplog.get_records() and caplog.records desync after caplog.clear() due to list-reference replacement in LogCaptureHandler.reset(). Subtle reference-semantics reasoning in _pytest/logging.py; fix uses in-place clear plus per-phase snapshot in _runtest_for ([3,8,12,14]).",
+      "unknown_fields": ["issue_text_not_provided"]
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-10081@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE"],
+      "evidence": "Task concerns unittest tearDown handling under --pdb (skip/postpone) in _pytest/unittest.py runtest ([2,3]). Only 4 events of search/view before abnormal exit, so workload is inferred from issue area; low information.",
+      "unknown_fields": ["issue_text_not_provided", "workload_low_information", "test_scope"]
+    },
+    "execution_state": {
+      "phase": "LOCALIZATION",
+      "progress": "LOCATING",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": null
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING", "CONTROL_RECOVERY"],
+      "l2_labels": ["ENVIRONMENT_BLOCKED", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "ENVIRONMENT_BLOCKED",
+      "severity": {"ENVIRONMENT_BLOCKED": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "MODERATE"},
+      "evidence_action_ids": {"ENVIRONMENT_BLOCKED": [4], "BUDGET_EXHAUSTION_NONCONVERGENCE": [4]}
+    },
+    "candidate_interventions": ["FIX_ENVIRONMENT", "INCREASE_BUDGET"],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Run terminated early on consecutive command timeouts ([4]); env/tooling labeled, but reasoning-quality is largely undeterminable."
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-10356@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC"],
+      "evidence": "pytestmark from multiple base classes is lost because get_unpacked_marks only reads the first MRO entry's pytestmark. Fix walks __mro__ and adjusts store_mark (mark/structures.py [5,6]); requires reasoning about MRO/attribute resolution.",
+      "unknown_fields": ["issue_text_not_provided"]
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "pytest-dev__pytest-5262@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "EXPLICIT_LOCATION"],
+      "evidence": "EncodedFile.mode delegates to the binary buffer, returning 'rb+' and breaking code that branches on text/bytes. Fix adds a mode property stripping 'b' in _pytest/capture.py ([2,3]); location direct, small targeted reasoning.",
+      "unknown_fields": ["issue_text_not_provided"]
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "PATCH_SUBMITTED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": [],
+    "annotation_metadata": {
+      "annotator_id": "annotator_A1",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  }
+]
+```

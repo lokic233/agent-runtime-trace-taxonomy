@@ -1,0 +1,382 @@
+```json
+[
+  {
+    "trace_id": "sympy__sympy-20801@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "SEARCH_REQUIRED", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Issue is a wrong-result equality semantics bug (S(0.0)==S.false). Crux is reasoning about the order of checks in Float.__eq__ (Boolean check vs `not self`); localization to numbers.py is quick, the fix is a small reorder requiring semantic reasoning.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-20916@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "SILENT_SEMANTIC", "LOCAL_CONTEXT"],
+      "evidence": "Pretty-printing subscript bug spanning the printing subsystem; the hard part is locating the responsible regex (_name_with_digits_p in conventions.py) after confirming the actual trigger (unicode greek char without underscore). Fix is a one-line regex change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Reproduction took several events (4-12) because the PR description was misleading, but each attempt narrowed the trigger with new evidence; not redundant search."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-21379@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "PolynomialError raised from Piecewise in hyperbolic _eval_is_real/_eval_is_positive; reasoning needed to find all assumption methods that compute `im % pi` and wrap them. Multiple coordinated edit spots in one file (hyperbolic.py).",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Iterative edits (6-9, 15) were each driven by new failing evidence (cosh still failing at 11) and converged; this is evidence-driven recovery that succeeded, not FAILED_RECOVERY."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-21596@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "SEARCH_REQUIRED", "LONG_HISTORY_DEPENDENT", "LOCAL_CONTEXT"],
+      "evidence": "ImageSet.intersect(Reals) returns wrong set; agent used git history to understand the regression and the intended logic (keep vs remove im==0 values). Production fix is single-file in intersection.py with a small logic inversion.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Edit at 9 corrected an introduced variable-shadowing spotted by re-reading (self-correction, not churn); test-modification deliberation (14-18,25-27) was justified by the test encoding buggy behavior."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-21612@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "SEARCH_REQUIRED", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Misleading str representation of nested frac (Mul containing Pow with negative exp); the fix requires tracing _print_Mul parenthesization precedence in str.py. One-line isinstance broadening once understood.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["ENVIRONMENT_TOOLING"],
+      "l2_labels": ["DEPENDENCY_SETUP_DRIFT"],
+      "primary_bottleneck": "DEPENDENCY_SETUP_DRIFT",
+      "severity": {"DEPENDENCY_SETUP_DRIFT": "MILD"},
+      "evidence_action_ids": {"DEPENDENCY_SETUP_DRIFT": [3, 4, 5, 6]}
+    },
+    "candidate_interventions": ["ENVIRONMENT_FIX"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Agent chased the antlr4 dependency to enable the repro: installed 4.11 (3,4), it failed (5), then installed 4.7.2 (6). Agent-induced dependency churn to make verification available; mild since it resolved quickly and did not block the actual fix."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-21847@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SILENT_SEMANTIC", "EXPLICIT_LOCATION", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "itermonomials min_degrees returns wrong monomials; issue names itermonomials directly. Crux is recognizing total degree = sum(powers) not max(powers). Single-line fix in monomials.py.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-21930@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "MULTI_FILE", "SILENT_SEMANTIC", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "LaTeX dagger operator not braced so power renders wrong; fix wraps two _latex returns (CreateBoson, CreateFermion) in braces in secondquant.py. Localization via grep is direct.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Agent noted existing tests would change (8-12) but confirmed correct target output and relied on stated test handling; this is a documented judgment, not a verification gap."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-22080@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["MULTI_FILE", "CROSS_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT", "LONG_STATE"],
+      "evidence": "lambdify prints -Mod(x,y) as -x % y giving wrong numeric result; correct fix requires reasoning about printer precedence interactions across pycode.py / precedence.py / codeprinter._print_Mul, and the % vs unary-minus semantics. Genuinely cross-cutting precedence design.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "NONCONVERGED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [13, 43, 44, 48, 52, 56, 57, 67, 70, 71, 72],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["PATCH_HINT", "BUDGET_INCREASE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Each round produced new failing evidence (test x%2 at 48, 2*Mod broken at 70-71) driving add/revert cycles of precedence.py and _print_Mod/_print_Mul that never converged, ending in cost-limit autosubmit at 75. FAILED_RECOVERY is the cause; EXHAUSTION is the terminal signal."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-22456@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["CROSS_MODULE", "CROSS_CUTTING", "REPOSITORY_CONTEXT", "SILENT_SEMANTIC", "LONG_STATE"],
+      "evidence": "String.args is empty so func(*args)==expr fails; satisfying the Basic invariant requires touching codegen/ast.py while not breaking core Basic machinery (replace/matches/atoms/preorder_traversal). Highly coupled cross-module change.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "NONCONVERGED",
+      "progress": "PARTIAL",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": false
+    },
+    "waste_annotation": {
+      "l1_labels": ["CONTROL_RECOVERY"],
+      "l2_labels": ["FAILED_RECOVERY", "BUDGET_EXHAUSTION_NONCONVERGENCE"],
+      "primary_bottleneck": "FAILED_RECOVERY",
+      "severity": {"FAILED_RECOVERY": "SEVERE", "BUDGET_EXHAUSTION_NONCONVERGENCE": "SEVERE"},
+      "evidence_action_ids": {
+        "FAILED_RECOVERY": [14, 15, 17, 22, 25, 28, 31, 33, 50, 60, 62],
+        "BUDGET_EXHAUSTION_NONCONVERGENCE": [75]
+      }
+    },
+    "candidate_interventions": ["PATCH_HINT", "BUDGET_INCREASE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "args-property override fixed func(*args) but successively broke replace/matches (31,33) and atoms (60,62); agent kept editing in response (matches override at 50, traversal investigation) without converging, including a botched-edit/git-reset recovery (14-22), ending at cost limit (75)."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-22714@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "Under evaluate(False), im(1) does not simplify so the imaginary-coordinate guard wrongly raises; fix wraps the check in evaluate(True) in point.py. Crux is reasoning about the evaluate context, error oracle is explicit.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Two edits (5 import, 7 guard) are coordinated parts of one fix, not churn."
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-22914@solver_A",
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "LOCAL_CONTEXT", "CLEAR"],
+      "evidence": "PythonCodePrinter lacks Min/Max support; fix adds _print_Min/_print_Max emitting builtin min/max in pycode.py while leaving NumPyPrinter overrides intact. Localization across printers is straightforward.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": null
+    }
+  },
+  {
+    "trace_id": "sympy__sympy-23262@solver_A",
+    "workload_annotation": {
+      "primary_l1": "LOCALIZATION_DOMINANT",
+      "l2_attributes": ["SINGLE_FILE", "SEARCH_REQUIRED", "CROSS_FILE", "SILENT_SEMANTIC", "REPOSITORY_CONTEXT"],
+      "evidence": "lambdify drops the trailing comma on single-element tuples; the printers print tuples correctly, so the hard part is locating the real culprit (_recursive_to_string in lambdify.py) rather than the printing subsystem. Fix once located is trivial.",
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETED",
+      "progress": "VERIFIED",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NONE"],
+    "annotation_metadata": {
+      "annotator_id": "annot_01",
+      "prompt_version": "v1",
+      "timestamp": "2026-06-28T00:00:00Z",
+      "abstain": false,
+      "reason": "Search phase (0-7) explored printers before pivoting to lambdify, but each query returned new evidence and the agent correctly ruled out the printers (8) before localizing; not redundant/thrash search."
+    }
+  }
+]
+```

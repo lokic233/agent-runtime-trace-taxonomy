@@ -1,0 +1,488 @@
+[
+  {
+    "sample_id": "django__django-13344@solver_A|FULL",
+    "trace_id": "django__django-13344@solver_A",
+    "task_id": "django__django-13344",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "MULTI_FILE", "CROSS_MODULE", "INTEGRATION", "REPOSITORY_CONTEXT", "CLEAR", "STATELESS"],
+      "evidence": ["Middleware async behavior required locating middleware chain and affected middleware classes across django/core/handlers and django/middleware.", "Patch changed multiple middleware implementations and was verified with reproduction plus targeted Django tests."],
+      "unknown_fields": ["full_original_issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH"],
+      "l2_labels": ["PREMATURE_SCRATCH_REPRO"],
+      "primary_bottleneck": "PREMATURE_SCRATCH_REPRO",
+      "severity": {
+        "PREMATURE_SCRATCH_REPRO": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "PREMATURE_SCRATCH_REPRO": [7, 12, 14, 15, 19]
+      }
+    },
+    "candidate_interventions": ["DELAY_EDIT"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-13346@solver_A|FULL",
+    "trace_id": "django__django-13346@solver_A",
+    "task_id": "django__django-13346",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "HIDDEN_TEST_DOMINANT", "CLEAR", "STATELESS"],
+      "evidence": ["JSONField key-transform __in lookup required understanding lookup processing in django/db/models/fields/json.py and lookup batching behavior.", "Patch was localized to JSON lookup registration and processing with targeted model_fields JSON tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["EDIT_PATCH", "SEARCH_LOCALIZATION"],
+      "l2_labels": ["PATCH_CHURN", "SEARCH_WITHOUT_NEW_EVIDENCE"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "PATCH_CHURN": "MODERATE",
+        "SEARCH_WITHOUT_NEW_EVIDENCE": "MILD"
+      },
+      "evidence_action_ids": {
+        "PATCH_CHURN": [24, 25, 26, 37, 38],
+        "SEARCH_WITHOUT_NEW_EVIDENCE": [6, 7]
+      }
+    },
+    "candidate_interventions": ["LIMIT_PATCH_SCOPE", "CONSTRAIN_SEARCH"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-13363@solver_A|FULL",
+    "trace_id": "django__django-13363@solver_A",
+    "task_id": "django__django-13363",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "STATELESS"],
+      "evidence": ["Trace immediately reads django/db/models/functions/datetime.py and applies a minimal timezone-related change in that file.", "Targeted datetime function tests pass after the edit."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-13401@solver_A|FULL",
+    "trace_id": "django__django-13401@solver_A",
+    "task_id": "django__django-13401",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "CLEAR", "STATELESS"],
+      "evidence": ["Field equality and ordering behavior was localized to django/db/models/fields/__init__.py.", "Patch required reasoning about model-attached fields, detached fields, hashing, and ordering semantics."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-13406@solver_A|FULL",
+    "trace_id": "django__django-13406@solver_A",
+    "task_id": "django__django-13406",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Pickled QuerySet query behavior was localized to django/db/models/query.py query setter and iterable class selection.", "Verification covered queryset_pickle, queries, and aggregation suites."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-13410@solver_A|FULL",
+    "trace_id": "django__django-13410@solver_A",
+    "task_id": "django__django-13410",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "STATELESS"],
+      "evidence": ["File locking behavior was immediately localized to django/core/files/locks.py.", "Patch changed POSIX lock/unlock return handling and was verified with a reproduction plus files/cache test suites."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-13417@solver_A|FULL",
+    "trace_id": "django__django-13417@solver_A",
+    "task_id": "django__django-13417",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "REPOSITORY_CONTEXT", "TARGETED_UNIT", "CLEAR", "STATELESS"],
+      "evidence": ["QuerySet.ordered mismatch required comparing query.py ordered property with compiler GROUP BY ordering behavior.", "Patch was a targeted query.py condition and was verified with queries and aggregation-related tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-13449@solver_A|FULL",
+    "trace_id": "django__django-13449@solver_A",
+    "task_id": "django__django-13449",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "CROSS_MODULE", "MULTI_MODULE_CONTEXT", "INTEGRATION", "TARGETED_UNIT", "CLEAR", "STATELESS"],
+      "evidence": ["SQLite window expression DecimalField CAST issue required understanding expressions.py, SQLite numeric casting, window functions, and SQL compiler dispatch.", "Verification included reproduction scripts and expressions_window/expressions test suites."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": ["SEARCH_LOCALIZATION", "EDIT_PATCH"],
+      "l2_labels": ["FILENAME_SEARCH_THRASH", "PATCH_CHURN", "EDIT_TOOL_MECHANICAL_FAILURE"],
+      "primary_bottleneck": "PATCH_CHURN",
+      "severity": {
+        "FILENAME_SEARCH_THRASH": "MODERATE",
+        "PATCH_CHURN": "SEVERE",
+        "EDIT_TOOL_MECHANICAL_FAILURE": "MODERATE"
+      },
+      "evidence_action_ids": {
+        "FILENAME_SEARCH_THRASH": [0, 1, 3, 4, 5, 6, 7, 9, 11, 12, 14, 17, 18, 20],
+        "PATCH_CHURN": [27, 28, 29, 30, 33, 34, 39, 40, 41],
+        "EDIT_TOOL_MECHANICAL_FAILURE": [28, 30, 39, 40, 41]
+      }
+    },
+    "candidate_interventions": ["CONSTRAIN_SEARCH", "LIMIT_PATCH_SCOPE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-13512@solver_A|FULL",
+    "trace_id": "django__django-13512@solver_A",
+    "task_id": "django__django-13512",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "STATELESS"],
+      "evidence": ["Form JSONField display escaping was localized to django/forms/fields.py prepare_value().", "Patch was a single json.dumps argument change and was verified with reproduction plus forms/model JSONField tests."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-13513@solver_A|FULL",
+    "trace_id": "django__django-13513@solver_A",
+    "task_id": "django__django-13513",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "VERIFICATION_DOMINANT",
+      "l2_attributes": ["EXPLICIT_LOCATION", "SINGLE_FILE", "TARGETED_UNIT", "LOCAL_CONTEXT", "PARTIAL", "STATELESS"],
+      "evidence": ["Trace found the suspected exception chaining code already implemented in django/views/debug.py and focused on verifying suppressed-context behavior.", "No production patch was needed; targeted ExceptionReporter tests passed."],
+      "unknown_fields": ["issue_text"]
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "FLAT",
+      "candidate_location_found": true,
+      "plausible_patch_found": false,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-13516@solver_A|FULL",
+    "trace_id": "django__django-13516@solver_A",
+    "task_id": "django__django-13516",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "STATELESS"],
+      "evidence": ["OutputWrapper flush delegation was localized to django/core/management/base.py.", "Patch added flush() delegation and was verified with a small reproduction plus user_commands and admin_scripts suites."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  },
+  {
+    "sample_id": "django__django-13551@solver_A|FULL",
+    "trace_id": "django__django-13551@solver_A",
+    "task_id": "django__django-13551",
+    "repo": "django",
+    "solver_alias": "solver_A",
+    "source_harness": null,
+    "cutoff": "FULL",
+    "taxonomy_version": "v1",
+    "deterministic_features": null,
+    "workload_annotation": {
+      "primary_l1": "PATCH_REASONING_DOMINANT",
+      "l2_attributes": ["SEARCH_REQUIRED", "SINGLE_FILE", "LOCAL_CONTEXT", "TARGETED_UNIT", "CLEAR", "SHORT_STATE"],
+      "evidence": ["Password reset token invalidation on email change was localized to django/contrib/auth/tokens.py _make_hash_value().", "Patch added email state to the token hash and was verified with reproduction, edge cases, and auth token tests."],
+      "unknown_fields": []
+    },
+    "execution_state": {
+      "phase": "COMPLETE",
+      "progress": "IMPROVING",
+      "candidate_location_found": true,
+      "plausible_patch_found": true,
+      "verification_sufficient": true
+    },
+    "waste_annotation": {
+      "l1_labels": [],
+      "l2_labels": [],
+      "primary_bottleneck": null,
+      "severity": {},
+      "evidence_action_ids": {}
+    },
+    "candidate_interventions": ["NO_CHANGE"],
+    "annotation_metadata": {
+      "annotator_id": "codex_annotator",
+      "prompt_version": "v1",
+      "annotation_timestamp": "2026-06-28T00:00:00-07:00",
+      "abstain": false,
+      "abstain_reason": null
+    }
+  }
+]
