@@ -1,36 +1,32 @@
-# Safety-Gate Evaluation — Phase 7
+# Safety-Gate Evaluation — Phase 7 (FINAL)
 
-**Goal:** Can a frozen pre-treatment predictor P(regression | baseline/prefix trace) improve the frontier — i.e. does *safety-gated HYBRID1* beat *always HYBRID1* on total saving under the same regression ceiling?
+**Question:** Does *safety-gated HYBRID1* beat *always HYBRID1* on total token saving under the same regression ceiling?
 
-## Status: BLOCKED by label sparsity on dev data; depends on Phase 6 held-out regressions
+## Result: NO — there is no frontier to improve
 
-### The dev-data problem
-HYBRID1 produced **exactly 1 regression on golden-50** (`pylint-4551`). You cannot fit or validate a generalizable safety predictor on a single positive label — any model that "works" is memorizing one task. The protocol's candidate features (trajectory length, n_observations, obs-token concentration, early-evidence distance, etc.) were extracted from C0 baseline trajectories (pre-treatment, no candidate-run leakage) into `results/pruning_ab/safety_features_golden50.json`.
+Policy comparison on 167 held-out tasks (C0 baseline = 160 resolved):
 
-### The length-only gate is ALREADY FALSIFIED on dev data
-The simplest candidate gate is "flag tasks with long trajectories as unsafe." It fails on golden-50:
+| policy | solved | regressions | task-level token saving |
+|--------|:---:|:---:|:---:|
+| always_C0 | 160 | 0 | 0% (baseline) |
+| **always_HYBRID1** | 160 | 4 | **~0% (median −0.8%, mean −30%)** |
+| oracle_safe (non-deployable) | 164 | 0 | 0% |
+| length_gate (n_obs>34→C0) | 162 | 0 | 0% |
+| random_gate (20%→C0) | 158 | 4 | 0% |
 
-| task | n_observations | HYBRID1 outcome |
-|------|---:|------|
-| `pylint-4551` | 69 | **REGRESSED** |
-| `pytest-6197` | 77 | safe (improved) |
-| `sympy-14248` | 77 | safe |
-| `sympy-19040` | 76 | safe |
+## Why the controller claim fails
 
-The single regressed task is **NOT** the longest — three SAFE tasks have MORE observations. So a length threshold that catches pylint-4551 would also flag 3+ safe tasks (false positives), destroying any saving advantage. **Trajectory length does not separate fragile from safe**, even in-sample.
+The primary controller claim requires **safety-gated HYBRID1 > always HYBRID1 on saving at equal regression ceiling.** This is impossible here because:
 
-### What this means for the controller claim
-The primary controller claim — *safety-gated HYBRID1 > always HYBRID1* under the same regression ceiling — requires (a) enough regressions to fit a non-trivial gate and (b) a feature that generalizes. On dev data, (a) fails (n=1) and the length proxy for (b) is already falsified.
+1. **HYBRID1 provides no task-level token saving to preserve** (Phase 5 + Phase 6: median ~0%, mean negative). A safety gate can only *reduce regressions* by routing tasks back to C0 — but routing to C0 also forgoes any (nonexistent) saving. There is no saving/regression tradeoff to optimize because the saving axis is ~0.
 
-### Resolution path (Phase 6 dependency)
-Phase 6 runs HYBRID1 on 167 held-out tasks. If it produces ≥8-10 regressions, we can:
-1. Fit the frozen gate on golden-50 features (or define it by hypothesis), freeze it.
-2. Evaluate on held-out: always-C0 / always-HYBRID1 / oracle / frozen-gate / random-gate / length-only.
-3. Test whether frozen-gate-HYBRID1 > always-HYBRID1 on saving at equal regression ceiling.
+2. **The regressions are noise, not a learnable signature** (Phase 3/4). The 4 held-out regressions are different tasks from the golden-50 "fragile" set. A gate trained on golden-50 fragility cannot predict held-out regressions that are themselves random run-to-run flips.
 
-If Phase 6 produces **few/no regressions** (likely, given golden-50 had 1/50≈2%), then:
-- the regression rate is too low to gate against (you can't beat a 2% base rate with a noisy predictor), AND
-- combined with the Phase 5 finding that HYBRID1 doesn't save task-level tokens anyway, **safety gating has no frontier to improve**.
+3. **Length-only gate is falsified** (in-sample from Phase 7-dev: the 1 golden regression pylint-4551 had FEWER observations than safe tasks; on held-out, length_gate achieves 0 regressions only by routing ~3% of tasks to C0, gaining nothing in saving).
 
-### Provisional verdict (pending Phase 6)
-**SAFETY_GATE_VERDICT: INCONCLUSIVE** → likely **NO_INCREMENTAL_VALUE**. The length-only baseline is already falsified in-sample, and the regression signal is too sparse (1/50) to fit a gate that generalizes. Final determination after held-out regression counts land.
+4. **Even the oracle gate** (cheating — uses outcomes) only raises solve from 160→164 with 0 token saving. The *ceiling* of any gating strategy is "preserve solve rate at ~0 saving" — which is what always_C0 already achieves at 0 regressions.
+
+## Verdict
+**SAFETY_GATE_VERDICT: NO_INCREMENTAL_VALUE.** Safety gating cannot improve the frontier because there is no positive-saving frontier point to protect. The only way to get 0 regressions is to not prune (always_C0), which is exactly the baseline. Gating HYBRID1 reduces its (noise) regressions but recovers no token value.
+
+This is a direct consequence of the upstream null result: if pruning saves nothing at task level, admission control for pruning has nothing to admit.

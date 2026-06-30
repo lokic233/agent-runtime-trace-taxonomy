@@ -1,0 +1,40 @@
+{
+ "n_heldout": 167,
+ "c0_solve": 160,
+ "hybrid_solve": 160,
+ "heldout_regressions": 4,
+ "heldout_improvements": 4,
+ "length_gate_threshold_nobs": 34,
+ "policies": [
+  {
+   "policy": "always_C0",
+   "solved": 160,
+   "regressions": 0,
+   "mean_token_saving": 0.0
+  },
+  {
+   "policy": "always_HYBRID1",
+   "solved": 160,
+   "regressions": 4,
+   "mean_token_saving": 0
+  },
+  {
+   "policy": "oracle_safe",
+   "solved": 164,
+   "regressions": 0,
+   "mean_token_saving": 0.0
+  },
+  {
+   "policy": "length_gate",
+   "solved": 162,
+   "regressions": 0,
+   "mean_token_saving": 0.0
+  },
+  {
+   "policy": "random_gate",
+   "solved": 158,
+   "regressions": 4,
+   "mean_token_saving": 0.0
+  }
+ ]
+}

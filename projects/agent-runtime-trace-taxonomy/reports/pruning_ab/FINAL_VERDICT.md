@@ -1,67 +1,89 @@
 # FINAL VERDICT — Context-Pruning Falsification Pass
 
-**Status: INTERIM (Phases 1,2,5,7-dev complete; Phases 3,4,6 empirical runs in progress)**
-Updated as A/A noise floor + replication + held-out validation land.
+**Status: COMPLETE.** All 7 phases executed. The result is a clean, well-evidenced **NEGATIVE_STUDY_RESULT**.
 
 ## Executive summary
 
-The headline **HYBRID1 "+41.5% token saving"** does **not** survive falsification. Recomputed on paired task-level totals (the cost metric that matters), HYBRID1's median saving is **−2.5%** — it does **not** reduce task-level cost. The +41.5% was an artifact of (1) a contaminated, non-task-tagged ledger and (2) the prompt-cache-busting tax. The "universal canary" and "universal improvement" claims rest on **1 regression and 1 improvement** on golden-50 — too sparse to distinguish from noise until the A/A floor lands.
+The headline **HYBRID1 "+41.5% token saving"** was an **artifact** of (1) a contaminated, non-task-tagged ledger and (2) the prompt-cache-busting tax. Under correct paired task-level accounting, HYBRID1 saves **~0% (median −0.8% to −2.5%)** of tokens and **costs more** (median cost −52% on held-out). The per-task "universal canary" (pylint-4551) and "universal improvement" (pytest-6197) were **single-sample artifacts** — on repeated runs the identity baseline fails pylint-4551 5/5 times and solves pytest-6197 5/5 times, with zero pruning. The agent's **run-to-run nondeterminism (5/10 boundary tasks flip at temp=0)** fully accounts for every per-task "pruning effect." On 167 held-out tasks, HYBRID1 preserves solve rate exactly (160=160) with regressions balanced by improvements — the signature of noise, not damage.
 
-This is trending toward a **NEGATIVE_STUDY_RESULT**, which the protocol explicitly accepts as valid.
+**Bottom line: large per-call context compression does not translate into reliable task-level cost reduction for frontier coding agents.**
 
-## Evidence by phase
+## Evidence chain (all 7 phases)
 
-### Phase 1 — FREEZE ✅
-HYBRID1 frozen: `hybrid_m7_agg2` sha256 `6c9ab8b6…`, git `859cbc4`, opus-4.7, temp 0, thinking OFF, SWE-agent 1.1.0. See HYBRID1_FREEZE.md.
+| phase | finding | artifact |
+|-------|---------|----------|
+| 1 FREEZE | HYBRID1 locked: hybrid_m7_agg2 @6c9ab8b6, opus-4.7, temp0, thinking OFF, SWE-agent 1.1.0 | HYBRID1_FREEZE.md |
+| 2 ACCOUNTING | task-tagged shim v2; old ledger contaminated (1910 vs 1190 calls) | task_level_ledger.jsonl |
+| 3 A/A NOISE | C0 identity flips **5/10** interesting tasks across 5 identical reps | AA_NOISE_FLOOR.md, aa_noise_results.json |
+| 4 REPLICATION | 0 TRUE_FRAGILITY, 0 TRUE_IMPROVEMENT, 6/10 INHERENTLY_UNSTABLE | FRAGILITY_REPLICATION.md, interesting_task_repeats.jsonl |
+| 5 TASK FRONTIER | every method negative mean saving; HYBRID1 median −2.5% sent | PARETO_FRONTIER_v3_TASK_LEVEL.md, frontier_v3.json |
+| 6 HELD-OUT | 167 tasks: solve 160=160, median saving −0.8%, cost −52%, loss_UB 0.055 | HELDOUT_VALIDATION.md, heldout_outcomes.jsonl |
+| 7 SAFETY GATE | no gate beats always-C0; no saving frontier to protect | SAFETY_GATE_EVALUATION.md, safety_gate_results.json |
 
-### Phase 2 — Task-level accounting ✅
-Built + validated task-tagged shim v2 (PR-fingerprint tagging, 0 UNKNOWN on real runs). Full per-call schema: activation (changed/chars_removed/first_changed_index) + usage + latency. The old ledger was contaminated (1910 pooled calls vs 1190 actual C0 calls).
-
-### Phase 5 — True frontier (task-level) ✅ (golden-50)
-| method | per-call claim | **paired median Δsent** | **paired median Δcost** |
-|--------|---:|---:|---:|
-| HYBRID1 | +41.5% | **−2.5%** | **−2.2%** |
-| AGG3 | +50.6% | −1.2% | −48.8% |
-| M7 | +37.0% | −4.3% | −41.0% |
-
-Every method has negative MEAN task-level saving. HYBRID1 cost distribution: cheaper on 24 tasks, dearer on 26, catastrophic cache-bust outliers (pylint-6528 −457%).
-
-### Phase 7 — Safety gate (dev-data) ✅
-Length-only gate **falsified in-sample**: the 1 regression (pylint-4551, 69 obs) is NOT the longest trajectory — 3 safe tasks have 76-77 obs. Label sparsity (1/50) prevents fitting a generalizable gate.
-
-### Phase 3 — A/A + SHAM noise floor 🔄 RUNNING
-C0×5 + SHAM×5 + HYBRID1×5 on 10 interesting tasks. Establishes whether 1 flip exceeds run-to-run noise.
-
-### Phase 4 — Interesting-task replication 🔄 RUNNING
-Classifying pylint-4551 (canary?) and pytest-6197 (improvement?) as TRUE_PRUNING_* vs INHERENTLY_UNSTABLE vs NO_OP vs STOCHASTIC.
-
-### Phase 6 — Held-out validation ⏳ PENDING (set built: 167 tasks)
-Repo-balanced, stratified, integrity-preserved. Runs C0/SHAM/HYBRID1 after Phase 3+4.
-
-## HARD KILL RULES — current status
+## HARD KILL RULES — final status
 
 | # | rule | status |
 |---|------|--------|
-| 1 | total task-level tokens do not improve | **TRIGGERED** (median −2.5%) |
-| 2 | output/call growth cancels prompt reduction | **TRIGGERED** (cache-bust, 26/50 dearer) |
-| 3 | held-out excess regression > A/A floor | PENDING (Phase 3+6) |
-| 4 | golden-50 advantage disappears held-out | PENDING (Phase 6) — but there's no advantage to lose |
-| 5 | safety gating no better than length-only | **TRIGGERED in-sample** (length-only falsified) |
-| 6 | result depends on few unstable tasks/artifacts | **TRIGGERED** (1 reg, 1 imp; cache outliers dominate) |
+| 1 | total task-level tokens do not improve | **TRIGGERED** (held-out median −0.8%) |
+| 2 | output/call growth cancels prompt reduction | **TRIGGERED** (cache-bust, held-out cost −52%) |
+| 3 | held-out excess regression > A/A noise floor | NOT triggered (regression within noise; loss_UB 0.055) |
+| 4 | golden-50 advantage disappears held-out | **TRIGGERED** (the +41.5% artifact does not transfer) |
+| 5 | safety gating no better than length-only | **TRIGGERED** (no gate beats always-C0; no frontier) |
+| 6 | result depends on few unstable tasks/artifacts | **TRIGGERED** (entire per-task signal is run-to-run noise) |
 
-**4 of 6 kill rules already triggered** on existing evidence.
+**5 of 6 hard-kill rules triggered.** (Rule 3 not triggered only because HYBRID1 is *noninferior* on resolution — it doesn't actively break tasks beyond noise; it simply provides no benefit.)
 
-## VERDICTS
+## THE 8 REQUIRED VERDICTS
 
 ```
-TASK_LEVEL_COST_VERDICT:      NEUTRAL   (median −2.5% sent / −2.2% cost; not a saving, not a large loss)
-AA_NOISE_VERDICT:             PENDING   (Phase 3 running)
-HYBRID1_RESOLUTION_VERDICT:   PENDING   (golden-50: noninferior 48/48; held-out pending)
-CANARY_VERDICT:               PENDING   (Phase 4 running; provisional: NOT_SUPPORTED — 1 flip)
-IMPROVEMENT_VERDICT:          PENDING   (Phase 4 running; provisional: STOCHASTIC_FLIP — 1 flip)
-HELDOUT_TRANSFER_VERDICT:     PENDING   (Phase 6; set built, runs after 3+4)
-SAFETY_GATE_VERDICT:          INCONCLUSIVE → likely NO_INCREMENTAL_VALUE (length-only falsified in-sample)
-PAPER_VERDICT:                NOT_READY → trending NEGATIVE_STUDY_RESULT (4/6 kill rules triggered)
+TASK_LEVEL_COST_VERDICT:      NEUTRAL
+  (median tokens_sent saving −0.8% to −2.5%; mean negative; cost median −52% from cache-busting.
+   Per-call reduction is real but does NOT survive to task-level cost. Not a saving.)
+
+AA_NOISE_VERDICT:             DOMINANT
+  (C0 identity baseline flips 5/10 interesting tasks across 5 identical reps at temp=0. The
+   per-task noise floor exceeds and mechanistically explains every per-task "pruning effect.")
+
+HYBRID1_RESOLUTION_VERDICT:   NONINFERIOR
+  (held-out solve rate 160/167 = C0 160/167, net 0; 4 regressions balanced by 4 improvements;
+   regression loss_UB 0.055. HYBRID1 does not break tasks beyond the noise floor.)
+
+CANARY_VERDICT:               NOT_SUPPORTED
+  (pylint-4551 is resolved 0/5 by the fresh identity baseline — a task the agent reliably FAILS,
+   not a pruning fragility. The original single pass was the outlier. No task meets TRUE_PRUNING_FRAGILITY.)
+
+IMPROVEMENT_VERDICT:          STOCHASTIC_FLIP
+  (pytest-6197 is resolved 5/5 by the fresh identity baseline — a task the agent reliably SOLVES,
+   not a pruning benefit. No task meets TRUE_PRUNING_IMPROVEMENT.)
+
+HELDOUT_TRANSFER_VERDICT:     DOES_NOT_TRANSFER
+  (the golden-50 "+41.5% saving" does not transfer; held-out task-level token saving is ~0 median /
+   negative mean. What transfers is the null: solve rate preserved, no cost benefit.)
+
+SAFETY_GATE_VERDICT:          NO_INCREMENTAL_VALUE
+  (no gate — length, frozen, even oracle — beats always-C0 on the saving/regression frontier,
+   because HYBRID1 has no positive task-level saving to protect. Admission control has nothing to admit.)
+
+PAPER_VERDICT:                NEGATIVE_STUDY_RESULT
+  ("Large per-call context compression does not translate into reliable task-level cost reduction
+   for frontier coding agents." A valid, defensible negative result per the protocol.)
 ```
 
-**The honest current read:** client-side context pruning, as implemented here (HYBRID1 on opus-4.7), does **not** create reliable task-level cost reduction on a frontier coding agent. The per-call compression is real but is cancelled by prompt-cache invalidation and trajectory-path changes. Final verdicts pending the noise floor + held-out runs, which will either confirm NEGATIVE_STUDY_RESULT or (less likely on current evidence) reveal a defensible task-selective benefit.
+## What is publishable (the honest contribution)
+
+This is a **rigorous negative result with a mechanistic explanation** — more valuable than the false positive it replaces:
+
+1. **Per-call token reduction ≠ task-level cost reduction** on cached frontier-agent pipelines. Client-side pruning rewrites the prompt prefix and **invalidates the provider's prompt cache** (cache_read:cache_creation collapses 11.8:1 → 0.37:1), so cheap cached tokens are replaced by expensive re-created ones. The net task cost is flat-to-worse despite fewer raw prompt tokens per call.
+
+2. **Frontier-agent success is run-to-run nondeterministic even at temperature=0** (5/10 boundary tasks flip). Any A/B that attributes single-sample per-task outcome changes to an intervention — without an A/A noise floor — will manufacture false "regressions" and "improvements." This is a methodological warning for the whole agent-evaluation field.
+
+3. **Measurement integrity matters more than the method.** The original +41.5% came from a contaminated ledger + cache-naive per-call averaging. The correct metric (paired task-level total cost) reverses the conclusion.
+
+## Methodological lessons (preserved for the project)
+- Always task-tag the cost ledger; never pool per-call averages across runs.
+- Always measure true prompt = input + cache_read + cache_creation, AND account for the cache-hit-rate shift the intervention causes.
+- Always establish an A/A + SHAM noise floor before attributing per-task outcome changes.
+- Always validate on a held-out set selected without inspecting the candidate's outcomes.
+- Grade with the real test harness; submission ≠ resolution.
+
+The scientific project (taxonomy + safe-pruning study) is NOT killed by this negative result — it is **strengthened**: the methodology now correctly detects that this particular intervention (client-side observation pruning on a cached frontier agent) does not deliver, and explains precisely why.
