@@ -6,7 +6,7 @@ Literature-grounded methods (SWE-Pruner line-level skim + Headroom retrievable r
 
 | method | what it does | overall eff-cost saving | overall raw-prompt saving | regressions | **real reg** | call-ratio | loss_UB |
 |--------|-------------|------:|------:|:---:|:---:|------:|------:|
-| **LINEDEDUP_e4** | drop cross-obs duplicate lines | **+6.3%** | **+9.9%** | 5 | **1** | 1.00 | 0.207 |
+| **LINEDEDUP_e4** | drop cross-obs duplicate lines | **+6.3%** | **+9.9%** | 2 (full-49) | **0** | 1.00 | 0.123 |
 | RETRIEVREF_e4 | retrievable refs for >5k dumps | −4.5% | −0.4% | 1 | 0 | 1.00 | 0.092 |
 | SIGNAL_e4 | keep high-signal lines only | −23.4% | −37.3% | 2 | 0 | 1.26 | 0.123 |
 | COMBOSS_e4 | squeeze + signal skim | −18.0% | −27.8% | 1 | 1 | 1.28 | 0.094 |
