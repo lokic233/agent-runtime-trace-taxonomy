@@ -1,0 +1,51 @@
+{
+ "selection_basis": "pre-treatment only: baseline_tokens_sent (cost), baseline_calls (trajectory length). NO outcome/treatment info used.",
+ "median_tokens": 53222.5,
+ "tasks": [
+  {
+   "stratum": "low_cost",
+   "task_id": "scikit-learn__scikit-learn-13439",
+   "repo": "scikit-learn",
+   "baseline_tokens_sent": 8784,
+   "baseline_calls": 6,
+   "largest_obs_chars": 2399,
+   "dup_line_ratio": 0.20408163265306123
+  },
+  {
+   "stratum": "median_cost",
+   "task_id": "django__django-14493",
+   "repo": "django",
+   "baseline_tokens_sent": 51603,
+   "baseline_calls": 18,
+   "largest_obs_chars": 2621,
+   "dup_line_ratio": 0.24774774774774774
+  },
+  {
+   "stratum": "median_cost",
+   "task_id": "astropy__astropy-12907",
+   "repo": "astropy",
+   "baseline_tokens_sent": 49696,
+   "baseline_calls": 10,
+   "largest_obs_chars": 12200,
+   "dup_line_ratio": 0.12162162162162163
+  },
+  {
+   "stratum": "high_cost",
+   "task_id": "pylint-dev__pylint-4551",
+   "repo": "pylint-dev",
+   "baseline_tokens_sent": 2022347,
+   "baseline_calls": 76,
+   "largest_obs_chars": 16568,
+   "dup_line_ratio": 0.3628032345013477
+  },
+  {
+   "stratum": "long_trajectory",
+   "task_id": "sphinx-doc__sphinx-8638",
+   "repo": "sphinx-doc",
+   "baseline_tokens_sent": 1422753,
+   "baseline_calls": 76,
+   "largest_obs_chars": 5518,
+   "dup_line_ratio": 0.2953105196451204
+  }
+ ]
+}

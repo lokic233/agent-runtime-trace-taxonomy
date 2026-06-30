@@ -1,0 +1,9 @@
+{
+ "purpose":"penny-level end-to-end validation of both shim paths before the paid smoke (no agent runs).",
+ "gpt55_path":{"shim":"prune_shim_plugboard_openai.py","served_model":"gpt-5-5","transform_fired":true,
+   "characters_removed":2099,"obs_role_layout":"user_pleintext","cache_read_tokens":null,"cache_creation_tokens":null,
+   "transform_function_sha256":"d3745ee0e66add3b9168d825d8f49d8131ca2ed87e7bbd34d6566bfcae718d7e (LINEDEDUP frozen)","status":"PASS"},
+ "anthropic_path":{"shim":"prune_shim_v2.py (frozen, reused)","served_model":"claude-sonnet-4.6","changed":true,
+   "characters_removed":986,"cache_fields_present":true,"usage_keys":["input_tokens","output_tokens","cache_read_input_tokens","cache_creation_input_tokens"],"status":"PASS"},
+ "verdict":"both provider paths route through PlugBoard, transforms fire on the plain-text obs layout, served-model identity confirmed, anthropic cache fields present, gpt cache fields correctly null, frozen function hashes logged. Cleared for paid smoke."
+}
