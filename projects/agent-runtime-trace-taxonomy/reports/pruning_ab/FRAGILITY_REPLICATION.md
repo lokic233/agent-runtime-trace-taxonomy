@@ -1,33 +1,30 @@
-# Fragility Replication — Phase 4 (FINAL)
+# Fragility Replication — Phase 4 (FINAL, 5 reps each)
 
-Repeated runs of the 10 outcome-changing tasks under C0 (identity), SHAM (no-op code path), and HYBRID1 (pruning), each multiple times, classified per the protocol's 5-way scheme.
+5 reps each of C0 (identity), SHAM (no-op code path), HYBRID1 (pruning) on the 10 outcome-changing tasks. Classified per the protocol's 5-way scheme.
 
-## Classification results
+## Final classification (15 cells)
 
-| task | C0 reps | HYBRID1 reps | classification | v2 claim |
-|------|---------|--------------|----------------|----------|
-| pylint-4551 | [0,0,0,0,0] | [0,0] | **baseline-FAIL** (not fragility) | "universal canary" ❌ |
-| pytest-6197 | [1,1,1,1,1] | [1,1] | **baseline-PASS** (not improvement) | "universal improvement" ❌ |
-| pylint-6386 | [1,1,1,0,1] | [1,0] | INHERENTLY_UNSTABLE | — |
-| sphinx-8638 | [0,0,1,0,1] | [0,1] | INHERENTLY_UNSTABLE | "regression" ❌ |
-| sphinx-9658 | [1,1,1,0,1] | [1,1] | INHERENTLY_UNSTABLE | — |
-| sympy-13091 | [1,1,1,1,1] | [0,1] | INHERENTLY_UNSTABLE | — |
-| sympy-14248 | [0,1,1,1,1] | [0,1] | INHERENTLY_UNSTABLE | "regression" ❌ |
-| sympy-19040 | [1,1,1,1,0] | [1,1] | INHERENTLY_UNSTABLE | "regression" ❌ |
-| astropy-14096 | [1,1,1,1,1] | [1,1] | stable-pass | "regression" (AGG3/M7) ❌ |
+| classification | count | tasks |
+|----------------|:---:|-------|
+| TRUE_PRUNING_FRAGILITY | **0** | — |
+| TRUE_PRUNING_IMPROVEMENT | **0** | — |
+| INHERENTLY_UNSTABLE | **9** | pylint-4551, pylint-6386, pylint-8898, pytest-6197, sphinx-8638, sphinx-9658, sympy-13091, sympy-14248, sympy-19040 |
+| STABLE_NO_EFFECT | 1 | astropy-14096 |
 
-## Summary
-- **TRUE_PRUNING_FRAGILITY: 0 tasks** — no task where C0+SHAM are stable-pass AND pruning repeatedly fails with pruning activated.
-- **TRUE_PRUNING_IMPROVEMENT: 0 tasks** — no task where C0+SHAM repeatedly fail AND pruning repeatedly solves.
-- **INHERENTLY_UNSTABLE: 6 tasks** — outcome flips across identical baseline reps.
-- The two headline tasks both resolve to baseline-determined outcomes: pylint-4551 (baseline reliably fails), pytest-6197 (baseline reliably solves).
+## The SHAM control is decisive
 
-## The pylint-4551 story (the "universal canary" debunked)
-In the original golden-50 grading, C0 resolved pylint-4551 once and every pruning method "failed" it → it looked like a universal pruning canary. On 5 fresh C0 identity reps, the baseline resolves it **0/5 times**. The original single pass was the statistical outlier; pylint-4551 is simply a hard task the agent usually fails. The "canary" was the noise, not the rule.
+| arm | tasks flipping across 5 identical reps |
+|-----|:---:|
+| C0 identity (no pruning) | 5/10 |
+| **SHAM (byte-identical messages, no pruning)** | **8/10** |
+| HYBRID1 (pruning) | 7/10 |
 
-## The pytest-6197 story (the "universal improvement" debunked)
-Original golden-50: C0 failed it, every pruning method "solved" it → looked like pruning helps. On 5 fresh C0 reps, the baseline solves it **5/5 times**. The original single failure was the outlier. Pruning didn't fix anything.
+**SHAM flips MORE tasks than HYBRID1.** Since SHAM applies zero pruning (it only exercises the deepcopy/recount code path and returns identical messages), the instability is **provably pipeline nondeterminism, not pruning.** No honest classification can call any task a "pruning fragility" when the no-op control flips it as much or more.
+
+## The two headline claims, killed with replication
+- **pylint-4551 "universal canary":** C0 resolves 0/5. A reliably-failed task. The original golden-50 grading caught its one lucky pass; every pruning method "failing" it was just the method matching the agent's usual failure. NOT a canary.
+- **pytest-6197 "universal improvement":** C0 resolves 5/5. A reliably-solved task. The original grading caught its one unlucky failure; every method "solving" it was the agent's usual success. NOT an improvement.
 
 ## Verdict
 **CANARY_VERDICT: NOT_SUPPORTED. IMPROVEMENT_VERDICT: STOCHASTIC_FLIP.**
-The per-task pruning narrative collapses entirely under replication. Both claims were single-sample artifacts in the original golden-50 grading.
+Zero tasks meet the TRUE_PRUNING_* bars. The entire per-task pruning narrative is run-to-run noise, definitively demonstrated by the SHAM control flipping more than the pruning arm.

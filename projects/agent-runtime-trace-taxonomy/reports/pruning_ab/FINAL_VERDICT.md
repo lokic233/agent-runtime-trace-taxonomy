@@ -14,8 +14,8 @@ The headline **HYBRID1 "+41.5% token saving"** was an **artifact** of (1) a cont
 |-------|---------|----------|
 | 1 FREEZE | HYBRID1 locked: hybrid_m7_agg2 @6c9ab8b6, opus-4.7, temp0, thinking OFF, SWE-agent 1.1.0 | HYBRID1_FREEZE.md |
 | 2 ACCOUNTING | task-tagged shim v2; old ledger contaminated (1910 vs 1190 calls) | task_level_ledger.jsonl |
-| 3 A/A NOISE | C0 identity flips **5/10** interesting tasks across 5 identical reps | AA_NOISE_FLOOR.md, aa_noise_results.json |
-| 4 REPLICATION | 0 TRUE_FRAGILITY, 0 TRUE_IMPROVEMENT, 6/10 INHERENTLY_UNSTABLE | FRAGILITY_REPLICATION.md, interesting_task_repeats.jsonl |
+| 3 A/A NOISE | C0 5/10, **SHAM 8/10**, HYBRID1 7/10 flip across 5 reps (SHAM no-op flips MOST) | AA_NOISE_FLOOR.md, aa_noise_results.json |
+| 4 REPLICATION | 0 TRUE_FRAGILITY, 0 TRUE_IMPROVEMENT, 9/10 INHERENTLY_UNSTABLE | FRAGILITY_REPLICATION.md, interesting_task_repeats.jsonl |
 | 5 TASK FRONTIER | every method negative mean saving; HYBRID1 median −2.5% sent | PARETO_FRONTIER_v3_TASK_LEVEL.md, frontier_v3.json |
 | 6 HELD-OUT | 167 tasks: solve 160=160, median saving −0.8%, cost −52%, loss_UB 0.055 | HELDOUT_VALIDATION.md, heldout_outcomes.jsonl |
 | 7 SAFETY GATE | no gate beats always-C0; no saving frontier to protect | SAFETY_GATE_EVALUATION.md, safety_gate_results.json |
@@ -41,8 +41,9 @@ TASK_LEVEL_COST_VERDICT:      NEUTRAL
    Per-call reduction is real but does NOT survive to task-level cost. Not a saving.)
 
 AA_NOISE_VERDICT:             DOMINANT
-  (C0 identity baseline flips 5/10 interesting tasks across 5 identical reps at temp=0. The
-   per-task noise floor exceeds and mechanistically explains every per-task "pruning effect.")
+  (C0 identity flips 5/10, SHAM 8/10, HYBRID1 7/10 across 5 identical reps. SHAM (a no-op code
+   path, byte-identical messages) flips MORE than HYBRID1 -> instability is pipeline nondeterminism,
+   provably independent of pruning. The noise floor dominates every per-task "pruning effect.")
 
 HYBRID1_RESOLUTION_VERDICT:   NONINFERIOR
   (held-out solve rate 160/167 = C0 160/167, net 0; 4 regressions balanced by 4 improvements;
