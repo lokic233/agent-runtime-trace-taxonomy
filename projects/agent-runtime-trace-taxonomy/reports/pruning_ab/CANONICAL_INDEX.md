@@ -19,6 +19,9 @@ Single source of truth. Reports not listed as CURRENT are superseded (kept for p
 | ORACLE_GAP.md | Phase 5: +27% oracle, but controller NOT_SUPPORTED |
 | CONTROLLER_PREREGISTRATION.md | Phase 6: frozen prereg, untouched PENDING |
 | CROSS_MODEL_SMOKE_TEST.md | Phase 7: cross-model EXPLORATORY |
+| ROBUSTNESS_FALSIFICATION.md | Phase 4D/F: leave-top-k, SHAM cost control, repo-cluster bootstrap (saving NOT robust) |
+| CAUSAL_ESTIMANDS.md | Phase 1: formal ATE/CATE/objective definitions |
+| BUDGET_CONTROLLER_DEV.md | Phase 5: controller construction (NOT_SUPPORTED) |
 
 ## Empirical study (CURRENT facts, saving-number caveats apply)
 | report | status |
@@ -43,4 +46,5 @@ Single source of truth. Reports not listed as CURRENT are superseded (kept for p
 - LINEDEDUP: **+6.3% bill-weighted eff-cost / −1.1% task-weighted median**, **2 regressions** (unresolved attribution), drift-free
 - GENTLE6K: **+10.1% bill-weighted** (best static), 1 regression (unresolved)
 - Best deployable trace controller: **+9.3% < +10.1% best-static → controller NOT justified**
+- ⚠️ Saving NOT ROBUST: leave-top-3-out flips LINEDEDUP to −4.0%, GENTLE6K to −7.1%; repo-cluster CI [−9.9%,+18%]; SHAM cost control fails (dup_ratio↔SHAM spearman −0.76 = predicts noise)
 - Mechanisms: cache tax + intelligence tax both **causally SUPPORTED**
