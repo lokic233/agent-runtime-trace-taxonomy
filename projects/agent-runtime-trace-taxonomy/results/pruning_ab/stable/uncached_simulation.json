@@ -1,0 +1,36 @@
+{
+ "note": "simulated uncached-model effective cost (all prompt 1.0x) \u2014 reuses cached-model trajectories",
+ "caveat": "a TRULY uncached weaker model would have different (likely more redundant) trajectories; this sim cannot capture that. But it shows trajectory-drift output cost dominates even without the cache discount.",
+ "methods": {
+  "GENTLE6K_stable": {
+   "cached": {
+    "median": 0.6,
+    "mean": -6.3
+   },
+   "uncached_sim": {
+    "median": -2.7,
+    "mean": -14.2
+   }
+  },
+  "GENTLE4K_stable": {
+   "cached": {
+    "median": -6.0,
+    "mean": -10.3
+   },
+   "uncached_sim": {
+    "median": -1.3,
+    "mean": -17.4
+   }
+  },
+  "SMARTGENTLE_stable": {
+   "cached": {
+    "median": -9.5,
+    "mean": -11.6
+   },
+   "uncached_sim": {
+    "median": -1.0,
+    "mean": -17.0
+   }
+  }
+ }
+}

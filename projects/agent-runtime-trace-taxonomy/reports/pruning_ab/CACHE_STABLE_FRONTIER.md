@@ -66,6 +66,21 @@ C0's effective-cost composition: **34% cache_read + 39% cache_creation + 27% out
 
 **On a cached frontier agent, the prompt is not where the cost is.** You cannot save task-level cost by shrinking the cheapest component. The only real levers are: cut OUTPUT, or cut STEPS (finish faster) — not prune the (cached) prompt.
 
+
+## Does the uncached regime save? (simulation from same trajectories)
+
+Simulating uncached pricing (all prompt tokens at 1.0×, no 0.1× cache discount) on the SAME trajectories:
+
+| method | cached median | uncached-sim median |
+|--------|------:|------:|
+| GENTLE6K | +0.6% | −2.7% |
+| GENTLE4K | −6.0% | −1.3% |
+| SMARTGENTLE | −9.5% | −1.0% |
+
+**Even uncached, pruning does not win on these trajectories** — because the trajectory-drift OUTPUT cost (occasional agent looping) outweighs the small prompt savings regardless of cache pricing.
+
+**Important caveat:** this simulation reuses opus-4.7's (cached-model) trajectories. A *genuinely* uncached or weaker model would produce DIFFERENT, likely more redundant trajectories where pruning has more to cut and the agent may tolerate it differently. That regime is NOT captured here and remains the one honest untested avenue. But the simulation reveals a deeper barrier than the cache alone: **trajectory sensitivity** — a capable agent perturbed by pruning sometimes loops, and that output cost dominates.
+
 ## Honest conclusion
 The cache-stable hypothesis was **correct and necessary** — it explains HYBRID1's failure and fixes it — but it is **not sufficient** for a task-level win on cached models. The win, if it exists, lives on **uncached/weaker models** (no 0.1× cache, so the ~40% per-call prompt reduction would translate) — the untested regime flagged in v3. On cached opus-4.7, client-side prompt pruning's ceiling is break-even.
 
