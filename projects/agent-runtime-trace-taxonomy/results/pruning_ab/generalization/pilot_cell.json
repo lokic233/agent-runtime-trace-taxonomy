@@ -1,0 +1,9 @@
+{
+ "purpose":"single cheapest paid cell to validate the REAL-AGENT pipeline before the full 18-cell smoke.",
+ "cell":{"model":"anthropic/claude-sonnet-4-6","served":"claude-sonnet-4.6","arm":"C0_identity","task":"scikit-learn__scikit-learn-13439"},
+ "result":{"rc":0,"n_calls":14,"prediction_written":true,
+   "input_tokens":399,"cache_read_tokens":111838,"cache_creation_tokens":22774,"output_tokens":2368,
+   "cache_creation_fraction":0.1692,"c0_byte_identical_all_calls":true},
+ "gates_validated":["served-model identity (claude-sonnet-4.6)","C0 byte-identity (changed=False x14)","cache fields populated (cache_read+cache_creation present)","task attribution correct","agent ran to completion + prediction written"],
+ "verdict":"REAL-AGENT pipeline through the shim works on a NEW model. Cleared to expand to full smoke."
+}
