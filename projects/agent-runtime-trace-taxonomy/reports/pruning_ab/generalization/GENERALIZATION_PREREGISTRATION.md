@@ -43,3 +43,10 @@ A (this) → B 5-task smoke (validity only, no claims) → C cache-tax (Sonnet/H
 
 ## Cost discipline
 Smoke = 5 tasks × 6 arms × 3 models = 90 agent runs (≤75 calls each). No full paid phase launches until A's 3 artifacts pass internal checks (DONE: 14/14 reconstruction + provenance tied to canonical). Checkpoint with the user before paid phases.
+
+## ⚠️ Preflight finding (Phase A engineering) — OpenAI-format transform no-op hazard
+The frozen `_is_obs()` recognizes observations only as Anthropic `user`+`tool_result` blocks OR plain
+`{role:user, content:str}`. Empirically:
+- SWE-agent v1.0 with the frozen config emits **plain-text `{role:user}` observations** → transforms FIRE for all providers (verified: LINEDEDUP/GENTLE6K/CAP1K all change byte counts).
+- BUT if function-calling tool-role messages are emitted (`role:"tool"`, agents.py:715), `_is_obs` returns False → **all transforms silently NO-OP** → a fake "no effect" result.
+**Mitigation (no frozen code changed):** the gpt-5-5 shim logs `transform_fired` + `obs_role_layout` on every call; Phase B MUST gate on `transform_fired==True` for non-C0 arms on every provider. If GPT runs route through tool-role layout, that is an instrumentation failure to fix in the adapter (Anthropic-view transform), NOT a scientific "no effect". `_is_obs` is FROZEN and never edited.
