@@ -10,7 +10,7 @@ Literature-grounded methods (SWE-Pruner line-level skim + Headroom retrievable r
 | RETRIEVREF_e4 | retrievable refs for >5k dumps | −4.5% | −0.4% | 1 | 0 | 1.00 | 0.092 |
 | SIGNAL_e4 | keep high-signal lines only | −23.4% | −37.3% | 2 | 0 | 1.26 | 0.123 |
 | COMBOSS_e4 | squeeze + signal skim | −18.0% | −27.8% | 1 | 1 | 1.28 | 0.094 |
-| WINCOMBO_e4 | dedup + retrievref | *(grading)* | | | | | |
+| WINCOMBO_e4 | dedup + retrievref | −10.2% | −4.7% | 3 | 3 | 1.00 | 0.152 |
 
 ## The verdict
 
@@ -27,3 +27,6 @@ LINEDEDUP's per-task median is ≈−1% (CI straddles zero) and its raw regressi
 
 ## Bottom line for the Pareto project
 On cached frontier opus-4.7, **safe context pruning's ceiling is ~6-10% cost saving** (LINEDEDUP), achieved only by removing provably-redundant (already-seen) content. This is the regression-budget Pareto frontier's positive endpoint. Everything more aggressive falls to drift or cache-bust.
+
+---
+**Update:** all 5 E4 arms graded. WINCOMBO (dedup+retrievref stack) = −10.2% eff-cost, 3 real regressions — the retrievref overhead negates LINEDEDUP's dedup gain; stacking didn't help. **LINEDEDUP alone remains the winner** (+6.3% eff / +9.9% raw, 0 real regressions). See COMPREHENSIVE_TABLE.md for the full cross-experiment table.
