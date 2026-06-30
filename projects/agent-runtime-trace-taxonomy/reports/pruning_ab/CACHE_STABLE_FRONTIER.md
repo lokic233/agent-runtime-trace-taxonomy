@@ -45,6 +45,19 @@ EFFECTIVE COST = input + 0.1·cache_read + 1.25·cache_creation + 5·output (Ant
 | SMART_stable | −55.9% | −90.5% | — | — | drift dominates |
 | *(HYBRID1, for reference)* | *−67%* | — | — | — | cache-bust catastrophe |
 
+
+## Same-batch regression cross-check (tagged C0, n=50)
+
+The cleanest comparison — each method vs the tagged C0 from the SAME batch (resolved 46/50):
+
+| method | resolved | net resolution | regressions | loss_UB | median eff-cost |
+|--------|---:|:---:|:---:|---:|---:|
+| GENTLE4K_stable | 46/50 | **0** | 1 (sympy-19040, a noise-flipper) | 0.092 | −6.0% |
+| GENTLE6K_stable | 45/50 | −1 | 2 | 0.123 | +0.6% |
+| SMARTGENTLE_stable | 45/50 | −1 | 3 | 0.152 | −9.5% |
+
+**The decisive tension:** GENTLE4K is resolution-noninferior (net 0, regressions within noise) but saves nothing (−6%). GENTLE6K saves a marginal +0.6% (CI straddles zero) but is net −1 resolution with loss_UB 0.123 (just above the 0.11 bar). **No method achieves BOTH statistically-positive saving AND clean-within-noise regressions.** The win criterion is not met.
+
 ## Verdict: BOUNDARY RESULT — break-even, not a clean win
 
 - **No method achieves a clean, meaningful task-level saving.** The best (GENTLE6K) is **+0.6% median** — statistically break-even — and carries 1 real regression. The zero-real-regression method (GENTLE4K) costs −6%.
