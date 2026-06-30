@@ -1,0 +1,83 @@
+{
+ "cache_tax": {
+  "C0_identity": {
+   "cc_fraction_mean": 0.077,
+   "ci": [
+    0.061,
+    0.098
+   ],
+   "n": 50
+  },
+  "SHAM": {
+   "cc_fraction_mean": 0.066,
+   "ci": [
+    0.051,
+    0.083
+   ],
+   "n": 50
+  },
+  "HYBRID1_m7_agg2": {
+   "cc_fraction_mean": 0.784,
+   "ci": [
+    0.733,
+    0.83
+   ],
+   "n": 50
+  }
+ },
+ "intelligence_tax": [
+  {
+   "method": "LINEDEDUP_e4",
+   "type": "exact-duplicate",
+   "dose": 4144.0,
+   "call_ratio": 1.0,
+   "out_ratio": 0.97,
+   "n": 50
+  },
+  {
+   "method": "RETRIEVREF_e4",
+   "type": "retrievable-ref",
+   "dose": 7663,
+   "call_ratio": 1.0,
+   "out_ratio": 0.93,
+   "n": 50
+  },
+  {
+   "method": "GENTLE6K_stable",
+   "type": "outlier-truncate",
+   "dose": 1798.0,
+   "call_ratio": 1.04,
+   "out_ratio": 0.98,
+   "n": 49
+  },
+  {
+   "method": "CAP1K_stable",
+   "type": "uniform-truncate",
+   "dose": 12604,
+   "call_ratio": 1.24,
+   "out_ratio": 1.34,
+   "n": 49
+  },
+  {
+   "method": "CAP500_stable",
+   "type": "uniform-truncate",
+   "dose": 27624.0,
+   "call_ratio": 1.73,
+   "out_ratio": 1.58,
+   "n": 50
+  },
+  {
+   "method": "SIGNAL_e4",
+   "type": "signal-line-skim",
+   "dose": 24741,
+   "call_ratio": 1.26,
+   "out_ratio": 1.13,
+   "n": 50
+  }
+ ],
+ "intelligence_tax_dose_controlled": {
+  "ols_dose_coef": 0.0001,
+  "ols_destructive_coef": 0.415,
+  "n": 206
+ }
+}
