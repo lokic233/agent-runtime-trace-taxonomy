@@ -1,34 +1,29 @@
-# Experiment 4 Frontier — Line-Level + Retrieval Methods (GRADED)
+# Experiment 4 Frontier — Line-Level + Retrieval Methods (GRADED, 4/5)
 
-Literature-grounded methods (SWE-Pruner line-level skim + Headroom retrievable refs), golden-50, vs tagged C0 (46/50 resolved). **Full 50-task graded data corrects the optimistic partial numbers.**
+Literature-grounded methods (SWE-Pruner line-level skim + Headroom retrievable refs), golden-50, paired vs tagged C0 (46/50 resolved). Effective cost = input + 0.1·cache_read + 1.25·cache_creation + 5·output. Real-reg = regressions outside the A/A noise-floor set.
 
-## Verified results (LINEDEDUP, RETRIEVREF graded; others pending)
+## Verified frontier
 
-| method | overall eff-cost saving | overall raw-prompt saving | per-task median | regressions | real reg (excl. A/A noise) | call-ratio | loss_UB |
-|--------|------:|------:|------:|:---:|:---:|------:|------:|
-| **LINEDEDUP_e4** | **+6.3%** | **+9.9%** | −1% | 5 | **1** (sympy-24539) | 1.0 | 0.207 |
-| RETRIEVREF_e4 | −4.5% | −0.4% | −7% | 1 | 1 | 1.0 | 0.092 |
-| SIGNAL_e4 | (grading) | | | | | 1.15 | |
-| COMBOSS_e4 | (grading) | | | | | 1.15 | |
-| WINCOMBO_e4 | (grading) | | | | | | |
+| method | what it does | overall eff-cost saving | overall raw-prompt saving | regressions | **real reg** | call-ratio | loss_UB |
+|--------|-------------|------:|------:|:---:|:---:|------:|------:|
+| **LINEDEDUP_e4** | drop cross-obs duplicate lines | **+6.3%** | **+9.9%** | 5 | **1** | 1.00 | 0.207 |
+| RETRIEVREF_e4 | retrievable refs for >5k dumps | −4.5% | −0.4% | 1 | 0 | 1.00 | 0.092 |
+| SIGNAL_e4 | keep high-signal lines only | −23.4% | −37.3% | 2 | 0 | 1.26 | 0.123 |
+| COMBOSS_e4 | squeeze + signal skim | −18.0% | −27.8% | 1 | 1 | 1.28 | 0.094 |
+| WINCOMBO_e4 | dedup + retrievref | *(grading)* | | | | | |
 
-## Honest reading
+## The verdict
 
-**The partial-data numbers (+24%/+16%) were optimistic sampling** — early-completing tasks were the big savers; the full 50-task set regresses to modest. Verified:
-- **LINEDEDUP: +6.3% overall effective-cost / +9.9% raw-prompt saving, drift-free (1.0× calls).** 5 apparent regressions, but **4 are A/A noise-floor flippers** (pylint-6386, sphinx-9658, sympy-14248, sympy-19040 — all proven to flip under the identity baseline); only **1 real regression** (sympy-24539). 
-- **RETRIEVREF: −4.5% overall** — doesn't save on full data (the retrievable-ref overhead + occasional re-reads cancel the dump savings).
+**LINEDEDUP_e4 is the only positive-saving method** and the best risk-adjusted result of the entire study:
+- **+6.3% effective-cost / +9.9% raw-prompt saving** across golden-50
+- **drift-free** (1.00× calls — it removes only lines the agent already saw, so nothing new is lost)
+- **cache-stable** (content-based dedup, no prefix rewrite)
+- **1 real regression** (sympy-24539); its other 4 apparent regressions are A/A noise-floor flippers (flip even under the identity baseline)
 
-## Verdict under the regression-BUDGET framing
+The aggressive line methods (SIGNAL −23%, COMBOSS −18%) confirm — again — that *destroying* content causes trajectory drift (call-ratio 1.26-1.28×) and cost explosion. Only the *redundancy-removal* method (LINEDEDUP) wins.
 
-**LINEDEDUP_e4 is a legitimate regression-budget Pareto point: +6.3% effective-cost / +9.9% raw-prompt saving for ~1 real regression** (4 of its 5 apparent regressions are baseline noise). It is:
-- **cache-stable** (content-based line dedup, no prefix rewrite)
-- **drift-free** (1.0× calls — removes only already-seen lines, agent loses nothing new)
-- **literature-grounded** (cross-observation line dedup, the safe core of SWE-Pruner/Headroom)
+## Honest statistical caveat
+LINEDEDUP's per-task median is ≈−1% (CI straddles zero) and its raw regression loss_UB (0.207) exceeds the strict ≤0.11 bar — because the noise-floor tasks inflate the raw count. The **defensible claim under a regression budget**: ~+6-10% aggregate cost saving for ~1 real regression. It is not a statistically-significant clean win, but it is the best, most robust, mechanistically-sound cost-saver found across 25+ methods.
 
-This is NOT a clean statistically-significant win (per-task median −1%, CI straddles zero; loss_UB 0.207 on raw regression count). But under a **regression-allow budget**, it offers a real ~6-10% cost saving with a single real regression — the best risk-adjusted saving found in the study, and a valid frontier point for a controller with a regression budget.
-
-## The study-wide principle (confirmed across 25+ methods)
-- **Remove REDUNDANT info (already-seen lines: LINEDEDUP) → safe, modest saving.**
-- **Destroy NEEDED info (truncation: CAP/SMART/SIGNAL) → drift → cost explosion.**
-- **Rewrite the prefix by recency (HYBRID1) → cache-bust → catastrophe.**
-The only positive-saving methods are the content-stable, redundancy-only ones, and their ceiling is modest (~6-10%) because on a cached agent the prompt is already cheap.
+## Bottom line for the Pareto project
+On cached frontier opus-4.7, **safe context pruning's ceiling is ~6-10% cost saving** (LINEDEDUP), achieved only by removing provably-redundant (already-seen) content. This is the regression-budget Pareto frontier's positive endpoint. Everything more aggressive falls to drift or cache-bust.

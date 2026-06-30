@@ -50,3 +50,14 @@ Effective cost = 34% cache_read (0.1×, already cheap) + 39% cache_creation (fro
 
 ## EXPERIMENT 4 (NEXT) — Retrieval-based, drift-free methods (from literature)
 Inspired by SWE-Pruner (arxiv 2601.16746, 39% SWE-bench reduction via line-level task-aware skimming) + Headroom/tokensave (retrievable compression — "if the LLM needs it, it can retrieve it"). The key: **don't DELETE info (causes drift) — replace verbose content with a compact, RETRIEVABLE reference**, AND keep it cache-stable (content-based). See EXPERIMENT4_PLAN below. Target: regression-allow, real per-task saving.
+
+## EXPERIMENT 4 — Line-level + retrieval methods (GRADED, vs tagged C0)
+
+| method | source principle | overall eff-cost saving | raw-prompt saving | real regr | call-ratio | verdict |
+|--------|-----------------|------:|------:|:---:|------:|--------|
+| **LINEDEDUP_e4** | cross-obs line dedup (redundancy removal) | **+6.3%** | **+9.9%** | 1 | 1.00 | ⭐ WIN (best risk-adjusted) |
+| RETRIEVREF_e4 | Headroom retrievable refs | −4.5% | −0.4% | 0 | 1.00 | neutral |
+| SIGNAL_e4 | SWE-Pruner signal-line skim | −23.4% | −37.3% | 0 | 1.26 | ❌ drift |
+| COMBOSS_e4 | squeeze + skim | −18.0% | −27.8% | 1 | 1.28 | ❌ drift |
+
+**Conclusion across ALL experiments:** the only positive-saving methods are content-stable + redundancy-removal-only. LINEDEDUP (+6.3% eff-cost / +9.9% raw, drift-free, 1 real regression) is the study's best result. The safe-pruning ceiling on cached opus-4.7 is ~6-10%.
