@@ -1,0 +1,43 @@
+[
+ {
+  "issue": "C0 baseline resolved count",
+  "values_in_reports": {
+   "PARETO_v2/original": 48,
+   "stable-tagged/E3/E4 reports": 46
+  },
+  "raw_truth": {
+   "original_grade": 48,
+   "stable_tagged_grade": 46
+  },
+  "resolution": "TWO DIFFERENT C0 RUNS. Original full_C0 run=48/50 (used by v2). Stable tagged C0 run=46/50 (used by E3/E4 pairing, canonical for cost). Both real; different runs => run-to-run variance of ~2 tasks. Canonical for causal pairing = stable tagged C0 (46/50)."
+ },
+ {
+  "issue": "LINEDEDUP regression count",
+  "values_in_reports": {
+   "EXPERIMENT4 (46-task snapshot)": 5,
+   "corrected full-49": 2
+  },
+  "raw_truth": {
+   "vs_stable_C0_full": 2,
+   "regressed_ids": [
+    "pylint-dev__pylint-6386",
+    "sympy__sympy-19040"
+   ]
+  },
+  "resolution": "The 5-count was at 46/50 completed (3 of the 5 were incomplete tasks, not true regressions). Full-49 reconstruction vs stable C0 = 2 regressions. The corrected count (2) is authoritative. NOTE: per the causal rules, these 2 are NOT to be dismissed as 'noise' \u2014 they are flips whose causal attribution is unresolved from single paired runs."
+ },
+ {
+  "issue": "LINEDEDUP effective-cost saving",
+  "values_in_reports": {
+   "partial-sampling (n=22)": 24.3,
+   "full-50": 6.3
+  },
+  "raw_truth": "full-50 = +6.3% (the +24% was optimistic early-completion sampling: big-saver tasks finished first)",
+  "resolution": "+6.3% (full) is authoritative. +24% was sampling bias; superseded."
+ },
+ {
+  "issue": "'real regression = 0' framing (LINEDEDUP/GENTLE)",
+  "problem": "Earlier reports computed 'real regressions' by excluding tasks that flip under C0 A/A. The causal-mission rules FORBID this: a task flipping under C0 does NOT prove a treatment has zero added effect.",
+  "resolution": "RETRACTED. Single paired-run flips have UNRESOLVED causal attribution. Where A/A repeated runs exist (the 10 interesting tasks), estimate P(success|treat)-P(success|C0) directly instead. Raw regression counts stand; 'real reg = 0' claims are withdrawn."
+ }
+]

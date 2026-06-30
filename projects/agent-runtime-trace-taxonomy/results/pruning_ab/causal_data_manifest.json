@@ -1,0 +1,274 @@
+{
+ "commit": "bb43b49612760b56a3f8d620fbffcae9dc347bf6",
+ "prune_methods_sha256": "cb06efb69c9a08e7a48a1fca747a9fe1e9f71fcf657158a3c5463b028e0d10cf",
+ "golden50_size": 50,
+ "runs": {
+  "C0_identity": {
+   "role": "baseline",
+   "ledger": {
+    "calls": 1159,
+    "unknown_calls": 0,
+    "n_tasks": 50,
+    "path": "/data/users/dengcchi/prune_ab/logs/stable/ledger_C0_identity.jsonl"
+   },
+   "grade": {
+    "completed": 49,
+    "resolved": 46
+   }
+  },
+  "SHAM": {
+   "role": "noop-control",
+   "note": "only in phase34 A/A reps (10 interesting tasks)"
+  },
+  "LINEDEDUP_e4": {
+   "role": "treatment",
+   "ledger": {
+    "calls": 1203,
+    "unknown_calls": 0,
+    "n_tasks": 50,
+    "path": "/data/users/dengcchi/prune_ab/logs/e4/ledger_LINEDEDUP_e4.jsonl"
+   },
+   "grade": {
+    "completed": 49,
+    "resolved": 44
+   }
+  },
+  "GENTLE6K_stable": {
+   "role": "treatment",
+   "ledger": {
+    "calls": 1087,
+    "unknown_calls": 0,
+    "n_tasks": 49,
+    "path": "/data/users/dengcchi/prune_ab/logs/stable/ledger_GENTLE6K_stable.jsonl"
+   },
+   "grade": {
+    "completed": 48,
+    "resolved": 45
+   }
+  },
+  "HYBRID1_m7_agg2": {
+   "role": "cache-bust-control",
+   "note": "ledger is POOLED/contaminated (not task-tagged)",
+   "ledger": {
+    "calls": 1181,
+    "unknown_calls": 1181,
+    "n_tasks": 0,
+    "path": "/data/users/dengcchi/prune_ab/logs/ledger_HYBRID1_m7_agg2.jsonl"
+   },
+   "grade": {
+    "completed": 50,
+    "resolved": 48
+   }
+  },
+  "RETRIEVREF_e4": {
+   "role": "near-neutral-control",
+   "ledger": {
+    "calls": 1186,
+    "unknown_calls": 0,
+    "n_tasks": 50,
+    "path": "/data/users/dengcchi/prune_ab/logs/e4/ledger_RETRIEVREF_e4.jsonl"
+   },
+   "grade": {
+    "completed": 49,
+    "resolved": 45
+   }
+  }
+ },
+ "aa_repeated_runs": {
+  "n_interesting_tasks": 10,
+  "methods": {
+   "C0_identity": {
+    "rep1": {
+     "grade": {
+      "completed": 10,
+      "resolved": 6
+     },
+     "ledger": {
+      "calls": 521,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_C0_identity_rep1.jsonl"
+     }
+    },
+    "rep2": {
+     "grade": {
+      "completed": 9,
+      "resolved": 7
+     },
+     "ledger": {
+      "calls": 544,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_C0_identity_rep2.jsonl"
+     }
+    },
+    "rep3": {
+     "grade": {
+      "completed": 10,
+      "resolved": 8
+     },
+     "ledger": {
+      "calls": 532,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_C0_identity_rep3.jsonl"
+     }
+    },
+    "rep4": {
+     "grade": {
+      "completed": 10,
+      "resolved": 5
+     },
+     "ledger": {
+      "calls": 521,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_C0_identity_rep4.jsonl"
+     }
+    },
+    "rep5": {
+     "grade": {
+      "completed": 9,
+      "resolved": 7
+     },
+     "ledger": {
+      "calls": 470,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_C0_identity_rep5.jsonl"
+     }
+    }
+   },
+   "SHAM": {
+    "rep1": {
+     "grade": {
+      "completed": 9,
+      "resolved": 7
+     },
+     "ledger": {
+      "calls": 536,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_SHAM_rep1.jsonl"
+     }
+    },
+    "rep2": {
+     "grade": {
+      "completed": 9,
+      "resolved": 6
+     },
+     "ledger": {
+      "calls": 539,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_SHAM_rep2.jsonl"
+     }
+    },
+    "rep3": {
+     "grade": {
+      "completed": 9,
+      "resolved": 8
+     },
+     "ledger": {
+      "calls": 508,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_SHAM_rep3.jsonl"
+     }
+    },
+    "rep4": {
+     "grade": {
+      "completed": 10,
+      "resolved": 6
+     },
+     "ledger": {
+      "calls": 534,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_SHAM_rep4.jsonl"
+     }
+    },
+    "rep5": {
+     "grade": {
+      "completed": 10,
+      "resolved": 7
+     },
+     "ledger": {
+      "calls": 544,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_SHAM_rep5.jsonl"
+     }
+    }
+   },
+   "HYBRID1_m7_agg2": {
+    "rep1": {
+     "grade": {
+      "completed": 10,
+      "resolved": 8
+     },
+     "ledger": {
+      "calls": 558,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_HYBRID1_m7_agg2_rep1.jsonl"
+     }
+    },
+    "rep2": {
+     "grade": {
+      "completed": 10,
+      "resolved": 6
+     },
+     "ledger": {
+      "calls": 580,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_HYBRID1_m7_agg2_rep2.jsonl"
+     }
+    },
+    "rep3": {
+     "grade": {
+      "completed": 10,
+      "resolved": 5
+     },
+     "ledger": {
+      "calls": 510,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_HYBRID1_m7_agg2_rep3.jsonl"
+     }
+    },
+    "rep4": {
+     "grade": {
+      "completed": 10,
+      "resolved": 7
+     },
+     "ledger": {
+      "calls": 577,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_HYBRID1_m7_agg2_rep4.jsonl"
+     }
+    },
+    "rep5": {
+     "grade": {
+      "completed": 10,
+      "resolved": 7
+     },
+     "ledger": {
+      "calls": 549,
+      "unknown_calls": 0,
+      "n_tasks": 10,
+      "path": "/data/users/dengcchi/prune_ab/logs/phase34/ledger_HYBRID1_m7_agg2_rep5.jsonl"
+     }
+    }
+   }
+  }
+ },
+ "canonical_baseline": {
+  "for_golden50_cost": "logs/stable/ledger_C0_identity.jsonl (task-tagged, 50 tasks)",
+  "for_golden50_resolution": "results/pruning_ab/stable/grade_C0_identity.json",
+  "for_AA_repeated": "phase34 C0 reps 1-5 (10 interesting tasks, repeated)",
+  "note": "original results/pruning_ab/grade_C0_identity.json (48/50) used DIFFERENT run; stable tagged C0 (46/50) is canonical for E3/E4 pairing"
+ }
+}
