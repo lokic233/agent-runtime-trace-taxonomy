@@ -67,7 +67,7 @@ SAFETY_GATE_VERDICT:          NO_INCREMENTAL_VALUE
   (no gate — length, frozen, even oracle — beats always-C0 on the saving/regression frontier,
    because HYBRID1 has no positive task-level saving to protect. Admission control has nothing to admit.)
 
-PAPER_VERDICT:                NEGATIVE_STUDY_RESULT
+PAPER_VERDICT:                NEGATIVE_STUDY_RESULT -> revised MIXED_BOUNDARY_RESULT (see addendum)
   ("Large per-call context compression does not translate into reliable task-level cost reduction
    for frontier coding agents." A valid, defensible negative result per the protocol.)
 ```
@@ -90,3 +90,25 @@ This is a **rigorous negative result with a mechanistic explanation** — more v
 - Grade with the real test harness; submission ≠ resolution.
 
 The scientific project (taxonomy + safe-pruning study) is NOT killed by this negative result — it is **strengthened**: the methodology now correctly detects that this particular intervention (client-side observation pruning on a cached frontier agent) does not deliver, and explains precisely why.
+
+
+---
+
+## ADDENDUM (cache-stable follow-up experiment): catastrophe → break-even
+
+After the main study, a follow-up tested whether CACHE-STABLE pruning (content-based, position-independent) could beat HYBRID1 at task-level cost. Full results in CACHE_STABLE_FRONTIER.md.
+
+**Hypothesis CONFIRMED (both halves):**
+1. Content-stable methods preserve the prompt cache (cr:cc ~10, vs HYBRID1's cache-busting 0.37).
+2. Gentle outlier-only caps (>4k/6k dumps) avoid trajectory drift (1.0-1.07× calls); aggressive caps drift 1.7-2.3× and that is what kills them.
+
+**Result: BREAK-EVEN, not a clean win.**
+- Best method GENTLE6K_stable: **+0.6% median effective-cost saving** (mean −6.3%), 45/50 resolved, 1 real regression (3 of 4 apparent regressions are A/A noise-floor flippers).
+- GENTLE4K_stable: 0 real regressions but −6.0% (no saving).
+- This is a HUGE improvement over HYBRID1 (−67% → +0.6%) — the cache-stable + no-drift design eliminated the catastrophe — but it lands at the economic floor.
+
+**WHY (the deep finding):** On a cached agent, effective cost = 34% cache_read (0.1×, already cheap) + 39% cache_creation (from APPENDING new turns, not old obs) + 27% output (5×). The prompt is not where the cost is. Pruning the cached prompt cannot save meaningfully; a few tasks where pruning triggers agent looping (output +5000-7000 tokens) cancel the many small wins.
+
+**The real-win regime remains UNCACHED/weaker models** (no 0.1× cache → the ~40% per-call prompt reduction would translate to real saving). That is the validated next direction, untested here.
+
+**Revised PAPER_VERDICT: MIXED_BOUNDARY_RESULT** — client-side pruning's task-level cost ceiling on cached frontier agents is break-even; the method family is mechanically sound (cache-stable + drift-free) but the cached-prompt economics cap the upside. Recency-based pruning (HYBRID1) is strictly harmful; content-stable gentle pruning is harmless-to-neutral.

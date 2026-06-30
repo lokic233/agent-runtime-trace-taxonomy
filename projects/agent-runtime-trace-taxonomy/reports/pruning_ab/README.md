@@ -24,6 +24,7 @@ The candidate method **HYBRID1** (graduated observation pruning) reduces the **p
 | 9 | [FRAGILITY_REPLICATION.md](FRAGILITY_REPLICATION.md) | Phase 4: 0 true fragility, 0 true improvement |
 | 10 | [HELDOUT_VALIDATION.md](HELDOUT_VALIDATION.md) | Phase 6: 167 held-out tasks, no transfer |
 | 11 | [SAFETY_GATE_EVALUATION.md](SAFETY_GATE_EVALUATION.md) | Phase 7: no gate beats always-C0 |
+| 12 | **[CACHE_STABLE_FRONTIER.md](CACHE_STABLE_FRONTIER.md)** | **Follow-up: cache-stable pruning — catastrophe→break-even (+0.6%)** |
 
 ## The 8 verdicts (FINAL_VERDICT.md)
 
