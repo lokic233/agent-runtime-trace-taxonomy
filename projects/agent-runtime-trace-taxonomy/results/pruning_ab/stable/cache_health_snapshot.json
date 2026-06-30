@@ -1,0 +1,41 @@
+{
+ "note": "cache-health + call-overhead snapshot (runs complete, pre-final-grade)",
+ "hypothesis": "content-stable pruning preserves cache (high cr:cc) vs HYBRID1 recency (0.37)",
+ "methods": {
+  "C0_identity": {
+   "cache_cr_cc": 10.66,
+   "median_call_ratio_vs_c0": 1.0,
+   "n_paired": 50
+  },
+  "CAP1K_stable": {
+   "cache_cr_cc": 10.37,
+   "median_call_ratio_vs_c0": 1.24,
+   "n_paired": 49
+  },
+  "CAP500_stable": {
+   "cache_cr_cc": 10.72,
+   "median_call_ratio_vs_c0": 1.73,
+   "n_paired": 50
+  },
+  "SMART_stable": {
+   "cache_cr_cc": 12.71,
+   "median_call_ratio_vs_c0": 2.33,
+   "n_paired": 50
+  },
+  "GENTLE4K_stable": {
+   "cache_cr_cc": 10.53,
+   "median_call_ratio_vs_c0": 1.0,
+   "n_paired": 50
+  },
+  "GENTLE6K_stable": {
+   "cache_cr_cc": 9.43,
+   "median_call_ratio_vs_c0": 1.04,
+   "n_paired": 49
+  },
+  "SMARTGENTLE_stable": {
+   "cache_cr_cc": 10.42,
+   "median_call_ratio_vs_c0": 1.07,
+   "n_paired": 50
+  }
+ }
+}
