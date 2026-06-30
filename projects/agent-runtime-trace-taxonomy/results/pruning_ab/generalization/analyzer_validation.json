@@ -1,0 +1,13 @@
+{
+ "purpose":"Validate the Phase C/D analysis logic against COMPLETED smoke cells before the real paid phases.",
+ "cache_tax_analyzer_on_sonnet_smoke":{
+   "note":"5-task smoke (NOT the powered 10-task x 5-rep Phase C). Validity/logic check only.",
+   "C0_identity_pooled_cc_fraction":0.0347,
+   "SHAM_pooled_cc_fraction":0.0392,
+   "HYBRID1_pooled_cc_fraction":0.7881,
+   "opus_anchor":{"C0":0.077,"SHAM":0.066,"HYBRID1":0.784},
+   "pattern_holds":"C0 ~ SHAM << HYBRID1 (cache tax). HYBRID1 0.788 ~ anchor 0.784 -> effect-size transports.",
+   "verdict_preview":"EXPLORATORY: cache tax mechanism + magnitude appear to transport to Sonnet 4.6. Powered confirmation requires Phase C (10 tasks x 5 reps)."
+ },
+ "analyzer_status":"analyze_cache_tax.py produces anchor-consistent numbers on real ledger data. Phase C analysis path de-risked."
+}
