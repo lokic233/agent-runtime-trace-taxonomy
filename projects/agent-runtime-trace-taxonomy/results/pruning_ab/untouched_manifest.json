@@ -1,0 +1,10 @@
+{
+  "status": "designed_not_run",
+  "reason": "development evidence predicts NOT_SUPPORTED; running gated on justification",
+  "cohort": {"size_target": "100-150", "exclude": ["golden-50","interesting-10","heldout-167"], "repo_balanced": true, "require": "C0-resolvable"},
+  "frozen_policy": "if dup_line_ratio > 0.25 -> LINEDEDUP_e4 else C0_identity",
+  "static_champion_to_beat": "always_GENTLE6K (+10.1% dev)",
+  "budgets": {"strict": 0.0, "low": 0.01, "medium": 0.03, "high": 0.05},
+  "primary_criterion": "trace policy beats BOTH always-C0 and best-static on aggregate eff-cost, quality-loss UB within budget",
+  "feature_restriction": "Tier-1 deployable only (no baseline_calls/tokens_sent)"
+}
