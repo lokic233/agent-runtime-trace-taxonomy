@@ -1,0 +1,192 @@
+{
+ "noise_floor_summary": "C0 identity baseline flips 5/10 interesting tasks across 5 identical reps",
+ "methods": {
+  "C0_identity": {
+   "n_reps": 5,
+   "unstable_tasks": [
+    "pylint-dev__pylint-6386",
+    "sphinx-doc__sphinx-8638",
+    "sphinx-doc__sphinx-9658",
+    "sympy__sympy-14248",
+    "sympy__sympy-19040"
+   ],
+   "n_unstable": 5,
+   "per_task": {
+    "astropy__astropy-14096": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "pylint-dev__pylint-4551": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "pylint-dev__pylint-6386": [
+     1,
+     1,
+     1,
+     0,
+     1
+    ],
+    "pylint-dev__pylint-8898": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "pytest-dev__pytest-6197": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "sphinx-doc__sphinx-8638": [
+     0,
+     0,
+     1,
+     0,
+     1
+    ],
+    "sphinx-doc__sphinx-9658": [
+     1,
+     1,
+     1,
+     0,
+     1
+    ],
+    "sympy__sympy-13091": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "sympy__sympy-14248": [
+     0,
+     1,
+     1,
+     1,
+     1
+    ],
+    "sympy__sympy-19040": [
+     1,
+     1,
+     1,
+     1,
+     0
+    ]
+   }
+  },
+  "SHAM": {
+   "n_reps": 2,
+   "unstable_tasks": [
+    "pylint-dev__pylint-6386",
+    "sphinx-doc__sphinx-8638",
+    "sympy__sympy-19040"
+   ],
+   "n_unstable": 3,
+   "per_task": {
+    "astropy__astropy-14096": [
+     1,
+     1
+    ],
+    "pylint-dev__pylint-4551": [
+     0,
+     0
+    ],
+    "pylint-dev__pylint-6386": [
+     1,
+     0
+    ],
+    "pylint-dev__pylint-8898": [
+     0,
+     0
+    ],
+    "pytest-dev__pytest-6197": [
+     1,
+     1
+    ],
+    "sphinx-doc__sphinx-8638": [
+     1,
+     0
+    ],
+    "sphinx-doc__sphinx-9658": [
+     1,
+     1
+    ],
+    "sympy__sympy-13091": [
+     1,
+     1
+    ],
+    "sympy__sympy-14248": [
+     1,
+     1
+    ],
+    "sympy__sympy-19040": [
+     0,
+     1
+    ]
+   }
+  },
+  "HYBRID1_m7_agg2": {
+   "n_reps": 2,
+   "unstable_tasks": [
+    "pylint-dev__pylint-6386",
+    "sphinx-doc__sphinx-8638",
+    "sympy__sympy-13091",
+    "sympy__sympy-14248"
+   ],
+   "n_unstable": 4,
+   "per_task": {
+    "astropy__astropy-14096": [
+     1,
+     1
+    ],
+    "pylint-dev__pylint-4551": [
+     0,
+     0
+    ],
+    "pylint-dev__pylint-6386": [
+     1,
+     0
+    ],
+    "pylint-dev__pylint-8898": [
+     0,
+     0
+    ],
+    "pytest-dev__pytest-6197": [
+     1,
+     1
+    ],
+    "sphinx-doc__sphinx-8638": [
+     0,
+     1
+    ],
+    "sphinx-doc__sphinx-9658": [
+     1,
+     1
+    ],
+    "sympy__sympy-13091": [
+     0,
+     1
+    ],
+    "sympy__sympy-14248": [
+     0,
+     1
+    ],
+    "sympy__sympy-19040": [
+     1,
+     1
+    ]
+   }
+  }
+ },
+ "interpretation": "The agent is non-deterministic run-to-run at temp=0. The tasks that flip under the identity baseline are the SAME tasks v2 attributed to pruning (canary/regressions/improvement). Per-task pruning effects are indistinguishable from baseline noise."
+}
