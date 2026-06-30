@@ -4,8 +4,8 @@ A full empirical study + adversarial falsification of client-side context prunin
 
 ## TL;DR
 
-The candidate method **HYBRID1** (graduated observation pruning) appeared to save **+41.5%** of prompt tokens at near-zero regression on 50 resolved tasks. A 7-phase falsification pass proved this was an **artifact**:
-- The +41.5% came from a **contaminated, cache-naive ledger**. Real paired task-level cost is **~0% (median)** and **negative on cost** (cache-busting).
+The candidate method **HYBRID1** (graduated observation pruning) reduces the **per-call prompt by ~40%** — and that win is **REAL** (verified +42.8% mean on clean ledgers). But a 7-phase falsification pass showed the per-call win **does not propagate to task-level cost**:
+- Per-call prompt reduction is genuine (~40%, the one win). But paired **task-level cost is ~0% (median) and negative** — the provider prompt cache arbitrages the reduction away (cache-busting).
 - The per-task "canary" and "improvement" were **single-sample flukes** — the agent is run-to-run nondeterministic even at temperature=0 (a no-op SHAM control flips 8/10 boundary tasks).
 - On **167 held-out tasks**, solve rate is preserved (160=160) but there is **no token saving** and the advantage **does not transfer**.
 

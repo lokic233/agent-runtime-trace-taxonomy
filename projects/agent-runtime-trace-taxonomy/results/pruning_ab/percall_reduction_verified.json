@@ -1,0 +1,14 @@
+{
+ "metric": "per-call true-prompt reduction (input+cache_read+cache_creation)",
+ "source": "clean task-tagged ledgers, 5 C0 reps + 5 HYBRID1 reps, same 10 interesting tasks",
+ "c0_mean_per_call": 27639,
+ "hybrid_mean_per_call": 15821,
+ "c0_median_per_call": 25041,
+ "hybrid_median_per_call": 15351,
+ "per_call_reduction_mean_pct": 42.8,
+ "per_call_reduction_median_pct": 38.7,
+ "content_reduction_when_fired_pct": 60.5,
+ "fired_on_pct_of_calls": 77,
+ "status": "VERIFIED REAL \u2014 this is the one genuine, reproducible win",
+ "caveat": "per-call prompt reduction is REAL and large (~40%). It does NOT propagate to task-level cost saving because (1) cache-busting converts cheap cache_read to expensive cache_creation, (2) the agent sometimes takes more steps. Original +41.5% was real-but-on-contaminated-ledger; clean recompute confirms ~43% mean."
+}

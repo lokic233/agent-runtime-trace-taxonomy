@@ -4,7 +4,7 @@
 
 ## Executive summary
 
-The headline **HYBRID1 "+41.5% token saving"** was an **artifact** of (1) a contaminated, non-task-tagged ledger and (2) the prompt-cache-busting tax. Under correct paired task-level accounting, HYBRID1 saves **~0% (median −0.8% to −2.5%)** of tokens and **costs more** (median cost −52% on held-out). The per-task "universal canary" (pylint-4551) and "universal improvement" (pytest-6197) were **single-sample artifacts** — on repeated runs the identity baseline fails pylint-4551 5/5 times and solves pytest-6197 5/5 times, with zero pruning. The agent's **run-to-run nondeterminism (5/10 boundary tasks flip at temp=0)** fully accounts for every per-task "pruning effect." On 167 held-out tasks, HYBRID1 preserves solve rate exactly (160=160) with regressions balanced by improvements — the signature of noise, not damage.
+HYBRID1 has **one real, verified win**: it reduces the **per-call prompt by ~40%** (+42.8% mean / +38.7% median, confirmed on clean task-tagged ledgers — the original "+41.5%" was real-but-on-a-contaminated-ledger). **But this per-call win does NOT propagate to task-level cost.** Under correct paired task-level accounting, HYBRID1 saves **~0% (median −0.8% to −2.5%)** of tokens and **costs more** (median cost −52% on held-out) — because the prompt-cache-busting tax converts cheap cached tokens into expensive re-created ones, arbitraging the per-call reduction away. The per-task "universal canary" (pylint-4551) and "universal improvement" (pytest-6197) were **single-sample artifacts** — on repeated runs the identity baseline fails pylint-4551 5/5 times and solves pytest-6197 5/5 times, with zero pruning. The agent's **run-to-run nondeterminism (5/10 boundary tasks flip at temp=0)** fully accounts for every per-task "pruning effect." On 167 held-out tasks, HYBRID1 preserves solve rate exactly (160=160) with regressions balanced by improvements — the signature of noise, not damage.
 
 **Bottom line: large per-call context compression does not translate into reliable task-level cost reduction for frontier coding agents.**
 
@@ -37,8 +37,10 @@ The headline **HYBRID1 "+41.5% token saving"** was an **artifact** of (1) a cont
 
 ```
 TASK_LEVEL_COST_VERDICT:      NEUTRAL
-  (median tokens_sent saving −0.8% to −2.5%; mean negative; cost median −52% from cache-busting.
-   Per-call reduction is real but does NOT survive to task-level cost. Not a saving.)
+  (HYBRID1 has a REAL, verified per-call prompt reduction of +42.8% mean / +38.7% median (clean
+   task-tagged ledgers) — the one genuine win. But it does NOT propagate to task-level cost:
+   paired median tokens_sent −2.5%, held-out median −0.8%, cost median −52% (cache-busting).
+   The per-call win is arbitraged away by the provider prompt cache. Task-level: NEUTRAL.)
 
 AA_NOISE_VERDICT:             DOMINANT
   (C0 identity flips 5/10, SHAM 8/10, HYBRID1 7/10 across 5 identical reps. SHAM (a no-op code
