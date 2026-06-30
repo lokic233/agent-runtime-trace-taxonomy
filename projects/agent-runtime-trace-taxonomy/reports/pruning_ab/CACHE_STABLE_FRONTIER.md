@@ -50,6 +50,13 @@ EFFECTIVE COST = input + 0.1·cache_read + 1.25·cache_creation + 5·output (Ant
 - **No method achieves a clean, meaningful task-level saving.** The best (GENTLE6K) is **+0.6% median** — statistically break-even — and carries 1 real regression. The zero-real-regression method (GENTLE4K) costs −6%.
 - This is a **massive improvement over HYBRID1** (−67% → +0.6%): the cache-stable + no-drift design eliminated the catastrophe. But it lands at the economic floor, not above it.
 
+
+## Statistical rigor: is +0.6% a real win?
+
+GENTLE6K's median effective-cost saving = **+0.6%**, but the **95% bootstrap CI is [−8.2%, +9.5%]** — it **straddles zero**. The saving is statistically **indistinguishable from break-even**. Regressions pass (loss_UB 0.088, within 2× the A/A floor of 0.055), but the cost benefit is not significantly positive.
+
+**Honest call: this meets the win-criterion's letter (+0.6% > 0, regressions within noise) but NOT its spirit.** A saving whose CI includes zero is break-even, not a win. We do not overclaim it.
+
 ## WHY prompt pruning can't win on a cached agent (the deep finding)
 
 C0's effective-cost composition: **34% cache_read + 39% cache_creation + 27% output.**
