@@ -446,3 +446,95 @@ if __name__=="__main__":
         before=sum(len(_txt(m.get('content'))) for m in msgs)
         after=sum(len(_txt(m.get('content'))) for m in out)
         print(f"{name:22s} chars {before}->{after} ({100*(before-after)//max(before,1)}% cut) msgs {len(msgs)}->{len(out)}")
+
+
+# ============================================================================
+# CACHE-STABLE PRUNING FAMILY (content-based, position-independent)
+# Principle: each observation's pruned form depends ONLY on its own content,
+# so it is byte-identical across every step -> the prompt prefix stays stable
+# -> Anthropic prompt cache (cache_read 0.1x) is PRESERVED, not busted.
+# This is the opposite of recency methods (HYBRID1/AGG3/M7) which re-prune by
+# position every step and destroy the cache (cache_creation 1.25x).
+# ============================================================================
+
+def cap_all_obs(messages, cap_chars):
+    """CAP: every observation > cap_chars -> head(0.6*cap) + "...[N chars elided]..." + tail(0.4*cap).
+    Content-stable: same obs always yields the same capped text regardless of position."""
+    import copy
+    out=copy.deepcopy(messages); n=len(out)
+    for i,m in enumerate(out):
+        if not _is_obs(i,m,n): continue
+        t=_txt(m.get("content"))
+        if len(t)>cap_chars:
+            head=int(cap_chars*0.6); tail=cap_chars-head
+            _set_obs_text(out[i], t[:head]+f"\n...[{len(t)-cap_chars} chars elided]...\n"+t[-tail:])
+    return out
+
+def cap_2k(messages):  return cap_all_obs(messages, 2000)
+def cap_1k(messages):  return cap_all_obs(messages, 1000)
+def cap_800(messages): return cap_all_obs(messages, 800)
+def cap_500(messages): return cap_all_obs(messages, 500)
+
+def smart_obs_compact(messages):
+    """SMART: content-stable, structure-aware compaction of each observation.
+    - keep error/traceback lines (high signal)
+    - collapse repeated/whitespace-heavy blocks
+    - cap very long file dumps to head+tail
+    Position-independent -> cache-stable. Aggressive but signal-preserving."""
+    import copy, re
+    out=copy.deepcopy(messages); n=len(out)
+    err_markers=("error","traceback","exception","failed","assert","fatal"," E ","FAILED","Error")
+    for i,m in enumerate(out):
+        if not _is_obs(i,m,n): continue
+        t=_txt(m.get("content"))
+        if len(t)<=600: continue
+        lines=t.split("\n")
+        if len(lines)<=12:
+            # single block: head+tail cap
+            if len(t)>1200:
+                _set_obs_text(out[i], t[:700]+f"\n...[{len(t)-1000} elided]...\n"+t[-300:])
+            continue
+        # multi-line: keep error lines + head + tail, drop the bland middle
+        err_lines=[l for l in lines if any(e in l for e in err_markers)]
+        head=lines[:6]; tail=lines[-4:]
+        kept=head + (["...[middle elided]..."] if len(lines)>10 else []) + err_lines[:8] + tail
+        new="\n".join(kept)
+        if len(new)<len(t):
+            _set_obs_text(out[i], new)
+    return out
+
+def dedup_content_stable(messages):
+    """DEDUP-STABLE: if an observation's content has appeared VERBATIM in an EARLIER observation,
+    replace with a short pointer. Pointer text depends only on the (stable) earlier hash -> cache-stable.
+    (Unlike recency dedup, the pointer is deterministic from content.)"""
+    import copy
+    out=copy.deepcopy(messages); n=len(out); seen={}
+    for i,m in enumerate(out):
+        if not _is_obs(i,m,n): continue
+        t=_txt(m.get("content"))
+        if len(t)<200: continue
+        h=_sha(t)
+        if h in seen:
+            _set_obs_text(out[i], f"[identical to earlier observation #{seen[h]}; {len(t)} chars]")
+        else:
+            seen[h]=i
+    return out
+
+def combo_cap_dedup(messages):
+    """COMBO-STABLE: dedup verbatim repeats, THEN cap survivors at 1k. Both content-stable."""
+    return cap_all_obs(dedup_content_stable(messages), 1000)
+
+def combo_smart_cap(messages):
+    """COMBO-SMART: structure-aware compact, then hard cap at 1.2k. Content-stable."""
+    return cap_all_obs(smart_obs_compact(messages), 1200)
+
+
+# register cache-stable family (functions defined above, after METHODS dict)
+METHODS["CAP2K_stable"]=cap_2k
+METHODS["CAP1K_stable"]=cap_1k
+METHODS["CAP800_stable"]=cap_800
+METHODS["CAP500_stable"]=cap_500
+METHODS["SMART_stable"]=smart_obs_compact
+METHODS["DEDUPS_stable"]=dedup_content_stable
+METHODS["COMBOCD_stable"]=combo_cap_dedup
+METHODS["COMBOSC_stable"]=combo_smart_cap
