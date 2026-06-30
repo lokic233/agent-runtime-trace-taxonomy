@@ -1,0 +1,63 @@
+{
+ "note": "v0 ontology (from largest-obs selection \u2014 biased toward active content)",
+ "n_annotations": 137,
+ "n_events": 46,
+ "latent_state_distributions": {
+  "semantic_role": {
+   "source_code": 73,
+   "instruction": 55,
+   "test_output": 6,
+   "dir_listing": 2,
+   "superseding_state": 1
+  },
+  "semantic_liveness": {
+   "active": 137
+  },
+  "redundancy_type": {
+   "none": 126,
+   "near_duplicate": 4,
+   "latest_state_duplicate": 4,
+   "repeated_but_active": 2,
+   "exact_duplicate": 1
+  },
+  "recoverability": {
+   "deterministic_refetch": 84,
+   "nonrecoverable": 50,
+   "nondeterministic_refetch": 2,
+   "exact_copy_elsewhere": 1
+  },
+  "dependency_risk": {
+   "directly_referenced": 94,
+   "likely_needed_for_verification": 31,
+   "supports_unresolved_hypothesis": 12
+  },
+  "task_phase": {
+   "localization": 76,
+   "exploration": 52,
+   "near_completion": 5,
+   "verification": 4
+  }
+ },
+ "pattern_families": {
+  "foundational_task_instruction": 8,
+  "foundational_task_instruction_at_prefix_head": 5,
+  "localization_target_source_read": 4,
+  "foundational_task_instruction_first_observation": 3,
+  "foundational_task_instruction_at_origin": 3,
+  "primary_edit_target_source_read": 2,
+  "localization_target_source_code": 2,
+  "foundational_task_instruction_with_embedded_stack_trace": 2,
+  "foundational_task_instruction_with_localizing_stack_trace": 2,
+  "freshly_read_edit_target_source": 2,
+  "foundational_task_instruction_at_t0": 2,
+  "fresh_edit_target_source_read": 2,
+  "primary_edit_target_source_read_early": 1,
+  "target_source_file_full_read": 1,
+  "target_source_region_just_localized": 1,
+  "editing_target_source_code": 1,
+  "foundational_task_instruction_with_fault_localizer": 1,
+  "localization_source_read_static_file": 1,
+  "freshly_localized_buggy_source_region": 1,
+  "localization_source_read_of_edit_target": 1
+ }
+}
