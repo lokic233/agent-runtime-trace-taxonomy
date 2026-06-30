@@ -538,3 +538,36 @@ METHODS["SMART_stable"]=smart_obs_compact
 METHODS["DEDUPS_stable"]=dedup_content_stable
 METHODS["COMBOCD_stable"]=combo_cap_dedup
 METHODS["COMBOSC_stable"]=combo_smart_cap
+
+
+def cap_4k_gentle(messages):
+    """GENTLE4K: cap only observations >4000 chars (the rare large dumps). Content-stable.
+    Cuts ~7% of tokens with minimal info loss -> minimal trajectory drift. The M4-regime done right."""
+    return cap_all_obs(messages, 4000)
+
+def cap_6k_gentle(messages):
+    """GENTLE6K: cap only observations >6000 chars (extreme dumps only). Content-stable. ~3% cut."""
+    return cap_all_obs(messages, 6000)
+
+def smart_gentle(messages):
+    """SMARTGENTLE: structure-aware compaction but ONLY on observations >3000 chars, keeping all
+    error lines + generous head/tail. Content-stable. Targets verbose dumps, spares normal obs."""
+    import copy
+    out=copy.deepcopy(messages); n=len(out)
+    err=("error","traceback","exception","failed","assert","fatal","Error","FAILED")
+    for i,m in enumerate(out):
+        if not _is_obs(i,m,n): continue
+        t=_txt(m.get("content"))
+        if len(t)<=3000: continue  # spare normal-sized obs entirely
+        lines=t.split("\n")
+        if len(lines)<=20:
+            _set_obs_text(out[i], t[:1800]+f"\n...[{len(t)-2400} elided]...\n"+t[-600:]); continue
+        errl=[l for l in lines if any(e in l for e in err)]
+        kept=lines[:12]+(["...[middle elided]..."])+errl[:10]+lines[-6:]
+        nt="\n".join(kept)
+        if len(nt)<len(t): _set_obs_text(out[i], nt)
+    return out
+
+METHODS["GENTLE4K_stable"]=cap_4k_gentle
+METHODS["GENTLE6K_stable"]=cap_6k_gentle
+METHODS["SMARTGENTLE_stable"]=smart_gentle
