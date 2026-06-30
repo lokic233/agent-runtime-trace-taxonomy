@@ -31,6 +31,8 @@ CROSS_MODEL_STATUS:             UNDERPOWERED / EXPLORATORY
 
 3. **Trace-signal predictiveness (NOT_SUPPORTED).** The best candidate feature (dup_line_ratio) predicts LINEDEDUP saving only weakly (Spearman +0.19, CIs span zero) and **FAILS the negative control**: it predicts GENTLE6K (+0.27, which doesn't deduplicate) at least as strongly → it is a general task-structure proxy, not a method-specific effect modifier. Within-repo correlations reverse (sphinx +0.94, sympy −0.37). *(HETEROGENEOUS_TREATMENT_EFFECTS.md)*
 
+3b. **Interaction regression (key quantity):** dup_ratio × LINEDEDUP coefficient = −2.73%, 95% CI [−18.58,+13.41] includes zero → the feature does NOT modify methods' effects differentially. Formally not a method-specific effect modifier.
+
 4. **Heterogeneity EXISTS but isn't feature-captured (PARTIALLY_SUPPORTED).** Oracle (post-hoc per-task best) saves +27.0% vs +10.1% best-static — large real heterogeneity. But pre-treatment features cannot identify it.
 
 ## What is DEPLOYABLE

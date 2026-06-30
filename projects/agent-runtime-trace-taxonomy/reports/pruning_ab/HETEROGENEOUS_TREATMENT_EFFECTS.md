@@ -32,5 +32,14 @@ Within-repo Spearman(dup_ratio, LINEDEDUP saving): astropy +0.77, sphinx +0.94, 
 ### Task-weighted vs bill-weighted (honest framing)
 LINEDEDUP: **task-weighted median = −1.1%** (typical task slightly worse), **bill-weighted = +6.3%** (a few big tasks drive the aggregate). The "saving" is concentrated, not typical — a controller predicting per-task effect faces a near-zero-median signal.
 
+
+## Phase 4B — Interaction regression (the mission's "key quantity")
+`delta_cost ~ dup_ratio + method + dup_ratio×method` (n=98 = 2 methods × 49 tasks):
+- dup_ratio coef = +10.1% (affects GENTLE6K saving)
+- method=LINEDEDUP coef = −2.1%
+- **INTERACTION (dup_ratio × LINEDEDUP) = −2.73%, 95% CI [−18.58, +13.41] — INCLUDES ZERO**
+
+The interaction term is the formal test of *method-specific* effect modification. It is **indistinguishable from zero** → dup_ratio modifies LINEDEDUP's effect no differently than GENTLE6K's. The feature is a **general task-structure signal, not a method-specific treatment-effect modifier.** A controller cannot use it to choose *which* method to apply. (interaction_regression.json)
+
 ## Verdict
 **HETEROGENEOUS_TREATMENT_EFFECT: PARTIALLY_SUPPORTED / UNDERPOWERED.** Heterogeneity demonstrably *exists* (oracle gap +27%, see ORACLE_GAP.md), but available pre-treatment features predict it weakly (|ρ|≤0.27), fail the negative control (predict GENTLE6K ≈ LINEDEDUP), reverse direction across repos, and have CIs spanning zero at n≈50. **Not strong enough to identify method-specific effects.**
