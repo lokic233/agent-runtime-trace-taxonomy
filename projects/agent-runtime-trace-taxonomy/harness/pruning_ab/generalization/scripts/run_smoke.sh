@@ -21,13 +21,13 @@ for mkey in sonnet46 haiku45 gpt55; do
     LEDGER="$OUT_ROOT/ledger_${mkey}_${arm}.jsonl"; OUT="$OUT_ROOT/run_${mkey}_${arm}"
     DONE="$OUT_ROOT/DONE_${mkey}_${arm}"
     [[ -f "$DONE" ]] && { echo "skip done $mkey/$arm"; continue; }
-    if [[ "$mkey" == "gpt55" ]]; then SHIM="$GPT_SHIM"; EXTRA="PB_PM_DIR=$PM_DIR"; else SHIM="$ANTHRO_SHIM"; EXTRA=""; fi
+    if [[ "$mkey" == "gpt55" ]]; then SHIM="$GPT_SHIM"; EXTRA="PB_PM_DIR=$PM_DIR"; REG="/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/harness/pruning_ab/generalization/configs/litellm_gpt5_registry.json"; else SHIM="$ANTHRO_SHIM"; EXTRA=""; REG=""; fi
     echo "=== CELL $mkey/$arm port=$PORT $(date +%H:%M:%S) ==="
     env PB_SHIM_PORT=$PORT PB_LEDGER="$LEDGER" TS_PRUNE_METHOD="$arm" TS_MODEL="$MODEL" $EXTRA \
       python3 "$SHIM" > "$OUT_ROOT/shim_${mkey}_${arm}.log" 2>&1 &
     SHIM_PID=$!; sleep 3
     if ! curl -s "http://127.0.0.1:$PORT" >/dev/null 2>&1; then echo "  SHIM DOWN $mkey/$arm"; kill $SHIM_PID 2>/dev/null; continue; fi
-    TS_MODEL="$MODEL" timeout 5400 bash "$GEN/scripts/run_arm_xmodel.sh" "$arm" "$PORT" "$FILTER" "$OUT" 4 \
+    TS_MODEL="$MODEL" TS_LITELLM_REGISTRY="$REG" timeout 5400 bash "$GEN/scripts/run_arm_xmodel.sh" "$arm" "$PORT" "$FILTER" "$OUT" 4 \
       > "$OUT_ROOT/arm_${mkey}_${arm}.log" 2>&1
     RC=$?
     kill $SHIM_PID 2>/dev/null; sleep 1

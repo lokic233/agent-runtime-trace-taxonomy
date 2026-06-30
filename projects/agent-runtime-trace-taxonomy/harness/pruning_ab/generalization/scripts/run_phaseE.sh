@@ -27,13 +27,13 @@ for mkey in sonnet46 haiku45 gpt55; do
  for arm in "${ARMS[@]}"; do
   PORT=$((PORT+1)); LEDGER="$OUT_ROOT/ledger_${mkey}_${arm}_t${TASKSET}.jsonl"; OUT="$OUT_ROOT/run_${mkey}_${arm}_t${TASKSET}"; DONE="$OUT_ROOT/DONE_${mkey}_${arm}_t${TASKSET}"
   [[ -f "$DONE" ]] && { echo "skip $mkey/$arm"; continue; }
-  if [[ "$mkey" == "gpt55" ]]; then SHIM="$GPT_SHIM"; EXTRA="PB_PM_DIR=$PM_DIR"; else SHIM="$ANTHRO_SHIM"; EXTRA=""; fi
+  if [[ "$mkey" == "gpt55" ]]; then SHIM="$GPT_SHIM"; EXTRA="PB_PM_DIR=$PM_DIR"; REG="/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/harness/pruning_ab/generalization/configs/litellm_gpt5_registry.json"; else SHIM="$ANTHRO_SHIM"; EXTRA=""; REG=""; fi
   echo "=== E: $mkey/$arm/t$TASKSET port=$PORT $(date +%H:%M:%S) ==="
   [[ "$DRY" == "1" ]] && continue
   env PB_SHIM_PORT=$PORT PB_LEDGER="$LEDGER" TS_PRUNE_METHOD="$arm" TS_MODEL="$MODEL" $EXTRA python3 "$SHIM" > "$OUT_ROOT/shim_${mkey}_${arm}_t${TASKSET}.log" 2>&1 &
   SH=$!; sleep 3
   curl -s "http://127.0.0.1:$PORT" >/dev/null 2>&1 || { echo "  SHIM DOWN"; kill $SH 2>/dev/null; continue; }
-  TS_MODEL="$MODEL" timeout 14400 bash "$GEN/scripts/run_arm_xmodel.sh" "$arm" "$PORT" "$FILTER" "$OUT" 6 > "$OUT_ROOT/arm_${mkey}_${arm}_t${TASKSET}.log" 2>&1
+  TS_MODEL="$MODEL" TS_LITELLM_REGISTRY="$REG" timeout 14400 bash "$GEN/scripts/run_arm_xmodel.sh" "$arm" "$PORT" "$FILTER" "$OUT" 6 > "$OUT_ROOT/arm_${mkey}_${arm}_t${TASKSET}.log" 2>&1
   RC=$?; kill $SH 2>/dev/null; sleep 1; echo "  rc=$RC rows=$(wc -l < "$LEDGER" 2>/dev/null||echo 0)"; [[ $RC -eq 0 ]] && touch "$DONE"
  done
 done
