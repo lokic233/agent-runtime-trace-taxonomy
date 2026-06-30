@@ -17,9 +17,9 @@
 | method | exp | type | per-call save | cache cr:cc | raw save | **eff cost save** | median | call-ratio | resolved | reg | real reg | loss_UB | verdict |
 |--------|----|------|----:|----:|----:|----:|----:|----:|:--:|:--:|:--:|----:|---|
 | **C0_identity** | — | baseline | 0% | **10.7** | 0% | **0%** | 0% | 1.00 | 46/50 | 0 | 0 | — | baseline |
-| HYBRID1_m7_agg2 | 1 | recency | +41% | **0.37** | — | **−67%** | −2% | — | 48* | 1* | — | — | ❌ cache-bust catastrophe |
-| AGG3_recency_obs_4 | 1 | recency | +51% | **0.36** | — | **~−69%** | −1% | — | 46* | 3* | — | — | ❌ cache-bust |
-| M7_old_obs_elide | 1 | recency | +37% | **0.37** | — | **~−41%** | −4% | — | 44* | 5* | — | — | ❌ cache-bust |
+| HYBRID1_m7_agg2 | 1 | recency | +41% | **0.37** | — | **−67%** | −2.5% | — | 48/50 | 1 | — | — | ❌ cache-bust catastrophe |
+| AGG3_recency_obs_4 | 1 | recency | +51% | **0.36** | — | **~−69%** | −1.2% | — | 46/50 | 3 | — | — | ❌ cache-bust |
+| M7_old_obs_elide | 1 | recency | +37% | **0.37** | — | **~−41%** | −4.3% | — | 44/50 | 5 | — | — | ❌ cache-bust |
 | CAP500_stable | 3 | truncate | +29% | 10.7 | −16% | **−17%** | −35% | 1.73 | — | — | — | — | ❌ drift |
 | SMART_stable | 3 | truncate | +27% | 12.5 | −43% | **−35%** | −56% | 2.33 | — | — | — | — | ❌ drift |
 | COMBOSC_stable | 3 | truncate | +25% | 13.1 | −50% | **−39%** | −75% | 2.26 | — | — | — | — | ❌ drift |
@@ -33,7 +33,7 @@
 | **GENTLE6K_stable** | 3 | gentle-cap | +14% | 9.4 | +18% | **+10%** | +1% | 1.04 | 45/50 | 1 | 0 | 0.094 | ✅ saves (variance-infl) |
 | **LINEDEDUP_e4** | 4 | line-dedup | +13% | 9.9 | **+10%** | **+6%** | −1% | **1.00** | 44/50 | 2 | **0** | 0.123 | ⭐ **best: real saving, 0 real reg, drift-free** |
 
-\* exp-1 recency methods: resolution/regression from the v2 SWE-bench grading; their ledgers are pooled (per-task cost from v3 model_stats). eff-cost computed from cache-composition.
+exp-1 recency methods: resolution/regression from v2 SWE-bench grading (resolved/50, regressions vs C0=49 original baseline); per-task median from v3 task-level; eff-cost from cache-composition (their pooled ledgers can't pair per-task, but the cache cr:cc=0.37 and −67% direction are authoritative).
 
 ## How to read it — the 4 regimes
 
