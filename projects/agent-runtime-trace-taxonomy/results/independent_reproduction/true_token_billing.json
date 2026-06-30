@@ -1,0 +1,39 @@
+{
+ "C0_identity": {
+  "calls": 1132,
+  "input": 10537,
+  "cache_read": 17258806,
+  "cache_creation": 2078471,
+  "true_prompt": 19347814,
+  "output": 276039,
+  "eff_cost": 5714701.35,
+  "eff_cost_vs_C0_pct": 0.0
+ },
+ "HYBRID1_m7_agg2": {
+  "calls": 1139,
+  "input": 12759,
+  "cache_read": 3155725,
+  "cache_creation": 9763528,
+  "true_prompt": 12932012,
+  "output": 279041,
+  "eff_cost": 13927946.5,
+  "eff_cost_vs_C0_pct": -143.7
+ },
+ "AGG3_recency_obs_4": {
+  "calls": 1151,
+  "input": 7880,
+  "cache_read": 2499349,
+  "cache_creation": 9084286,
+  "true_prompt": 11591515,
+  "output": 266392,
+  "eff_cost": 12945132.4,
+  "eff_cost_vs_C0_pct": -126.5
+ },
+ "_weights": {
+  "input": 1.0,
+  "cache_read": 0.1,
+  "cache_creation": 1.25,
+  "output": 5.0
+ },
+ "_note": "aggregate over all calls per arm (ledger not task-tagged); effective-cost negative = costs MORE"
+}
