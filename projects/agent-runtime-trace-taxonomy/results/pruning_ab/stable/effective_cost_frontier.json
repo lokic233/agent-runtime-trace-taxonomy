@@ -1,0 +1,55 @@
+{
+ "baseline": "C0_identity_tagged",
+ "n_tasks": 50,
+ "metric": "effective_cost = input + 0.1*cache_read + 1.25*cache_creation + 5*output",
+ "methods": {
+  "GENTLE6K_stable": {
+   "median_eff_save_pct": 0.6,
+   "mean_eff_save_pct": -6.3,
+   "tasks_saving": 26,
+   "n_paired": 49
+  },
+  "GENTLE4K_stable": {
+   "median_eff_save_pct": -6.0,
+   "mean_eff_save_pct": -10.3,
+   "tasks_saving": 21,
+   "n_paired": 50
+  },
+  "SMARTGENTLE_stable": {
+   "median_eff_save_pct": -9.5,
+   "mean_eff_save_pct": -11.6,
+   "tasks_saving": 23,
+   "n_paired": 50
+  },
+  "CAP1K_stable": {
+   "median_eff_save_pct": -11.9,
+   "mean_eff_save_pct": -20.0,
+   "tasks_saving": 20,
+   "n_paired": 49
+  },
+  "CAP800_stable": {
+   "median_eff_save_pct": -19.1,
+   "mean_eff_save_pct": -28.7,
+   "tasks_saving": 17,
+   "n_paired": 50
+  },
+  "CAP500_stable": {
+   "median_eff_save_pct": -35.2,
+   "mean_eff_save_pct": -49.5,
+   "tasks_saving": 11,
+   "n_paired": 50
+  },
+  "SMART_stable": {
+   "median_eff_save_pct": -55.9,
+   "mean_eff_save_pct": -90.5,
+   "tasks_saving": 10,
+   "n_paired": 50
+  },
+  "COMBOSC_stable": {
+   "median_eff_save_pct": -75.5,
+   "mean_eff_save_pct": -98.4,
+   "tasks_saving": 11,
+   "n_paired": 50
+  }
+ }
+}
