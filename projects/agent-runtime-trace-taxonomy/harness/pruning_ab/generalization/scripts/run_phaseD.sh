@@ -7,13 +7,13 @@ set -uo pipefail
 GEN=/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/harness/pruning_ab/generalization
 REPO_SCRIPTS=/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/harness/pruning_ab/scripts
 PM_DIR=/data/users/dengcchi/prune_ab/scripts
-ANTHRO_SHIM=$REPO_SCRIPTS/prune_shim_v2.py
+ANTHRO_SHIM=/data/users/dengcchi/prune_ab/scripts/prune_shim_v2.py
 OUT_ROOT=/data/users/dengcchi/prune_ab/logs/xmodel_phaseD
 mkdir -p "$OUT_ROOT"
 FILTER='^(pylint-dev__pylint-4551|pytest-dev__pytest-6197|sympy__sympy-14248|sphinx-doc__sphinx-8638|sphinx-doc__sphinx-9658|pylint-dev__pylint-6386|astropy__astropy-14096|sympy__sympy-19040|sympy__sympy-13091|pylint-dev__pylint-8898)$'
 declare -A MODELS=( [opus47]="anthropic/claude-opus-4-7" [sonnet46]="anthropic/claude-sonnet-4-6" [haiku45]="anthropic/claude-haiku-4-5" )
 ARMS=(C0_identity LINEDEDUP_e4 GENTLE6K_stable CAP1K_stable)
-cp "$PM_DIR/prune_methods.py" "$REPO_SCRIPTS/prune_methods.py"; trap 'rm -f "$REPO_SCRIPTS/prune_methods.py"' EXIT
+# PM co-located with live shims in /data/users/dengcchi/prune_ab/scripts (no staging/trap needed)
 PORT=8880; DRY="${DRY_RUN:-1}"
 for mkey in opus47 sonnet46 haiku45; do
  MODEL=${MODELS[$mkey]}

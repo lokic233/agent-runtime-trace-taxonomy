@@ -17,7 +17,10 @@ PORT=int(os.environ.get("PB_SHIM_PORT","8811"))
 PB_URL="https://plugboard.x2p.facebook.net/v1/chat/completions"
 CERT=os.environ.get("PB_CERT","/var/facebook/credentials/dengcchi/x509/dengcchi.pem")
 PRUNE=os.environ.get("TS_PRUNE_METHOD","C0_identity")
-REQ_MODEL=os.environ.get("TS_MODEL","gpt-5-5")
+# TS_MODEL is the litellm-facing string (may carry an 'openai/' prefix). The PlugBoard-facing model
+# is that string with any provider prefix stripped (PlugBoard /v1/chat/completions wants bare 'gpt-5-5').
+_RAW_MODEL=os.environ.get("TS_MODEL","gpt-5-5")
+REQ_MODEL=os.environ.get("TS_SERVED_MODEL", _RAW_MODEL.split("/",1)[-1])  # strip 'openai/' etc.
 LEDGER=os.environ.get("PB_LEDGER","/data/users/dengcchi/prune_ab/logs/xmodel/gpt55_ledger.jsonl")
 os.makedirs(os.path.dirname(LEDGER), exist_ok=True)
 _MOD_SHA=hashlib.sha256(inspect.getsource(PM).encode()).hexdigest()
@@ -30,6 +33,28 @@ def _norm_model_to_openai(d):
     # litellm with openai/ prefix already sends OpenAI chat format; force served model id.
     d["model"]=REQ_MODEL
     return d
+
+# --- OpenAI tool-role observation adapter -------------------------------------------------------
+# SWE-agent sends GPT observations as {"role":"tool","content":<str>,...}. The FROZEN _is_obs only
+# fires on role:user/anthropic tool_result, so transforms would NO-OP on tool-role messages. We do
+# NOT edit _is_obs. Instead we present a VIEW where role:tool -> role:user (content unchanged), run
+# the FROZEN apply_method on that view, then restore the original roles + tool_call metadata. This
+# applies the identical frozen line/char logic to gpt's observations. C0/SHAM never call this.
+def _apply_with_tool_view(method, msgs):
+    view=[]; rolemap=[]
+    for m in msgs:
+        if m.get("role")=="tool":
+            v=dict(m); v["role"]="user"; view.append(v); rolemap.append("tool")
+        else:
+            view.append(dict(m)); rolemap.append(m.get("role"))
+    pruned=PM.apply_method(method, view)
+    out=[]
+    for pv, r, o in zip(pruned, rolemap, msgs):
+        nv=dict(pv); nv["role"]=r
+        for k in ("tool_call_id","tool_calls","tool_call_ids","name"):
+            if k in o: nv[k]=o[k]
+        out.append(nv)
+    return out
 
 def call_plugboard(body, timeout=900, retries=6):
     with tempfile.NamedTemporaryFile("wb",suffix=".json",delete=False) as f:
@@ -66,7 +91,7 @@ def transform(raw):
             import copy; _=copy.deepcopy(msgs); _=sum(len(PM._txt(m.get("content"))) for m in _)
             meta["messages_after_chars"]=before; meta["transform_fired"]=False
         elif PRUNE and PRUNE!="C0_identity":
-            pruned=PM.apply_method(PRUNE,msgs)
+            pruned=_apply_with_tool_view(PRUNE,msgs)
             after=sum(len(PM._txt(m.get("content"))) for m in pruned); cm=0; first=None
             for i,(a,b) in enumerate(zip(msgs,pruned)):
                 if PM._txt(a.get("content"))!=PM._txt(b.get("content")):

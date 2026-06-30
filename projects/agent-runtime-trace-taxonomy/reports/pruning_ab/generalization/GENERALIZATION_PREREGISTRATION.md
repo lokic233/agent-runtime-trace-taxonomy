@@ -50,3 +50,25 @@ The frozen `_is_obs()` recognizes observations only as Anthropic `user`+`tool_re
 - SWE-agent v1.0 with the frozen config emits **plain-text `{role:user}` observations** → transforms FIRE for all providers (verified: LINEDEDUP/GENTLE6K/CAP1K all change byte counts).
 - BUT if function-calling tool-role messages are emitted (`role:"tool"`, agents.py:715), `_is_obs` returns False → **all transforms silently NO-OP** → a fake "no effect" result.
 **Mitigation (no frozen code changed):** the gpt-5-5 shim logs `transform_fired` + `obs_role_layout` on every call; Phase B MUST gate on `transform_fired==True` for non-C0 arms on every provider. If GPT runs route through tool-role layout, that is an instrumentation failure to fix in the adapter (Anthropic-view transform), NOT a scientific "no effect". `_is_obs` is FROZEN and never edited.
+
+## Phase B abort #1 — three infra bugs fixed (no frozen code touched; re-launch pending)
+First smoke launch aborted after 1/18 cells. Root causes + fixes (all validated by re-probe):
+1. **PM staging/trap** (11 anthropic cells "SHIM DOWN"): `run_smoke.sh` cp'd prune_methods.py next to the
+   repo shim and `trap rm EXIT` deleted it mid-run. **FIX:** run all shims FROM the live
+   `/data/users/dengcchi/prune_ab/scripts/` dir, where prune_methods.py (functions == frozen) and the
+   byte-identical prune_shim_v2.py (ddf68b6f) already co-locate. Removed the cp + trap entirely.
+2. **litellm provider prefix** (gpt55 BadRequestError): `gpt-5-5` → litellm "LLM Provider NOT provided".
+   **FIX:** model string `openai/gpt-5-5`; shim strips the `openai/` prefix before forwarding to PlugBoard.
+3. **litellm cost map** (gpt55 rc=137 after 1 call): `completion_cost` raised "This model isn't mapped yet"
+   → ModelConfigurationError. **FIX:** `--agent.model.litellm_model_registry=configs/litellm_gpt5_registry.json`
+   (registers gpt-5-5 cost so the harness resolves; AUTHORITATIVE cost remains provider-native token counts
+   per §6). Re-probe: gpt-5-5 ran 26 calls, $0.41, prediction written, C0 byte-identical.
+4. **gpt-5-5 tool-role observations** (the preflight hazard, now CONFIRMED LIVE): gpt uses `role:tool`
+   observations on 25/26 calls; frozen `_is_obs` would NO-OP treatments → fake "no effect". **FIX (no frozen
+   edit):** the gpt shim's `_apply_with_tool_view` presents role:tool obs AS role:user to the FROZEN
+   apply_method, then restores roles + tool_call_ids. Re-probe LINEDEDUP on tool-role: transform_fired=True,
+   characters_removed=2086, frozen LINEDEDUP hash d3745ee0 logged. Anthropic path uses plain-text obs (fires
+   natively, no adapter). `_is_obs` is FROZEN and untouched.
+
+Validated single cells: Sonnet-4.6/C0 (14 calls, cc_fraction 0.169, byte-identical); gpt-5-5/C0 (26 calls,
+byte-identical); gpt-5-5/LINEDEDUP tool-role (transform fires). Smoke re-launch will resume past DONE markers.

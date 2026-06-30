@@ -4,17 +4,15 @@ set -uo pipefail
 GEN=/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/harness/pruning_ab/generalization
 REPO_SCRIPTS=/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/harness/pruning_ab/scripts
 PM_DIR=/data/users/dengcchi/prune_ab/scripts
-ANTHRO_SHIM=$REPO_SCRIPTS/prune_shim_v2.py
-GPT_SHIM=$GEN/scripts/prune_shim_plugboard_openai.py
+ANTHRO_SHIM=/data/users/dengcchi/prune_ab/scripts/prune_shim_v2.py
+GPT_SHIM=/data/users/dengcchi/prune_ab/scripts/prune_shim_plugboard_openai.py
 OUT_ROOT=/data/users/dengcchi/prune_ab/logs/xmodel_smoke
 mkdir -p "$OUT_ROOT"
 FILTER='^(scikit-learn__scikit-learn-13439|django__django-14493|astropy__astropy-12907|pylint-dev__pylint-4551|sphinx-doc__sphinx-8638)$'
 ARMS=(C0_identity SHAM HYBRID1_m7_agg2 LINEDEDUP_e4 GENTLE6K_stable CAP1K_stable)
-declare -A MODELS=( [sonnet46]="anthropic/claude-sonnet-4-6" [haiku45]="anthropic/claude-haiku-4-5" [gpt55]="gpt-5-5" )
+declare -A MODELS=( [sonnet46]="anthropic/claude-sonnet-4-6" [haiku45]="anthropic/claude-haiku-4-5" [gpt55]="openai/gpt-5-5" )
 PORT_BASE=8810
 # stage canonical PM next to the frozen anthropic shim (it imports from its own dir)
-cp "$PM_DIR/prune_methods.py" "$REPO_SCRIPTS/prune_methods.py"
-trap 'rm -f "$REPO_SCRIPTS/prune_methods.py"' EXIT
 pi=0
 for mkey in sonnet46 haiku45 gpt55; do
   MODEL=${MODELS[$mkey]}

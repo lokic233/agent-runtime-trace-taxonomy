@@ -15,6 +15,17 @@ METHOD="$1"; PORT="$2"; FILTER="$3"; OUT="$4"; NW="${5:-4}"
 MODEL="${TS_MODEL:-anthropic/claude-opus-4-7}"   # <-- parameterized; default preserves Opus replay
 CALL_LIMIT="${TS_CALL_LIMIT:-75}"
 TEMP="${TS_TEMP:-0.0}"
+# optional litellm model registry (for models not in litellm's default cost map, e.g. gpt-5-5).
+# Empty for Anthropic -> no change to the frozen Opus/Sonnet/Haiku path.
+REGISTRY_FLAG=""
+if [[ -n "${TS_LITELLM_REGISTRY:-}" ]]; then
+  REGISTRY_FLAG="--agent.model.litellm_model_registry=${TS_LITELLM_REGISTRY}"
+fi
+# optional parse function override (gpt path may need thought_action if function-calling unsupported)
+PARSE_FLAG=""
+if [[ -n "${TS_PARSE_FUNC:-}" ]]; then
+  PARSE_FLAG="--agent.tools.parse_function.type=${TS_PARSE_FUNC}"
+fi
 export ANTHROPIC_API_KEY="shim" ANTHROPIC_BASE_URL="http://127.0.0.1:$PORT"
 CONFIG="config/benchmarks/250225_anthropic_filemap_simple_review.yaml"
 mkdir -p "$OUT"
@@ -29,5 +40,6 @@ sweagent run-batch \
   --agent.model.api_base="http://127.0.0.1:$PORT" --agent.model.api_key="shim" \
   --agent.model.per_instance_cost_limit=0 --agent.model.per_instance_call_limit="$CALL_LIMIT" \
   --agent.model.temperature="$TEMP" --num_workers="$NW" \
+  $REGISTRY_FLAG $PARSE_FLAG \
   --output_dir="$OUT"
 echo "=== ARM $METHOD EXIT rc=$? ==="

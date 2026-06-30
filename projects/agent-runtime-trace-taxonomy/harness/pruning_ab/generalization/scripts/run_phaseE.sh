@@ -6,8 +6,8 @@ set -uo pipefail
 GEN=/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/harness/pruning_ab/generalization
 REPO_SCRIPTS=/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/harness/pruning_ab/scripts
 PM_DIR=/data/users/dengcchi/prune_ab/scripts
-ANTHRO_SHIM=$REPO_SCRIPTS/prune_shim_v2.py
-GPT_SHIM=$GEN/scripts/prune_shim_plugboard_openai.py
+ANTHRO_SHIM=/data/users/dengcchi/prune_ab/scripts/prune_shim_v2.py
+GPT_SHIM=/data/users/dengcchi/prune_ab/scripts/prune_shim_plugboard_openai.py
 OUT_ROOT=/data/users/dengcchi/prune_ab/logs/xmodel_phaseE
 mkdir -p "$OUT_ROOT"
 TASKSET="${TASKSET:-30}"   # 30 or 50
@@ -18,9 +18,9 @@ import json; j=json.load(open('/home/dengcchi/agent-runtime-trace-taxonomy/proje
 ids = j['phaseE_first30'] if '$TASKSET'=='30' else j['golden50']
 print('^('+'|'.join(ids)+')\$')
 ")
-declare -A MODELS=( [sonnet46]="anthropic/claude-sonnet-4-6" [haiku45]="anthropic/claude-haiku-4-5" [gpt55]="gpt-5-5" )
+declare -A MODELS=( [sonnet46]="anthropic/claude-sonnet-4-6" [haiku45]="anthropic/claude-haiku-4-5" [gpt55]="openai/gpt-5-5" )
 ARMS=(C0_identity LINEDEDUP_e4 GENTLE6K_stable CAP1K_stable)
-cp "$PM_DIR/prune_methods.py" "$REPO_SCRIPTS/prune_methods.py"; trap 'rm -f "$REPO_SCRIPTS/prune_methods.py"' EXIT
+# PM co-located with live shims in /data/users/dengcchi/prune_ab/scripts (no staging/trap needed)
 PORT=8920; DRY="${DRY_RUN:-1}"
 for mkey in sonnet46 haiku45 gpt55; do
  MODEL=${MODELS[$mkey]}
