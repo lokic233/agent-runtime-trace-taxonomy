@@ -1,0 +1,156 @@
+{
+ "generated_by": "reconstruct.py (Phase A)",
+ "source_freeze_commit": "bb43b49612760b56a3f8d620fbffcae9dc347bf6",
+ "prune_methods_sha256_manifest": "cb06efb69c9a08e7a48a1fca747a9fe1e9f71fcf657158a3c5463b028e0d10cf",
+ "sources": {
+  "causal_data_manifest": {
+   "path": "results/pruning_ab/causal_data_manifest.json",
+   "sha256": "c46ca88aafeffa478a84aa57d8cf7eea9b431141cc937f969af33721fbb71988"
+  },
+  "mechanism_effects": {
+   "path": "results/pruning_ab/mechanism_effects.json",
+   "sha256": "cb4a0025eceb4a56005427897ac31901c29e5f5f01e953f7830a8695fba7464d"
+  },
+  "robustness": {
+   "path": "results/pruning_ab/robustness.json",
+   "sha256": "bd918dc80fcbb83c644e5b4cb795205f9c3f4996e24d7ad4992d65a01048c03a"
+  },
+  "controller_policies": {
+   "path": "results/pruning_ab/controller_policies.json",
+   "sha256": "62f69bd345e4e95d908b36fd22bc46bf70d08da55d3e1c4d641c227aeb3a7cdd"
+  },
+  "falsification": {
+   "path": "results/pruning_ab/falsification.json",
+   "sha256": "99ba97582f10c1d9be25d6d2ace4e6c3acfb5dc1179a9b773e1e91ffaf42f386"
+  },
+  "consistency_assertions": {
+   "path": "results/pruning_ab/consistency_assertions.json",
+   "sha256": "418942adcc810c040aad8b3418fcc0218844e109a6ec8746e7eba8f0e4827a45"
+  },
+  "success_cate_repeated": {
+   "path": "results/pruning_ab/success_cate_repeated.json",
+   "sha256": "9f35c2b103c8e620352d4ae469d03bce01dcf66c728f52c7319291da9d45cb0b"
+  }
+ },
+ "reconstructed_facts": {
+  "C0_stable_resolved": "46/49 completed (50 tasks)",
+  "cache_tax": {
+   "C0_identity": 0.077,
+   "SHAM": 0.066,
+   "HYBRID1_m7_agg2": 0.784
+  },
+  "cache_tax_ci": {
+   "C0_identity": [
+    0.061,
+    0.098
+   ],
+   "SHAM": [
+    0.051,
+    0.083
+   ],
+   "HYBRID1_m7_agg2": [
+    0.733,
+    0.83
+   ]
+  },
+  "intelligence_tax_dose_controlled": {
+   "ols_dose_coef": 0.0001,
+   "ols_destructive_coef": 0.415,
+   "n": 206
+  },
+  "LINEDEDUP_leave_top_k": {
+   "0": 6.3,
+   "1": 0.9,
+   "3": -4.0,
+   "5": -8.8
+  },
+  "GENTLE6K_leave_top_k": {
+   "0": 10.1,
+   "1": 2.5,
+   "3": -7.1,
+   "5": -8.4
+  },
+  "sham_dup_spearman": -0.7575757575757576,
+  "linededup_repo_cluster_ci": [
+   -9.9,
+   18.0
+  ],
+  "controller_totals": {
+   "always_C0": 5507153.0,
+   "always_LINEDEDUP": 5184359.0,
+   "always_GENTLE6K": 4951455.0,
+   "oracle_posthoc": 4019692.0,
+   "dup>0.2->LD": 5002202.0,
+   "dup>0.25->LD": 4997664.0,
+   "dup>0.3->LD": 5120094.0,
+   "c0_total": 5507153.0,
+   "n": 49
+  },
+  "controller_verdict": "best_trace_policy(dup>0.25->LD=4997664.0) < always_GENTLE6K(4951455.0) => controller NOT_SUPPORTED (trace policy costs MORE than best static)",
+  "success_cate": {
+   "hyb_vs_c0": 0.0,
+   "sham_vs_c0": 0.02,
+   "n_c0_unstable": 5
+  },
+  "consistency_assertions_all_pass": true
+ },
+ "agreement_checks": [
+  {
+   "check": "cache_tax C0~0.077",
+   "pass": true
+  },
+  {
+   "check": "cache_tax SHAM~0.066",
+   "pass": true
+  },
+  {
+   "check": "cache_tax HYBRID1~0.784",
+   "pass": true
+  },
+  {
+   "check": "LINEDEDUP +6.3% bill",
+   "pass": true
+  },
+  {
+   "check": "GENTLE6K +10.1% bill",
+   "pass": true
+  },
+  {
+   "check": "leave-top-3 LINEDEDUP negative",
+   "pass": true
+  },
+  {
+   "check": "leave-top-3 GENTLE6K negative",
+   "pass": true
+  },
+  {
+   "check": "sham_dup_spearman ~ -0.76",
+   "pass": true
+  },
+  {
+   "check": "repo_cluster_ci spans zero",
+   "pass": true
+  },
+  {
+   "check": "controller NOT_SUPPORTED",
+   "pass": true
+  },
+  {
+   "check": "dose_coef~0",
+   "pass": true
+  },
+  {
+   "check": "destructive_coef~0.415",
+   "pass": true
+  },
+  {
+   "check": "C0 stable=46",
+   "pass": true
+  },
+  {
+   "check": "consistency 7/7",
+   "pass": true
+  }
+ ],
+ "all_agreement_pass": true
+}

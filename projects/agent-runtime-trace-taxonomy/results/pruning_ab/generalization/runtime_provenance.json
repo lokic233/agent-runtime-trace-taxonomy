@@ -1,0 +1,99 @@
+{
+ "repo_head": "5b5fc94ecb2883a4827b2b3eeb2f0766ec325c5a",
+ "canonical_freeze_commit": "bb43b49612760b56a3f8d620fbffcae9dc347bf6",
+ "live_workspace": "/data/users/dengcchi/prune_ab",
+ "swe_agent": {
+  "commit": "d872eb743ef9",
+  "config": "config/benchmarks/250225_anthropic_filemap_simple_review.yaml",
+  "config_sha256": "c9a3eb930c23a4c632f9d0f83bf0bcf4cc04b6259c8392003a8b31603af60772"
+ },
+ "golden50_filter": "harness/pruning_ab/configs/golden50_filter.txt (50 ids, single regex)",
+ "interesting10_tasks": [
+  "pylint-dev__pylint-4551",
+  "pytest-dev__pytest-6197",
+  "sympy__sympy-14248",
+  "sphinx-doc__sphinx-8638",
+  "sphinx-doc__sphinx-9658",
+  "pylint-dev__pylint-6386",
+  "astropy__astropy-14096",
+  "sympy__sympy-19040",
+  "sympy__sympy-13091",
+  "pylint-dev__pylint-8898"
+ ],
+ "prune_methods_copies": {
+  "src_canonical": {
+   "module_sha256": "cb06efb69c9a08e7a48a1fca747a9fe1e9f71fcf657158a3c5463b028e0d10cf",
+   "status": "CANONICAL (== manifest)"
+  },
+  "harness_stale": {
+   "module_sha256": "536c4ed821d2774189ccdefe7ce3e2dce2e6c4ed4f42912aa0fcf61a15376b49",
+   "status": "STALE PARTIAL \u2014 missing SHAM/LINEDEDUP_e4/GENTLE6K_stable/RETRIEVREF_e4. DO NOT USE."
+  },
+  "live_scripts": {
+   "module_sha256": "e35b6fbcd111a21e777d81491d9f07a4d68b19041990ce37628e050ce2c98ede",
+   "status": "LIVE \u2014 imported by the shim during frozen runs (sys.path.insert dir)"
+  }
+ },
+ "per_method_function_sha256": {
+  "C0_identity": "50d7379887e105cf47d1bb9b02d1b032599ef9cf215d22d3e933816fcf3a6a32",
+  "HYBRID1_m7_agg2": "6c9ab8b642bda9a3032ff2ef1f4d2492eb89e3dbd8a57e3c5694d53578b457b1",
+  "LINEDEDUP_e4": "d3745ee0e66add3b9168d825d8f49d8131ca2ed87e7bbd34d6566bfcae718d7e",
+  "GENTLE6K_stable": "b6946b104e2e87bda4afed6bd3be74bb501ff628c3c5bb1df49a055768a6c5aa",
+  "CAP1K_stable": "7ccec6960f058a4996fe28a72b7ee3498833127e3d97d7f1f74d5fd09720a115",
+  "RETRIEVREF_e4": "03c05e5078e3d5bb0a1377385a1a89e23d6499a4846fe656d764f7676378d869"
+ },
+ "function_hash_agreement": "ALL 6 frozen treatment functions BYTE-IDENTICAL between src_canonical and live_scripts. harness_stale lacks the e4 set. Module-hash differences are confined to non-treatment code. => the runtime transform is tied to the canonical frozen treatment.",
+ "sham": "SHIM MODE (TS_PRUNE_METHOD=SHAM) not a METHODS entry; identical deepcopy/normalize/token-count path, byte-identical output.",
+ "shim_sha256": {
+  "prune_shim_v2.py": "ddf68b6fddc471713a39074c034d0d46d6faa05c3b5b42ac9dc5a8dfc9288cd4",
+  "prune_shim.py": "5b64206382843e882931d8bfebc89851db50151134f41f3cf5caef12179ed1b5",
+  "prune_shim_openai.py": "832288f5915d5da093e9659341d59fe4c5fa477223c02095826202cb03db4343"
+ },
+ "grader": "SWE-bench Verified harness report.json (per-instance resolved bool); pipeline reproduces published resolve rates within ~1pt.",
+ "model_routing": {
+  "claude-sonnet-4-6": {
+   "endpoint": "/v1/messages",
+   "served": "claude-sonnet-4.6",
+   "cache_fields": true,
+   "status": "LIVE"
+  },
+  "claude-haiku-4-5": {
+   "endpoint": "/v1/messages",
+   "served": "claude-haiku-4.5",
+   "cache_fields": true,
+   "status": "LIVE"
+  },
+  "claude-opus-4-7": {
+   "endpoint": "/v1/messages",
+   "served": "claude-opus-4.7",
+   "cache_fields": true,
+   "status": "LIVE (anchor)"
+  },
+  "gpt-5-5": {
+   "endpoint": "/v1/chat/completions",
+   "served": "gpt-5-5",
+   "cache_fields": false,
+   "usage": [
+    "prompt_tokens",
+    "completion_tokens",
+    "total_tokens"
+   ],
+   "status": "LIVE \u2014 PRIMARY, no fallback used"
+  },
+  "gpt-5-4": {
+   "status": "LIVE fallback (UNUSED)"
+  },
+  "gemini-3-1-pro": {
+   "status": "LIVE fallback (UNUSED)"
+  }
+ },
+ "hazards": {
+  "run_arm_hardcodes_opus47": "CONFIRMED \u2014 parameterize --agent.model.name (do not break Opus replay)",
+  "run_arm_external_checkout": "CONFIRMED \u2014 cd /data/users/dengcchi/hal_work/hal-harness/agents/SWE-agent-v1.0",
+  "shim_relative_import": "RESOLVED \u2014 shim imports prune_methods from its own dir; live scripts/ copy functions == canonical",
+  "e4_launch_from_live": "CONFIRMED \u2014 runs launch from /data/users/dengcchi/prune_ab",
+  "two_copies_differ": "RESOLVED \u2014 use src_canonical / live_scripts; never harness_stale",
+  "cross_provider_no_cache": "gpt-5-5 has no cache_read/creation -> provider-native cost vs own C0; NO anthropic weights; cannot claim cache-tax replication"
+ },
+ "no_paid_runs_this_phase": true
+}
