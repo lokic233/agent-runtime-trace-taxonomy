@@ -94,6 +94,24 @@ Simulating uncached pricing (all prompt tokens at 1.0×, no 0.1× cache discount
 
 **Important caveat:** this simulation reuses opus-4.7's (cached-model) trajectories. A *genuinely* uncached or weaker model would produce DIFFERENT, likely more redundant trajectories where pruning has more to cut and the agent may tolerate it differently. That regime is NOT captured here and remains the one honest untested avenue. But the simulation reveals a deeper barrier than the cache alone: **trajectory sensitivity** — a capable agent perturbed by pruning sometimes loops, and that output cost dominates.
 
+
+## The monotonic mechanism (independently confirmed)
+
+A second independent analysis confirmed the decisive mechanism: **call-overhead is monotonic with cost damage.**
+
+| method | call-ratio vs C0 | median eff-cost |
+|--------|---:|---:|
+| GENTLE4K | 1.00 | −6.0% |
+| GENTLE6K | 1.04 | +0.6% |
+| SMARTGENTLE | 1.07 | −9.5% |
+| CAP1K | 1.24 | −11.9% |
+| CAP800 | 1.47 | −19.1% |
+| CAP500 | 1.73 | −35.2% |
+| SMART | 2.33 | −55.9% |
+| COMBOSC | 2.26 | −75.5% |
+
+The more a method prunes, the more the agent re-fetches (higher call-ratio), and on a cached model each extra call re-pays cache_creation (1.25×) — so token "savings" invert into cost increases. Gentle methods avoid the inflation but prune too little to save. **There is no middle ground that both saves and stays safe** — the 0.1× cache-read discount makes leaving context cached already cheaper than any pruning strategy.
+
 ## Honest conclusion
 The cache-stable hypothesis was **correct and necessary** — it explains HYBRID1's failure and fixes it — but it is **not sufficient** for a task-level win on cached models. The win, if it exists, lives on **uncached/weaker models** (no 0.1× cache, so the ~40% per-call prompt reduction would translate) — the untested regime flagged in v3. On cached opus-4.7, client-side prompt pruning's ceiling is break-even.
 
