@@ -571,3 +571,106 @@ def smart_gentle(messages):
 METHODS["GENTLE4K_stable"]=cap_4k_gentle
 METHODS["GENTLE6K_stable"]=cap_6k_gentle
 METHODS["SMARTGENTLE_stable"]=smart_gentle
+
+
+# ============================================================================
+# EXPERIMENT 4: RETRIEVAL-AWARE + LINE-LEVEL cache-stable pruning
+# Grounded in SWE-Pruner (line-level, keep whole relevant lines -> no syntax break)
+# + Headroom/tokensave (retrievable refs -> info deferred not lost -> less drift)
+# + our cache finding (content-based -> cache-stable). Regression-ALLOW framing.
+# ============================================================================
+
+def line_level_dedup(messages):
+    """LINEDEDUP: within each observation, drop LINES that appeared verbatim in an EARLIER
+    observation (cross-obs line dedup). Keeps whole lines (syntax intact, SWE-Pruner style).
+    Content-stable: a line's keep/drop depends only on whether its exact text was seen before.
+    Drift-safe: deduped lines were already shown, so no NEW info is lost."""
+    import copy
+    out=copy.deepcopy(messages); n=len(out)
+    seen_lines=set()
+    for i,m in enumerate(out):
+        if not _is_obs(i,m,n):
+            # still register assistant/non-obs lines as 'seen' for dedup reference
+            continue
+        t=_txt(m.get("content"))
+        if len(t)<300: 
+            for ln in t.split("\n"): seen_lines.add(ln.strip())
+            continue
+        kept=[]; dropped=0
+        for ln in t.split("\n"):
+            key=ln.strip()
+            if len(key)>=12 and key in seen_lines:
+                dropped+=1
+            else:
+                kept.append(ln); seen_lines.add(key)
+        if dropped>3:
+            new="\n".join(kept)+f"\n[{dropped} duplicate lines elided]"
+            _set_obs_text(out[i], new)
+    return out
+
+def blank_line_squeeze(messages):
+    """SQUEEZE: collapse runs of blank lines + trailing whitespace in observations. LOSSLESS.
+    Content-stable, zero info loss -> zero drift. The 'free' baseline win."""
+    import copy, re
+    out=copy.deepcopy(messages); n=len(out)
+    for i,m in enumerate(out):
+        if not _is_obs(i,m,n): continue
+        t=_txt(m.get("content"))
+        if len(t)<200: continue
+        sq=re.sub(r'[ \t]+\n','\n',t)        # trailing whitespace
+        sq=re.sub(r'\n{3,}','\n\n',sq)        # 3+ blank lines -> 1
+        if len(sq)<len(t): _set_obs_text(out[i], sq)
+    return out
+
+def retrieval_ref_large(messages):
+    """RETRIEVREF: replace observations >5k chars with a STRUCTURED retrievable summary:
+    keep first 30 + last 15 lines + a line-count header so the agent knows it can re-read.
+    Content-stable (depends only on the obs). Mimics Headroom: 'if you need it, re-read the file'.
+    Regression-ALLOW: large dumps rarely need full body; the ref tells the agent what/where."""
+    import copy
+    out=copy.deepcopy(messages); n=len(out)
+    for i,m in enumerate(out):
+        if not _is_obs(i,m,n): continue
+        t=_txt(m.get("content"))
+        if len(t)<=5000: continue
+        lines=t.split("\n")
+        if len(lines)<50: 
+            _set_obs_text(out[i], t[:3000]+f"\n[... {len(t)-3500} chars elided; re-run the command to see full output ...]\n"+t[-500:])
+            continue
+        head="\n".join(lines[:30]); tail="\n".join(lines[-15:])
+        _set_obs_text(out[i], f"{head}\n[... {len(lines)-45} lines elided ({len(t)} chars total); re-read file/re-run to see full ...]\n{tail}")
+    return out
+
+def keep_signal_lines(messages):
+    """SIGNAL: line-level skim (SWE-Pruner style). In observations >2k chars, keep only HIGH-SIGNAL
+    lines: errors/tracebacks, def/class/import, file paths, diffs (+/-), assertions, line-number refs.
+    Drop bland prose/separators. Keeps WHOLE lines (syntax intact). Content-stable. Regression-ALLOW."""
+    import copy, re
+    out=copy.deepcopy(messages); n=len(out)
+    sig=re.compile(r'(error|traceback|exception|fail|assert|def |class |import |return |raise |^\+|^-|\.py[:\"]|line \d+|=== |\bE\b|warning|FAILED|PASSED|\bdef\b)', re.I)
+    for i,m in enumerate(out):
+        if not _is_obs(i,m,n): continue
+        t=_txt(m.get("content"))
+        if len(t)<=2000: continue
+        lines=t.split("\n")
+        if len(lines)<20: continue
+        kept=[]; run_drop=0
+        for ln in lines:
+            if sig.search(ln) or len(ln.strip())==0 and run_drop==0:
+                kept.append(ln); run_drop=0
+            else:
+                run_drop+=1
+                if run_drop==1: kept.append("  ...")
+        new="\n".join(kept)
+        if len(new)<len(t)*0.85: _set_obs_text(out[i], new)
+    return out
+
+def combo_squeeze_signal(messages):
+    """COMBO-SS: lossless squeeze + signal-line skim on large obs. Stacks the two safest wins."""
+    return keep_signal_lines(blank_line_squeeze(messages))
+
+METHODS["LINEDEDUP_e4"]=line_level_dedup
+METHODS["SQUEEZE_e4"]=blank_line_squeeze
+METHODS["RETRIEVREF_e4"]=retrieval_ref_large
+METHODS["SIGNAL_e4"]=keep_signal_lines
+METHODS["COMBOSS_e4"]=combo_squeeze_signal
