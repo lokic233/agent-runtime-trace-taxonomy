@@ -112,3 +112,22 @@ After the main study, a follow-up tested whether CACHE-STABLE pruning (content-b
 **The real-win regime remains UNCACHED/weaker models** (no 0.1× cache → the ~40% per-call prompt reduction would translate to real saving). That is the validated next direction, untested here.
 
 **Revised PAPER_VERDICT: MIXED_BOUNDARY_RESULT** — client-side pruning's task-level cost ceiling on cached frontier agents is break-even; the method family is mechanically sound (cache-stable + drift-free) but the cached-prompt economics cap the upside. Recency-based pruning (HYBRID1) is strictly harmful; content-stable gentle pruning is harmless-to-neutral.
+
+
+---
+
+## ADDENDUM 2 (Experiment 4 — the positive result): LINEDEDUP achieves real saving
+
+After the cache-stable experiment (which hit break-even), Experiment 4 tested LITERATURE-GROUNDED methods (SWE-Pruner line-level skim + Headroom retrievable refs) under a REGRESSION-BUDGET framing (regressions acceptable; rank by cost-efficiency). Full results: EXPERIMENT4_FRONTIER.md.
+
+**LINEDEDUP_e4 — the study's best result and a genuine regression-budget Pareto point:**
+- **+6.3% effective-cost saving / +9.9% raw-prompt saving** across golden-50 (paired vs tagged C0)
+- **drift-free** (1.00× agent calls — removes ONLY lines the agent already saw, so no information is lost and the agent never re-fetches)
+- **cache-stable** (content-based dedup, no prefix rewrite → no HYBRID1 cache-bust)
+- **1 real regression** (sympy-24539; 4 of its 5 apparent regressions are A/A noise-floor flippers)
+
+This is the mechanism that works where 25+ others failed: **remove only PROVABLY-REDUNDANT content (lines already shown in an earlier observation).** It cannot cause drift (nothing new is lost) and cannot bust the cache (content-stable). The aggressive variants (SIGNAL −23%, COMBOSS −18%) confirm again that destroying needed content backfires.
+
+**Honest bound:** LINEDEDUP's per-task median is ≈−1% (CI straddles zero); the win is in the AGGREGATE BILL (+6-10%), concentrated on the big expensive tasks where duplicate observations accumulate. It is not a statistically-significant clean win, but under a regression budget it is a real, defensible, mechanistically-sound cost saving — the positive endpoint of the Pareto frontier.
+
+**Revised PAPER_VERDICT: MIXED_BOUNDARY_RESULT (with a positive frontier point).** On cached frontier opus-4.7: recency pruning is harmful (cache-bust), content truncation is harmful (drift), but REDUNDANCY-REMOVAL (line dedup) achieves a modest ~6-10% real cost saving at ~1 regression. The safe-pruning ceiling is ~6-10%, because the cached prompt is already cheap.
