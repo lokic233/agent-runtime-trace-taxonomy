@@ -51,6 +51,7 @@ CROSS_MODEL_STATUS:             UNDERPOWERED / EXPLORATORY
 1. **Leave-top-k-expensive-out:** LINEDEDUP +6.3%→+0.9%(−1)→−4.0%(−3); GENTLE6K +10.1%→+2.5%(−1)→−7.1%(−3). **All aggregate saving comes from 1–3 expensive tasks; removing them flips it negative.**
 2. **SHAM cost negative control FAILS:** dup_line_ratio predicts SHAM (no-op) cost-delta at Spearman −0.76 → the feature tracks run-to-run cost INSTABILITY, not treatment benefit. Cleanest falsification of trace predictiveness.
 3. **Repo-cluster bootstrap:** LINEDEDUP +6.3% → 95% CI [−9.9%, +18.0%] (straddles zero).
+5. **Leave-one-repo-out controller cross-fit:** trace policy +4.9% out-of-sample (vs in-sample +9.3%) < best-static +10.1% → controller does NOT generalize across repos (leakage-free).
 4. **Decomposition:** where saving exists it is real cache_read reduction — but concentrated in a few tasks.
 
 **Net effect:** the aggregate saving numbers are point-positive but **NOT robust**; the controller comparison's static champion is itself fragile. This makes TRACE_SIGNAL_PREDICTIVENESS=NOT_SUPPORTED and DEPLOYABLE_CONTROLLER_VALUE=NOT_SUPPORTED *more* strongly supported, not less.

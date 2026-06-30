@@ -28,6 +28,16 @@
 - 49 tasks, single run each (development data) — the threshold was even tuned on these same tasks (optimistic for the policy, yet it still loses). On untouched data it would likely do no better.
 - Oracle uses post-hoc cost only (not quality); a quality-aware oracle may differ.
 
+## Leave-one-repository-out cross-fit (no in-sample leakage)
+Proper grouped CV — threshold learned on train repos, applied to held-out repo:
+| policy | out-of-sample saving |
+|--------|---:|
+| always_C0 | +0.0% |
+| trace policy (LORO) | **+4.9%** |
+| best-static-from-train | **+10.1%** |
+
+Out-of-sample, the trace policy (+4.9%) is **worse than in-sample (+9.3%)** and far below best-static (+10.1%). The controller does **not generalize across repositories** — confirming NOT_SUPPORTED with leakage-free cross-fitting. (controller_crossfit.json)
+
 ## Verdict
 **ORACLE_GAP: SUPPORTED (large gap exists, +27%).**
 **DEPLOYABLE_CONTROLLER_VALUE: NOT_SUPPORTED** — no Tier-1 trace policy beats the best static method, even with in-sample threshold tuning.

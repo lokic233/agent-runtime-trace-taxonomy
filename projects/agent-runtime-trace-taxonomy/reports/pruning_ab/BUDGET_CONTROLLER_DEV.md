@@ -26,5 +26,15 @@ A genuine controller would require either (a) features that pass the negative co
 ## Quality budget overlay (could not be applied)
 GENTLE6K's +10.1% carries 1 regression and LINEDEDUP's +5.9% carries 2 (unresolved attribution). With only 10 repeated-run tasks, the quality-loss UB cannot be calibrated per-policy → quality-budgeted controller selection is **UNDERPOWERED** (CONTROLLER_PREREGISTRATION.md preregisters the test for future untouched data).
 
+## Leave-one-repository-out cross-fit (no in-sample leakage)
+Proper grouped CV — threshold learned on train repos, applied to held-out repo:
+| policy | out-of-sample saving |
+|--------|---:|
+| always_C0 | +0.0% |
+| trace policy (LORO) | **+4.9%** |
+| best-static-from-train | **+10.1%** |
+
+Out-of-sample, the trace policy (+4.9%) is **worse than in-sample (+9.3%)** and far below best-static (+10.1%). The controller does **not generalize across repositories** — confirming NOT_SUPPORTED with leakage-free cross-fitting. (controller_crossfit.json)
+
 ## Verdict
 **DEPLOYABLE_CONTROLLER_VALUE: NOT_SUPPORTED.** Best trace policy < best static method on dev data with in-sample tuning.
