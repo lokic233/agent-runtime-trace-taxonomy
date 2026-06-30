@@ -1,0 +1,54 @@
+{
+ "all_pass": true,
+ "n_checks": 11,
+ "fails": [],
+ "checks": [
+  {
+   "check": "canonical_present:results/pruning_ab/COMPREHENSIVE.json",
+   "pass": true
+  },
+  {
+   "check": "canonical_present:results/pruning_ab/causal_data_manifest.json",
+   "pass": true
+  },
+  {
+   "check": "canonical_present:results/pruning_ab/mechanism_effects.json",
+   "pass": true
+  },
+  {
+   "check": "canonical_present:results/pruning_ab/robustness.json",
+   "pass": true
+  },
+  {
+   "check": "canonical_present:results/pruning_ab/controller_policies.json",
+   "pass": true
+  },
+  {
+   "check": "canonical_present:results/pruning_ab/consistency_assertions.json",
+   "pass": true
+  },
+  {
+   "check": "canonical_present:reports/pruning_ab/CANONICAL_INDEX.md",
+   "pass": true
+  },
+  {
+   "check": "canonical_present:reports/pruning_ab/COMPREHENSIVE_TABLE.md",
+   "pass": true
+  },
+  {
+   "check": "canonical_present:reports/pruning_ab/TRACE_CAUSALITY_FINAL.md",
+   "pass": true
+  },
+  {
+   "check": "smoke:sonnet46_C0_identity:ledger",
+   "pass": true,
+   "detail": "213 rows"
+  },
+  {
+   "check": "smoke:sonnet46_SHAM:ledger",
+   "pass": true,
+   "detail": "210 rows"
+  }
+ ],
+ "principle": "new generalization runs live ONLY in generalization/ namespace; canonical Opus artifacts are read-only."
+}
