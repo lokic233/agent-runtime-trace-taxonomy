@@ -1,0 +1,12 @@
+{
+ "purpose":"EXPLORATORY cross-tier cache-tax preview from the 5-task smoke (NOT powered Phase C; no scientific claim).",
+ "estimand":"cache_creation_fraction = cache_creation/(cache_creation+cache_read), pooled (bill-weighted)",
+ "cache_tax_by_tier":{
+   "opus_4_7_anchor":{"C0":0.077,"SHAM":0.066,"HYBRID1":0.784,"source":"frozen mechanism_effects.json"},
+   "sonnet_4_6":{"C0":0.035,"SHAM":0.039,"HYBRID1":0.788,"source":"smoke 5-task"},
+   "haiku_4_5":{"C0":0.094,"SHAM":0.031,"HYBRID1":0.784,"source":"smoke 5-task"}
+ },
+ "pattern":"C0 ~ SHAM << HYBRID1 holds on ALL THREE tiers. HYBRID1 cc_frac 0.784-0.788 ~ INVARIANT across capability.",
+ "interpretation":"Cache tax is a PROVIDER-CACHING behavior (prefix rewrite -> recreation), not model-reasoning -> expected to be capability-invariant. Smoke preview supports mechanism + effect-size transport across Claude tiers. POWERED confirmation = Phase C (10 tasks x 5 reps, counterbalanced).",
+ "status":"EXPLORATORY"
+}
