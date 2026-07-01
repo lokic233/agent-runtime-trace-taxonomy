@@ -27,6 +27,17 @@ _MOD_SHA=hashlib.sha256(inspect.getsource(PM).encode()).hexdigest()
 def _fnsha(m):
     try: return hashlib.sha256(inspect.getsource(PM.METHODS[m]).encode()).hexdigest()
     except Exception: return None
+import hashlib as _hl
+FP_INDEX=json.load(open("/data/users/dengcchi/prune_ab/task_fingerprints.json")) if os.path.exists("/data/users/dengcchi/prune_ab/task_fingerprints.json") else {}
+def fingerprint_task(msgs):
+    for m in msgs:
+        if m.get("role")=="user":
+            t=m.get("content")
+            if isinstance(t,list): t=" ".join(x.get("text","") for x in t if isinstance(x,dict))
+            elif not isinstance(t,str): t=str(t)
+            fp=_hl.sha256(t[:2000].encode()).hexdigest()[:16]
+            return FP_INDEX.get(fp, f"UNKNOWN_{fp}")
+    return "NO_USER_MSG"
 _lock=threading.Lock(); _callcount={}
 
 def _norm_model_to_openai(d):
@@ -93,11 +104,12 @@ def call_plugboard(body, timeout=900, retries=6):
 def transform(raw):
     meta={"changed":False,"changed_message_count":0,"first_changed_message_index":None,
           "messages_before_chars":0,"messages_after_chars":0,"characters_removed":0,
-          "transform_fired":None,"obs_role_layout":None}
+          "transform_fired":None,"obs_role_layout":None,"task_id":None}
     try: d=json.loads(raw)
     except: return raw, meta
     msgs=d.get("messages")
     if isinstance(msgs,list):
+        meta["task_id"]=fingerprint_task(msgs)
         # detect observation layout (diagnostic for the no-op hazard)
         roles=[m.get("role") for m in msgs]
         meta["obs_role_layout"]="tool" if "tool" in roles else "user_pleintext"
@@ -130,7 +142,7 @@ class H(http.server.BaseHTTPRequestHandler):
         body,meta=transform(raw); rc,out=call_plugboard(body); dt=time.time()-t0
         try:
             d=json.loads(out); u=d.get("usage",{}) or {}
-            tid=os.environ.get("TS_TASK_HINT","?")
+            tid=meta.get("task_id") or "?"
             with _lock:
                 ci=_callcount.get(tid,0); _callcount[tid]=ci+1
             rec={"study":"cross_model_generalization_v1","provider":"plugboard_openai","requested_model":REQ_MODEL,
