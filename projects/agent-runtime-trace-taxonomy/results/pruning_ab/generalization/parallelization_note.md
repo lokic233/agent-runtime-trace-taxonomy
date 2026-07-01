@@ -47,3 +47,15 @@ FIX: launch via `systemd-run --user --unit=xmodel-driver /data/users/dengcchi/pr
 a transient USER-scope systemd service owned by user@.service, independent of any SSH/CLI session. Survives
 disconnects. Restart: `systemctl --user reset-failed xmodel-driver; systemd-run --user --unit=xmodel-driver ...`.
 This is the durable launch method for all long autonomous runs on a CLI node.
+
+## Phase D convergence fix: resume-in-place (the key insight)
+Since ~10:33 the shared host issues intermittent external SIGKILLs (~15min interval; not oomd/cgroup/cert —
+sweagent RSS only 350MB). Heavy Opus transform cells (GENTLE6K/LINEDEDUP/CAP1K, ~25min for 10 tasks) never
+finished in one window -> 0 completed since resume; the runner wiped run dirs on retry so each attempt restarted
+from zero (Sisyphean).
+FIX: sweagent should_skip() (run_batch.py:377) skips tasks whose .traj has a real exit_status, and RE-RUNS
+tasks with exit_status None/empty (removes the partial .traj first). So PRESERVING the run dir on retry =
+resume-in-place: completed tasks skip, only the killed task re-runs. Verified live: LINEDEDUP_e4_rep3 resumed
+with 9 tasks skipped + only sympy-19040 (the killed one) re-running. Cells now converge across kills.
+Companion: ledger_util.load_ledger_dedup (dedup task_id+call_index last-wins) handles the re-appended rows;
+retry rounds 2->5. This is the durable fix for intermittent-kill hosts.
