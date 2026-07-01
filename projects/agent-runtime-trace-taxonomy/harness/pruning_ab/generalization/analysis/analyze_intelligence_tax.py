@@ -27,17 +27,34 @@ def load_cells():
         for mk in ("opus47","sonnet46","haiku45"):
             if b.startswith(mk+"_"):
                 arm=b[len(mk)+1:].rsplit("_rep",1)[0]
-                cells[(mk,arm)].extend(load_ledger_dedup(p))
+                repkey=b.rsplit("_rep",1)[-1]  # the rep number, to distinguish reps after merge
+                rows=load_ledger_dedup(p)
+                for r in rows: r["_repkey"]=repkey
+                cells[(mk,arm)].extend(rows)
                 break
     return cells
 
 def per_task_calls(rows):
-    by=defaultdict(int)
-    for r in rows: by[r.get("task_id")]+=1
+    # mean calls per (task, rep): sum calls per task, divide by the number of distinct reps that ran that task.
+    # Prevents rep-count bias when arms have unequal completed-rep counts (e.g. CAP1K 2 reps vs C0 3 reps).
+    from collections import defaultdict as _dd
+    task_rep_calls=_dd(lambda: _dd(int))  # task -> rep_key -> calls
+    for r in rows:
+        rk=r.get("trace_id") or r.get("replicate") or r.get("_repkey") or "r"
+        task_rep_calls[r.get("task_id")][rk]+=1
+    by={}
+    for t,reps in task_rep_calls.items():
+        by[t]=sum(reps.values())/len(reps)  # mean calls per rep for this task
     return by
 def per_task_out(rows):
-    by=defaultdict(int)
-    for r in rows: by[r.get("task_id")]+= (r.get("output_tokens") or 0)
+    from collections import defaultdict as _dd
+    task_rep_out=_dd(lambda: _dd(int))
+    for r in rows:
+        rk=r.get("trace_id") or r.get("replicate") or r.get("_repkey") or "r"
+        task_rep_out[r.get("task_id")][rk]+=(r.get("output_tokens") or 0)
+    by={}
+    for t,reps in task_rep_out.items():
+        by[t]=sum(reps.values())/len(reps)
     return by
 
 def main():
