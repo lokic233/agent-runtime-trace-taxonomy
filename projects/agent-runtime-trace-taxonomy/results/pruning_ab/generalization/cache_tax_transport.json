@@ -1,0 +1,85 @@
+{
+ "estimand": "cache_creation_fraction = cache_creation/(cache_creation+cache_read)",
+ "opus_anchor_frozen": {
+  "C0_identity": 0.077,
+  "SHAM": 0.066,
+  "HYBRID1_m7_agg2": 0.784
+ },
+ "contrast": "C0 ~ SHAM << HYBRID1 (prefix rewriting busts cache)",
+ "cells": {
+  "haiku45/C0_identity": {
+   "n_calls": 3662,
+   "n_tasks": 10,
+   "cc_fraction_pooled": 0.0301,
+   "cc_fraction_per_task_mean": 0.0303,
+   "cc_fraction_ci": [
+    0.0287,
+    0.032
+   ]
+  },
+  "haiku45/HYBRID1_m7_agg2": {
+   "n_calls": 3714,
+   "n_tasks": 10,
+   "cc_fraction_pooled": 0.8588,
+   "cc_fraction_per_task_mean": 0.8599,
+   "cc_fraction_ci": [
+    0.8453,
+    0.8727
+   ]
+  },
+  "haiku45/SHAM": {
+   "n_calls": 3687,
+   "n_tasks": 10,
+   "cc_fraction_pooled": 0.0303,
+   "cc_fraction_per_task_mean": 0.0304,
+   "cc_fraction_ci": [
+    0.0286,
+    0.0323
+   ]
+  },
+  "sonnet46/C0_identity": {
+   "n_calls": 368,
+   "n_tasks": 4,
+   "cc_fraction_pooled": 0.1014,
+   "cc_fraction_per_task_mean": 0.1234,
+   "cc_fraction_ci": [
+    0.0781,
+    0.1839
+   ]
+  },
+  "sonnet46/HYBRID1_m7_agg2": {
+   "n_calls": 3574,
+   "n_tasks": 10,
+   "cc_fraction_pooled": 0.8712,
+   "cc_fraction_per_task_mean": 0.8679,
+   "cc_fraction_ci": [
+    0.8502,
+    0.886
+   ]
+  },
+  "sonnet46/SHAM": {
+   "n_calls": 2880,
+   "n_tasks": 10,
+   "cc_fraction_pooled": 0.0289,
+   "cc_fraction_per_task_mean": 0.0305,
+   "cc_fraction_ci": [
+    0.0273,
+    0.0356
+   ]
+  }
+ },
+ "by_model": {
+  "sonnet46": {
+   "C0": 0.1014,
+   "SHAM": 0.0289,
+   "HYBRID1": 0.8712,
+   "cache_tax_verdict": "SUPPORTED"
+  },
+  "haiku45": {
+   "C0": 0.0301,
+   "SHAM": 0.0303,
+   "HYBRID1": 0.8588,
+   "cache_tax_verdict": "SUPPORTED"
+  }
+ }
+}
