@@ -1,0 +1,93 @@
+{
+ "study": "Study 2 \u2014 Independent Confirmatory MRT Replication",
+ "relation_to_study1": "INDEPENDENT. New tasks (not in Study-1), NEW seed 20260702, new randomization ledger. Study-1 outcomes used ONLY for variance/eligibility/power planning \u2014 NOT to tune threshold, select tasks, choose outcome, or pick model spec. NO pooling until Study-2 frozen+analyzed.",
+ "scientific_question": "Does pre-treatment exact line-level redundancy causally modify the effect of segment-local LINEDEDUP, and can that signal produce a policy that beats the best static policy?",
+ "acceptable_outcomes": [
+  "moderates+policy-value",
+  "moderates-only",
+  "does-not-moderate",
+  "underpowered/blocked (documented)"
+ ],
+ "unacceptable": "protocol violation or estimator error presented as causal evidence; overstated claims.",
+ "decision_unit": "one task-level decision opportunity; <=1 randomized event/task (single-shot, newest observation, first available main-agent call).",
+ "treatment": "segment-local LINEDEDUP (remove newest-obs lines whose stripped form >=12 chars appears in a prior observation; prefix byte-identical; actual_changed from real serialized diff).",
+ "control": "byte-identical NO_OP (only the transport normalization applied identically to BOTH arms).",
+ "signal": "continuous exact duplicate_line_fraction (pre-treatment).",
+ "frozen_signal_policy": "pi_signal = LINEDEDUP iff dup_frac > 0.40 (threshold FROZEN, identical to Study-1; NOT tuned on Study-1 outcomes).",
+ "base_availability": "newest observation AND segment_chars>=2000 AND duplicate_line_count>=5 AND LINEDEDUP would remove >=1 complete line. dup_frac is a CONTINUOUS moderator (NO dup_frac gate on availability).",
+ "strata": {
+  "HIGH_REDUNDANCY": "dup_frac>0.40",
+  "MIXED_REDUNDANCY": "0<dup_frac<=0.40 & dup_count>=5"
+ },
+ "randomization": "stratified permuted-block, block size 4 (2 LINEDEDUP/2 NO_OP), SHA-256 Fisher-Yates from seed 20260702|stratum|block_id (no python hash()). Propensity 0.5. Append-only ledger, atomic-before-mutation, restart-reconstructed, conflict=>abort.",
+ "primary_outcome": "effective_cost_h1 = input + 0.1*cache_read + 1.25*cache_creation + 5*output (lower=better; weights frozen; raw components stored).",
+ "secondary_outcomes": [
+  "effective_cost_h3 (intervention + next 2 MAIN-AGENT responses; internal calls excluded; truncation recorded)",
+  "H=3 rework proxies",
+  "SWE-bench resolved (quality guardrail)"
+ ],
+ "primary_model": {
+  "spec": "Y_i = alpha_block(i) + beta1*A_i + beta2*S_i + beta3*A_i*S_i + error_i",
+  "A": "LINEDEDUP assignment (ITT)",
+  "S": "centered dup_frac (center = Study-1 available-event median, frozen)",
+  "beta3": "PRIMARY moderator parameter (negative => redundancy makes LINEDEDUP more favorable)",
+  "inference": "block-respecting randomization inference for beta3 (primary); repo-clustered / repo-bootstrap uncertainty (secondary).",
+  "estimability": "block FE + beta3 only (no repo FE + many covariates at expected N). ITT primary.",
+  "secondary_ancova": "prespecified variance-reduction covariates {log(segment_chars), calls_so_far, prior-call effective cost, prior cache state} \u2014 SECONDARY only.",
+  "forbidden_covariates": "NEVER control for post-treatment variables (characters_removed, future calls, rereads, task resolution)."
+ },
+ "controller_policies": {
+  "pi_keep": "always NO_OP",
+  "pi_static": "always LINEDEDUP when available",
+  "pi_signal": "LINEDEDUP iff dup_frac>0.40",
+  "estimators": "Hajek self-normalized IPW (primary) + cross-fitted doubly-robust (LORO folds) + block-aware CI + leave-one-repo-out cross-fitting.",
+  "supported_iff": "pi_signal beats BOTH pi_keep and pi_static on the primary estimator with credible uncertainty AND no quality collapse.",
+  "report_separately": [
+   "moderator evidence",
+   "policy-value evidence",
+   "deployability evidence"
+  ]
+ },
+ "quality": {
+  "non_inferiority_margin": "risk-difference margin = -0.15 (LINEDEDUP resolution may be at most 15pp below NO_OP to claim non-inferiority), justified from baseline resolution ~0.5-0.7 and workshop deployment tolerance. FROZEN before outcomes.",
+  "report": [
+   "arm resolution rates",
+   "risk difference",
+   "Newcombe/Wilson CI",
+   "non-inferiority result"
+  ],
+  "if_insufficient": "QUALITY_NONINFERIORITY: UNDERPOWERED (no-catastrophic-collapse is descriptive, not a safety guarantee)."
+ },
+ "negative_controls": {
+  "sham": "separate SHAM calibration cohort (byte-identical transform-path traversal, randomized vs NO_OP); test whether dup_frac modifies SHAM-vs-NO_OP cost. NOT mixed into primary two-arm estimand.",
+  "placebo": ">=5000 deterministic placebo moderators + event-id-hash placebo + block-respecting interaction permutation.",
+  "sensitivity_secondary": [
+   "threshold {0.30,0.40,0.50}",
+   "leave-top-k {1,3,5}",
+   "leave-one-repo-out",
+   "H1/H3/task-total",
+   "pricing weights"
+  ]
+ },
+ "power_precision": {
+  "finding": "80% moderator power INFEASIBLE at N<=400 given Study-1 variance (power_b3=0.27 at N=400).",
+  "mode": "PRECISION",
+  "primary_target": "ATE(H1) 95% CI half-width <= 1000 eff-cost (~16% of mean), expected ~N=160",
+  "hard_floor": ">=60 eligible events, >=25/arm, both strata, >=5 repos",
+  "stopping_rule": "stop when ATE CI half-width<=1000 AND >=60 events; OR all buildable pool tasks attempted. NEVER on p-value/sign/trend."
+ },
+ "missing_data": "infrastructure_failure (fail-closed 502) in the H1/H3 window => task EXCLUDED, classified BEFORE outcome analysis, logged. NEVER rerun a completed task for an unfavorable outcome.",
+ "model": "anthropic/claude-opus-4-7, temp 0.0, thinking OFF, PlugBoard mTLS, SWE-agent 1.1.0.",
+ "task_pool": "NEW tasks from SWE-bench Verified (500) minus golden-50. 450 candidates. Pool size finalized from the eligibility dry-run online availability rate (Part-VII).",
+ "frozen_code_hashes": {
+  "mrt_confirmatory_shim.py": "87b0043ab8c2194c",
+  "test_mrt_confirmatory_protocol.py": "d0d30055134ae882",
+  "join_h3_confirmatory.py": "3bc25c2c56a9b3ad",
+  "analyze_mrt_formal.py": "0a2437b9ea5d40e2",
+  "power_precision_confirmatory.py": "e441336de0d7e852"
+ },
+ "protocol_tests": "26/26 PASS",
+ "main_agent_call_audit": "24/24 trajectories consistent (>=20 required)",
+ "seed": 20260702,
+ "study_id": "study2"
+}
