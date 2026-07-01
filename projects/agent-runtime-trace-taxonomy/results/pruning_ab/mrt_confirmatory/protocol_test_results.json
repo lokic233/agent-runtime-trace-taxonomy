@@ -1,0 +1,136 @@
+{
+ "n": 26,
+ "n_pass": 26,
+ "tests": [
+  {
+   "name": "1_internal_call_filtering",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "2_newest_obs_selection",
+   "pass": true,
+   "detail": "seg=4 n=5"
+  },
+  {
+   "name": "3_availability_true_when_redundant",
+   "pass": true,
+   "detail": "avail=True"
+  },
+  {
+   "name": "4_continuous_moderator",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "5_stratum_high",
+   "pass": true,
+   "detail": "HIGH_REDUNDANCY 0.9375"
+  },
+  {
+   "name": "5b_stratum_mixed",
+   "pass": true,
+   "detail": "MIXED_REDUNDANCY 0.25"
+  },
+  {
+   "name": "6_block_2_2_balance",
+   "pass": true,
+   "detail": "['LINEDEDUP', 'NO_OP', 'NO_OP', 'LINEDEDUP']"
+  },
+  {
+   "name": "6b_block2_balance",
+   "pass": true,
+   "detail": "['LINEDEDUP', 'LINEDEDUP', 'NO_OP', 'NO_OP']"
+  },
+  {
+   "name": "7_deterministic_block_order",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "8_restart_persistence",
+   "pass": true,
+   "detail": "asg1=LINEDEDUP rec={'intervened': True, 'event_id': 'study2:task8:o1:98d30613f910ecfd:7e9a5fedbc813679', 'assignment': 'LINEDEDUP', 'stratum': 'HIGH_REDUNDANCY', 'block_id': 0, 'block_position': 0, 'timestamp': 1782946491.5214188, 'attempt': 0, 'status': 'intervened'}"
+  },
+  {
+   "name": "9_duplicate_request_idempotent",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "10_one_intervention_per_task",
+   "pass": true,
+   "detail": "assignments=1"
+  },
+  {
+   "name": "11_noop_byte_identity",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "12_segment_local_linededup",
+   "pass": true,
+   "detail": "changed=[4] seg=4"
+  },
+  {
+   "name": "13_prior_prefix_identical",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "14_assignment_vs_activation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "15_invalid_upstream_detected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "16_no_synthetic_assistant",
+   "pass": true,
+   "detail": "fabrication=False fail_closed=True"
+  },
+  {
+   "name": "17_h1_cost_formula",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "18_h3_joining",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "19_h3_truncation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "20_unknown_task_fail_closed",
+   "pass": true,
+   "detail": "known=False infra=True exp=False assigns=0"
+  },
+  {
+   "name": "21_restart_safe_ordinal_and_eventid",
+   "pass": true,
+   "detail": "ords=[1, 2] after_restart=3 unique_ids=3"
+  },
+  {
+   "name": "22_main_agent_call_classification",
+   "pass": true,
+   "detail": "setup=None mac=main_agent_call"
+  },
+  {
+   "name": "23_ledger_conflict_aborts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "24_provenance_hashes",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}
