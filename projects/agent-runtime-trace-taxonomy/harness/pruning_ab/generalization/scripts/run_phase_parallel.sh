@@ -59,4 +59,24 @@ for cell in "${CELLS[@]}"; do
   if [[ $running -ge $MAXPAR ]]; then wait -n 2>/dev/null || wait; running=$((running-1)); fi
 done
 wait
+# RETRY PASS: re-attempt any cell without a DONE marker (transient OOM/timeout), up to 2 extra rounds.
+for retry in 1 2; do
+  missing=()
+  for cell in "${CELLS[@]}"; do
+    read mk arm rep <<< "$cell"
+    if [[ "$rep" == t* ]]; then tag="${mk}_${arm}_${rep}"; else tag="${mk}_${arm}_rep${rep}"; fi
+    [[ -f "$OUT/DONE_${tag}" ]] || missing+=("$cell")
+  done
+  [[ ${#missing[@]} -eq 0 ]] && break
+  echo "=== RETRY ROUND $retry: ${#missing[@]} incomplete cells $(date +%H:%M:%S) ==="
+  running=0
+  for cell in "${missing[@]}"; do
+    read mk arm rep <<< "$cell"
+    port=$((port+1))
+    run_cell "$mk" "$arm" "$rep" "$port" &
+    running=$((running+1))
+    if [[ $running -ge $MAXPAR ]]; then wait -n 2>/dev/null || wait; running=$((running-1)); fi
+  done
+  wait
+done
 echo "=== PHASE $PHASE PARALLEL COMPLETE $(date +%H:%M:%S) DONE=$(ls $OUT/DONE_* 2>/dev/null|wc -l) ==="
