@@ -72,3 +72,15 @@ First smoke launch aborted after 1/18 cells. Root causes + fixes (all validated 
 
 Validated single cells: Sonnet-4.6/C0 (14 calls, cc_fraction 0.169, byte-identical); gpt-5-5/C0 (26 calls,
 byte-identical); gpt-5-5/LINEDEDUP tool-role (transform fires). Smoke re-launch will resume past DONE markers.
+
+## Phase B abort #2 — gpt55 false-DONE trap (fixed, smoke relaunched)
+First full smoke reached 18/18 DONE but the gate FAILED (all_gates_pass=false): the 6 gpt55 cells ran on
+the pre-Bug-3-fix script (no TS_LITELLM_REGISTRY). Root cause: gpt-5-5 hit litellm "model isn't mapped"
+-> SWE-agent AUTOSUBMITS after the error (rc=0, NOT rc=137) -> false DONE markers after just 1 call/task.
+Consequences: task_id="?", obs never accumulated (obs_role_layout stuck user_pleintext), transform_fired=False
+on all treatment arms (no multi-turn transcript to prune). The driver's gate CORRECTLY hard-stopped (refused
+C/D/E spend). The self-heal relaunch could NOT fire because false DONE markers blocked resume.
+FIX (verified live): TS_LITELLM_REGISTRY resolves the cost map -> gpt-5-5 iterates 13+ calls, 0 ClientConnectorError,
+C0 byte-identical. Removed the 6 false gpt55 DONE + broken ledgers + the SIGTERM'd haiku C0 (rc=143, 4/5 tasks);
+relaunched fixed smoke (resumes haiku C0 + 6 gpt55 with registry) + driver. LESSON: a non-fatal autosubmit can
+mint a false DONE — gate on transform activation + n_calls, not just rc=0. (haiku C0 also re-run for completeness.)
