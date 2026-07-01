@@ -1,0 +1,128 @@
+{
+ "total_events": 332,
+ "available_events": 21,
+ "interventions": 6,
+ "tasks": 6,
+ "one_intervention_per_task": true,
+ "strata": {
+  "MIXED_REDUNDANCY": 4,
+  "HIGH_REDUNDANCY": 2
+ },
+ "arms": {
+  "NO_OP": 3,
+  "LINEDEDUP": 3
+ },
+ "linededup_prefix_ok": true,
+ "noop_byte_identical": true,
+ "infra_failures": 0,
+ "shim_sha": [
+  "df08cebcfd2b37c6"
+ ],
+ "git_commit": [
+  "35f8e2814e3a39ae6e22d9dc71c33eb283834be4"
+ ],
+ "interventions_detail": [
+  {
+   "task_id": "pylint-dev__pylint-4551",
+   "moderator_stratum": "MIXED_REDUNDANCY",
+   "assignment": "LINEDEDUP",
+   "block_id": 0,
+   "block_position": 0,
+   "duplicate_line_fraction": 0.043478,
+   "duplicate_line_count": 8,
+   "characters_removed": 364,
+   "prior_prefix_identical": true,
+   "full_noop_identical": false,
+   "effective_cost_h1": 10273.6,
+   "input_tokens": 1,
+   "cache_read_tokens": 4576,
+   "cache_creation_tokens": 7268,
+   "output_tokens": 146
+  },
+  {
+   "task_id": "pylint-dev__pylint-8898",
+   "moderator_stratum": "MIXED_REDUNDANCY",
+   "assignment": "NO_OP",
+   "block_id": 0,
+   "block_position": 1,
+   "duplicate_line_fraction": 0.384615,
+   "duplicate_line_count": 15,
+   "characters_removed": 0,
+   "prior_prefix_identical": true,
+   "full_noop_identical": true,
+   "effective_cost_h1": 3459.75,
+   "input_tokens": 1,
+   "cache_read_tokens": 11650,
+   "cache_creation_tokens": 1451,
+   "output_tokens": 96
+  },
+  {
+   "task_id": "pylint-dev__pylint-6386",
+   "moderator_stratum": "HIGH_REDUNDANCY",
+   "assignment": "NO_OP",
+   "block_id": 0,
+   "block_position": 0,
+   "duplicate_line_fraction": 0.901961,
+   "duplicate_line_count": 46,
+   "characters_removed": 0,
+   "prior_prefix_identical": true,
+   "full_noop_identical": true,
+   "effective_cost_h1": 5072.45,
+   "input_tokens": 1,
+   "cache_read_tokens": 19452,
+   "cache_creation_tokens": 1921,
+   "output_tokens": 145
+  },
+  {
+   "task_id": "sphinx-doc__sphinx-8638",
+   "moderator_stratum": "HIGH_REDUNDANCY",
+   "assignment": "LINEDEDUP",
+   "block_id": 0,
+   "block_position": 1,
+   "duplicate_line_fraction": 1.0,
+   "duplicate_line_count": 43,
+   "characters_removed": 2442,
+   "prior_prefix_identical": true,
+   "full_noop_identical": false,
+   "effective_cost_h1": 4250.05,
+   "input_tokens": 1,
+   "cache_read_tokens": 30003,
+   "cache_creation_tokens": 467,
+   "output_tokens": 133
+  },
+  {
+   "task_id": "sphinx-doc__sphinx-9658",
+   "moderator_stratum": "MIXED_REDUNDANCY",
+   "assignment": "LINEDEDUP",
+   "block_id": 0,
+   "block_position": 2,
+   "duplicate_line_fraction": 0.136364,
+   "duplicate_line_count": 6,
+   "characters_removed": 336,
+   "prior_prefix_identical": true,
+   "full_noop_identical": false,
+   "effective_cost_h1": 6748.9,
+   "input_tokens": 1,
+   "cache_read_tokens": 26729,
+   "cache_creation_tokens": 2000,
+   "output_tokens": 315
+  },
+  {
+   "task_id": "sympy__sympy-14248",
+   "moderator_stratum": "MIXED_REDUNDANCY",
+   "assignment": "NO_OP",
+   "block_id": 0,
+   "block_position": 3,
+   "duplicate_line_fraction": 0.190476,
+   "duplicate_line_count": 8,
+   "characters_removed": 0,
+   "prior_prefix_identical": true,
+   "full_noop_identical": true,
+   "effective_cost_h1": 10265.7,
+   "input_tokens": 1,
+   "cache_read_tokens": 26597,
+   "cache_creation_tokens": 1700,
+   "output_tokens": 1096
+  }
+ ]
+}
