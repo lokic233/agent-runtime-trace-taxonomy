@@ -1,0 +1,42 @@
+{
+ "experiment": "MRT Formal \u2014 TraceController decision-level randomized study",
+ "run_id": "formal_locked",
+ "outcome_tier": "#4 UNDERPOWERED (documented)",
+ "git_commit_at_run": "35f8e2814e3a39ae6e22d9dc71c33eb283834be4",
+ "git_commit_final": "44ac7f75bbb59a69ba751320e678661fbd624a5c",
+ "shim_sha256_16": "df08cebcfd2b37c6",
+ "model": "anthropic/claude-opus-4-7",
+ "temperature": 0.0,
+ "thinking": "OFF",
+ "provider": "PlugBoard mTLS",
+ "swe_agent_version": "1.1.0",
+ "seed": 20260701,
+ "eligibility": "newest obs, segment_chars>=2000, dup_lines>=5, LINEDEDUP removes >=1 line (no dup_frac gate for availability)",
+ "strata": {
+  "HIGH_REDUNDANCY": "dup_frac>0.40",
+  "MIXED_REDUNDANCY": "0<dup_frac<=0.40 & dup_lines>=5"
+ },
+ "randomization": "stratified permuted-block, size 4 (2:2), SHA-256 Fisher-Yates, propensity 0.5",
+ "primary_outcome": "effective_cost_h1 = input + 0.1*cache_read + 1.25*cache_creation + 5*output",
+ "n_interventions": 13,
+ "arms": {
+  "LINEDEDUP": 7,
+  "NO_OP": 6
+ },
+ "n_repos": 6,
+ "immutable_ledger_hashes": {
+  "events.jsonl": "e01d167205f6eb37",
+  "randomization_state.jsonl": "a1c85da51dfeae83",
+  "task_state.jsonl": "e7755f1d3ae3940c"
+ },
+ "grade_report_sha16": "1fc1400218ab126a",
+ "protocol_tests": "24/24 PASS",
+ "consistency_assertions": "14/14 PASS",
+ "stopping_rule": "all 18 buildable pool tasks attempted (condition b); never on p-value/trend",
+ "launch_commands": {
+  "shim": "setsid bash scripts/launch_formal_shim_locked.sh > logs/mrt/shim_formal_locked.log 2>&1 < /dev/null &",
+  "run": "setsid bash scripts/run_formal.sh \"<18-task-filter>\" 6 formal_locked > logs/mrt/run_formal_locked.log 2>&1 < /dev/null &",
+  "grade": "setsid bash scripts/grade_formal.sh > logs/mrt/grade_formal.log 2>&1 < /dev/null &",
+  "analyze": "python3 harness/pruning_ab/scripts/analyze_mrt_formal.py results/pruning_ab/mrt_formal results/pruning_ab/mrt_formal --events <events> --grades <grade_report>"
+ }
+}
