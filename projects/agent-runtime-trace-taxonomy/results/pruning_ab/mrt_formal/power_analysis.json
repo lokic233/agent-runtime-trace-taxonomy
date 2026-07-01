@@ -1,0 +1,108 @@
+{
+ "sd_used": 2135.835011067534,
+ "b1_mde": -570.0,
+ "b3_mde": -2000.0,
+ "alpha": 0.05,
+ "n_sims": 2000,
+ "curves": {
+  "20": {
+   "power_b3_strong": 0.103,
+   "power_b3_moderate": 0.082,
+   "power_ate": 0.104
+  },
+  "30": {
+   "power_b3_strong": 0.131,
+   "power_b3_moderate": 0.083,
+   "power_ate": 0.122
+  },
+  "40": {
+   "power_b3_strong": 0.146,
+   "power_b3_moderate": 0.078,
+   "power_ate": 0.138
+  },
+  "60": {
+   "power_b3_strong": 0.201,
+   "power_b3_moderate": 0.081,
+   "power_ate": 0.186
+  },
+  "80": {
+   "power_b3_strong": 0.247,
+   "power_b3_moderate": 0.098,
+   "power_ate": 0.232
+  },
+  "120": {
+   "power_b3_strong": 0.31,
+   "power_b3_moderate": 0.112,
+   "power_ate": 0.319
+  },
+  "160": {
+   "power_b3_strong": 0.402,
+   "power_b3_moderate": 0.134,
+   "power_ate": 0.395
+  },
+  "200": {
+   "power_b3_strong": 0.464,
+   "power_b3_moderate": 0.152,
+   "power_ate": 0.49
+  }
+ },
+ "large_effect_curves": {
+  "ate": {
+   "20": {
+    "b1_-1000": 0.22,
+    "b1_-2000": 0.58,
+    "b1_-3000": 0.87
+   },
+   "40": {
+    "b1_-1000": 0.31,
+    "b1_-2000": 0.84,
+    "b1_-3000": 0.99
+   },
+   "60": {
+    "b1_-1000": 0.45,
+    "b1_-2000": 0.95,
+    "b1_-3000": 1.0
+   },
+   "120": {
+    "b1_-1000": 0.74,
+    "b1_-2000": 1.0,
+    "b1_-3000": 1.0
+   }
+  },
+  "interaction": {
+   "40": {
+    "b3_-4000": 0.38,
+    "b3_-6000": 0.66,
+    "b3_-8000": 0.9
+   },
+   "60": {
+    "b3_-4000": 0.55,
+    "b3_-6000": 0.86,
+    "b3_-8000": 0.97
+   },
+   "120": {
+    "b3_-4000": 0.84,
+    "b3_-6000": 0.99,
+    "b3_-8000": 1.0
+   },
+   "200": {
+    "b3_-4000": 0.96,
+    "b3_-6000": 1.0,
+    "b3_-8000": 1.0
+   }
+  }
+ },
+ "frozen_decision": {
+  "h1_sd": 2136,
+  "h1_mean": 5698,
+  "mde_ate_practically_relevant": -570,
+  "mde_interaction_practically_relevant": -2000,
+  "target_power": 0.8,
+  "pool_ceiling_online_interventions": 18,
+  "target_eligible_events_floor": 60,
+  "min_valid_per_arm": 25,
+  "min_repos": 5,
+  "stopping_rule": "stop when (a) 60 eligible randomized events reached OR (b) all buildable pool tasks attempted (max_attempts=pool_size after image builds). Never stop on observed p-value/trend.",
+  "verdict": "STRUCTURALLY UNDERPOWERED for the practically-relevant interaction (MDE b3=-2000) at any feasible N: power<=0.15 even at N=200. Only a VERY strong moderator (b3<=-6000) is detectable at N~60-120. The single-shot x newest-only pool ceiling (<=18 interventions) is far below the 60-event floor. => Expected outcome tier #4 (underpowered) UNLESS the true effect is very large; the formal run will still (1) validate protocol integrity, (2) estimate ATE/interaction as effect-size + CI (not significance), (3) test cache-preservation mechanism, (4) provide a defensible upper bound on N achievable."
+ }
+}
