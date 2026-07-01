@@ -1,0 +1,52 @@
+{
+ "source": "formal_locked run (real online eligibility; supersedes any pre-run dry-run estimate)",
+ "events_sha16": "e01d167205f6eb37",
+ "n_tasks_attempted": 18,
+ "n_tasks_reaching_availability": 13,
+ "availability_rate_per_task": 0.722,
+ "total_available_events": 40,
+ "interventions": 13,
+ "dup_frac_distribution": {
+  "min": 0.076923,
+  "median": 0.3429275,
+  "max": 1.0,
+  "n_high_gt_0.40": 17,
+  "n_mixed_le_0.40": 23
+ },
+ "repo_distribution": {
+  "pylint-dev": 12,
+  "pydata": 1,
+  "pytest-dev": 8,
+  "scikit-learn": 4,
+  "sphinx-doc": 11,
+  "sympy": 4
+ },
+ "main_agent_calls_per_task": {
+  "pytest-dev__pytest-6197": 75,
+  "sympy__sympy-14248": 75,
+  "sympy__sympy-19040": 62,
+  "sphinx-doc__sphinx-9658": 60,
+  "sphinx-doc__sphinx-8638": 59,
+  "pylint-dev__pylint-4551": 58,
+  "pylint-dev__pylint-8898": 56,
+  "pytest-dev__pytest-7490": 48,
+  "pylint-dev__pylint-6528": 38,
+  "pylint-dev__pylint-6386": 34,
+  "pytest-dev__pytest-7324": 25,
+  "scikit-learn__scikit-learn-14087": 20,
+  "django__django-14771": 19,
+  "scikit-learn__scikit-learn-25973": 17,
+  "pydata__xarray-3305": 16,
+  "django__django-16136": 16,
+  "scikit-learn__scikit-learn-9288": 11,
+  "pytest-dev__pytest-7432": 10
+ },
+ "tasks_zero_availability": [
+  "django__django-14771",
+  "django__django-16136",
+  "pytest-dev__pytest-7324",
+  "pytest-dev__pytest-7432",
+  "sympy__sympy-14248"
+ ],
+ "finding": "Single-shot x newest-only x opus-4.7 efficiency: 13/18 tasks reached availability, 13 interventions total. 5 tasks never produced a newest observation with seg>=2000 AND dup_lines>=5. This is the binding constraint below the 60-event floor."
+}
