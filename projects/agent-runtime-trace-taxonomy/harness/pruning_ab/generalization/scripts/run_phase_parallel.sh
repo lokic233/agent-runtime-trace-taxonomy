@@ -42,12 +42,27 @@ run_cell(){
   TS_MODEL="$model" TS_LITELLM_REGISTRY="$reg" timeout 9000 bash "$GEN/scripts/run_arm_xmodel.sh" "$arm" "$port" "$FILTER" "$out" 4 > "$OUT/arm_${tag}.log" 2>&1
   local rc=$?; kill $sh 2>/dev/null; sleep 1
   # count distinct tasks actually in the ledger + expected tasks from the FILTER
-  local ntasks exp
+  local ntasks exp nterm
   ntasks=$(python3 -c "import json;print(len({json.loads(l).get('task_id') for l in open('$ledger')}))" 2>/dev/null || echo 0)
   exp=$(( $(echo "$FILTER" | grep -o '|' | wc -l) + 1 ))
-  echo "  done $tag rc=$rc rows=$(wc -l < "$ledger" 2>/dev/null||echo 0) tasks=$ntasks/$exp $(date +%H:%M:%S)"
-  # DONE requires rc=0 AND all expected tasks present (guards against OOM-truncated-but-rc-masked cells)
-  if [[ $rc -eq 0 && "$ntasks" -ge "$exp" ]]; then touch "$done"; else echo "  INCOMPLETE $tag (rc=$rc tasks=$ntasks/$exp) -> no DONE, will re-run"; fi
+  # count tasks that reached a TERMINAL exit status (submitted / exit_* / etc) in the batch exit-status file
+  nterm=$(python3 -c "
+import yaml,sys
+try:
+    d=yaml.safe_load(open('$out/run_batch_exit_statuses.yaml'))
+    s=d.get('instances_by_exit_status',{}) or {}
+    print(sum(len(v or []) for v in s.values()))
+except Exception: print(0)
+" 2>/dev/null || echo 0)
+  echo "  done $tag rc=$rc rows=$(wc -l < "$ledger" 2>/dev/null||echo 0) tasks=$ntasks/$exp terminal=$nterm $(date +%H:%M:%S)"
+  # DONE if all expected tasks present AND (rc=0 OR all tasks reached a terminal exit status).
+  # rc=0+tasks guards against OOM-truncation; the terminal-status clause accepts complete cells whose
+  # only failure was a teardown SIGKILL (rc=137 AFTER all 10 tasks finished = benign, no data loss).
+  if [[ "$ntasks" -ge "$exp" ]] && { [[ $rc -eq 0 ]] || [[ "$nterm" -ge "$exp" ]]; }; then
+    touch "$done"; [[ $rc -ne 0 ]] && echo "  ACCEPTED $tag despite rc=$rc (all $exp tasks terminal; teardown-only kill)"
+  else
+    echo "  INCOMPLETE $tag (rc=$rc tasks=$ntasks/$exp terminal=$nterm) -> no DONE, will re-run"
+  fi
 }
 
 port=8600; running=0
