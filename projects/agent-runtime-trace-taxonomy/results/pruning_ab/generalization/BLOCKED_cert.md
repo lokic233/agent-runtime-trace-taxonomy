@@ -19,3 +19,9 @@ Once `/var/facebook/credentials/dengcchi/x509/dengcchi.pem` is valid again, resu
   systemd-run --user --unit=xmodel-driver --same-dir /data/users/dengcchi/prune_ab/launch_driver.sh
 The DONE markers make it resume Phase D at cell 6 (skips the 30+5 done). The scheduled handler auto-resumes
 when it detects the cert is back.
+
+## RESOLVED (2026-07-01 ~10:07 PDT)
+User reissued the x509 cert. Verified: cert present (4597 bytes), PlugBoard live (served claude-opus-4.7),
+running cell now has 0 APIConnectionErrors. Driver resumed as systemd service xmodel-driver at MAXPAR=1.
+State intact: Phase C 30/30 (cache_tax SUPPORTED), Phase D resumed at cell 6 (5/36 preserved, all 10/10).
+Study continuing D -> E -> final report. Handler back to 30-min active monitoring with a cert-re-expiry watch.
