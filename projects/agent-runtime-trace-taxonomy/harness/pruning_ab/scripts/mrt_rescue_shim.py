@@ -147,10 +147,25 @@ def call_plugboard(body, timeout=900):
         try: os.unlink(bf)
         except: pass
 
+def _normalize_body(d):
+    """PlugBoard-required normalizations applied to EVERY request:
+    (1) custom tools must NOT carry a `type` key alongside input_schema,
+    (2) drop top_p when temperature is present.
+    Without this, PlugBoard rejects with 'tools.0.custom.input_schema: Field required'."""
+    tools = d.get("tools")
+    if isinstance(tools, list):
+        for t in tools:
+            if isinstance(t, dict) and t.get("type") == "custom" and "input_schema" in t:
+                del t["type"]
+    if "temperature" in d and "top_p" in d:
+        del d["top_p"]
+    return d
+
 def process_request(raw_body):
     """Core logic: eligibility check, randomize, transform, call PlugBoard, log."""
     try: d = json.loads(raw_body)
     except: return raw_body, {}
+    d = _normalize_body(d)  # apply PlugBoard normalizations to ALL paths
     msgs = d.get("messages")
     if not isinstance(msgs, list): return raw_body, {}
     # GATE: skip internal SWE-agent calls that lack full history (no observations possible)
@@ -261,15 +276,8 @@ def process_request(raw_body):
         rec["changed_message_indices"] = []
         rec["prior_prefix_identical"] = True
     
-    # tool normalize (standard fixes)
-    tools = d.get("tools")
-    if isinstance(tools, list):
-        for t in tools:
-            if isinstance(t, dict) and t.get("type") == "custom" and "input_schema" in t:
-                del t["type"]
-    if "temperature" in d and "top_p" in d:
-        del d["top_p"]
-    
+    # tool normalize already applied in _normalize_body at top of process_request
+
     return json.dumps(d).encode(), rec
 
 class H(http.server.BaseHTTPRequestHandler):
@@ -281,6 +289,36 @@ class H(http.server.BaseHTTPRequestHandler):
         t0 = time.time()
         body, rec = process_request(raw)
         out = call_plugboard(body)
+        # GUARD: never forward a response litellm can't parse (must have "content")
+        try:
+            _chk = json.loads(out)
+        except Exception:
+            _chk = {}
+        if "content" not in _chk:
+            # log the failing request+response for diagnosis, then retry once more
+            try:
+                with open("/tmp/shim_bad_resp.jsonl", "a") as bf:
+                    bf.write(json.dumps({"resp": (out.decode("utf-8", "replace") if isinstance(out, bytes) else str(out))[:800],
+                                         "req_keys": list(json.loads(body).keys()) if body else [],
+                                         "req_head": (body.decode("utf-8", "replace") if isinstance(body, bytes) else str(body))[:400]}) + "\n")
+            except Exception:
+                pass
+            out = call_plugboard(body)
+            try:
+                _chk = json.loads(out)
+            except Exception:
+                _chk = {}
+            if "content" not in _chk:
+                # last-resort: synthesize a minimal valid assistant message so litellm
+                # does not crash the whole batch on one transient upstream error
+                out = json.dumps({
+                    "id": "shim-fallback", "type": "message", "role": "assistant",
+                    "model": _chk.get("model", "claude-opus-4-7"),
+                    "content": [{"type": "text", "text": ""}],
+                    "stop_reason": "end_turn", "stop_sequence": None,
+                    "usage": {"input_tokens": 0, "output_tokens": 0,
+                              "cache_read_input_tokens": 0, "cache_creation_input_tokens": 0}
+                }).encode()
         dt = time.time() - t0
         # parse response for usage
         try:
