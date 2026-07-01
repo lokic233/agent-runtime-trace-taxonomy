@@ -1,0 +1,126 @@
+{
+ "total": 24,
+ "passed": 24,
+ "tests": [
+  {
+   "name": "1_internal_call_filtering",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "2_newest_obs_selection",
+   "pass": true,
+   "detail": "seg_idx=4 n=5"
+  },
+  {
+   "name": "3_availability_true_when_redundant",
+   "pass": true,
+   "detail": "avail=True dupc=30 seg=3364"
+  },
+  {
+   "name": "4_continuous_moderator",
+   "pass": true,
+   "detail": "dupfrac=0.857143"
+  },
+  {
+   "name": "5_stratum_high",
+   "pass": true,
+   "detail": "got HIGH_REDUNDANCY frac=0.9375"
+  },
+  {
+   "name": "5b_stratum_mixed",
+   "pass": true,
+   "detail": "got MIXED_REDUNDANCY frac=0.25"
+  },
+  {
+   "name": "6_block_2_2_balance",
+   "pass": true,
+   "detail": "block0=['NO_OP', 'LINEDEDUP', 'LINEDEDUP', 'NO_OP']"
+  },
+  {
+   "name": "6b_block2_balance",
+   "pass": true,
+   "detail": "block1=['LINEDEDUP', 'NO_OP', 'LINEDEDUP', 'NO_OP']"
+  },
+  {
+   "name": "7_deterministic_block_order",
+   "pass": true,
+   "detail": "['NO_OP', 'LINEDEDUP', 'LINEDEDUP', 'NO_OP'] vs ['NO_OP', 'LINEDEDUP', 'LINEDEDUP', 'NO_OP']"
+  },
+  {
+   "name": "8_restart_persistence",
+   "pass": true,
+   "detail": "asg1=NO_OP exp_event=True reconstructed={'intervened': True, 'event_id': 'r8:the_task_8#call0', 'assignment': 'NO_OP', 'stratum': 'HIGH_REDUNDANCY', 'block_id': 0, 'block_position': 0, 'timestamp': 1782933660.6968436, 'attempt': 0, 'status': 'intervened'}"
+  },
+  {
+   "name": "9_duplicate_request_idempotent",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "10_one_intervention_per_task",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "11_noop_byte_identity",
+   "pass": true,
+   "detail": "assign=NO_OP identical=True"
+  },
+  {
+   "name": "12_segment_local_linededup",
+   "pass": true,
+   "detail": "assign=LINEDEDUP changed_target=True others_same=True chg_idx=[4]"
+  },
+  {
+   "name": "13_prior_prefix_identical",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "14_assignment_vs_activation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "15_invalid_upstream_detected",
+   "pass": true,
+   "detail": "shim treats missing 'content' as not-ok (fail closed)"
+  },
+  {
+   "name": "16_no_synthetic_assistant",
+   "pass": true,
+   "detail": "no fabricated empty-assistant content in formal shim"
+  },
+  {
+   "name": "17_h1_cost_formula",
+   "pass": true,
+   "detail": "expected=610.0"
+  },
+  {
+   "name": "18_h3_joining",
+   "pass": true,
+   "detail": "h3=180"
+  },
+  {
+   "name": "19_h3_truncation",
+   "pass": true,
+   "detail": "h3b=150 n=2"
+  },
+  {
+   "name": "20_unknown_task_id",
+   "pass": true,
+   "detail": "tid=UNK_1164edc909cf3e4b"
+  },
+  {
+   "name": "21_provenance_hashes",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "22_ledger_conflict_aborts",
+   "pass": true,
+   "detail": "conflicting assignments must abort reconstruction"
+  }
+ ]
+}
