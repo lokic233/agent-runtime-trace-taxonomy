@@ -39,3 +39,11 @@ frozen --memory=10g untouched — it's a treatment-adjacent frozen param). Resul
 DONE-marker resume preserved the 7 valid cells; OOM'd partials cleaned + re-run. ~3x speedup (vs 5-6x at MAXPAR=6
 but without drops) = net faster since OOM'd cells don't waste work. Lesson: concurrency limited by per-container
 memory, not host cores.
+
+## Launch persistence: systemd user service (survives CLI disconnect)
+The driver kept dying: nohup/setsid launches were killed when the Navi CLI session dropped, and even the
+tool-framework `background:true` process died when devgpu014's CLI disconnected (~01:41, Phase D stuck 5/36).
+FIX: launch via `systemd-run --user --unit=xmodel-driver /data/users/dengcchi/prune_ab/launch_driver.sh` —
+a transient USER-scope systemd service owned by user@.service, independent of any SSH/CLI session. Survives
+disconnects. Restart: `systemctl --user reset-failed xmodel-driver; systemd-run --user --unit=xmodel-driver ...`.
+This is the durable launch method for all long autonomous runs on a CLI node.
