@@ -1,0 +1,104 @@
+{
+ "study": "Study 1 (N=13 formal pilot)",
+ "raw_hashes": {
+  "events.jsonl": "e01d167205f6eb37dda1c4b2db5aa754928f231813ca007709e672f7f0d04ef2",
+  "randomization_state.jsonl": "a1c85da51dfeae832c1e5d14e02cb6159da2b5337c48ffa1f7113d79832b31fc",
+  "task_state.jsonl": "e7755f1d3ae3940c4de345a42684305615f3151d7123fd8efe2c6213da334ea0",
+  "task_grades.json": "559c021d51479c2c62fcd880a37a81aeb8031cc20db09c22594923b11b256675",
+  "grade_report.json": "1fc1400218ab126a12b9197b9c535f42e7604a54f391dbac82019776f6376b1e"
+ },
+ "n_valid": 13,
+ "b3_real": 924.2165981005948,
+ "policy_summary": {
+  "pi_keep": {
+   "unnorm_ipw": 5851.638461538461,
+   "hajek_ipw": 6339.275000000001,
+   "dr_crossfit": 6276.594807692309,
+   "n": 13
+  },
+  "pi_static": {
+   "unnorm_ipw": 6620.4,
+   "hajek_ipw": 6147.5142857142855,
+   "dr_crossfit": 5549.949230769231,
+   "n": 13
+  },
+  "pi_signal": {
+   "unnorm_ipw": 7424.1,
+   "hajek_ipw": 6893.807142857143,
+   "dr_crossfit": 6629.752500000001,
+   "n": 13
+  },
+  "best_static_by_estimator": {
+   "unnorm_ipw": "pi_keep",
+   "hajek_ipw": "pi_static",
+   "dr_crossfit": "pi_static"
+  },
+  "estimators_agree_on_best_static": false,
+  "note": "Hajek self-normalized IPW is the primary policy estimator. Lower cost=better. Unnormalized HT IPW is reported only to show the finite-N weight artifact at 7/6 split."
+ },
+ "policy_diffs": {
+  "signal_minus_pi_keep__hajek_ipw": {
+   "point": 554.5321428571424,
+   "repo_boot_ci95": [
+    -1589.2733333333344,
+    2854.420000000002
+   ],
+   "se": 1142.7117573470534
+  },
+  "signal_minus_pi_static__hajek_ipw": {
+   "point": 746.2928571428574,
+   "repo_boot_ci95": [
+    -1901.8476190476204,
+    3800.7833333333347
+   ],
+   "se": 1450.9620298195714
+  },
+  "signal_minus_pi_keep__dr_crossfit": {
+   "point": 353.15769230769274,
+   "repo_boot_ci95": [
+    -1258.977272727273,
+    2676.01875
+   ],
+   "se": 1055.9321470126638
+  },
+  "signal_minus_pi_static__dr_crossfit": {
+   "point": 1079.8032692307706,
+   "repo_boot_ci95": [
+    -1702.1570312499998,
+    4762.845833333334
+   ],
+   "se": 1680.5805382621224
+  }
+ },
+ "placebo_summary": {
+  "pct": 0.910617876424715,
+  "block_perm_p": 0.9202159568086383
+ },
+ "quality": {
+  "LINEDEDUP_resolved": "4/7",
+  "NO_OP_resolved": "5/6",
+  "risk_difference_LINEDEDUP_minus_NOOP": -0.261904761904762,
+  "newcombe_ci95": [
+   -0.6107427395740188,
+   0.21827826892929708
+  ],
+  "wilson_LINEDEDUP": [
+   0.2504542304090258,
+   0.8417830777373732
+  ],
+  "wilson_NO_OP": [
+   0.43649056343635395,
+   0.9699474141282697
+  ],
+  "verdict": "UNDERPOWERED",
+  "note": "No preregistered non-inferiority margin. No catastrophic collapse observed (descriptive), but non-inferiority/safety NOT established."
+ },
+ "label": "Protocol-valid, underpowered formal pilot / Study 1",
+ "verdicts": {
+  "REDUNDANCY_CAUSAL_MODERATOR": "UNDERPOWERED / NOT_ESTABLISHED",
+  "SIGNAL_POLICY_VALUE": "NOT SUPPORTED BY CURRENT POINT ESTIMATES; CONFIRMATORY POLICY EVALUATION UNDERPOWERED",
+  "QUALITY_GUARDRAIL": "UNDERPOWERED",
+  "PREFIX_BYTE_PRESERVATION": "SUPPORTED BY SOFTWARE INVARIANT",
+  "CACHE_COST_EFFECT": "DIRECTIONAL / UNDERPOWERED"
+ }
+}

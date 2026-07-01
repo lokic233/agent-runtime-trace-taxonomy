@@ -1,0 +1,27 @@
+{
+ "pi_keep": {
+  "unnorm_ipw": 5851.638461538461,
+  "hajek_ipw": 6339.275000000001,
+  "dr_crossfit": 6276.594807692309,
+  "n": 13
+ },
+ "pi_static": {
+  "unnorm_ipw": 6620.4,
+  "hajek_ipw": 6147.5142857142855,
+  "dr_crossfit": 5549.949230769231,
+  "n": 13
+ },
+ "pi_signal": {
+  "unnorm_ipw": 7424.1,
+  "hajek_ipw": 6893.807142857143,
+  "dr_crossfit": 6629.752500000001,
+  "n": 13
+ },
+ "best_static_by_estimator": {
+  "unnorm_ipw": "pi_keep",
+  "hajek_ipw": "pi_static",
+  "dr_crossfit": "pi_static"
+ },
+ "estimators_agree_on_best_static": false,
+ "note": "Hajek self-normalized IPW is the primary policy estimator. Lower cost=better. Unnormalized HT IPW is reported only to show the finite-N weight artifact at 7/6 split."
+}

@@ -1,0 +1,92 @@
+{
+ "kind": "artifact/report consistency checks (NOT statistical-validity proofs)",
+ "n": 17,
+ "n_pass": 17,
+ "assertions": [
+  {
+   "assertion": "raw_hash_unchanged__events.jsonl",
+   "pass": true,
+   "detail": "cur=e01d167205f6eb37 frozen=e01d167205f6eb37"
+  },
+  {
+   "assertion": "raw_hash_unchanged__randomization_state.jsonl",
+   "pass": true,
+   "detail": "cur=a1c85da51dfeae83 frozen=a1c85da51dfeae83"
+  },
+  {
+   "assertion": "raw_hash_unchanged__task_state.jsonl",
+   "pass": true,
+   "detail": "cur=e7755f1d3ae3940c frozen=e7755f1d3ae3940c"
+  },
+  {
+   "assertion": "raw_hash_unchanged__task_grades.json",
+   "pass": true,
+   "detail": "cur=559c021d51479c2c frozen=559c021d51479c2c"
+  },
+  {
+   "assertion": "raw_hash_unchanged__grade_report.json",
+   "pass": true,
+   "detail": "cur=1fc1400218ab126a frozen=1fc1400218ab126a"
+  },
+  {
+   "assertion": "hajek_ipw_present",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "assertion": "dr_crossfit_present",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "assertion": "valid_estimators_agree_best_static",
+   "pass": true,
+   "detail": "{'unnorm_ipw': 'pi_keep', 'hajek_ipw': 'pi_static', 'dr_crossfit': 'pi_static'}"
+  },
+  {
+   "assertion": "report_says_best_static_pi_static",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "assertion": "prereg_deviation_banner_exists",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "assertion": "robustness_status_listed",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "assertion": "quality_underpowered",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "assertion": "cache_split_into_two",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "assertion": "moderator_underpowered",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "assertion": "signal_policy_underpowered",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "assertion": "placebo_ge_5000",
+   "pass": true,
+   "detail": "5000"
+  },
+  {
+   "assertion": "placebo_not_decisive_falsification",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}

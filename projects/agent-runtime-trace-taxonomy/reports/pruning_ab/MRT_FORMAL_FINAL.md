@@ -1,8 +1,25 @@
 # MRT Formal — FINAL (Step 22)
 
+> ## 🔬 STATISTICAL RECONCILIATION APPLIED (2026-07-01) — read this first
+> This report is **Study 1**, relabeled *Protocol-valid, underpowered formal pilot / Study 1*.
+> Several verdicts below were **corrected** in `MRT_STUDY1_STATISTICAL_RECONCILIATION.md` (raw
+> data unchanged; hashes frozen):
+> - **Policy value:** the "best static = pi_keep" claim was an **unnormalized-IPW artifact**.
+>   Under **Hájek self-normalized IPW** and **DR**, best static = **pi_static**; pi_signal is
+>   worse than both but CIs span zero ⟹ *NOT SUPPORTED BY POINT ESTIMATES; UNDERPOWERED.*
+> - **Moderator:** ⟹ *UNDERPOWERED / NOT_ESTABLISHED* (b3 sign is descriptive only, not evidence).
+> - **Placebo:** real |b3| is at the 91st pct of a 5,000-placebo distribution, block-perm p=0.92
+>   ⟹ *NOT distinguishable from finite-sample placebo variation* (the "decisive falsification"
+>   framing is retracted).
+> - **Quality:** ⟹ *UNDERPOWERED* (risk diff −0.26, Newcombe CI [−0.61, +0.22]).
+> - **Cache:** split into *PREFIX_BYTE_PRESERVATION (SUPPORTED, software invariant)* and
+>   *CACHE_COST_EFFECT (DIRECTIONAL/UNDERPOWERED)*.
+> The verdict prose below is retained for provenance; the reconciliation is authoritative.
+
 **TraceController formal MRT study.** Frozen shim `df08cebcfd2b37c6`, git-frozen preregistration,
 opus-4.7 temp=0, thinking OFF, SWE-agent 1.1.0, PlugBoard mTLS. All numbers auto-generated from
-immutable artifacts. Consistency assertions: **14/14 pass**.
+immutable artifacts. Consistency assertions: **14/14 pass** (+ reconciliation checks **17/17 pass**,
+`consistency_assertions_v2.json`).
 
 ## Headline
 A **protocol-conformant decision-level randomized experiment** ran cleanly end-to-end
