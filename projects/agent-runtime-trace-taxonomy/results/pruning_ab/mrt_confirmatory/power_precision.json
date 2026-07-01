@@ -1,0 +1,73 @@
+{
+ "variance_source": "Study-1 (N=13)",
+ "h1_sd": 3285.4442339493494,
+ "dup_mean": 0.31323553846153845,
+ "dup_sd": 0.26358966752183066,
+ "MDE_ATE": -570.0,
+ "MDE_B3": -2000.0,
+ "target_power": 0.8,
+ "alpha": 0.05,
+ "grid": {
+  "60": {
+   "power_ate": 0.112,
+   "power_b3": 0.077,
+   "ci_halfwidth_ate": 1666.2601436740706,
+   "ci_halfwidth_b3": 7840.368562962132
+  },
+  "100": {
+   "power_ate": 0.162,
+   "power_b3": 0.1155,
+   "ci_halfwidth_ate": 1293.1278865995473,
+   "ci_halfwidth_b3": 5957.640716145074
+  },
+  "120": {
+   "power_ate": 0.1785,
+   "power_b3": 0.1165,
+   "ci_halfwidth_ate": 1178.4225497777345,
+   "ci_halfwidth_b3": 5418.620439528959
+  },
+  "160": {
+   "power_ate": 0.233,
+   "power_b3": 0.129,
+   "ci_halfwidth_ate": 1020.205539979758,
+   "ci_halfwidth_b3": 4658.5437322759035
+  },
+  "200": {
+   "power_ate": 0.264,
+   "power_b3": 0.167,
+   "ci_halfwidth_ate": 915.1187056221722,
+   "ci_halfwidth_b3": 4165.904369443071
+  },
+  "300": {
+   "power_ate": 0.377,
+   "power_b3": 0.206,
+   "ci_halfwidth_ate": 745.2246783643842,
+   "ci_halfwidth_b3": 3373.0360954941057
+  },
+  "400": {
+   "power_ate": 0.468,
+   "power_b3": 0.272,
+   "ci_halfwidth_ate": 646.5954871757228,
+   "ci_halfwidth_b3": 2925.009517658227
+  }
+ },
+ "precision_goal": {
+  "definition": "95% CI half-width on ATE <= |MDE_ATE| (570 eff-cost)",
+  "N_meeting": null
+ },
+ "recommendation": {
+  "moderator_power_80_feasible": false,
+  "min_N_for_b3_power80": null,
+  "stopping_mode": "precision",
+  "note": "At Study-1 variance, 80% moderator power is INFEASIBLE within N<=400. Use a PRECISION-based stopping goal: collect until the 95% CI half-width on the ATE reaches the prespecified practical threshold, or the task pool is exhausted."
+ },
+ "frozen_stopping_rule": {
+  "mode": "precision",
+  "primary_precision_target": "95% CI half-width on ITT ATE(H1) <= 1000 eff-cost units (~16% of the Study-1 control mean 6236)",
+  "expected_N_for_target": "~160 eligible randomized events (from simulation grid)",
+  "hard_floor": ">=60 eligible events, >=25/arm, both strata, >=5 repos (protocol minimum for a reportable confirmatory contrast)",
+  "stop_when": "(a) ATE CI half-width <= 1000 reached AND >=60 events; OR (b) all buildable pool tasks attempted (compute/pool exhaustion)",
+  "never": "never stop on an observed p-value, effect sign, or favorable trend",
+  "honest_caveat": "80% moderator (b3) power is INFEASIBLE at N<=400 given Study-1 variance (power_b3=0.27 at N=400). Study 2 is therefore a PRECISION study for the ATE + a descriptive/underpowered test for the moderator. This is declared BEFORE any Study-2 outcome."
+ }
+}
