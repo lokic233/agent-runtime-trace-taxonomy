@@ -10,6 +10,9 @@ Output: results/pruning_ab/generalization/static_policy_transport.json. stdlib o
 """
 import json, os, glob, statistics
 from collections import defaultdict
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from ledger_util import load_ledger_dedup
 
 LOGDIR=os.environ.get("PHASEE_LOGS","/data/users/dengcchi/prune_ab/logs/xmodel_phaseE")
 OUT=os.environ.get("PHASEE_OUT","/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/results/pruning_ab/generalization/static_policy_transport.json")
@@ -24,9 +27,7 @@ def load_cells():
         for mk in ("sonnet46","haiku45","gpt55"):
             if b.startswith(mk+"_"):
                 arm=b[len(mk)+1:].rsplit("_t",1)[0]
-                for l in open(p):
-                    try: cells[(mk,arm)].append(json.loads(l))
-                    except: pass
+                cells[(mk,arm)].extend(load_ledger_dedup(p))
                 break
     return cells
 

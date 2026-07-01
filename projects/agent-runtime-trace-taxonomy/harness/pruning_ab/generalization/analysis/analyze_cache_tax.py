@@ -7,6 +7,9 @@ Output: results/pruning_ab/generalization/cache_tax_transport.json
 """
 import json, os, glob, random, statistics
 from collections import defaultdict
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from ledger_util import load_ledger_dedup
 
 LOGDIR=os.environ.get("PHASEC_LOGS","/data/users/dengcchi/prune_ab/logs/xmodel_phaseC")
 OUT=os.environ.get("PHASEC_OUT","/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/results/pruning_ab/generalization/cache_tax_transport.json")
@@ -20,9 +23,7 @@ def load_cells():
         for mk in ("sonnet46","haiku45","opus47"):
             if b.startswith(mk+"_"):
                 rest=b[len(mk)+1:]; arm=rest.rsplit("_rep",1)[0]
-                for l in open(p):
-                    try: cells[(mk,arm)].append(json.loads(l))
-                    except: pass
+                cells[(mk,arm)].extend(load_ledger_dedup(p))
                 break
     return cells
 

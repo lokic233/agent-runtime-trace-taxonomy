@@ -33,8 +33,12 @@ run_cell(){
   if [[ "$rep" == t* ]]; then tag="${mk}_${arm}_${rep}"; else tag="${mk}_${arm}_rep${rep}"; fi
   ledger="$OUT/ledger_${tag}.jsonl"; out="$OUT/run_${tag}"; done="$OUT/DONE_${tag}"
   [[ -f "$done" ]] && { echo "skip $tag"; return 0; }
-  # clean any stale ledger/run from a prior (killed) attempt so the shim's append-mode ledger is fresh
-  rm -f "$ledger"; rm -rf "$out"
+  # RESUME-IN-PLACE: sweagent skips instances that already have a trajectory in --output_dir (redo_existing=False).
+  # So on a re-run we PRESERVE the run dir -> completed tasks are skipped, only missing tasks run. This lets a
+  # cell converge across intermittent external SIGKILLs (kill interval < full-cell runtime) instead of restarting
+  # from zero every time. The ledger is append-mode; analyzers dedupe per task_id (last complete run wins), so we
+  # keep it too. Only a FULLY-fresh cell (no run dir yet) starts clean.
+  if [[ ! -d "$out" ]]; then rm -f "$ledger"; fi
   if [[ "$mk" == "gpt55" ]]; then shim="$GPT_SHIM"; extra="PB_PM_DIR=$PM_DIR"; reg="$REG"; else shim="$ANTHRO_SHIM"; extra=""; reg=""; fi
   env PB_SHIM_PORT=$port PB_LEDGER="$ledger" TS_PRUNE_METHOD="$arm" TS_MODEL="$model" $extra python3 "$shim" > "$OUT/shim_${tag}.log" 2>&1 &
   local sh=$!; sleep 3
@@ -75,7 +79,7 @@ for cell in "${CELLS[@]}"; do
 done
 wait
 # RETRY PASS: re-attempt any cell without a DONE marker (transient OOM/timeout), up to 2 extra rounds.
-for retry in 1 2; do
+for retry in 1 2 3 4 5; do
   missing=()
   for cell in "${CELLS[@]}"; do
     read mk arm rep <<< "$cell"

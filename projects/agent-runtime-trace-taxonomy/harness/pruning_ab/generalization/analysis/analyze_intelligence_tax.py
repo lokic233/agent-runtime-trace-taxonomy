@@ -9,6 +9,9 @@ Output: results/pruning_ab/generalization/intelligence_tax_scaling.json
 """
 import json, os, glob, statistics
 from collections import defaultdict
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from ledger_util import load_ledger_dedup
 
 LOGDIR=os.environ.get("PHASED_LOGS","/data/users/dengcchi/prune_ab/logs/xmodel_phaseD")
 OUT=os.environ.get("PHASED_OUT","/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/results/pruning_ab/generalization/intelligence_tax_scaling.json")
@@ -24,9 +27,7 @@ def load_cells():
         for mk in ("opus47","sonnet46","haiku45"):
             if b.startswith(mk+"_"):
                 arm=b[len(mk)+1:].rsplit("_rep",1)[0]
-                for l in open(p):
-                    try: cells[(mk,arm)].append(json.loads(l))
-                    except: pass
+                cells[(mk,arm)].extend(load_ledger_dedup(p))
                 break
     return cells
 
