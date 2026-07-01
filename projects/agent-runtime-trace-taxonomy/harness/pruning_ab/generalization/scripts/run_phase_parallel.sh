@@ -41,8 +41,13 @@ run_cell(){
   if ! curl -s "http://127.0.0.1:$port" >/dev/null 2>&1; then echo "SHIM DOWN $tag"; kill $sh 2>/dev/null; return 1; fi
   TS_MODEL="$model" TS_LITELLM_REGISTRY="$reg" timeout 9000 bash "$GEN/scripts/run_arm_xmodel.sh" "$arm" "$port" "$FILTER" "$out" 4 > "$OUT/arm_${tag}.log" 2>&1
   local rc=$?; kill $sh 2>/dev/null; sleep 1
-  echo "  done $tag rc=$rc rows=$(wc -l < "$ledger" 2>/dev/null||echo 0) $(date +%H:%M:%S)"
-  [[ $rc -eq 0 ]] && touch "$done"
+  # count distinct tasks actually in the ledger + expected tasks from the FILTER
+  local ntasks exp
+  ntasks=$(python3 -c "import json;print(len({json.loads(l).get('task_id') for l in open('$ledger')}))" 2>/dev/null || echo 0)
+  exp=$(( $(echo "$FILTER" | grep -o '|' | wc -l) + 1 ))
+  echo "  done $tag rc=$rc rows=$(wc -l < "$ledger" 2>/dev/null||echo 0) tasks=$ntasks/$exp $(date +%H:%M:%S)"
+  # DONE requires rc=0 AND all expected tasks present (guards against OOM-truncated-but-rc-masked cells)
+  if [[ $rc -eq 0 && "$ntasks" -ge "$exp" ]]; then touch "$done"; else echo "  INCOMPLETE $tag (rc=$rc tasks=$ntasks/$exp) -> no DONE, will re-run"; fi
 }
 
 port=8600; running=0

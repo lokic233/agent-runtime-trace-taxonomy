@@ -42,4 +42,6 @@ sweagent run-batch \
   --agent.model.temperature="$TEMP" --num_workers="$NW" \
   $REGISTRY_FLAG $PARSE_FLAG \
   --output_dir="$OUT"
-echo "=== ARM $METHOD EXIT rc=$? ==="
+_SWEA_RC=$?
+echo "=== ARM $METHOD EXIT rc=$_SWEA_RC ==="
+exit $_SWEA_RC
