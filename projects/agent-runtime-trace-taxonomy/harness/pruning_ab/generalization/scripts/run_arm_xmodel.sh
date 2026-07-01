@@ -33,7 +33,7 @@ echo "=== ARM $METHOD model=$MODEL port=$PORT out=$OUT nw=$NW call_limit=$CALL_L
 sweagent run-batch \
   --instances.type=swe_bench --instances.subset=verified --instances.split=test \
   --instances.evaluate=False --instances.deployment.container_runtime=podman \
-  --instances.deployment.docker_args="--memory=${TS_MEM:-24g}" \
+  --instances.deployment.docker_args="--memory=${TS_MEM:-10g}" \
   --instances.filter="$FILTER" \
   --config="$CONFIG" \
   --agent.model.name="$MODEL" \
