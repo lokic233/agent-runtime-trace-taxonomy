@@ -45,8 +45,12 @@ def _is_obs(i, m, n):
     if m.get("role") != "user": return False
     if i <= 1: return False
     c = m.get("content")
-    if isinstance(c, list) and any(isinstance(b, dict) and b.get("type") == "tool_result" for b in c):
-        return True
+    if isinstance(c, list):
+        # match tool_result blocks OR plain text blocks (SWE-agent sends both formats)
+        if any(isinstance(b, dict) and b.get("type") == "tool_result" for b in c):
+            return True
+        if any(isinstance(b, dict) and b.get("type") == "text" for b in c):
+            return True
     return isinstance(c, str)
 
 def _obs_indices(messages):
@@ -149,6 +153,19 @@ def process_request(raw_body):
     except: return raw_body, {}
     msgs = d.get("messages")
     if not isinstance(msgs, list): return raw_body, {}
+    # GATE: skip internal SWE-agent calls that lack full history (no observations possible)
+    if len(msgs) <= 2:
+        # These are setup/internal calls — pass through without logging or processing
+        body_out = json.dumps(d).encode() if isinstance(d, dict) else raw_body
+        return body_out, None  # None signals: do not log this event
+    # ONE-TIME DEBUG: dump message structure for the first real call
+    import os as _os
+    if not _os.path.exists('/tmp/rescue_msgs_debug.json'):
+        import json as _j
+        _j.dump({"n_msgs": len(msgs), "roles": [m.get("role") for m in msgs[:15]],
+                 "content_types": [(type(m.get("content")).__name__) for m in msgs[:15]],
+                 "msg2_sample": str(msgs[2].get("content"))[:200] if len(msgs)>2 else None},
+                open('/tmp/rescue_msgs_debug.json','w'), indent=1)
     
     tid = _task_of(msgs)
     with _lock:
@@ -280,7 +297,14 @@ class H(http.server.BaseHTTPRequestHandler):
             cc = rec["cache_creation_tokens"] or 0; op = rec["output_tokens"] or 0
             rec["effective_cost_h1"] = ir + 0.1*cr + 1.25*cc + 5*op
         except: pass
-        # write event log
+        # write event log (skip if rec is None = internal call)
+        if rec is None:
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(out)))
+            self.end_headers()
+            self.wfile.write(out)
+            return
         with _lock:
             os.makedirs(os.path.dirname(EVENTLOG), exist_ok=True)
             with open(EVENTLOG, "a") as f: f.write(json.dumps(rec) + "\n")
