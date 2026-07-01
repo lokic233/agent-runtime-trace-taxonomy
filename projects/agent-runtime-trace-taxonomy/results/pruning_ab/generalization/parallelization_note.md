@@ -18,3 +18,14 @@ DECISION: DEFER parallelization. The primary node devgpu014 runs reliably. Chasi
 violates "keep blast radius small" for a marginal speedup. Fallback if runtime becomes prohibitive: transfer
 built images via `podman save | podman load` devgpu014 -> devvm14202 (heavy, ~GB, but bypasses the build).
 Serial on devgpu014 is the chosen path.
+
+## UPDATE: intra-node parallelism (the actual win)
+Cross-node parallelism was the wrong lever. devgpu014 = 384 cores / 2.2TB RAM, running SERIAL 4-worker
+cells at only ~30% util. Cells are API-latency-bound (~0.5 calls/sec), so concurrency is nearly free.
+run_phase_parallel.sh runs MAXPAR=6 cells concurrently (distinct ports/ledgers/shims) -> ~5-6x speedup
+(serial ~32hr -> ~6-7hr). BUG found+fixed live: the shim appends to its ledger, so a killed cell's partial
+ledger would get fresh rows appended on re-run (corruption). Fixed: rm stale ledger/run before each non-DONE
+cell. Verified: all re-launched cells have clean single-run ledgers (maxgap <=4s, no stale prefix).
+LESSON (answering the user's node nudges): the bottleneck was utilization, not node count. The Mac (arm64,
+no runtime, no cert) and devvm14202 (IPv6-proxy build wall) were both dead ends; the 384-core primary box
+was the answer all along.
