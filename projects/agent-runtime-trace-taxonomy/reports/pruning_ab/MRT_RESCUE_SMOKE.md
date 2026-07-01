@@ -1,3 +1,10 @@
+> ## ⚠️ STATUS: SUPERSEDED
+>
+> This file's "live validation pending compute" status is **superseded** by
+> **MRT_RESCUE_PILOT_RESULTS.md** (the completed live rescue run: 215 calls, 2 protocol-conformant
+> interventions, graded). Preserved for provenance. The one-line gate fix described here was
+> implemented; two further shim fixes (see RESCUE_SHIM_FIXES.md) were required for the live run.
+
 # MRT Rescue — Smoke Test Status
 
 ## Protocol verification: ALL 6 TESTS PASS ✅

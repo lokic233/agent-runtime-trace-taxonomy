@@ -2,6 +2,17 @@
 
 Single source of truth. Reports not listed as CURRENT are superseded (kept for provenance).
 
+## MRT experiment tiers (READ THIS FIRST for any MRT claim)
+
+| Tier | Reports | What it is |
+|------|---------|-----------|
+| **FORMAL MRT** | MRT_FORMAL_STATE_RECONCILIATION → MRT_FORMAL_PREREGISTRATION → MRT_FORMAL_*_AUDIT → MRT_FORMAL_PRIMARY_RESULTS → MRT_FORMAL_FINAL | Preregistered, stratified-block-randomized, restart-safe, fail-closed causal study. **Status: preregistered / running / completed — see MRT_FORMAL_FINAL.md.** NOT marked current until the formal data audit passes. |
+| **RESCUE MRT** | MRT_RESCUE_PILOT_RESULTS.md, RESCUE_SHIM_FIXES.md, MRT_RESCUE_PROVENANCE_FINAL.md | Protocol-VALID **smoke test** (single-shot, segment-local, prefix-preserved). **NOT a causal estimate** (N=2, 0 controls). |
+| **ORIGINAL MRT** | MRT_SIGNAL_CAUSALITY_FINAL.md (bannered), MRT_RESCUE_PROVENANCE.md, MRT_RESCUE_SMOKE.md | **Exploratory provenance only** (5 protocol violations). Directionally informative, not evidence. |
+
+> ⚠️ The FORMAL MRT is NOT marked CURRENT until its data audit + consistency assertions pass.
+> Until then, no MRT causal claim is authoritative.
+
 ## ⭐ START HERE
 - **TRACE_CAUSALITY_FINAL.md** — the causal study + 8-part verdict (CURRENT, definitive)
 - **COMPREHENSIVE_TABLE.md** — all methods × all metrics (CURRENT)

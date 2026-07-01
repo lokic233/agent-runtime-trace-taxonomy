@@ -1,3 +1,18 @@
+> ## ⚠️ STATUS: EXPLORATORY PROVENANCE — NOT FORMAL CAUSAL EVIDENCE
+>
+> These estimates (−81k excess effect, A−E interaction) are **historical exploratory
+> provenance**, not formal causal evidence. The run that produced them had **five protocol
+> violations** (see MRT_PILOT_RECONCILIATION.md):
+> 1. repeated **per-call** randomization (not single-shot) → carryover;
+> 2. **whole-history** transformation (not segment-local) → prefix mutation;
+> 3. offline/online **event misalignment**;
+> 4. **task-total** outcomes (not the preregistered H=1 proximal estimand);
+> 5. **assignment/activation conflation**.
+>
+> The estimates are directionally informative only. Formal causal evidence is produced by the
+> preregistered study in **MRT_FORMAL_PREREGISTRATION.md** → **MRT_FORMAL_FINAL.md**. The old
+> estimates below are preserved unchanged for provenance.
+
 # MRT Signal-Discovery Causal Pilot — Final Report & 8 Verdicts
 
 ## The scientific question

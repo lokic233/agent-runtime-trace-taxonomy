@@ -1,0 +1,146 @@
+{
+  "generated": "2026-07-01",
+  "git_head": "36686f2861cc609fcaf44dc033c28e4f204e9ae4",
+  "reports": {
+    "TRACE_CAUSALITY_FINAL.md": {
+      "status": "CURRENT",
+      "scope": "task-level observational causal study (8 verdicts); controller NOT_SUPPORTED"
+    },
+    "CAUSAL_DATA_AUDIT.md": {
+      "status": "CURRENT",
+      "scope": "data freeze + contradiction reconciliation"
+    },
+    "CACHE_TAX_CAUSALITY.md": {
+      "status": "CURRENT",
+      "scope": "cache tax SUPPORTED (SHAM-controlled)"
+    },
+    "INTELLIGENCE_TAX_CAUSALITY.md": {
+      "status": "CURRENT",
+      "scope": "intelligence tax SUPPORTED"
+    },
+    "HETEROGENEOUS_TREATMENT_EFFECTS.md": {
+      "status": "CURRENT",
+      "scope": "HTE weak, negative control fails"
+    },
+    "ORACLE_GAP.md": {
+      "status": "CURRENT",
+      "scope": "+27% oracle gap, controller NOT_SUPPORTED"
+    },
+    "ROBUSTNESS_FALSIFICATION.md": {
+      "status": "CURRENT",
+      "scope": "leave-top-k, saving NOT robust"
+    },
+    "CAUSAL_ESTIMANDS.md": {
+      "status": "CURRENT",
+      "scope": "formal ATE/CATE definitions (task-level)"
+    },
+    "MRT_SIGNAL_CAUSALITY_FINAL.md": {
+      "status": "EXPLORATORY_PROVENANCE",
+      "scope": "prior MRT pilot -81k; 5 protocol violations; NOT formal causal evidence"
+    },
+    "MRT_CAUSAL_HYPOTHESES.md": {
+      "status": "CURRENT_PREREG_INPUT",
+      "scope": "3 frozen moderator hypotheses (A/B/C)"
+    },
+    "MRT_DATA_AUDIT.md": {
+      "status": "CURRENT_PROVENANCE",
+      "scope": "MRT freeze @ 4986a21; trace inventory"
+    },
+    "ACTION_OPPORTUNITY_SAMPLING.md": {
+      "status": "CURRENT",
+      "scope": "778 events, 5 strata, balance gate PASS"
+    },
+    "MRT_BLIND_ANNOTATION.md": {
+      "status": "EXPLORATORY",
+      "scope": "blind annotations (not used online in formal)"
+    },
+    "MRT_PILOT_RECONCILIATION.md": {
+      "status": "CURRENT",
+      "scope": "reclassifies prior pilot exploratory; lists 5 violations"
+    },
+    "MRT_RESCUE_PROVENANCE.md": {
+      "status": "SUPERSEDED",
+      "scope": "points to original shim 12f631e6; superseded by rescue live run ae352c2e"
+    },
+    "MRT_RESCUE_SMOKE.md": {
+      "status": "SUPERSEDED",
+      "scope": "'live validation pending'; superseded by MRT_RESCUE_PILOT_RESULTS.md"
+    },
+    "MRT_RESCUE_PILOT_RESULTS.md": {
+      "status": "CURRENT_SMOKE",
+      "scope": "protocol-valid smoke test (NOT causal estimate); 2 interventions, N=2, 0 controls"
+    },
+    "RESCUE_SHIM_FIXES.md": {
+      "status": "CURRENT",
+      "scope": "2 shim bugs fixed for live run"
+    }
+  },
+  "code": {
+    "mrt_shim.py": {
+      "sha256_16": "6cf5aa2d86e3f30e",
+      "role": "original exploratory pilot shim (per-call, whole-history) \u2014 SUPERSEDED"
+    },
+    "mrt_rescue_shim.py": {
+      "sha256_16": "ae352c2efdb0769e",
+      "role": "rescue single-shot shim; CONTAINS synthetic-fallback (unacceptable for formal)"
+    },
+    "event_sampler.py": {
+      "sha256_16": "62412c9317c2f0f0",
+      "role": "778-event action-opportunity sampler"
+    },
+    "test_mrt_rescue_protocol.py": {
+      "sha256_16": "a25ca899ff633809",
+      "role": "6 rescue protocol tests (PASS)"
+    },
+    "prune_methods.py": {
+      "sha256_16": "cb06efb69c9a08e7",
+      "role": "transform library"
+    }
+  },
+  "results_provenance": {
+    "results/pruning_ab/mrt/pilot_events.jsonl": {
+      "generator": "mrt_shim.py",
+      "status": "EXPLORATORY (prior -81k pilot)",
+      "committed_by": "4261888"
+    },
+    "results/pruning_ab/mrt_rescue/events.jsonl": {
+      "generator_shim_sha16": "ae352c2efdb0769e",
+      "events": 215,
+      "experimental": 2,
+      "status": "SMOKE (protocol-valid, N=2, 0 controls)",
+      "committed_by": "36686f2"
+    },
+    "results/pruning_ab/mrt_rescue/provenance.json": {
+      "recorded_shim_sha16": "12f631e6fd3c25ac",
+      "MISMATCH": "recorded shim (frozen) != actual generator shim ae352c2e (post-live-fix)"
+    },
+    "results/pruning_ab/candidate_events.jsonl": {
+      "events": 778,
+      "status": "CURRENT pre-treatment inventory",
+      "committed_by": "c02964c"
+    }
+  },
+  "known_protocol_mismatches": [
+    "PRIOR PILOT: per-call (not single-shot) randomization -> carryover",
+    "PRIOR PILOT: whole-history line_level_dedup (not segment-local) -> prefix mutation",
+    "PRIOR PILOT: offline annotation / online event misalignment",
+    "PRIOR PILOT: task-total (not H=1 proximal) estimand",
+    "PRIOR PILOT: assignment/activation conflation",
+    "RESCUE: synthetic empty-assistant fallback on malformed upstream (changes trajectory) -> UNACCEPTABLE for formal",
+    "RESCUE: in-memory task state (not restart-safe) -> UNACCEPTABLE for formal",
+    "RESCUE: eligibility required dup_frac>0.40 -> too restrictive for moderator estimation (formal drops to dup_lines>=5 base availability)",
+    "RESCUE: SHA-256 coin-flip (not stratified permuted-block) -> no arm-balance guarantee (N=2 both landed treatment)",
+    "PROVENANCE: provenance.json shim sha (12f631e6) != generator sha (ae352c2e)"
+  ],
+  "sample_count_inconsistencies": [
+    "prior pilot n=7 LINEDEDUP / n=21 NO_OP (per-call) vs rescue N=2 (single-shot, both treatment, 0 control)",
+    "prior pilot ATE reported as task-total tokens (-81k), rescue reports H=1 effective cost (3882.6, 5282.1) \u2014 DIFFERENT estimands, not comparable"
+  ],
+  "scientific_status_before_formal": {
+    "mechanism_cache_preservation": "SUPPORTED (rescue smoke: cache_read:create 122x/14x vs HYBRID1 recency 0.37x; task-level cache tax SUPPORTED)",
+    "LINEDEDUP_ATE_H1": "NOT ESTIMATED (rescue had 0 controls)",
+    "redundancy_causal_moderator": "NOT ESTIMATED formally (prior pilot direction only, protocol-invalid; underpowered)",
+    "controller_value": "NOT_SUPPORTED at task level (best trace controller +9.3% < +10.1% best-static)",
+    "formal_protocol_path": "smoke-validated (6/6 synthetic + clean live run) but NOT YET a powered randomized design"
+  }
+}
