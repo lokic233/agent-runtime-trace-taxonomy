@@ -29,3 +29,13 @@ cell. Verified: all re-launched cells have clean single-run ledgers (maxgap <=4s
 LESSON (answering the user's node nudges): the bottleneck was utilization, not node count. The Mac (arm64,
 no runtime, no cert) and devvm14202 (IPv6-proxy build wall) were both dead ends; the 384-core primary box
 was the answer all along.
+
+## OOM tuning: MAXPAR=6 too aggressive -> MAXPAR=3
+MAXPAR=6 caused container-cgroup OOM (rc=137): the frozen --memory=10g per-container limit is fine SERIALLY
+(each cell bursts into the free host) but under 6 concurrent cells x their task-containers, memory-heavy tasks
+(esp. HYBRID1, which expands/rewrites context) exceed 10g and get SIGKILLed (rc=137, no DONE). Host was NOT
+starved (1.4TB free) — it's the per-container cgroup. Load also hit 438 (>384 cores). FIX: MAXPAR=3 (kept the
+frozen --memory=10g untouched — it's a treatment-adjacent frozen param). Result: load 438->67, cells complete.
+DONE-marker resume preserved the 7 valid cells; OOM'd partials cleaned + re-run. ~3x speedup (vs 5-6x at MAXPAR=6
+but without drops) = net faster since OOM'd cells don't waste work. Lesson: concurrency limited by per-container
+memory, not host cores.
