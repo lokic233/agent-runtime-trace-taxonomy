@@ -6,12 +6,14 @@ Single source of truth. Reports not listed as CURRENT are superseded (kept for p
 
 | Tier | Reports | What it is |
 |------|---------|-----------|
-| **FORMAL MRT** | MRT_FORMAL_STATE_RECONCILIATION → MRT_FORMAL_PREREGISTRATION → MRT_FORMAL_*_AUDIT → MRT_FORMAL_PRIMARY_RESULTS → MRT_FORMAL_FINAL | Preregistered, stratified-block-randomized, restart-safe, fail-closed causal study. **Status: preregistered / running / completed — see MRT_FORMAL_FINAL.md.** NOT marked current until the formal data audit passes. |
+| **FORMAL MRT** | MRT_FORMAL_STATE_RECONCILIATION → MRT_FORMAL_PREREGISTRATION → MRT_FORMAL_*_AUDIT → MRT_FORMAL_PRIMARY_RESULTS → MRT_FORMAL_ROBUSTNESS → MRT_FORMAL_CONTROLLER_VALUE → **MRT_FORMAL_FINAL** | **CURRENT / COMPLETED.** Preregistered, stratified-block-randomized, restart-safe, fail-closed decision-level causal study. **Outcome #4 (UNDERPOWERED, N=13):** protocol integrity SUPPORTED; redundancy moderator NOT_SUPPORTED (placebo beats real signal); signal policy NOT_SUPPORTED; cache-preservation mechanism directionally SUPPORTED. Data audit + 14/14 consistency assertions PASS. |
 | **RESCUE MRT** | MRT_RESCUE_PILOT_RESULTS.md, RESCUE_SHIM_FIXES.md, MRT_RESCUE_PROVENANCE_FINAL.md | Protocol-VALID **smoke test** (single-shot, segment-local, prefix-preserved). **NOT a causal estimate** (N=2, 0 controls). |
 | **ORIGINAL MRT** | MRT_SIGNAL_CAUSALITY_FINAL.md (bannered), MRT_RESCUE_PROVENANCE.md, MRT_RESCUE_SMOKE.md | **Exploratory provenance only** (5 protocol violations). Directionally informative, not evidence. |
 
-> ⚠️ The FORMAL MRT is NOT marked CURRENT until its data audit + consistency assertions pass.
-> Until then, no MRT causal claim is authoritative.
+> ✅ The FORMAL MRT data audit + 14/14 consistency assertions PASS (2026-07-01). It is now
+> CURRENT/COMPLETED. Authoritative MRT verdict = **MRT_FORMAL_FINAL.md** (outcome #4, underpowered
+> at N=13; protocol validated, no moderator/controller value established). The ORIGINAL and RESCUE
+> MRT remain exploratory/smoke-only provenance.
 
 ## ⭐ START HERE
 - **TRACE_CAUSALITY_FINAL.md** — the causal study + 8-part verdict (CURRENT, definitive)

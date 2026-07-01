@@ -1,0 +1,59 @@
+{
+ "n_events_total": 699,
+ "n_interventions": 13,
+ "n_valid": 13,
+ "n_excluded_infra": 0,
+ "assignment_counts": {
+  "LINEDEDUP": 7,
+  "NO_OP": 6
+ },
+ "strata_counts": {
+  "MIXED_REDUNDANCY": 10,
+  "HIGH_REDUNDANCY": 3
+ },
+ "repos": [
+  "pydata",
+  "pylint-dev",
+  "pytest-dev",
+  "scikit-learn",
+  "sphinx-doc",
+  "sympy"
+ ],
+ "n_repos": 6,
+ "activation_rate": 1.0,
+ "ATE_h1": {
+  "n": 13,
+  "estimate_LINEDEDUP_minus_NOOP": -191.76071428571504,
+  "boot_ci95": [
+   -3540.055675595237,
+   3358.1145684523804
+  ],
+  "boot_se": 1790.1344980699034,
+  "repo_cluster_ci95": [
+   -3172.1916666666666,
+   2393.6705357142864
+  ],
+  "repo_cluster_se": 1480.2146301864077,
+  "block_perm_p": 0.9422057794220577,
+  "mean_LINEDEDUP": 6147.5142857142855,
+  "mean_NOOP": 6339.275000000001
+ },
+ "ATE_h3": {
+  "n": 13,
+  "estimate_LINEDEDUP_minus_NOOP": 468.47619047619446,
+  "boot_ci95": [
+   -8648.704777777775,
+   9064.051583333334
+  ],
+  "boot_se": 4605.902278321574,
+  "repo_cluster_ci95": [
+   -11379.431249999996,
+   10717.475694444445
+  ],
+  "repo_cluster_se": 5867.541434958318,
+  "block_perm_p": 0.934906509349065,
+  "mean_LINEDEDUP": 18977.09285714286,
+  "mean_NOOP": 18508.616666666665
+ },
+ "events_sha16": "e01d167205f6eb37"
+}

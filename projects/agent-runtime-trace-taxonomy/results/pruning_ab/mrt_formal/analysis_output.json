@@ -1,0 +1,185 @@
+{
+ "n_events_total": 699,
+ "n_interventions": 13,
+ "n_excluded_infra": 0,
+ "n_valid": 13,
+ "events_sha16": "e01d167205f6eb37",
+ "assignment_counts": {
+  "LINEDEDUP": 7,
+  "NO_OP": 6
+ },
+ "strata_counts": {
+  "MIXED_REDUNDANCY": 10,
+  "HIGH_REDUNDANCY": 3
+ },
+ "repos": [
+  "pydata",
+  "pylint-dev",
+  "pytest-dev",
+  "scikit-learn",
+  "sphinx-doc",
+  "sympy"
+ ],
+ "n_repos": 6,
+ "activation_rate": 1.0,
+ "ATE_h1": {
+  "n": 13,
+  "estimate_LINEDEDUP_minus_NOOP": -191.76071428571504,
+  "boot_ci95": [
+   -3540.055675595237,
+   3358.1145684523804
+  ],
+  "boot_se": 1790.1344980699034,
+  "repo_cluster_ci95": [
+   -3172.1916666666666,
+   2393.6705357142864
+  ],
+  "repo_cluster_se": 1480.2146301864077,
+  "block_perm_p": 0.9422057794220577,
+  "mean_LINEDEDUP": 6147.5142857142855,
+  "mean_NOOP": 6339.275000000001
+ },
+ "ATE_h3": {
+  "n": 13,
+  "estimate_LINEDEDUP_minus_NOOP": 468.47619047619446,
+  "boot_ci95": [
+   -8648.704777777775,
+   9064.051583333334
+  ],
+  "boot_se": 4605.902278321574,
+  "repo_cluster_ci95": [
+   -11379.431249999996,
+   10717.475694444445
+  ],
+  "repo_cluster_se": 5867.541434958318,
+  "block_perm_p": 0.934906509349065,
+  "mean_LINEDEDUP": 18977.09285714286,
+  "mean_NOOP": 18508.616666666665
+ },
+ "interaction_h1": {
+  "n": 13,
+  "center": 0.28,
+  "coefs": {
+   "b0_intercept": 6062.677274903409,
+   "b1_A": 572.5655646331159,
+   "b2_S": -5617.01482983839,
+   "b3_AxS": 924.2165981005948
+  },
+  "robust_se": {
+   "b0_intercept": 740.9646242108,
+   "b1_A": 1626.947517691066,
+   "b2_S": 3608.0335850830456,
+   "b3_AxS": 4669.828593570442
+  }
+ },
+ "interaction_h3": {
+  "n": 13,
+  "center": 0.28,
+  "coefs": {
+   "b0_intercept": 17700.11045224103,
+   "b1_A": 2478.9720445034427,
+   "b2_S": -16418.759029414894,
+   "b3_AxS": 4853.525025613951
+  },
+  "robust_se": {
+   "b0_intercept": 2958.120407790282,
+   "b1_A": 3814.188192168031,
+   "b2_S": 11911.04897915112,
+   "b3_AxS": 12847.499277289357
+  }
+ },
+ "CATE": {
+  "HIGH_REDUNDANCY": {
+   "n": 3,
+   "estimate": 2931.7750000000005,
+   "boot_ci95": [
+    -1272.5,
+    7136.05
+   ]
+  },
+  "MIXED_REDUNDANCY": {
+   "n": 10,
+   "estimate": -1044.8100000000013,
+   "boot_ci95": [
+    -4571.9333333333325,
+    3046.8739999999975
+   ]
+  },
+  "high_minus_mixed": 3976.585000000002
+ },
+ "mechanism": {
+  "input_tokens": {
+   "mean_LINEDEDUP": 1.0,
+   "mean_NOOP": 1.0,
+   "diff": 0.0
+  },
+  "cache_read": {
+   "mean_LINEDEDUP": 15622.285714285714,
+   "mean_NOOP": 15680.666666666666,
+   "diff": -58.380952380952294
+  },
+  "cache_creation": {
+   "mean_LINEDEDUP": 2470.8571428571427,
+   "mean_NOOP": 2965.5,
+   "diff": -494.64285714285734
+  },
+  "output_tokens": {
+   "mean_LINEDEDUP": 299.14285714285717,
+   "mean_NOOP": 212.66666666666666,
+   "diff": 86.47619047619051
+  }
+ },
+ "controller": {
+  "pi_keep": {
+   "ipw_cost": 5851.638461538461,
+   "dr_cost": 6186.826923076922,
+   "n": 13
+  },
+  "pi_static": {
+   "ipw_cost": 6620.4,
+   "dr_cost": 6059.6903846153855,
+   "n": 13
+  },
+  "pi_signal": {
+   "ipw_cost": 7424.1,
+   "dr_cost": 6863.390384615384,
+   "n": 13
+  },
+  "note": "IPW+DR, propensity=0.5, lower cost=better. Small N: interpret as effect-size not significance."
+ },
+ "robustness": {
+  "threshold_sensitivity": {
+   "0.3": {
+    "ipw_cost": 9247.984615384616,
+    "dr_cost": 5819.628076923078,
+    "n": 13
+   },
+   "0.4": {
+    "ipw_cost": 7424.1,
+    "dr_cost": 6863.390384615384,
+    "n": 13
+   },
+   "0.5": {
+    "ipw_cost": 5655.869230769231,
+    "dr_cost": 5991.0576923076915,
+    "n": 13
+   }
+  },
+  "leave_top_k": {
+   "k=1": -1180.0416666666652,
+   "k=3": -1473.5499999999997,
+   "k=5": -494.55333333333374
+  },
+  "leave_one_repo_out": {
+   "drop_pylint-dev": -1755.8050000000003,
+   "drop_scikit-learn": -361.53333333333376,
+   "drop_pydata": -226.95571428571384,
+   "drop_sphinx-doc": 551.9216666666662,
+   "drop_pytest-dev": 686.8949999999995,
+   "drop_sympy": -47.3666666666677
+  },
+  "placebo": {
+   "taskid_hash_interaction": 11078.38608428536
+  }
+ }
+}
