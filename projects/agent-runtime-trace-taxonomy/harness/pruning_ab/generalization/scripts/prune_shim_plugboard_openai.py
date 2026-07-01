@@ -41,16 +41,31 @@ def _norm_model_to_openai(d):
 # the FROZEN apply_method on that view, then restore the original roles + tool_call metadata. This
 # applies the identical frozen line/char logic to gpt's observations. C0/SHAM never call this.
 def _apply_with_tool_view(method, msgs):
-    view=[]; rolemap=[]
+    # SWE-agent's OpenAI tool messages carry content as a LIST of {'type':'text','text':...} blocks.
+    # The frozen _is_obs only accepts a list if it has a 'tool_result' block, else it needs a str.
+    # So in the user-view we FLATTEN tool-message content to a plain string (via frozen _txt) so _is_obs
+    # fires; we remember the original content shape and restore it (re-wrapping the pruned text) after.
+    view=[]; rolemap=[]; shapes=[]
     for m in msgs:
         if m.get("role")=="tool":
-            v=dict(m); v["role"]="user"; view.append(v); rolemap.append("tool")
+            v=dict(m); v["role"]="user"
+            orig=m.get("content")
+            if isinstance(orig, list):
+                v["content"]=PM._txt(orig)   # flatten blocks -> str so _is_obs accepts it
+                shapes.append(("list", orig))
+            else:
+                shapes.append(("str", orig))
+            view.append(v); rolemap.append("tool")
         else:
-            view.append(dict(m)); rolemap.append(m.get("role"))
+            view.append(dict(m)); rolemap.append(m.get("role")); shapes.append(("keep", None))
     pruned=PM.apply_method(method, view)
     out=[]
-    for pv, r, o in zip(pruned, rolemap, msgs):
+    for pv, r, o, (shape, orig) in zip(pruned, rolemap, msgs, shapes):
         nv=dict(pv); nv["role"]=r
+        if r=="tool" and shape=="list":
+            # re-wrap the (possibly pruned) text back into a single text block, preserving OpenAI tool shape
+            new_text=PM._txt(pv.get("content")) if not isinstance(pv.get("content"), str) else pv.get("content")
+            nv["content"]=[{"type":"text","text":new_text}]
         for k in ("tool_call_id","tool_calls","tool_call_ids","name"):
             if k in o: nv[k]=o[k]
         out.append(nv)
