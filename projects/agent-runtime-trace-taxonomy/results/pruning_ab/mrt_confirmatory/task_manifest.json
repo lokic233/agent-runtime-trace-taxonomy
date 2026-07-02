@@ -1,8 +1,8 @@
 {
  "study": "study2",
- "n_tasks": 170,
+ "n_tasks": 169,
  "availability_rate_audited": 0.5167,
- "expected_eligible_events": 88,
+ "expected_eligible_events": 87,
  "selection_rule": "NEW SWE-bench Verified tasks (not in golden-50/Study-1). 60 dry-run-characterized + 110 fresh, repo-capped for diversity. NO selection on any LINEDEDUP outcome. Dry-run trajectories are audit-only; Study-2 re-randomizes.",
  "repos": {
   "astropy": 14,
@@ -15,7 +15,7 @@
   "pytest-dev": 13,
   "scikit-learn": 18,
   "sphinx-doc": 21,
-  "sympy": 28
+  "sympy": 27
  },
  "tasks": [
   "astropy__astropy-13033",
@@ -181,7 +181,6 @@
   "sympy__sympy-18698",
   "sympy__sympy-19346",
   "sympy__sympy-21379",
-  "sympy__sympy-21847",
   "sympy__sympy-21930",
   "sympy__sympy-22080",
   "sympy__sympy-22456",
@@ -189,5 +188,8 @@
   "sympy__sympy-23534",
   "sympy__sympy-24562"
  ],
- "seed": 20260702
+ "seed": 20260702,
+ "dropped_no_fingerprint": [
+  "sympy__sympy-21847"
+ ]
 }
