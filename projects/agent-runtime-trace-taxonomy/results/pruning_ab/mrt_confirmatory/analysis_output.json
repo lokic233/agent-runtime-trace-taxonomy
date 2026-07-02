@@ -1,0 +1,188 @@
+{
+ "n_events": 4469,
+ "n_interventions": 70,
+ "n_valid": 70,
+ "n_excluded_infra": 0,
+ "arms": {
+  "LINEDEDUP": 36,
+  "NO_OP": 34
+ },
+ "strata": {
+  "HIGH_REDUNDANCY": 30,
+  "MIXED_REDUNDANCY": 40
+ },
+ "repos": [
+  "astropy",
+  "django",
+  "matplotlib",
+  "mwaskom",
+  "psf",
+  "pydata",
+  "pylint-dev",
+  "pytest-dev",
+  "scikit-learn",
+  "sphinx-doc",
+  "sympy"
+ ],
+ "n_repos": 11,
+ "ATE_h1": {
+  "n": 70,
+  "estimate": -994.9498366013086,
+  "boot_ci95": [
+   -2430.074620663374,
+   370.3016933120129
+  ],
+  "boot_se": 717.7213960207096,
+  "repo_cluster_ci95": [
+   -2074.206514315954,
+   163.3754373084206
+  ],
+  "ci_halfwidth": 1400.1881569876934,
+  "mean_LINEDEDUP": 5460.072222222222,
+  "mean_NOOP": 6455.022058823531
+ },
+ "ATE_h3": {
+  "n": 70,
+  "estimate": -500.89501633986947,
+  "boot_ci95": [
+   -3592.554438316992,
+   2685.4394902786835
+  ],
+  "boot_se": 1611.859442343781,
+  "repo_cluster_ci95": [
+   -3052.3616768070688,
+   2321.8903331387924
+  ],
+  "ci_halfwidth": 3138.9969642978376,
+  "mean_LINEDEDUP": 16242.740277777775,
+  "mean_NOOP": 16743.635294117645
+ },
+ "interaction_h1": {
+  "b0": 6508.217468764819,
+  "b1": -910.6570615745688,
+  "b2": -1022.417879839524,
+  "b3": -260.9225817486654,
+  "se_b3": 2286.057912347156,
+  "n": 70,
+  "center": 0.35067400000000004
+ },
+ "block_perm_b3": {
+  "b3": -260.9225817486654,
+  "perm_p": 0.9138172365526894,
+  "n_perm": 5000
+ },
+ "CATE": {
+  "HIGH_REDUNDANCY": {
+   "n": 30,
+   "estimate": -515.8562499999998
+  },
+  "MIXED_REDUNDANCY": {
+   "n": 40,
+   "estimate": -1307.1324999999988
+  }
+ },
+ "controller": {
+  "pi_keep": {
+   "hajek": 6455.02205882353,
+   "dr_loro": 6434.177144736843
+  },
+  "pi_static": {
+   "hajek": 5460.072222222223,
+   "dr_loro": 5468.094552859679
+  },
+  "pi_signal": {
+   "hajek": 6186.256944444445,
+   "dr_loro": 6228.957120344568
+  },
+  "best_static_hajek": "pi_static",
+  "best_static_dr": "pi_static",
+  "signal_beats_both_hajek": false,
+  "signal_beats_both_dr": false
+ },
+ "mechanism": {
+  "cache_creation": {
+   "mean_LINEDEDUP": 1692.8333333333333,
+   "mean_NOOP": 2311.794117647059,
+   "diff": -618.9607843137258
+  },
+  "cache_read": {
+   "mean_LINEDEDUP": 16192.805555555555,
+   "mean_NOOP": 14870.735294117647,
+   "diff": 1322.070261437908
+  },
+  "output_tokens": {
+   "mean_LINEDEDUP": 344.75,
+   "mean_NOOP": 415.44117647058823,
+   "diff": -70.69117647058823
+  },
+  "input_tokens": {
+   "mean_LINEDEDUP": 1.0,
+   "mean_NOOP": 1.0,
+   "diff": 0.0
+  }
+ },
+ "placebo": {
+  "b3_real": -260.9225817486654,
+  "n_placebo": 5000,
+  "abs_ge_real_pct": 0.9170165966806638,
+  "quantiles": {
+   "5": -4170.928609102791,
+   "50": 19.068533520227664,
+   "95": 4172.030148036424
+  }
+ },
+ "robustness": {
+  "threshold_sensitivity": {
+   "0.3": {
+    "hajek": 5888.7262500000015
+   },
+   "0.4": {
+    "hajek": 6186.256944444445
+   },
+   "0.5": {
+    "hajek": 6222.913888888889
+   }
+  },
+  "leave_top_k": {
+   "k=1": -701.662626262626,
+   "k=3": -239.51326164874627,
+   "k=5": -188.427380952382
+  },
+  "leave_one_repo_out": {
+   "drop_astropy": -856.5667644183777,
+   "drop_psf": -929.9202020202019,
+   "drop_sympy": -820.1627380952386,
+   "drop_scikit-learn": -1041.0531250000004,
+   "drop_pydata": -1009.2874551971327,
+   "drop_django": -1303.4449074074064,
+   "drop_mwaskom": -931.0411764705896,
+   "drop_pylint-dev": -995.747878787879,
+   "drop_sphinx-doc": -929.6415476190477,
+   "drop_pytest-dev": -1388.1242424242428,
+   "drop_matplotlib": -749.070303030303
+  }
+ },
+ "quality": {
+  "LINEDEDUP": "27/36",
+  "NO_OP": "21/34",
+  "risk_difference": 0.13235294117647056,
+  "newcombe_ci95": [
+   -0.08300054477006094,
+   0.3339086202172978
+  ],
+  "ni_margin": -0.15,
+  "ni_met": true
+ },
+ "activation_rate": 1.0,
+ "verdicts": {
+  "PROTOCOL_INTEGRITY": "SUPPORTED",
+  "LINEDEDUP_ATE_H1": "UNDERPOWERED",
+  "REDUNDANCY_CAUSAL_MODERATOR": "UNDERPOWERED / NOT_ESTABLISHED",
+  "H3_REWORK_SAFETY": "UNDERPOWERED",
+  "PREFIX_BYTE_PRESERVATION": "SUPPORTED",
+  "CACHE_COST_EFFECT": "DIRECTIONAL / UNDERPOWERED",
+  "QUALITY_NONINFERIORITY": "SUPPORTED",
+  "SIGNAL_POLICY_VALUE": "NOT_SUPPORTED / UNDERPOWERED",
+  "DEPLOYABLE_TRACECONTROLLER": "NOT_SUPPORTED"
+ }
+}
