@@ -1,0 +1,67 @@
+{
+ "families": {
+  "F1_removal": [
+   "duplicate_line_fraction",
+   "removable_fraction_est",
+   "longest_dup_span",
+   "distinct_dup_spans",
+   "dup_position_mean"
+  ],
+  "F2_liveness": [
+   "seg_contains_error",
+   "seg_looks_like_test_output",
+   "seg_entity_live_fraction",
+   "entity_recurrence_prevK",
+   "seg_n_funcs"
+  ],
+  "F3_recoverability": [
+   "seg_looks_like_file_read",
+   "seg_reproducible_from_repo",
+   "seg_looks_like_test_output"
+  ],
+  "F4_cache": [
+   "materialized_prefix_est",
+   "calls_so_far",
+   "segment_pos_in_context"
+  ],
+  "F5_trajectory": [
+   "patch_exists_prior",
+   "tests_run_prior",
+   "latest_test_failed",
+   "error_loop_count",
+   "phase_diagnosis"
+  ],
+  "INT_live_recov": [
+   "seg_entity_live_fraction",
+   "seg_reproducible_from_repo",
+   "error_loop_count"
+  ],
+  "INT_removal_cache": [
+   "removable_fraction_est",
+   "materialized_prefix_est",
+   "calls_so_far"
+  ]
+ },
+ "union": [
+  "calls_so_far",
+  "distinct_dup_spans",
+  "dup_position_mean",
+  "duplicate_line_fraction",
+  "entity_recurrence_prevK",
+  "error_loop_count",
+  "latest_test_failed",
+  "longest_dup_span",
+  "materialized_prefix_est",
+  "patch_exists_prior",
+  "phase_diagnosis",
+  "removable_fraction_est",
+  "seg_contains_error",
+  "seg_entity_live_fraction",
+  "seg_looks_like_file_read",
+  "seg_looks_like_test_output",
+  "seg_n_funcs",
+  "seg_reproducible_from_repo",
+  "segment_pos_in_context",
+  "tests_run_prior"
+ ]
+}

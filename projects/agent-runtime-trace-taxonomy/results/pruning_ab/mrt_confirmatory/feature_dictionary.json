@@ -1,0 +1,70 @@
+{
+ "n_interventions_with_features": 70,
+ "alignment_failures": [],
+ "extraction": "hash-verified target segment (sha256[:16]==segment_hash_before); features from segment + STRICTLY prior messages only",
+ "determinism": "fully deterministic frozen regex parsers; no LLM classifier",
+ "families": {
+  "F1_removal_opportunity": [
+   "segment_chars",
+   "duplicate_line_count",
+   "duplicate_line_fraction",
+   "removable_lines_est",
+   "removable_chars_est",
+   "removable_tokens_est",
+   "removable_fraction_est",
+   "distinct_dup_spans",
+   "longest_dup_span",
+   "dup_position_mean"
+  ],
+  "F2_semantic_liveness": [
+   "seg_n_paths",
+   "seg_n_funcs",
+   "seg_n_classes",
+   "seg_n_errors",
+   "seg_n_traceback_lines",
+   "seg_n_tests",
+   "seg_contains_error",
+   "seg_contains_traceback",
+   "seg_entities_in_last_plan",
+   "seg_entity_live_fraction",
+   "entity_recurrence_prevK"
+  ],
+  "F3_recoverability": [
+   "seg_from_tool_output",
+   "seg_looks_like_file_read",
+   "seg_looks_like_test_output",
+   "seg_reproducible_from_repo",
+   "seg_transient_env_state"
+  ],
+  "F4_cache_geometry": [
+   "prior_cache_read",
+   "materialized_prefix_est",
+   "calls_so_far",
+   "segment_pos_in_context"
+  ],
+  "F5_trajectory_state": [
+   "main_agent_call_index",
+   "prior_tool_calls",
+   "prior_assistant_calls",
+   "patch_exists_prior",
+   "tests_run_prior",
+   "latest_test_failed",
+   "error_loop_count",
+   "phase_diagnosis"
+  ]
+ },
+ "prohibited_post_treatment_excluded": [
+  "characters_removed",
+  "lines_removed",
+  "output_tokens",
+  "effective_cost_h1",
+  "latency_seconds",
+  "stop_reason",
+  "resolved",
+  "h3",
+  "future calls",
+  "post rereads"
+ ],
+ "prespecified": true,
+ "note": "extractor frozen BEFORE inspecting feature-specific treatment effects"
+}

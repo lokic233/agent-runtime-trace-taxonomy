@@ -1,0 +1,87 @@
+{
+ "candidates": [
+  {
+   "name": "C1_cache_geometry",
+   "features": [
+    "materialized_prefix_est",
+    "calls_so_far",
+    "segment_pos_in_context"
+   ],
+   "rationale": "override to NO_OP when cache-geometry model predicts LINEDEDUP harm (prefix already large -> dedup churns cache)",
+   "type": "EXPLORATORY",
+   "V_exc_minus_static": -79.63685636856371,
+   "repo_bootstrap_ci95": [
+    -1024.3129844961236,
+    1037.2542734213253
+   ],
+   "coverage_override_frac": 0.32857142857142857,
+   "leave_top_k": {
+    "k=1": -348.46347222222175,
+    "k=3": -568.0658119658119,
+    "k=5": -568.2266541353374
+   },
+   "fold_diff_median": -91.91421568627447,
+   "fold_diff_worst": 231.5102272727263,
+   "folds_improving": 8,
+   "n_folds": 11,
+   "ci_excludes_zero": false,
+   "stable": false,
+   "supported": false
+  },
+  {
+   "name": "C2_trajectory_state",
+   "features": [
+    "patch_exists_prior",
+    "tests_run_prior",
+    "latest_test_failed",
+    "error_loop_count",
+    "phase_diagnosis"
+   ],
+   "rationale": "override to NO_OP when trajectory-state model predicts harm (e.g. mid-diagnosis, error loops)",
+   "type": "EXPLORATORY",
+   "V_exc_minus_static": -156.34365079365034,
+   "repo_bootstrap_ci95": [
+    -849.0012140007449,
+    590.5637195723683
+   ],
+   "coverage_override_frac": 0.21428571428571427,
+   "leave_top_k": {
+    "k=1": -156.34365079365034,
+    "k=3": -156.34365079365034,
+    "k=5": -166.4513445378143
+   },
+   "fold_diff_median": -181.19185606060637,
+   "fold_diff_worst": 208.41416666666646,
+   "folds_improving": 10,
+   "n_folds": 11,
+   "ci_excludes_zero": false,
+   "stable": false,
+   "supported": false
+  },
+  {
+   "name": "C3_interpretable_rule",
+   "features": [
+    "materialized_prefix_est",
+    "patch_exists_prior"
+   ],
+   "rationale": "override NO_OP if large materialized prefix (>30k) AND no patch yet (early, cache-expensive to churn)",
+   "type": "EXPLORATORY",
+   "V_exc_minus_static": 58.681944444444525,
+   "repo_bootstrap_ci95": [
+    -49.57684103260897,
+    195.45835713075937
+   ],
+   "coverage_override_frac": 0.05714285714285714,
+   "fold_diff_median": 64.01666666666642,
+   "folds_improving": 1,
+   "n_folds": 11,
+   "ci_excludes_zero": false,
+   "stable": false,
+   "supported": false
+  }
+ ],
+ "baseline": "pi_static (always-LINEDEDUP)",
+ "n": 70,
+ "overall": "NO candidate exception policy credibly beats always-LINEDEDUP (all CIs span zero)",
+ "any_supported": false
+}

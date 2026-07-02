@@ -1,10 +1,12 @@
 {
  "reconciliation": "MRT Study-2 statistical reconciliation (analysis-only, sealed N=70)",
- "timestamp": "2026-07-02T04:15:07Z",
+ "timestamp": "2026-07-02T04:29:17Z",
  "source_commit": "1f318871d3315010d11a7d74f3c8df2ce92c7e19",
  "reconciliation_code_hashes": {
   "reconcile_mrt_study2.py": "515708cea44ffba8e9a918f3e3928c6275f66e6cc136dffa87bde7aaa5d05cda",
-  "test_mrt_study2_reconciliation.py": "ddad9384ba28e35986eeffe3532961f0207cd7fa9b18018e5625fbc0fa748fd0"
+  "test_mrt_study2_reconciliation.py": "ddad9384ba28e35986eeffe3532961f0207cd7fa9b18018e5625fbc0fa748fd0",
+  "extract_pretreatment_features.py": "595d9388738d6f558dff186f8b30736e9e5beecdfb9add287dcc616d5a0abebd",
+  "discover_signal_action.py": "ecf09b7948a8bdbc0573bc924ef829a14a0fadf32dc6f1374e1eda96d5b92e39"
  },
  "sealed_source_hashes": {
   "study2": {
@@ -49,5 +51,34 @@
  "no_new_trajectories": true,
  "no_new_interventions": true,
  "frozen_center_primary": 0.3429275,
- "frozen_center_provenance": "Study-1 available-event median (40 events), per Study-2 preregistration primary_model text"
+ "frozen_center_provenance": "Study-1 available-event median (40 events), per Study-2 preregistration primary_model text",
+ "discovery_outputs": {
+  "analysis_full.json": "f9d08094aca1475203e04424b84670d5f6b1166a144a8710c6c032c302430d59",
+  "ancova_secondary.json": "0f19e15c856e52f3f735910775c971227f6deb7741ee2717359e8f054d105dd7",
+  "candidate_exception_policies.json": "18efda7f4b6f008ae72baa0276dd9f7d00541421cc78f4198a0f5b7d2e384b75",
+  "coverage_gain_curves.json": "1850dc303d0ae75883f3ebe16a028e65f65bccc2199b2c47eb0ec08e5c49d724",
+  "discovery_stability.json": "77e81a70afbb18e9ed3568ec232dfaf1b75a31ea28c780e731eb453747957a75",
+  "dr_audit.json": "ec8e139f36750ee7a961c70cb48ed48bb1576782ddfc27adea287d336ab73b2a",
+  "feature_families.json": "03d0356c1c86ef7ac177639b0a12705ff6e07c602f426db970487893abdafb63",
+  "h3_analysis.json": "9e2e7c06df365a8c47d03db255760622e875fd9d8af6f0d893c75c653b974d7f",
+  "invariant_checks.json": "19dec4b17784e7deabd31b2a80edafc49f38654210d2676735a4beff85c039c5",
+  "moderator_inference.json": "bb57f89eaa37470fee821606fe853a4e9a0de8946a397ea5c25aebe939d3fb64",
+  "placebo_analysis.json": "5b0e0cb2d998bfcb231c196fdb424859c974a6fbe5c598033a5066d047007829",
+  "policy_contrasts.json": "9d77a192bf1aff96960bd16186c895539a26f8e024fd6729a766a6e8d79d1f1b",
+  "policy_values.json": "10c700e425ed771d8012edb08b753f116b9c1c7d73c01dee6ce264814418711f",
+  "preregistration_compliance.json": "c0c6c3cf749d740e2353801d6210ee9e7d16e9dd6bd850bf68fbac6238efa62c",
+  "preregistration_execution_audit.json": "c0c6c3cf749d740e2353801d6210ee9e7d16e9dd6bd850bf68fbac6238efa62c",
+  "pricing_sensitivity.json": "7eb01e4b9803b975fda1ef54abcf8af2f112a23dbf07c13cb81568b8d4d32b8c",
+  "primary_estimates.json": "1d9d24259f7f777ada115843517200c29afde2cd60dedcdbfde6f672897978e6",
+  "provenance.json": "c07fbdcda75e54e892ea50c4e4b2a05881dfbb1e4ba792cdf3127b2bc257adcb",
+  "quality_analysis.json": "c65d73f757b82a75610a98bdffd2ffb6cff685686153fee1de7233880f12dbc9",
+  "randomization_inference.json": "9ce803b9b2e25663beec5d0fc8af31e9e473a3f744c0ceb6ca9755be81f59c4a",
+  "reconciliation_summary.json": "09d14942aa8b8f8cc0f496a0d2c84440a484fd936aa4a0549ac43e6fa040d53c",
+  "signal_action_alignment.json": "5b4c984addc054aa824f4b979165d32d9c5ab634b7d64e49482186b0ced238ed"
+ },
+ "discovery_data_outputs": {
+  "pre_treatment_features.jsonl": "a94d241057f3ee601cbf5a517ee2c933e96a642d53b8d7b03926ec84f339c1db",
+  "feature_dictionary.json": "b1f8af2637f17153a9826cb753a6efe932e7a35fd6b0603bb340694ca6f42ec0",
+  "oof_counterfactual_advantage.jsonl": "110c69ed20c0f33375c83ca4cfdc0c86d51593da63b2b5c6df4d0f4582e41e9c"
+ }
 }
