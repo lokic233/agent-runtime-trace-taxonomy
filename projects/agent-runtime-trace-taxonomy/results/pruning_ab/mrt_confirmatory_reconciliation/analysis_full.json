@@ -1,0 +1,519 @@
+{
+ "meta": {
+  "n_events": 4469,
+  "n_interventions": 70,
+  "n_valid": 70,
+  "n_excluded_infra": 0,
+  "frozen_center_primary": 0.3429275,
+  "estimand_types": "SOFTWARE_INVARIANT|DESCRIPTIVE|RANDOMIZATION_INFERENCE|ASYMPTOTIC|PRIMARY|SECONDARY|POST_HOC",
+  "arms": {
+   "LINEDEDUP": 36,
+   "NO_OP": 34
+  },
+  "strata": {
+   "HIGH_REDUNDANCY": 30,
+   "MIXED_REDUNDANCY": 40
+  },
+  "repos": [
+   "astropy",
+   "django",
+   "matplotlib",
+   "mwaskom",
+   "psf",
+   "pydata",
+   "pylint-dev",
+   "pytest-dev",
+   "scikit-learn",
+   "sphinx-doc",
+   "sympy"
+  ],
+  "n_repos": 11
+ },
+ "randomization_mechanism": {
+  "type": "RANDOMIZATION_INFERENCE",
+  "blocks": 18,
+  "complete_blocks": 17,
+  "incomplete_blocks": [
+   "HIGH_REDUNDANCY:7"
+  ],
+  "observed_assignment_in_space": true,
+  "bad_block": null,
+  "assignment_space_per_incomplete": {
+   "HIGH_REDUNDANCY:7": {
+    "observed_positions": [
+     0,
+     1
+    ],
+    "space_size": 4,
+    "distinct_patterns": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ]
+    ]
+   }
+  },
+  "marginal_propensity_all_0.5": true,
+  "n_units_propensity_not_half": 0,
+  "propensity_summary": {
+   "min": 0.5,
+   "max": 0.5
+  },
+  "n_sim": 10000,
+  "seed": 20260702
+ },
+ "ATE_h1": {
+  "type": "PRIMARY (unadjusted DESCRIPTIVE + block-adjusted); asymptotic SEs ASYMPTOTIC",
+  "unadjusted_dim": -994.9498366013086,
+  "block_adjusted_ate": -891.7073529411765,
+  "blockFE_b1_A": -968.4357554366637,
+  "se_classical_NOT_robust": 772.4688268234876,
+  "se_HC3": 933.3160555254142,
+  "se_repo_cluster": 777.657021455682,
+  "blockFE_A_ci95_HC3": [
+   -2797.7352242664756,
+   860.863713393148
+  ],
+  "blockFE_A_ci95_cluster": [
+   -2492.6435174898,
+   555.7720066164728
+  ],
+  "unadj_repo_bootstrap_ci95": [
+   -2044.2009695687518,
+   182.64732380695776
+  ],
+  "mean_LINEDEDUP": 5460.072222222222,
+  "mean_NOOP": 6455.022058823531,
+  "leave_one_repo_out": {
+   "drop_scikit-learn": -1041.0531250000004,
+   "drop_sphinx-doc": -929.6415476190477,
+   "drop_mwaskom": -931.0411764705896,
+   "drop_sympy": -820.1627380952386,
+   "drop_django": -1303.4449074074064,
+   "drop_pytest-dev": -1388.1242424242428,
+   "drop_matplotlib": -749.070303030303,
+   "drop_astropy": -856.5667644183777,
+   "drop_pylint-dev": -995.747878787879,
+   "drop_psf": -929.9202020202019,
+   "drop_pydata": -1009.2874551971327
+  },
+  "leave_top_k": {
+   "k=1": -701.662626262626,
+   "k=3": -239.51326164874627,
+   "k=5": -188.427380952382
+  },
+  "tail_diagnostics": {
+   "skew": 1.3350797668960517,
+   "kurtosis_excess": 1.3457586937351111,
+   "max_over_median": 3.1316087017707317
+  },
+  "design": {
+   "rank": 21,
+   "condition_number": 8.284555864965188,
+   "dof": 49,
+   "n": 70,
+   "p": 21
+  },
+  "sensitivity_only": {
+   "log_cost_diff": -0.1868103423279326,
+   "trimmed10_diff": -775.3382142857154,
+   "winsor10_diff": -950.1051470588254,
+   "median_diff": -1253.5500000000002
+  }
+ },
+ "moderator": {
+  "type": "PRIMARY moderator (block-FE OLS; RANDOMIZATION_INFERENCE for beta3)",
+  "primary_center": 0.3429275,
+  "model": {
+   "b1_A": -968.4357554366637,
+   "b2_S": -256.10790776432367,
+   "b3_AxS": 931.6207608228618,
+   "se_classical_b3": 2454.0695397033783,
+   "se_HC3_b3": 3258.297054331454,
+   "se_cluster_b3": 3332.227307070386,
+   "ci95_HC3_b3": [
+    -5454.6414656667885,
+    7317.882987312511
+   ],
+   "ci95_cluster_b3": [
+    -5599.544761035095,
+    7462.786282680818
+   ],
+   "block_fe_present": true,
+   "n_block_fe": 18,
+   "center_used": 0.3429275,
+   "rank": 21,
+   "condition_number": 8.284555864965188,
+   "dof": 49,
+   "n": 70,
+   "p": 21
+  },
+  "center_sensitivity": {
+   "study1_intervention_median_0.28": {
+    "center": 0.28,
+    "b3": 931.6207608228199,
+    "se_HC3_b3": 3258.2970543314505
+   },
+   "study2_sample_median_VIOLATION": {
+    "center": 0.35067400000000004,
+    "b3": 931.6207608228459,
+    "se_HC3_b3": 3258.2970543314555
+   }
+  },
+  "sharp_null": {
+   "null": "no unit has any treatment effect",
+   "p_value": 0.7339266073392661,
+   "stat": "|b3|",
+   "n_perm": 10000,
+   "exact": false,
+   "type": "RANDOMIZATION_INFERENCE"
+  },
+  "studentized_sharp": {
+   "p_value": 0.7518248175182481,
+   "stat": "|b3/HC3se|",
+   "n_perm": 10000,
+   "type": "RANDOMIZATION_INFERENCE"
+  },
+  "no_moderation_null": {
+   "null": "beta3=0 (effects may be constant in S)",
+   "method": "Freedman-Lane-style design permutation",
+   "p_value": 0.7339266073392661,
+   "n_perm": 10000,
+   "type": "RANDOMIZATION_INFERENCE"
+  },
+  "deviation_note": "Sealed Study-2 analysis fit intercept+A+S+A*S WITHOUT block FE and centered at the Study-2 sample median (0.35067) -> PREREGISTRATION DEVIATION on both counts. This reconciliation implements block FE + frozen Study-1 center."
+ },
+ "placebo": {
+  "type": "RANDOMIZATION_INFERENCE / POST_HOC falsification",
+  "b3_real": 931.6207608228618,
+  "t_real_studentized": 0.2859225986115665,
+  "terminology_note": "upper_tail_prob = P(|placebo|>=|real|). real EXCEEDS (empirical_rank) fraction of placebos. NOT a percentile of the real effect.",
+  "perm_moderator_global": {
+   "n": 5000,
+   "upper_tail_prob": 0.7392,
+   "real_exceeds_frac": 0.2608,
+   "quantiles": {
+    "2.5": -5492.426348565677,
+    "50": -9.381372575537725,
+    "97.5": 5170.675357460517
+   },
+   "preserves_support": true
+  },
+  "perm_moderator_within_stratum": {
+   "n": 5000,
+   "upper_tail_prob": 0.6792,
+   "real_exceeds_frac": 0.3208,
+   "quantiles": {
+    "2.5": -885.8213914615192,
+    "50": 1428.6067604523685,
+    "97.5": 3722.3833599140144
+   },
+   "preserves_support": true,
+   "grouping": "within stratum"
+  },
+  "studentized_global": {
+   "n": 5000,
+   "upper_tail_prob": 0.7304,
+   "quantiles": {
+    "2.5": -1.6394870518051674,
+    "50": 0.007552621994104156,
+    "97.5": 1.7523104724484697
+   }
+  },
+  "eventid_hash_auxiliary": {
+   "n": 5000,
+   "upper_tail_prob": 0.7524,
+   "real_exceeds_frac": 0.2476,
+   "note": "deterministic hash-uniform; auxiliary only, does NOT preserve empirical moderator distribution"
+  }
+ },
+ "controller": {
+  "pi_keep": {
+   "hajek": 6455.02205882353,
+   "hajek_denominator": 68.0,
+   "effective_matched_n": 34,
+   "dr_loro": 6434.177144736843,
+   "dr_fallback_counts": {
+    "stratum_arm": 140
+   },
+   "dr_own_outcome_leaks": 0,
+   "hajek_repo_bootstrap_ci95": [
+    5448.096505156473,
+    7706.412701659038
+   ]
+  },
+  "pi_static": {
+   "hajek": 5460.072222222223,
+   "hajek_denominator": 72.0,
+   "effective_matched_n": 36,
+   "dr_loro": 5468.094552859679,
+   "dr_fallback_counts": {
+    "stratum_arm": 140
+   },
+   "dr_own_outcome_leaks": 0,
+   "hajek_repo_bootstrap_ci95": [
+    4379.746580357143,
+    6651.033599999999
+   ]
+  },
+  "pi_signal": {
+   "hajek": 6186.256944444445,
+   "hajek_denominator": 72.0,
+   "effective_matched_n": 36,
+   "dr_loro": 6228.957120344568,
+   "dr_fallback_counts": {
+    "stratum_arm": 140
+   },
+   "dr_own_outcome_leaks": 0,
+   "hajek_repo_bootstrap_ci95": [
+    4924.266470833333,
+    8031.409697712412
+   ]
+  },
+  "best_static_hajek": "pi_static",
+  "best_static_dr": "pi_static",
+  "estimators_agree_best_static": true,
+  "signal_beats_both_hajek": false,
+  "signal_beats_both_dr": false,
+  "type": "Hajek IPW PRIMARY; LORO-DR SECONDARY. Lower cost=better. propensity=0.5 (verified marginal)."
+ },
+ "policy_contrasts": {
+  "signal_minus_keep": {
+   "hajek": -268.7651143790845,
+   "dr": -205.22002439227526,
+   "hajek_ci95": [
+    -1089.6214302405042,
+    646.9286386993368
+   ]
+  },
+  "signal_minus_static": {
+   "hajek": 726.1847222222223,
+   "dr": 760.8625674848881,
+   "hajek_ci95": [
+    -248.04095822812556,
+    2004.943817760301
+   ]
+  },
+  "static_minus_keep": {
+   "hajek": -994.9498366013067,
+   "dr": -966.0825918771634,
+   "hajek_ci95": [
+    -2044.2009695687536,
+    182.64732380695773
+   ]
+  },
+  "note": "positive contrast = first policy MORE costly (worse). Controller supported only if signal_minus_{keep,static} both clearly negative with CI."
+ },
+ "quality": {
+  "type": "PRIMARY marginal NI (frozen margin -0.15). Binary SWE-bench resolution ONLY.",
+  "LINEDEDUP": "27/36",
+  "NO_OP": "21/34",
+  "risk_difference": 0.13235294117647056,
+  "newcombe_ci95": [
+   -0.08300054477006086,
+   0.3339086202172977
+  ],
+  "ni_margin": -0.15,
+  "ni_met_marginal": true,
+  "distance_lower_to_margin": 0.06699945522993914,
+  "wilson_LINEDEDUP": [
+   0.75,
+   0.5892923231679658,
+   0.862496761607746
+  ],
+  "wilson_NOOP": [
+   0.6176470588235294,
+   0.45040719999382667,
+   0.7610003514839122
+  ],
+  "scope_note": "binary resolution ONLY; NOT trajectory quality / H3 rework / rereads / semantic correctness. Cluster-aware precision limited."
+ },
+ "pricing": {
+  "type": "SENSITIVITY (frozen primary unchanged)",
+  "frozen_primary": {
+   "H1_ATE": -994.9498366013086,
+   "pi_keep": 6455.02205882353,
+   "pi_static": 5460.072222222223,
+   "pi_signal": 6186.256944444445,
+   "best_policy": "pi_static",
+   "signal_beats_both": false
+  },
+  "uniform_1x": {
+   "H1_ATE": 632.4183006535968,
+   "pi_keep": 17598.970588235294,
+   "pi_static": 18231.38888888889,
+   "pi_signal": 16254.888888888889,
+   "best_policy": "pi_signal",
+   "signal_beats_both": true
+  },
+  "output_heavy_10x": {
+   "H1_ATE": -1348.4057189542482,
+   "pi_keep": 8532.227941176468,
+   "pi_static": 7183.822222222223,
+   "pi_signal": 8134.1736111111095,
+   "best_policy": "pi_static",
+   "signal_beats_both": false
+  },
+  "cache_creation_heavy": {
+   "H1_ATE": -1768.650816993465,
+   "pi_keep": 9344.764705882351,
+   "pi_static": 7576.11388888889,
+   "pi_signal": 9067.680555555555,
+   "best_policy": "pi_static",
+   "signal_beats_both": false
+  },
+  "no_cache_discount": {
+   "H1_ATE": 194.91339869281,
+   "pi_keep": 19838.683823529413,
+   "pi_static": 20033.597222222223,
+   "pi_signal": 18389.506944444445,
+   "best_policy": "pi_signal",
+   "signal_beats_both": true
+  },
+  "raw_token_decomposition": {
+   "input_tokens": {
+    "mean_LINEDEDUP": 1.0,
+    "mean_NOOP": 1.0,
+    "diff": 0.0,
+    "type": "DESCRIPTIVE randomized arm contrast"
+   },
+   "cache_read": {
+    "mean_LINEDEDUP": 16192.805555555555,
+    "mean_NOOP": 14870.735294117647,
+    "diff": 1322.070261437908,
+    "type": "DESCRIPTIVE randomized arm contrast"
+   },
+   "cache_creation": {
+    "mean_LINEDEDUP": 1692.8333333333333,
+    "mean_NOOP": 2311.794117647059,
+    "diff": -618.9607843137258,
+    "type": "DESCRIPTIVE randomized arm contrast"
+   },
+   "output_tokens": {
+    "mean_LINEDEDUP": 344.75,
+    "mean_NOOP": 415.44117647058823,
+    "diff": -70.69117647058823,
+    "type": "DESCRIPTIVE randomized arm contrast"
+   }
+  },
+  "mediation_note": "prefix byte preservation is a SOFTWARE_INVARIANT; raw cache-token diffs are randomized arm contrasts; causal cache mediation is NOT identified."
+ },
+ "h3": {
+  "type": "SECONDARY proximal (main-agent calls only)",
+  "n_full_h3": 61,
+  "truncation": {
+   "horizon3": 61,
+   "horizon2": 8,
+   "horizon1": 1,
+   "horizon0": 0
+  },
+  "truncation_by_arm": {
+   "0": {
+    "1": 0,
+    "2": 5,
+    "3": 29
+   },
+   "1": {
+    "1": 1,
+    "2": 3,
+    "3": 32
+   }
+  },
+  "trunc_assoc_assignment_note": "compare arm truncation counts above for balance",
+  "h3_ate": -500.89501633986947,
+  "h3_n": 70,
+  "h3_leave_one_repo_out": {
+   "drop_scikit-learn": -965.6343750000015,
+   "drop_sphinx-doc": -210.88452380952367,
+   "drop_mwaskom": -371.18235294117767,
+   "drop_sympy": -1311.4228571428557,
+   "drop_django": 54.824470899469816,
+   "drop_pytest-dev": -1071.6787878787854,
+   "drop_matplotlib": 252.61636363636535,
+   "drop_astropy": -423.4089931573817,
+   "drop_pylint-dev": -237.07493506493665,
+   "drop_psf": -481.3991161616177,
+   "drop_pydata": -690.9016577060975
+  },
+  "task_total_ate": 5646.901470588229,
+  "task_total_n": 70,
+  "rework_proxies": "NOT ESTIMABLE \u2014 reread/repeated-command detectors were not stored per intervention in sealed events",
+  "caveat": "a shorter horizon may reflect unsuccessful task termination, not efficiency"
+ },
+ "ancova": {
+  "type": "SECONDARY (variance reduction). PARTIAL: only pre-treatment covariates that were logged.",
+  "covariates_used": [
+   "log_seg",
+   "calls_so_far"
+  ],
+  "covariates_missing_not_estimable": [
+   "prior_call_effective_cost",
+   "prior_cache_state"
+  ],
+  "b1_A": -395.6634104730264,
+  "b3_AxS": -595.5012476849562,
+  "se_HC3_b3": 3274.8067240139903,
+  "residual_sd": 2391.187820538896,
+  "primary_residual_sd_no_cov": null,
+  "note": "2 of 4 prespecified covariates (prior-call cost, prior cache state) were NOT stored -> ANCOVA is partial."
+ },
+ "verdicts": {
+  "PROTOCOL_INTEGRITY": {
+   "result": "SUPPORTED",
+   "evidence": "prefix 36/36 identical=True; NO_OP byte-identical=True; 0 infra failures; obs assignment in reconstructed space=True",
+   "caveat": "software invariants + design check"
+  },
+  "LINEDEDUP_ATE_H1": {
+   "result": "DIRECTIONALLY FAVORABLE / NOT PRECISELY ESTABLISHED",
+   "evidence": "unadj dim=-995 (LD cheaper); block-FE A=-968; cluster CI95 [-2493, 556] crosses 0; LORO stable; tail-sensitive (leave-top-5 -> -188.427380952382)",
+   "caveat": "lower cost better; imprecise & tail-sensitive"
+  },
+  "REDUNDANCY_CAUSAL_MODERATOR": {
+   "result": "NOT ESTABLISHED / UNDERPOWERED",
+   "evidence": "b3=932 (hypothesized <0), cluster CI95 [-5600, 7463] spans 0; sharp-null p=0.73; FL no-moderation p=0.73; real |b3| exceeds only 26% of distribution-preserving placebos",
+   "caveat": "randomization inference"
+  },
+  "H3_REWORK_SAFETY": {
+   "result": "UNDERPOWERED / NOT ESTABLISHED",
+   "evidence": "H3 ATE=-500.89501633986947 (n_full=61); rework proxies NOT ESTIMABLE (not logged)",
+   "caveat": "secondary; truncation may reflect task termination"
+  },
+  "PREFIX_BYTE_PRESERVATION": {
+   "result": "SUPPORTED AS A SOFTWARE INVARIANT",
+   "evidence": "36/36 LINEDEDUP prior prefixes byte-identical",
+   "caveat": "deterministic invariant, not a causal estimate"
+  },
+  "CACHE_COST_EFFECT": {
+   "result": "DIRECTIONAL / UNDERPOWERED",
+   "evidence": "cache_creation LD=1693 vs NO_OP=2312 (diff -619); randomized arm contrast, mediation NOT identified",
+   "caveat": "descriptive arm contrast"
+  },
+  "QUALITY_NONINFERIORITY": {
+   "result": "PRESPECIFIED MARGINAL CRITERION MET; CLUSTER-AWARE PRECISION LIMITED",
+   "evidence": "risk diff +0.132, Newcombe CI [-0.083,0.334], lower bound -0.083 >= margin -0.15 (clears by 0.067)",
+   "caveat": "binary resolution ONLY; not broad safety"
+  },
+  "SIGNAL_POLICY_VALUE": {
+   "result": "NOT SUPPORTED; PI_SIGNAL DOES NOT BEAT PI_STATIC",
+   "evidence": "Hajek pi_signal=6186 vs pi_static=5460 vs pi_keep=6455; best static=pi_static (Hajek) / pi_static (DR), agree=True; signal beats both: Hajek=False DR=False",
+   "caveat": "both estimators"
+  },
+  "DEPLOYABLE_TRACECONTROLLER": {
+   "result": "NOT SUPPORTED",
+   "evidence": "requires moderator + policy value + held-out online eval; none achieved",
+   "caveat": "composite"
+  }
+ }
+}

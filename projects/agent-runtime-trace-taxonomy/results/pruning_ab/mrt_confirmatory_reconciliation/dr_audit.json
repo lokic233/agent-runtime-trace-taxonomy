@@ -1,0 +1,29 @@
+{
+ "fallback_hierarchy": [
+  "train stratum-by-arm mean",
+  "train arm mean",
+  "train global mean"
+ ],
+ "own_outcome_used": false,
+ "per_policy": {
+  "pi_keep": {
+   "fallback_counts": {
+    "stratum_arm": 140
+   },
+   "leaks": 0
+  },
+  "pi_static": {
+   "fallback_counts": {
+    "stratum_arm": 140
+   },
+   "leaks": 0
+  },
+  "pi_signal": {
+   "fallback_counts": {
+    "stratum_arm": 140
+   },
+   "leaks": 0
+  }
+ },
+ "note": "leakage-free: held-out unit outcome NEVER used to build its own nuisance prediction"
+}

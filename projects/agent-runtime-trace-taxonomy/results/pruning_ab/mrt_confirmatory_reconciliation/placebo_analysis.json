@@ -1,0 +1,44 @@
+{
+ "type": "RANDOMIZATION_INFERENCE / POST_HOC falsification",
+ "b3_real": 931.6207608228618,
+ "t_real_studentized": 0.2859225986115665,
+ "terminology_note": "upper_tail_prob = P(|placebo|>=|real|). real EXCEEDS (empirical_rank) fraction of placebos. NOT a percentile of the real effect.",
+ "perm_moderator_global": {
+  "n": 5000,
+  "upper_tail_prob": 0.7392,
+  "real_exceeds_frac": 0.2608,
+  "quantiles": {
+   "2.5": -5492.426348565677,
+   "50": -9.381372575537725,
+   "97.5": 5170.675357460517
+  },
+  "preserves_support": true
+ },
+ "perm_moderator_within_stratum": {
+  "n": 5000,
+  "upper_tail_prob": 0.6792,
+  "real_exceeds_frac": 0.3208,
+  "quantiles": {
+   "2.5": -885.8213914615192,
+   "50": 1428.6067604523685,
+   "97.5": 3722.3833599140144
+  },
+  "preserves_support": true,
+  "grouping": "within stratum"
+ },
+ "studentized_global": {
+  "n": 5000,
+  "upper_tail_prob": 0.7304,
+  "quantiles": {
+   "2.5": -1.6394870518051674,
+   "50": 0.007552621994104156,
+   "97.5": 1.7523104724484697
+  }
+ },
+ "eventid_hash_auxiliary": {
+  "n": 5000,
+  "upper_tail_prob": 0.7524,
+  "real_exceeds_frac": 0.2476,
+  "note": "deterministic hash-uniform; auxiliary only, does NOT preserve empirical moderator distribution"
+ }
+}

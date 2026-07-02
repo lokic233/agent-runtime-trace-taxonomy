@@ -1,0 +1,59 @@
+{
+ "type": "PRIMARY (unadjusted DESCRIPTIVE + block-adjusted); asymptotic SEs ASYMPTOTIC",
+ "unadjusted_dim": -994.9498366013086,
+ "block_adjusted_ate": -891.7073529411765,
+ "blockFE_b1_A": -968.4357554366637,
+ "se_classical_NOT_robust": 772.4688268234876,
+ "se_HC3": 933.3160555254142,
+ "se_repo_cluster": 777.657021455682,
+ "blockFE_A_ci95_HC3": [
+  -2797.7352242664756,
+  860.863713393148
+ ],
+ "blockFE_A_ci95_cluster": [
+  -2492.6435174898,
+  555.7720066164728
+ ],
+ "unadj_repo_bootstrap_ci95": [
+  -2044.2009695687518,
+  182.64732380695776
+ ],
+ "mean_LINEDEDUP": 5460.072222222222,
+ "mean_NOOP": 6455.022058823531,
+ "leave_one_repo_out": {
+  "drop_scikit-learn": -1041.0531250000004,
+  "drop_sphinx-doc": -929.6415476190477,
+  "drop_mwaskom": -931.0411764705896,
+  "drop_sympy": -820.1627380952386,
+  "drop_django": -1303.4449074074064,
+  "drop_pytest-dev": -1388.1242424242428,
+  "drop_matplotlib": -749.070303030303,
+  "drop_astropy": -856.5667644183777,
+  "drop_pylint-dev": -995.747878787879,
+  "drop_psf": -929.9202020202019,
+  "drop_pydata": -1009.2874551971327
+ },
+ "leave_top_k": {
+  "k=1": -701.662626262626,
+  "k=3": -239.51326164874627,
+  "k=5": -188.427380952382
+ },
+ "tail_diagnostics": {
+  "skew": 1.3350797668960517,
+  "kurtosis_excess": 1.3457586937351111,
+  "max_over_median": 3.1316087017707317
+ },
+ "design": {
+  "rank": 21,
+  "condition_number": 8.284555864965188,
+  "dof": 49,
+  "n": 70,
+  "p": 21
+ },
+ "sensitivity_only": {
+  "log_cost_diff": -0.1868103423279326,
+  "trimmed10_diff": -775.3382142857154,
+  "winsor10_diff": -950.1051470588254,
+  "median_diff": -1253.5500000000002
+ }
+}

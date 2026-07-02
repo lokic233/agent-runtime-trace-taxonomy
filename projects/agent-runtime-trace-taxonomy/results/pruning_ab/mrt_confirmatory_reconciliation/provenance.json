@@ -1,0 +1,53 @@
+{
+ "reconciliation": "MRT Study-2 statistical reconciliation (analysis-only, sealed N=70)",
+ "timestamp": "2026-07-02T04:15:07Z",
+ "source_commit": "1f318871d3315010d11a7d74f3c8df2ce92c7e19",
+ "reconciliation_code_hashes": {
+  "reconcile_mrt_study2.py": "515708cea44ffba8e9a918f3e3928c6275f66e6cc136dffa87bde7aaa5d05cda",
+  "test_mrt_study2_reconciliation.py": "ddad9384ba28e35986eeffe3532961f0207cd7fa9b18018e5625fbc0fa748fd0"
+ },
+ "sealed_source_hashes": {
+  "study2": {
+   "events.jsonl": "9d7a1458b47cf68a9bf56c905142b7c9b0531cc6dcb54855c8fe13ec6b3666fa",
+   "provider_events.jsonl": "49a31eca3d47634721e1a3650298111af524bed5fc2b2b4ebe62e024c51696b4",
+   "randomization_state.jsonl": "ad41d9d1d540c4a0096fd15cc847d4891d52d5b0e96cc24e037e86782d0a6399",
+   "randomization_manifest.json": "4de16eb95088b7c45183dfc1fa870fc06e2c3b3b90913c3d3c12ad50714cdc7c",
+   "task_state.jsonl": "a7ef08627435be7b4a2be227fb05a503b6f552eb8ac9dbcdae5b52669040370c",
+   "task_grades.json": "d982ac29fb04a7fe400f4f563ec54a72db5dedebc390988ce7b0655da0f1f305",
+   "grade_report.json": "2ce1468676241f716de1bcee2595b887b9deeac5afddc320246198baf2dc6be0",
+   "preregistration.json": "45636b3d459edd319f8f063cea3d3a7dc7e9567fae6784bd740e13c9455189d3",
+   "untouched_manifest.json": "31fa07839f996c8b9fddd59a8896976d3144aac9ac6ebd8272700e4871410206",
+   "task_manifest.json": "82814f4e9525340dc64e4ea62bff5db625f26300131e170a9e8a1026424f79b9",
+   "event_ordinal.jsonl": "ab2af6d779a7bcbfa2244c53901c688621f9eb4fdd3e58d0aabba2c362cb3910",
+   "preds.jsonl": "b479ac981e19689fdae232ed1edcfe7fd3cf7443352b10a9b71f12bec43ae6c0"
+  },
+  "study1": {
+   "events.jsonl": "e01d167205f6eb37dda1c4b2db5aa754928f231813ca007709e672f7f0d04ef2",
+   "randomization_state.jsonl": "a1c85da51dfeae832c1e5d14e02cb6159da2b5337c48ffa1f7113d79832b31fc",
+   "task_state.jsonl": "e7755f1d3ae3940c4de345a42684305615f3151d7123fd8efe2c6213da334ea0",
+   "task_grades.json": "559c021d51479c2c62fcd880a37a81aeb8031cc20db09c22594923b11b256675",
+   "grade_report.json": "1fc1400218ab126a12b9197b9c535f42e7604a54f391dbac82019776f6376b1e"
+  }
+ },
+ "sealed_artifacts_unchanged": true,
+ "changed_files": [],
+ "output_hashes": {
+  "analysis_full.json": "f9d08094aca1475203e04424b84670d5f6b1166a144a8710c6c032c302430d59",
+  "ancova_secondary.json": "0f19e15c856e52f3f735910775c971227f6deb7741ee2717359e8f054d105dd7",
+  "dr_audit.json": "ec8e139f36750ee7a961c70cb48ed48bb1576782ddfc27adea287d336ab73b2a",
+  "h3_analysis.json": "9e2e7c06df365a8c47d03db255760622e875fd9d8af6f0d893c75c653b974d7f",
+  "moderator_inference.json": "bb57f89eaa37470fee821606fe853a4e9a0de8946a397ea5c25aebe939d3fb64",
+  "placebo_analysis.json": "5b0e0cb2d998bfcb231c196fdb424859c974a6fbe5c598033a5066d047007829",
+  "policy_contrasts.json": "9d77a192bf1aff96960bd16186c895539a26f8e024fd6729a766a6e8d79d1f1b",
+  "policy_values.json": "10c700e425ed771d8012edb08b753f116b9c1c7d73c01dee6ce264814418711f",
+  "pricing_sensitivity.json": "7eb01e4b9803b975fda1ef54abcf8af2f112a23dbf07c13cb81568b8d4d32b8c",
+  "primary_estimates.json": "1d9d24259f7f777ada115843517200c29afde2cd60dedcdbfde6f672897978e6",
+  "quality_analysis.json": "c65d73f757b82a75610a98bdffd2ffb6cff685686153fee1de7233880f12dbc9",
+  "randomization_inference.json": "9ce803b9b2e25663beec5d0fc8af31e9e473a3f744c0ceb6ca9755be81f59c4a",
+  "reconciliation_summary.json": "09d14942aa8b8f8cc0f496a0d2c84440a484fd936aa4a0549ac43e6fa040d53c"
+ },
+ "no_new_trajectories": true,
+ "no_new_interventions": true,
+ "frozen_center_primary": 0.3429275,
+ "frozen_center_provenance": "Study-1 available-event median (40 events), per Study-2 preregistration primary_model text"
+}

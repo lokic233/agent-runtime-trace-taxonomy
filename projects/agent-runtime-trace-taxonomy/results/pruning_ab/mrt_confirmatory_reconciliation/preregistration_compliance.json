@@ -1,0 +1,236 @@
+{
+ "n_items": 28,
+ "status_counts": {
+  "completed": 22,
+  "partially completed": 2,
+  "not executed": 2,
+  "not estimable": 1,
+  "not executed / deferred": 1
+ },
+ "items": [
+  {
+   "item": "block-fixed-effect moderator model",
+   "implemented": true,
+   "executed": true,
+   "artifact": "moderator_inference.json",
+   "deviation": "Sealed Study-2 analysis OMITTED block FE (deviation). Reconciliation implements it.",
+   "status": "completed"
+  },
+  {
+   "item": "frozen moderator centering",
+   "implemented": true,
+   "executed": true,
+   "artifact": "moderator_inference.json",
+   "deviation": "Sealed used Study-2 sample median 0.35067 (DEVIATION); reconciliation uses frozen Study-1 available median 0.3429275. NOTE: b3 is invariant to center.",
+   "status": "completed"
+  },
+  {
+   "item": "block-respecting randomization inference (incomplete blocks)",
+   "implemented": true,
+   "executed": true,
+   "artifact": "randomization_inference.json",
+   "deviation": "Sealed permuted realized labels within incomplete block (conditions on realized count). Reconciliation draws incomplete-block assignments from the full 2:2 design space.",
+   "status": "completed"
+  },
+  {
+   "item": "sharp-null randomization test",
+   "implemented": true,
+   "executed": true,
+   "artifact": "moderator_inference.json",
+   "deviation": "",
+   "status": "completed"
+  },
+  {
+   "item": "no-moderation null (beta3=0) test",
+   "implemented": true,
+   "executed": true,
+   "artifact": "moderator_inference.json",
+   "deviation": "Freedman-Lane-style design permutation + studentized statistic; separated from sharp null.",
+   "status": "completed"
+  },
+  {
+   "item": "Hajek self-normalized IPW",
+   "implemented": true,
+   "executed": true,
+   "artifact": "policy_values.json",
+   "deviation": "",
+   "status": "completed"
+  },
+  {
+   "item": "LORO cross-fitted doubly robust",
+   "implemented": true,
+   "executed": true,
+   "artifact": "policy_values.json / dr_audit.json",
+   "deviation": "Sealed DR could fall back to held-out own outcome (leakage). Reconciliation is leakage-free (0 own-outcome fallbacks, training-only hierarchy).",
+   "status": "completed"
+  },
+  {
+   "item": "policy contrasts vs pi_static + CIs",
+   "implemented": true,
+   "executed": true,
+   "artifact": "policy_contrasts.json",
+   "deviation": "",
+   "status": "completed"
+  },
+  {
+   "item": "repo-clustered / repo-bootstrap policy CIs",
+   "implemented": true,
+   "executed": true,
+   "artifact": "policy_values.json",
+   "deviation": "block-aware randomization CI on policy value not fully implemented; repo-bootstrap used.",
+   "status": "partially completed"
+  },
+  {
+   "item": "HC3 + repo-clustered SE for moderator",
+   "implemented": true,
+   "executed": true,
+   "artifact": "moderator_inference.json",
+   "deviation": "Sealed reported only a homoskedastic OLS SE mislabeled context. Reconciliation reports classical + HC3 + cluster.",
+   "status": "completed"
+  },
+  {
+   "item": "wild cluster bootstrap",
+   "implemented": false,
+   "executed": false,
+   "artifact": "-",
+   "deviation": "Only 11 repo clusters; wild cluster bootstrap deferred in favor of repo-cluster nonparametric bootstrap. Documented, not executed.",
+   "status": "not executed"
+  },
+  {
+   "item": "distribution-preserving moderator placebo",
+   "implemented": true,
+   "executed": true,
+   "artifact": "placebo_analysis.json",
+   "deviation": "Sealed used only hash-uniform placebos. Reconciliation adds permutation of observed dup_frac (global + within-stratum).",
+   "status": "completed"
+  },
+  {
+   "item": "event-ID placebo",
+   "implemented": true,
+   "executed": true,
+   "artifact": "placebo_analysis.json",
+   "deviation": "Retained as auxiliary hash placebo (does not preserve moderator distribution).",
+   "status": "completed"
+  },
+  {
+   "item": "studentized interaction placebo",
+   "implemented": true,
+   "executed": true,
+   "artifact": "placebo_analysis.json",
+   "deviation": "",
+   "status": "completed"
+  },
+  {
+   "item": "threshold sensitivity {0.30,0.40,0.50}",
+   "implemented": true,
+   "executed": true,
+   "artifact": "pricing_sensitivity.json (policy under thresholds in sealed robustness.json)",
+   "deviation": "computed in sealed robustness.json; retained.",
+   "status": "completed"
+  },
+  {
+   "item": "leave-top-k {1,3,5}",
+   "implemented": true,
+   "executed": true,
+   "artifact": "primary_estimates.json",
+   "deviation": "",
+   "status": "completed"
+  },
+  {
+   "item": "leave-one-repo-out ATE",
+   "implemented": true,
+   "executed": true,
+   "artifact": "primary_estimates.json",
+   "deviation": "",
+   "status": "completed"
+  },
+  {
+   "item": "H1 primary outcome",
+   "implemented": true,
+   "executed": true,
+   "artifact": "primary_estimates.json",
+   "deviation": "",
+   "status": "completed"
+  },
+  {
+   "item": "H3 proximal outcome (main-agent only)",
+   "implemented": true,
+   "executed": true,
+   "artifact": "h3_analysis.json",
+   "deviation": "",
+   "status": "completed"
+  },
+  {
+   "item": "task-total cost",
+   "implemented": true,
+   "executed": true,
+   "artifact": "h3_analysis.json",
+   "deviation": "secondary; endpoint = all post-intervention main-agent calls.",
+   "status": "completed"
+  },
+  {
+   "item": "pricing sensitivity",
+   "implemented": true,
+   "executed": true,
+   "artifact": "pricing_sensitivity.json",
+   "deviation": "",
+   "status": "completed"
+  },
+  {
+   "item": "raw cache/token decomposition",
+   "implemented": true,
+   "executed": true,
+   "artifact": "pricing_sensitivity.json",
+   "deviation": "",
+   "status": "completed"
+  },
+  {
+   "item": "secondary ANCOVA (variance reduction)",
+   "implemented": true,
+   "executed": true,
+   "artifact": "ancova_secondary.json",
+   "deviation": "PARTIAL: only 2/4 prespecified covariates (log_seg, calls_so_far) were logged; prior-call cost + prior cache state NOT stored.",
+   "status": "partially completed"
+  },
+  {
+   "item": "H3 rework proxies (rereads/repeated commands)",
+   "implemented": false,
+   "executed": false,
+   "artifact": "-",
+   "deviation": "Deterministic rework detectors were NOT stored per intervention in sealed events.",
+   "status": "not estimable"
+  },
+  {
+   "item": "SHAM negative-control cohort",
+   "implemented": false,
+   "executed": false,
+   "artifact": "-",
+   "deviation": "SHAM mode was implemented in the shim but NO sealed SHAM trajectories exist. No new paid runs permitted.",
+   "status": "not executed / deferred"
+  },
+  {
+   "item": "quality non-inferiority (marginal, frozen -0.15)",
+   "implemented": true,
+   "executed": true,
+   "artifact": "quality_analysis.json",
+   "deviation": "",
+   "status": "completed"
+  },
+  {
+   "item": "repository-aware quality inference",
+   "implemented": false,
+   "executed": false,
+   "artifact": "-",
+   "deviation": "Cluster-aware quality NI not computed at N=70 (few resolved per repo); marginal only.",
+   "status": "not executed"
+  },
+  {
+   "item": "prefix byte-preservation invariant",
+   "implemented": true,
+   "executed": true,
+   "artifact": "reconciliation_summary.json",
+   "deviation": "software invariant, separated from cache-cost effect.",
+   "status": "completed"
+  }
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "type": "SENSITIVITY (frozen primary unchanged)",
+ "frozen_primary": {
+  "H1_ATE": -994.9498366013086,
+  "pi_keep": 6455.02205882353,
+  "pi_static": 5460.072222222223,
+  "pi_signal": 6186.256944444445,
+  "best_policy": "pi_static",
+  "signal_beats_both": false
+ },
+ "uniform_1x": {
+  "H1_ATE": 632.4183006535968,
+  "pi_keep": 17598.970588235294,
+  "pi_static": 18231.38888888889,
+  "pi_signal": 16254.888888888889,
+  "best_policy": "pi_signal",
+  "signal_beats_both": true
+ },
+ "output_heavy_10x": {
+  "H1_ATE": -1348.4057189542482,
+  "pi_keep": 8532.227941176468,
+  "pi_static": 7183.822222222223,
+  "pi_signal": 8134.1736111111095,
+  "best_policy": "pi_static",
+  "signal_beats_both": false
+ },
+ "cache_creation_heavy": {
+  "H1_ATE": -1768.650816993465,
+  "pi_keep": 9344.764705882351,
+  "pi_static": 7576.11388888889,
+  "pi_signal": 9067.680555555555,
+  "best_policy": "pi_static",
+  "signal_beats_both": false
+ },
+ "no_cache_discount": {
+  "H1_ATE": 194.91339869281,
+  "pi_keep": 19838.683823529413,
+  "pi_static": 20033.597222222223,
+  "pi_signal": 18389.506944444445,
+  "best_policy": "pi_signal",
+  "signal_beats_both": true
+ },
+ "raw_token_decomposition": {
+  "input_tokens": {
+   "mean_LINEDEDUP": 1.0,
+   "mean_NOOP": 1.0,
+   "diff": 0.0,
+   "type": "DESCRIPTIVE randomized arm contrast"
+  },
+  "cache_read": {
+   "mean_LINEDEDUP": 16192.805555555555,
+   "mean_NOOP": 14870.735294117647,
+   "diff": 1322.070261437908,
+   "type": "DESCRIPTIVE randomized arm contrast"
+  },
+  "cache_creation": {
+   "mean_LINEDEDUP": 1692.8333333333333,
+   "mean_NOOP": 2311.794117647059,
+   "diff": -618.9607843137258,
+   "type": "DESCRIPTIVE randomized arm contrast"
+  },
+  "output_tokens": {
+   "mean_LINEDEDUP": 344.75,
+   "mean_NOOP": 415.44117647058823,
+   "diff": -70.69117647058823,
+   "type": "DESCRIPTIVE randomized arm contrast"
+  }
+ },
+ "mediation_note": "prefix byte preservation is a SOFTWARE_INVARIANT; raw cache-token diffs are randomized arm contrasts; causal cache mediation is NOT identified."
+}

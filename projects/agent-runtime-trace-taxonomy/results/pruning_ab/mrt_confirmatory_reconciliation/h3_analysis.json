@@ -1,0 +1,42 @@
+{
+ "type": "SECONDARY proximal (main-agent calls only)",
+ "n_full_h3": 61,
+ "truncation": {
+  "horizon3": 61,
+  "horizon2": 8,
+  "horizon1": 1,
+  "horizon0": 0
+ },
+ "truncation_by_arm": {
+  "0": {
+   "1": 0,
+   "2": 5,
+   "3": 29
+  },
+  "1": {
+   "1": 1,
+   "2": 3,
+   "3": 32
+  }
+ },
+ "trunc_assoc_assignment_note": "compare arm truncation counts above for balance",
+ "h3_ate": -500.89501633986947,
+ "h3_n": 70,
+ "h3_leave_one_repo_out": {
+  "drop_scikit-learn": -965.6343750000015,
+  "drop_sphinx-doc": -210.88452380952367,
+  "drop_mwaskom": -371.18235294117767,
+  "drop_sympy": -1311.4228571428557,
+  "drop_django": 54.824470899469816,
+  "drop_pytest-dev": -1071.6787878787854,
+  "drop_matplotlib": 252.61636363636535,
+  "drop_astropy": -423.4089931573817,
+  "drop_pylint-dev": -237.07493506493665,
+  "drop_psf": -481.3991161616177,
+  "drop_pydata": -690.9016577060975
+ },
+ "task_total_ate": 5646.901470588229,
+ "task_total_n": 70,
+ "rework_proxies": "NOT ESTIMABLE \u2014 reread/repeated-command detectors were not stored per intervention in sealed events",
+ "caveat": "a shorter horizon may reflect unsuccessful task termination, not efficiency"
+}

@@ -1,0 +1,62 @@
+{
+ "type": "PRIMARY moderator (block-FE OLS; RANDOMIZATION_INFERENCE for beta3)",
+ "primary_center": 0.3429275,
+ "model": {
+  "b1_A": -968.4357554366637,
+  "b2_S": -256.10790776432367,
+  "b3_AxS": 931.6207608228618,
+  "se_classical_b3": 2454.0695397033783,
+  "se_HC3_b3": 3258.297054331454,
+  "se_cluster_b3": 3332.227307070386,
+  "ci95_HC3_b3": [
+   -5454.6414656667885,
+   7317.882987312511
+  ],
+  "ci95_cluster_b3": [
+   -5599.544761035095,
+   7462.786282680818
+  ],
+  "block_fe_present": true,
+  "n_block_fe": 18,
+  "center_used": 0.3429275,
+  "rank": 21,
+  "condition_number": 8.284555864965188,
+  "dof": 49,
+  "n": 70,
+  "p": 21
+ },
+ "center_sensitivity": {
+  "study1_intervention_median_0.28": {
+   "center": 0.28,
+   "b3": 931.6207608228199,
+   "se_HC3_b3": 3258.2970543314505
+  },
+  "study2_sample_median_VIOLATION": {
+   "center": 0.35067400000000004,
+   "b3": 931.6207608228459,
+   "se_HC3_b3": 3258.2970543314555
+  }
+ },
+ "sharp_null": {
+  "null": "no unit has any treatment effect",
+  "p_value": 0.7339266073392661,
+  "stat": "|b3|",
+  "n_perm": 10000,
+  "exact": false,
+  "type": "RANDOMIZATION_INFERENCE"
+ },
+ "studentized_sharp": {
+  "p_value": 0.7518248175182481,
+  "stat": "|b3/HC3se|",
+  "n_perm": 10000,
+  "type": "RANDOMIZATION_INFERENCE"
+ },
+ "no_moderation_null": {
+  "null": "beta3=0 (effects may be constant in S)",
+  "method": "Freedman-Lane-style design permutation",
+  "p_value": 0.7339266073392661,
+  "n_perm": 10000,
+  "type": "RANDOMIZATION_INFERENCE"
+ },
+ "deviation_note": "Sealed Study-2 analysis fit intercept+A+S+A*S WITHOUT block FE and centered at the Study-2 sample median (0.35067) -> PREREGISTRATION DEVIATION on both counts. This reconciliation implements block FE + frozen Study-1 center."
+}

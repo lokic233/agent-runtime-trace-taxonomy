@@ -1,0 +1,79 @@
+{
+ "meta": {
+  "n_events": 4469,
+  "n_interventions": 70,
+  "n_valid": 70,
+  "n_excluded_infra": 0,
+  "frozen_center_primary": 0.3429275,
+  "estimand_types": "SOFTWARE_INVARIANT|DESCRIPTIVE|RANDOMIZATION_INFERENCE|ASYMPTOTIC|PRIMARY|SECONDARY|POST_HOC",
+  "arms": {
+   "LINEDEDUP": 36,
+   "NO_OP": 34
+  },
+  "strata": {
+   "HIGH_REDUNDANCY": 30,
+   "MIXED_REDUNDANCY": 40
+  },
+  "repos": [
+   "astropy",
+   "django",
+   "matplotlib",
+   "mwaskom",
+   "psf",
+   "pydata",
+   "pylint-dev",
+   "pytest-dev",
+   "scikit-learn",
+   "sphinx-doc",
+   "sympy"
+  ],
+  "n_repos": 11
+ },
+ "verdicts": {
+  "PROTOCOL_INTEGRITY": {
+   "result": "SUPPORTED",
+   "evidence": "prefix 36/36 identical=True; NO_OP byte-identical=True; 0 infra failures; obs assignment in reconstructed space=True",
+   "caveat": "software invariants + design check"
+  },
+  "LINEDEDUP_ATE_H1": {
+   "result": "DIRECTIONALLY FAVORABLE / NOT PRECISELY ESTABLISHED",
+   "evidence": "unadj dim=-995 (LD cheaper); block-FE A=-968; cluster CI95 [-2493, 556] crosses 0; LORO stable; tail-sensitive (leave-top-5 -> -188.427380952382)",
+   "caveat": "lower cost better; imprecise & tail-sensitive"
+  },
+  "REDUNDANCY_CAUSAL_MODERATOR": {
+   "result": "NOT ESTABLISHED / UNDERPOWERED",
+   "evidence": "b3=932 (hypothesized <0), cluster CI95 [-5600, 7463] spans 0; sharp-null p=0.73; FL no-moderation p=0.73; real |b3| exceeds only 26% of distribution-preserving placebos",
+   "caveat": "randomization inference"
+  },
+  "H3_REWORK_SAFETY": {
+   "result": "UNDERPOWERED / NOT ESTABLISHED",
+   "evidence": "H3 ATE=-500.89501633986947 (n_full=61); rework proxies NOT ESTIMABLE (not logged)",
+   "caveat": "secondary; truncation may reflect task termination"
+  },
+  "PREFIX_BYTE_PRESERVATION": {
+   "result": "SUPPORTED AS A SOFTWARE INVARIANT",
+   "evidence": "36/36 LINEDEDUP prior prefixes byte-identical",
+   "caveat": "deterministic invariant, not a causal estimate"
+  },
+  "CACHE_COST_EFFECT": {
+   "result": "DIRECTIONAL / UNDERPOWERED",
+   "evidence": "cache_creation LD=1693 vs NO_OP=2312 (diff -619); randomized arm contrast, mediation NOT identified",
+   "caveat": "descriptive arm contrast"
+  },
+  "QUALITY_NONINFERIORITY": {
+   "result": "PRESPECIFIED MARGINAL CRITERION MET; CLUSTER-AWARE PRECISION LIMITED",
+   "evidence": "risk diff +0.132, Newcombe CI [-0.083,0.334], lower bound -0.083 >= margin -0.15 (clears by 0.067)",
+   "caveat": "binary resolution ONLY; not broad safety"
+  },
+  "SIGNAL_POLICY_VALUE": {
+   "result": "NOT SUPPORTED; PI_SIGNAL DOES NOT BEAT PI_STATIC",
+   "evidence": "Hajek pi_signal=6186 vs pi_static=5460 vs pi_keep=6455; best static=pi_static (Hajek) / pi_static (DR), agree=True; signal beats both: Hajek=False DR=False",
+   "caveat": "both estimators"
+  },
+  "DEPLOYABLE_TRACECONTROLLER": {
+   "result": "NOT SUPPORTED",
+   "evidence": "requires moderator + policy value + held-out online eval; none achieved",
+   "caveat": "composite"
+  }
+ }
+}

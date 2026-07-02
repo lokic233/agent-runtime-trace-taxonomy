@@ -1,0 +1,50 @@
+{
+ "pi_keep": {
+  "hajek": 6455.02205882353,
+  "hajek_denominator": 68.0,
+  "effective_matched_n": 34,
+  "dr_loro": 6434.177144736843,
+  "dr_fallback_counts": {
+   "stratum_arm": 140
+  },
+  "dr_own_outcome_leaks": 0,
+  "hajek_repo_bootstrap_ci95": [
+   5448.096505156473,
+   7706.412701659038
+  ]
+ },
+ "pi_static": {
+  "hajek": 5460.072222222223,
+  "hajek_denominator": 72.0,
+  "effective_matched_n": 36,
+  "dr_loro": 5468.094552859679,
+  "dr_fallback_counts": {
+   "stratum_arm": 140
+  },
+  "dr_own_outcome_leaks": 0,
+  "hajek_repo_bootstrap_ci95": [
+   4379.746580357143,
+   6651.033599999999
+  ]
+ },
+ "pi_signal": {
+  "hajek": 6186.256944444445,
+  "hajek_denominator": 72.0,
+  "effective_matched_n": 36,
+  "dr_loro": 6228.957120344568,
+  "dr_fallback_counts": {
+   "stratum_arm": 140
+  },
+  "dr_own_outcome_leaks": 0,
+  "hajek_repo_bootstrap_ci95": [
+   4924.266470833333,
+   8031.409697712412
+  ]
+ },
+ "best_static_hajek": "pi_static",
+ "best_static_dr": "pi_static",
+ "estimators_agree_best_static": true,
+ "signal_beats_both_hajek": false,
+ "signal_beats_both_dr": false,
+ "type": "Hajek IPW PRIMARY; LORO-DR SECONDARY. Lower cost=better. propensity=0.5 (verified marginal)."
+}
