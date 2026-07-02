@@ -1,0 +1,76 @@
+{
+ "version": "v1",
+ "frozen": "2026-07-02",
+ "objective": "task-total effective cost = input + 0.1*cache_read + 1.25*cache_creation + 5*output (incl all downstream calls)",
+ "principle": "dose-ordered action family; each action grounded in an ALREADY-BUILT, ALREADY-PAID transform in src/pruning_ab/prune_methods.py so no new transform code is introduced",
+ "actions": {
+  "A0_KEEP": {
+   "impl": "identity(messages)",
+   "dose": 0,
+   "transform": "byte-identical passthrough; no intentional transformation",
+   "eligible_region": "n/a (baseline)",
+   "byte_preservation": "full (prefix+suffix byte-identical)",
+   "expected_cache_behavior": "no disturbance; full prefix cache reuse",
+   "deterministic": true,
+   "model_generated_components": "none",
+   "reuse_byte_identical": true,
+   "role": "baseline for cost and quality"
+  },
+  "A1_LINEDEDUP": {
+   "impl": "dedup_exact_obs(messages)",
+   "dose": 1,
+   "transform": "remove only stripped-duplicate lines (>=12 chars) from the NEWEST eligible tool observation that already appeared in a prior observation; append '[N duplicate lines elided]'",
+   "eligible_region": "newest tool observation only",
+   "byte_preservation": "all PRIOR-prefix bytes identical; only newest segment changes",
+   "expected_cache_behavior": "low cache tax (prefix preserved -> high cache_read:cache_creation)",
+   "deterministic": true,
+   "model_generated_components": "none",
+   "reuse_byte_identical": true,
+   "quality_risk": "low (exact duplicates only)",
+   "eligibility": "segment_chars>=2000, duplicate_line_count>=5, removes >=1 line"
+  },
+  "A2_MODERATE": {
+   "impl": "env_log_collapse(messages) primary; dedup_content_stable + obs_cap(5k) as documented alternates",
+   "dose": 2,
+   "transform": "content-stable moderate compression of the newest observation: collapse verbose deterministic env/log output to a stable compact representation; cap cold recoverable tool output at 5k chars. Depends ONLY on observation content (not position/recency) to preserve cache.",
+   "eligible_region": "newest observation + cold recoverable tool output",
+   "byte_preservation": "prior prefix preserved where feasible; NOT whole-history rewrite",
+   "expected_cache_behavior": "moderate; content-stable => cache mostly preserved (prior evidence: M4/M6 cache ratio 13-14x vs recency 0.37x)",
+   "deterministic": true,
+   "model_generated_components": "none (rule-based)",
+   "reuse_byte_identical": true,
+   "quality_risk": "plausible-but-not-catastrophic (removes recoverable content)",
+   "eligibility": "segment_chars>=2000; recoverable/log-like content present"
+  },
+  "A3_AGGRESSIVE": {
+   "impl": "old_tool_obs_elide(messages, keep_recent_actions=8) primary; m7_plus_cap5k as amortized variant",
+   "dose": 3,
+   "transform": "epochal compaction: compact a LARGER cold-history region (older tool observations beyond the recent window) into a stable elision. Pay cache recreation ONCE at the compaction boundary; keep the compacted prefix byte-stable for subsequent calls (NO per-call regeneration).",
+   "eligible_region": "cold history older than keep_recent_actions=8",
+   "byte_preservation": "one-time prefix change at compaction; byte-stable thereafter (amortization design)",
+   "expected_cache_behavior": "one-time cache_creation spike, then reduced per-call prompt; break-even depends on remaining call horizon",
+   "deterministic": true,
+   "model_generated_components": "none",
+   "reuse_byte_identical": true,
+   "quality_risk": "higher (elides older context that may be re-referenced)",
+   "amortization": "one-time cache reconstruction + repeated reuse of smaller stable prefix; H_break_even = tax / per-call-saving",
+   "eligibility": "trajectory length > keep_recent_actions (enough cold history to compact)"
+  }
+ },
+ "frozen_map_to_existing_paid_methods": {
+  "A0_KEEP": "C0_identity",
+  "A1_LINEDEDUP": "dedup_exact_obs (Study-2 LINEDEDUP arm; DEDUP-family)",
+  "A2_MODERATE": "M6_env_log_collapse / M4_obs_cap_5k (content-stable)",
+  "A3_AGGRESSIVE": "M7_old_obs_elide (aggressive) ; HYBRID1_m7_agg2 (recency, cache-busting variant)"
+ },
+ "model_for_semantic_compression": "NONE \u2014 all actions are deterministic rule-based; no LLM compression, so no prompt/temperature to freeze",
+ "fallback_behavior": "if eligibility not met, action falls back to A0 (byte-identical) for that call",
+ "failure_behavior": "fail-closed: transform error -> A0 passthrough + logged",
+ "tolerance_levels_frozen": [
+  0.0,
+  0.02,
+  0.05,
+  0.1
+ ],
+ "note": "Actions are frozen BEFORE any parity/oracle outcome inspection. Any change creates a new action version + restarts the cohort."
+}

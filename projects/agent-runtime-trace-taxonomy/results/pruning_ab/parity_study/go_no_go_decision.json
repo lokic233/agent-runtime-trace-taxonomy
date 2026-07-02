@@ -1,0 +1,25 @@
+{
+ "decision": "C_NO_USEFUL_PARITY",
+ "primary_objective": "task-total effective cost (cache-aware); quality-loss tolerance-conditioned",
+ "evidence": {
+  "naive_oracle_gap_pct_provider_proxy": 15.0,
+  "SHAM_noise_floor_median_pct": 31.2,
+  "null_manufactured_gap_at_r1_reps_pct": 40.6,
+  "null_gap_conservative_sigma0.30_pct": 28.1,
+  "observed_gap_below_noise_null": true,
+  "stable_crossing_tasks": 0,
+  "noise_dominated_tasks": 10,
+  "quality_dose_response": "MONOTONE DECREASING (C0 48 -> M4 47 -> M6 46 -> M7 44 resolved); aggressive = worse quality, no beneficial crossing",
+  "cache_amortization": "aggressive recency net saving negative on 9/10 tasks (cache tax dominates)"
+ },
+ "why_not_A_or_B": "A(strong parity) requires conservative oracle gap >~5% surviving noise; the observed gap is BELOW the r=1 SHAM noise null (40.6%) so no credible gap survives. B(weak) requires SOME stable crossing; 0/50 tasks show stable crossing.",
+ "precision_requirement_if_pursued": "~10-20 reps/cell to push the noise-null oracle gap below ~10%; 50 tasks x 4 actions x 15 reps = ~3000 paid SWE-agent runs \u2014 not justified by any surviving signal",
+ "recommendation": "Do NOT proceed to trace-conditioned signal learning for this action family. COMPILE A1 (prefix-preserving LINEDEDUP) as a STATIC low-risk optimization primitive within its eligibility region. KILL A2/A3 adaptive-controller thesis (aggressive actions lose after cache+rework tax; recency variants cache-bust).",
+ "retain_action": "A1_LINEDEDUP (dedup_exact_obs) as static primitive",
+ "kill_action": "A2_MODERATE / A3_AGGRESSIVE as adaptive-controller candidates",
+ "signal_learning_proceed": false,
+ "caveats": [
+  "provider-$ proxy used (exact cache-aware effective cost available for only 2 arms x 10 tasks); however the negative is ROBUST because it holds even with the generous provider-$ proxy AND the exact-cost cache-amortization sub-analysis agrees",
+  "single rep per cell; the SHAM control quantifies the noise floor that single reps cannot overcome"
+ ]
+}

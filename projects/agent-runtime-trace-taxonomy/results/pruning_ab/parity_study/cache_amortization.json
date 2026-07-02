@@ -1,0 +1,113 @@
+{
+ "note": "exact cache-aware decomposition available only for C0 (A0) vs HYBRID1 (recency-aggressive), 10 tasks",
+ "per_task": {
+  "astropy__astropy-14096": {
+   "A0_eff": 82379,
+   "A3recency_eff": 66822,
+   "net_saving": 15556,
+   "net_saving_pct": 18.9,
+   "A0_cache_ratio": 2.64,
+   "A3_cache_ratio": 2.32,
+   "A0_calls": 13,
+   "A3_calls": 14
+  },
+  "pylint-dev__pylint-4551": {
+   "A0_eff": 240241,
+   "A3recency_eff": 1046656,
+   "net_saving": -806415,
+   "net_saving_pct": -335.7,
+   "A0_cache_ratio": 12.41,
+   "A3_cache_ratio": 0.24,
+   "A0_calls": 46,
+   "A3_calls": 67
+  },
+  "pylint-dev__pylint-6386": {
+   "A0_eff": 313837,
+   "A3recency_eff": 1376274,
+   "net_saving": -1062437,
+   "net_saving_pct": -338.5,
+   "A0_cache_ratio": 18.47,
+   "A3_cache_ratio": 0.15,
+   "A0_calls": 62,
+   "A3_calls": 76
+  },
+  "pylint-dev__pylint-8898": {
+   "A0_eff": 190523,
+   "A3recency_eff": 497749,
+   "net_saving": -307226,
+   "net_saving_pct": -161.3,
+   "A0_cache_ratio": 10.4,
+   "A3_cache_ratio": 0.32,
+   "A0_calls": 34,
+   "A3_calls": 35
+  },
+  "pytest-dev__pytest-6197": {
+   "A0_eff": 412053,
+   "A3recency_eff": 2318889,
+   "net_saving": -1906836,
+   "net_saving_pct": -462.8,
+   "A0_cache_ratio": 21.52,
+   "A3_cache_ratio": 0.04,
+   "A0_calls": 67,
+   "A3_calls": 76
+  },
+  "sphinx-doc__sphinx-8638": {
+   "A0_eff": 457398,
+   "A3recency_eff": 1529533,
+   "net_saving": -1072135,
+   "net_saving_pct": -234.4,
+   "A0_cache_ratio": 32.15,
+   "A3_cache_ratio": 0.17,
+   "A0_calls": 76,
+   "A3_calls": 76
+  },
+  "sphinx-doc__sphinx-9658": {
+   "A0_eff": 325610,
+   "A3recency_eff": 437941,
+   "net_saving": -112331,
+   "net_saving_pct": -34.5,
+   "A0_cache_ratio": 18.9,
+   "A3_cache_ratio": 0.52,
+   "A0_calls": 52,
+   "A3_calls": 36
+  },
+  "sympy__sympy-13091": {
+   "A0_eff": 303850,
+   "A3recency_eff": 1434618,
+   "net_saving": -1130768,
+   "net_saving_pct": -372.1,
+   "A0_cache_ratio": 14.2,
+   "A3_cache_ratio": 0.19,
+   "A0_calls": 49,
+   "A3_calls": 72
+  },
+  "sympy__sympy-14248": {
+   "A0_eff": 413509,
+   "A3recency_eff": 808614,
+   "net_saving": -395105,
+   "net_saving_pct": -95.5,
+   "A0_cache_ratio": 24.35,
+   "A3_cache_ratio": 0.21,
+   "A0_calls": 76,
+   "A3_calls": 52
+  },
+  "sympy__sympy-19040": {
+   "A0_eff": 229289,
+   "A3recency_eff": 899587,
+   "net_saving": -670298,
+   "net_saving_pct": -292.3,
+   "A0_cache_ratio": 10.84,
+   "A3_cache_ratio": 0.18,
+   "A0_calls": 46,
+   "A3_calls": 54
+  }
+ },
+ "summary": {
+  "n": 10,
+  "mean_net_saving": -744799,
+  "median_net_saving": -738357,
+  "n_positive": 1,
+  "n_negative": 9,
+  "finding": "HYBRID1 (recency, cache-busting) net saving is dominated by cache tax: cache ratio collapses A0~11.8 -> A3~0.37; net saving mostly negative or noise-sized vs the 31% SHAM floor"
+ }
+}

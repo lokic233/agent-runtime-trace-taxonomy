@@ -1,0 +1,27 @@
+{
+ "metric": "provider instance_cost ($) + tokens_sent + api_calls per action (aggregate + equal-weight)",
+ "C0_identity": {
+  "mean_cost$": 0.6102,
+  "total_cost$": 30.512,
+  "mean_tokens_sent": 254541,
+  "mean_api_calls": 23.8
+ },
+ "M4_obs_cap_5k": {
+  "mean_cost$": 0.585,
+  "total_cost$": 29.252,
+  "mean_tokens_sent": 255629,
+  "mean_api_calls": 23.9
+ },
+ "M6_env_log_collapse": {
+  "mean_cost$": 0.5825,
+  "total_cost$": 29.123,
+  "mean_tokens_sent": 268413,
+  "mean_api_calls": 24.7
+ },
+ "M7_old_obs_elide": {
+  "mean_cost$": 1.4003,
+  "total_cost$": 70.013,
+  "mean_tokens_sent": 244100,
+  "mean_api_calls": 23.2
+ }
+}

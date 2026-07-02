@@ -1,0 +1,36 @@
+{
+ "study": "TraceController parity-existence diagnostic (analysis-only, existing paid data)",
+ "timestamp": "2026-07-02T05:14:28Z",
+ "source_commit": "8ce7ffbbdc3371eb24dc092c6dccf5865c2f15b5",
+ "no_new_trajectories": true,
+ "no_new_interventions": true,
+ "source_data": [
+  "results/pruning_ab/per_task_outcomes.json (13x50 resolution)",
+  "results/pruning_ab/task_level_ledger.jsonl (6x50 cost)",
+  "results/pruning_ab/ledgers/ledger_{C0,SHAM,HYBRID1}_rep1.jsonl (per-call cache, 10 tasks)"
+ ],
+ "code": {
+  "oracle_gap_probe.py": "9f108a70d06afe0af168ff5ccad2e0c2f67c5b05c8e14b223b76993d01a699d5"
+ },
+ "outputs": {
+  "action_crossing.json": "347bacf36ba57e7f5543e969a3d4db1bc324b7340fdcf7d35241f540f31a5a3d",
+  "action_ladder.json": "dd4f4edf9d5574fe213f09282fb06a1440b127d6b3fd209d97ad5771756fcd77",
+  "cache_amortization.json": "07d968397172d1b8d57666d6f05c2e815e0e530978f59613e82320da675ad479",
+  "cost_decomposition.json": "813384391e97a53aafb2cd5bce25ad5bb1f182d5fed1d3048aed26bebfb82148",
+  "frozen_randomization_plan.json": "ae88ca406b2a8c9e2ddb080419a470baa6f81f937e400bed55ce16aceeaaedc7",
+  "frozen_task_manifest.json": "d43bd607d73328dd9387409d2097aa69519a6fa62fae6e96d3a3b80e5e55544f",
+  "go_no_go_decision.json": "07af26a256c834fadbb2cb0d5f873bc0f2d46c8c14e8cfd615846e9b1899d9c2",
+  "oracle_gap.json": "dc0ba7debad2d1f19a2f4f0dd50b38fbbdc0c8916446c1194daec82e0420434e",
+  "oracle_gap_bias_correction.json": "4013988110f3a79bef4b5916b574df8f8c0f63bb814afd82b600507cd72cee12",
+  "outlier_sensitivity.json": "0f3bdaba9467c2f95587c0c95efa79384deef71fb8c5729df1008e142ff8565d",
+  "pricing_sensitivity.json": "4f3307cb3d415e08a2f23bbe02385af679a5aa19a061cc813ad31fd7e94278b5",
+  "repository_stability.json": "cee0cc2db9c8710fba2c968dadb338fece9d6c471a788f10fa4cc3b87ed693cf",
+  "run_manifest.jsonl": "e8cf6a0f151ad9addbd5fbe40ea9a3b8aca28cc5044fdd7c0a561cdc42e9b057",
+  "task_action_costs.json": "410d911d377cbb4ea037455ba5752ee02682d85d8420ac539c2d38ff12d851a6",
+  "task_action_quality.json": "172e3550f1280dd0a04225138607f3fb0190aebf5f56d5c085af111c46f7d25e",
+  "task_action_repetitions.jsonl": "6fcea9694d86965fbdeac164fa91176ee02033f81e497d26a117b3e6e72b18ab",
+  "tolerance_frontiers.json": "501cddefcffb3ba41b0e9aa27138bb9f5e6c145a5bae6303186c44719bee29ad"
+ },
+ "decision": "C_NO_USEFUL_PARITY",
+ "signal_learning_proceed": false
+}

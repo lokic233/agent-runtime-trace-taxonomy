@@ -1,0 +1,271 @@
+{
+ "meta": {
+  "n_tasks_total": 50,
+  "n_usable": 50,
+  "cost_metric": "instance_cost (provider $, cache-aware) \u2014 PROXY for task-total effective cost",
+  "caveat": "exact cache-aware effective cost needs cache splits available only for 2 arms x 10 tasks; this probe uses provider $ (corr ~0.67-0.74 with the custom formula) as a LOWER-BOUND existence signal, NOT confirmation",
+  "actions": {
+   "A0_KEEP": "C0_identity",
+   "A1_LINEDEDUP": "M4_obs_cap_5k",
+   "A2_MODERATE": "M6_env_log_collapse",
+   "A3_AGGRESSIVE": "M7_old_obs_elide"
+  },
+  "cost_methods": [
+   "C0_identity",
+   "HYBRID1_m7_agg2",
+   "AGG3_recency_obs_4",
+   "M4_obs_cap_5k",
+   "M6_env_log_collapse",
+   "M7_old_obs_elide"
+  ],
+  "tolerances": [
+   0.0,
+   0.02,
+   0.05,
+   0.1
+  ],
+  "repos": [
+   "astropy",
+   "django",
+   "pallets",
+   "psf",
+   "pydata",
+   "pylint-dev",
+   "pytest-dev",
+   "scikit-learn",
+   "sphinx-doc",
+   "sympy"
+  ]
+ },
+ "ladder_oracle_naive": {
+  "0.0": {
+   "best_static": "C0_identity",
+   "best_static_val": 0.6102452800000001,
+   "oracle_val": 0.518804205,
+   "oracle_gap_abs": 0.0914410750000001,
+   "oracle_gap_pct": 14.984314995439224,
+   "oracle_choice_distribution": {
+    "M6_env_log_collapse": 19,
+    "M4_obs_cap_5k": 13,
+    "M7_old_obs_elide": 4,
+    "C0_identity": 14
+   },
+   "n_distinct_oracle_actions": 4,
+   "feasible_static_actions": [
+    "C0_identity"
+   ],
+   "infeasible_tasks": 0
+  },
+  "0.02": {
+   "best_static": "C0_identity",
+   "best_static_val": 0.6102452800000001,
+   "oracle_val": 0.518804205,
+   "oracle_gap_abs": 0.0914410750000001,
+   "oracle_gap_pct": 14.984314995439224,
+   "oracle_choice_distribution": {
+    "M6_env_log_collapse": 19,
+    "M4_obs_cap_5k": 13,
+    "M7_old_obs_elide": 4,
+    "C0_identity": 14
+   },
+   "n_distinct_oracle_actions": 4,
+   "feasible_static_actions": [
+    "C0_identity"
+   ],
+   "infeasible_tasks": 0
+  },
+  "0.05": {
+   "best_static": "C0_identity",
+   "best_static_val": 0.6102452800000001,
+   "oracle_val": 0.518804205,
+   "oracle_gap_abs": 0.0914410750000001,
+   "oracle_gap_pct": 14.984314995439224,
+   "oracle_choice_distribution": {
+    "M6_env_log_collapse": 19,
+    "M4_obs_cap_5k": 13,
+    "M7_old_obs_elide": 4,
+    "C0_identity": 14
+   },
+   "n_distinct_oracle_actions": 4,
+   "feasible_static_actions": [
+    "C0_identity"
+   ],
+   "infeasible_tasks": 0
+  },
+  "0.1": {
+   "best_static": "C0_identity",
+   "best_static_val": 0.6102452800000001,
+   "oracle_val": 0.518804205,
+   "oracle_gap_abs": 0.0914410750000001,
+   "oracle_gap_pct": 14.984314995439224,
+   "oracle_choice_distribution": {
+    "M6_env_log_collapse": 19,
+    "M4_obs_cap_5k": 13,
+    "M7_old_obs_elide": 4,
+    "C0_identity": 14
+   },
+   "n_distinct_oracle_actions": 4,
+   "feasible_static_actions": [
+    "C0_identity"
+   ],
+   "infeasible_tasks": 0
+  }
+ },
+ "all6_oracle_naive": {
+  "0.0": {
+   "best_static": "C0_identity",
+   "best_static_val": 0.6102452800000001,
+   "oracle_val": 0.5027760400000001,
+   "oracle_gap_abs": 0.10746924000000002,
+   "oracle_gap_pct": 17.610826912090168,
+   "oracle_choice_distribution": {
+    "M6_env_log_collapse": 14,
+    "HYBRID1_m7_agg2": 11,
+    "M4_obs_cap_5k": 8,
+    "AGG3_recency_obs_4": 3,
+    "M7_old_obs_elide": 2,
+    "C0_identity": 12
+   },
+   "n_distinct_oracle_actions": 6,
+   "feasible_static_actions": [
+    "C0_identity"
+   ],
+   "infeasible_tasks": 0
+  },
+  "0.02": {
+   "best_static": "C0_identity",
+   "best_static_val": 0.6102452800000001,
+   "oracle_val": 0.5027760400000001,
+   "oracle_gap_abs": 0.10746924000000002,
+   "oracle_gap_pct": 17.610826912090168,
+   "oracle_choice_distribution": {
+    "M6_env_log_collapse": 14,
+    "HYBRID1_m7_agg2": 11,
+    "M4_obs_cap_5k": 8,
+    "AGG3_recency_obs_4": 3,
+    "M7_old_obs_elide": 2,
+    "C0_identity": 12
+   },
+   "n_distinct_oracle_actions": 6,
+   "feasible_static_actions": [
+    "C0_identity"
+   ],
+   "infeasible_tasks": 0
+  },
+  "0.05": {
+   "best_static": "C0_identity",
+   "best_static_val": 0.6102452800000001,
+   "oracle_val": 0.5027760400000001,
+   "oracle_gap_abs": 0.10746924000000002,
+   "oracle_gap_pct": 17.610826912090168,
+   "oracle_choice_distribution": {
+    "M6_env_log_collapse": 14,
+    "HYBRID1_m7_agg2": 11,
+    "M4_obs_cap_5k": 8,
+    "AGG3_recency_obs_4": 3,
+    "M7_old_obs_elide": 2,
+    "C0_identity": 12
+   },
+   "n_distinct_oracle_actions": 6,
+   "feasible_static_actions": [
+    "C0_identity"
+   ],
+   "infeasible_tasks": 0
+  },
+  "0.1": {
+   "best_static": "C0_identity",
+   "best_static_val": 0.6102452800000001,
+   "oracle_val": 0.5027760400000001,
+   "oracle_gap_abs": 0.10746924000000002,
+   "oracle_gap_pct": 17.610826912090168,
+   "oracle_choice_distribution": {
+    "M6_env_log_collapse": 14,
+    "HYBRID1_m7_agg2": 11,
+    "M4_obs_cap_5k": 8,
+    "AGG3_recency_obs_4": 3,
+    "M7_old_obs_elide": 2,
+    "C0_identity": 12
+   },
+   "n_distinct_oracle_actions": 6,
+   "feasible_static_actions": [
+    "C0_identity"
+   ],
+   "infeasible_tasks": 0
+  }
+ },
+ "ladder_oracle_bias_corrected": {
+  "0.0": {
+   "gap_abs_splitsample": 0.09096763172000001,
+   "gap_pct": 14.90673253875884,
+   "ci95": [
+    0.05198138250000002,
+    0.13341762100000007
+   ]
+  },
+  "0.02": {
+   "gap_abs_splitsample": 0.09096763172000001,
+   "gap_pct": 14.90673253875884,
+   "ci95": [
+    0.05198138250000002,
+    0.13341762100000007
+   ]
+  },
+  "0.05": {
+   "gap_abs_splitsample": 0.09096763172000001,
+   "gap_pct": 14.90673253875884,
+   "ci95": [
+    0.05198138250000002,
+    0.13341762100000007
+   ]
+  },
+  "0.1": {
+   "gap_abs_splitsample": 0.09096763172000001,
+   "gap_pct": 14.90673253875884,
+   "ci95": [
+    0.05198138250000002,
+    0.13341762100000007
+   ]
+  }
+ },
+ "weighting_note": "primary = equal-weight task-level mean (above). Cost-weighted below.",
+ "ladder_cost_weighted": {
+  "0.0": {
+   "total_static": 30.512264000000002,
+   "total_oracle": 25.94021025,
+   "gap_abs": 4.572053750000002,
+   "gap_pct": 14.984314995439217
+  },
+  "0.02": {
+   "total_static": 30.512264000000002,
+   "total_oracle": 25.94021025,
+   "gap_abs": 4.572053750000002,
+   "gap_pct": 14.984314995439217
+  },
+  "0.05": {
+   "total_static": 30.512264000000002,
+   "total_oracle": 25.94021025,
+   "gap_abs": 4.572053750000002,
+   "gap_pct": 14.984314995439217
+  },
+  "0.1": {
+   "total_static": 30.512264000000002,
+   "total_oracle": 25.94021025,
+   "gap_abs": 4.572053750000002,
+   "gap_pct": 14.984314995439217
+  }
+ },
+ "outlier_sensitivity": {
+  "drop_top1_eps0.05": {
+   "oracle_gap_abs": 0.07882442857142846,
+   "oracle_gap_pct": 13.949570461407648
+  },
+  "drop_top3_eps0.05": {
+   "oracle_gap_abs": 0.06835656382978716,
+   "oracle_gap_pct": 13.584744272120457
+  },
+  "drop_top5_eps0.05": {
+   "oracle_gap_abs": 0.07139463333333329,
+   "oracle_gap_pct": 16.03592226754802
+  }
+ }
+}
