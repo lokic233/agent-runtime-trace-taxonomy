@@ -33,3 +33,25 @@ truncation hurts weaker models more (H2 capability-interaction). Haiku (weakest 
 gradient continues. NOTE: this is the out-token proxy; the ground-truth Q2 verdict uses RESOLUTION grading —
 .pred files ARE produced per task (10/cell verified), gradeable via the SWE-bench report.json path (same as
 the frozen study). Final verdict at 36/36 + grading. Status: EXPLORATORY (strong direction, resolution pending).
+
+## POWERED Q2 (all 36 Phase D cells) — call/out ratios; RESOLUTION grading still required
+Full Phase D metrics (per-task median, rep-normalized, deduped):
+| model | LINEDEDUP call/out | GENTLE6K call/out | CAP1K call/out |
+|-------|--------------------|--------------------|-----------------|
+| opus47   | 1.10 / 0.86 | 0.96 / 0.93 | 1.15 / 0.82 |
+| sonnet46 | 1.00 / 0.82 | 1.00 / 0.94 | 1.00 / 0.64 |
+| haiku45  | 1.00 / 0.90 | 1.00 / 1.05 | 1.00 / 0.75 |
+
+INTERPRETATION (honest):
+- **call_ratio is CENSORED**: Sonnet & Haiku pinned at 1.00 (75-call cap saturates hard tasks in both C0 and
+  treatment). The analyzer's `H2_direction=REVERSED` is a CENSORING ARTIFACT, not a real reversal — DISCARD it.
+- **out_ratio (uncensored) CAP1K**: Opus 0.82, Sonnet 0.64, Haiku 0.75. Destructive truncation reduces productive
+  output on ALL tiers, but NOT a clean monotonic capability gradient (Sonnet drops most, Haiku between). So the
+  simple H2 "weaker=strictly worse" is NOT cleanly supported by out-tokens.
+- **RESOLUTION is the ground-truth Q2 measure and is NOT YET COMPUTED.** Phase D preds exist (10/cell) but are
+  ungraded. Grading (swebench.harness.run_evaluation) runs test containers -> DEFERRED until the driver finishes
+  Phase E (avoid resource conflict / SIGKILL risk). Post-completion: grade Phase D+E, compute per-arm/model
+  resolution, then the intelligence-tax verdict = does CAP1K cause more UNSOLVED tasks on weaker models.
+- Likely final Q2 verdict language: intelligence tax (destructive truncation reduces productive output) is
+  SUPPORTED on all tiers; the capability-interaction (H2 monotonic-by-capability) is PARTIALLY_SUPPORTED or
+  UNDERPOWERED pending resolution — NOT a clean gradient in the token metrics.
