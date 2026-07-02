@@ -1,0 +1,92 @@
+{
+ "$schema": "draft-07",
+ "title": "memory_logging_schema",
+ "description": "per-call + per-memory-op log fields (design)",
+ "type": "object",
+ "required": [
+  "memory_snapshot_id",
+  "memory_version",
+  "task_total_cost",
+  "quality_outcome"
+ ],
+ "properties": {
+  "memory_snapshot_id": {
+   "type": "string"
+  },
+  "memory_version": {
+   "type": "integer"
+  },
+  "bytes_removed": {
+   "type": "integer"
+  },
+  "tokens_removed": {
+   "type": "integer"
+  },
+  "raw_evidence_ids": {
+   "type": "array"
+  },
+  "structured_fact_count": {
+   "type": "integer"
+  },
+  "write_cost": {
+   "type": "number"
+  },
+  "retrieval_query": {
+   "type": "string"
+  },
+  "retrieved_evidence_ids": {
+   "type": "array"
+  },
+  "retrieval_rank": {
+   "type": "integer"
+  },
+  "retrieval_hit": {
+   "type": "boolean"
+  },
+  "recovery_triggered": {
+   "type": "boolean"
+  },
+  "recovery_cost": {
+   "type": "number"
+  },
+  "cache_prefix_hash_before": {
+   "type": "string"
+  },
+  "cache_prefix_hash_after": {
+   "type": "string"
+  },
+  "snapshot_reuse_count": {
+   "type": "integer"
+  },
+  "remaining_calls": {
+   "type": "integer"
+  },
+  "task_total_cost": {
+   "type": "number"
+  },
+  "quality_outcome": {
+   "type": "object"
+  },
+  "write_loss": {
+   "type": "boolean"
+  },
+  "retrieval_miss": {
+   "type": "boolean"
+  },
+  "ranking_error": {
+   "type": "boolean"
+  },
+  "utilization_failure": {
+   "type": "boolean"
+  },
+  "stale_memory_error": {
+   "type": "boolean"
+  },
+  "cache_creation_tokens": {
+   "type": "integer"
+  },
+  "cache_read_tokens": {
+   "type": "integer"
+  }
+ }
+}

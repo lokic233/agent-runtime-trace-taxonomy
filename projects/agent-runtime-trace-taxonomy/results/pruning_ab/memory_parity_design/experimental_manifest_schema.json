@@ -1,0 +1,144 @@
+{
+ "$schema": "draft-07",
+ "title": "experimental_manifest_schema",
+ "description": "machine-readable schemas required to freeze a memory parity pilot (design)",
+ "type": "object",
+ "required": [
+  "action_specification",
+  "task_manifest",
+  "randomization_plan",
+  "repetition_plan",
+  "sham_plan",
+  "stopping_rules",
+  "cost_definition",
+  "quality_definition",
+  "noise_model_plan"
+ ],
+ "properties": {
+  "action_specification": {
+   "type": "string",
+   "description": "ref -> action_specification.json"
+  },
+  "task_manifest": {
+   "type": "object",
+   "properties": {
+    "n_tasks": {
+     "type": "integer"
+    },
+    "repos": {
+     "type": "array"
+    },
+    "trajectory_length_strata": {
+     "type": "array"
+    }
+   }
+  },
+  "randomization_plan": {
+   "type": "object",
+   "properties": {
+    "seed": {
+     "type": "integer"
+    },
+    "scheme": {
+     "type": "string"
+    },
+    "propensity": {
+     "type": "number"
+    }
+   }
+  },
+  "repetition_plan": {
+   "type": "object",
+   "properties": {
+    "reps_per_cell": {
+     "type": "integer"
+    },
+    "adaptive": {
+     "type": "boolean"
+    },
+    "r_from_stage1": {
+     "type": "boolean"
+    }
+   }
+  },
+  "sham_plan": {
+   "type": "object",
+   "properties": {
+    "embedded": {
+     "type": "boolean"
+    },
+    "sham_reps": {
+     "type": "integer"
+    },
+    "byte_identical_control": {
+     "type": "boolean"
+    }
+   }
+  },
+  "stopping_rules": {
+   "type": "object",
+   "properties": {
+    "dominance_p": {
+     "type": "number"
+    },
+    "undetectable_variance_rule": {
+     "type": "string"
+    },
+    "expand_threshold": {
+     "type": "number"
+    },
+    "never_on_pvalue": {
+     "type": "boolean"
+    }
+   }
+  },
+  "cost_definition": {
+   "type": "object",
+   "properties": {
+    "formula": {
+     "type": "string",
+     "default": "input+0.1*cache_read+1.25*cache_creation+5*output"
+    },
+    "scope": {
+     "type": "string",
+     "default": "task-total incl memory writes/retrievals/recovery"
+    }
+   }
+  },
+  "quality_definition": {
+   "type": "object",
+   "properties": {
+    "metrics": {
+     "type": "array"
+    },
+    "ni_margin": {
+     "type": "number"
+    },
+    "catastrophic_indicator": {
+     "type": "string"
+    }
+   }
+  },
+  "noise_model_plan": {
+   "type": "object",
+   "properties": {
+    "multiplicative_vs_additive": {
+     "type": "string"
+    },
+    "within_task_action_correlation": {
+     "type": "string"
+    },
+    "oracle_estimator": {
+     "type": "string",
+     "enum": [
+      "hierarchical_partial_pooling",
+      "posterior_p_optimal",
+      "split_reps",
+      "bias_corrected_min",
+      "conservative_lcb"
+     ]
+    }
+   }
+  }
+ }
+}

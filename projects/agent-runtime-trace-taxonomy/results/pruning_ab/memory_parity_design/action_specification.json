@@ -1,0 +1,71 @@
+{
+ "$schema": "draft-07",
+ "title": "action_specification",
+ "description": "schema for a memory action definition (design)",
+ "type": "object",
+ "required": [
+  "action_id",
+  "dose",
+  "cache_safe",
+  "deterministic"
+ ],
+ "properties": {
+  "action_id": {
+   "type": "string",
+   "enum": [
+    "A0_LINEDEDUP",
+    "A1_indexed_raw",
+    "A2_structured_state",
+    "A3_semantic"
+   ]
+  },
+  "dose": {
+   "type": "integer",
+   "minimum": 0,
+   "maximum": 3
+  },
+  "cache_safe": {
+   "type": "boolean",
+   "description": "true if snapshot is byte-stable between epochs"
+  },
+  "deterministic": {
+   "type": "boolean"
+  },
+  "model_component": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "properties": {
+    "model": {
+     "type": "string"
+    },
+    "prompt_hash": {
+     "type": "string"
+    },
+    "temperature": {
+     "type": "number"
+    },
+    "regenerate_only_at_epoch": {
+     "type": "boolean"
+    }
+   }
+  },
+  "eligible_predicate": {
+   "type": "string"
+  },
+  "fallback": {
+   "type": "string",
+   "default": "A0"
+  },
+  "retained_content": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "recovery_mechanism": {
+   "type": "string"
+  }
+ }
+}
