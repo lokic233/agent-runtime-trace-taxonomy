@@ -21,3 +21,15 @@ capped-heavy task mix, masking real drift visible in uncapped tasks (e.g. astrop
   >1 (more output) while our interim is <1; reconcile at full data (may be task-mix / cap-interaction).
 
 ## Status: EXPLORATORY (partial data). Final Q2 verdict requires 36/36 Phase D + resolution grading.
+
+## Q2 capability-interaction PREVIEW (Opus+Sonnet complete, out-token proxy)
+With Opus (12/12) + Sonnet (12/12) Phase D cells done, the uncensored out-token metric shows the H2 signal:
+| arm | Opus out-tok/cell | Sonnet out-tok/cell |
+|-----|------------------|---------------------|
+| C0 (baseline) | 162K | 258K |
+| CAP1K (destructive) | 153K (-6%) | 147K (-43%) |
+CAP1K's output-token collapse is far larger on the WEAKER model (Sonnet -43% vs Opus -6%) -> destructive
+truncation hurts weaker models more (H2 capability-interaction). Haiku (weakest tier) will test if the
+gradient continues. NOTE: this is the out-token proxy; the ground-truth Q2 verdict uses RESOLUTION grading —
+.pred files ARE produced per task (10/cell verified), gradeable via the SWE-bench report.json path (same as
+the frozen study). Final verdict at 36/36 + grading. Status: EXPLORATORY (strong direction, resolution pending).
