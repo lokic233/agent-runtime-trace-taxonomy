@@ -20,7 +20,11 @@ case "$PHASE" in
   D) OUT=/data/users/dengcchi/prune_ab/logs/xmodel_phaseD; FILTER="$INT10"
      for mk in opus47 sonnet46 haiku45; do for arm in C0_identity LINEDEDUP_e4 GENTLE6K_stable CAP1K_stable; do for rep in 1 2 3; do CELLS+=("$mk $arm $rep"); done; done; done ;;
   E) OUT=/data/users/dengcchi/prune_ab/logs/xmodel_phaseE
-     FILTER=$(python3 -c "import json;j=json.load(open('$GEN/../../results/pruning_ab/generalization/phaseE_task_split.json'));ids=j['phaseE_first30'] if '$TASKSET'=='30' else j['golden50'];print('^('+'|'.join(ids)+')\$')")
+     FILTER=$(python3 -c "import json;j=json.load(open('/home/dengcchi/agent-runtime-trace-taxonomy/projects/agent-runtime-trace-taxonomy/results/pruning_ab/generalization/phaseE_task_split.json'));ids=j['phaseE_first30'] if '$TASKSET'=='30' else j['golden50'];print('^('+'|'.join(ids)+')\$')")
+     # SAFETY GUARD: an empty/degenerate FILTER makes sweagent run the ENTIRE benchmark subset (runaway spend).
+     if [[ -z "$FILTER" || "$FILTER" == '^()$' || $(echo "$FILTER" | grep -o '|' | wc -l) -lt 20 ]]; then
+       echo "FATAL: Phase E FILTER invalid ('$FILTER') — refusing to run (would spend on wrong/all tasks)."; exit 3
+     fi
      for mk in sonnet46 haiku45 gpt55; do for arm in C0_identity LINEDEDUP_e4 GENTLE6K_stable CAP1K_stable; do CELLS+=("$mk $arm t$TASKSET"); done; done ;;
 esac
 mkdir -p "$OUT"
