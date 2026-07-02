@@ -1,3 +1,11 @@
+> ## ⚠️ SCOPE SUPERSEDED (2026-07-02)
+> The wording below ("Decision C — No useful parity", "0/50 tasks show a stable crossing") is
+> **too broad**. Canonical, scoped wording is in **CANONICAL_DECISION_MEMO.md** and
+> **PARITY_STUDY_SCOPE_RECONCILIATION.md**. Corrected: Decision C applies **to this single-run
+> retrospective matrix** (useful parity NOT ESTABLISHED); **general parity is not established AND
+> not falsified**. "0/50 stable crossing" means 0/50 have *repeated evidence* to establish one
+> (1 rep/cell) — NOT that no crossing exists. This file is retained for provenance.
+
 # Parity-Existence Study — FINAL
 
 Auto-derived from machine artifacts in `results/pruning_ab/parity_study/`. Existence diagnostic on

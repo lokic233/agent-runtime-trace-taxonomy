@@ -1,0 +1,31 @@
+# TraceController — Canonical Evidence Matrix
+
+**Primary reference for all future writing.** Supersedes conflicting wording in prior reports
+(which are retained for provenance). No sealed raw artifact modified. Compiled 2026-07-02.
+Cost estimand discipline: **H1, H3, and task-total cost are NEVER merged.** Statuses:
+SUPPORTED · CREDIBLE_NEGATIVE · NOT_ESTABLISHED · NOT_ESTABLISHED_NOR_FALSIFIED · NON_DIAGNOSTIC · NOT_TESTED.
+
+| # | Claim | Status | Evidence | Estimand | Dataset | Limitations | Permissible wording | Forbidden overclaim |
+|---|---|---|---|---|---|---|---|---|
+| 1 | Trace pathology predicts runtime inefficiency | SUPPORTED (associational) | pathologies correlate w/ cost, looping, rereading, non-convergence | correlation (observational) | clean-trace study | associational, not action-value | "trace pathologies are associated with runtime inefficiency" | "trace predicts the right action" |
+| 2 | Trace features incrementally predict resolution | SUPPORTED (weak) | trace features add weak incremental resolution prediction beyond metadata; length explains most raw cost | incremental predictive R²/AUC | clean-trace study | weak increment; length-dominated | "weak incremental predictive value beyond metadata" | "trace features strongly predict success" |
+| 3 | Exact redundancy predicts LINEDEDUP OPPORTUNITY | SUPPORTED | eligibility/removable-volume well-defined from redundancy | descriptive opportunity | Study-2 + pruning | opportunity ≠ value | "redundancy is an opportunity signal" | "redundancy is an action-value signal" |
+| 4 | Exact redundancy predicts LINEDEDUP ADVANTAGE (moderation) | NOT_ESTABLISHED | b3=+931 (wrong sign), cluster CI spans 0, sharp-null p≈0.73, real |b3| exceeds ~26% of dist-preserving placebos | interaction β3 on H1 | Study-2 N=70 | underpowered | "not established as a causal moderator" | "redundancy moderates the LINEDEDUP effect" |
+| 5 | LINEDEDUP H1 average effect | DIRECTIONALLY_FAVORABLE / NOT PRECISELY ESTABLISHED | ATE_H1 ≈ −995 (LINEDEDUP cheaper), repo-cluster CI crosses 0, tail-sensitive | ITT ATE on **H1** cost | Study-2 N=70 | imprecise, tail-sensitive | "directionally favorable, imprecise" | "LINEDEDUP causally saves X% (H1)" |
+| 6 | LINEDEDUP task-total effect | NOT_ESTABLISHED | task-total not separately powered; H1 only proximal | ITT ATE on **task-total** | Study-2 N=70 | distinct estimand from H1 | "task-total effect not separately established" | merging H1 with task-total |
+| 7 | LINEDEDUP quality non-inferiority | SUPPORTED (marginal, frozen −0.15) | risk diff +0.13, Newcombe lower −0.083 ≥ −0.15 | binary resolution RD | Study-2 N=70 | binary only; cluster precision limited | "prespecified marginal NI criterion met" | "quality/safety universally established" |
+| 8 | Prefix byte preservation | SUPPORTED (software invariant) | 36/36 LINEDEDUP prior prefixes byte-identical | deterministic invariant | Study-2 | invariant, not causal | "prefix preservation holds as a software invariant" | treating it as a causal cost result |
+| 9 | Cache-cost mechanism (dedup preserves, recency busts) | SUPPORTED (directional) + mechanistic | content-stable cache ratio 13–14× vs recency 0.37×; aggressive recency net-negative 9/10 tasks | randomized arm contrast / decomposition | Study-2 + pruning ledgers | mediation not identified | "cache preservation distinguishes content-stable from recency transforms" | "identified mediated causal cache effect" |
+| 10 | Aggressive recency prefix rewriting is beneficial | CREDIBLE_NEGATIVE (kill) | net saving negative 9/10 tasks; cache ratio collapses 11.8→0.37 | task-total effective cost | pruning ledgers (10 tasks) | small n but consistent | "recency prefix rewriting is a net cost increase in cached-agent settings" | "all aggressive compression is harmful" |
+| 11 | Static policy value (always-LINEDEDUP dominates static set) | SUPPORTED (within tested set) | best static = pi_static on Hájek AND DR (agree) | policy value V(π) | Study-2 N=70 | within the {keep,static,signal} set | "always-LINEDEDUP is the best static in the tested set" | "LINEDEDUP is globally optimal" |
+| 12 | Signal (NO_OP vs LINEDEDUP) adaptive policy value | CREDIBLE_NEGATIVE | pi_signal worse than pi_static (+726 Hájek); no feature family beats always-LINEDEDUP; calibration inverted | V(π_signal)−V(π_static) | Study-2 N=70 | scope = NO_OP vs eligible LINEDEDUP only | "no stable pre-treatment signal found for NO_OP vs LINEDEDUP at N=70" | "no signal exists for any action" |
+| 13 | Retrospective per-task oracle headroom | NOT_ESTABLISHED (no positive lower bound) | naive gap 15–22% below SHAM-calibrated null (34–41%); no defensible positive LB across 6/7 noise models | oracle gap = best_static − oracle | pruning 6×50 single-run, provider-$ proxy | 1 rep/cell; SHAM 10 high-cost tasks; proxy metric | "no positive lower bound on oracle headroom from this matrix" | "true oracle gap is zero"; "no parity exists" |
+| 14 | Moderate content-stable transforms (M4/M6) action value | NON_DIAGNOSTIC | single-run; below noise floor; not the conceptual A1/A2 | task-total (proxy) | pruning 6×50 | non-diagnostic, needs redesign | "retrospective evidence is non-diagnostic; redesign required" | "M4/M6 have no value" |
+| 15 | General tolerance-conditioned action parity | NOT_ESTABLISHED_NOR_FALSIFIED | current matrix non-diagnostic; parity-bearing families (memory) untested | existence of a*(X,ε) crossing | none adequate | no adequately-powered replicated data | "not established and not falsified" | "action parity is disproven" |
+| 16 | Agentic / indexed memory action family | NOT_TESTED | no experiments run | — | none | — | "not yet tested" | any performance claim |
+| 17 | Deployable adaptive TraceController | NOT_ESTABLISHED | requires real crossing + pre-treatment predictability + policy improvement + validation; none achieved | end-to-end | all | — | "not supported" | "deployable / production-ready" |
+
+## Reading guide
+- **Established & retained:** cache-cost mechanism (9), recency-kill (10), LINEDEDUP as a static primitive (5,7,8,11).
+- **Credible negatives (scoped):** NO_OP-vs-LINEDEDUP controller (12), single-run oracle headroom (13).
+- **Open / non-diagnostic:** moderate transforms (14), general parity (15), memory (16), deployable controller (17).

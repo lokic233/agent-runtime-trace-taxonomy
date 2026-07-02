@@ -1,0 +1,103 @@
+{
+ "observed_naive_gap_pct": 21.703191215178283,
+ "sham": {
+  "n": 10,
+  "median_abs_rel": 0.3120259263206296,
+  "mean_abs_rel": 0.3384575264896929,
+  "sd_rel": 0.4311470255608256,
+  "mad_rel": 0.4356387075179681,
+  "sham_mean_cost": 296868.86,
+  "all50_mean_cost": 0.6102452800000001,
+  "additive_sd_effcost": 118290.09459359432,
+  "sham_over_all_ratio_provider_dollars": 2.6741566522235125,
+  "sham_subset_note": "SHAM 10 tasks are 2.67x the 50-task mean provider cost (high-cost/interesting subset); noise floor may not transfer to cheap tasks -> tested via cheap/expensive split (17.5% vs 22.9%, similar)."
+ },
+ "sigma_estimators": {
+  "median_rel/0.674": 0.46294647822051865,
+  "mean_rel/0.798": 0.42413223870888833,
+  "sd_rel": 0.4311470255608256,
+  "mad_rel": 0.4356387075179681
+ },
+ "note": "NULL = all 4 actions identical. If null-manufactured gap >= observed, no positive lower bound is defensible under that model.",
+ "models": {
+  "mult_lognormal_sigma[median_rel/0.674=0.46]": {
+   "null_gap_pct": 40.85835977574944,
+   "ci": [
+    28.32284702686442,
+    52.83462811694418
+   ],
+   "null_ge_observed": true
+  },
+  "mult_lognormal_sigma[mean_rel/0.798=0.42]": {
+   "null_gap_pct": 37.975049484807954,
+   "ci": [
+    26.530916304458717,
+    49.912846880132236
+   ],
+   "null_ge_observed": true
+  },
+  "mult_lognormal_sigma[sd_rel=0.43]": {
+   "null_gap_pct": 38.66990931417787,
+   "ci": [
+    27.24814309034933,
+    50.046775053408155
+   ],
+   "null_ge_observed": true
+  },
+  "mult_lognormal_sigma[mad_rel=0.44]": {
+   "null_gap_pct": 38.59449148091982,
+   "ci": [
+    26.839657172539788,
+    50.16436617823018
+   ],
+   "null_ge_observed": true
+  },
+  "additive_gaussian_homosked": {
+   "null_gap_pct": 34.00183781722862,
+   "ci": [
+    27.014012524621865,
+    40.96604871494178
+   ],
+   "null_ge_observed": true,
+   "note": "additive floor => cheaper tasks noisier in relative terms; likely OVERstates cheap-task gap"
+  },
+  "correlated_within_task_rho0.3": {
+   "null_gap_pct": 35.16270901349932,
+   "ci": [
+    23.862178550276678,
+    46.54487956448609
+   ],
+   "null_ge_observed": true,
+   "note": "positive within-task action-noise correlation shrinks the manufactured gap; if real action noise is correlated, more of the observed gap could be real"
+  },
+  "correlated_within_task_rho0.5": {
+   "null_gap_pct": 30.283661158837976,
+   "ci": [
+    20.220584612628663,
+    40.748902204827026
+   ],
+   "null_ge_observed": true,
+   "note": "positive within-task action-noise correlation shrinks the manufactured gap; if real action noise is correlated, more of the observed gap could be real"
+  },
+  "correlated_within_task_rho0.8": {
+   "null_gap_pct": 19.941776388088723,
+   "ci": [
+    13.062592363573502,
+    27.348732996506094
+   ],
+   "null_ge_observed": false,
+   "note": "positive within-task action-noise correlation shrinks the manufactured gap; if real action noise is correlated, more of the observed gap could be real"
+  }
+ },
+ "subset_observed_gaps": {
+  "cheap_half": 17.506705655111986,
+  "expensive_half": 22.85558550472718,
+  "note": "still single-run; cheap-half gap is NOT a positive lower bound, just a descriptive split. SHAM noise not measured on cheap tasks."
+ },
+ "verdict": {
+  "any_model_null_below_observed": true,
+  "defensible_positive_lower_bound": false,
+  "reason": "Even where a null model produces a smaller gap than observed (e.g. strongly correlated within-task noise), (a) we have NO repeated-run data to estimate the true within-task action correlation, and (b) the SHAM floor is measured on only 10 high-cost tasks. No noise model + single-run data can pin a positive lower bound. The honest statement is: no positive lower bound on real oracle headroom is establishable from this matrix.",
+  "canonical_wording": "No positive lower bound on real oracle headroom can be established from the current single-run retrospective matrix under any tested noise model. This is NOT the same as a true gap of zero."
+ }
+}

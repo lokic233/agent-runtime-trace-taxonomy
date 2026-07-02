@@ -1,3 +1,11 @@
+> ## ⚠️ SCOPE SUPERSEDED (2026-07-02)
+> Canonical decision record is now **CANONICAL_DECISION_MEMO.md**. Corrections: "Decision C — no
+> useful parity" is scoped to **this single-run retrospective matrix** (general parity: not
+> established AND not falsified); "conservative bias-corrected oracle gap ~0%" is corrected to
+> **"no positive lower bound establishable from this matrix"** (NOT "true gap is zero" — see
+> ORACLE_NOISE_MODEL_SENSITIVITY.md); "A1" here = M4 obs-cap proxy, **not** actual LINEDEDUP.
+> Retained for provenance.
+
 # TraceController Go/No-Go — Hostile-Committee Memo
 
 Decision: **C_NO_USEFUL_PARITY** · signal learning proceed: **False**.

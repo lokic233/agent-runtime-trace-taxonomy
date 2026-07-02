@@ -28,8 +28,12 @@ identical with this noise:
 | 0.20 | small | 19.5% |
 
 **The observed naive gap (~15-22%) is BELOW the noise-null gap (40.6% at the SHAM-calibrated sigma).**
-A min-over-4-single-draws manufactures a larger gap from pure noise than we observe. **Conservative
-bias-corrected oracle gap: 0% (indistinguishable from the noise floor).**
+A min-over-4-single-draws manufactures a larger gap from pure noise than we observe.
+
+> ⚠️ **CORRECTED (2026-07-02):** the earlier phrasing "bias-corrected oracle gap: 0%" overstates.
+> The correct claim is: **no positive lower bound on real oracle headroom can be established from
+> this single-run matrix** (verified across 7 noise models — ORACLE_NOISE_MODEL_SENSITIVITY.md).
+> This is NOT the same as a true gap of zero.
 
 ## Robustness (all confirm the gap is noise, not signal)
 - Split-sample bias correction (naive selection artifact only): still ~15% — because it corrects
